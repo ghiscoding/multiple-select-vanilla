@@ -1,0 +1,59 @@
+{
+  "name": "multiple-select-vanilla",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "author": {
+    "name": "zhixin wen",
+    "email": "wenzhixin2010@gmail.com",
+    "url": "http://wenzhixin.net.cn/"
+  },
+  "contributors": [
+    {
+      "name": "Ghislain B."
+    }
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production tsup",
+    "postbuild": "run-s sass:build sass:copy --npm-path pnpm",
+    "build:watch": "tsup --watch",
+    "dev": "run-p build:watch sass:watch sass:copy:watch --npm-path pnpm",
+    "sass:build": "sass src/styles:dist/styles/css --style=compressed --quiet-deps --no-source-map",
+    "postsass:build": "postcss --no-map --use autoprefixer --dir dist/styles/css dist/styles/css --style=compressed",
+    "sass:watch": "sass src/styles:dist/styles/css --watch --style=compressed --quiet-deps --no-source-map",
+    "sass:copy": "cross-env copyfiles -u 2 src/styles/**/*.scss dist/styles/sass",
+    "sass:copy:watch": "nodemon --ext scss --watch src/styles/**/*.scss --exec \"npm run sass:copy\""
+  },
+  "comments": {
+    "sass:copy:watch": "TODO: patch for TSUP issue which seems to ignore plugins (esbuild-plugin-copy) watch changes, see https://github.com/egoist/tsup/issues/801"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
+    "esbuild-plugin-copy": "^2.0.1",
+    "nodemon": "^2.0.20",
+    "npm-run-all2": "^6.0.4",
+    "postcss": "^8.4.20",
+    "postcss-cli": "^10.1.0",
+    "sass": "^1.57.1",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
+  }
+}

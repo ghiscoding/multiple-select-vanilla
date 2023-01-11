@@ -1,0 +1,57 @@
+.ms-parent.form-control {
+  padding: 0;
+  height: 100%;
+  border-radius: 4px;
+
+  .ms-choice {
+    border: 0;
+    height: 100%;
+
+    > span {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &.form-control-sm {
+    .ms-drop input[type='radio'],
+    .ms-drop input[type='checkbox'] {
+      margin-top: 0.4rem;
+    }
+  }
+
+  &.form-control-lg {
+    .ms-drop input[type='radio'],
+    .ms-drop input[type='checkbox'] {
+      margin-top: 0.5rem;
+    }
+  }
+
+  &.ms-dropdown {
+    .ms-drop ul > li {
+      &.group.hide-radio label.optgroup {
+        margin-bottom: 0;
+        font-size: 87.5%;
+        color: #6c757d;
+        white-space: nowrap;
+        opacity: 1;
+      }
+
+      &.hide-radio.option-level-1 label {
+        padding-left: 8px;
+      }
+    }
+
+    &.ms-dropdown-divider {
+      .ms-drop ul > li {
+        &.group.hide-radio label.optgroup {
+          border-top: 1px solid #e9ecef;
+        }
+
+        &.group:first-child label.optgroup {
+          border-top: none;
+        }
+      }
+    }
+  }
+}

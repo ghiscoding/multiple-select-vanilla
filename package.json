@@ -1,0 +1,44 @@
+{
+  "name": "multiple-select-root",
+  "private": true,
+  "version": "0.1.0",
+  "author": {
+    "name": "zhixin wen",
+    "email": "wenzhixin2010@gmail.com",
+    "url": "http://wenzhixin.net.cn/"
+  },
+  "contributors": [
+    {
+      "name": "Ghislain B."
+    }
+  ],
+  "scripts": {
+    "bootstrap": "pnpm install",
+    "clean": "rimraf */dist dist",
+    "prebuild": "pnpm run clean && pnpm run format:write && pnpm run lint",
+    "build": "pnpm -r --stream build",
+    "predev": "pnpm run format:write",
+    "dev": "pnpm -r --parallel --stream dev",
+    "demo:dev": "pnpm -r --stream --filter \"{demo/**}\" dev",
+    "demo:build": "pnpm -r --stream --filter components --filter \"{demo/**}\" build",
+    "lib:build": "pnpm -r --stream --filter components --filter \"{lib/**}\" build",
+    "format:check": "prettier --check **/*.{js,ts,yml,json}",
+    "format:write": "prettier --write **/*.{js,ts,yml,json}",
+    "ci:lint": "eslint -c .eslintrc.json --no-eslintrc --ignore-path .gitignore",
+    "lint": "eslint -c .eslintrc.json --no-eslintrc --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "pnpm": "^7.22.0",
+    "prettier": "^2.8.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.4"
+  }
+}

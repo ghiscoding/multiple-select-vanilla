@@ -1,0 +1,10 @@
+# Ignore all yaml files & dist folders
+*.json
+*.yml
+*.yaml
+dist
+
+# Ignore json configuration files in fixtures, sometimes they are intentionally malformed
+**/README.md
+**/CONTRIBUTING.md
+**/changelog.md
