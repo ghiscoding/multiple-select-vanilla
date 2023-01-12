@@ -1,0 +1,64 @@
+name: GitHub Actions
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch on Push and any branches on PR
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  run:
+    name: Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [18]
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 3
+
+      - name: Use latest version of Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: "*"
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+          run_install: true
+
+      - run: pnpm --version
+
+      - name: Build Library
+        run: pnpm build:lib
+
+      - name: Build Website (GitHub demo site)
+        run: pnpm build:demo
+
+      # - uses: actions/upload-artifact@v3
+      #   if: failure()
+      #   with:
+      #     name: cypress-screenshots
+      #     path: test/cypress/screenshots
+
+      - name: Deploy to gh-pages
+        # if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./demo/dist
