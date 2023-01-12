@@ -8,7 +8,7 @@ import { BindingEventService, VirtualScroll } from './services';
 import { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
 import { OptGroupRowData, OptionRowData } from './interfaces';
 
-export class MultipleSelect {
+export class MultipleSelectInstance {
   protected _bindEventService: BindingEventService;
   protected allSelected = false;
   protected fromHtml = false;
@@ -37,7 +37,10 @@ export class MultipleSelect {
   protected updateDataEnd?: number;
   protected virtualScroll?: VirtualScroll | null;
 
-  constructor(protected elm: HTMLSelectElement, options?: Partial<MultipleSelectOption>) {
+  constructor(
+    protected elm: HTMLSelectElement,
+    options?: Partial<Omit<MultipleSelectOption, 'onHardDestroy' | 'onAfterHardDestroy'>>
+  ) {
     this.options = Object.assign({}, Constants.DEFAULTS, this.elm.dataset, options);
     this._bindEventService = new BindingEventService({ distinctEvent: true });
   }
@@ -54,12 +57,15 @@ export class MultipleSelect {
   }
 
   /**
-   * destroy the element, if the hard destroy is also enabled then we'll also nullify it on the multipleSelect instance array.
+   * destroy the element, if a hard destroy is enabled then we'll also nullify it on the multipleSelect instance array.
    * When a soft destroy is called, we'll only remove it from the DOM but we'll keep all multipleSelect instances
    */
   destroy(hardDestroy = true) {
     if (this.parentElm) {
       this.options.onDestroy({ hardDestroy });
+      if (hardDestroy) {
+        this.options.onHardDestroy();
+      }
       this.elm.before(this.parentElm);
       this.elm.classList.remove('ms-offscreen');
       this._bindEventService.unbindAll();
@@ -77,8 +83,9 @@ export class MultipleSelect {
       }
       this.options.onAfterDestroy({ hardDestroy });
 
+      // on a hard destroy, we will also nullify all variables & call event so that _multipleSelect can also nullify its own instance
       if (hardDestroy) {
-        this.options.onHardDestroyed();
+        this.options.onAfterHardDestroy?.();
         Object.keys(this.options).forEach((o) => delete (this as any)[o]);
       }
     }
@@ -1091,7 +1098,7 @@ export class MultipleSelect {
   }
 
   refresh() {
-    this.destroy();
+    this.destroy(false);
     this.init();
   }
 

@@ -4,4 +4,4 @@ export * from './constants';
 export * from './interfaces';
 export * from './utils';
 export * from './multiple-select';
-export * from './MultipleSelect';
+export * from './MultipleSelectInstance';

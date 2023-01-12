@@ -1,16 +1,24 @@
-import { MultipleSelect, multipleSelect } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
+  ms1?: MultipleSelectInstance | null;
+
   mount() {
-    let ms = multipleSelect('select') as MultipleSelect | null;
+    this.ms1 = multipleSelect('select') as MultipleSelectInstance | null;
 
     document.querySelector('#destroyBtn')!.addEventListener('click', () => {
-      ms?.destroy();
-      ms = null; // remove detached element
+      this.ms1?.destroy();
+      this.ms1 = null; // remove detached element
     });
 
     document.querySelector('#buildBtn')!.addEventListener('click', () => {
-      ms = multipleSelect('select') as MultipleSelect;
+      this.ms1 = multipleSelect('select') as MultipleSelectInstance;
     });
+  }
+
+  unmount() {
+    // destroy ms instance(s) to avoid DOM leaks
+    this.ms1?.destroy();
+    this.ms1 = undefined;
   }
 }

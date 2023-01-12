@@ -6,15 +6,30 @@ import 'font-awesome/css/font-awesome.css';
 import { exampleRouting, navbarRouting } from './app-routing';
 import { createDomElement } from 'multiple-select-vanilla';
 
+interface ViewRouter {
+  name: string;
+  view: string;
+  viewModel: any;
+  title: string;
+}
+
+interface ViewModel {
+  mount?: () => void;
+  unmount?: () => void;
+}
+
 class Main {
+  loading = true;
+  currentModel?: ViewModel;
+  currentRouter?: ViewRouter;
   defaultRouteName = 'example01';
   stateBangChar = '#/';
   baseUrl = window.location.origin + window.location.pathname;
   viewModelObj: any = {};
 
   async init() {
-    document.querySelector<HTMLDivElement>('#app')!.innerHTML = mainHtml;
     const location = window.location;
+    document.querySelector<HTMLDivElement>('#app')!.innerHTML = mainHtml;
 
     let route = location.hash.replace(this.stateBangChar, '');
     if (!route || route === '/' || route === '#') {
@@ -86,6 +101,9 @@ class Main {
   }
 
   async loadRoute(routeName: string, changeBrowserState = true) {
+    const contentElm = document.querySelector('.panel-wm-content') as HTMLElement;
+    contentElm.innerHTML = '';
+    contentElm.classList.add('cloak');
     let foundRouter = navbarRouting.find((r) => r.name === routeName);
 
     if (foundRouter?.name === 'examples') {
@@ -93,25 +111,34 @@ class Main {
       exampleElm?.classList.add('active');
     } else {
       for (const groupRoute of exampleRouting) {
-        const found = groupRoute.routes.find((r) => r.name === routeName);
+        const found = (groupRoute.routes as ViewRouter[]).find((r) => r.name === routeName);
         if (found) {
           foundRouter = found;
         }
       }
     }
 
-    // const foundRouter = appRouting.find((gr) => gr.routes.find(r => r.name === routeName));
+    if (this.currentModel) {
+      this.unmountCurrentVM(this.currentModel, this.currentRouter);
+    }
+
     if (foundRouter) {
+      this.currentRouter = foundRouter;
       const html = await import(/*@vite-ignore*/ `${foundRouter.view}?raw`);
       document.querySelector('.panel-wm-content')!.innerHTML = html.default;
-      const vm = new foundRouter.viewModel() as { mount?: () => void; unmount?: () => void };
+      const vm = new foundRouter.viewModel() as ViewModel;
+      this.currentModel = vm;
       (window as any)[foundRouter.name] = vm.mount?.();
 
       // before leaving the page/SPA, we'll unmount everything
       window.onbeforeunload = () => {
+        contentElm.classList.add('cloak');
         vm.unmount?.();
         this.removeAllActiveLinks(true);
         this.unmountAll();
+        if (foundRouter?.name) {
+          delete (window as any)[foundRouter.name];
+        }
       };
     }
 
@@ -119,6 +146,7 @@ class Main {
       window.history.pushState({}, routeName, `${this.baseUrl}${this.stateBangChar}${routeName}`);
     }
     document.title = `Multiple-Select-Vanilla · ${routeName}`;
+    contentElm.classList.remove('cloak');
   }
 
   async clickEventListener(e: Event) {
@@ -139,6 +167,13 @@ class Main {
         link.addEventListener('click', this.clickEventListener.bind(this) as EventListener);
       }
     });
+  }
+
+  unmountCurrentVM(vm: ViewModel, vr?: ViewRouter) {
+    vm.unmount?.();
+    if (vr) {
+      delete (window as any)[vr.name];
+    }
   }
 
   unmountAll() {

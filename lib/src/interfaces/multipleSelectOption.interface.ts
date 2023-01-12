@@ -138,8 +138,11 @@ export interface MultipleSelectOption {
   /** Fires after instance was destroyed. */
   onAfterDestroy: (options: { hardDestroy: boolean }) => void;
 
-  /** (do not use, for internal usage only) Fires after instance was destroyed. */
-  onHardDestroyed: () => void;
+  /** (internal usage only) Fires when instance is being hard destroyed. */
+  onHardDestroy: () => void;
+
+  /** (internal usage only) Fires after instance was being hard destroyed. */
+  onAfterHardDestroy: () => void;
 
   /** Fires when the dropdown list is open. */
   onOpen: () => void;

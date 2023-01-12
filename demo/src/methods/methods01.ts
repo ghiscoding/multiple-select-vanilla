@@ -1,13 +1,21 @@
-import { MultipleSelect, multipleSelect } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
+  ms1?: MultipleSelectInstance;
+
   mount() {
-    const ms = multipleSelect('select', {
+    this.ms1 = multipleSelect('select', {
       filter: true,
-    }) as MultipleSelect;
+    }) as MultipleSelectInstance;
 
     document.querySelector('#getOptions')!.addEventListener('click', () => {
-      alert(JSON.stringify(ms.getOptions(), null, 4));
+      alert(JSON.stringify(this.ms1!.getOptions(), null, 4));
     });
+  }
+
+  unmount() {
+    // destroy ms instance(s) to avoid DOM leaks
+    this.ms1?.destroy();
+    this.ms1 = undefined;
   }
 }

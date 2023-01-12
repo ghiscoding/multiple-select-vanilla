@@ -1,15 +1,21 @@
-import { MultipleSelect, multipleSelect } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
-  ms: MultipleSelect[] = [];
+  btnElm?: HTMLButtonElement | null;
+  ms: MultipleSelectInstance[] = [];
 
   mount() {
-    this.ms = multipleSelect('select') as MultipleSelect[];
-    document.querySelector('.submit7')!.addEventListener('click', this.clickListener);
+    this.ms = multipleSelect('select') as MultipleSelectInstance[];
+    this.btnElm = document.querySelector('.submit7');
+    this.btnElm!.addEventListener('click', this.clickListener);
   }
 
   unmount() {
-    document.querySelector('.submit7')!.removeEventListener('click', this.clickListener);
+    this.btnElm!.removeEventListener('click', this.clickListener);
+
+    // destroy ms instance(s) to avoid DOM leaks
+    this.ms.forEach((m) => m.destroy());
+    this.ms = [];
   }
 
   clickListener = () => {

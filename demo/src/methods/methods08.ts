@@ -1,13 +1,21 @@
-import { MultipleSelect, multipleSelect } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
+  ms: MultipleSelectInstance[] = [];
+
   mount() {
-    const ms = multipleSelect('select') as MultipleSelect[];
+    this.ms = multipleSelect('select') as MultipleSelectInstance[];
 
     document.querySelector('#checkInvert')!.addEventListener('click', () => {
-      for (const m of ms) {
+      for (const m of this.ms) {
         m.checkInvert();
       }
     });
+  }
+
+  unmount() {
+    // destroy ms instance(s) to avoid DOM leaks
+    this.ms.forEach((m) => m.destroy());
+    this.ms = [];
   }
 }

@@ -1,9 +1,17 @@
-import { multipleSelect } from 'multiple-select-vanilla';
+import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
 
 export default class Example {
+  ms: MultipleSelectInstance[] = [];
+
   mount() {
-    multipleSelect('select', {
+    this.ms = multipleSelect('select', {
       filter: true,
-    });
+    }) as MultipleSelectInstance[];
+  }
+
+  unmount() {
+    // destroy ms instance(s) to avoid DOM leaks
+    this.ms.forEach((m) => m.destroy());
+    this.ms = [];
   }
 }

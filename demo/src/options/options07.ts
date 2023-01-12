@@ -1,21 +1,29 @@
-import { MultipleSelect, multipleSelect } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
+  ms: MultipleSelectInstance[] = [];
+
   mount() {
     const numberElm = document.querySelector('#number') as HTMLInputElement;
 
-    const ms = multipleSelect('select', {
+    this.ms = multipleSelect('select', {
       maxHeight: +numberElm.value,
       maxHeightUnit: 'row',
-    }) as MultipleSelect[];
+    }) as MultipleSelectInstance[];
 
     numberElm.addEventListener('change', () => {
-      ms.forEach((m) => {
+      this.ms.forEach((m) => {
         m.refreshOptions({
           maxHeight: +numberElm.value,
           maxHeightUnit: 'row',
         });
       });
     });
+  }
+
+  unmount() {
+    // destroy ms instance(s) to avoid DOM leaks
+    this.ms.forEach((m) => m.destroy());
+    this.ms = [];
   }
 }

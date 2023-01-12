@@ -1,9 +1,12 @@
-import { multipleSelect } from 'multiple-select-vanilla';
+import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
 
 export default class Example {
+  multiMs: MultipleSelectInstance[] = [];
+  singleMs?: MultipleSelectInstance;
+
   mount() {
-    multipleSelect('.select');
-    multipleSelect('.data', {
+    this.multiMs = multipleSelect('.select') as MultipleSelectInstance[];
+    this.singleMs = multipleSelect('.data', {
       data: [
         {
           value: 1,
@@ -19,6 +22,14 @@ export default class Example {
           text: 'Options 3',
         },
       ],
-    });
+    }) as MultipleSelectInstance;
+  }
+
+  unmount() {
+    // destroy ms instance(s) to avoid DOM leaks
+    this.multiMs.forEach((m) => m.destroy());
+    this.multiMs = [];
+    this.singleMs?.destroy();
+    this.singleMs = undefined;
   }
 }

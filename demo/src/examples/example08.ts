@@ -1,8 +1,14 @@
-import { multipleSelect } from 'multiple-select-vanilla';
+import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
 
 export default class Example {
+  ms1?: MultipleSelectInstance;
+  ms2?: MultipleSelectInstance;
+  ms3?: MultipleSelectInstance;
+  ms4?: MultipleSelectInstance;
+  ms5?: MultipleSelectInstance;
+
   mount() {
-    multipleSelect('#basic', {
+    this.ms1 = multipleSelect('#basic', {
       data: [
         {
           text: 'January',
@@ -53,9 +59,9 @@ export default class Example {
           value: 12,
         },
       ],
-    });
+    }) as MultipleSelectInstance;
 
-    multipleSelect('#object', {
+    this.ms2 = multipleSelect('#object', {
       data: {
         1: 'January',
         2: 'February',
@@ -70,17 +76,17 @@ export default class Example {
         11: 'November',
         12: 'December',
       },
-    });
+    }) as MultipleSelectInstance;
 
-    multipleSelect('#string', {
+    this.ms3 = multipleSelect('#string', {
       data: ['January', 'February', 'March'],
-    });
+    }) as MultipleSelectInstance;
 
-    multipleSelect('#number', {
+    this.ms4 = multipleSelect('#number', {
       data: [1, 2, 3],
-    });
+    }) as MultipleSelectInstance;
 
-    multipleSelect('#group', {
+    this.ms5 = multipleSelect('#group', {
       data: [
         {
           type: 'optgroup',
@@ -145,6 +151,20 @@ export default class Example {
           ],
         },
       ],
-    });
+    }) as MultipleSelectInstance;
+  }
+
+  unmount() {
+    // destroy ms instance(s) to avoid DOM leaks
+    this.ms1?.destroy();
+    this.ms2?.destroy();
+    this.ms3?.destroy();
+    this.ms4?.destroy();
+    this.ms5?.destroy();
+    this.ms1 = undefined;
+    this.ms2 = undefined;
+    this.ms3 = undefined;
+    this.ms4 = undefined;
+    this.ms5 = undefined;
   }
 }
