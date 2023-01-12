@@ -153,8 +153,12 @@ var xi=Object.defineProperty;var Di=(n,t,e)=>t in n?xi(n,t,{enumerable:!0,config
   </div>
 </div>
 
-<div>
-  <script src="https://gist.github.com/ghiscoding/d9136bb871e43cf93da6b58cd3e1ccfe.js"><\/script>
+<div class="row">
+  <iframe width="100%" height="450" src="data:text/html;charset=utf-8,
+    <head><base target='_blank' /></head>
+    <body><script src='https://gist.github.com/ghiscoding/d9136bb871e43cf93da6b58cd3e1ccfe.js'><\/script>
+    </body>">
+  </iframe>
 </div>
 `,$i=`<div class="row">
   <div class="col-md-12 title-desc">
