@@ -5,8 +5,7 @@ import 'bootstrap';
 import 'font-awesome/css/font-awesome.css';
 import { exampleRouting, navbarRouting } from './app-routing';
 import { createDomElement } from 'multiple-select-vanilla';
-const pageLayoutGlobs = import.meta.globEager('/src/./**/*.html', { as: 'raw' });
-Object.entries(pageLayoutGlobs).forEach(([path]) => console.log('glob eager path', path));
+const pageLayoutGlobs = import.meta.glob('/src/./**/*.html', { as: 'raw', eager: true });
 
 interface ViewRouter {
   name: string;
