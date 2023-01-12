@@ -35,13 +35,10 @@ New Multiple-Select Options:
 [The MIT License](https://github.com/ghiscoding/multiple-select-vanilla/blob/master/LICENSE)
 
 ## Contributions
-This project is using pnpm workspaces and requires pnpm to be installed.
-
-## Contributions
 
 [![PR](https://img.shields.io/badge/PR-Welcome-1abc9c)](https://github.com/ghiscoding/multiple-select-vanilla/pulls)
 
-Feel free to contribute any Pull Request.
+Feel free to contribute any [Pull Request](https://github.com/ghiscoding/multiple-select-vanilla/pulls).
 
 ### Development / Contributions
 
@@ -54,6 +51,15 @@ If you wish to contribute to the project, please follow these steps:
 2. install with **pnpm** from the root:
    - `pnpm install` OR `npx pnpm install`
 3. run a full TypeScript build
-   - `pnpm build` OR `npx pnpm build`
+   - `pnpm run build` OR `npx pnpm run build`
 4. run in development mode (lib & demo)
-   - `pnpm dev` OR `npx pnpm dev`
+   - `pnpm run dev` OR `npx pnpm run dev`
+   
+#### Pull Request Contribution
+
+Before submitting a before request, make sure that you follow these steps
+1. have the [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) VSCode extension installed (no config required)
+2. run the Prettier code formatting (or use step 3)
+   - `pnpm run prettier:write`
+3. run a full Build (this will also run Prettier format)
+   - `pnpm run build`
