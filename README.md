@@ -7,10 +7,10 @@
 <!-- [![Cypress.io](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)](https://www.cypress.io/) -->
 
 ## Official Release is coming in the next few days 📣
-Watch for an upcoming version in the coming days, the [live](https://ghiscoding.github.io/multiple-select-vanilla/) demo is already up and running though :)
+Watch for an upcoming version in the coming days, the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) is already up and running though :)
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) original lib, it is based on the version `1.5.2`. The difference is that we dropped jQuery and rewrote necessary code in plain vanilla/pure JavaScript without any dependencies (zero dependency).
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) original lib, it is based on the latest version `1.5.2` from the original lib. The main difference is that we dropped jQuery and rewrote necessary code in plain vanilla/pure JavaScript without any dependencies (zero dependency). We will also add nice extra features pretty soon, for example auto-position (top/bottom & left/right) is planned.
 
 This lib allows you to select multiple elements with checkboxes :).
 
@@ -18,11 +18,11 @@ To get started checkout examples and documentation at http://wenzhixin.net.cn/p/
 
 ## Installation
 
-```shell
+```sh
 npm install multiple-select-vanilla
 ```
 
-## Changes from original
+## Changes vs Original lib
 New Multiple-Select Options:
 - dropped jQuery requirement and replaced necessary code with pure vanilla JS code.
 
