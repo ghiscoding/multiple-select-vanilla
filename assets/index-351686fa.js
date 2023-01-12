@@ -105,7 +105,7 @@ var xi=Object.defineProperty;var Di=(n,t,e)=>t in n?xi(n,t,{enumerable:!0,config
   <hr />
 
   <div class="mb-3 row">
-    <label class="col-sm-2"> Group Select </label>
+    <label class="col-sm-2">Group Select</label>
 
     <div class="col-sm-10">
       <select class="full-width">
@@ -129,7 +129,7 @@ var xi=Object.defineProperty;var Di=(n,t,e)=>t in n?xi(n,t,{enumerable:!0,config
   </div>
 
   <div class="mb-3 row">
-    <label class="col-sm-2"> Multiple Select </label>
+    <label class="col-sm-2">Multiple Select</label>
 
     <div class="col-sm-10">
       <select class="multiple-select full-width">
@@ -153,12 +153,15 @@ var xi=Object.defineProperty;var Di=(n,t,e)=>t in n?xi(n,t,{enumerable:!0,config
   </div>
 </div>
 
-<div class="row">
-  <iframe width="100%" height="450" src="data:text/html;charset=utf-8,
-    <head><base target='_blank' /></head>
-    <body><script src='https://gist.github.com/ghiscoding/d9136bb871e43cf93da6b58cd3e1ccfe.js'><\/script>
-    </body>">
-  </iframe>
+<div class="row mt-4">  
+  <label class="col-sm-2">Code Sample</label>
+  <div class="col-sm-10 col-lg-8">
+    <iframe width="100%" height="450" src="data:text/html;charset=utf-8,
+      <head><base target='_blank' /></head>
+      <body><script src='https://gist.github.com/ghiscoding/d9136bb871e43cf93da6b58cd3e1ccfe.js'><\/script>
+      </body>">
+    </iframe>
+  </div>
 </div>
 `,$i=`<div class="row">
   <div class="col-md-12 title-desc">
