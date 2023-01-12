@@ -1,7 +1,9 @@
 # Multiple-Select-Vanilla
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [multiple-select](https://github.com/wenzhixin/multiple-select), based on version `1.5.2`, but rewritten in plain vanilla JavaScript without any dependencies. This lib allows you to select multiple elements with checkboxes :).
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) original lib, it is based on the version `1.5.2`. The difference is that we dropped jQuery and rewrote necessary code in plain vanilla/pure JavaScript without any dependencies (zero dependency).
+
+This lib allows you to select multiple elements with checkboxes :).
 
 To get started checkout examples and documentation at http://wenzhixin.net.cn/p/multiple-select
 
