@@ -5,6 +5,8 @@ import 'bootstrap';
 import 'font-awesome/css/font-awesome.css';
 import { exampleRouting, navbarRouting } from './app-routing';
 import { createDomElement } from 'multiple-select-vanilla';
+const pageLayoutGlobs = import.meta.globEager('/src/./**/*.html', { as: 'raw' });
+Object.entries(pageLayoutGlobs).forEach(([path]) => console.log('glob eager path', path));
 
 interface ViewRouter {
   name: string;
@@ -124,8 +126,8 @@ class Main {
 
     if (foundRouter) {
       this.currentRouter = foundRouter;
-      const html = await import(/*@vite-ignore*/ `${foundRouter.view}?raw`);
-      document.querySelector('.panel-wm-content')!.innerHTML = html.default;
+      // const html = await import(/*@vite-ignore*/ `${foundRouter.view}?raw`).default;
+      document.querySelector('.panel-wm-content')!.innerHTML = pageLayoutGlobs[foundRouter.view];
       const vm = new foundRouter.viewModel() as ViewModel;
       this.currentModel = vm;
       (window as any)[foundRouter.name] = vm.mount?.();
