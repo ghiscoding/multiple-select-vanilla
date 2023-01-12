@@ -44,6 +44,9 @@ jobs:
 
       - run: pnpm --version
 
+      - name: Prettier Check
+        run: pnpm prettier:check
+
       - name: Build Library
         run: pnpm build:lib
 

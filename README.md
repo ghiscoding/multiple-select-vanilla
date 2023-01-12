@@ -24,3 +24,25 @@ New Multiple-Select Options:
 ## LICENSE
 
 [The MIT License](https://github.com/ghiscoding/multiple-select-vanilla/blob/master/LICENSE)
+
+## Contributions
+This project is using pnpm workspaces and requires pnpm to be installed.
+
+## Contributions
+
+[![PR](https://img.shields.io/badge/PR-Welcome-1abc9c)](https://github.com/ghiscoding/multiple-select-vanilla/pulls)
+
+Feel free to contribute any Pull Request.
+
+### Development / Contributions
+
+If you wish to contribute to the project, please follow these steps:
+
+**Note**: this project uses [pnpm workspaces](https://pnpm.io/workspaces), you can install pnpm by following their [installation](https://pnpm.io/installation) or simply run `npx pnpm` to run any of the pnpm scripts shown below:
+
+1. clone the lib:
+   - `git clone https://github.com/ghiscoding/multiple-select-vanilla`
+2. install with **pnpm** from the root:
+   - `pnpm install` OR `npx pnpm install`
+3. run a full TypeScript build
+   - `pnpm build` OR `npx pnpm build`
