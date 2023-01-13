@@ -47,6 +47,7 @@
     "autoprefixer": "^10.4.13",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
+    "esbuild": "^0.16.17",
     "esbuild-plugin-copy": "^2.0.1",
     "nodemon": "^2.0.20",
     "npm-run-all2": "^6.0.4",
