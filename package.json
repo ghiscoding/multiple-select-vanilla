@@ -1,7 +1,7 @@
 {
   "name": "multiple-select-root",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.0.0",
   "author": {
     "name": "zhixin wen",
     "email": "wenzhixin2010@gmail.com",
@@ -26,9 +26,15 @@
     "prettier:check": "prettier --check **/*.{js,ts,yml,json}",
     "prettier:write": "prettier --write **/*.{js,ts,yml,json}",
     "ci:lint": "eslint -c .eslintrc.json --no-eslintrc --ignore-path .gitignore",
-    "lint": "eslint -c .eslintrc.json --no-eslintrc --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint"
+    "lint": "eslint -c .eslintrc.json --no-eslintrc --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint",
+    "preview:version": "lerna version --no-private --dry-run",
+    "preview:publish": "lerna publish from-package --dry-run",
+    "new-version": "lerna version --no-private",
+    "new-publish": "lerna publish from-package",
+    "roll-new-release": "pnpm build && pnpm new-version && pnpm new-publish"
   },
   "devDependencies": {
+    "@lerna-lite/cli": "^1.13.0",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
     "eslint": "^8.31.0",

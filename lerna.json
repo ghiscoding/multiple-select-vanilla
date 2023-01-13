@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
+  "version": "0.0.0",
+  "npmClient": "pnpm",
+  "loglevel": "info",
+  "command": {
+    "version": {
+      "conventionalCommits": true,
+      "createRelease": "github",
+      "changelogIncludeCommitsClientLogin": " - by @%l",
+      "changelogHeaderMessage": "## Multiple-Select-Vanilla, visit the GitHub Page [multiple-select-vanilla](https://github.com/ghiscoding/multiple-select-vanilla)",
+      "message": "chore(release): publish new version %v",
+      "syncWorkspaceLock": true
+    }
+  },
+  "packages": [
+    "*"
+  ]
+}
