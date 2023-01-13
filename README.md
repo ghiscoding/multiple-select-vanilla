@@ -6,8 +6,8 @@
 [![Actions Status](https://github.com/ghiscoding/multiple-select-vanilla/workflows/CI%20Build/badge.svg)](https://github.com/ghiscoding/multiple-select-vanilla/actions)
 <!-- [![Cypress.io](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)](https://www.cypress.io/) -->
 
-## Official Release is coming in the next few days 📣
-Watch for an upcoming version in the coming days, the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) is already up and running though :)
+## Official Release now available 📣
+We now have a full working and official release `0.1.0` and a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all options/methods
 
 ## Description
 Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) original lib, it is based on the latest version `1.5.2` from the original lib. The main difference is that we dropped jQuery and rewrote necessary code in plain vanilla/pure JavaScript without any dependencies (zero dependency). We will also add nice extra features pretty soon, for example auto-position (top/bottom & left/right) is planned.
@@ -54,7 +54,7 @@ If you wish to contribute to the project, please follow these steps:
    - `pnpm run build` OR `npx pnpm run build`
 4. run in development mode (lib & demo)
    - `pnpm run dev` OR `npx pnpm run dev`
-   
+
 #### Pull Request Contribution
 
 Before submitting a before request, make sure that you follow these steps
