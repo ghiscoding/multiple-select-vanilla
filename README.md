@@ -28,7 +28,7 @@ New Multiple-Select Options:
 
 ## Changelog
 
-[CHANGELOG](https://github.com/ghiscoding/multiple-select-vanilla/blob/master/CHANGELOG.md)
+[CHANGELOG](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/lib/CHANGELOG.md)
 
 ## LICENSE
 
