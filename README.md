@@ -14,7 +14,7 @@ Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](http
 
 This lib allows you to select multiple elements with checkboxes :).
 
-To get started checkout examples and documentation at http://wenzhixin.net.cn/p/multiple-select
+To get started checkout examples and documentation at https://ghiscoding.github.io/multiple-select-vanilla
 
 ## Installation
 
