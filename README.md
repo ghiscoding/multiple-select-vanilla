@@ -22,10 +22,6 @@ To get started checkout examples and documentation at https://ghiscoding.github.
 npm install multiple-select-vanilla
 ```
 
-## Changes vs Original lib
-New Multiple-Select Options:
-- dropped jQuery requirement and replaced necessary code with pure vanilla JS code.
-
 ## Changelog
 
 [CHANGELOG](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/lib/CHANGELOG.md)
@@ -33,6 +29,12 @@ New Multiple-Select Options:
 ## LICENSE
 
 [The MIT License](https://github.com/ghiscoding/multiple-select-vanilla/blob/master/LICENSE)
+
+
+## Changes vs Original lib
+New Multiple-Select Options:
+- dropped jQuery requirement and replaced necessary code with pure vanilla JS code.
+- written in TypeScript which brings typings support
 
 ## Contributions
 
