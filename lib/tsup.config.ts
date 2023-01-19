@@ -1,25 +1,24 @@
-import { copy } from 'esbuild-plugin-copy';
+// import { copy } from 'esbuild-plugin-copy';
 import type { Options } from 'tsup';
 
 const env = process.env.NODE_ENV;
 
 export const tsup: Options = {
-  esbuildPlugins: [
-    copy({
-      copyOnStart: true,
-      assets: [
-        {
-          from: ['./src/styles/**/*.scss'],
-          to: ['./styles/sass'],
-        },
-      ],
-    }) as any,
-  ],
+  /*
+   * TSUP issue which seems to ignore plugins (esbuild-plugin-copy) watch changes,
+   * remove lerna watch in root whenever that gets fixed
+   * see https://github.com/egoist/tsup/issues/801
+   */
+  // esbuildPlugins: [
+  //   copy({
+  //     copyOnStart: true,
+  //     assets: [{ from: ['./src/styles/**/*.scss'], to: ['./styles/sass'] }],
+  //   }) as any,
+  // ],
   dts: true, // generate dts files & run type checking
   entry: ['src/**/*.ts'], // include all files under src
   entryPoints: ['src/index.ts'],
   format: ['cjs', 'esm'], // generate CommonJS and ESM files
-  // legacyOutput: true,
   bundle: env === 'production',
   minify: env === 'production',
   watch: env !== 'production',
