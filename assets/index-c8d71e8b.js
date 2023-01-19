@@ -934,6 +934,7 @@ var xi=Object.defineProperty;var Di=(n,t,e)=>t in n?xi(n,t,{enumerable:!0,config
     </p>
   </section>
 
+  <!-- no minified distribution files yet, let's comment it out for now
   <section>
     <h5>CDN <i class="fa fa-link"></i></h5>
     <p>
@@ -951,7 +952,7 @@ var xi=Object.defineProperty;var Di=(n,t,e)=>t in n?xi(n,t,{enumerable:!0,config
       >
     </div>
   </section>
-
+  -->
   <section>
     <h5>NPM</h5>
     <p>Install and manage Multiple Select's CSS, JavaScript using NPM.</p>
