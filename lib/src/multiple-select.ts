@@ -65,5 +65,5 @@ multipleSelect.methods = Constants.METHODS;
 
 // add it to the window object so it can be used as standalone
 if (typeof window !== 'undefined') {
-  (window as any).multipleSelect = multipleSelect;
+  window.multipleSelect = multipleSelect;
 }
