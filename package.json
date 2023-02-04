@@ -35,21 +35,21 @@
     "roll-new-release": "pnpm build && pnpm new-version && pnpm new-publish"
   },
   "devDependencies": {
-    "@lerna-lite/cli": "^1.14.2",
-    "@lerna-lite/watch": "^1.14.2",
-    "@typescript-eslint/eslint-plugin": "^5.48.2",
-    "@typescript-eslint/parser": "^5.48.2",
+    "@lerna-lite/cli": "^1.15.0",
+    "@lerna-lite/watch": "^1.15.0",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.32.0",
+    "eslint": "^8.33.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "npm-run-all2": "^6.0.4",
-    "pnpm": "^7.25.1",
+    "pnpm": "^7.26.3",
     "prettier": "^2.8.3",
     "rimraf": "^3.0.2",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   }
 }
