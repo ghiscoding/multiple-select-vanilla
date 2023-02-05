@@ -4,6 +4,13 @@
   "npmClient": "pnpm",
   "loglevel": "info",
   "command": {
+    "publish": {
+      "cleanupTempFiles": true,
+      "removePackageFields": [
+        "devDependencies",
+        "scripts"
+      ]
+    },
     "version": {
       "conventionalCommits": true,
       "createRelease": "github",
