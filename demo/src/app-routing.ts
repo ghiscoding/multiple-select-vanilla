@@ -37,6 +37,7 @@ import Options24 from './options/options24';
 import Options25 from './options/options25';
 import Options26 from './options/options26';
 import Options27 from './options/options27';
+import Options28 from './options/options28';
 import Methods01 from './methods/methods01';
 import Methods02 from './methods/methods02';
 import Methods03 from './methods/methods03';
@@ -100,9 +101,10 @@ export const exampleRouting = [
       { name: 'options22', view: '/src/options/options22.html', viewModel: Options22, title: 'Filter By Data Length' },
       { name: 'options23', view: '/src/options/options23.html', viewModel: Options23, title: 'Custom Filter' },
       { name: 'options24', view: '/src/options/options24.html', viewModel: Options24, title: 'Show Clear' },
-      { name: 'options25', view: '/src/options/options25.html', viewModel: Options25, title: 'The Styler' },
-      { name: 'options26', view: '/src/options/options26.html', viewModel: Options26, title: 'Text Template' },
-      { name: 'options27', view: '/src/options/options27.html', viewModel: Options27, title: 'Label Template' },
+      { name: 'options25', view: '/src/options/options25.html', viewModel: Options25, title: 'Show OK Button' },
+      { name: 'options26', view: '/src/options/options26.html', viewModel: Options26, title: 'The Styler' },
+      { name: 'options27', view: '/src/options/options27.html', viewModel: Options27, title: 'Text Template' },
+      { name: 'options28', view: '/src/options/options28.html', viewModel: Options28, title: 'Label Template' },
     ],
   },
   {

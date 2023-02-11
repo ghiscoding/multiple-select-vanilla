@@ -1,3 +1,6 @@
+/* sass variables */
+@import './variables';
+
 /*!
  * Multiple-Select-Vanilla styling
  * @author zhixin wen <wenzhixin2010@gmail.com>
@@ -124,6 +127,25 @@
   &.top {
     bottom: 100%;
     box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  .ms-ok-button {
+    cursor: pointer;
+    display: block;
+    padding: 0;
+    width: var(--ms-ok-button-width, $ms-ok-button-width);
+    height: var(--ms-ok-button-height, $ms-ok-button-height);
+    border-color: var(--ms-ok-button-border-color, $ms-ok-button-border-color);
+    border-radius: var(--ms-ok-button-border-radius, $ms-ok-button-border-radius);
+    border-width: var(--ms-ok-button-border-width, $ms-ok-button-border-width);
+    text-align: var(--ms-ok-button-text-align, $ms-ok-button-text-align);
+    color: var(--ms-ok-button-text-color, $ms-ok-button-text-color);
+    font-weight: var(--ms-ok-button-font-weight, $ms-ok-button-font-weight);
+    background-color: var(--ms-ok-button-bg-color, $ms-ok-button-bg-color);
+    &:hover {
+      background-color: var(--ms-ok-button-bg-hover-color, $ms-ok-button-bg-hover-color);
+      color: var(--ms-ok-button-text-hover-color, $ms-ok-button-text-hover-color);
+    }
   }
 }
 

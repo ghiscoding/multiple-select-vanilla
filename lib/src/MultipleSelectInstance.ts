@@ -19,6 +19,7 @@ export class MultipleSelectInstance {
   protected data: OptionRowData[] = [];
   protected dataTotal?: any;
   protected dropElm!: HTMLDivElement;
+  protected okButtonElm?: HTMLButtonElement;
   protected ulElm?: HTMLUListElement | null;
   protected parentElm!: HTMLDivElement;
   protected labelElm?: HTMLLabelElement | null;
@@ -356,6 +357,14 @@ export class MultipleSelectInstance {
     this.dropElm.innerHTML = html.join('');
     this.ulElm = this.dropElm.querySelector<HTMLUListElement>('ul');
 
+    if (this.options.showOkButton && !this.options.single) {
+      this.okButtonElm = createDomElement('button', {
+        className: 'ms-ok-button',
+        textContent: this.options.formatOkButton(),
+      });
+      this.dropElm.appendChild(this.okButtonElm);
+    }
+
     this.initListItems();
   }
 
@@ -686,6 +695,14 @@ export class MultipleSelectInstance {
       this._bindEventService.unbind(this.selectAllElm, 'click');
       this._bindEventService.bind(this.selectAllElm, 'click', ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
         this._checkAll(e.currentTarget?.checked);
+      }) as EventListener);
+    }
+
+    if (this.okButtonElm) {
+      this._bindEventService.unbind(this.okButtonElm, 'click');
+      this._bindEventService.bind(this.okButtonElm, 'click', ((e: MouseEvent & { target: HTMLElement }) => {
+        toggleOpen(e);
+        e.stopPropagation(); // Causes lost focus otherwise
       }) as EventListener);
     }
 

@@ -5,8 +5,8 @@ export default class Example {
 
   mount() {
     this.ms1 = multipleSelect('select', {
-      textTemplate: (el) => {
-        return '<i class="fa fa-star"></i>' + el.innerHTML;
+      labelTemplate: (el) => {
+        return '<i class="fa fa-star"></i>' + el.getAttribute('label');
       },
     }) as MultipleSelectInstance;
   }

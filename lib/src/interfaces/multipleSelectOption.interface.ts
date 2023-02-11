@@ -91,8 +91,11 @@ export interface MultipleSelectOption {
   /** Alias to `single` */
   singleRadio?: boolean;
 
-  /** Show a clear button */
+  /** Show a clear button, defaults to false */
   showClear?: boolean;
+
+  /** Display the OK button at bottom of the list when using multiple selection to easily close the drop, defaults to false. */
+  showOkButton?: boolean;
 
   /** Define the width property of the dropdown list, support a percentage setting.By default this option is set to undefined. Which is the same as the select input field. */
   width?: number | string;
@@ -104,9 +107,6 @@ export interface MultipleSelectOption {
   /** Customize the filter method, for example we use startWith */
   customFilter: (normalizedText: string, normalizedOriginalText: string, text: string, originalText: string) => boolean;
 
-  /** For the "Select All" checkbox text */
-  formatSelectAll: () => string;
-
   /** Customize the formatted text "All Selected" when using custom locale. */
   formatAllSelected: () => string;
 
@@ -115,6 +115,12 @@ export interface MultipleSelectOption {
 
   /** For the "No Matches Found" text when nothing is found while filtering the dropdown */
   formatNoMatchesFound: () => string;
+
+  /** Customize the formatted text "OK" showing at the bottom of the drop. */
+  formatOkButton: () => string;
+
+  /** For the "Select All" checkbox text */
+  formatSelectAll: () => string;
 
   /** The item styler function, return style string to custom the item style such as background: red. The function take one parameter: value. */
   styler: (value: OptionRowData | OptGroupRowData) => string | null;

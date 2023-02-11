@@ -64,6 +64,7 @@ const DEFAULTS = {
 };
 
 const EN = {
+  formatOkButton: () => 'OK',
   formatSelectAll: () => '[Select all]',
   formatAllSelected: () => 'All selected',
   formatCountSelected: (count: number, total: number) => `${count} of ${total} selected`,
