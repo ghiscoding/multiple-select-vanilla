@@ -2,17 +2,23 @@
   "name": "multiple-select-vanilla",
   "version": "0.1.0",
   "type": "module",
+  "main": "./dist/cjs/multiple-select.js",
+  "module": "./dist/esm/multiple-select.js",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/esm/multiple-select.js",
+      "require": "./dist/cjs/multiple-select.js"
     },
     "./*": "./*"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/types/index.d.ts"
+      ]
+    }
+  },
+  "types": "./dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -30,12 +36,18 @@
     "access": "public"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsup",
+    "clean": "rimraf dist",
+    "build": "cross-env NODE_ENV=production pnpm build:web && pnpm build:cjs && pnpm build:esm && pnpm build:types:prod",
     "postbuild": "run-s sass:build sass:copy --npm-path pnpm",
-    "build:watch": "tsup --watch",
-    "dev": "run-p build:watch sass:watch --npm-path pnpm",
+    "dev:init": "pnpm sass:build && pnpm sass:copy && pnpm build:types && pnpm build:esm",
+    "build:watch": "cross-env NODE_ENV='development' node build-watch.mjs",
+    "build:web": "esbuild src/index.ts --bundle --minify --format=iife --target=es2018 --global-name=MultipleSelect --outfile=dist/multiple-select.min.js",
+    "build:cjs": "esbuild src/index.ts --bundle --minify --format=cjs --target=es2018 --outfile=dist/cjs/multiple-select.js",
+    "build:esm": "esbuild src/index.ts --bundle --minify --format=esm --target=es2018 --outfile=dist/esm/multiple-select.js",
+    "build:types": "tsc --emitDeclarationOnly --incremental --declarationMap false --outDir dist/types",
+    "build:types:prod": "tsc --emitDeclarationOnly --incremental --declarationMap --outDir dist/types",
     "sass:build": "sass src/styles:dist/styles/css --style=compressed --quiet-deps --no-source-map",
-    "postsass:build": "postcss --no-map --use autoprefixer --dir dist/styles/css dist/styles/css --style=compressed",
+    "postsass:build": "postcss dist/styles/css/**/* --dir dist/styles/css --base dist/styles/css --no-map --use autoprefixer --style=compressed",
     "sass:watch": "sass src/styles:dist/styles/css --watch --style=compressed --quiet-deps --no-source-map",
     "sass:copy": "cross-env copyfiles -u 2 src/styles/**/*.scss dist/styles/sass"
   },
@@ -43,11 +55,13 @@
     "autoprefixer": "^10.4.13",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
+    "esbuild": "^0.17.7",
+    "fs-extra": "^11.1.0",
     "npm-run-all2": "^6.0.4",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "sass": "^1.58.0",
-    "tsup": "^6.5.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "yargs": "^17.6.2"
   }
 }
