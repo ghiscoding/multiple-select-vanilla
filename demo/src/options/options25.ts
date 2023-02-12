@@ -4,9 +4,10 @@ export default class Example {
   ms: MultipleSelectInstance[] = [];
 
   mount() {
-    this.ms = multipleSelect('select', {
-      showOkButton: true,
-    }) as MultipleSelectInstance[];
+    this.ms.push(multipleSelect('.select1', { showOkButton: true }) as MultipleSelectInstance);
+    this.ms.push(multipleSelect('.select2', { showOkButton: true }) as MultipleSelectInstance);
+    this.ms.push(multipleSelect('.select3', { showOkButton: true, filter: true }) as MultipleSelectInstance);
+    this.ms.push(multipleSelect('.select4', { showOkButton: true }) as MultipleSelectInstance);
   }
 
   unmount() {

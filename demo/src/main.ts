@@ -52,6 +52,14 @@ class Main {
     window.onpopstate = () => {
       const winLoc = window.location;
       const prevRoute = winLoc.hash.replace(this.stateBangChar, '');
+
+      // change active link to previous route
+      this.removeAllActiveLinks();
+      const navItemElm = document.querySelector(`#${prevRoute}`);
+      if (navItemElm) {
+        navItemElm.scrollIntoView();
+        navItemElm.classList.add('active');
+      }
       this.loadRoute(prevRoute || this.defaultRouteName, false);
     };
   }
