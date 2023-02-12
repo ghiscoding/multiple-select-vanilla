@@ -151,8 +151,8 @@ export class MultipleSelectInstance {
     }
 
     this.choiceElm = createDomElement('button', {
-      type: 'button',
       className: `ms-choice`,
+      type: 'button',
     });
 
     if (isNaN(tabIndex as any)) {
@@ -340,26 +340,38 @@ export class MultipleSelectInstance {
   }
 
   protected initList() {
-    const html = [];
-
     if (this.options.filter) {
-      html.push(`
-        <div class="ms-search">
-          <input type="text" autocomplete="off" autocorrect="off"
-            autocapitalize="off" spellcheck="false"
-            placeholder="${this.options.filterPlaceholder || '🔎︎'}">
-        </div>
-      `);
+      const filterElm = createDomElement('div', { className: 'ms-search' });
+      filterElm.appendChild(
+        createDomElement('input', {
+          autocomplete: 'off',
+          autocapitalize: 'off',
+          spellcheck: false,
+          type: 'text',
+          placeholder: this.options.filterPlaceholder || '🔎︎',
+        })
+      );
+      this.dropElm.appendChild(filterElm);
     }
 
-    html.push('<ul></ul>');
+    if (this.options.selectAll && !this.options.single) {
+      const selectAllElm = createDomElement('div', { className: 'ms-select-all' });
+      const saLabelElm = createDomElement('label');
+      const saInputElm = createDomElement('input', { type: 'checkbox', checked: this.allSelected });
+      saInputElm.dataset.name = 'selectAll';
+      saLabelElm.appendChild(saInputElm);
+      saLabelElm.appendChild(createDomElement('span', { textContent: this.options.formatSelectAll() }));
+      selectAllElm.appendChild(saLabelElm);
+      this.dropElm.appendChild(selectAllElm);
+    }
 
-    this.dropElm.innerHTML = html.join('');
-    this.ulElm = this.dropElm.querySelector<HTMLUListElement>('ul');
+    this.ulElm = createDomElement('ul');
+    this.dropElm.appendChild(this.ulElm);
 
     if (this.options.showOkButton && !this.options.single) {
       this.okButtonElm = createDomElement('button', {
         className: 'ms-ok-button',
+        type: 'button',
         textContent: this.options.formatOkButton(),
       });
       this.dropElm.appendChild(this.okButtonElm);
@@ -429,17 +441,6 @@ export class MultipleSelectInstance {
 
   protected getListRows() {
     const rows = [];
-
-    if (this.options.selectAll && !this.options.single) {
-      rows.push(`
-        <li class="ms-select-all">
-        <label>
-        <input type="checkbox" ${this.selectAllName}${this.allSelected ? ' checked="checked"' : ''} />
-        <span>${this.options.formatSelectAll()}</span>
-        </label>
-        </li>
-      `);
-    }
 
     this.updateData = [];
     this.data.forEach((row) => {
@@ -591,6 +592,7 @@ export class MultipleSelectInstance {
   }
 
   protected events() {
+    this._bindEventService.unbind(this.okButtonElm);
     this._bindEventService.unbind(this.searchInputElm);
     this._bindEventService.unbind(this.selectAllElm);
     this._bindEventService.unbind(this.selectGroupElms);

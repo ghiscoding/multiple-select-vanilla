@@ -129,6 +129,36 @@
     box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.15);
   }
 
+  .ms-select-all {
+    border-bottom: var(--ms-all-border-bottom, $ms-all-border-bottom);
+    padding: var(--ms-all-padding, $ms-all-padding);
+    line-height: var(--ms-all-line-height, $ms-all-line-height);
+    width: 100%;
+    &:hover {
+      background-color: var(--ms-all-text-hover-color, $ms-all-text-hover-color);
+    }
+
+    label {
+      display: inline-block;
+      font-weight: normal;
+      padding: var(--ms-all-label-padding, $ms-all-label-padding);
+      border: var(--ms-all-label-border, $ms-all-label-border);
+      color: var(--ms-all-text-color, $ms-all-text-color);
+      width: 100%;
+      &:hover {
+        cursor: pointer;
+        border: var(--ms-all-label-hover-border, $ms-all-label-hover-border);
+        background-color: var(--ms-all-label-hover-bg-color, $ms-all-label-hover-bg-color);
+      }
+      input {
+        margin-left: 0;
+      }
+      span {
+        padding-left: 1.25rem;
+      }
+    }
+  }
+
   .ms-ok-button {
     cursor: pointer;
     display: block;

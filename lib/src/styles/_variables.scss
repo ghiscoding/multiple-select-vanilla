@@ -1,4 +1,9 @@
 $primary-color: #31708f !default;
+
+$ms-item-border: 1px solid transparent !default;
+$ms-item-hover-border: 1px solid #d5d5d5 !default;
+$ms-icon-font-size: 16px !default;
+$ms-checkbox-hover-bg-color: #fafafa !default;
 $ms-ok-button-bg-color: #fff !default;
 $ms-ok-button-bg-hover-color: darken(#eff5fc, 3%) !default;
 $ms-ok-button-border-color: #ccc !default;
@@ -10,3 +15,12 @@ $ms-ok-button-text-hover-color: darken($primary-color, 5%) !default;
 $ms-ok-button-height: 26px !default;
 $ms-ok-button-width: 100% !default;
 $ms-ok-button-text-align: center !default;
+$ms-all-border-bottom: 1px solid #ddd !default;
+$ms-all-label-border: $ms-item-border !default;
+$ms-all-label-hover-border: 1px solid transparent !default;
+$ms-all-label-hover-bg-color: $ms-checkbox-hover-bg-color !default;
+$ms-all-label-padding: 4px !default;
+$ms-all-line-height: calc(#{$ms-icon-font-size} + 2px) !default;
+$ms-all-padding: 4px !default;
+$ms-all-text-color: darken($primary-color, 5%) !default;
+$ms-all-text-hover-color: transparent !default;
