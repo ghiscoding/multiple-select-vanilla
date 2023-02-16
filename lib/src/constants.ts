@@ -43,6 +43,15 @@ const DEFAULTS = {
   showClear: false,
   animate: undefined,
 
+  // auto-position the drop
+  offsetLeft: 0,
+  autoAdjustDropHeight: false,
+  autoAdjustDropPosition: false,
+  autoDropWidth: false,
+  autoAdjustDropWidthByTextSize: false,
+  adjustedHeightPadding: 10,
+  selectSidePadding: 26,
+
   styler: () => false,
   textTemplate: (elm: HTMLOptionElement) => elm.innerHTML.trim(),
   labelTemplate: (elm: HTMLOptionElement) => elm.label,

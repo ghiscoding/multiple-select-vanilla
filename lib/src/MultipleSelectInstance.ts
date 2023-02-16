@@ -3,7 +3,16 @@
  */
 import Constants from './constants';
 import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys } from './utils';
-import { createDomElement, findParent, getElementOffset, getElementSize, insertAfter, toggleElement } from './utils/domUtils';
+import {
+  calculateAvailableSpace,
+  createDomElement,
+  findParent,
+  getElementOffset,
+  getElementSize,
+  HtmlElementPosition,
+  insertAfter,
+  toggleElement,
+} from './utils/domUtils';
 import { BindingEventService, VirtualScroll } from './services';
 import { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
 import { OptGroupRowData, OptionRowData } from './interfaces';
@@ -20,9 +29,11 @@ export class MultipleSelectInstance {
   protected dataTotal?: any;
   protected dropElm!: HTMLDivElement;
   protected okButtonElm?: HTMLButtonElement;
+  protected filterParentElm?: HTMLDivElement | null;
   protected ulElm?: HTMLUListElement | null;
   protected parentElm!: HTMLDivElement;
   protected labelElm?: HTMLLabelElement | null;
+  protected selectAllParentElm?: HTMLDivElement | null;
   protected selectAllElm?: HTMLInputElement | null;
   protected searchInputElm?: HTMLInputElement | null;
   protected selectGroupElms?: NodeListOf<HTMLInputElement>;
@@ -188,7 +199,8 @@ export class MultipleSelectInstance {
     this.closeElm = this.choiceElm.querySelector('.icon-close');
 
     if (this.options.dropWidth) {
-      this.dropElm.style.width = `${this.options.dropWidth}px`;
+      this.dropElm.style.width =
+        typeof this.options.dropWidth === 'string' ? this.options.dropWidth : `${this.options.dropWidth}px`;
     }
 
     insertAfter(this.elm, this.parentElm);
@@ -341,8 +353,8 @@ export class MultipleSelectInstance {
 
   protected initList() {
     if (this.options.filter) {
-      const filterElm = createDomElement('div', { className: 'ms-search' });
-      filterElm.appendChild(
+      this.filterParentElm = createDomElement('div', { className: 'ms-search' });
+      this.filterParentElm.appendChild(
         createDomElement('input', {
           autocomplete: 'off',
           autocapitalize: 'off',
@@ -351,18 +363,18 @@ export class MultipleSelectInstance {
           placeholder: this.options.filterPlaceholder || '🔎︎',
         })
       );
-      this.dropElm.appendChild(filterElm);
+      this.dropElm.appendChild(this.filterParentElm);
     }
 
     if (this.options.selectAll && !this.options.single) {
-      const selectAllElm = createDomElement('div', { className: 'ms-select-all' });
+      this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all' });
       const saLabelElm = createDomElement('label');
       const saInputElm = createDomElement('input', { type: 'checkbox', checked: this.allSelected });
       saInputElm.dataset.name = 'selectAll';
       saLabelElm.appendChild(saInputElm);
       saLabelElm.appendChild(createDomElement('span', { textContent: this.options.formatSelectAll() }));
-      selectAllElm.appendChild(saLabelElm);
-      this.dropElm.appendChild(selectAllElm);
+      this.selectAllParentElm.appendChild(saLabelElm);
+      this.dropElm.appendChild(this.selectAllParentElm);
     }
 
     this.ulElm = createDomElement('ul');
@@ -789,7 +801,9 @@ export class MultipleSelectInstance {
         container = this.options.container as HTMLElement;
       } else if (typeof this.options.container === 'string') {
         // prettier-ignore
-        container = this.options.container === 'body' ? document.body : (document.querySelector(this.options.container) as HTMLElement);
+        container = this.options.container === 'body'
+          ? document.body
+          : document.querySelector(this.options.container) as HTMLElement;
       }
       container!.appendChild(this.dropElm);
       this.dropElm.style.top = `${offset?.top ?? 0}px`;
@@ -817,6 +831,29 @@ export class MultipleSelectInstance {
       }
       this.filter(true);
     }
+
+    if (this.options.autoAdjustDropWidthByTextSize) {
+      this.adjustDropWidthByText();
+    }
+
+    let newPosition = this.options.position;
+    if (this.options.autoAdjustDropHeight) {
+      // if autoAdjustDropPosition is enable, we 1st need to see what position the drop will be located
+      // without necessary toggling it's position just yet, we just want to know the future position for calculation
+      if (this.options.autoAdjustDropPosition) {
+        const { bottom: spaceBottom, top: spaceTop } = calculateAvailableSpace(this.dropElm);
+        const msDropHeight = this.dropElm.getBoundingClientRect().height;
+        newPosition = spaceBottom < msDropHeight && spaceTop > spaceBottom ? 'top' : 'bottom';
+      }
+
+      // now that we know which drop position will be used, let's adjust the drop height
+      this.adjustDropHeight(newPosition);
+    }
+
+    if (this.options.autoAdjustDropPosition) {
+      this.adjustDropPosition(true);
+    }
+
     this.options.onOpen();
   }
 
@@ -1181,5 +1218,152 @@ export class MultipleSelectInstance {
     if (!ignoreTrigger) {
       this.options.onFilter(text);
     }
+  }
+
+  protected adjustDropHeight(position: 'bottom' | 'top') {
+    const isDropPositionBottom = position !== 'top' ? true : false;
+    const filterHeight = this.filterParentElm?.getBoundingClientRect().height ?? 0;
+    const okButtonHeight = this.okButtonElm?.getBoundingClientRect().height ?? 0;
+    const selectAllHeight = this.options.single ? 0 : this.selectAllParentElm?.getBoundingClientRect().height ?? 0;
+    const msDropMinimalHeight = filterHeight + okButtonHeight + selectAllHeight + 5;
+
+    const { bottom: spaceBottom, top: spaceTop } = calculateAvailableSpace(this.parentElm);
+
+    let newHeight = this.options.maxHeight;
+    if (isDropPositionBottom) {
+      newHeight = spaceBottom - msDropMinimalHeight - this.options.adjustedHeightPadding;
+    } else {
+      newHeight = spaceTop - msDropMinimalHeight - this.options.adjustedHeightPadding;
+    }
+
+    if (!this.options.maxHeight || (this.options.maxHeight && newHeight < this.options.maxHeight)) {
+      const ulElm = this.dropElm?.querySelector('ul');
+      if (ulElm) {
+        ulElm.style.maxHeight = `${newHeight}px`;
+      }
+      return true; // return true, since we adjusted the drop height
+    }
+
+    // if we reached here, then we can assume that we didn't adjust the drop height
+    return false;
+  }
+
+  protected adjustDropPosition(forceToggle: boolean) {
+    let position = 'bottom';
+
+    if (this.dropElm && this.parentElm) {
+      const { bottom: spaceBottom, top: spaceTop } = calculateAvailableSpace(this.dropElm);
+      const { top: selectOffsetTop, left: selectOffsetLeft } = getElementOffset(this.parentElm) as HtmlElementPosition;
+      const msDropHeight = this.dropElm.getBoundingClientRect().height;
+      const msDropWidth = this.dropElm.getBoundingClientRect().width;
+      const windowWidth = document.body.offsetWidth || window.innerWidth;
+      const selectParentWidth = this.parentElm.getBoundingClientRect().width;
+
+      // find the optimal position of the drop (always choose "bottom" as the default to use)
+      if (spaceBottom > msDropHeight) {
+        position = 'bottom';
+      } else if (msDropHeight > spaceBottom && spaceTop > spaceBottom) {
+        if (this.options.container) {
+          // when using a container, we need to offset the drop ourself
+          // and also make sure there's space available on top before doing so
+          let newOffsetTop = selectOffsetTop - msDropHeight;
+          if (newOffsetTop < 0) {
+            newOffsetTop = 0;
+          }
+
+          if (newOffsetTop > 0 || forceToggle) {
+            position = 'top';
+            this.dropElm.style.top = `${newOffsetTop < 0 ? 0 : newOffsetTop}px`;
+          }
+        } else {
+          // without container, we simply need to add the "top" class to the drop
+          position = 'top';
+          this.dropElm.classList.add(position);
+        }
+        this.dropElm.classList.remove('bottom');
+      }
+
+      // auto-adjust left/right position
+      if (windowWidth - msDropWidth < selectOffsetLeft) {
+        const newLeftOffset = selectOffsetLeft - (msDropWidth - selectParentWidth);
+        this.dropElm.style.left = `${newLeftOffset}px`;
+      }
+    }
+
+    return position;
+  }
+
+  protected adjustDropWidthByText() {
+    const parentWidth = this.parentElm.clientWidth;
+
+    // keep the dropWidth/width as reference, if our new calculated width is below then we will re-adjust (else do nothing)
+    let currentDefinedWidth: number | string = parentWidth;
+    if (this.options.dropWidth || this.options.width) {
+      currentDefinedWidth = this.options.dropWidth || this.options.width || 0;
+    }
+
+    // calculate the "Select All" element width, this text is configurable which is why we recalculate every time
+    const selectAllElm = this.dropElm.querySelector('.ms-select-all span') as HTMLSpanElement;
+    const dropUlElm = this.dropElm.querySelector('ul') as HTMLUListElement;
+
+    const selectAllElmWidth = selectAllElm.clientWidth + this.options.selectSidePadding;
+    const hasScrollbar = dropUlElm.scrollHeight > dropUlElm.clientHeight;
+    const scrollbarWidth = hasScrollbar ? this.getScrollbarWidth() : 0;
+    let contentWidth = 0;
+
+    this.dropElm.querySelectorAll('li label').forEach((elm) => {
+      if (elm.scrollWidth > contentWidth) {
+        contentWidth = elm.scrollWidth;
+      }
+    });
+
+    // add a padding & include the browser scrollbar width
+    contentWidth += this.options.selectSidePadding + scrollbarWidth;
+
+    // make sure the new calculated width is wide enough to include the "Select All" text (this text is configurable)
+    if (contentWidth < selectAllElmWidth) {
+      contentWidth = selectAllElmWidth;
+    }
+
+    // if a maxWidth is defined, make sure our new calculate width is not over the maxWidth
+    if (this.options.maxWidth && contentWidth > this.options.maxWidth) {
+      contentWidth = this.options.maxWidth;
+    }
+
+    // if a minWidth is defined, make sure our new calculate width is not below the minWidth
+    if (this.options.minWidth && contentWidth < this.options.minWidth) {
+      contentWidth = this.options.minWidth;
+    }
+
+    // finally re-adjust the drop to the new calculated width when necessary
+    if (currentDefinedWidth === '100%' || +currentDefinedWidth < contentWidth) {
+      this.dropElm.style.width = `${contentWidth}px`;
+      this.dropElm.style.maxWidth = `${contentWidth}px`;
+    }
+  }
+
+  getScrollbarWidth() {
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.width = '100px';
+    // outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+
+    document.body.appendChild(outer);
+
+    const widthNoScroll = outer.offsetWidth;
+    // force scrollbars
+    outer.style.overflow = 'scroll';
+
+    // add innerdiv
+    const inner = document.createElement('div');
+    inner.style.width = '100%';
+    outer.appendChild(inner);
+
+    const widthWithScroll = inner.offsetWidth;
+
+    // remove divs
+    outer.parentNode?.removeChild(outer);
+
+    return widthNoScroll - widthWithScroll;
   }
 }

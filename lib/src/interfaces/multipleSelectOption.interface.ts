@@ -1,6 +1,18 @@
 import { OptGroupRowData, OptionRowData } from './interfaces';
 
 export interface MultipleSelectOption {
+  /** defaults to 10, when using "autoAdjustDropHeight" we might want to add a bottom (or top) padding instead of taking the entire available space */
+  adjustedHeightPadding: number;
+
+  /** Auto-adjust the Drop menu height to fit with available space */
+  autoAdjustDropHeight?: boolean;
+
+  /** Auto-adjust the Drop position on the side with the most available space (dropup / dropdown) */
+  autoAdjustDropPosition?: boolean;
+
+  /** Drop menu to automatically set its width as the maximum available width of text */
+  autoAdjustDropWidthByTextSize?: boolean;
+
   /** HTML container to use for the drop menu, e.g. 'body' */
   container?: string | HTMLElement;
 
@@ -61,6 +73,12 @@ export interface MultipleSelectOption {
   /** maxHeight unit type */
   maxHeightUnit?: 'row';
 
+  /** Defaults to 500, define the maximum width of the drop when using the "autoAdjustDropWidthByTextSize: true" flag. */
+  maxWidth?: number;
+
+  /** Define the minimum width of the drop when using the "autoAdjustDropWidthByTextSize: true" flag. */
+  minWidth?: number;
+
   /** countSelected will be shown only if more than X items where selected.By default this option is set to 3. */
   minimumCountSelected: number;
 
@@ -80,10 +98,13 @@ export interface MultipleSelectOption {
   placeholder?: string;
 
   /** Defines the position of select dropdown, can only be bottom or top. By default this option is set to bottom. */
-  position?: string;
+  position: 'bottom' | 'top';
 
   /** Whether or not Multiple Select show select all checkbox. */
   selectAll?: boolean;
+
+  /** Defaults to 26 (as per CSS), that is the select DOM element padding in pixels (that is not the drop but the select itself, how tall is it) */
+  selectSidePadding: number;
 
   /** Whether or not Multiple Select allows you to select only one option.By default this option is set to false. */
   single?: boolean;

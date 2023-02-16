@@ -7,7 +7,8 @@
   "exports": {
     ".": {
       "import": "./dist/esm/multiple-select.js",
-      "require": "./dist/cjs/multiple-select.js"
+      "require": "./dist/cjs/multiple-select.js",
+      "default": "./dist/esm/multiple-select.js"
     },
     "./*": "./*"
   },
@@ -47,7 +48,7 @@
     "build:types": "tsc --emitDeclarationOnly --incremental --declarationMap false --outDir dist/types",
     "build:types:prod": "tsc --emitDeclarationOnly --incremental --declarationMap --outDir dist/types",
     "sass:build": "sass src/styles:dist/styles/css --style=compressed --quiet-deps --no-source-map",
-    "postsass:build": "postcss dist/styles/css/**/* --dir dist/styles/css --base dist/styles/css --no-map --use autoprefixer --style=compressed",
+    "postsass:build": "postcss dist/styles/css/**/* --dir dist/styles/css --base dist/styles/css --no-map --use cssnano --use autoprefixer --style=compressed",
     "sass:watch": "sass src/styles:dist/styles/css --watch --style=compressed --quiet-deps --no-source-map",
     "sass:copy": "cross-env copyfiles -u 2 src/styles/**/*.scss dist/styles/sass"
   },
@@ -55,12 +56,13 @@
     "autoprefixer": "^10.4.13",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
-    "esbuild": "^0.17.7",
+    "cssnano": "^5.1.15",
+    "esbuild": "^0.17.8",
     "fs-extra": "^11.1.0",
     "npm-run-all2": "^6.0.4",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
-    "sass": "^1.58.0",
+    "sass": "^1.58.1",
     "typescript": "^4.9.5"
   }
 }

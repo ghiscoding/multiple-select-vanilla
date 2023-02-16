@@ -35,6 +35,11 @@ npm install multiple-select-vanilla
 New Multiple-Select Options:
 - dropped jQuery requirement and replaced necessary code with pure vanilla JS code.
 - written in TypeScript which brings typings support
+- added new features:
+  - `showOkButton` to add an "OK" button at the end of multiple select option list
+  - `autoAdjustDropHeight` will automatically adjust the drop (up or down) height with available space
+  - `autoAdjustDropPosition` will automatically choose best position (top/bottom) with available space
+  - `autoAdjustDropWidthByTextSize` automatically set the drop width size from the widest list option width
 
 ## Contributions
 
