@@ -5,10 +5,36 @@ export type InferDOMType<T> = T extends CSSStyleDeclaration ? Partial<CSSStyleDe
 /* eslint-enable @typescript-eslint/indent */
 
 export interface HtmlElementPosition {
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+}
+
+/** calculate available space for each side of the DOM element */
+export function calculateAvailableSpace(element: HTMLElement): { top: number; bottom: number; left: number; right: number } {
+  let bottom = 0;
+  let top = 0;
+  let left = 0;
+  let right = 0;
+
+  const windowHeight = window.innerHeight ?? 0;
+  const windowWidth = window.innerWidth ?? 0;
+  const scrollPosition = windowScrollPosition();
+  const pageScrollTop = scrollPosition.top;
+  const pageScrollLeft = scrollPosition.left;
+  const elmOffset = getElementOffset(element);
+
+  if (elmOffset) {
+    const elementOffsetTop = elmOffset.top ?? 0;
+    const elementOffsetLeft = elmOffset.left ?? 0;
+    top = elementOffsetTop - pageScrollTop;
+    bottom = windowHeight - (elementOffsetTop - pageScrollTop);
+    left = elementOffsetLeft - pageScrollLeft;
+    right = windowWidth - (elementOffsetLeft - pageScrollLeft);
+  }
+
+  return { top, bottom, left, right };
 }
 
 /** Create a DOM Element with any optional attributes or properties */
@@ -143,4 +169,15 @@ export function toggleElementClass(elm?: HTMLElement | null, state?: boolean) {
     const action = adding ? 'add' : 'remove';
     elm.classList[action]('selected');
   }
+}
+
+/**
+ * Get the Window Scroll top/left Position
+ * @returns
+ */
+export function windowScrollPosition(): { left: number; top: number } {
+  return {
+    left: window.pageXOffset || document.documentElement.scrollLeft || 0,
+    top: window.pageYOffset || document.documentElement.scrollTop || 0,
+  };
 }
