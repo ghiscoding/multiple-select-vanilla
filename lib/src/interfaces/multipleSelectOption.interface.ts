@@ -207,6 +207,12 @@ export interface MultipleSelectOption {
 
   /** Fires when a checkbox filter is changed. */
   onFilter: (text?: string) => void;
+
+  /**
+   * Sanitizes HTML code, for example `<script>`, to prevents XSS attacks.
+   * A library like DOM Purify could be used to sanitize html code, for example: `sanitizer: (dirtyHtml) => DOMPurify.sanitize(dirtyHtml || '')`
+   */
+  sanitizer?: (dirtyHtml: string) => string;
 }
 
 export interface MultipleSelectView {

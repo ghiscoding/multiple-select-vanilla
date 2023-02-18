@@ -17,6 +17,7 @@ export class VirtualScroll {
   scrollTop: number;
   destroy: () => void;
   callback: () => void;
+  sanitizer?: (dirtyHtml: string) => string;
 
   constructor(options: VirtualScrollOption) {
     this.rows = options.rows;
@@ -51,7 +52,7 @@ export class VirtualScroll {
     if (typeof this.clusterHeight === 'undefined') {
       this.cache.scrollTop = this.scrollEl.scrollTop;
       const data = rows[0] + rows[0] + rows[0];
-      this.contentEl.innerHTML = `${data}`;
+      this.contentEl.innerHTML = this.sanitizer ? this.sanitizer(`${data}`) : `${data}`;
       this.cache.data = data;
       this.getRowsHeight();
     }
@@ -71,7 +72,7 @@ export class VirtualScroll {
       if (data.bottomOffset) {
         html.push(this.getExtra('bottom', data.bottomOffset));
       }
-      this.contentEl.innerHTML = html.join('');
+      this.contentEl.innerHTML = this.sanitizer ? this.sanitizer(html.join('')) : html.join('');
     } else if (bottomOffsetChanged && this.contentEl.lastChild) {
       (this.contentEl.lastChild as HTMLElement).style.height = `${data.bottomOffset}px`;
     }
