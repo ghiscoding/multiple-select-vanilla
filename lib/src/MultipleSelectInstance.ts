@@ -427,6 +427,7 @@ export class MultipleSelectInstance {
           rows,
           scrollEl: this.ulElm,
           contentEl: this.ulElm,
+          sanitizer: this.options.sanitizer,
           callback: () => {
             updateDataOffset();
             this.events();
@@ -442,7 +443,7 @@ export class MultipleSelectInstance {
       }
     } else {
       if (this.ulElm) {
-        this.ulElm.innerHTML = rows.join('');
+        this.ulElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(rows.join('')) : rows.join('');
         this.updateDataStart = 0;
         this.updateDataEnd = this.updateData.length;
         this.virtualScroll = null;
@@ -894,8 +895,9 @@ export class MultipleSelectInstance {
 
     if (spanElm) {
       if (sl === 0) {
+        const placeholder = this.options.placeholder || '';
         spanElm.classList.add('ms-placeholder');
-        spanElm.innerHTML = this.options.placeholder || '';
+        spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(placeholder) : placeholder;
       } else if (sl < this.options.minimumCountSelected) {
         html = getSelectOptionHtml();
       } else if (this.options.formatAllSelected() && sl === this.dataTotal) {
@@ -911,7 +913,7 @@ export class MultipleSelectInstance {
       if (html) {
         spanElm?.classList.remove('ms-placeholder');
         if (this.options.useSelectOptionLabelToHtml) {
-          spanElm.innerHTML = html;
+          spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(html) : html;
         } else {
           spanElm.textContent = html;
         }

@@ -20,4 +20,5 @@ export interface VirtualScrollOption {
   scrollEl: HTMLElement;
   contentEl: HTMLElement;
   callback: () => void;
+  sanitizer?: (dirtyHtml: string) => string;
 }

@@ -41,6 +41,7 @@ import Options28 from './options/options28';
 import Options29 from './options/options29';
 import Options30 from './options/options30';
 import Options31 from './options/options31';
+import Options32 from './options/options32';
 import Methods01 from './methods/methods01';
 import Methods02 from './methods/methods02';
 import Methods03 from './methods/methods03';
@@ -111,6 +112,7 @@ export const exampleRouting = [
       { name: 'options29', view: '/src/options/options29.html', viewModel: Options29, title: 'Auto-Adjust Drop Position' },
       { name: 'options30', view: '/src/options/options30.html', viewModel: Options30, title: 'Auto-Adjust Drop Height/Width' },
       { name: 'options31', view: '/src/options/options31.html', viewModel: Options31, title: 'Use Select Option as Label' },
+      { name: 'options32', view: '/src/options/options32.html', viewModel: Options32, title: 'Sanitizer' },
     ],
   },
   {
