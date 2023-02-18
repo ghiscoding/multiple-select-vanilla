@@ -1,6 +1,9 @@
 import { OptGroupRowData, OptionRowData } from './interfaces';
 
 export interface MultipleSelectOption {
+  /** @deprecated @alias `displayTitle` Add a title. By default this option is set to false. */
+  addTitle?: boolean;
+
   /** defaults to 10, when using "autoAdjustDropHeight" we might want to add a bottom (or top) padding instead of taking the entire available space */
   adjustedHeightPadding: number;
 
@@ -14,7 +17,7 @@ export interface MultipleSelectOption {
   autoAdjustDropWidthByTextSize?: boolean;
 
   /** HTML container to use for the drop menu, e.g. 'body' */
-  container?: string | HTMLElement;
+  container?: string | HTMLElement | null;
 
   /** provide custom data */
   data?: any | any[];
@@ -71,7 +74,7 @@ export interface MultipleSelectOption {
   maxHeight: number;
 
   /** maxHeight unit type */
-  maxHeightUnit?: 'row';
+  maxHeightUnit?: string;
 
   /** Defaults to 500, define the maximum width of the drop when using the "autoAdjustDropWidthByTextSize: true" flag. */
   maxWidth?: number;
@@ -103,9 +106,6 @@ export interface MultipleSelectOption {
   /** Whether or not Multiple Select show select all checkbox. */
   selectAll?: boolean;
 
-  /** Defaults to 26 (as per CSS), that is the select DOM element padding in pixels (that is not the drop but the select itself, how tall is it) */
-  selectSidePadding: number;
-
   /** Whether or not Multiple Select allows you to select only one option.By default this option is set to false. */
   single?: boolean;
 
@@ -117,6 +117,12 @@ export interface MultipleSelectOption {
 
   /** Display the OK button at bottom of the list when using multiple selection to easily close the drop, defaults to false. */
   showOkButton?: boolean;
+
+  /** Defaults to False, when set to True it will use the <option label=""> (from select option value) that can be used to display selected options. */
+  useSelectOptionLabel?: boolean;
+
+  /** Defaults to False, same as "useSelectOptionLabel" but will also render html */
+  useSelectOptionLabelToHtml?: boolean;
 
   /** Define the width property of the dropdown list, support a percentage setting.By default this option is set to undefined. Which is the same as the select input field. */
   width?: number | string;
@@ -144,7 +150,7 @@ export interface MultipleSelectOption {
   formatSelectAll: () => string;
 
   /** The item styler function, return style string to custom the item style such as background: red. The function take one parameter: value. */
-  styler: (value: OptionRowData | OptGroupRowData) => string | null;
+  styler: (value: OptionRowData | OptGroupRowData) => string | boolean | null;
 
   /** Returns HTML label attribute of a DOM element */
   labelTemplate: (elm: any) => any;
@@ -164,6 +170,7 @@ export interface MultipleSelectOption {
 
   /** Fires after instance was destroyed. */
   onAfterDestroy: (options: { hardDestroy: boolean }) => void;
+  onDestroyed: (options: { hardDestroy: boolean }) => void;
 
   /** (internal usage only) Fires when instance is being hard destroyed. */
   onHardDestroy: () => void;

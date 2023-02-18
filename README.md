@@ -40,6 +40,9 @@ New Multiple-Select Options:
   - `autoAdjustDropHeight` will automatically adjust the drop (up or down) height with available space
   - `autoAdjustDropPosition` will automatically choose best position (top/bottom) with available space
   - `autoAdjustDropWidthByTextSize` automatically set the drop width size from the widest list option width
+  - `useSelectOptionLabel` will use the `<option label="">` (from select option value) that can be used to display shorter selected option values.
+    - example: value "1,3" instead of "January,March"
+  - `useSelectOptionLabelToHtml` similar to `useSelectOptionLabel` but also renders HTML.
 
 ## Contributions
 

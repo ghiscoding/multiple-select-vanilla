@@ -2,7 +2,7 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
 import Constants from './constants';
-import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys } from './utils';
+import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils';
 import {
   calculateAvailableSpace,
   createDomElement,
@@ -53,7 +53,7 @@ export class MultipleSelectInstance {
     protected elm: HTMLSelectElement,
     options?: Partial<Omit<MultipleSelectOption, 'onHardDestroy' | 'onAfterHardDestroy'>>
   ) {
-    this.options = Object.assign({}, Constants.DEFAULTS, this.elm.dataset, options);
+    this.options = Object.assign({}, Constants.DEFAULTS, this.elm.dataset, options) as MultipleSelectOption;
     this._bindEventService = new BindingEventService({ distinctEvent: true });
   }
 
@@ -534,7 +534,7 @@ export class MultipleSelectInstance {
       <li class="${multiple} ${classes}" ${title} ${style}>
       <label class="${row.disabled ? 'disabled' : ''}">
       <input type="${type}"
-        value="${row.value}"
+        value="${encodeURI(row.value)}"
         data-key="${row._key}"
         ${this.selectItemName}
         ${row.selected ? ' checked="checked"' : ''}
@@ -879,32 +879,51 @@ export class MultipleSelectInstance {
       textSelects = valueSelects;
     }
 
-    const spanElm = this.choiceElm?.querySelector('span') as HTMLSpanElement;
+    const spanElm = this.choiceElm?.querySelector<HTMLSpanElement>('span');
     const sl = valueSelects.length;
     let html = '';
 
-    if (sl === 0) {
-      spanElm.classList.add('ms-placeholder');
-      spanElm.innerHTML = this.options.placeholder || '';
-    } else if (sl < this.options.minimumCountSelected) {
-      html = textSelects.join(this.options.displayDelimiter);
-    } else if (this.options.formatAllSelected() && sl === this.dataTotal) {
-      html = this.options.formatAllSelected();
-    } else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {
-      html = `${textSelects.slice(0, this.options.minimumCountSelected).join(this.options.displayDelimiter)}...`;
-    } else if (this.options.formatCountSelected(sl, this.dataTotal) && sl > this.options.minimumCountSelected) {
-      html = this.options.formatCountSelected(sl, this.dataTotal);
-    } else {
-      html = textSelects.join(this.options.displayDelimiter);
-    }
+    const getSelectOptionHtml = () => {
+      if (this.options.useSelectOptionLabel || this.options.useSelectOptionLabelToHtml) {
+        const labels = valueSelects.join(this.options.delimiter);
+        return this.options.useSelectOptionLabelToHtml ? stripScripts(labels) : labels;
+      } else {
+        return textSelects.join(this.options.displayDelimiter);
+      }
+    };
 
-    if (html) {
-      spanElm?.classList.remove('ms-placeholder');
-      spanElm.innerHTML = html;
-    }
+    if (spanElm) {
+      if (sl === 0) {
+        spanElm.classList.add('ms-placeholder');
+        spanElm.innerHTML = this.options.placeholder || '';
+      } else if (sl < this.options.minimumCountSelected) {
+        html = getSelectOptionHtml();
+      } else if (this.options.formatAllSelected() && sl === this.dataTotal) {
+        html = this.options.formatAllSelected();
+      } else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {
+        html = `${textSelects.slice(0, this.options.minimumCountSelected).join(this.options.displayDelimiter)}...`;
+      } else if (this.options.formatCountSelected(sl, this.dataTotal) && sl > this.options.minimumCountSelected) {
+        html = this.options.formatCountSelected(sl, this.dataTotal);
+      } else {
+        html = getSelectOptionHtml();
+      }
 
-    if (this.options.displayTitle) {
-      spanElm.title = this.getSelects('text').join('');
+      if (html) {
+        spanElm?.classList.remove('ms-placeholder');
+        if (this.options.useSelectOptionLabelToHtml) {
+          spanElm.innerHTML = html;
+        } else {
+          spanElm.textContent = html;
+        }
+      }
+
+      if (this.options.displayTitle || this.options.addTitle) {
+        if (this.options.addTitle) {
+          console.warn('[Multiple-Select-Vanilla] Please note that the `addTitle` option was replaced with `displayTitle`.');
+        }
+        const selectType = this.options.useSelectOptionLabel || this.options.useSelectOptionLabelToHtml ? 'value' : 'text';
+        spanElm.title = this.getSelects(selectType).join('');
+      }
     }
 
     // set selects to select
@@ -1303,10 +1322,16 @@ export class MultipleSelectInstance {
     }
 
     // calculate the "Select All" element width, this text is configurable which is why we recalculate every time
-    const selectAllElm = this.dropElm.querySelector('.ms-select-all span') as HTMLSpanElement;
+    const selectAllSpanElm = this.dropElm.querySelector('.ms-select-all span') as HTMLSpanElement;
     const dropUlElm = this.dropElm.querySelector('ul') as HTMLUListElement;
 
-    const selectAllElmWidth = selectAllElm.clientWidth + this.options.selectSidePadding;
+    let liPadding = 0;
+    const firstLiElm = this.dropElm.querySelector('li'); // get padding of 1st <li> element
+    if (firstLiElm) {
+      const { paddingLeft, paddingRight } = window.getComputedStyle(firstLiElm);
+      liPadding = parseFloat(paddingLeft) + parseFloat(paddingRight);
+    }
+    const selectAllElmWidth = selectAllSpanElm.clientWidth + liPadding;
     const hasScrollbar = dropUlElm.scrollHeight > dropUlElm.clientHeight;
     const scrollbarWidth = hasScrollbar ? this.getScrollbarWidth() : 0;
     let contentWidth = 0;
@@ -1318,7 +1343,7 @@ export class MultipleSelectInstance {
     });
 
     // add a padding & include the browser scrollbar width
-    contentWidth += this.options.selectSidePadding + scrollbarWidth;
+    contentWidth += liPadding + scrollbarWidth;
 
     // make sure the new calculated width is wide enough to include the "Select All" text (this text is configurable)
     if (contentWidth < selectAllElmWidth) {
