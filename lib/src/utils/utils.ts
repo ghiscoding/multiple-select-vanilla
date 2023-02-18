@@ -97,6 +97,17 @@ export function findByParam(data: any, param: any, value: any) {
   }
 }
 
+export function stripScripts(str: string) {
+  var div = document.createElement('div');
+  div.innerHTML = str;
+  var scripts = div.getElementsByTagName('script');
+  var i = scripts.length;
+  while (i--) {
+    scripts[i].parentNode?.removeChild(scripts[i]);
+  }
+  return div.innerHTML;
+}
+
 export function removeUndefined(obj: any) {
   Object.keys(obj).forEach((key) => (obj[key] === undefined ? delete obj[key] : ''));
   return obj;

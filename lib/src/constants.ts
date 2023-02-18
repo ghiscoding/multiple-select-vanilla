@@ -1,7 +1,9 @@
+import { MultipleSelectOption } from './interfaces';
+
 const BLOCK_ROWS = 50;
 const CLUSTER_BLOCKS = 4;
 
-const DEFAULTS = {
+const DEFAULTS: Partial<MultipleSelectOption> = {
   name: '',
   placeholder: '',
   data: undefined,
@@ -41,16 +43,14 @@ const DEFAULTS = {
   },
 
   showClear: false,
-  animate: undefined,
 
   // auto-position the drop
-  offsetLeft: 0,
   autoAdjustDropHeight: false,
   autoAdjustDropPosition: false,
-  autoDropWidth: false,
   autoAdjustDropWidthByTextSize: false,
   adjustedHeightPadding: 10,
-  selectSidePadding: 26,
+  useSelectOptionLabel: false,
+  useSelectOptionLabelToHtml: false,
 
   styler: () => false,
   textTemplate: (elm: HTMLOptionElement) => elm.innerHTML.trim(),

@@ -16,7 +16,7 @@ importers:
       eslint-plugin-node: ^11.1.0
       eslint-plugin-prefer-arrow: ^1.2.3
       npm-run-all2: ^6.0.4
-      pnpm: ^7.27.0
+      pnpm: ^7.27.1
       prettier: ^2.8.4
       rimraf: ^3.0.2
       typescript: ^4.9.5
@@ -33,7 +33,7 @@ importers:
       eslint-plugin-node: 11.1.0_eslint@8.34.0
       eslint-plugin-prefer-arrow: 1.2.3_eslint@8.34.0
       npm-run-all2: 6.0.4
-      pnpm: 7.27.0
+      pnpm: 7.27.1
       prettier: 2.8.4
       rimraf: 3.0.2
       typescript: 4.9.5
@@ -44,18 +44,18 @@ importers:
       bootstrap: ^5.2.3
       font-awesome: ^4.7.0
       multiple-select-vanilla: workspace:*
-      sass: ^1.58.0
+      sass: ^1.58.3
       typescript: ^4.9.5
-      vite: ^4.1.1
+      vite: ^4.1.2
     dependencies:
       '@popperjs/core': 2.11.6
       bootstrap: 5.2.3_@popperjs+core@2.11.6
       font-awesome: 4.7.0
     devDependencies:
       multiple-select-vanilla: link:../lib
-      sass: 1.58.0
+      sass: 1.58.3
       typescript: 4.9.5
-      vite: 4.1.1_sass@1.58.0
+      vite: 4.1.2_sass@1.58.3
 
   lib:
     specifiers:
@@ -68,7 +68,7 @@ importers:
       npm-run-all2: ^6.0.4
       postcss: ^8.4.21
       postcss-cli: ^10.1.0
-      sass: ^1.58.1
+      sass: ^1.58.3
       typescript: ^4.9.5
     devDependencies:
       autoprefixer: 10.4.13_postcss@8.4.21
@@ -80,7 +80,7 @@ importers:
       npm-run-all2: 6.0.4
       postcss: 8.4.21
       postcss-cli: 10.1.0_postcss@8.4.21
-      sass: 1.58.1
+      sass: 1.58.3
       typescript: 4.9.5
 
 packages:
@@ -4496,8 +4496,8 @@ packages:
       find-up: 4.1.0
     dev: true
 
-  /pnpm/7.27.0:
-    resolution: {integrity: sha512-nvxGrxgu3oYyw7zg7DdotEnqp9r/c0/iLZHr6QewJPEkVFGSPdsxrm0HFKBkOqwCInoutFzz/mtGx+pbYV8UCw==}
+  /pnpm/7.27.1:
+    resolution: {integrity: sha512-IpBeZ+71slENbuOXwbV4U6yxOMfEWEvlVuT6+ChZ1D80oF0eHyN4h/hc13UrzVXpXI3bf7sPfRWGb8TYkrvJUA==}
     engines: {node: '>=14.6'}
     hasBin: true
     dev: true
@@ -5170,18 +5170,8 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
-  /sass/1.58.0:
-    resolution: {integrity: sha512-PiMJcP33DdKtZ/1jSjjqVIKihoDc6yWmYr9K/4r3fVVIEDAluD0q7XZiRKrNJcPK3qkLRF/79DND1H5q1LBjgg==}
-    engines: {node: '>=12.0.0'}
-    hasBin: true
-    dependencies:
-      chokidar: 3.5.3
-      immutable: 4.2.1
-      source-map-js: 1.0.2
-    dev: true
-
-  /sass/1.58.1:
-    resolution: {integrity: sha512-bnINi6nPXbP1XNRaranMFEBZWUfdW/AF16Ql5+ypRxfTvCRTTKrLsMIakyDcayUt2t/RZotmL4kgJwNH5xO+bg==}
+  /sass/1.58.3:
+    resolution: {integrity: sha512-Q7RaEtYf6BflYrQ+buPudKR26/lH+10EmO9bBqbmPh/KeLqv8bjpTNqxe71ocONqXq+jYiCbpPUmQMS+JJPk4A==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -5751,8 +5741,8 @@ packages:
       builtins: 5.0.1
     dev: true
 
-  /vite/4.1.1_sass@1.58.0:
-    resolution: {integrity: sha512-LM9WWea8vsxhr782r9ntg+bhSFS06FJgCvvB0+8hf8UWtvaiDagKYWXndjfX6kGl74keHJUcpzrQliDXZlF5yg==}
+  /vite/4.1.2_sass@1.58.3:
+    resolution: {integrity: sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -5780,7 +5770,7 @@ packages:
       postcss: 8.4.21
       resolve: 1.22.1
       rollup: 3.13.0
-      sass: 1.58.0
+      sass: 1.58.3
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
