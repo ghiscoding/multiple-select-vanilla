@@ -1,0 +1,68 @@
+// choose any color you want for checkboxes & radio icons
+$single-radio-color: #006d60;
+$multiple-checkbox-color: #63007c;
+
+.awesome-select .ms-drop {
+  // we need to remove extra padding added by the lib but isn't needed when using icons instead of checkbox input
+  ul label,
+  .ms-select-all label span {
+    padding-left: 0;
+  }
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    /* make input checkbox invisible but don't hide it since multiple-select uses hide for something else */
+    opacity: 0;
+    width: 0;
+
+    & + span:before {
+      display: inline-block;
+      font-family: FontAwesome;
+      font-size: 16px;
+      font-weight: normal;
+      margin: 0;
+      opacity: 0.6;
+    }
+  }
+
+  input[type='checkbox'] {
+    & + span:before {
+      cursor: pointer;
+      color: $multiple-checkbox-color;
+      content: '\f096';
+      height: 20px;
+      width: 20px;
+      border: none;
+      border-radius: none;
+    }
+
+    &:checked + span:before {
+      content: '\f046'; // or '\f14a'
+      opacity: 1;
+      height: 20px;
+      width: 20px;
+      border: none;
+      border-radius: none;
+      margin: 0;
+    }
+  }
+  input[type='radio'] {
+    & + span:before {
+      color: $single-radio-color;
+      content: '\f10c';
+      height: 20px;
+      width: 20px;
+      border: none;
+      border-radius: none;
+      margin: none;
+    }
+    &:checked + span:before {
+      content: '\f192';
+      height: 20px;
+      width: 20px;
+      border: none;
+      border-radius: none;
+      margin: none;
+    }
+  }
+}
