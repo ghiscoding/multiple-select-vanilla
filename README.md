@@ -43,7 +43,7 @@ New Multiple-Select Options:
   - `useSelectOptionLabel` will use the `<option label="">` (from select option value) that can be used to display shorter selected option values.
     - example: value "1,3" instead of "January,March"
   - `useSelectOptionLabelToHtml` similar to `useSelectOptionLabel` but also renders HTML.
-  - `sanitizer` will be used to sanitizes HTML code and prevent XSS cross-site scripting attacks.
+  - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks.
 
 ## Contributions
 
