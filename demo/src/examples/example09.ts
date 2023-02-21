@@ -1,5 +1,12 @@
 import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
+// 1. load every locale individually
+// import 'multiple-select-vanilla/dist/locales/multiple-select-fr-FR';
+// import 'multiple-select-vanilla/dist/locales/multiple-select-es-ES';
+
+// 2. or load all locales at once
+import 'multiple-select-vanilla/dist/multiple-select-all-locales';
+
 export default class Example {
   ms1?: MultipleSelectInstance;
   ms2?: MultipleSelectInstance;
@@ -11,7 +18,7 @@ export default class Example {
     }) as EventListener);
 
     this.ms1 = multipleSelect(elm) as MultipleSelectInstance;
-    this.ms2 = multipleSelect('#select') as MultipleSelectInstance;
+    this.ms2 = multipleSelect('#select', { showOkButton: true }) as MultipleSelectInstance;
   }
 
   unmount() {

@@ -15,7 +15,7 @@ import {
 } from './utils/domUtils';
 import { BindingEventService, VirtualScroll } from './services';
 import { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
-import { OptGroupRowData, OptionRowData } from './interfaces';
+import { MultipleSelectLocales, OptGroupRowData, OptionRowData } from './interfaces';
 
 export class MultipleSelectInstance {
   protected _bindEventService: BindingEventService;
@@ -48,6 +48,7 @@ export class MultipleSelectInstance {
   protected updateDataStart?: number;
   protected updateDataEnd?: number;
   protected virtualScroll?: VirtualScroll | null;
+  locales: MultipleSelectLocales = {};
 
   constructor(
     protected elm: HTMLSelectElement,
@@ -105,8 +106,7 @@ export class MultipleSelectInstance {
 
   protected async initLocale() {
     if (this.options.locale) {
-      const importedLocale = await import(`./locales/multiple-select-${this.options.locale}.js`);
-      const locales = importedLocale?.default ?? importedLocale;
+      const locales = window.multipleSelect.locales;
       const parts = this.options.locale.split(/-|_/);
 
       parts[0] = parts[0].toLowerCase();
@@ -120,6 +120,10 @@ export class MultipleSelectInstance {
         Object.assign(this.options, locales[parts.join('-')]);
       } else if (locales[parts[0]]) {
         Object.assign(this.options, locales[parts[0]]);
+      } else {
+        throw new Error(
+          `[multiple-select-vanilla] invalid locales "${this.options.locale}", make sure to import it before using it`
+        );
       }
     }
   }

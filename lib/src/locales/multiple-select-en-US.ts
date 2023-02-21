@@ -3,9 +3,15 @@
  * Author: Zhixin Wen<wenzhixin2010@gmail.com>
  */
 
-import Constants from '../constants';
+import { MultipleSelectLocale, MultipleSelectLocales } from '../interfaces';
+import { MultipleSelectInstance } from '../MultipleSelectInstance';
 
-const locales = {
+const ms =
+  typeof window !== 'undefined' && window.multipleSelect !== undefined
+    ? window.multipleSelect
+    : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
+
+(ms.locales as MultipleSelectLocales) = {
   ['en-US']: {
     formatSelectAll() {
       return '[Select all]';
@@ -19,7 +25,10 @@ const locales = {
     formatNoMatchesFound() {
       return 'No matches found';
     },
-  },
+    formatOkButton() {
+      return 'OK';
+    },
+  } as MultipleSelectLocale,
 };
 
-export default Object.assign(Constants.LOCALES, locales);
+export default ms.locales;

@@ -1,6 +1,6 @@
-import { OptGroupRowData, OptionRowData } from './interfaces';
+import { MultipleSelectLocale, OptGroupRowData, OptionRowData } from './interfaces';
 
-export interface MultipleSelectOption {
+export interface MultipleSelectOption extends MultipleSelectLocale {
   /** @deprecated @alias `displayTitle` Add a title. By default this option is set to false. */
   addTitle?: boolean;
 
@@ -133,21 +133,6 @@ export interface MultipleSelectOption {
 
   /** Customize the filter method, for example we use startWith */
   customFilter: (normalizedText: string, normalizedOriginalText: string, text: string, originalText: string) => boolean;
-
-  /** Customize the formatted text "All Selected" when using custom locale. */
-  formatAllSelected: () => string;
-
-  /** Customize the formatted text "x of y selected" when using custom locale. */
-  formatCountSelected: (selectedCount: number, totalCount: number) => string;
-
-  /** For the "No Matches Found" text when nothing is found while filtering the dropdown */
-  formatNoMatchesFound: () => string;
-
-  /** Customize the formatted text "OK" showing at the bottom of the drop. */
-  formatOkButton: () => string;
-
-  /** For the "Select All" checkbox text */
-  formatSelectAll: () => string;
 
   /** The item styler function, return style string to custom the item style such as background: red. The function take one parameter: value. */
   styler: (value: OptionRowData | OptGroupRowData) => string | boolean | null;

@@ -1,4 +1,5 @@
 import { MultipleSelectOption } from './interfaces';
+import English from './locales/multiple-select-en-US';
 
 const BLOCK_ROWS = 50;
 const CLUSTER_BLOCKS = 4;
@@ -72,14 +73,6 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   onDestroyed: () => false,
 };
 
-const EN = {
-  formatOkButton: () => 'OK',
-  formatSelectAll: () => '[Select all]',
-  formatAllSelected: () => 'All selected',
-  formatCountSelected: (count: number, total: number) => `${count} of ${total} selected`,
-  formatNoMatchesFound: () => 'No matches found',
-};
-
 const METHODS = [
   'init',
   'getOptions',
@@ -101,17 +94,13 @@ const METHODS = [
   'destroy',
 ];
 
-Object.assign(DEFAULTS, EN);
+Object.assign(DEFAULTS, English!['en-US']); // load English as default locale
 
 const Constants = {
   BLOCK_ROWS,
   CLUSTER_BLOCKS,
   DEFAULTS,
   METHODS,
-  LOCALES: {
-    en: EN,
-    'en-US': EN,
-  },
 };
 
 export default Constants;

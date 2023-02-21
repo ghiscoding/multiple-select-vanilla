@@ -6,6 +6,8 @@
 import Constants from './constants';
 import { MultipleSelectInstance } from './MultipleSelectInstance';
 import { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
+import { MultipleSelectLocales } from './interfaces';
+import English from './locales/multiple-select-en-US';
 
 /**
  * The multiplseSelect function is your entry to creating a MultipleSelect instance on any HTML Select Element.
@@ -60,7 +62,7 @@ function _multipleSelect(
 }
 
 multipleSelect.defaults = Constants.DEFAULTS;
-multipleSelect.locales = Constants.LOCALES;
+multipleSelect.locales = { ...English } as MultipleSelectLocales; // load English as default locale
 multipleSelect.methods = Constants.METHODS;
 
 // add it to the window object so it can be used as standalone

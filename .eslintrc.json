@@ -40,6 +40,7 @@
       }
     ],
     "node/no-extraneous-require": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "node/no-unpublished-require": "off",
     "node/no-unsupported-features/es-syntax": "off",
     "prefer-destructuring": "off",

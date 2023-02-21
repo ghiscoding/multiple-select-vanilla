@@ -3,23 +3,30 @@
  * Author: Zhixin Wen<wenzhixin2010@gmail.com>
  */
 
-import Constants from '../constants';
+import { MultipleSelectLocale, MultipleSelectLocales } from '../interfaces';
+import { MultipleSelectInstance } from '../MultipleSelectInstance';
 
-const locales = {
-  ['ru-RU']: {
-    formatSelectAll() {
-      return '[Выбрать все]';
-    },
-    formatAllSelected() {
-      return 'Выбрано все';
-    },
-    formatCountSelected(count: number, total: number) {
-      return count + ' из ' + total + ' выбрано';
-    },
-    formatNoMatchesFound() {
-      return 'Совпадений не найдено';
-    },
+const ms =
+  typeof window !== 'undefined' && window.multipleSelect !== undefined
+    ? window.multipleSelect
+    : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
+
+(ms.locales as MultipleSelectLocales)['ru-RU'] = {
+  formatSelectAll() {
+    return '[Выбрать все]';
   },
-};
+  formatAllSelected() {
+    return 'Выбрано все';
+  },
+  formatCountSelected(count: number, total: number) {
+    return count + ' из ' + total + ' выбрано';
+  },
+  formatNoMatchesFound() {
+    return 'Совпадений не найдено';
+  },
+  formatOkButton() {
+    return 'Закрывать';
+  },
+} as MultipleSelectLocale;
 
-export default Object.assign(Constants.LOCALES, locales);
+export default ms.locales;
