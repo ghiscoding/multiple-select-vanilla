@@ -1,10 +1,13 @@
+/* css/sass variables */
+@import './variables-theme-bootstrap';
+
 .ms-parent.form-control {
-  padding: 0;
   height: 100%;
-  border-radius: 4px;
+  padding: var(--ms-parent-form-control-padding, $ms-parent-form-control-padding);
+  border-radius: var(--ms-parent-form-control-border-radius, $ms-parent-form-control-border-radius);
 
   .ms-choice {
-    border: 0;
+    border: var(--ms-choice-border, $ms-choice-border);
     height: 100%;
 
     > span {
@@ -16,40 +19,40 @@
   &.form-control-sm {
     .ms-drop input[type='radio'],
     .ms-drop input[type='checkbox'] {
-      margin-top: 0.4rem;
+      margin-top: var(--ms-drop-input-sm-margin-top, ms-drop-input-sm-margin-top);
     }
   }
 
   &.form-control-lg {
     .ms-drop input[type='radio'],
     .ms-drop input[type='checkbox'] {
-      margin-top: 0.5rem;
+      margin-top: var(--ms-drop-input-lg-margin-top, $ms-drop-input-lg-margin-top);
     }
   }
 
   &.ms-dropdown {
     .ms-drop ul > li {
       &.group.hide-radio label.optgroup {
-        margin-bottom: 0;
-        font-size: 87.5%;
-        color: #6c757d;
+        margin-bottom: var(--ms-drop-hide-radio-margin-bottom, $ms-drop-hide-radio-margin-bottom);
+        font-size: var(--ms-drop-hide-radio-font-size, $ms-drop-hide-radio-font-size);
+        color: var(--ms-drop-hide-radio-color, $ms-drop-hide-radio-color);
+        opacity: var(--ms-drop-hide-radio-opacity, $ms-drop-hide-radio-opacity);
         white-space: nowrap;
-        opacity: 1;
       }
 
       &.hide-radio.option-level-1 label {
-        padding-left: 8px;
+        padding-left: var(--ms-drop-hide-radio-option-level1-padding-left, $ms-drop-hide-radio-option-level1-padding-left);
       }
     }
 
     &.ms-dropdown-divider {
       .ms-drop ul > li {
         &.group.hide-radio label.optgroup {
-          border-top: 1px solid #e9ecef;
+          border-top: var(--ms-dropdown-divider-group-border-top, $ms-dropdown-divider-group-border-top);
         }
 
         &.group:first-child label.optgroup {
-          border-top: none;
+          border-top: var(--ms-dropdown-divider-first-group-border-top, $ms-dropdown-divider-first-group-border-top);
         }
       }
     }
