@@ -18,7 +18,10 @@ export default class Example {
     }) as EventListener);
 
     this.ms1 = multipleSelect(elm) as MultipleSelectInstance;
-    this.ms2 = multipleSelect('#select', { showOkButton: true }) as MultipleSelectInstance;
+    this.ms2 = multipleSelect('#select', {
+      filter: true,
+      showOkButton: true,
+    }) as MultipleSelectInstance;
   }
 
   unmount() {

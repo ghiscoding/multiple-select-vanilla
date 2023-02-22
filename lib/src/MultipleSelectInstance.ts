@@ -376,7 +376,7 @@ export class MultipleSelectInstance {
       const saInputElm = createDomElement('input', { type: 'checkbox', checked: this.allSelected });
       saInputElm.dataset.name = 'selectAll';
       saLabelElm.appendChild(saInputElm);
-      saLabelElm.appendChild(createDomElement('span', { textContent: this.options.formatSelectAll() }));
+      saLabelElm.appendChild(createDomElement('span', { textContent: this.formatSelectAll() }));
       this.selectAllParentElm.appendChild(saLabelElm);
       this.dropElm.appendChild(this.selectAllParentElm);
     }
@@ -388,7 +388,7 @@ export class MultipleSelectInstance {
       this.okButtonElm = createDomElement('button', {
         className: 'ms-ok-button',
         type: 'button',
-        textContent: this.options.formatOkButton(),
+        textContent: this.formatOkButton(),
       });
       this.dropElm.appendChild(this.okButtonElm);
     }
@@ -464,7 +464,7 @@ export class MultipleSelectInstance {
       rows.push(...this.initListItem(row));
     });
 
-    rows.push(`<li class="ms-no-results">${this.options.formatNoMatchesFound()}</li>`);
+    rows.push(`<li class="ms-no-results">${this.formatNoMatchesFound()}</li>`);
 
     return rows;
   }
@@ -904,12 +904,12 @@ export class MultipleSelectInstance {
         spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(placeholder) : placeholder;
       } else if (sl < this.options.minimumCountSelected) {
         html = getSelectOptionHtml();
-      } else if (this.options.formatAllSelected() && sl === this.dataTotal) {
-        html = this.options.formatAllSelected();
+      } else if (this.formatAllSelected() && sl === this.dataTotal) {
+        html = this.formatAllSelected();
       } else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {
         html = `${textSelects.slice(0, this.options.minimumCountSelected).join(this.options.displayDelimiter)}...`;
-      } else if (this.options.formatCountSelected(sl, this.dataTotal) && sl > this.options.minimumCountSelected) {
-        html = this.options.formatCountSelected(sl, this.dataTotal);
+      } else if (this.formatCountSelected(sl, this.dataTotal) && sl > this.options.minimumCountSelected) {
+        html = this.formatCountSelected(sl, this.dataTotal);
       } else {
         html = getSelectOptionHtml();
       }
@@ -1396,5 +1396,30 @@ export class MultipleSelectInstance {
     outer.parentNode?.removeChild(outer);
 
     return widthNoScroll - widthWithScroll;
+  }
+
+  // five text formatters, it could be string patterns or formatter callback functions
+
+  formatAllSelected() {
+    return this.options.allSelectedText || this.options.formatAllSelected();
+  }
+
+  formatCountSelected(selectedCount: number, totalCount: number) {
+    if (this.options.countSelectedText) {
+      return this.options.countSelectedText.replace('#', `${selectedCount}`).replace('%', `${totalCount}`);
+    }
+    return this.options.formatCountSelected(selectedCount, totalCount);
+  }
+
+  formatNoMatchesFound() {
+    return this.options.noMatchesFoundText || this.options.formatNoMatchesFound();
+  }
+
+  formatOkButton() {
+    return this.options.okButtonText || this.options.formatOkButton();
+  }
+
+  formatSelectAll() {
+    return this.options.selectAllText || this.options.formatSelectAll();
   }
 }
