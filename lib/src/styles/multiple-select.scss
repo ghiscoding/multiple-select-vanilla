@@ -154,7 +154,7 @@
         margin-left: 0;
       }
       span {
-        padding-left: var(--ms-select-all-label-span-padding-left, $ms-select-all-label-span-padding-left);
+        padding: var(--ms-select-all-label-span-padding, $ms-select-all-label-span-padding);
       }
     }
   }
@@ -208,8 +208,8 @@
 .ms-drop {
   ul {
     overflow: auto;
-    margin: 0;
-    padding: 0;
+    margin: var(--ms-drop-list-margin, $ms-drop-list-margin);
+    padding: var(--ms-drop-list-padding, $ms-drop-list-padding);
 
     > li {
       background-image: none;
@@ -249,7 +249,7 @@
         position: relative;
         white-space: nowrap;
         margin-bottom: var(--ms-label-margin-bottom, $ms-label-margin-bottom);
-        padding-left: var(--ms-label-padding-left, $ms-label-padding-left);
+        padding: var(--ms-label-padding, $ms-label-padding);
 
         &.optgroup {
           font-weight: var(--ms-drop-optgroup-font-weight, $ms-drop-optgroup-font-weight);

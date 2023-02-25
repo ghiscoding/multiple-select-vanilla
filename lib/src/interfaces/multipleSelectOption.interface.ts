@@ -28,9 +28,6 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** provide custom data */
   data?: any | any[];
 
-  /** Delimiter to use when display the selected options. By default this option is set to `,` */
-  delimiter?: string;
-
   /** Delimiter to be displayed between each option */
   displayDelimiter: string;
 
@@ -81,6 +78,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
 
   /** maxHeight unit type */
   maxHeightUnit?: string;
+
+  /** Defaults to 150, define the minimum height property of the dropdown list. */
+  minHeight: number;
 
   /** Defaults to 500, define the maximum width of the drop when using the "autoAdjustDropWidthByTextSize: true" flag. */
   maxWidth?: number;

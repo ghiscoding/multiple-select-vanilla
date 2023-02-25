@@ -8,7 +8,8 @@
     ".": {
       "import": "./dist/esm/multiple-select.js",
       "require": "./dist/cjs/multiple-select.js",
-      "default": "./dist/esm/multiple-select.js"
+      "default": "./dist/esm/multiple-select.js",
+      "types": "./dist/types/index.d.ts"
     },
     "./*": "./*"
   },

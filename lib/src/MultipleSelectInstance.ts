@@ -58,8 +58,8 @@ export class MultipleSelectInstance {
     this._bindEventService = new BindingEventService({ distinctEvent: true });
   }
 
-  async init() {
-    await this.initLocale();
+  init() {
+    this.initLocale();
     this.initContainer();
     this.initData();
     this.initSelected(true);
@@ -88,6 +88,7 @@ export class MultipleSelectInstance {
       }
 
       this.virtualScroll?.destroy();
+      this.dropElm?.remove();
       this.parentElm.parentNode?.removeChild(this.parentElm);
 
       if (this.fromHtml) {
@@ -104,7 +105,7 @@ export class MultipleSelectInstance {
     }
   }
 
-  protected async initLocale() {
+  protected initLocale() {
     if (this.options.locale) {
       const locales = window.multipleSelect.locales;
       const parts = this.options.locale.split(/-|_/);
@@ -152,8 +153,13 @@ export class MultipleSelectInstance {
     // restore class and title from select element
     this.parentElm = createDomElement('div', {
       className: `ms-parent ${this.elm.className || ''}`,
-      title: this.elm.getAttribute('title') || '',
     });
+
+    // add tooltip title only when provided
+    const parentTitle = this.elm.getAttribute('title') || '';
+    if (parentTitle) {
+      this.parentElm.title = parentTitle;
+    }
 
     // add placeholder to choice button
     this.options.placeholder = this.options.placeholder || this.elm.getAttribute('placeholder') || '';
@@ -199,6 +205,11 @@ export class MultipleSelectInstance {
     this.dropElm = createDomElement('div', {
       className: `ms-drop ${this.options.position}`,
     });
+
+    // add name attribute when defined
+    if (name) {
+      this.dropElm.setAttribute('name', name);
+    }
 
     this.closeElm = this.choiceElm.querySelector('.icon-close');
 
@@ -328,7 +339,7 @@ export class MultipleSelectInstance {
     this.update(true);
 
     if (this.options.isOpen) {
-      setTimeout(() => this.open(), 50);
+      setTimeout(() => this.open(), 10);
     }
 
     if (this.options.openOnHover && this.parentElm) {
@@ -604,7 +615,7 @@ export class MultipleSelectInstance {
     }
 
     this.parentElm.style.width = `${this.options.width || computedWidth}px`;
-    this.elm.style.display = 'block';
+    // this.elm.style.display = 'inline-block';
     this.elm.classList.add('ms-offscreen');
   }
 
@@ -817,6 +828,7 @@ export class MultipleSelectInstance {
       this.dropElm.style.width = `${getElementSize(this.parentElm, 'outer', 'width')}px`;
     }
 
+    let minHeight = this.options.minHeight;
     let maxHeight = this.options.maxHeight;
     if (this.options.maxHeightUnit === 'row') {
       const liElm = this.dropElm.querySelector<HTMLLIElement>('ul>li');
@@ -824,6 +836,9 @@ export class MultipleSelectInstance {
     }
     const ulElm = this.dropElm.querySelector('ul');
     if (ulElm) {
+      if (minHeight) {
+        ulElm.style.minHeight = `${minHeight}px`;
+      }
       ulElm.style.maxHeight = `${maxHeight}px`;
     }
     const multElms = this.dropElm.querySelectorAll<HTMLDivElement>('.multiple');
@@ -890,7 +905,7 @@ export class MultipleSelectInstance {
 
     const getSelectOptionHtml = () => {
       if (this.options.useSelectOptionLabel || this.options.useSelectOptionLabelToHtml) {
-        const labels = valueSelects.join(this.options.delimiter);
+        const labels = valueSelects.join(this.options.displayDelimiter);
         return this.options.useSelectOptionLabelToHtml ? stripScripts(labels) : labels;
       } else {
         return textSelects.join(this.options.displayDelimiter);
@@ -928,7 +943,7 @@ export class MultipleSelectInstance {
           console.warn('[Multiple-Select-Vanilla] Please note that the `addTitle` option was replaced with `displayTitle`.');
         }
         const selectType = this.options.useSelectOptionLabel || this.options.useSelectOptionLabelToHtml ? 'value' : 'text';
-        spanElm.title = this.getSelects(selectType).join('');
+        spanElm.title = this.getSelects(selectType).join(this.options.displayDelimiter);
       }
     }
 
@@ -1003,6 +1018,14 @@ export class MultipleSelectInstance {
     this.options = Object.assign(this.options, options);
     this.destroy(false);
     this.init();
+  }
+
+  getDropElement() {
+    return this.dropElm;
+  }
+
+  getParentElement() {
+    return this.parentElm;
   }
 
   // value html, or text, default: 'value'
@@ -1319,7 +1342,7 @@ export class MultipleSelectInstance {
   }
 
   protected adjustDropWidthByText() {
-    const parentWidth = this.parentElm.clientWidth;
+    const parentWidth = this.parentElm.scrollWidth;
 
     // keep the dropWidth/width as reference, if our new calculated width is below then we will re-adjust (else do nothing)
     let currentDefinedWidth: number | string = parentWidth;
@@ -1328,16 +1351,12 @@ export class MultipleSelectInstance {
     }
 
     // calculate the "Select All" element width, this text is configurable which is why we recalculate every time
-    const selectAllSpanElm = this.dropElm.querySelector('.ms-select-all span') as HTMLSpanElement;
+    const selectAllSpanElm = this.dropElm.querySelector<HTMLSpanElement>('.ms-select-all span');
     const dropUlElm = this.dropElm.querySelector('ul') as HTMLUListElement;
 
-    let liPadding = 0;
-    const firstLiElm = this.dropElm.querySelector('li'); // get padding of 1st <li> element
-    if (firstLiElm) {
-      const { paddingLeft, paddingRight } = window.getComputedStyle(firstLiElm);
-      liPadding = parseFloat(paddingLeft) + parseFloat(paddingRight);
-    }
-    const selectAllElmWidth = selectAllSpanElm.clientWidth + liPadding;
+    let liPadding = 26; // there are multiple padding involved, let's fix it at 26px
+
+    const selectAllElmWidth = selectAllSpanElm?.clientWidth ?? 0 + liPadding;
     const hasScrollbar = dropUlElm.scrollHeight > dropUlElm.clientHeight;
     const scrollbarWidth = hasScrollbar ? this.getScrollbarWidth() : 0;
     let contentWidth = 0;
