@@ -99,7 +99,11 @@ export class VirtualScroll {
 
   getNum() {
     this.scrollTop = this.scrollEl.scrollTop;
-    return Math.floor(this.scrollTop / (this.clusterHeight! - this.blockHeight!)) || 0;
+    const blockSize = (this.clusterHeight || 0) - (this.blockHeight || 0);
+    if (blockSize) {
+      return Math.floor(this.scrollTop / blockSize) || 0;
+    }
+    return 0;
   }
 
   initData(rows: string[], num: number) {

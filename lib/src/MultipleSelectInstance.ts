@@ -65,8 +65,12 @@ export class MultipleSelectInstance {
     this.initSelected(true);
     this.initFilter();
     this.initDrop();
-    this.initView();
-    this.options.onAfterCreate();
+
+    // wait a CPU cycle for the select auto-width to return a width which is over 0
+    setTimeout(() => {
+      this.initView();
+      this.options.onAfterCreate();
+    });
   }
 
   /**
@@ -206,9 +210,9 @@ export class MultipleSelectInstance {
       className: `ms-drop ${this.options.position}`,
     });
 
-    // add name attribute when defined
+    // add data-name attribute when name option is defined
     if (name) {
-      this.dropElm.setAttribute('name', name);
+      this.dropElm.dataset.name = name;
     }
 
     this.closeElm = this.choiceElm.querySelector('.icon-close');
@@ -356,7 +360,7 @@ export class MultipleSelectInstance {
     }
 
     let length = 0;
-    for (const option of this.data) {
+    for (const option of this.data || []) {
       if (option.type === 'optgroup') {
         length += (option as OptGroupRowData).children.length;
       } else {
@@ -382,10 +386,11 @@ export class MultipleSelectInstance {
     }
 
     if (this.options.selectAll && !this.options.single) {
+      const selectName = this.elm.getAttribute('name') || this.options.name || '';
       this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all' });
       const saLabelElm = createDomElement('label');
       const saInputElm = createDomElement('input', { type: 'checkbox', checked: this.allSelected });
-      saInputElm.dataset.name = 'selectAll';
+      saInputElm.dataset.name = `selectAll${selectName}`;
       saLabelElm.appendChild(saInputElm);
       saLabelElm.appendChild(createDomElement('span', { textContent: this.formatSelectAll() }));
       this.selectAllParentElm.appendChild(saLabelElm);
@@ -416,9 +421,7 @@ export class MultipleSelectInstance {
     }
 
     if (rows.length > Constants.BLOCK_ROWS * Constants.CLUSTER_BLOCKS) {
-      if (this.virtualScroll) {
-        this.virtualScroll.destroy();
-      }
+      this.virtualScroll?.destroy();
 
       const dropVisible = this.dropElm.style.display !== 'none';
       if (!dropVisible) {
@@ -427,13 +430,15 @@ export class MultipleSelectInstance {
       }
 
       const updateDataOffset = () => {
-        this.updateDataStart = this.virtualScroll!.dataStart + offset;
-        this.updateDataEnd = this.virtualScroll!.dataEnd + offset;
-        if (this.updateDataStart < 0) {
-          this.updateDataStart = 0;
-        }
-        if (this.updateDataEnd > this.data.length) {
-          this.updateDataEnd = this.data.length;
+        if (this.virtualScroll) {
+          this.updateDataStart = this.virtualScroll.dataStart + offset;
+          this.updateDataEnd = this.virtualScroll.dataEnd + offset;
+          if (this.updateDataStart < 0) {
+            this.updateDataStart = 0;
+          }
+          if (this.updateDataEnd > this.data.length) {
+            this.updateDataEnd = this.data.length;
+          }
         }
       };
 
@@ -459,10 +464,10 @@ export class MultipleSelectInstance {
     } else {
       if (this.ulElm) {
         this.ulElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(rows.join('')) : rows.join('');
-        this.updateDataStart = 0;
-        this.updateDataEnd = this.updateData.length;
-        this.virtualScroll = null;
       }
+      this.updateDataStart = 0;
+      this.updateDataEnd = this.updateData.length;
+      this.virtualScroll = null;
     }
     this.events();
   }
@@ -566,7 +571,7 @@ export class MultipleSelectInstance {
   protected initSelected(ignoreTrigger = false) {
     let selectedTotal = 0;
 
-    for (const row of this.data) {
+    for (const row of this.data || []) {
       if (row.type === 'optgroup') {
         const selectedCount = (row as OptGroupRowData).children.filter((child) => {
           return child && child.selected && !child.disabled && child.visible;
@@ -1031,7 +1036,7 @@ export class MultipleSelectInstance {
   // value html, or text, default: 'value'
   getSelects(type = 'value') {
     const values = [];
-    for (const row of this.data) {
+    for (const row of this.data || []) {
       if (row.type === 'optgroup') {
         const selectedChildren = (row as OptGroupRowData).children.filter((child) => child?.selected);
         if (!selectedChildren.length) {
@@ -1079,7 +1084,7 @@ export class MultipleSelectInstance {
       }
     };
 
-    for (const row of this.data) {
+    for (const row of this.data || []) {
       if (row.type === 'optgroup') {
         _setSelects((row as OptGroupRowData).children);
       } else {
@@ -1137,7 +1142,7 @@ export class MultipleSelectInstance {
   }
 
   protected _checkAll(checked: boolean, ignoreUpdate?: boolean) {
-    for (const row of this.data) {
+    for (const row of this.data || []) {
       if (row.type === 'optgroup') {
         this._checkGroup(row, checked, true);
       } else if (!row.disabled && !row.divider && (ignoreUpdate || row.visible)) {
@@ -1171,7 +1176,7 @@ export class MultipleSelectInstance {
     if (this.options.single) {
       return;
     }
-    for (const row of this.data) {
+    for (const row of this.data || []) {
       if (row.type === 'optgroup') {
         for (const child of (row as OptGroupRowData).children) {
           if (child) {
@@ -1215,7 +1220,7 @@ export class MultipleSelectInstance {
     }
     this.filterText = text;
 
-    for (const row of this.data) {
+    for (const row of this.data || []) {
       if (row.type === 'optgroup') {
         if (this.options.filterGroup) {
           const rowLabel = `${row?.label ?? ''}`;
