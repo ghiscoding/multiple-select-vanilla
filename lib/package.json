@@ -1,6 +1,6 @@
 {
   "name": "multiple-select-vanilla",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "module",
   "main": "./dist/cjs/multiple-select.js",
   "module": "./dist/esm/multiple-select.js",
@@ -70,7 +70,7 @@
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "sass": "^1.58.3",
-    "typescript": "^5.0.0-rc",
+    "typescript": "^4.9.5",
     "vite": "^4.1.2",
     "vite-plugin-dts": "^2.0.2"
   }

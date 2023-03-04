@@ -50,6 +50,6 @@
     "pnpm": "^7.27.1",
     "prettier": "^2.8.4",
     "rimraf": "^4.3.0",
-    "typescript": "^5.0.0-rc"
+    "typescript": "^4.9.5"
   }
 }
