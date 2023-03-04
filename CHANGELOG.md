@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.2...v0.2.4) (2023-03-04)
+
+### Bug Fixes
+
+* when data array is null it shouldn't throw ([184dffa](https://github.com/ghiscoding/multiple-select-vanilla/commit/184dffa01bf9b061bd51bd386d968c9b5afb5b04)) - by @
+
 ## [0.2.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.1...v0.2.2) (2023-02-26)
 
 ### Bug Fixes
