@@ -26,7 +26,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   countSelectedText?: string;
 
   /** provide custom data */
-  data?: any | any[];
+  data?: { [value: string]: number | string | boolean } | Array<number | string | boolean | OptionRowData | OptGroupRowData>;
 
   /** Delimiter to be displayed between each option */
   displayDelimiter: string;
@@ -153,10 +153,10 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   styler: (value: OptionRowData | OptGroupRowData) => string | boolean | null;
 
   /** Returns HTML label attribute of a DOM element */
-  labelTemplate: (elm: any) => any;
+  labelTemplate: (elm: any) => string;
 
   /** Returns HTML text template of a DOM element */
-  textTemplate: (elm: any) => any;
+  textTemplate: (elm: any) => string;
 
   // --
   // Events

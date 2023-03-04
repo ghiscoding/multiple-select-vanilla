@@ -1,18 +1,20 @@
+export type OptionDataObject = { [value: string]: number | string | boolean };
 export interface OptionRowData {
-  label?: string;
   text: string;
   value: string | number | boolean;
-  type?: 'option' | 'optgroup';
   divider?: string;
   disabled?: boolean;
   selected?: boolean | number;
   visible?: boolean | string;
+  type?: 'option' | 'optgroup';
   _key?: string;
   _value?: string | number | boolean;
 }
 
-export interface OptGroupRowData extends OptionRowData {
-  children: Array<OptionRowData | OptGroupRowData>;
+export interface OptGroupRowData extends Omit<OptionRowData, 'text' | 'value'> {
+  label: string;
+  value?: string | number | boolean;
+  children: Array<OptionRowData>;
 }
 
 export interface VirtualScrollOption {

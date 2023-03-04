@@ -40,6 +40,9 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "pnpm build:all && pnpm build:types:prod",
+    "builder": "vite build && vite build --config vite-locales.config.ts",
+    "build:vite": "vite build",
+    "build:vite2": "vite build --config vite-locales.config.ts",
     "postbuild": "run-s sass:build sass:copy --npm-path pnpm",
     "dev:init": "pnpm sass:build && pnpm build:locales && pnpm sass:copy && pnpm build:types && pnpm build:esm",
     "build:all": "node build-prod.mjs && pnpm build:types:prod",
@@ -67,6 +70,8 @@
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "sass": "^1.58.3",
-    "typescript": "^5.0.0-beta"
+    "typescript": "^5.0.0-rc",
+    "vite": "^4.1.2",
+    "vite-plugin-dts": "^2.0.2"
   }
 }

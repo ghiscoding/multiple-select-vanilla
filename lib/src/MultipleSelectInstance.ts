@@ -15,7 +15,7 @@ import {
 } from './utils/domUtils';
 import { BindingEventService, VirtualScroll } from './services';
 import { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
-import { MultipleSelectLocales, OptGroupRowData, OptionRowData } from './interfaces';
+import { MultipleSelectLocales, OptGroupRowData, OptionDataObject, OptionRowData } from './interfaces';
 
 export class MultipleSelectInstance {
   protected _bindEventService: BindingEventService;
@@ -25,7 +25,7 @@ export class MultipleSelectInstance {
   protected closeElm?: HTMLElement | null;
   protected filterText = '';
   protected updateData: any[] = [];
-  protected data: OptionRowData[] = [];
+  protected data?: Array<OptionRowData | OptGroupRowData> = [];
   protected dataTotal?: any;
   protected dropElm!: HTMLDivElement;
   protected okButtonElm?: HTMLButtonElement;
@@ -253,7 +253,7 @@ export class MultipleSelectInstance {
   }
 
   protected initData() {
-    const data: any[] = [];
+    const data: Array<OptionRowData> = [];
 
     if (this.options.data) {
       if (Array.isArray(this.options.data)) {
@@ -267,10 +267,10 @@ export class MultipleSelectInstance {
           return it;
         });
       } else if (typeof this.options.data === 'object') {
-        for (const [value, text] of Object.entries(this.options.data)) {
+        for (const [value, text] of Object.entries(this.options.data as OptionDataObject)) {
           data.push({
             value,
-            text,
+            text: `${text}`,
           });
         }
         this.data = data;
@@ -288,7 +288,7 @@ export class MultipleSelectInstance {
       this.fromHtml = true;
     }
 
-    this.dataTotal = setDataKeys(this.data);
+    this.dataTotal = setDataKeys(this.data || []);
   }
 
   protected initRow(elm: HTMLOptionElement, groupDisabled?: boolean) {
@@ -361,7 +361,7 @@ export class MultipleSelectInstance {
 
     let length = 0;
     for (const option of this.data || []) {
-      if (option.type === 'optgroup') {
+      if ((option as OptGroupRowData).type === 'optgroup') {
         length += (option as OptGroupRowData).children.length;
       } else {
         length += 1;
@@ -436,8 +436,8 @@ export class MultipleSelectInstance {
           if (this.updateDataStart < 0) {
             this.updateDataStart = 0;
           }
-          if (this.updateDataEnd > this.data.length) {
-            this.updateDataEnd = this.data.length;
+          if (this.updateDataEnd > (this.data?.length ?? 0)) {
+            this.updateDataEnd = this.data?.length ?? 0;
           }
         }
       };
@@ -476,7 +476,7 @@ export class MultipleSelectInstance {
     const rows = [];
 
     this.updateData = [];
-    this.data.forEach((row) => {
+    this.data?.forEach((row) => {
       rows.push(...this.initListItem(row));
     });
 
@@ -572,7 +572,7 @@ export class MultipleSelectInstance {
     let selectedTotal = 0;
 
     for (const row of this.data || []) {
-      if (row.type === 'optgroup') {
+      if ((row as OptGroupRowData).type === 'optgroup') {
         const selectedCount = (row as OptGroupRowData).children.filter((child) => {
           return child && child.selected && !child.disabled && child.visible;
         }).length;
@@ -593,9 +593,9 @@ export class MultipleSelectInstance {
     }
 
     this.allSelected =
-      this.data.filter((row: OptionRowData) => {
+      this.data?.filter((row: OptionRowData | OptGroupRowData) => {
         return row.selected && !row.disabled && row.visible;
-      }).length === this.data.filter((row) => !row.disabled && row.visible && !row.divider).length;
+      }).length === this.data?.filter((row) => !row.disabled && row.visible && !row.divider).length;
 
     if (!ignoreTrigger) {
       if (this.allSelected) {
@@ -806,7 +806,7 @@ export class MultipleSelectInstance {
       this.noResultsElm.style.display = 'none';
     }
 
-    if (!this.data.length) {
+    if (!this.data?.length) {
       if (this.selectAllElm?.parentElement) {
         this.selectAllElm.parentElement.style.display = 'none';
       }
@@ -849,7 +849,7 @@ export class MultipleSelectInstance {
     const multElms = this.dropElm.querySelectorAll<HTMLDivElement>('.multiple');
     multElms.forEach((multElm) => (multElm.style.width = `${this.options.multipleWidth}px`));
 
-    if (this.data.length && this.options.filter) {
+    if (this.data?.length && this.options.filter) {
       if (this.searchInputElm) {
         this.searchInputElm.value = '';
         this.searchInputElm.focus();
@@ -988,7 +988,7 @@ export class MultipleSelectInstance {
       }
     }
 
-    const noResult = this.data.filter((row) => row.visible).length === 0;
+    const noResult = this.data?.filter((row) => row.visible).length === 0;
 
     if (this.selectAllElm) {
       this.selectAllElm.checked = this.allSelected;
@@ -1037,7 +1037,7 @@ export class MultipleSelectInstance {
   getSelects(type = 'value') {
     const values = [];
     for (const row of this.data || []) {
-      if (row.type === 'optgroup') {
+      if ((row as OptGroupRowData).type === 'optgroup') {
         const selectedChildren = (row as OptGroupRowData).children.filter((child) => child?.selected);
         if (!selectedChildren.length) {
           continue;
@@ -1052,13 +1052,13 @@ export class MultipleSelectInstance {
         } else {
           const value = [];
           value.push('[');
-          value.push(row.label);
+          value.push((row as OptGroupRowData).label);
           value.push(`: ${selectedChildren.map((child: any) => child[type]).join(', ')}`);
           value.push(']');
           values.push(value.join(''));
         }
       } else if (row.selected) {
-        values.push(type === 'value' ? row._value || row[type] : (row as any)[type]);
+        values.push(type === 'value' ? row._value || (row as OptionRowData)[type] : (row as any)[type]);
       }
     }
     return values;
@@ -1085,7 +1085,7 @@ export class MultipleSelectInstance {
     };
 
     for (const row of this.data || []) {
-      if (row.type === 'optgroup') {
+      if ((row as OptGroupRowData).type === 'optgroup') {
         _setSelects((row as OptGroupRowData).children);
       } else {
         _setSelects([row]);
@@ -1143,7 +1143,7 @@ export class MultipleSelectInstance {
 
   protected _checkAll(checked: boolean, ignoreUpdate?: boolean) {
     for (const row of this.data || []) {
-      if (row.type === 'optgroup') {
+      if ((row as OptGroupRowData).type === 'optgroup') {
         this._checkGroup(row, checked, true);
       } else if (!row.disabled && !row.divider && (ignoreUpdate || row.visible)) {
         row.selected = checked;
@@ -1177,7 +1177,7 @@ export class MultipleSelectInstance {
       return;
     }
     for (const row of this.data || []) {
-      if (row.type === 'optgroup') {
+      if ((row as OptGroupRowData).type === 'optgroup') {
         for (const child of (row as OptGroupRowData).children) {
           if (child) {
             if (!child.divider) {
@@ -1221,9 +1221,9 @@ export class MultipleSelectInstance {
     this.filterText = text;
 
     for (const row of this.data || []) {
-      if (row.type === 'optgroup') {
+      if ((row as OptGroupRowData).type === 'optgroup') {
         if (this.options.filterGroup) {
-          const rowLabel = `${row?.label ?? ''}`;
+          const rowLabel = `${(row as OptGroupRowData)?.label ?? ''}`;
           if (row !== undefined && row !== null) {
             const visible = this.options.customFilter(
               removeDiacritics(rowLabel.toLowerCase()),
@@ -1242,7 +1242,7 @@ export class MultipleSelectInstance {
         } else {
           for (const child of (row as OptGroupRowData).children) {
             if (child !== undefined && child !== null) {
-              const childText = `${child?.text ?? ''}`;
+              const childText = `${(child as OptionRowData)?.text ?? ''}`;
               child.visible = this.options.customFilter(
                 removeDiacritics(childText.toLowerCase()),
                 removeDiacritics(text),
@@ -1254,7 +1254,7 @@ export class MultipleSelectInstance {
           row.visible = (row as OptGroupRowData).children.filter((child: any) => child?.visible).length > 0;
         }
       } else {
-        const rowText = `${row?.text ?? ''}`;
+        const rowText = `${(row as OptionRowData)?.text ?? ''}`;
         row.visible = this.options.customFilter(
           removeDiacritics(rowText.toLowerCase()),
           removeDiacritics(text),
