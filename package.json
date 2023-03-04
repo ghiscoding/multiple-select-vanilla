@@ -13,7 +13,7 @@
     }
   ],
   "scripts": {
-    "clean": "rimraf */dist",
+    "clean": "rimraf --glob */dist */tsconfig.tsbuildinfo",
     "prebuild": "pnpm run clean && pnpm run prettier:write && pnpm run lint",
     "build": "pnpm -r --stream build",
     "build:demo": "pnpm -r --stream --filter=\"{demo/**}\" build",
@@ -35,8 +35,8 @@
     "roll-new-release": "pnpm build && pnpm new-version && pnpm new-publish"
   },
   "devDependencies": {
-    "@lerna-lite/cli": "^1.15.1",
-    "@lerna-lite/watch": "^1.15.2",
+    "@lerna-lite/cli": "^1.16.0",
+    "@lerna-lite/watch": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "cross-env": "^7.0.3",
@@ -49,7 +49,7 @@
     "npm-run-all2": "^6.0.4",
     "pnpm": "^7.27.1",
     "prettier": "^2.8.4",
-    "rimraf": "^3.0.2",
-    "typescript": "^5.0.0-beta"
+    "rimraf": "^4.3.0",
+    "typescript": "^5.0.0-rc"
   }
 }
