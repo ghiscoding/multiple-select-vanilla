@@ -53,17 +53,18 @@ jobs:
       - name: Build Website (GitHub demo site)
         run: pnpm build:demo
 
-      # - name: Start server in the background
-      #   run: pnpm serve &
+      - name: Start server in the background
+        run: pnpm serve &
 
       - name: Install Playwright Browsers
         run: pnpx playwright install --with-deps
 
       - name: Run Playwright tests
         run: pnpx playwright test
-        with:
-          start: pnpm serve
-          wait-on: 'http://localhost:3000'
+        # with:
+        #   start: pnpm serve
+        #   wait-on: 'http://localhost:3000'
+
       - uses: actions/upload-artifact@v3
         if: always()
         with:
