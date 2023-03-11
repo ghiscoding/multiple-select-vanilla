@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.4...v0.2.5) (2023-03-11)
+
+### Bug Fixes
+
+* single select radio should work with empty label select option ([9b5c7ea](https://github.com/ghiscoding/multiple-select-vanilla/commit/9b5c7eac725216551251003603bcd2f0a8df79be)) - by @ghiscoding
+
 ## [0.2.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.2...v0.2.4) (2023-03-04)
 
 ### Bug Fixes
