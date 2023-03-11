@@ -53,11 +53,23 @@ jobs:
       - name: Build Website (GitHub demo site)
         run: pnpm build:demo
 
-      # - uses: actions/upload-artifact@v3
-      #   if: failure()
-      #   with:
-      #     name: cypress-screenshots
-      #     path: test/cypress/screenshots
+      # - name: Start server in the background
+      #   run: pnpm serve &
+
+      - name: Install Playwright Browsers
+        run: pnpx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: pnpx playwright test
+        with:
+          start: pnpm serve
+          wait-on: 'http://localhost:3000'
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
 
       - name: Deploy to gh-pages
         if: |
