@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.5...v0.2.7) (2023-03-11)
+
+### Bug Fixes
+
+* VirtualScroll and drop auto-width should work without timeout delay ([d030ecb](https://github.com/ghiscoding/multiple-select-vanilla/commit/d030ecb8a36c7fe806a12bbf60249278a7765e3f)) - by @ghiscoding
+
 ## [0.2.6](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.5...v0.2.6) (2023-03-11)
 
 ### Bug Fixes
