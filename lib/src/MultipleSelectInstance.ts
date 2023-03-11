@@ -906,7 +906,7 @@ export class MultipleSelectInstance {
 
     const spanElm = this.choiceElm?.querySelector<HTMLSpanElement>('span');
     const sl = valueSelects.length;
-    let html = '';
+    let html = null;
 
     const getSelectOptionHtml = () => {
       if (this.options.useSelectOptionLabel || this.options.useSelectOptionLabelToHtml) {
@@ -934,7 +934,7 @@ export class MultipleSelectInstance {
         html = getSelectOptionHtml();
       }
 
-      if (html) {
+      if (html !== null) {
         spanElm?.classList.remove('ms-placeholder');
         if (this.options.useSelectOptionLabelToHtml) {
           spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(html) : html;

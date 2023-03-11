@@ -249,6 +249,7 @@
         position: relative;
         white-space: nowrap;
         margin-bottom: var(--ms-label-margin-bottom, $ms-label-margin-bottom);
+        min-height: var(--ms-label-min-height, $ms-label-min-height);
         padding: var(--ms-label-padding, $ms-label-padding);
 
         &.optgroup {
