@@ -65,12 +65,8 @@ export class MultipleSelectInstance {
     this.initSelected(true);
     this.initFilter();
     this.initDrop();
-
-    // wait a CPU cycle for the select auto-width to return a width which is over 0
-    setTimeout(() => {
-      this.initView();
-      this.options.onAfterCreate();
-    });
+    this.initView();
+    this.options.onAfterCreate();
   }
 
   /**
@@ -793,7 +789,7 @@ export class MultipleSelectInstance {
       return;
     }
     // this.options.isOpen = true;
-    setTimeout(() => (this.options.isOpen = true)); // TODO: original code doesn't need setTimeout
+    setTimeout(() => (this.options.isOpen = true)); // TODO: original code doesn't require this delay
     this.parentElm.classList.add('ms-parent-open');
     this.choiceElm?.querySelector('div')?.classList.add('open');
     this.dropElm.style.display = 'block';
