@@ -65,7 +65,7 @@ importers:
       cssnano: ^5.1.15
       esbuild: ^0.17.9
       fs-extra: ^11.1.0
-      glob: ^8.1.0
+      glob: ^9.2.1
       npm-run-all2: ^6.0.4
       postcss: ^8.4.21
       postcss-cli: ^10.1.0
@@ -80,7 +80,7 @@ importers:
       cssnano: 5.1.15_postcss@8.4.21
       esbuild: 0.17.11
       fs-extra: 11.1.0
-      glob: 8.1.0
+      glob: 9.2.1
       npm-run-all2: 6.0.4
       postcss: 8.4.21
       postcss-cli: 10.1.0_postcss@8.4.21
