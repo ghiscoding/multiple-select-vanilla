@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Library",
+      "type": "shell",
+      "command": "pnpm build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Library Development",
+      "type": "shell",
+      "command": "pnpm dev",
+      "problemMatcher": []
+    },
+    {
+      "label": "Prepare New Release",
+      "type": "shell",
+      "command": "pnpm roll-new-release",
+      "problemMatcher": []
+    }
+  ]
+}

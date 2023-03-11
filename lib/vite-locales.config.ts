@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import path from 'node:path';
-import glob from 'glob';
+import { globSync } from 'glob';
 
 const dirname = path.dirname(__filename);
-const localeFiles: string[] = glob.sync('src/locales/**/*.ts');
+const localeFiles: string[] = globSync('src/locales/**/*.ts');
 const localeEntryPoints: string[] = [];
 const locales: string[] = [resolve(dirname, `src/locales/all-locales-index.ts`)];
 const localeInputs: { [locale: string]: string } = {
