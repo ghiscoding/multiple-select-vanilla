@@ -56,9 +56,11 @@ jobs:
       - name: Start server in the background
         run: pnpm serve &
 
-      - name: Run Playwright tests
-        run: pnpm test:e2e:ci
+      - name: Install Playwright Browsers
+        run: pnpx playwright install --with-deps
 
+      - name: Run Playwright tests
+        run: pnpx playwright test
       - uses: actions/upload-artifact@v3
         if: always()
         with:
