@@ -2,15 +2,15 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
-[![npm](https://img.shields.io/npm/v/multiple-select-vanilla.svg?logo=npm&logoColor=fff&label=npm)](https://www.npmjs.com/package/multiple-select-vanilla)
 [![Playwright](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg?logo=playwright)](https://playwright.dev/)
+[![npm](https://img.shields.io/npm/v/multiple-select-vanilla.svg?logo=npm&logoColor=fff&label=npm)](https://www.npmjs.com/package/multiple-select-vanilla)
 [![Actions Status](https://github.com/ghiscoding/multiple-select-vanilla/workflows/CI%20Build/badge.svg)](https://github.com/ghiscoding/multiple-select-vanilla/actions)
 
 ## Official Release now available 📣
 We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods. The intention is to eventually use this demo to add Cypress E2E tests.
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) original library, it is based on its latest version `1.5.2` from the original lib. The main difference is that we dropped jQuery and rewrote all necessary code to be a plain vanilla/pure JavaScript library without any external dependencies (zero dependency). We also added a few extra features which you can see below ([Changes vs Original lib](#changes-vs-original-lib))
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library, it is based on its last version `v1.5.2`. The main difference from the original lib is that we dropped jQuery and we use pure JavaScript without any external dependencies (zero dependency). We also added a few extra features which you can see in the section below ([Changes vs Original lib](#changes-vs-original-lib)). Our [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) is also used by our E2E tests with [Playwright](https://playwright.dev/)
 
 This lib allows you to select multiple elements with checkboxes :).
 
@@ -37,8 +37,8 @@ New Multiple-Select Options:
 - written in TypeScript which brings typings support
 - added new features:
   - `showOkButton` to add an "OK" button at the end of multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
-  - `autoAdjustDropHeight` will automatically adjust the drop (up or down) height with available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
-  - `autoAdjustDropPosition` will automatically choose best position (top/bottom) with available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
+  - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height with available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
+  - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
   - `autoAdjustDropWidthByTextSize` automatically set the drop width size from the widest list option width
   - `useSelectOptionLabel` will use the `<option label="">` (from select option value) that can be used to display shorter selected option values.
     - example: value "1,3" instead of "January,March" (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options31))
