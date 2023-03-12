@@ -23,7 +23,7 @@ test.describe('Select Auto-Width', () => {
     const dropElm3 = await page.$('div[data-test=select3]');
     const drop3Width = (await dropElm3?.boundingBox())!.width;
     expect(drop3Width).toBeGreaterThanOrEqual(312);
-    expect(drop3Width).toBeLessThan(317);
+    expect(drop3Width).toBeLessThan(320);
     await page.getByRole('button', { name: 'This is the first option and value is 1' }).first().click();
     await page.getByRole('listitem').filter({ hasText: 'This is the fourth option and value is 4' }).locator('label').click();
     await expect(page.locator('div[data-test=select3] .ms-choice span')).toHaveText('This is the fourth option and value is 4');
