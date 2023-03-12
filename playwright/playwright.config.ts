@@ -1,7 +1,8 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  reporter: process.env.CI ? 'dot' : 'list',
+  // reporter: process.env.CI ? 'dot' : 'list',
+  reporter: 'list',
   testDir: 'e2e',
   use: {
     headless: true,
