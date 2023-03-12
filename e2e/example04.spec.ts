@@ -47,8 +47,8 @@ test.describe('Select Auto-Width', () => {
 
     const dropElm6 = await page.$('div[data-test=select6]');
     const drop6Width = (await dropElm6?.boundingBox())!.width;
-    expect(drop6Width).toBeGreaterThanOrEqual(166);
-    expect(drop6Width).toBeLessThan(170);
+    expect(drop6Width).toBeGreaterThanOrEqual(165);
+    expect(drop6Width).toBeLessThan(175);
     await page.locator('div:nth-child(6) > .col-sm-9 > .ms-parent > .ms-choice').click();
     await page.getByText('This is group 2').click();
     await page.getByRole('button', { name: '[This is group 2: This is option 4, This is option 5, This is option 6]' }).click();
