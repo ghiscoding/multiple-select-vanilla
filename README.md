@@ -10,7 +10,7 @@
 We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods. The intention is to eventually use this demo to add Cypress E2E tests.
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) original lib, it is based on the latest version `1.5.2` from the original lib. The main difference is that we dropped jQuery and rewrote necessary code in plain vanilla/pure JavaScript without any dependencies (zero dependency). We will also add nice extra features pretty soon, for example auto-position (top/bottom & left/right) is planned.
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) original library, it is based on its latest version `1.5.2` from the original lib. The main difference is that we dropped jQuery and rewrote all necessary code to be a plain vanilla/pure JavaScript library without any external dependencies (zero dependency). We also added a few extra features which you can see below ([Changes vs Original lib](#changes-vs-original-lib))
 
 This lib allows you to select multiple elements with checkboxes :).
 
@@ -36,14 +36,14 @@ New Multiple-Select Options:
 - dropped jQuery requirement and replaced necessary code with pure vanilla JS code.
 - written in TypeScript which brings typings support
 - added new features:
-  - `showOkButton` to add an "OK" button at the end of multiple select option list
-  - `autoAdjustDropHeight` will automatically adjust the drop (up or down) height with available space
-  - `autoAdjustDropPosition` will automatically choose best position (top/bottom) with available space
+  - `showOkButton` to add an "OK" button at the end of multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
+  - `autoAdjustDropHeight` will automatically adjust the drop (up or down) height with available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
+  - `autoAdjustDropPosition` will automatically choose best position (top/bottom) with available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
   - `autoAdjustDropWidthByTextSize` automatically set the drop width size from the widest list option width
   - `useSelectOptionLabel` will use the `<option label="">` (from select option value) that can be used to display shorter selected option values.
-    - example: value "1,3" instead of "January,March"
+    - example: value "1,3" instead of "January,March" (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options31))
   - `useSelectOptionLabelToHtml` similar to `useSelectOptionLabel` but also renders HTML.
-  - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks.
+  - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options32)).
 
 ## Contributions
 
