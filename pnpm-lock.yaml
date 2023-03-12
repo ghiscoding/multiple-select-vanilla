@@ -7,6 +7,7 @@ importers:
       '@lerna-lite/cli': ^1.16.0
       '@lerna-lite/watch': ^1.16.0
       '@playwright/test': ^1.31.2
+      '@types/node': ^18.15.0
       '@typescript-eslint/eslint-plugin': ^5.54.1
       '@typescript-eslint/parser': ^5.54.1
       cross-env: ^7.0.3
@@ -26,6 +27,7 @@ importers:
       '@lerna-lite/cli': 1.16.0
       '@lerna-lite/watch': 1.16.0
       '@playwright/test': 1.31.2
+      '@types/node': 18.15.0
       '@typescript-eslint/eslint-plugin': 5.54.1_4rfaf6mlw2mmutqjcopwvbftpu
       '@typescript-eslint/parser': 5.54.1_vgl77cfdswitgr47lm5swmv43m
       cross-env: 7.0.3

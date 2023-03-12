@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Select Auto-Width', () => {
-  test('every select drop parent should have different width', async ({ page }) => {
+  test('every select drop parent should have different width', async ({ browser, page }) => {
     await page.goto('http://localhost:3000/#/example04');
 
     const dropElm1 = await page.$('div[data-test=select1]');
@@ -55,5 +55,7 @@ test.describe('Select Auto-Width', () => {
     await expect(page.locator('div[data-test=select6] .ms-choice span')).toHaveText(
       '[This is group 2: This is option 4, This is option 5, This is option 6]'
     );
+
+    await browser.close();
   });
 });
