@@ -28,6 +28,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** provide custom data */
   data?: { [value: string]: number | string | boolean } | Array<number | string | boolean | OptionRowData | OptGroupRowData>;
 
+  /** Add "data-test" attribute to the "ms-parent" element */
+  dataTest?: string;
+
   /** Delimiter to be displayed between each option */
   displayDelimiter: string;
 

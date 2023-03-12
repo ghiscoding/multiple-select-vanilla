@@ -1,40 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
-  await page.goto('http://localhost:3000/');
-  await page.goto('http://localhost:3000/#/example01');
-  await page.getByRole('button', { name: 'First' }).click();
-  await page.locator('label').filter({ hasText: 'Third' }).click();
-  await page.getByRole('button', { name: 'Option 1' }).click();
-  await page.locator('span').filter({ hasText: 'Option 3' }).click();
-  await page.getByRole('button', { name: 'Option 3' }).click();
-  await page.locator('label').filter({ hasText: 'Option 5' }).click();
-  await page.getByText('The Themes').click();
-  await page.getByRole('button', { name: 'form-control-sm' }).click();
-  await page.getByRole('listitem').filter({ hasText: 'April' }).locator('label').click();
-  await page.getByRole('listitem').filter({ hasText: 'April' }).locator('label').click();
-  await page.getByRole('listitem').filter({ hasText: 'March' }).locator('span').click();
-  await page.getByRole('listitem').filter({ hasText: 'April' }).locator('label').click();
-  await page.locator('.panel-wm-content > div:nth-child(2)').click();
-  await page.getByText('The Themes Code html | ts Multiple select with bootstrap theme.').click();
-  await page.getByRole('button', { name: 'form-control', exact: true }).click();
-  await page.getByRole('checkbox', { name: 'July' }).check();
-  await page.getByText('The Themes Code html | ts Multiple select with bootstrap theme. Select January F').click();
-  await page.getByText('The Themes Code html | ts Multiple select with bootstrap theme. Select January F').click();
-  await page.getByRole('checkbox', { name: 'March' }).click();
-  await page.getByText('The Themes Code html | ts Multiple select with bootstrap theme. Select January F').click();
-  await page.getByText('The Themes Code html | ts Multiple select with bootstrap theme. Select January F').click();
-  await page.getByRole('button', { name: 'March, July' }).click();
-  await page.getByText('Checkbox/Radio Icons').click();
-  await page.getByRole('button', { name: 'January' }).click();
-  await page.getByRole('listitem').filter({ hasText: 'March' }).locator('span').click();
-  await page.getByRole('button').nth(1).click();
-  await page.getByRole('listitem').filter({ hasText: 'April' }).click();
-  await page.getByRole('listitem').filter({ hasText: 'March' }).locator('span').click();
-  await page.getByRole('button', { name: 'OK' }).click();
-  await page.getByText('Dynamically Create Select').click();
-  await page.getByRole('button', { name: 'Dynamically Create' }).click();
-  await page.getByRole('button', { name: '1, 3, 4' }).click();
-  await page.getByRole('button', { name: 'Destroy' }).click();
-  await page.getByRole('button', { name: 'Dynamically Create' }).click();
+test('select drops auto-width should have different width as per their content', async ({ page }) => {
+  await page.goto('http://localhost:3000/#/example04');
+  const drop1 = await page.$('div[data-test=select1]');
+  const drop1box = await drop1?.boundingBox();
+  const dropWidth = drop1box!.width;
+  expect(dropWidth).toBeGreaterThanOrEqual(89);
+  expect(dropWidth).toBeLessThan(90);
 });

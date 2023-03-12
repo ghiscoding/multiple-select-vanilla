@@ -153,7 +153,14 @@ export class MultipleSelectInstance {
     // restore class and title from select element
     this.parentElm = createDomElement('div', {
       className: `ms-parent ${this.elm.className || ''}`,
+      dataset: { test: 'sel' },
     });
+
+    // add [data-test="name"] attribute
+    const dataTest = this.elm.getAttribute('data-test') || this.options.dataTest;
+    if (dataTest) {
+      this.parentElm.dataset.test = dataTest;
+    }
 
     // add tooltip title only when provided
     const parentTitle = this.elm.getAttribute('title') || '';
