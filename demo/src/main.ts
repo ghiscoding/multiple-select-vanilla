@@ -23,7 +23,7 @@ class Main {
   loading = true;
   currentModel?: ViewModel;
   currentRouter?: ViewRouter;
-  defaultRouteName = 'example01';
+  defaultRouteName = 'getting-started';
   stateBangChar = '#/';
   baseUrl = window.location.origin + window.location.pathname;
   viewModelObj: any = {};

@@ -59,7 +59,7 @@ import Events from './events/events';
 import I18n from './i18n/i18n';
 
 export const navbarRouting = [
-  { name: 'gettingStarted', view: '/src/getting-started.html', viewModel: GettingStarted, title: 'Getting Started' },
+  { name: 'getting-started', view: '/src/getting-started.html', viewModel: GettingStarted, title: 'Getting Started' },
   { name: 'examples', view: '/src/examples/example01.html', viewModel: Example01, title: 'Examples' },
 ];
 
