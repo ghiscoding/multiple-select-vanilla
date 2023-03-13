@@ -38,7 +38,7 @@ export default defineConfig({
       ],
   webServer: process.env.CI
     ? {
-        command: 'pnpm server',
+        command: 'pnpm serve',
         port: 3000,
       }
     : undefined,
