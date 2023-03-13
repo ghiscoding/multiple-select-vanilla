@@ -36,7 +36,8 @@
     "serve": "pnpm -r --stream --filter=\"{demo/**}\" dev",
     "test:e2e": "playwright test --config playwright/playwright.config.ts --headed",
     "test:e2e:debug": "playwright test --config playwright/playwright.config.ts --headed --debug",
-    "test:e2e:ci": "playwright test --config playwright/playwright.config.ts"
+    "test:e2e:ci": "playwright test --config playwright/playwright.config.ts",
+    "test:report": "playwright show-report"
   },
   "devDependencies": {
     "@lerna-lite/cli": "^1.16.0",

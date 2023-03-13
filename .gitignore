@@ -23,3 +23,7 @@ dist-ssr
 
 # Environment variables
 .env
+
+# Playwright
+playwright/report
+/playwright/.cache

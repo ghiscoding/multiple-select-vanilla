@@ -9,13 +9,13 @@ import {
   findParent,
   getElementOffset,
   getElementSize,
-  HtmlElementPosition,
   insertAfter,
   toggleElement,
 } from './utils/domUtils';
+import type { HtmlElementPosition } from './utils/domUtils';
+import type { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
+import type { MultipleSelectLocales, OptGroupRowData, OptionDataObject, OptionRowData } from './interfaces';
 import { BindingEventService, VirtualScroll } from './services';
-import { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
-import { MultipleSelectLocales, OptGroupRowData, OptionDataObject, OptionRowData } from './interfaces';
 
 export class MultipleSelectInstance {
   protected _bindEventService: BindingEventService;
