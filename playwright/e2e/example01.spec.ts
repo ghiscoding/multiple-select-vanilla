@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Example 01 - Basic Select', () => {
   test('test', async ({ page }) => {
-    await page.goto('http://localhost:3000/#/example01');
+    await page.goto('#/example01');
 
     await page.locator('div[data-test=select1] .ms-choice').filter({ hasText: 'First' }).click();
     await expect(await page.locator('div[data-test=select1] .ms-drop li.hide-radio').count()).toBe(4);
