@@ -10,6 +10,7 @@ export default defineConfig({
     timeout: 5000,
   },
   use: {
+    baseURL: 'http://localhost:3000/',
     headless: true,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,

@@ -8,9 +8,9 @@ async function assertDropWidth(page: Page, selector: string, expectation: number
   expect(drop1Width).toBeLessThan(expectation + range);
 }
 
-test.describe('Example 4 - Select Auto-Width', () => {
+test.describe('Example 04 - Select Auto-Width', () => {
   test('every select drop parent should have different width', async ({ page }) => {
-    await page.goto('http://localhost:3000/#/example04');
+    await page.goto('#/example04');
 
     assertDropWidth(page, 'div[data-test=select1]', 92);
     await page.getByRole('button', { name: 'First', exact: true }).click();
