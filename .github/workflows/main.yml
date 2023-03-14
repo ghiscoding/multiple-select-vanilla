@@ -53,8 +53,8 @@ jobs:
       - name: Build Website (GitHub demo site)
         run: pnpm build:demo
 
-      # - name: Start server in the background
-      #   run: pnpm serve &
+      - name: Start server in the background
+        run: pnpm serve &
 
       - name: Run Playwright tests
         run: pnpm test:e2e:ci
