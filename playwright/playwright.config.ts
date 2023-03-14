@@ -10,6 +10,7 @@ export default defineConfig({
     timeout: 5000,
   },
   use: {
+    baseURL: 'http://localhost:3000/',
     headless: true,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
@@ -17,25 +18,10 @@ export default defineConfig({
   },
   projects: process.env.CI
     ? [
-        {
-          name: 'chromium',
-          use: { ...devices['Desktop Chrome'] },
-        },
-        {
-          name: 'firefox',
-          use: { ...devices['Desktop Firefox'] },
-        },
-        // {
-        //   name: 'webkit',
-        //   use: { ...devices['Desktop Safari'] },
-        // },
+        { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+        { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
       ]
-    : [
-        {
-          name: 'chromium',
-          use: { ...devices['Desktop Chrome'] },
-        },
-      ],
+    : [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: process.env.CI
     ? {
         command: 'pnpm serve',
