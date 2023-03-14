@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
-  await page.goto('http://127.0.0.1:3000/#/example02');
+  await page.goto('http://localhost:3000/#/example02');
   await page.locator('div[data-test=select1].ms-parent').click();
   await page.locator('span').filter({ hasText: 'February' }).click();
   await page.locator('span').filter({ hasText: 'April' }).click();

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
-  await page.goto('http://127.0.0.1:3000/#/example03');
+  await page.goto('http://localhost:3000/#/example03');
   await page.locator('div[data-test=select1].ms-parent').click();
   await page.getByRole('listitem').filter({ hasText: '30' }).locator('label').click();
   await page.getByRole('checkbox', { name: '15' }).check();

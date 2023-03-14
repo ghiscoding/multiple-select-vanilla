@@ -21,10 +21,10 @@ export default defineConfig({
         { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
       ]
     : [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
-  // webServer: process.env.CI
-  //   ? {
-  //       command: 'pnpm serve',
-  //       port: 3000,
-  //     }
-  //   : undefined,
+  webServer: process.env.CI
+    ? {
+        command: 'pnpm serve',
+        port: 3000,
+      }
+    : undefined,
 });
