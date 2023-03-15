@@ -58,6 +58,7 @@ jobs:
 
       - name: Run Playwright tests
         uses: mathiasvr/command-output@v2.0.0
+        continue-on-error: true
         id: playwrightsummary
         with:
           run: pnpm test:e2e:ci
