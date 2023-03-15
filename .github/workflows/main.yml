@@ -53,9 +53,6 @@ jobs:
       - name: Build Website (GitHub demo site)
         run: pnpm build:demo
 
-      # - name: Start server in the background
-      #   run: pnpm serve &
-
       - name: Find Playwright Summary Comment (when exist)
         uses: peter-evans/find-comment@v2
         id: fc
@@ -71,7 +68,8 @@ jobs:
         with:
           run: pnpm test:e2e:ci
 
-      - name: Create or update Playwright Summary (success)
+      - name: Upsert Playwright Summary (success)
+        if: ${{ steps.playwrightsummary.outputs.stdout }}
         uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -81,7 +79,8 @@ jobs:
             ${{ steps.playwrightsummary.outputs.stdout }}
           edit-mode: replace
 
-      - name: Create or update Playwright Summary (failure)
+      - name: Upsert Playwright Summary (failure)
+        if: ${{ steps.playwrightsummary.outputs.stderr }}
         uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -89,11 +88,10 @@ jobs:
           body: |
             :performing_arts: Playwright Summary - PR #${{ github.event.number }} - Failure :boom:
             ${{ steps.playwrightsummary.outputs.stderr }}
-            echo "PLAYWRIGHT_FAILED=true" >> $GITHUB_OUTPUT
           edit-mode: replace
 
       - name: Exit Process on Playwright Failure
-        if: ${{ steps.playwright-failed.outputs.PLAYWRIGHT_FAILED }}
+        if: ${{ steps.playwrightsummary.outputs.stderr }}
         run: echo Yup Playwright failed
         # run: |
         #   echo Playwright Failed
