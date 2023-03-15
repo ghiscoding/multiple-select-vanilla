@@ -56,20 +56,20 @@ jobs:
       # - name: Start server in the background
       #   run: pnpm serve &
 
-      - name: Run Playwright tests
-        uses: mathiasvr/command-output@v2.0.0
-        continue-on-error: true
-        id: playwrightsummary
-        with:
-          run: pnpm test:e2e:ci
-
-      - name: Find Playwright Summary Comment (if already exist)
+      - name: Find Playwright Summary Comment (when exist)
         uses: peter-evans/find-comment@v2
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
           body-includes: Playwright Summary
+
+      - name: Run Playwright tests
+        uses: mathiasvr/command-output@v2.0.0
+        continue-on-error: true
+        id: playwrightsummary
+        with:
+          run: pnpm test:e2e:ci
 
       - name: Create or update Playwright Summary (success)
         uses: peter-evans/create-or-update-comment@v2
@@ -92,28 +92,9 @@ jobs:
             echo "PLAYWRIGHT_FAILED=true" >> $GITHUB_OUTPUT
           edit-mode: replace
 
-      # - name: Add Playwright Summary to PR (success)
-      #   if: ${{ steps.playwrightsummary.outputs.stdout }}
-      #   uses: peter-evans/create-or-update-comment@v2
-      #   with:
-      #     issue-number: ${{ github.event.number }}
-      #     body: |
-      #       :performing_arts: Playwright Summary - PR #${{ github.event.number }} - Success :tada:
-      #       ${{ steps.playwrightsummary.outputs.stdout }}
-
-      # - name: Add Playwright Summary to PR (failure)
-      #   if: ${{ steps.playwrightsummary.outputs.stderr }}
-      #   uses: peter-evans/create-or-update-comment@v2
-      #   with:
-      #     issue-number: ${{ github.event.number }}
-      #     body: |
-      #       :performing_arts: Playwright Summary - PR #${{ github.event.number }} - Failed :boom:
-      #       ${{ steps.playwrightsummary.outputs.stderr }}
-      #       echo "PLAYWRIGHT_FAILED=true" >> $GITHUB_OUTPUT
-
       - name: Exit Process on Playwright Failure
-        if: ${{ steps.playwright-failed.outputs.PLAYWRIGHT_FAILED == true }}
-        run: echo Did Playwright failed? ${{ steps.playwright-failed.outputs.PLAYWRIGHT_FAILED }}
+        if: ${{ steps.playwright-failed.outputs.PLAYWRIGHT_FAILED }}
+        run: echo Yup Playwright failed
         # run: |
         #   echo Playwright Failed
         #   exit 1
