@@ -53,11 +53,30 @@ jobs:
       - name: Build Website (GitHub demo site)
         run: pnpm build:demo
 
-      # - name: Start server in the background
-      #   run: pnpm serve &
+      - name: Find Playwright Summary Comment (when exist)
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Playwright Summary
 
       - name: Run Playwright tests
-        run: pnpm test:e2e:ci
+        uses: mathiasvr/command-output@v2.0.0
+        id: playwrightsummary
+        with:
+          run: pnpm test:e2e:ci
+
+      - name: Upsert Playwright Summary
+        if: always()
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            :performing_arts: Playwright Summary - PR #${{ github.event.number }} - ${{ steps.playwrightsummary.outcome }}
+            ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
+          edit-mode: replace
 
       - uses: actions/upload-artifact@v3
         if: always()
