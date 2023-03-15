@@ -54,6 +54,7 @@ jobs:
         run: pnpm build:demo
 
       - name: Find Playwright Summary Comment (when exist)
+        if: ${{ github.event.pull_request.number }}
         uses: peter-evans/find-comment@v2
         id: fc
         with:
@@ -68,7 +69,9 @@ jobs:
           run: pnpm test:e2e:ci
 
       - name: Upsert Playwright Summary
-        if: always()
+        if: |
+          github.event.pull_request.number &&
+          always()
         uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
