@@ -63,6 +63,11 @@ jobs:
         with:
           run: pnpm test:e2e:ci
 
+      - name: Cache Playwright Failure
+        id: playwright-failed
+        if: ${{ steps.playwrightsummary.outputs.stderr }}
+        run: echo "PLAYWRIGHT_FAILED=true" >> $GITHUB_OUTPUT
+
       - name: Add Playwright Summary to PR (success)
         if: ${{ steps.playwrightsummary.outputs.stdout }}
         uses: peter-evans/create-or-update-comment@v2
@@ -82,8 +87,10 @@ jobs:
             ${{ steps.playwrightsummary.outputs.stderr }}
 
       - name: Exit Process on Playwright Failure
-        if: ${{ steps.playwrightsummary.outputs.stderr }}
-        run: exit 1
+        if: ${{ steps.playwright-failed.outputs.PLAYWRIGHT_FAILED }}"
+        run: |
+          echo Playwright Failed
+          exit 1
 
       - uses: actions/upload-artifact@v3
         if: always()
