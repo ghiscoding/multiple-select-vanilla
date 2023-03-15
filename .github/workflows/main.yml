@@ -63,39 +63,20 @@ jobs:
 
       - name: Run Playwright tests
         uses: mathiasvr/command-output@v2.0.0
-        continue-on-error: true
         id: playwrightsummary
         with:
           run: pnpm test:e2e:ci
 
-      - name: Upsert Playwright Summary (failure)
-        if: ${{ steps.playwrightsummary.outputs.stderr }}
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            :performing_arts: Playwright Summary - PR #${{ github.event.number }} - Failure :boom:
-            ${{ steps.playwrightsummary.outputs.stderr }}
-          edit-mode: replace
-
-      - name: Upsert Playwright Summary (success)
+      - name: Upsert Playwright Summary
         if: ${{ steps.playwrightsummary.outputs.stdout }}
         uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            :performing_arts: Playwright Summary - PR #${{ github.event.number }} - Success :tada:
+            :performing_arts: Playwright Summary - PR #${{ github.event.number }}
             ${{ steps.playwrightsummary.outputs.stdout }}
           edit-mode: replace
-
-      - name: Exit Process on Playwright Failure
-        if: ${{ steps.playwrightsummary.outputs.stderr }}
-        run: echo ${{ env.action_state }}
-        # run: |
-        #   echo Playwright Failed
-        #   exit 1
 
       - uses: actions/upload-artifact@v3
         if: always()
