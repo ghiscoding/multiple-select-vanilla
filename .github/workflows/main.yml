@@ -67,9 +67,9 @@ jobs:
         id: playwrightsummary
         with:
           run: |
-          if [pnpm test:e2e:ci]; then
-            echo "action_state=success" >> $GITHUB_ENV
-          fi
+            if [pnpm test:e2e:ci]; then
+              echo "action_state=success" >> $GITHUB_ENV
+            fi
 
       - name: Upsert Playwright Summary (failure)
         if: ${{ steps.playwrightsummary.outputs.stderr }}
