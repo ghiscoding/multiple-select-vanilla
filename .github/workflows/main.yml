@@ -74,7 +74,7 @@ jobs:
         with:
           issue-number: ${{ github.event.number }}
           body: |
-            :performing_arts: Playwright Summary - PR #${{ github.event.number }}
+            :performing_arts: Playwright Summary - PR #${{ github.event.number }} - Success :tada:
             ${{ steps.playwrightsummary.outputs.stdout }}
 
       - name: Add Playwright Summary to PR (failure)
@@ -83,7 +83,7 @@ jobs:
         with:
           issue-number: ${{ github.event.number }}
           body: |
-            :performing_arts: Playwright Summary - PR #${{ github.event.number }}
+            :performing_arts: Playwright Summary - PR #${{ github.event.number }} - Failed :boom:
             ${{ steps.playwrightsummary.outputs.stderr }}
 
       - name: Exit Process on Playwright Failure
