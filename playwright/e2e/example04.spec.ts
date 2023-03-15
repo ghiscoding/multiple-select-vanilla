@@ -2,15 +2,15 @@ import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 
 async function assertDropWidth(page: Page, selector: string, expectation: number, range = 10) {
-  const dropElm1 = await page.$(selector);
+  const dropElm1 = await page.locator(selector);
   const drop1Width = (await dropElm1?.boundingBox())!.width;
   expect(drop1Width).toBeGreaterThanOrEqual(expectation - range);
   expect(drop1Width).toBeLessThan(expectation + range);
 }
 
-test.describe('Select Auto-Width', () => {
-  test('every select drop parent should have different width', async ({ browser, page }) => {
-    await page.goto('http://localhost:3000/#/example04');
+test.describe('Example 04 - Select Auto-Width', () => {
+  test('every select drop parent should have different width', async ({ page }) => {
+    await page.goto('#/example04');
 
     assertDropWidth(page, 'div[data-test=select1]', 92);
     await page.getByRole('button', { name: 'First', exact: true }).click();
@@ -45,7 +45,5 @@ test.describe('Select Auto-Width', () => {
     await expect(page.locator('div[data-test=select6] .ms-choice span')).toHaveText(
       '[This is group 2: This is option 4, This is option 5, This is option 6]'
     );
-
-    await browser.close();
   });
 });
