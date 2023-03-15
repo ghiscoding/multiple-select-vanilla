@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   fullyParallel: true,
   // reporter: process.env.CI ? 'dot' : 'list',
-  reporter: process.env.CI ? 'list' : 'html',
+  reporter: process.env.CI ? 'dot' : 'html',
   testDir: './e2e',
   timeout: 30 * 1000,
   expect: {

@@ -62,13 +62,23 @@ jobs:
         with:
           run: pnpm test:e2e:ci
 
-      - name: Add Playwright Summary to PR
+      - name: Add Playwright Summary to PR (success)
+        if: ${{ steps.playwrightsummary.outputs.stdout }}
         uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{ github.event.number }}
           body: |
-            Playwright Summary :performing_arts: - PR #${{ github.event.number }}
+            :performing_arts: Playwright Summary - PR #${{ github.event.number }}
             ${{ steps.playwrightsummary.outputs.stdout }}
+
+      - name: Add Playwright Summary to PR (failure)
+        if: ${{ steps.playwrightsummary.outputs.stderr }}
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.number }}
+          body: |
+            :performing_arts: Playwright Summary - PR #${{ github.event.number }}
+            ${{ steps.playwrightsummary.outputs.stderr }}
 
       - uses: actions/upload-artifact@v3
         if: always()
