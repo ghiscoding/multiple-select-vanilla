@@ -81,6 +81,10 @@ jobs:
             :performing_arts: Playwright Summary - PR #${{ github.event.number }}
             ${{ steps.playwrightsummary.outputs.stderr }}
 
+      - name: Exit Process on Playwright Failure
+        if: ${{ steps.playwrightsummary.outputs.stderr }}
+        run: exit 1
+
       - uses: actions/upload-artifact@v3
         if: always()
         with:
