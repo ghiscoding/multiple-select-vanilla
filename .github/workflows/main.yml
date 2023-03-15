@@ -60,14 +60,14 @@ jobs:
         uses: mathiasvr/command-output@v2.0.0
         id: playwrightsummary
         with:
-        run: pnpm test:e2e:ci
+          run: pnpm test:e2e:ci
 
       - name: Add Playwright Summary to PR
         uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{ github.event.number }}
           body: |
-            Playwright Summary :performing_arts:
+            Playwright Summary :performing_arts: - PR #${{ github.event.number }}
             ${{ steps.playwrightsummary.outputs.stdout }}
 
       - uses: actions/upload-artifact@v3
