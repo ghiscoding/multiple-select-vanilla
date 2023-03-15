@@ -66,18 +66,10 @@ jobs:
         continue-on-error: true
         id: playwrightsummary
         with:
-          run: pnpm test:e2e:ci
-
-      - name: Upsert Playwright Summary (success)
-        if: ${{ steps.playwrightsummary.outputs.stdout }}
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            :performing_arts: Playwright Summary - PR #${{ github.event.number }} - Success :tada:
-            ${{ steps.playwrightsummary.outputs.stdout }}
-          edit-mode: replace
+          run: |
+          if [pnpm test:e2e:ci]; then
+            echo "action_state=success" >> $GITHUB_ENV
+          fi
 
       - name: Upsert Playwright Summary (failure)
         if: ${{ steps.playwrightsummary.outputs.stderr }}
@@ -90,9 +82,20 @@ jobs:
             ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
+      - name: Upsert Playwright Summary (success)
+        if: ${{ steps.playwrightsummary.outputs.stdout }}
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            :performing_arts: Playwright Summary - PR #${{ github.event.number }} - Success :tada:
+            ${{ steps.playwrightsummary.outputs.stdout }}
+          edit-mode: replace
+
       - name: Exit Process on Playwright Failure
         if: ${{ steps.playwrightsummary.outputs.stderr }}
-        run: echo Yup Playwright failed
+        run: echo ${{ env.action_state }}
         # run: |
         #   echo Playwright Failed
         #   exit 1
