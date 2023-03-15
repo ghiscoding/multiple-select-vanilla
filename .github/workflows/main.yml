@@ -57,7 +57,18 @@ jobs:
       #   run: pnpm serve &
 
       - name: Run Playwright tests
+        uses: mathiasvr/command-output@v2.0.0
+        id: playwrightsummary
+        with:
         run: pnpm test:e2e:ci
+
+      - name: Add Playwright Summary to PR
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.number }}
+          body: |
+            Playwright Summary :performing_arts:
+            ${{ steps.playwrightsummary.outputs.stdout }}
 
       - uses: actions/upload-artifact@v3
         if: always()
