@@ -68,6 +68,7 @@ jobs:
           run: pnpm test:e2e:ci
 
       - name: Upsert Playwright Summary
+        if: always()
         uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
