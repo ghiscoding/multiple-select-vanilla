@@ -74,7 +74,7 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            :performing_arts: Playwright Summary - PR #${{ github.event.number }}
+            :performing_arts: Playwright Summary - PR #${{ github.event.number }} - ${{ steps.playwrightsummary.outcome == 'sucess' ? 'Success :tada:' : 'Failure :boom:' }}
             ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
