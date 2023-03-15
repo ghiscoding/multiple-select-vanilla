@@ -68,14 +68,13 @@ jobs:
           run: pnpm test:e2e:ci
 
       - name: Upsert Playwright Summary
-        if: ${{ steps.playwrightsummary.outputs.stdout }}
         uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             :performing_arts: Playwright Summary - PR #${{ github.event.number }}
-            ${{ steps.playwrightsummary.outputs.stdout }}
+            ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
       - uses: actions/upload-artifact@v3
