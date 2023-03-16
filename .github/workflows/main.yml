@@ -78,10 +78,6 @@ jobs:
           echo "OUTCOME=Failure :bomb:" >> $GITHUB_OUTPUT
         fi
 
-      - id: playwright_outcome
-        if: ${{ steps.playwrightsummary.outcome == 'success' }}
-        run: echo "OUTCOME=" >> $GITHUB_OUTPUT
-
       - name: Upsert Playwright Summary
         if: |
           github.event.pull_request.number &&
