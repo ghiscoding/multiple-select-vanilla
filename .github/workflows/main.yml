@@ -75,7 +75,7 @@ jobs:
         if: always()
         run: |
           if [[ ${{ steps.playwrightsummary.outcome == 'failure' }} ]]; then
-            echo "pw_outcome=Failure :boom:" >> $GITHUB_OUTPUT
+            echo "pw_outcome=Failure :rotating_light:" >> $GITHUB_OUTPUT
           else
             echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
           fi
@@ -89,7 +89,7 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ## :performing_arts: Playwright Summary - ${{ steps.playwrightsummary.outcome == 'failure' }} - ${{ steps.pw_outcome.outputs.pw_outcome }}
+            ## :performing_arts: Playwright Summary - ${{ steps.pw_outcome.outputs.pw_outcome }}
             ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
