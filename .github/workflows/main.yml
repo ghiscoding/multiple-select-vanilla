@@ -70,13 +70,14 @@ jobs:
         with:
           run: pnpm test:e2e:ci
 
-      - name: Store Playwright outcome
+      - name: Define Playwright Outcome Text
         id: pw_outcome
+        if: always()
         run: |
           if [[ steps.playwrightsummary.outcome == 'failure' ]]; then
-            echo "pw_outcome=Failure:boom:" >> $GITHUB_OUTPUT
+            echo "pw_outcome=Failure :bomb:" >> $GITHUB_OUTPUT
           else
-            echo "pw_outcome=Success" >> $GITHUB_OUTPUT
+            echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
           fi
 
       - name: Upsert Playwright Summary
