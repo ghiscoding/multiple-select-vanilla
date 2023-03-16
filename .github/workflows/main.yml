@@ -69,6 +69,19 @@ jobs:
         with:
           run: pnpm test:e2e:ci
 
+      - id: playwright_outcome
+        run: |
+        if [steps.playwrightsummary.outcome == 'success']
+        then
+          echo "OUTCOME=Success :rocket:" >> $GITHUB_OUTPUT
+        else
+          echo "OUTCOME=Failure :bomb:" >> $GITHUB_OUTPUT
+        fi
+
+      - id: playwright_outcome
+        if: ${{ steps.playwrightsummary.outcome == 'success' }}
+        run: echo "OUTCOME=" >> $GITHUB_OUTPUT
+
       - name: Upsert Playwright Summary
         if: |
           github.event.pull_request.number &&
@@ -78,7 +91,7 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ## :performing_arts: Playwright Summary - ${{ steps.playwrightsummary.outcome == 'success' && 'Success :rocket:' || 'Failure :bomb:' }}
+            ## :performing_arts: Playwright Summary - ${{ steps.playwright_outcome.outputs.OUTCOME }}
             ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
