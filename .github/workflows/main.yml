@@ -74,11 +74,12 @@ jobs:
         id: pw_outcome
         if: always()
         run: |
-          if [ ${{ steps.playwrightsummary.outcome == 'failure' }} ]; then
+          if [ ${{ steps.playwrightsummary.outcome }} == 'failure' ]; then
             echo "pw_outcome=Failure :rotating_light:" >> $GITHUB_OUTPUT
           else
             echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
           fi
+        shell: bash
 
       - name: Upsert Playwright Summary
         if: |
