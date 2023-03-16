@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
   pull_request_target:
-    types: [opened]
+    types: [opened,synchronize,reopened]
 
 permissions:
   pull-requests: write # for comments in PRs
