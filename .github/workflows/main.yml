@@ -3,11 +3,7 @@ on:
   # Trigger the workflow on push or pull request,
   # but only for the main branch on Push and any branches on PR
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - '**'
+    branches: [main]
   pull_request_target:
     types: [opened,synchronize,reopened]
 
