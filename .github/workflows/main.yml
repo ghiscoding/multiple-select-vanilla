@@ -73,7 +73,7 @@ jobs:
       - name: Store Playwright outcome
         id: pw_outcome
         run: |
-          if [[ steps.playwrightsummary.outcome == 'success' ]]; then
+          if [[ contains(steps.playwrightsummary.outcome, 'success') ]]; then
             echo "pw_outcome=Success :rocket:" >> $GITHUB_OUTPUT
           else
             echo "pw_outcome=Failure :bomb:" >> $GITHUB_OUTPUT
