@@ -9,6 +9,7 @@ export default class Example {
 
   mount() {
     this.ms1 = multipleSelect('#basic', {
+      dataTest: 'select1',
       data: [
         {
           text: 'January',
@@ -62,6 +63,7 @@ export default class Example {
     }) as MultipleSelectInstance;
 
     this.ms2 = multipleSelect('#object', {
+      dataTest: 'select2',
       data: {
         1: 'January',
         2: 'February',
@@ -79,14 +81,17 @@ export default class Example {
     }) as MultipleSelectInstance;
 
     this.ms3 = multipleSelect('#string', {
+      dataTest: 'select3',
       data: ['January', 'February', 'March'],
     }) as MultipleSelectInstance;
 
     this.ms4 = multipleSelect('#number', {
+      dataTest: 'select4',
       data: [1, 2, 3],
     }) as MultipleSelectInstance;
 
     this.ms5 = multipleSelect('#group', {
+      dataTest: 'select5',
       data: [
         {
           type: 'optgroup',
