@@ -3,10 +3,9 @@ on:
   # Trigger the workflow on push or pull request,
   # but only for the main branch on Push and any branches on PR
   push:
-    branches:
-      - main
-      - next
+    branches: [main, next]
   pull_request:
+    branches: ['**']
     types: [assigned, opened, synchronize, reopened, labeled]
 
 permissions:
@@ -71,15 +70,6 @@ jobs:
         with:
           run: pnpm test:e2e:ci
 
-      - id: playwright_outcome
-        run: |
-        if [steps.playwrightsummary.outcome == 'success']
-        then
-          echo "OUTCOME=Success :rocket:" >> $GITHUB_OUTPUT
-        else
-          echo "OUTCOME=Failure :bomb:" >> $GITHUB_OUTPUT
-        fi
-
       - name: Upsert Playwright Summary
         if: |
           github.event.pull_request.number &&
@@ -89,7 +79,7 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ## :performing_arts: Playwright Summary - ${{ steps.playwrightsummary.outcome }} - ${{ steps.playwright_outcome.outputs.OUTCOME }}
+            ## :performing_arts: Playwright Summary - ${{ steps.playwrightsummary.outcome }}
             ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
