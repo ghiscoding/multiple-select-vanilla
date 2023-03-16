@@ -1,0 +1,8 @@
+{
+  extends: ['config:base', 'group:allNonMajor'],
+  labels: ['dependencies'],
+  node: false,
+  pin: false,
+  rangeStrategy: 'bump',
+  schedule: ['on Friday'],
+}
