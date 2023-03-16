@@ -72,13 +72,12 @@ jobs:
 
       - name: Define Playwright Outcome Text
         id: pw_outcome
-        if: always()
-        run: |
-          if [[ steps.playwrightsummary.outcome == 'failure' ]]; then
-            echo "pw_outcome=Failure :bomb:" >> $GITHUB_OUTPUT
-          else
-            echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
-          fi
+        if: always() && steps.playwrightsummary.outcome == 'failure'
+        run:  ${{ echo "pw_outcome=Failure :bomb:" >> $GITHUB_OUTPUT }}
+      - name: Define Playwright Outcome Text
+        id: pw_outcome
+        if: always() && steps.playwrightsummary.outcome != 'failure'
+        run:  ${{ echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT }}
 
       - name: Upsert Playwright Summary
         if: |
