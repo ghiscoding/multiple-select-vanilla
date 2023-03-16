@@ -9,6 +9,9 @@ on:
     branches:
       - '**'
 
+permissions:
+  pull-requests: write # for comments in PRs
+
 jobs:
   run:
     name: Node ${{ matrix.node }}
