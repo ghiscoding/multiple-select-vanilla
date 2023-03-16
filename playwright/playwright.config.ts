@@ -20,7 +20,7 @@ export default defineConfig({
     trace: 'on-first-retry', // record traces on first retry of each test
     video: 'on-first-retry',
   },
-  
+
   projects: process.env.CI
     ? [
         { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
