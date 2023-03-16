@@ -74,9 +74,9 @@ jobs:
         id: pw_outcome
         run: |
           if [[ steps.playwrightsummary.outcome == 'failure' ]]; then
-            echo "pw_outcome=Failure :bomb:" >> $GITHUB_OUTPUT
+            echo "pw_outcome=Failure :rotating_light:" >> $GITHUB_OUTPUT
           else
-            echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
+            echo "pw_outcome=Success" >> $GITHUB_OUTPUT
           fi
 
       - name: Upsert Playwright Summary
