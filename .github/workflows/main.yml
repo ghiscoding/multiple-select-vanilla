@@ -8,8 +8,8 @@ on:
     branches: ['**']
     types: [opened,synchronize,reopened]
 
-permissions:
-  pull-requests: write # for comments in PRs
+# permissions:
+#   pull-requests: write # for comments in PRs
 
 jobs:
   run:
