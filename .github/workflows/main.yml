@@ -16,13 +16,11 @@ jobs:
       actions: write
       checks: write
       contents: write
-      id-token: write
       issues: write
       deployments: write
       pages: read
       pull-requests: write
       repository-projects: write
-      statuses: write
 
     strategy:
       fail-fast: false
