@@ -7,6 +7,14 @@ on:
   pull_request_target:
     types: [opened,synchronize,reopened]
 
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  issues: write
+  deployments: write
+  pull-requests: write
+
 jobs:
   run:
     name: Node ${{ matrix.node }}
@@ -18,7 +26,7 @@ jobs:
 
     steps:
       - name: Display PR Number
-        run: echo "${{ github.event.pull_request.number }} | ${{ github.event.pull_request_target.number }}"
+        run: echo "${{ github.event.pull_request.number }}"
 
       - name: Clone repository
         uses: actions/checkout@v3
