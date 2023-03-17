@@ -12,7 +12,7 @@ jobs:
   run:
     name: Node ${{ matrix.node }}
     runs-on: ubuntu-latest
-    permission:
+    permissions:
       content: write
       pull-requests: write
     strategy:
