@@ -7,14 +7,6 @@ on:
   pull_request_target:
     types: [opened,synchronize,reopened]
 
-permissions:
-  actions: write
-  checks: write
-  contents: write
-  issues: write
-  deployments: write
-  pull-requests: write
-
 jobs:
   run:
     name: Node ${{ matrix.node }}
