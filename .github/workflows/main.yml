@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Display PR Number
-        run: echo "${{ github.event.pull_request.number }} | ${{ github.event.pull_request_target.number }}
+        run: echo "${{ github.event.pull_request.number }} | ${{ github.event.pull_request_target.number }}"
 
       - name: Clone repository
         uses: actions/checkout@v3
