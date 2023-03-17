@@ -25,5 +25,6 @@ dist-ssr
 .env
 
 # Playwright
-# playwright-report
+playwright-report
+test-results
 /playwright/.cache

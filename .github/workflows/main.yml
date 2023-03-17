@@ -4,16 +4,11 @@ on:
   # but only for the main branch on Push and any branches on PR
   push:
     branches: [main,next]
-  pull_request_target:
+  # pull_request_target:
+  #   types: [opened,synchronize,reopened]
+  pull_request:
+    branches: ['**']
     types: [opened,synchronize,reopened]
-
-permissions:
-  actions: write
-  checks: write
-  contents: write
-  issues: write
-  deployments: write
-  pull-requests: write
 
 jobs:
   run:
@@ -25,9 +20,6 @@ jobs:
         node: [18]
 
     steps:
-      - name: Display PR Number
-        run: echo "${{ github.event.pull_request.number }}"
-
       - name: Clone repository
         uses: actions/checkout@v3
         with:
@@ -70,7 +62,7 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: Playwright Summary
 
-      - name: Run Playwright tests
+      - name: Run Playwright E2E Tests
         uses: mathiasvr/command-output@v2.0.0
         id: playwrightsummary
         with:
@@ -81,7 +73,7 @@ jobs:
         if: always()
         run: |
           if [ ${{ steps.playwrightsummary.outcome }} == 'failure' ]; then
-            echo "pw_outcome=Failure :rotating_light:" >> $GITHUB_OUTPUT
+            printf "pw_outcome=Failure :rotating_light:" >> $GITHUB_OUTPUT
           else
             echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
           fi
@@ -97,6 +89,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             ## :performing_arts: Playwright Summary - ${{ steps.pw_outcome.outputs.pw_outcome }}
+            ### [Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)
             ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
@@ -107,11 +100,19 @@ jobs:
           path: playwright-report/
           retention-days: 15
 
-      # - name: Deploy to gh-pages
-      #   if: |
-      #     github.ref == 'refs/heads/main' &&
-      #     (contains(github.event.head_commit.message, 'chore(release)') || contains(github.event.head_commit.message, '[refresh gh-pages]'))
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./demo/dist
+      - name: Deploy Demo to gh-pages
+        if: |
+          github.ref == 'refs/heads/main' &&
+          (contains(github.event.head_commit.message, 'chore(release)') || contains(github.event.head_commit.message, '[refresh gh-pages]'))
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./demo/dist
+
+      - name: Deploy Playwright Report
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          destination_dir: playwright-report
+          publish_dir: ./playwright-report

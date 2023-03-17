@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Example 01 - Basic Select', () => {
-  test('test', async ({ page }) => {
+  test('basic select should have dropdown with certain list items', async ({ page }) => {
     await page.goto('#/example01');
 
     await page.locator('div[data-test=select1] .ms-choice').filter({ hasText: 'First' }).click();
