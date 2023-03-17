@@ -75,7 +75,7 @@ jobs:
         if: always()
         run: |
           if [ ${{ steps.playwrightsummary.outcome }} == 'failure' ]; then
-            printf "pw_outcome=Failure :rotating_light:%0A###[Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)" >> $GITHUB_OUTPUT
+            printf "pw_outcome=Failure :rotating_light:" >> $GITHUB_OUTPUT
           else
             echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
           fi
@@ -91,7 +91,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             ## :performing_arts: Playwright Summary - ${{ steps.pw_outcome.outputs.pw_outcome }}
-            #### [Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)
+            ### [Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)
             ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
