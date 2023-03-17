@@ -112,6 +112,7 @@ jobs:
 
       - name: Deploy Playwright Report
         uses: peaceiris/actions-gh-pages@v3
+        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_dir: playwright-report
