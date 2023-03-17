@@ -4,23 +4,22 @@ on:
   # but only for the main branch on Push and any branches on PR
   push:
     branches: [main,next]
-  pull_request:
-    branches: ['**']
+  pull_request_target:
     types: [opened,synchronize,reopened]
 
 jobs:
   run:
     name: Node ${{ matrix.node }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
     strategy:
       fail-fast: false
       matrix:
         node: [18]
 
     steps:
+      - name: Display PR Number
+        run: echo "${{ github.event.pull_request.number }}"
+
       - name: Clone repository
         uses: actions/checkout@v3
         with:
