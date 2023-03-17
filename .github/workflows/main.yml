@@ -105,14 +105,15 @@ jobs:
         # if: |
         #   github.ref == 'refs/heads/main' &&
         #   (contains(github.event.head_commit.message, 'chore(release)') || contains(github.event.head_commit.message, '[refresh gh-pages]'))
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./demo/dist
 
       - name: Deploy Playwright Report
-        uses: peaceiris/actions-gh-pages@v3
         if: always()
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_dir: playwright-report
