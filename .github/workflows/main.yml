@@ -19,6 +19,8 @@ jobs:
       deployments: write
       pull-requests: write
       pages: write
+      repository-projects: write
+      metadata: write
 
     strategy:
       fail-fast: false
