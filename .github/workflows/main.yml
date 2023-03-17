@@ -51,11 +51,11 @@ jobs:
         run: pnpm build:demo
 
       - name: Find Playwright Summary Comment (when exist)
-        if: ${{ github.event.pull_request_target.number }}
+        if: ${{ github.event.pull_request.number }}
         uses: peter-evans/find-comment@v2
         id: fc
         with:
-          issue-number: ${{ github.event.pull_request_target.number }}
+          issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
           body-includes: Playwright Summary
 
@@ -78,12 +78,12 @@ jobs:
 
       - name: Upsert Playwright Summary
         if: |
-          github.event.pull_request_target.number &&
+          github.event.pull_request.number &&
           always()
         uses: peter-evans/create-or-update-comment@v2
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request_target.number }}
+          issue-number: ${{ github.event.pull_request.number }}
           body: |
             ## :performing_arts: Playwright Summary - ${{ steps.pw_outcome.outputs.pw_outcome }}
             ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
