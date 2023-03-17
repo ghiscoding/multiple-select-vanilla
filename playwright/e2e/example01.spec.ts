@@ -13,7 +13,7 @@ test.describe('Example 01 - Basic Select', () => {
     await expect(optGroups).toBeDefined();
     await expect(optGroups).toHaveCount(3);
     await expect(liElms).toHaveCount(9);
-    await expect(optGroups.nth(0)).toContainText('Group 11');
+    await expect(optGroups.nth(0)).toContainText('Group 1');
     await expect(optGroups.nth(1)).toContainText('Group 2');
     await expect(optGroups.nth(2)).toContainText('Group 3');
 
