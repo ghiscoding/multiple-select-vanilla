@@ -91,7 +91,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             ## :performing_arts: Playwright Summary - ${{ steps.pw_outcome.outputs.pw_outcome }}
-            ### [Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)
+            ### :link: [Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)
             ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
