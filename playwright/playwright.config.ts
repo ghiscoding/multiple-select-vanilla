@@ -4,7 +4,7 @@ export default defineConfig({
   fullyParallel: true,
   // reporter: process.env.CI ? 'dot' : 'list',
   reporter: [['html', { outputFolder: '../playwright-report' }]],
-  // retries: process.env.CI ? 1 : 0, // set to 1 when running on CI
+  retries: process.env.CI ? 2 : 0,
   testDir: './e2e',
   timeout: 30 * 1000,
   expect: {
