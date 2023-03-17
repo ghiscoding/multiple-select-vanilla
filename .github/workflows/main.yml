@@ -118,3 +118,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_dir: playwright-report
           publish_dir: ./playwright-report
+          keep_files: true
