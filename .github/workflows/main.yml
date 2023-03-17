@@ -4,8 +4,7 @@ on:
   # but only for the main branch on Push and any branches on PR
   push:
     branches: [main,next]
-  pull_request:
-    branches: ['**']
+  pull_request_target:
     types: [opened,synchronize,reopened]
 
 permissions:
