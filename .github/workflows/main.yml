@@ -64,7 +64,7 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: Playwright Summary
 
-      - name: Run Playwright tests
+      - name: Run Playwright E2E Tests
         uses: mathiasvr/command-output@v2.0.0
         id: playwrightsummary
         with:
@@ -75,7 +75,7 @@ jobs:
         if: always()
         run: |
           if [ ${{ steps.playwrightsummary.outcome }} == 'failure' ]; then
-            echo "pw_outcome=Failure :rotating_light:\n###[Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)" >> $GITHUB_OUTPUT
+            printf "pw_outcome=Failure :rotating_light:\n ###[Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)" >> $GITHUB_OUTPUT
           else
             echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
           fi
@@ -91,6 +91,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             ## :performing_arts: Playwright Summary - ${{ steps.pw_outcome.outputs.pw_outcome }}
+            #### [Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)
             ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
