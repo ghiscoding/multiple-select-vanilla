@@ -101,11 +101,10 @@ jobs:
           path: playwright-report/
           retention-days: 15
 
-      - name: Deploy to gh-pages
-        # if: |
-        #   github.ref == 'refs/heads/main' &&
-        #   (contains(github.event.head_commit.message, 'chore(release)') || contains(github.event.head_commit.message, '[refresh gh-pages]'))
-        if: always()
+      - name: Deploy Demo to gh-pages
+        if: |
+          github.ref == 'refs/heads/main' &&
+          (contains(github.event.head_commit.message, 'chore(release)') || contains(github.event.head_commit.message, '[refresh gh-pages]'))
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
