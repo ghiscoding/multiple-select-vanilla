@@ -13,13 +13,16 @@ jobs:
     name: Node ${{ matrix.node }}
     runs-on: ubuntu-latest
     permissions:
+      actions: write
+      checks: write
+      contents: write
       id-token: write
-      contents: read
       issues: write
       deployments: write
+      pages: read
       pull-requests: write
-      pages: write
       repository-projects: write
+      statuses: write
 
     strategy:
       fail-fast: false
