@@ -84,6 +84,8 @@ jobs:
           github.event.pull_request.number &&
           always()
         uses: peter-evans/create-or-update-comment@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
