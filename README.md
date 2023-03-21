@@ -10,7 +10,7 @@
 We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods.
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library, it is based on its last version `v1.5.2`. The main difference from the original lib is that we dropped jQuery and we use pure JavaScript without any external dependencies (zero dependency). We also added a few extra features which you can see in the section below ([Changes vs Original lib](#changes-vs-original-lib)). 
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library, it is based on its last version `v1.5.2`. The main difference from the original lib is that we dropped jQuery and we use pure JavaScript code, without any external dependencies (zero dependency). We also added a few extra features which you can see in the section below ([Changes vs Original lib](#changes-vs-original-lib)). 
  
 This lib allows you to select multiple elements with checkboxes :).
 
@@ -19,7 +19,7 @@ To get started checkout examples and documentation at https://ghiscoding.github.
 
 ### Fully tested with [![Playwright](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg?logo=playwright)](https://playwright.dev/)
 
-The [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) website is also used by [Playwright](https://playwright.dev/) for E2E testing of the library, every examples are covered with Playwright tests.
+The [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) website is also used by [Playwright](https://playwright.dev/) for E2E testing of the library, all examples are covered with Playwright tests.
 
 ## Installation
 
