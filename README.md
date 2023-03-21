@@ -7,14 +7,19 @@
 [![Actions Status](https://github.com/ghiscoding/multiple-select-vanilla/workflows/CI%20Build/badge.svg)](https://github.com/ghiscoding/multiple-select-vanilla/actions)
 
 ## Official Release now available 📣
-We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods. The intention is to eventually use this demo to add Cypress E2E tests.
+We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods.
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library, it is based on its last version `v1.5.2`. The main difference from the original lib is that we dropped jQuery and we use pure JavaScript without any external dependencies (zero dependency). We also added a few extra features which you can see in the section below ([Changes vs Original lib](#changes-vs-original-lib)). Our [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) is also used by our E2E tests with [Playwright](https://playwright.dev/)
-
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library, it is based on its last version `v1.5.2`. The main difference from the original lib is that we dropped jQuery and we use pure JavaScript without any external dependencies (zero dependency). We also added a few extra features which you can see in the section below ([Changes vs Original lib](#changes-vs-original-lib)). 
+ 
 This lib allows you to select multiple elements with checkboxes :).
 
 To get started checkout examples and documentation at https://ghiscoding.github.io/multiple-select-vanilla
+
+
+### Fully tested with [![Playwright](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg?logo=playwright)](https://playwright.dev/)
+
+The [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) website is also used by [Playwright](https://playwright.dev/) for E2E testing of the library, every examples are covered with Playwright tests.
 
 ## Installation
 
@@ -43,7 +48,9 @@ New Multiple-Select Options:
   - `useSelectOptionLabel` will use the `<option label="">` (from select option value) that can be used to display shorter selected option values.
     - example: value "1,3" instead of "January,March" (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options31))
   - `useSelectOptionLabelToHtml` similar to `useSelectOptionLabel` but also renders HTML.
+  - `renderOptionLabelAsHtml` will render selected options as HTML (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options27))
   - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options32)).
+  - `dataTest` will add a `data-test` attribute on the `.ms-parent` and `.ms-drop` divs for easier E2E testing
 
 ## Contributions
 
