@@ -29,8 +29,7 @@ test.describe('Options 26 - The Styler', () => {
     expect(optionLoc1).toHaveText('Option 1');
     await expect(optionLoc1).toHaveCSS('color', 'rgb(0, 0, 255)');
     await expect(optionLoc1).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
-    await page.waitForTimeout(25);
-
-    expect(await page.locator('[data-test=select2] .ms-choice span')).toHaveText('[Group 1: Option 1]');
+    const dropLoc2 = await page.locator('[data-test=select2] .ms-choice span', { hasText: '[Group 1: Option 1]' });
+    await dropLoc2.waitFor();
   });
 });
