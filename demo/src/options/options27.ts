@@ -5,6 +5,7 @@ export default class Example {
 
   mount() {
     this.ms1 = multipleSelect('select', {
+      renderOptionLabelAsHtml: true, // without this flag, html code will be showing as plain text
       textTemplate: (el) => {
         return '<i class="fa fa-star"></i>' + el.innerHTML;
       },
