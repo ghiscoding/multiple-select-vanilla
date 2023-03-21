@@ -156,12 +156,6 @@ export class MultipleSelectInstance {
       dataset: { test: 'sel' },
     });
 
-    // add [data-test="name"] attribute
-    const dataTest = this.elm.getAttribute('data-test') || this.options.dataTest;
-    if (dataTest) {
-      this.parentElm.dataset.test = dataTest;
-    }
-
     // add tooltip title only when provided
     const parentTitle = this.elm.getAttribute('title') || '';
     if (parentTitle) {
@@ -179,7 +173,7 @@ export class MultipleSelectInstance {
     }
 
     this.choiceElm = createDomElement('button', {
-      className: `ms-choice`,
+      className: 'ms-choice',
       type: 'button',
     });
 
@@ -216,6 +210,13 @@ export class MultipleSelectInstance {
     // add data-name attribute when name option is defined
     if (name) {
       this.dropElm.dataset.name = name;
+    }
+
+    // add [data-test="name"] attribute to both ms-parent & ms-drop
+    const dataTest = this.elm.getAttribute('data-test') || this.options.dataTest;
+    if (dataTest) {
+      this.parentElm.dataset.test = dataTest;
+      this.dropElm.dataset.test = dataTest;
     }
 
     this.closeElm = this.choiceElm.querySelector('.icon-close');
@@ -527,7 +528,7 @@ export class MultipleSelectInstance {
       }
 
       html.push(`
-        <li class="group ${classes}" ${style}>
+        <li class="${('group ' + classes).trim()}" ${style}>
         <label class="optgroup${this.options.single || row.disabled ? ' disabled' : ''}">
         ${group}${row.label}
         </label>
@@ -555,8 +556,8 @@ export class MultipleSelectInstance {
 
     return [
       `
-      <li class="${multiple} ${classes}" ${title} ${style}>
-      <label class="${row.disabled ? 'disabled' : ''}">
+      <li ${multiple || classes ? `class="${(multiple + classes).trim()}"` : ''} ${title} ${style}>
+      <label ${row.disabled ? 'class="disabled"' : ''}>
       <input type="${type}"
         value="${encodeURI(row.value)}"
         data-key="${row._key}"
