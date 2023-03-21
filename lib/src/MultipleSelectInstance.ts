@@ -937,10 +937,9 @@ export class MultipleSelectInstance {
       } else {
         html = getSelectOptionHtml();
       }
-
       if (html !== null) {
         spanElm?.classList.remove('ms-placeholder');
-        if (this.options.useSelectOptionLabelToHtml) {
+        if (this.options.renderOptionLabelAsHtml || this.options.useSelectOptionLabelToHtml) {
           spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(html) : html;
         } else {
           spanElm.textContent = html;

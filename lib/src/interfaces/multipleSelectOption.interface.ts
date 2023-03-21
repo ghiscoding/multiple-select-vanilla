@@ -118,6 +118,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Defines the position of select dropdown, can only be bottom or top. By default this option is set to bottom. */
   position: 'bottom' | 'top';
 
+  /** Defaults to False, should we render option labels as html? */
+  renderOptionLabelAsHtml?: boolean;
+
   /** Whether or not Multiple Select show select all checkbox. */
   selectAll?: boolean;
 
