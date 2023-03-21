@@ -14,7 +14,7 @@ test.describe('Options 27 - Text Template', () => {
     expect(await optionLoc4.locator('label span')).toHaveText('April');
     expect(await optionLoc4.locator('span').innerHTML()).toBe('<i class="fa fa-star"></i>April');
 
-    await page.waitForTimeout(75);
+    await page.waitForTimeout(90);
     expect(await page.locator('.ms-choice span')).toHaveText('January, April');
     expect(await page.locator('.ms-parent .ms-choice span').innerHTML()).toBe(
       '<i class="fa fa-star"></i>January, <i class="fa fa-star"></i>April'

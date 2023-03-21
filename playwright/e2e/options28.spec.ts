@@ -11,7 +11,7 @@ test.describe('Options 28 - Label Template', () => {
 
     const optgroup1 = await page.locator('.ms-drop ul label.optgroup').nth(0);
     optgroup1.click();
-    await page.waitForTimeout(75);
+    await page.waitForTimeout(90);
     expect(await page.locator('.ms-parent .ms-choice span').innerHTML()).toBe(
       '[<i class="fa fa-star"></i>Group 1: Option 1, Option 2, Option 3]'
     );
