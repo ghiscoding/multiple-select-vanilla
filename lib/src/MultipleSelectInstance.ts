@@ -347,11 +347,11 @@ export class MultipleSelectInstance {
     this.update(true);
 
     if (this.options.isOpen) {
-      setTimeout(() => this.open(), 10);
+      this.open(10);
     }
 
     if (this.options.openOnHover && this.parentElm) {
-      this._bindEventService.bind(this.parentElm, 'mouseover', () => this.open());
+      this._bindEventService.bind(this.parentElm, 'mouseover', () => this.open(null));
       this._bindEventService.bind(this.parentElm, 'mouseout', () => this.close());
     }
   }
@@ -792,12 +792,26 @@ export class MultipleSelectInstance {
     }) as EventListener);
   }
 
-  open() {
+  /**
+   * Open the drop method, user could optionally provide a delay in ms to open the drop.
+   * The default delay is 0ms (which is 1 CPU cycle) when nothing is provided, to avoid a delay we can pass `-1` or `null`
+   * @param {number} [openDelay=0] - provide an optional delay, defaults to 0
+   */
+  open(openDelay: number | null = 0) {
+    if (openDelay !== null && openDelay >= 0) {
+      let timer: NodeJS.Timeout | undefined;
+      clearTimeout(timer);
+      timer = setTimeout(() => this.openDrop(), openDelay);
+    } else {
+      this.openDrop();
+    }
+  }
+
+  protected openDrop() {
     if (this.choiceElm?.classList.contains('disabled')) {
       return;
     }
-    // this.options.isOpen = true;
-    setTimeout(() => (this.options.isOpen = true)); // TODO: original code doesn't require this delay
+    this.options.isOpen = true;
     this.parentElm.classList.add('ms-parent-open');
     this.choiceElm?.querySelector('div')?.classList.add('open');
     this.dropElm.style.display = 'block';
@@ -827,8 +841,8 @@ export class MultipleSelectInstance {
       } else if (typeof this.options.container === 'string') {
         // prettier-ignore
         container = this.options.container === 'body'
-          ? document.body
-          : document.querySelector(this.options.container) as HTMLElement;
+            ? document.body
+            : document.querySelector(this.options.container) as HTMLElement;
       }
       container!.appendChild(this.dropElm);
       this.dropElm.style.top = `${offset?.top ?? 0}px`;
