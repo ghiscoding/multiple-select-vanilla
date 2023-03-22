@@ -792,6 +792,11 @@ export class MultipleSelectInstance {
     }) as EventListener);
   }
 
+  /**
+   * Open the drop method, user could optionally provide a delay in ms to open the drop.
+   * The default delay is 0ms (which is 1 CPU cycle) when nothing is provided, to avoid a delay we can pass `-1` or `null`
+   * @param {number} [openDelay=0] - provide an optional delay, defaults to 0
+   */
   open(openDelay: number | null = 0) {
     if (openDelay !== null && openDelay >= 0) {
       let timer: NodeJS.Timeout | undefined;
@@ -802,7 +807,7 @@ export class MultipleSelectInstance {
     }
   }
 
-  openDrop() {
+  protected openDrop() {
     if (this.choiceElm?.classList.contains('disabled')) {
       return;
     }
