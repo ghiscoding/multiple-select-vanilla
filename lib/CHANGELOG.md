@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.8](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.7...v0.2.8) (2023-03-23)
+
+### Bug Fixes
+
+* calling open() method multiple times should keep drop (re)open ([#33](https://github.com/ghiscoding/multiple-select-vanilla/issues/33)) ([c36cf45](https://github.com/ghiscoding/multiple-select-vanilla/commit/c36cf45e90e08ff3212813a42e30c7ead43b4d0a)) - by @ghiscoding
+
 ## [0.2.7](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.5...v0.2.7) (2023-03-11)
 
 ### Bug Fixes
