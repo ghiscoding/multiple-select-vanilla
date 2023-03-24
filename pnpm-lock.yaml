@@ -7,7 +7,7 @@ importers:
       '@lerna-lite/cli': ^1.17.0
       '@lerna-lite/watch': ^1.17.0
       '@playwright/test': ^1.32.0
-      '@types/node': ^18.15.6
+      '@types/node': ^18.15.7
       '@typescript-eslint/eslint-plugin': ^5.56.0
       '@typescript-eslint/parser': ^5.56.0
       cross-env: ^7.0.3
@@ -19,15 +19,15 @@ importers:
       eslint-plugin-prefer-arrow: ^1.2.3
       npm-run-all2: ^6.0.4
       playwright: ^1.32.0
-      pnpm: ^7.30.0
-      prettier: ^2.8.6
+      pnpm: ^7.30.3
+      prettier: ^2.8.7
       rimraf: ^4.4.1
       typescript: ^5.0.2
     devDependencies:
       '@lerna-lite/cli': 1.17.0
       '@lerna-lite/watch': 1.17.0
       '@playwright/test': 1.32.0
-      '@types/node': 18.15.6
+      '@types/node': 18.15.7
       '@typescript-eslint/eslint-plugin': 5.56.0_2hcjazgfnbtq42tcc73br2vup4
       '@typescript-eslint/parser': 5.56.0_j4766f7ecgqbon3u7zlxn5zszu
       cross-env: 7.0.3
@@ -39,14 +39,14 @@ importers:
       eslint-plugin-prefer-arrow: 1.2.3_eslint@8.36.0
       npm-run-all2: 6.0.4
       playwright: 1.32.0
-      pnpm: 7.30.0
-      prettier: 2.8.6
+      pnpm: 7.30.3
+      prettier: 2.8.7
       rimraf: 4.4.1
       typescript: 5.0.2
 
   demo:
     specifiers:
-      '@popperjs/core': ^2.11.6
+      '@popperjs/core': ^2.11.7
       bootstrap: ^5.2.3
       font-awesome: ^4.7.0
       multiple-select-vanilla: workspace:*
@@ -54,8 +54,8 @@ importers:
       typescript: ^5.0.2
       vite: ^4.2.1
     dependencies:
-      '@popperjs/core': 2.11.6
-      bootstrap: 5.2.3_@popperjs+core@2.11.6
+      '@popperjs/core': 2.11.7
+      bootstrap: 5.2.3_@popperjs+core@2.11.7
       font-awesome: 4.7.0
     devDependencies:
       multiple-select-vanilla: link:../lib
@@ -958,14 +958,14 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
-      '@types/node': 18.15.6
+      '@types/node': 18.15.7
       playwright-core: 1.32.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /@popperjs/core/2.11.6:
-    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+  /@popperjs/core/2.11.7:
+    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
     dev: false
 
   /@rollup/pluginutils/5.0.2:
@@ -1065,8 +1065,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node/18.15.6:
-    resolution: {integrity: sha512-YErOafCZpK4g+Rp3Q/PBgZNAsWKGunQTm9FA3/Pbcm0VCriTEzcrutQ/SxSc0rytAp0NoFWue669jmKhEtd0sA==}
+  /@types/node/18.15.7:
+    resolution: {integrity: sha512-LFmUbFunqmBn26wJZgZPYZPrDR1RwGOu2v79Mgcka1ndO6V0/cwjivPTc4yoK6n9kmw4/ls1r8cLrvh2iMibFA==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -1470,12 +1470,12 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
 
-  /bootstrap/5.2.3_@popperjs+core@2.11.6:
+  /bootstrap/5.2.3_@popperjs+core@2.11.7:
     resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
     peerDependencies:
       '@popperjs/core': ^2.11.6
     dependencies:
-      '@popperjs/core': 2.11.6
+      '@popperjs/core': 2.11.7
     dev: false
 
   /brace-expansion/1.1.11:
@@ -4624,8 +4624,8 @@ packages:
       playwright-core: 1.32.0
     dev: true
 
-  /pnpm/7.30.0:
-    resolution: {integrity: sha512-6SUdrWSZ4qvQ4uBVg7smnabVKOFrT7DgSz2NfViG54nRii4ODB395qmHprBiv5WBdlC/jZYBn99fSfmzIMI3WQ==}
+  /pnpm/7.30.3:
+    resolution: {integrity: sha512-Z/pNEfZF45OwdZSUAeSTYySs27UW+GG4AQ2iXz4u127QVtkCMCeyrMNZmb/17BazaZTtvXqk/+jxTVkyh8apIA==}
     engines: {node: '>=14.6'}
     hasBin: true
     dev: true
@@ -4990,8 +4990,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier/2.8.6:
-    resolution: {integrity: sha512-mtuzdiBbHwPEgl7NxWlqOkithPyp4VN93V7VeHVWBF+ad3I5avc0RVDT4oImXQy9H/AqxA2NSQH8pSxHW6FYbQ==}
+  /prettier/2.8.7:
+    resolution: {integrity: sha512-yPngTo3aXUUmyuTjeTUT75txrf+aMh9FiD7q9ZE/i6r0bPb22g4FsE6Y338PQX1bmfy08i9QQCB7/rcUAVntfw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true

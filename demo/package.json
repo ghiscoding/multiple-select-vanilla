@@ -19,7 +19,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.6",
+    "@popperjs/core": "^2.11.7",
     "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0"
   },

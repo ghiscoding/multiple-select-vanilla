@@ -43,7 +43,7 @@
     "@lerna-lite/cli": "^1.17.0",
     "@lerna-lite/watch": "^1.17.0",
     "@playwright/test": "^1.32.0",
-    "@types/node": "^18.15.6",
+    "@types/node": "^18.15.7",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "cross-env": "^7.0.3",
@@ -55,8 +55,8 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "npm-run-all2": "^6.0.4",
     "playwright": "^1.32.0",
-    "pnpm": "^7.30.0",
-    "prettier": "^2.8.6",
+    "pnpm": "^7.30.3",
+    "prettier": "^2.8.7",
     "rimraf": "^4.4.1",
     "typescript": "^5.0.2"
   }
