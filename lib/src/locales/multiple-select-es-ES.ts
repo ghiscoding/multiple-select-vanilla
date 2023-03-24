@@ -15,7 +15,7 @@ const ms = window.multipleSelect;
     return 'Todos seleccionados';
   },
   formatCountSelected(count: number, total: number) {
-    return count + ' de ' + total + ' seleccionado';
+    return `${count  } de ${  total  } seleccionado`;
   },
   formatNoMatchesFound() {
     return 'No se encontraron coincidencias';

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 test.describe('Options 25 - Show OK Button', () => {
   test('show OK button on multiple select only', async ({ page }) => {

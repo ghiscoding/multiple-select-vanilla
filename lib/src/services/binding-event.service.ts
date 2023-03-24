@@ -61,7 +61,7 @@ export class BindingEventService {
   ) {
     if (elementOrElements) {
       const elements = Array.isArray(elementOrElements) ? elementOrElements : [elementOrElements];
-      let eventNames = Array.isArray(eventNameOrNames) ? eventNameOrNames || '' : [eventNameOrNames || ''];
+      const eventNames = Array.isArray(eventNameOrNames) ? eventNameOrNames || '' : [eventNameOrNames || ''];
 
       for (const element of elements) {
         if (!listener) {

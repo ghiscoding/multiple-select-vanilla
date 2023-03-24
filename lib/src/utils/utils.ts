@@ -27,6 +27,7 @@ export function deepCopy(objectOrArray: any | any[]): any | any[] {
     const clone = {}; // create new object
 
     // Loop through each item in the original, recursively copy it's value and add to the clone
+    // eslint-disable-next-line no-restricted-syntax
     for (const key in objectOrArray) {
       if (Object.prototype.hasOwnProperty.call(objectOrArray, key)) {
         (clone as any)[key] = deepCopy(objectOrArray[key]);
@@ -83,12 +84,12 @@ export function setDataKeys(data: any[]) {
 export function findByParam(data: any, param: any, value: any) {
   if (Array.isArray(data)) {
     for (const row of data) {
-      if (row[param] === value || (row[param] === +row[param] + '' && +row[param] === value)) {
+      if (row[param] === value || (row[param] === `${+row[param]}` && +row[param] === value)) {
         return row;
       }
       if (row.type === 'optgroup') {
         for (const child of row.children) {
-          if (child && (child[param] === value || (child[param] === +child[param] + '' && +child[param] === value))) {
+          if (child && (child[param] === value || (child[param] === `${+child[param]}` && +child[param] === value))) {
             return child;
           }
         }
@@ -98,10 +99,10 @@ export function findByParam(data: any, param: any, value: any) {
 }
 
 export function stripScripts(str: string) {
-  var div = document.createElement('div');
+  const div = document.createElement('div');
   div.innerHTML = str;
-  var scripts = div.getElementsByTagName('script');
-  var i = scripts.length;
+  const scripts = div.getElementsByTagName('script');
+  let i = scripts.length;
   while (i--) {
     scripts[i].parentNode?.removeChild(scripts[i]);
   }

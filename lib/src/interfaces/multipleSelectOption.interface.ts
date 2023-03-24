@@ -1,5 +1,12 @@
 import { MultipleSelectLocale, OptGroupRowData, OptionRowData } from './interfaces';
 
+export interface MultipleSelectView {
+  label: string;
+  value: any;
+  checked: boolean;
+  instance: any;
+}
+
 export interface MultipleSelectOption extends MultipleSelectLocale {
   /** @deprecated @alias `displayTitle` Add a title. By default this option is set to false. */
   addTitle?: boolean;
@@ -219,11 +226,4 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
    * A library like DOM Purify could be used to sanitize html code, for example: `sanitizer: (dirtyHtml) => DOMPurify.sanitize(dirtyHtml || '')`
    */
   sanitizer?: (dirtyHtml: string) => string;
-}
-
-export interface MultipleSelectView {
-  label: string;
-  value: any;
-  checked: boolean;
-  instance: any;
 }

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 test.describe('Example 06 - Disabled items', () => {
   test('first select disabled selection February, March are shown but not clickable', async ({ page }) => {

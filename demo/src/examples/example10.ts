@@ -4,8 +4,8 @@ export default class Example {
   ms1?: MultipleSelectInstance;
 
   mount() {
-    var data = [];
-    for (var i = 0; i < 10000; i++) {
+    const data = [];
+    for (let i = 0; i < 10000; i++) {
       data.push(i);
     }
 

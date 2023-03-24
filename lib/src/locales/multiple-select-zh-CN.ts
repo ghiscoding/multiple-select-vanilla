@@ -19,7 +19,7 @@ const ms =
     return '已选择所有记录';
   },
   formatCountSelected(count: number, total: number) {
-    return '已从' + total + '条记录中选择' + count + '条';
+    return `已从${  total  }条记录中选择${  count  }条`;
   },
   formatNoMatchesFound() {
     return '没有找到记录';

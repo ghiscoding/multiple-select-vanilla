@@ -1,14 +1,30 @@
 {
   "root": true,
-  "extends": ["airbnb-base", "plugin:node/recommended", "prettier"],
-  "plugins": ["node"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "settings": {
+    "node": {
+      "tryExtensions": [".js", ".json", ".node", ".ts", ".d.ts"],
+      "resolvePaths": ["node_modules/@types"]
+    }
+  },
+  "extends": [
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "node"
+  ],
   "rules": {
-    "class-methods-use-this": [
-      "error",
-      {
-        "exceptMethods": ["defaultOptions", "otherCommandConfigs", "requiresGit"]
-      }
-    ],
+    "class-methods-use-this": "off",
     "consistent-return": "off",
     "curly": ["error", "all"],
     "dot-notation": "off",
@@ -18,20 +34,8 @@
     "import/order": "off",
     "node/no-missing-require": "off",
     "no-console": "off",
-    "no-param-reassign": [
-      "error",
-      {
-        "props": true,
-        "ignorePropertyModificationsFor": ["err", "obj", "pkg"]
-      }
-    ],
+    "no-param-reassign": "off",
     "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
-    "no-underscore-dangle": [
-      "error",
-      {
-        "allowAfterThis": true
-      }
-    ],
     "no-use-before-define": [
       "error",
       {
@@ -40,14 +44,23 @@
       }
     ],
     "node/no-extraneous-require": "off",
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "node/no-unpublished-require": "off",
+    "node/no-unpublished-import": "off",
     "node/no-unsupported-features/es-syntax": "off",
+    "no-undef": "off",
+    "no-plusplus": "off",
+    "no-underscore-dangle": "off",
+    "no-return-assign": "off",
+    "no-restricted-globals": "off",
+    "no-unused-vars": "off",
     "prefer-destructuring": "off",
     "prefer-object-spread": "off",
     "strict": "off",
     "default-param-last": "warn",
     "max-len": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "destructuredArrayIgnorePattern": "^_" }]
   }
 }

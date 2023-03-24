@@ -27,13 +27,13 @@ export default class Example {
         this.log('onBlur event fire!\n');
       },
       onOptgroupClick: (view) => {
-        this.log('onOptgroupClick event fire! view: ' + JSON.stringify(view) + '\n');
+        this.log(`onOptgroupClick event fire! view: ${JSON.stringify(view)}\n`);
       },
       onClick: (view) => {
-        this.log('onClick event fire! view: ' + JSON.stringify(view) + '\n');
+        this.log(`onClick event fire! view: ${JSON.stringify(view)}\n`);
       },
       onFilter: (text) => {
-        this.log('onFilter event fire! text: ' + text + '\n');
+        this.log(`onFilter event fire! text: ${text}\n`);
       },
       onAfterCreate: () => {
         this.log('onAfterCreate event fire!\n');

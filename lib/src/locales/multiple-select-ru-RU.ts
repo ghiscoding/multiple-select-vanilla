@@ -19,7 +19,7 @@ const ms =
     return 'Выбрано все';
   },
   formatCountSelected(count: number, total: number) {
-    return count + ' из ' + total + ' выбрано';
+    return `${count  } из ${  total  } выбрано`;
   },
   formatNoMatchesFound() {
     return 'Совпадений не найдено';

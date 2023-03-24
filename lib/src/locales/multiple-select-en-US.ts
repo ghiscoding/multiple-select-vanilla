@@ -12,7 +12,7 @@ const ms =
     : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
 
 (ms.locales as MultipleSelectLocales) = {
-  ['en-US']: {
+  'en-US': {
     formatSelectAll() {
       return '[Select all]';
     },
@@ -20,7 +20,7 @@ const ms =
       return 'All selected';
     },
     formatCountSelected(count: number, total: number) {
-      return count + ' of ' + total + ' selected';
+      return `${count  } of ${  total  } selected`;
     },
     formatNoMatchesFound() {
       return 'No matches found';
