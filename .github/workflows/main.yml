@@ -23,8 +23,6 @@ jobs:
       checks: write
       contents: read
       pull-requests: write
-    env:
-      GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
     steps:
       - name: Clone repository
