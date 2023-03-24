@@ -1,8 +1,9 @@
 import { test, expect, Page } from '@playwright/test';
 
 async function assertDropHeight(page: Page, selector: string, expectation: number, range = 3) {
-  const dropElm1 = await page.locator(selector);
-  const elmHeight = (await dropElm1?.boundingBox())!.height;
+  const dropElm = await page.locator(selector);
+  const dropElmBB = await dropElm?.boundingBox()
+  const elmHeight = dropElmBB?.height ?? 0;
   expect(elmHeight).toBeGreaterThanOrEqual(expectation - range);
   expect(elmHeight).toBeLessThan(expectation + range);
 }
