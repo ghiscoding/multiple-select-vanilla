@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Events Demo', () => {
   test('executing multiple actions with ms-select should fire multiple events', async ({ page }) => {
     await page.goto('#/events');
-    let textareaLoc = await page.locator('textarea');
+    const textareaLoc = await page.locator('textarea');
     await expect(textareaLoc).toHaveText('onAfterCreate event fire!');
     await page.locator('.ms-parent').click();
     await expect(textareaLoc).toHaveText(

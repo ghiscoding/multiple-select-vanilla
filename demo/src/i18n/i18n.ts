@@ -13,7 +13,7 @@ export default class Example {
         return 'Tous sélectionnés';
       },
       formatCountSelected(count: number, total: number) {
-        return count + ' de ' + total + ' sélectionnés';
+        return `${count  } de ${  total  } sélectionnés`;
       },
       formatNoMatchesFound() {
         return 'Aucun résultat';

@@ -11,7 +11,6 @@ test.describe('Options 01 - Placeholder', () => {
     await selectElm1.locator('span').filter({ hasText: 'June' }).click();
     await page.getByRole('button', { name: 'February, June' }).click();
 
-    const selectElm2 = await page.locator('[data-test="select2"]');
     const placeholderElm2 = await page.locator('[data-test="select2"] .ms-placeholder');
     expect(placeholderElm2).toHaveText('Here is the placeholder via javascript');
     placeholderElm2.click();

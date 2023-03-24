@@ -528,7 +528,7 @@ export class MultipleSelectInstance {
       }
 
       html.push(`
-        <li class="${('group ' + classes).trim()}" ${style}>
+        <li class="${`group ${classes}`.trim()}" ${style}>
         <label class="optgroup${this.options.single || row.disabled ? ' disabled' : ''}">
         ${group}${row.label}
         </label>
@@ -799,6 +799,7 @@ export class MultipleSelectInstance {
    */
   open(openDelay: number | null = 0) {
     if (openDelay !== null && openDelay >= 0) {
+      // eslint-disable-next-line prefer-const
       let timer: NodeJS.Timeout | undefined;
       clearTimeout(timer);
       timer = setTimeout(() => this.openDrop(), openDelay);
@@ -851,7 +852,7 @@ export class MultipleSelectInstance {
       this.dropElm.style.width = `${getElementSize(this.parentElm, 'outer', 'width')}px`;
     }
 
-    let minHeight = this.options.minHeight;
+    const minHeight = this.options.minHeight;
     let maxHeight = this.options.maxHeight;
     if (this.options.maxHeightUnit === 'row') {
       const liElm = this.dropElm.querySelector<HTMLLIElement>('ul>li');
@@ -930,9 +931,8 @@ export class MultipleSelectInstance {
       if (this.options.useSelectOptionLabel || this.options.useSelectOptionLabelToHtml) {
         const labels = valueSelects.join(this.options.displayDelimiter);
         return this.options.useSelectOptionLabelToHtml ? stripScripts(labels) : labels;
-      } else {
-        return textSelects.join(this.options.displayDelimiter);
       }
+      return textSelects.join(this.options.displayDelimiter);
     };
 
     if (spanElm) {
@@ -1090,7 +1090,7 @@ export class MultipleSelectInstance {
           selected = values.includes(row.textContent.trim());
         } else {
           selected = values.includes(row._value || row.value);
-          if (!selected && row.value === +row.value + '') {
+          if (!selected && row.value === `${+row.value}`) {
             selected = values.includes(+row.value);
           }
         }
@@ -1202,10 +1202,8 @@ export class MultipleSelectInstance {
             }
           }
         }
-      } else {
-        if (row && !row.divider) {
-          row.selected = !row.selected;
-        }
+      } else if (row && !row.divider) {
+        row.selected = !row.selected;
       }
     }
     this.initSelected();
@@ -1291,7 +1289,7 @@ export class MultipleSelectInstance {
   }
 
   protected adjustDropHeight(position: 'bottom' | 'top') {
-    const isDropPositionBottom = position !== 'top' ? true : false;
+    const isDropPositionBottom = position !== 'top';
     const filterHeight = this.filterParentElm?.getBoundingClientRect().height ?? 0;
     const okButtonHeight = this.okButtonElm?.getBoundingClientRect().height ?? 0;
     const selectAllHeight = this.options.single ? 0 : this.selectAllParentElm?.getBoundingClientRect().height ?? 0;
@@ -1376,7 +1374,7 @@ export class MultipleSelectInstance {
     const selectAllSpanElm = this.dropElm.querySelector<HTMLSpanElement>('.ms-select-all span');
     const dropUlElm = this.dropElm.querySelector('ul') as HTMLUListElement;
 
-    let liPadding = 26; // there are multiple padding involved, let's fix it at 26px
+    const liPadding = 26; // there are multiple padding involved, let's fix it at 26px
 
     const selectAllElmWidth = selectAllSpanElm?.clientWidth ?? 0 + liPadding;
     const hasScrollbar = dropUlElm.scrollHeight > dropUlElm.clientHeight;

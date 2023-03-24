@@ -12,7 +12,6 @@ const localeInputs: { [locale: string]: string } = {
 };
 
 for (const localeFile of localeFiles) {
-  // eslint-disable-next-line no-unused-vars
   const [_, locale] = localeFile.match(/multiple-select-(.*)\.ts$/) || [];
   if (locale && locale.length === 5) {
     // locales.push(locale);

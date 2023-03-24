@@ -19,7 +19,7 @@ const ms =
     return 'Todos selecionados';
   },
   formatCountSelected(count: number, total: number) {
-    return count + ' de ' + total + ' selecionado(s)';
+    return `${count  } de ${  total  } selecionado(s)`;
   },
   formatNoMatchesFound() {
     return 'Nenhum resultado encontrado';

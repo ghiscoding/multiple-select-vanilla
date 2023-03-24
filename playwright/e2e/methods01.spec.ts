@@ -1,10 +1,5 @@
 import { test, expect } from '@playwright/test';
 
-function jsonNewLine(input) {
-  input.replace('');
-  return '\n    ';
-}
-
 test.describe('Methods 01 - getOptions()', () => {
   test('method returns default options when calling the method', async ({ page }) => {
     let dialogText = '';

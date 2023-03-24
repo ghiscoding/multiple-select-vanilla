@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 test.describe('Methods 09 - focus/blur methods', () => {
   test('calling focus or blur method should apply it to the input', async ({ page }) => {

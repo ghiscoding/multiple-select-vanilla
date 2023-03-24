@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/test';
-import type { Page } from '@playwright/test';
 
 test.describe('Options 05 - Custom Drop Width', () => {
   test('drop width is ~580px', async ({ page }) => {

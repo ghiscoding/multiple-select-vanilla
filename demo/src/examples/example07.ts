@@ -24,11 +24,11 @@ export default class Example {
   };
 
   serialize(form: any) {
-    let requestArray: any[] = [];
+    const requestArray: any[] = [];
     form.querySelectorAll('[name]').forEach((elem: HTMLSelectElement) => {
       const selectedOptions = Array.from(elem.selectedOptions);
       for (const selectedOption of selectedOptions) {
-        requestArray.push(elem.name + '=' + selectedOption.value);
+        requestArray.push(`${elem.name}=${selectedOption.value}`);
       }
     });
     return requestArray.length > 0 ? requestArray.join('&') : false;

@@ -19,7 +19,7 @@ const ms =
     return 'Chọn tất cả';
   },
   formatCountSelected(count: number, total: number) {
-    return 'Đã chọn ' + count + ' trong ' + total;
+    return `Đã chọn ${  count  } trong ${  total}`;
   },
   formatNoMatchesFound() {
     return 'Không tìm thấy kết quả.';
