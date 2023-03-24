@@ -13,8 +13,8 @@ test.describe('Example 11 - Bootstrap Theme', () => {
     await page.getByRole('button', { name: 'form-control-sm' }).click();
     await page.getByRole('listitem').filter({ hasText: 'January' }).locator('span').click();
 
-    assertDropHeight(page, '[data-test=select1] .ms-choice', 29);
-    assertDropHeight(page, '[data-test=select2] .ms-choice', 36);
-    assertDropHeight(page, '[data-test=select3] .ms-choice', 46);
+    await assertDropHeight(page, '[data-test=select1] .ms-choice', 29);
+    await assertDropHeight(page, '[data-test=select2] .ms-choice', 36);
+    await assertDropHeight(page, '[data-test=select3] .ms-choice', 46);
   });
 });
