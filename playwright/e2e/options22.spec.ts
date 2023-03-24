@@ -4,7 +4,7 @@ test.describe('Options 22 - Filter By Data Length', () => {
   test('filter shows only when data collection has over 10 items', async ({ page }) => {
     await page.goto('#/options22');
     await page.locator('[data-test="select1"].ms-parent').click();
-    expect(await page.getByRole('textbox', { name: '🔎︎' })).toHaveCount(0);
+    await expect(page.getByRole('textbox', { name: '🔎︎' })).toHaveCount(0);
     await page.getByRole('listitem').filter({ hasText: 'abc' }).locator('label').click();
 
     await page.locator('[data-test="select2"].ms-parent').click();

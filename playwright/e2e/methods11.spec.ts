@@ -5,17 +5,17 @@ test.describe('Methods 11 - Destroy() method', () => {
     await page.goto('#/methods11');
     await page.locator('.ms-parent').click();
     await page.getByRole('button', { name: 'Destroy' }).click();
-    await expect(await page.locator('.ms-drop li input[type=checkbox]')).toHaveCount(0);
+    await expect(page.locator('.ms-drop li input[type=checkbox]')).toHaveCount(0);
 
     await page.getByRole('button', { name: 'Build' }).click();
-    await expect(await page.locator('.ms-drop li input[type=checkbox]')).toHaveCount(12);
+    await expect(page.locator('.ms-drop li input[type=checkbox]')).toHaveCount(12);
     await page.locator('.ms-parent').click();
 
     await page.getByRole('button', { name: 'Destroy' }).click();
-    await expect(await page.locator('.ms-drop li input[type=checkbox]')).toHaveCount(0);
+    await expect(page.locator('.ms-drop li input[type=checkbox]')).toHaveCount(0);
 
     await page.getByRole('button', { name: 'Build' }).click();
     await page.locator('.ms-parent').click();
-    await expect(await page.locator('.ms-drop li input[type=checkbox]')).toHaveCount(12);
+    await expect(page.locator('.ms-drop li input[type=checkbox]')).toHaveCount(12);
   });
 });
