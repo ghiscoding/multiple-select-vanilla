@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Options 13 - The Ellipsis', () => {
   test('ellipsis is shown after selecting 6+ options', async ({ page }) => {
     await page.goto('#/options13');
-    await page.getByRole('button').click();
+    await page.locator('.ms-parent').click();
     await page.locator('span').filter({ hasText: 'February' }).click();
     await page.locator('span').filter({ hasText: 'March' }).click();
     await page.locator('span').filter({ hasText: 'April' }).click();
