@@ -5,7 +5,7 @@ on:
   push:
     branches: [main,next]
   pull_request_target:
-    branches: ['**']
+    # branches: ['**']
   #   types: [opened,synchronize,reopened]
   # pull_request:
   #   branches: ['**']
@@ -18,12 +18,12 @@ jobs:
       fail-fast: false
       matrix:
         node: [18]
-    permissions:
-      # All other permissions are set to none
-      checks: write
-      contents: read
-      deployments: write
-      pull-requests: write
+    # permissions:
+    #   # All other permissions are set to none
+    #   checks: write
+    #   contents: read
+    #   deployments: write
+    #   pull-requests: write
 
     steps:
       - name: Clone repository
