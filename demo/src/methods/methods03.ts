@@ -13,8 +13,8 @@ export default class Example {
     });
 
     document.querySelector('#getSelectsBtn')!.addEventListener('click', () => {
-      alert(`Selected values: ${  this.ms1?.getSelects()}`);
-      alert(`Selected texts: ${  this.ms1?.getSelects('text')}`);
+      alert(`Selected values: ${this.ms1?.getSelects()}`);
+      alert(`Selected texts: ${this.ms1?.getSelects('text')}`);
     });
   }
 

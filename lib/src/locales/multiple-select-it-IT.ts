@@ -19,7 +19,7 @@ const ms =
     return 'Tutti selezionati';
   },
   formatCountSelected(count: number, total: number) {
-    return `${count  } di ${  total  } selezionati`;
+    return `${count} di ${total} selezionati`;
   },
   formatNoMatchesFound() {
     return 'Nessun risultato';

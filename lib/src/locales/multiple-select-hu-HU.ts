@@ -19,7 +19,7 @@ const ms =
     return 'Összes kiválasztva';
   },
   formatCountSelected(count: number, total: number) {
-    return `${count  } / ${  total  } kiválasztva`;
+    return `${count} / ${total} kiválasztva`;
   },
   formatNoMatchesFound() {
     return 'Nincs találat';

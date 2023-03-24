@@ -7,7 +7,7 @@ export default class Example {
     this.ms1 = multipleSelect('select', {
       renderOptionLabelAsHtml: true, // without this flag, html code will be showing as plain text
       labelTemplate: (el) => {
-        return `<i class="fa fa-star"></i>${  el.getAttribute('label')}`;
+        return `<i class="fa fa-star"></i>${el.getAttribute('label')}`;
       },
     }) as MultipleSelectInstance;
   }

@@ -20,7 +20,7 @@ const ms =
       return 'All selected';
     },
     formatCountSelected(count: number, total: number) {
-      return `${count  } of ${  total  } selected`;
+      return `${count} of ${total} selected`;
     },
     formatNoMatchesFound() {
       return 'No matches found';
