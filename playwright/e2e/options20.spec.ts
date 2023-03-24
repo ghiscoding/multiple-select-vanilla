@@ -12,9 +12,9 @@ test.describe('Options 20 - Filter Placeholder', () => {
     await page.getByLabel('cde').check();
     const selectAllLoc = await page.locator('.ms-select-all input[type=checkbox]');
     expect(selectAllLoc).toBeChecked();
-    expect(await page.locator('.ms-drop input[data-name="selectItem"]')).toHaveCount(2);
-    expect(await page.locator('ul li.selected input[data-name="selectItem"]')).toHaveCount(2);
-    expect(await page.locator('.ms-choice span')).toHaveText('cde, def');
-    expect(await page.getByRole('button', { name: 'cde, def' })).toHaveCount(1);
+    await expect(page.locator('.ms-drop input[data-name="selectItem"]')).toHaveCount(2);
+    await expect(page.locator('ul li.selected input[data-name="selectItem"]')).toHaveCount(2);
+    await expect(page.locator('.ms-choice span')).toHaveText('cde, def');
+    await expect(page.getByRole('button', { name: 'cde, def' })).toHaveCount(1);
   });
 });

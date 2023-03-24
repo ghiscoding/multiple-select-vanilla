@@ -7,13 +7,13 @@ test.describe('Options 28 - Label Template', () => {
 
     // await page.locator('.ms-drop li input[data-name="selectItem"]').check();
     await page.locator('.ms-drop ul li label').nth(1).click();
-    expect(await page.locator('.ms-parent .ms-choice span').innerHTML()).toBe('[<i class="fa fa-star"></i>Group 1: Option 1]');
+    let parentSpanLoc = await page.locator('.ms-parent .ms-choice span').innerHTML();
+    await expect(parentSpanLoc).toBe('[<i class="fa fa-star"></i>Group 1: Option 1]');
 
     const optgroup1 = await page.locator('.ms-drop ul label.optgroup').nth(0);
     optgroup1.click();
     await page.waitForTimeout(100);
-    expect(await page.locator('.ms-parent .ms-choice span').innerHTML()).toBe(
-      '[<i class="fa fa-star"></i>Group 1: Option 1, Option 2, Option 3]'
-    );
+    parentSpanLoc = await page.locator('.ms-parent .ms-choice span').innerHTML();
+    await expect(parentSpanLoc).toBe('[<i class="fa fa-star"></i>Group 1: Option 1, Option 2, Option 3]');
   });
 });

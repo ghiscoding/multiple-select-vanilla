@@ -10,7 +10,7 @@ test.describe('Options 23 - Custom Filter', () => {
     await page.getByRole('button', { name: 'ghi' }).click();
     let selectAllLoc = await page.locator('.ms-select-all input[type=checkbox]');
     expect(selectAllLoc).toBeChecked();
-    expect(await page.locator('.ms-choice span')).toHaveText('ghi');
+    await expect(page.locator('.ms-choice span')).toHaveText('ghi');
 
     await page.getByLabel('Case Sensitive').check();
     await page.locator('.ms-parent').click();
@@ -18,7 +18,7 @@ test.describe('Options 23 - Custom Filter', () => {
     await page.keyboard.type('g');
     selectAllLoc = await page.locator('.ms-select-all input[type=checkbox]');
     expect(selectAllLoc).toBeChecked();
-    expect(await page.locator('.ms-choice span')).toHaveText('ghi');
+    await expect(page.locator('.ms-choice span')).toHaveText('ghi');
     await page.locator('.ms-parent').click();
 
     // typing "G" shouldn't return anything but "No matches..."
