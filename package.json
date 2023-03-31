@@ -42,22 +42,22 @@
   "devDependencies": {
     "@lerna-lite/cli": "^1.17.0",
     "@lerna-lite/watch": "^1.17.0",
-    "@playwright/test": "^1.32.0",
-    "@types/node": "^18.15.7",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
+    "@playwright/test": "^1.32.1",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.36.0",
+    "eslint": "^8.37.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "npm-run-all2": "^6.0.4",
-    "playwright": "^1.32.0",
-    "pnpm": "^7.30.3",
+    "playwright": "^1.32.1",
+    "pnpm": "^7.30.5",
     "prettier": "^2.8.7",
     "rimraf": "^4.4.1",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.3"
   }
 }
