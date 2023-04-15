@@ -12,7 +12,6 @@
       "name": "Ghislain B."
     }
   ],
-  "packageManager": "pnpm@8.2.0",
   "scripts": {
     "clean": "rimraf --glob */dist */tsconfig.tsbuildinfo",
     "prebuild": "pnpm run clean && pnpm run prettier:write && pnpm run lint",
@@ -40,6 +39,7 @@
     "test:e2e:ci": "playwright test --config playwright/playwright.config.ts",
     "test:report": "playwright show-report"
   },
+  "packageManager": "pnpm@8.2.0",
   "devDependencies": {
     "@lerna-lite/cli": "^2.0.0",
     "@lerna-lite/publish": "^2.0.0",
