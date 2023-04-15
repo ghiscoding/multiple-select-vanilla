@@ -53,8 +53,8 @@ importers:
         specifier: ^1.32.3
         version: 1.32.3
       pnpm:
-        specifier: ^7.32.0
-        version: 7.32.0
+        specifier: ^8.2.0
+        version: 8.2.0
       prettier:
         specifier: ^2.8.7
         version: 2.8.7
@@ -4968,9 +4968,9 @@ packages:
       playwright-core: 1.32.3
     dev: true
 
-  /pnpm@7.32.0:
-    resolution: {integrity: sha512-XkLEMinrF4046cWGvvam7dsCKeRdJ9i2SeDiKNodoZEPmJp1KrzQe1qYC5Vs/v9qBXJqyI0vLzjoMHjXgphP6g==}
-    engines: {node: '>=14.6'}
+  /pnpm@8.2.0:
+    resolution: {integrity: sha512-f2/abl6GycxLgVZQtWA2zBJKMXcv2L86HGRwJ4qnS02gVzLgtFegC25qWKFtUunCY74GUwxq2A7yGAJEyOuCYg==}
+    engines: {node: '>=16.14'}
     hasBin: true
     dev: true
 
