@@ -213,9 +213,10 @@
 
     > li {
       background-image: none;
-      display: list-item;
       list-style: none;
       position: static;
+      align-items: var(--ms-drop-list-item-align-items, $ms-drop-list-item-align-items);
+      display: var(--ms-drop-list-item-display, $ms-drop-list-item-display);
       padding: var(--ms-drop-list-item-padding, $ms-drop-list-item-padding);
 
       .disabled {
