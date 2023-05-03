@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.9...v0.3.0) (2023-05-03)
+
+### Features
+
+* add CSS/SASS variables for ul > li vertical alignment ([#54](https://github.com/ghiscoding/multiple-select-vanilla/issues/54)) ([07ac9ab](https://github.com/ghiscoding/multiple-select-vanilla/commit/07ac9abba9324e348d854eb5f38526f58ae7a321)) - by @ghiscoding
+
 ## [0.2.9](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.8...v0.2.9) (2023-04-15)
 
 ### Bug Fixes
