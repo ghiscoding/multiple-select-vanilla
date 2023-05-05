@@ -71,7 +71,7 @@
     "postcss-cli": "^10.1.0",
     "sass": "^1.62.1",
     "typescript": "^5.0.4",
-    "vite": "^4.3.4",
+    "vite": "^4.3.5",
     "vite-plugin-dts": "^2.3.0"
   }
 }
