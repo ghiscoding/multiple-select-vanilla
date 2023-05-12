@@ -172,40 +172,22 @@ export class MultipleSelectInstance {
       tabIndex = this.tabIndex && `tabindex="${this.tabIndex}"`;
     }
 
-    this.choiceElm = createDomElement('button', {
-      className: 'ms-choice',
-      type: 'button',
-    });
+    this.choiceElm = createDomElement('button', { className: 'ms-choice', type: 'button' }, this.parentElm);
 
     if (isNaN(tabIndex as any)) {
       this.choiceElm.tabIndex = +tabIndex;
     }
 
-    this.choiceElm.appendChild(
-      createDomElement('span', {
-        className: 'ms-placeholder',
-        textContent: this.options.placeholder,
-      })
-    );
+    this.choiceElm.appendChild(createDomElement('span', { className: 'ms-placeholder', textContent: this.options.placeholder }));
 
     if (this.options.showClear) {
-      this.choiceElm.appendChild(
-        createDomElement('div', {
-          className: 'icon-close',
-        })
-      );
+      this.choiceElm.appendChild(createDomElement('div', { className: 'icon-close' }));
     }
 
-    this.choiceElm.appendChild(
-      createDomElement('div', {
-        className: 'icon-caret',
-      })
-    );
+    this.choiceElm.appendChild(createDomElement('div', { className: 'icon-caret' }));
 
     // default position is bottom
-    this.dropElm = createDomElement('div', {
-      className: `ms-drop ${this.options.position}`,
-    });
+    this.dropElm = createDomElement('div', { className: `ms-drop ${this.options.position}` }, this.parentElm);
 
     // add data-name attribute when name option is defined
     if (name) {
@@ -227,9 +209,6 @@ export class MultipleSelectInstance {
     }
 
     insertAfter(this.elm, this.parentElm);
-
-    this.parentElm.appendChild(this.choiceElm);
-    this.parentElm.appendChild(this.dropElm);
 
     if (this.elm.disabled) {
       this.choiceElm.classList.add('disabled');
@@ -376,7 +355,7 @@ export class MultipleSelectInstance {
 
   protected initList() {
     if (this.options.filter) {
-      this.filterParentElm = createDomElement('div', { className: 'ms-search' });
+      this.filterParentElm = createDomElement('div', { className: 'ms-search' }, this.dropElm);
       this.filterParentElm.appendChild(
         createDomElement('input', {
           autocomplete: 'off',
@@ -386,31 +365,31 @@ export class MultipleSelectInstance {
           placeholder: this.options.filterPlaceholder || '🔎︎',
         })
       );
-      this.dropElm.appendChild(this.filterParentElm);
     }
 
     if (this.options.selectAll && !this.options.single) {
       const selectName = this.elm.getAttribute('name') || this.options.name || '';
       this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all' });
-      const saLabelElm = createDomElement('label');
-      const saInputElm = createDomElement('input', { type: 'checkbox', checked: this.allSelected });
-      saInputElm.dataset.name = `selectAll${selectName}`;
-      saLabelElm.appendChild(saInputElm);
+      const saLabelElm = document.createElement('label');
+      createDomElement(
+        'input',
+        { type: 'checkbox', checked: this.allSelected, dataset: { name: `selectAll${selectName}` } },
+        saLabelElm
+      );
       saLabelElm.appendChild(createDomElement('span', { textContent: this.formatSelectAll() }));
       this.selectAllParentElm.appendChild(saLabelElm);
       this.dropElm.appendChild(this.selectAllParentElm);
     }
 
-    this.ulElm = createDomElement('ul');
+    this.ulElm = document.createElement('ul');
     this.dropElm.appendChild(this.ulElm);
 
     if (this.options.showOkButton && !this.options.single) {
-      this.okButtonElm = createDomElement('button', {
-        className: 'ms-ok-button',
-        type: 'button',
-        textContent: this.formatOkButton(),
-      });
-      this.dropElm.appendChild(this.okButtonElm);
+      this.okButtonElm = createDomElement(
+        'button',
+        { className: 'ms-ok-button', type: 'button', textContent: this.formatOkButton() },
+        this.dropElm
+      );
     }
 
     this.initListItems();

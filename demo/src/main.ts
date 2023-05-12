@@ -68,35 +68,20 @@ class Main {
   createRouteLinks() {
     for (const navRoute of navbarRouting) {
       // <li class="nav-item"><a class="nav-link" id="home">Home</a></li>
-      const liElm = createDomElement('li', {
-        className: 'nav-item',
-      });
-      const aElm = createDomElement('a', {
-        id: navRoute.name,
-        className: 'nav-link',
-        textContent: navRoute.title,
-      });
+      const liElm = createDomElement('li', { className: 'nav-item' });
+      const aElm = createDomElement('a', { id: navRoute.name, className: 'nav-link', textContent: navRoute.title }, liElm);
       aElm.addEventListener('click', this.clickEventListener.bind(this));
-
-      liElm.appendChild(aElm);
       document.querySelector('.navbar-nav')?.appendChild(liElm);
     }
 
     for (const groupRoute of exampleRouting) {
-      // <li class="m-1"><p class="navbar-vertical-label mb-1">Welcomes</p></li>
       const groupLiElm = createDomElement('li', { className: 'm-1' });
-      const groupPElm = createDomElement('p', {
-        className: 'navbar-vertical-label mb-1',
-        textContent: groupRoute.name,
-      });
-      groupLiElm.appendChild(groupPElm);
+      createDomElement('p', { className: 'navbar-vertical-label mb-1', textContent: groupRoute.name }, groupLiElm);
       document.querySelector('.nav-pills')?.appendChild(groupLiElm);
 
       for (const singleRoute of groupRoute.routes) {
         // <li class="nav-item"><a class="nav-link" id="example01">Single Select</a></li>
-        const liElm = createDomElement('li', {
-          className: 'nav-item',
-        });
+        const liElm = createDomElement('li', { className: 'nav-item' });
         const aElm = createDomElement('a', {
           id: singleRoute.name,
           className: 'nav-link',
