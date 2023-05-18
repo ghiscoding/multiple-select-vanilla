@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.3.0...v0.3.1) (2023-05-18)
+
+### Bug Fixes
+
+* create DOM element util should spread element props ([#62](https://github.com/ghiscoding/multiple-select-vanilla/issues/62)) ([97d1d64](https://github.com/ghiscoding/multiple-select-vanilla/commit/97d1d64b9f511865814631a11639716679109dee)) - by @ghiscoding
+
 # [0.3.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.2.9...v0.3.0) (2023-05-03)
 
 ### Features
