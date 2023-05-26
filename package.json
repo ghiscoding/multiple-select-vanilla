@@ -56,7 +56,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "npm-run-all2": "^6.0.5",
-    "playwright": "^1.33.0",
     "pnpm": "^8.5.1",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.1",
