@@ -68,11 +68,11 @@ importers:
   demo:
     dependencies:
       '@popperjs/core':
-        specifier: ^2.11.7
-        version: 2.11.7
+        specifier: ^2.11.8
+        version: 2.11.8
       bootstrap:
         specifier: ^5.2.3
-        version: 5.2.3(@popperjs/core@2.11.7)
+        version: 5.2.3(@popperjs/core@2.11.8)
       font-awesome:
         specifier: ^4.7.0
         version: 4.7.0
@@ -1030,8 +1030,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /@popperjs/core@2.11.7:
-    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: false
 
   /@rollup/pluginutils@5.0.2:
@@ -1548,12 +1548,12 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
 
-  /bootstrap@5.2.3(@popperjs/core@2.11.7):
+  /bootstrap@5.2.3(@popperjs/core@2.11.8):
     resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
     peerDependencies:
       '@popperjs/core': ^2.11.6
     dependencies:
-      '@popperjs/core': 2.11.7
+      '@popperjs/core': 2.11.8
     dev: false
 
   /brace-expansion@1.1.11:
