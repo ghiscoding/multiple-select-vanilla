@@ -62,7 +62,7 @@ jobs:
         uses: mathiasvr/command-output@v2.0.0
         id: playwrightsummary
         with:
-          run: pnpm test:e2e:ci
+          run: pnpm test:e2e
 
       - name: Define Playwright Outcome Text
         id: pw_outcome
