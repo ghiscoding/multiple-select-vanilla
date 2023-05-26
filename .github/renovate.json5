@@ -5,5 +5,15 @@
   node: false,
   pin: false,
   rangeStrategy: 'bump',
+  packageRules: [
+    {
+      packageNames: ['@playwright/test'],
+      allowedVersions: '1.33.0',
+    },
+    {
+      packageNames: ['playwright'],
+      allowedVersions: '1.33.0',
+    },
+  ],
   schedule: ['on Friday'],
 }
