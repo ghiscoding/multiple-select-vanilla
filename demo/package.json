@@ -19,7 +19,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.7",
+    "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0"
   },
@@ -27,6 +27,6 @@
     "multiple-select-vanilla": "workspace:*",
     "sass": "^1.62.1",
     "typescript": "^5.0.4",
-    "vite": "^4.3.8"
+    "vite": "^4.3.9"
   }
 }

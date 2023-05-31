@@ -7,14 +7,14 @@
 [![Actions Status](https://github.com/ghiscoding/multiple-select-vanilla/workflows/CI%20Build/badge.svg)](https://github.com/ghiscoding/multiple-select-vanilla/actions)
 
 ## Official Release now available 📣
-We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods.
+We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods. You can also take a look at the [Used by](#used-by) section to see real applications taking advantage of this library in production.
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library, it is based on its last version `v1.5.2`. The main difference from the original lib is that we dropped jQuery and we use pure JavaScript code, without any external dependencies (zero dependency). We also added a few extra features which you can see in the section below ([Changes vs Original lib](#changes-vs-original-lib)). 
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library, it was based on its latest known version at the time which was [`v1.5.2`](https://github.com/wenzhixin/multiple-select/releases/tag/1.5.2). The main difference from the original lib is that we dropped jQuery and we now use native browser code and we have zero external dependency. We also added a few extra features which you can see in the section below ([Changes vs Original lib](#changes-vs-original-lib)). 
  
 This lib allows you to select multiple elements with checkboxes :).
 
-To get started checkout examples and documentation at https://ghiscoding.github.io/multiple-select-vanilla
+To get started take a look at the [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options and methods that the library offers.
 
 
 ### Fully tested with [![Playwright](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg?logo=playwright)](https://playwright.dev/)
@@ -38,8 +38,8 @@ npm install multiple-select-vanilla
 
 ## Changes vs Original lib
 New Multiple-Select Options:
-- dropped jQuery requirement and replaced necessary code with pure vanilla JS code.
-- written in TypeScript which brings typings support
+- dropped jQuery requirement and replaced necessary code with browser native code.
+- written in TypeScript which also brings typings support
 - added new features:
   - `showOkButton` to add an "OK" button at the end of multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
   - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height with available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
@@ -51,6 +51,13 @@ New Multiple-Select Options:
   - `renderOptionLabelAsHtml` will render selected options as HTML (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options27))
   - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options32)).
   - `dataTest` will add a `data-test` attribute on the `.ms-parent` and `.ms-drop` divs for easier E2E testing
+
+### Used by
+This fork was created in order to drop jQuery from the following projects:
+- [Slickgrid-Universal](https://github.com/ghiscoding/slickgrid-universal)
+- [Angular-Slickgrid](https://github.com/ghiscoding/Angular-Slickgrid)
+- [Aurelia-Slickgrid](https://github.com/ghiscoding/aurelia-slickgrid)
+- [Slickgrid-React](https://github.com/ghiscoding/slickgrid-react)
 
 ## Contributions
 
@@ -75,7 +82,7 @@ If you wish to contribute to the project, please follow these steps:
 
 #### Pull Request Contribution
 
-Before submitting a before request, make sure that you follow these steps
+Before submitting a PR (pull request), please make sure that you followed these steps
 1. have the [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) VSCode extension installed (no config required)
 2. run the Prettier code formatting (or use step 3)
    - `pnpm run prettier:write`

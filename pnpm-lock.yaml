@@ -17,8 +17,8 @@ importers:
         specifier: ^1.34.3
         version: 1.34.3
       '@types/node':
-        specifier: ^18.16.15
-        version: 18.16.15
+        specifier: ^18.16.16
+        version: 18.16.16
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.59.7
         version: 5.59.7(@typescript-eslint/parser@5.59.7)(eslint@8.41.0)(typescript@5.0.4)
@@ -65,11 +65,11 @@ importers:
   demo:
     dependencies:
       '@popperjs/core':
-        specifier: ^2.11.7
-        version: 2.11.7
+        specifier: ^2.11.8
+        version: 2.11.8
       bootstrap:
         specifier: ^5.2.3
-        version: 5.2.3(@popperjs/core@2.11.7)
+        version: 5.2.3(@popperjs/core@2.11.8)
       font-awesome:
         specifier: ^4.7.0
         version: 4.7.0
@@ -84,8 +84,8 @@ importers:
         specifier: ^5.0.4
         version: 5.0.4
       vite:
-        specifier: ^4.3.8
-        version: 4.3.8(@types/node@18.16.15)(sass@1.62.1)
+        specifier: ^4.3.9
+        version: 4.3.9(@types/node@18.16.16)(sass@1.62.1)
 
   lib:
     devDependencies:
@@ -126,11 +126,11 @@ importers:
         specifier: ^5.0.4
         version: 5.0.4
       vite:
-        specifier: ^4.3.8
-        version: 4.3.8(@types/node@18.16.15)(sass@1.62.1)
+        specifier: ^4.3.9
+        version: 4.3.9(@types/node@18.16.16)(sass@1.62.1)
       vite-plugin-dts:
         specifier: ^2.3.0
-        version: 2.3.0(@types/node@18.16.15)(vite@4.3.8)
+        version: 2.3.0(@types/node@18.16.16)(vite@4.3.9)
 
 packages:
 
@@ -655,24 +655,24 @@ packages:
       - supports-color
     dev: true
 
-  /@microsoft/api-extractor-model@7.26.4(@types/node@18.16.15):
+  /@microsoft/api-extractor-model@7.26.4(@types/node@18.16.16):
     resolution: {integrity: sha512-PDCgCzXDo+SLY5bsfl4bS7hxaeEtnXj7XtuzEE+BtALp7B5mK/NrS2kHWU69pohgsRmEALycQdaQPXoyT2i5MQ==}
     dependencies:
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.55.2(@types/node@18.16.15)
+      '@rushstack/node-core-library': 3.55.2(@types/node@18.16.16)
     transitivePeerDependencies:
       - '@types/node'
     dev: true
 
-  /@microsoft/api-extractor@7.34.4(@types/node@18.16.15):
+  /@microsoft/api-extractor@7.34.4(@types/node@18.16.16):
     resolution: {integrity: sha512-HOdcci2nT40ejhwPC3Xja9G+WSJmWhCUKKryRfQYsmE9cD+pxmBaKBKCbuS9jUcl6bLLb4Gz+h7xEN5r0QiXnQ==}
     hasBin: true
     dependencies:
-      '@microsoft/api-extractor-model': 7.26.4(@types/node@18.16.15)
+      '@microsoft/api-extractor-model': 7.26.4(@types/node@18.16.16)
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.55.2(@types/node@18.16.15)
+      '@rushstack/node-core-library': 3.55.2(@types/node@18.16.16)
       '@rushstack/rig-package': 0.3.18
       '@rushstack/ts-command-line': 4.13.2
       colors: 1.2.5
@@ -1021,14 +1021,14 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
-      '@types/node': 18.16.15
+      '@types/node': 18.16.16
       playwright-core: 1.34.3
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /@popperjs/core@2.11.7:
-    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: false
 
   /@rollup/pluginutils@5.0.2:
@@ -1045,7 +1045,7 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@rushstack/node-core-library@3.55.2(@types/node@18.16.15):
+  /@rushstack/node-core-library@3.55.2(@types/node@18.16.16):
     resolution: {integrity: sha512-SaLe/x/Q/uBVdNFK5V1xXvsVps0y7h1sN7aSJllQyFbugyOaxhNRF25bwEDnicARNEjJw0pk0lYnJQ9Kr6ev0A==}
     peerDependencies:
       '@types/node': '*'
@@ -1053,7 +1053,7 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@types/node': 18.16.15
+      '@types/node': 18.16.16
       colors: 1.2.5
       fs-extra: 7.0.1
       import-lazy: 4.0.0
@@ -1140,8 +1140,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node@18.16.15:
-    resolution: {integrity: sha512-fv9H0101Lom0m76x5UekmudO0Vu611ElbTCLOeSbyX5WM6sme3gJ10PHP83pA1/eXbZpnDoTkeY40jykH38ptQ==}
+  /@types/node@18.16.16:
+    resolution: {integrity: sha512-NpaM49IGQQAUlBhHMF82QH80J08os4ZmyF9MkpCzWAGuOHqE4gTEbhzd7L3l5LmWuZ6E0OiC1FweQ4tsiW35+g==}
     dev: true
 
   /@types/normalize-package-data@2.4.1:
@@ -1545,12 +1545,12 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
 
-  /bootstrap@5.2.3(@popperjs/core@2.11.7):
+  /bootstrap@5.2.3(@popperjs/core@2.11.8):
     resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
     peerDependencies:
       '@popperjs/core': ^2.11.6
     dependencies:
-      '@popperjs/core': 2.11.7
+      '@popperjs/core': 2.11.8
     dev: false
 
   /brace-expansion@1.1.11:
@@ -6110,31 +6110,31 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
-  /vite-plugin-dts@2.3.0(@types/node@18.16.15)(vite@4.3.8):
+  /vite-plugin-dts@2.3.0(@types/node@18.16.16)(vite@4.3.9):
     resolution: {integrity: sha512-WbJgGtsStgQhdm3EosYmIdTGbag5YQpZ3HXWUAPCDyoXI5qN6EY0V7NXq0lAmnv9hVQsvh0htbYcg0Or5Db9JQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: '>=2.9.0'
     dependencies:
       '@babel/parser': 7.21.4
-      '@microsoft/api-extractor': 7.34.4(@types/node@18.16.15)
+      '@microsoft/api-extractor': 7.34.4(@types/node@18.16.16)
       '@rollup/pluginutils': 5.0.2
-      '@rushstack/node-core-library': 3.55.2(@types/node@18.16.15)
+      '@rushstack/node-core-library': 3.55.2(@types/node@18.16.16)
       debug: 4.3.4
       fast-glob: 3.2.12
       fs-extra: 10.1.0
       kolorist: 1.7.0
       magic-string: 0.29.0
       ts-morph: 18.0.0
-      vite: 4.3.8(@types/node@18.16.15)(sass@1.62.1)
+      vite: 4.3.9(@types/node@18.16.16)(sass@1.62.1)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
       - supports-color
     dev: true
 
-  /vite@4.3.8(@types/node@18.16.15)(sass@1.62.1):
-    resolution: {integrity: sha512-uYB8PwN7hbMrf4j1xzGDk/lqjsZvCDbt/JC5dyfxc19Pg8kRm14LinK/uq+HSLNswZEoKmweGdtpbnxRtrAXiQ==}
+  /vite@4.3.9(@types/node@18.16.16)(sass@1.62.1):
+    resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -6158,7 +6158,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.16.15
+      '@types/node': 18.16.16
       esbuild: 0.17.19
       postcss: 8.4.23
       rollup: 3.21.0
