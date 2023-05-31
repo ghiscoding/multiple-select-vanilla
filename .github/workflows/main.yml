@@ -49,6 +49,9 @@ jobs:
       - name: Build Website (GitHub demo site)
         run: pnpm build:demo
 
+      - name: Install Playwright Browsers (chromium)
+        run: pnpm exec playwright install chromium
+
       - name: Find Playwright Summary Comment (when exist)
         if: ${{ github.event.pull_request.number }}
         uses: peter-evans/find-comment@v2
@@ -62,7 +65,7 @@ jobs:
         uses: mathiasvr/command-output@v2.0.0
         id: playwrightsummary
         with:
-          run: pnpm test:e2e:ci
+          run: pnpm test:e2e
 
       - name: Define Playwright Outcome Text
         id: pw_outcome
