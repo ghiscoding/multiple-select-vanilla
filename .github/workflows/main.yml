@@ -58,7 +58,7 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: Playwright Summary
 
-      - name: install Playwright chromium
+      - name: Install Playwright Browsers (chromium)
         run: pnpm exec playwright install chromium
 
       - name: Run Playwright E2E Tests
