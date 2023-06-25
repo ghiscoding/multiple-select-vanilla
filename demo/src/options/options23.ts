@@ -1,4 +1,4 @@
-import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
+import { multipleSelect, MultipleSelectInstance, type TextFilter } from 'multiple-select-vanilla';
 
 export default class Example {
   ms1?: MultipleSelectInstance;
@@ -6,11 +6,11 @@ export default class Example {
   mount() {
     this.ms1 = multipleSelect('select', {
       filter: true,
-      customFilter: (label, text, originalLabel, originalText) => {
+      customFilter: ({ text, search, originalText, originalSearch }: TextFilter) => {
         if (document.querySelector('input')!.checked) {
-          return originalLabel.indexOf(originalText) === 0;
+          return originalText.indexOf(originalSearch) === 0;
         }
-        return label.indexOf(text) === 0;
+        return text.indexOf(search) === 0;
       },
     }) as MultipleSelectInstance;
   }

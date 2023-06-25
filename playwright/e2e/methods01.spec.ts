@@ -14,6 +14,8 @@ test.describe('Methods 01 - getOptions()', () => {
       `{`,
       `"name": "",`,
       `"placeholder": "",`,
+      `"classes": "",`,
+      `"classPrefix": "",`,
       `"selectAll": true,`,
       `"single": false,`,
       `"singleRadio": false,`,

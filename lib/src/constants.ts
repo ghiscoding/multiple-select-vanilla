@@ -1,4 +1,4 @@
-import { MultipleSelectOption } from './interfaces';
+import { LabelFilter, MultipleSelectOption, TextFilter } from './interfaces';
 import English from './locales/multiple-select-en-US';
 
 const BLOCK_ROWS = 50;
@@ -7,6 +7,8 @@ const CLUSTER_BLOCKS = 4;
 const DEFAULTS: Partial<MultipleSelectOption> = {
   name: '',
   placeholder: '',
+  classes: '',
+  classPrefix: '',
   data: undefined,
   locale: undefined,
 
@@ -38,9 +40,9 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   filterPlaceholder: '',
   filterAcceptOnEnter: false,
   filterByDataLength: undefined,
-  customFilter(label: string, text: string) {
-    // originalLabel, originalText
-    return label.includes(text);
+  customFilter(filterOptions) {
+    const { text, label, search } = filterOptions as LabelFilter & TextFilter;
+    return (label || text || '').includes(search);
   },
 
   showClear: false,

@@ -16,6 +16,14 @@ export default class Example {
       alert(`Selected values: ${this.ms1?.getSelects()}`);
       alert(`Selected texts: ${this.ms1?.getSelects('text')}`);
     });
+
+    document.querySelector('#setSelectsBtn2')!.addEventListener('click', () => {
+      this.ms1?.setSelects(['February', 'April'], 'text');
+    });
+
+    document.querySelector('#getSelectsBtn2')!.addEventListener('click', () => {
+      alert(`Selected values: ${this.ms1?.getSelects('text')}`);
+    });
   }
 
   unmount() {

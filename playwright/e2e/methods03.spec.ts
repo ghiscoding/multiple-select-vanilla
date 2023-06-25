@@ -9,9 +9,14 @@ test.describe('Methods 03 - setSelects() / getSelects()', () => {
     });
 
     await page.goto('#/methods03');
-    await page.getByRole('button', { name: 'SetSelects' }).click();
-    await page.getByRole('button', { name: 'GetSelects' }).click();
+
+    await page.locator('#setSelectsBtn').click();
+    await page.locator('#getSelectsBtn').click();
     expect(dialogTexts[0]).toBe('Selected values: 1,3');
     expect(dialogTexts[1]).toBe('Selected texts: January,March');
+
+    await page.locator('#setSelectsBtn2').click();
+    await page.locator('#getSelectsBtn2').click();
+    expect(dialogTexts[2]).toBe('Selected values: February,April');
   });
 });
