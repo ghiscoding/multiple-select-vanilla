@@ -4,6 +4,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.3.1...v0.4.0) (2023-06-25)
+
+### Bug Fixes
+
+* **deps:** update dependency @popperjs/core to ^2.11.8 ([#70](https://github.com/ghiscoding/multiple-select-vanilla/issues/70)) ([ce647a0](https://github.com/ghiscoding/multiple-select-vanilla/commit/ce647a013e8688039eef272771f5c09a37cfffb7)) - by @renovate-bot
+
+### Features
+
+* add cz-CS and da-DK locales ([#80](https://github.com/ghiscoding/multiple-select-vanilla/issues/80)) ([c74ce59](https://github.com/ghiscoding/multiple-select-vanilla/commit/c74ce59bf50429ef04e1211dba5549ef4dee8d38)) - by @ghiscoding
+
 ## [0.3.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.3.0...v0.3.1) (2023-05-18)
 
 ### Bug Fixes
