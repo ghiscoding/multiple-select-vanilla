@@ -114,7 +114,7 @@ export function removeUndefined(obj: any) {
   return obj;
 }
 
-export function removeDiacritics(str: any) {
+export function removeDiacritics(str: string): string {
   if (typeof str !== 'string') {
     return str;
   }

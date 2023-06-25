@@ -132,6 +132,17 @@ export class MultipleSelectInstance {
   protected initContainer() {
     const name = this.elm.getAttribute('name') || this.options.name || '';
 
+    if (this.options.classes) {
+      this.elm.classList.add(this.options.classes);
+    }
+    if (this.options.classPrefix) {
+      this.elm.classList.add(this.options.classPrefix);
+
+      if (this.options.size) {
+        this.elm.classList.add(`${this.options.classPrefix}-${this.options.size}`);
+      }
+    }
+
     // hide select element
     this.elm.style.display = 'none';
 
@@ -152,7 +163,7 @@ export class MultipleSelectInstance {
 
     // restore class and title from select element
     this.parentElm = createDomElement('div', {
-      className: `ms-parent ${this.elm.className || ''}`,
+      className: `ms-parent ${this.elm.className || ''} ${this.options.classes}`,
       dataset: { test: 'sel' },
     });
 
@@ -998,6 +1009,10 @@ export class MultipleSelectInstance {
     }
   }
 
+  getData() {
+    return this.options.data;
+  }
+
   /**
    * Get current options, by default we'll return an immutable deep copy of the options to avoid conflicting with the lib
    * but in rare occasion we might want to the return the actual, but mutable, options
@@ -1061,12 +1076,15 @@ export class MultipleSelectInstance {
   }
 
   setSelects(values: any[], type = 'value', ignoreTrigger = false) {
+    console.log('setSelects', values, type);
     let hasChanged = false;
     const _setSelects = (rows: any[]) => {
       for (const row of rows) {
         let selected = false;
         if (type === 'text') {
-          selected = values.includes(row.textContent.trim());
+          const divElm = document.createElement('div');
+          divElm.innerHTML = row.text;
+          selected = values.includes(divElm.textContent?.trim() ?? '');
         } else {
           selected = values.includes(row._value || row.value);
           if (!selected && row.value === `${+row.value}`) {
@@ -1206,25 +1224,26 @@ export class MultipleSelectInstance {
   }
 
   protected filter(ignoreTrigger?: boolean) {
-    const originalText = this.searchInputElm?.value.trim() ?? '';
-    const text = originalText.toLowerCase();
+    const originalSearch = this.searchInputElm?.value.trim() ?? '';
+    const search = originalSearch.toLowerCase();
 
-    if (this.filterText === text) {
+    if (this.filterText === search) {
       return;
     }
-    this.filterText = text;
+    this.filterText = search;
 
     for (const row of this.data || []) {
       if ((row as OptGroupRowData).type === 'optgroup') {
         if (this.options.filterGroup) {
           const rowLabel = `${(row as OptGroupRowData)?.label ?? ''}`;
           if (row !== undefined && row !== null) {
-            const visible = this.options.customFilter(
-              removeDiacritics(rowLabel.toLowerCase()),
-              removeDiacritics(text),
-              rowLabel,
-              originalText
-            );
+            const visible = this.options.customFilter({
+              label: removeDiacritics(rowLabel.toLowerCase()),
+              search: removeDiacritics(search),
+              originalLabel: rowLabel,
+              originalSearch,
+              row,
+            });
 
             row.visible = visible;
             for (const child of (row as OptGroupRowData).children) {
@@ -1237,24 +1256,27 @@ export class MultipleSelectInstance {
           for (const child of (row as OptGroupRowData).children) {
             if (child !== undefined && child !== null) {
               const childText = `${(child as OptionRowData)?.text ?? ''}`;
-              child.visible = this.options.customFilter(
-                removeDiacritics(childText.toLowerCase()),
-                removeDiacritics(text),
-                childText,
-                originalText
-              );
+              child.visible = this.options.customFilter({
+                text: removeDiacritics(childText.toLowerCase()),
+                search: removeDiacritics(search),
+                originalText: childText,
+                originalSearch,
+                row: child,
+                parent: row,
+              });
             }
           }
           row.visible = (row as OptGroupRowData).children.filter((child: any) => child?.visible).length > 0;
         }
       } else {
         const rowText = `${(row as OptionRowData)?.text ?? ''}`;
-        row.visible = this.options.customFilter(
-          removeDiacritics(rowText.toLowerCase()),
-          removeDiacritics(text),
-          rowText,
-          originalText
-        );
+        row.visible = this.options.customFilter({
+          text: removeDiacritics(rowText.toLowerCase()),
+          search: removeDiacritics(search),
+          originalText: rowText,
+          originalSearch,
+          row,
+        });
       }
     }
 
@@ -1263,7 +1285,7 @@ export class MultipleSelectInstance {
     this.updateSelected();
 
     if (!ignoreTrigger) {
-      this.options.onFilter(text);
+      this.options.onFilter(search);
     }
   }
 

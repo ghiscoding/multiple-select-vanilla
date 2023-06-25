@@ -1,4 +1,4 @@
-import { MultipleSelectLocale, OptGroupRowData, OptionRowData } from './interfaces';
+import { LabelFilter, MultipleSelectLocale, OptGroupRowData, OptionRowData, OptionRowDivider, TextFilter } from './interfaces';
 
 export interface MultipleSelectView {
   label: string;
@@ -26,6 +26,12 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Drop menu to automatically set its width as the maximum available width of text */
   autoAdjustDropWidthByTextSize?: boolean;
 
+  /** The class name of select. */
+  classes?: string;
+
+  /** The class prefix of select. */
+  classPrefix?: string;
+
   /** HTML container to use for the drop menu, e.g. 'body' */
   container?: string | HTMLElement | null;
 
@@ -33,7 +39,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   countSelectedText?: string;
 
   /** provide custom data */
-  data?: { [value: string]: number | string | boolean } | Array<number | string | boolean | OptionRowData | OptGroupRowData>;
+  data?:
+    | { [value: string]: number | string | boolean }
+    | Array<number | string | boolean | OptionRowData | OptionRowDivider | OptGroupRowData>;
 
   /** Add "data-test" attribute to the "ms-parent" element */
   dataTest?: string;
@@ -140,6 +148,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Alias to `single` */
   singleRadio?: boolean;
 
+  /** The size of select. */
+  size?: number | string;
+
   /** Show a clear button, defaults to false */
   showClear?: boolean;
 
@@ -160,7 +171,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   // ------------
 
   /** Customize the filter method, for example we use startWith */
-  customFilter: (normalizedText: string, normalizedOriginalText: string, text: string, originalText: string) => boolean;
+  customFilter(options: LabelFilter | TextFilter): boolean;
 
   /** The item styler function, return style string to custom the item style such as background: red. The function take one parameter: value. */
   styler: (value: OptionRowData | OptGroupRowData) => string | boolean | null;

@@ -1,4 +1,9 @@
 export type OptionDataObject = { [value: string]: number | string | boolean };
+
+export interface OptionRowDivider {
+  divider: boolean;
+}
+
 export interface OptionRowData {
   text: string;
   value: string | number | boolean;
@@ -44,4 +49,21 @@ export interface MultipleSelectLocale {
 
 export interface MultipleSelectLocales {
   [localeKey: string]: MultipleSelectLocale;
+}
+
+export interface LabelFilter {
+  label: string;
+  search: string;
+  originalLabel: string;
+  originalSearch: string;
+  row: OptionRowData | OptGroupRowData;
+}
+
+export interface TextFilter {
+  text: string;
+  search: string;
+  originalText: string;
+  originalSearch: string;
+  row: OptionRowData | OptGroupRowData;
+  parent?: OptionRowData | OptGroupRowData;
 }

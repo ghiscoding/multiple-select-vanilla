@@ -12,6 +12,7 @@ import Example10 from './examples/example10';
 import Example11 from './examples/example11';
 import Example12 from './examples/example12';
 import Example13 from './examples/example13';
+import Example14 from './examples/example14';
 import Options01 from './options/options01';
 import Options02 from './options/options02';
 import Options03 from './options/options03';
@@ -44,6 +45,7 @@ import Options29 from './options/options29';
 import Options30 from './options/options30';
 import Options31 from './options/options31';
 import Options32 from './options/options32';
+import Options33 from './options/options33';
 import Methods01 from './methods/methods01';
 import Methods02 from './methods/methods02';
 import Methods03 from './methods/methods03';
@@ -55,6 +57,7 @@ import Methods08 from './methods/methods08';
 import Methods09 from './methods/methods09';
 import Methods10 from './methods/methods10';
 import Methods11 from './methods/methods11';
+import Methods12 from './methods/methods12';
 import Events from './events/events';
 import I18n from './i18n/i18n';
 
@@ -80,6 +83,7 @@ export const exampleRouting = [
       { name: 'example11', view: '/src/examples/example11.html', viewModel: Example11, title: 'The Themes' },
       { name: 'example12', view: '/src/examples/example12.html', viewModel: Example12, title: 'Checkbox/Radio Icons' },
       { name: 'example13', view: '/src/examples/example13.html', viewModel: Example13, title: 'Dynamically Create Select' },
+      { name: 'example14', view: '/src/examples/example14.html', viewModel: Example14, title: 'The Divider' },
     ],
   },
   {
@@ -117,6 +121,7 @@ export const exampleRouting = [
       { name: 'options30', view: '/src/options/options30.html', viewModel: Options30, title: 'Auto-Adjust Drop Height/Width' },
       { name: 'options31', view: '/src/options/options31.html', viewModel: Options31, title: 'Use Select Option as Label' },
       { name: 'options32', view: '/src/options/options32.html', viewModel: Options32, title: 'Sanitizer' },
+      { name: 'options33', view: '/src/options/options33.html', viewModel: Options33, title: 'Classes' },
     ],
   },
   {
@@ -133,6 +138,7 @@ export const exampleRouting = [
       { name: 'methods09', view: '/src/methods/methods09.html', viewModel: Methods09, title: 'The focus/blur' },
       { name: 'methods10', view: '/src/methods/methods10.html', viewModel: Methods10, title: 'The refresh' },
       { name: 'methods11', view: '/src/methods/methods11.html', viewModel: Methods11, title: 'The destroy' },
+      { name: 'methods12', view: '/src/methods/methods12.html', viewModel: Methods12, title: 'The getData' },
     ],
   },
   {
