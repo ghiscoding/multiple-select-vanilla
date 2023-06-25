@@ -7,7 +7,7 @@
 [![Actions Status](https://github.com/ghiscoding/multiple-select-vanilla/workflows/CI%20Build/badge.svg)](https://github.com/ghiscoding/multiple-select-vanilla/actions)
 
 ## Official Release now available 📣
-We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods. You can also take a look at the [Used by](#used-by) section to see real applications taking advantage of this library in production.
+We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods. You can also take a look at the "[Used by](#used-by)" section below to see real applications taking advantage of this library.
 
 ## Description
 Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library, it was based on its latest known version at the time which was `v1.5.2` but later updated to [`v1.6.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.6.0). The main difference from the original lib is that we dropped jQuery and we now use native code and this mean zero external dependency. We also added a few extra features which you can see in the section below ([Changes vs Original lib](#changes-vs-original-lib)).
@@ -53,7 +53,7 @@ New Multiple-Select Options:
   - `dataTest` will add a `data-test` attribute on the `.ms-parent` and `.ms-drop` divs for easier E2E testing
 
 ### Used by
-This fork was created in order to drop jQuery from the following projects:
+This fork was created mostly to drop jQuery, and it is now used, in the following projects:
 - [Slickgrid-Universal](https://github.com/ghiscoding/slickgrid-universal)
 - [Angular-Slickgrid](https://github.com/ghiscoding/Angular-Slickgrid)
 - [Aurelia-Slickgrid](https://github.com/ghiscoding/aurelia-slickgrid)
