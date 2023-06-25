@@ -6,6 +6,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.4.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.3.1...v0.4.0) (2023-06-25)
 
+### Breaking Changes
+* change `customFilter` signature & add extra options/methods ([#80](https://github.com/ghiscoding/multiple-select-vanilla/issues/81)) ([ca9f0ce](https://github.com/ghiscoding/multiple-select-vanilla/commit/ca9f0cefdd5f7624e65b538618c59de6dd01de17)) - by @ghiscoding
 ### Bug Fixes
 
 * **deps:** update dependency @popperjs/core to ^2.11.8 ([#70](https://github.com/ghiscoding/multiple-select-vanilla/issues/70)) ([ce647a0](https://github.com/ghiscoding/multiple-select-vanilla/commit/ce647a013e8688039eef272771f5c09a37cfffb7)) - by @renovate-bot
