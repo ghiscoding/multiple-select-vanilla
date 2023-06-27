@@ -34,6 +34,15 @@
       "name": "Ghislain B."
     }
   ],
+  "homepage": "https://github.com/ghiscoding/multiple-select-vanilla",
+  "bugs": {
+    "url": "https://github.com/ghiscoding/multiple-select-vanilla/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ghiscoding/multiple-select-vanilla"
+  },
   "publishConfig": {
     "access": "public"
   },
