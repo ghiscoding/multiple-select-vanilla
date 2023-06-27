@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.0...v0.4.1) (2023-06-27)
+
+### Bug Fixes
+
+* remove leftover console.log ([#83](https://github.com/ghiscoding/multiple-select-vanilla/issues/83)) ([e64351c](https://github.com/ghiscoding/multiple-select-vanilla/commit/e64351c39091ed4e16ea460fba4ff52116d78449)) - by @ghiscoding
+
 # [0.4.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.3.1...v0.4.0) (2023-06-25)
 
 ### Features
