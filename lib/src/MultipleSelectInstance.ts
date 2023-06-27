@@ -1076,7 +1076,6 @@ export class MultipleSelectInstance {
   }
 
   setSelects(values: any[], type = 'value', ignoreTrigger = false) {
-    console.log('setSelects', values, type);
     let hasChanged = false;
     const _setSelects = (rows: any[]) => {
       for (const row of rows) {
