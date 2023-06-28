@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.2...v0.4.3) (2023-06-28)
+
+### Bug Fixes
+
+* replace some DOM Element method not supported in Salesforce ([#84](https://github.com/ghiscoding/multiple-select-vanilla/issues/84)) ([2617514](https://github.com/ghiscoding/multiple-select-vanilla/commit/2617514359e3349d6a4578dc38b24dc08048b9e6)) - by @ghiscoding
+
 ## [0.4.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.1...v0.4.2) (2023-06-27)
 
 ### Bug Fixes
