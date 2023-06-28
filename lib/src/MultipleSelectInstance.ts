@@ -79,7 +79,9 @@ export class MultipleSelectInstance {
       if (hardDestroy) {
         this.options.onHardDestroy();
       }
-      this.elm.before(this.parentElm);
+      if (this.elm?.parentElement && this.parentElm?.parentElement) {
+        this.elm.parentElement.insertBefore(this.elm, this.parentElm.parentElement!.firstChild);
+      }
       this.elm.classList.remove('ms-offscreen');
       this._bindEventService.unbindAll();
 
