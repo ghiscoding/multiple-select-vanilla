@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.3...v0.4.4) (2023-06-28)
+
+### Bug Fixes
+
+* data collection shouldn't render label as html by default ([#86](https://github.com/ghiscoding/multiple-select-vanilla/issues/86)) ([50f4652](https://github.com/ghiscoding/multiple-select-vanilla/commit/50f465298795ee47b2b0dc55e0eb8a70a159f9b5)) - by @ghiscoding
+
 ## [0.4.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.2...v0.4.3) (2023-06-28)
 
 ### Bug Fixes
