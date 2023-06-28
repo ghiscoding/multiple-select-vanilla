@@ -26,10 +26,19 @@
 
 <div>
   <div class="mb-3 row">
-    <label class="col-sm-2"> Basic Select </label>
+    <label class="col-sm-4">Enable/Disable <code>renderOptionLabelAsHtml</code> option</label>
 
-    <div class="col-sm-10">
-      <select multiple="multiple" class="full-width">
+    <div class="col-sm-8">
+      <button id="enableRenderHtml" class="btn btn-primary">Enable renderOptionLabelAsHtml</button>
+      <button id="disableRenderHtml" class="btn btn-secondary">Disable renderOptionLabelAsHtml</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-4">Basic Select</label>
+
+    <div class="col-sm-8">
+      <select id="basic" data-test="select1" multiple="multiple" class="full-width">
         <option value="1">January</option>
         <option value="2">February</option>
         <option value="3">March</option>
@@ -42,6 +51,15 @@
         <option value="10">October</option>
         <option value="11">November</option>
         <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-4">From Data</label>
+
+    <div class="col-sm-8">
+      <select id="from-data" data-test="select2" class="full-width" multiple></select>
       </select>
     </div>
   </div>

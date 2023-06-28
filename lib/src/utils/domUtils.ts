@@ -169,6 +169,25 @@ export function insertAfter(referenceNode: HTMLElement, newNode: HTMLElement) {
   referenceNode.parentNode?.insertBefore(newNode, referenceNode.nextSibling);
 }
 
+/**
+ * HTML encode using a plain <div>
+ * Create a in-memory div, set it's inner text(which a div can encode)
+ * then grab the encoded contents back out.  The div never exists on the page.
+ * @param {String} inputValue - input value to be encoded
+ * @return {String}
+ */
+export function htmlEncode(inputValue: string): string {
+  const val = typeof inputValue === 'string' ? inputValue : String(inputValue);
+  const entityMap: { [char: string]: string } = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+  return (val || '').toString().replace(/[&<>"']/g, (s) => entityMap[s as keyof { [char: string]: string }]);
+}
+
 /** Display or hide matched element */
 export function toggleElement(elm?: HTMLElement | null, display?: boolean) {
   if (elm?.style) {

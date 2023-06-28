@@ -9,6 +9,7 @@ import {
   findParent,
   getElementOffset,
   getElementSize,
+  htmlEncode,
   insertAfter,
   toggleElement,
 } from './utils/domUtils';
@@ -482,6 +483,7 @@ export class MultipleSelectInstance {
   }
 
   protected initListItem(row: any, level = 0) {
+    const isRenderAsHtml = this.options.renderOptionLabelAsHtml || this.options.useSelectOptionLabelToHtml;
     const title = row?.title ? `title="${row.title}"` : '';
     const multiple = this.options.multiple ? 'multiple' : '';
     const type = this.options.single ? 'radio' : 'checkbox';
@@ -522,7 +524,7 @@ export class MultipleSelectInstance {
       html.push(`
         <li class="${`group ${classes}`.trim()}" ${style}>
         <label class="optgroup${this.options.single || row.disabled ? ' disabled' : ''}">
-        ${group}${row.label}
+        ${group}${isRenderAsHtml ? row.label : htmlEncode(row.label)}
         </label>
         </li>
       `);
@@ -557,7 +559,7 @@ export class MultipleSelectInstance {
         ${row.selected ? ' checked="checked"' : ''}
         ${row.disabled ? ' disabled="disabled"' : ''}
       >
-      <span>${row.text}</span>
+      <span>${isRenderAsHtml ? row.text : htmlEncode(row.text)}</span>
       </label>
       </li>
     `,
