@@ -191,7 +191,8 @@ export class MultipleSelectInstance {
       this.choiceElm.tabIndex = +tabIndex;
     }
 
-    this.choiceElm.appendChild(createDomElement('span', { className: 'ms-placeholder', textContent: this.options.placeholder }));
+    const placeholderText = this.options.sanitizer ? this.options.sanitizer(this.options.placeholder) : this.options.placeholder;
+    this.choiceElm.appendChild(createDomElement('span', { className: 'ms-placeholder', innerHTML: placeholderText }));
 
     if (this.options.showClear) {
       this.choiceElm.appendChild(createDomElement('div', { className: 'icon-close' }));
