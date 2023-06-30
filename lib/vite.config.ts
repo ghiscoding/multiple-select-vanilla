@@ -51,7 +51,7 @@ export default defineConfig({
   plugins: [
     dts({
       entryRoot: 'src',
-      outputDir: 'dist/types',
+      outDir: 'dist/types',
     }),
   ],
 });
