@@ -72,15 +72,15 @@
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "cssnano": "^6.0.1",
-    "esbuild": "^0.18.10",
+    "esbuild": "^0.18.11",
     "fs-extra": "^11.1.1",
     "glob": "^10.3.1",
-    "npm-run-all2": "^6.0.5",
-    "postcss": "^8.4.24",
+    "npm-run-all2": "^6.0.6",
+    "postcss": "^8.4.25",
     "postcss-cli": "^10.1.0",
     "sass": "^1.63.6",
     "typescript": "^5.1.6",
-    "vite": "^4.3.9",
-    "vite-plugin-dts": "^3.0.2"
+    "vite": "^4.4.1",
+    "vite-plugin-dts": "^3.1.0"
   }
 }
