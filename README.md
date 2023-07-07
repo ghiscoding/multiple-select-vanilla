@@ -82,9 +82,9 @@ If you wish to contribute to the project, please follow these steps:
 
 #### Pull Request Contribution
 
-Before submitting a PR (pull request), please make sure that you followed these steps
-1. have the [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) VSCode extension installed (no config required)
-2. run the Prettier code formatting (or use step 3)
+Before submitting a PR (pull request), please make sure that you followed these steps for your PR to succeed:
+1. make sure that you ran `pnpm install` already
+2. run the Prettier code formatting npm script (or use step 3)
    - `pnpm run prettier:write`
 3. run a full Build (this will also run Prettier format)
    - `pnpm run build`
