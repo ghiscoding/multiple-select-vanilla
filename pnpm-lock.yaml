@@ -133,8 +133,8 @@ importers:
         specifier: ^4.4.1
         version: 4.4.1(@types/node@18.16.19)(sass@1.63.6)
       vite-plugin-dts:
-        specifier: ^3.1.0
-        version: 3.1.0(@types/node@18.16.19)(sass@1.63.6)(typescript@5.1.6)
+        specifier: ^3.1.1
+        version: 3.1.1(@types/node@18.16.19)(sass@1.63.6)(typescript@5.1.6)
 
 packages:
 
@@ -162,11 +162,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dev: true
 
-  /@babel/helper-validator-identifier@7.19.1:
-    resolution: {integrity: sha512-awrNfaMtnHUr653GgGEs++LlAvW6w+DcPrOliSMXWCKo597CwL5Acf/wWdNkf/tfEQE3mjkeD1YOVZOUV/od1w==}
-    engines: {node: '>=6.9.0'}
-    dev: true
-
   /@babel/helper-validator-identifier@7.22.5:
     resolution: {integrity: sha512-aJXu+6lErq8ltp+JhkJUfk1MTGyuA4v7f3pA+BJ5HLfNC6nAQ0Cpi9uOquUj8Hehg0aUiHzWQbOVJGao6ztBAQ==}
     engines: {node: '>=6.9.0'}
@@ -176,7 +171,7 @@ packages:
     resolution: {integrity: sha512-u7stbOuYjaPezCuLj29hNW1v64M2Md2qupEKP1fHc7WdOA3DgLh37suiSrZYY7haUB7iBeQZ9P1uiRF359do3g==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/helper-validator-identifier': 7.19.1
+      '@babel/helper-validator-identifier': 7.22.5
       chalk: 2.4.2
       js-tokens: 4.0.0
     dev: true
@@ -203,7 +198,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/helper-string-parser': 7.19.4
-      '@babel/helper-validator-identifier': 7.19.1
+      '@babel/helper-validator-identifier': 7.22.5
       to-fast-properties: 2.0.0
     dev: true
 
@@ -1364,7 +1359,7 @@ packages:
       '@vue/compiler-dom': 3.3.4
       '@vue/reactivity': 3.3.4
       '@vue/shared': 3.3.4
-      minimatch: 9.0.1
+      minimatch: 9.0.3
       muggle-string: 0.3.1
       typescript: 5.1.6
       vue-template-compiler: 2.7.14
@@ -6259,8 +6254,8 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
-  /vite-plugin-dts@3.1.0(@types/node@18.16.19)(sass@1.63.6)(typescript@5.1.6):
-    resolution: {integrity: sha512-KMrbt07OVJlsVQyrhJ4gBd+1xlboxJiYyoMJLmEEYlKYAhxmIlb50KlCxYYiNbrEt2FDQ+Ocl0fbFqHmP19gTg==}
+  /vite-plugin-dts@3.1.1(@types/node@18.16.19)(sass@1.63.6)(typescript@5.1.6):
+    resolution: {integrity: sha512-OgCa6Mch3D1RyGbx3baHx9n6IVzfizDIo2J5EnC96SHyirPwD9CdVAH6yit4/5exoIhc2x7Zdi0Gw7tPewycfA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       typescript: '*'
