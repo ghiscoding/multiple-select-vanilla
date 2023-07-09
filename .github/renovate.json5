@@ -2,7 +2,6 @@
   extends: ['config:base', 'group:allNonMajor'],
   labels: ['dependencies'],
   dependencyDashboard: false,
-  node: false,
   pin: false,
   rangeStrategy: 'bump',
   packageRules: [],
