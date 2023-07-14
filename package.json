@@ -53,7 +53,7 @@
     "@lerna-lite/cli": "^2.5.0",
     "@lerna-lite/publish": "^2.5.0",
     "@lerna-lite/watch": "^2.5.0",
-    "@playwright/test": "^1.36.0",
+    "@playwright/test": "^1.36.1",
     "@types/node": "^18.16.19",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
