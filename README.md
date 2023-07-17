@@ -10,7 +10,7 @@
 We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods. You can also take a look at the "[Used by](#used-by)" section below to see real world applications taking advantage of this library.
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.6.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.6.0). The main difference from the original lib is that we dropped jQuery and we now use native code and this mean zero external dependency. We also added a few extra features which you can see in the section below ([Changes vs Original lib](#changes-vs-original-lib)).
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.6.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.6.0). The main difference from the original lib is that we dropped jQuery and we now use native code and this mean zero external dependency. We also added a few extra features which you can see shown below ([Changes vs Original lib](#changes-vs-original-lib)).
 
 This lib allows you to select multiple elements with checkboxes :).
 
@@ -41,14 +41,14 @@ New Multiple-Select Options:
 - dropped jQuery requirement and replaced necessary code with browser native code.
 - written in TypeScript which also brings typings support
 - added new features:
-  - `showOkButton` to add an "OK" button at the end of multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
-  - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height with available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
+  - `showOkButton` to add an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
+  - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height by available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
   - `autoAdjustDropWidthByTextSize` automatically set the drop width size from the widest list option width
-  - `useSelectOptionLabel` will use the `<option label="">` (from select option value) that can be used to display shorter selected option values.
-    - example: value "1,3" instead of "January,March" (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options31))
+  - `useSelectOptionLabel` will use the `<option label="">` (from select option value) that can be used to display shorter text of selected options.
+    - example: will show "1,3" instead of "January,March" (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options31))
   - `useSelectOptionLabelToHtml` similar to `useSelectOptionLabel` but also renders HTML.
-  - `renderOptionLabelAsHtml` will render selected options as HTML (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options27))
+  - `renderOptionLabelAsHtml` will render selected options as HTML code (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options27))
   - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options32)).
   - `dataTest` will add a `data-test` attribute on the `.ms-parent` and `.ms-drop` divs for easier E2E testing
 
@@ -83,8 +83,8 @@ If you wish to contribute to the project, please follow these steps:
 #### Pull Request Contribution
 
 Before submitting a PR (pull request), please make sure that you followed these steps for your PR to succeed:
-1. make sure that you ran `pnpm install` already
+1. make sure that you already ran `pnpm install`
 2. run the Prettier code formatting npm script (or use step 3)
    - `pnpm run prettier:write`
-3. run a full Build (this will also run Prettier format)
+3. run a full Build (this will also run Prettier format, so you could skip step 2)
    - `pnpm run build`
