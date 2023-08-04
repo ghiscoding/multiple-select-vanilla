@@ -25,8 +25,8 @@
   },
   "devDependencies": {
     "multiple-select-vanilla": "workspace:*",
-    "sass": "^1.64.1",
+    "sass": "^1.64.2",
     "typescript": "^5.1.6",
-    "vite": "^4.4.7"
+    "vite": "^4.4.8"
   }
 }
