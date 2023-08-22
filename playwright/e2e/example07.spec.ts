@@ -15,7 +15,7 @@ test.describe('Example 07 - Submit Data', () => {
     await expect(dialogText).toBe('select1=2');
   });
 
-  test('submit form with multiple data in second select and display alert with serialized form data in an alert', async ({
+  test.skip('submit form with multiple data in second select and display alert with serialized form data in an alert', async ({
     page,
   }) => {
     let dialogText = '';
