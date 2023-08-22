@@ -964,15 +964,19 @@ export class MultipleSelectInstance {
     }
 
     // set selects to select
-    const selectedValues = this.getSelects().join('');
+    const selectedValues = this.getSelects();
     if (this.options.single) {
-      this.elm.value = selectedValues;
+      this.elm.value = selectedValues.length ? selectedValues[0] : '';
     } else {
-      // when multiple values could be set, so we need to loop through each
+      // when multiple values could be set, we need to loop through each
       const selectOptions = this.elm.options;
       for (let i = 0, ln = selectOptions.length; i < ln; i++) {
-        const isSelected = selectedValues === selectOptions[i].value;
-        selectOptions[i].selected = isSelected;
+        for (const selectedVal of selectedValues) {
+          const isSelected = selectedVal === selectOptions[i].value;
+          if (isSelected) {
+            selectOptions[i].selected = isSelected;
+          }
+        }
       }
     }
 
