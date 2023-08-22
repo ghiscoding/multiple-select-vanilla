@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.6](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.5...v0.4.6) (2023-08-22)
+
+### Bug Fixes
+
+* select option should compare full value not substring, fix [#115](https://github.com/ghiscoding/multiple-select-vanilla/issues/115) ([#118](https://github.com/ghiscoding/multiple-select-vanilla/issues/118)) ([2ec33a7](https://github.com/ghiscoding/multiple-select-vanilla/commit/2ec33a7aa44be5d317a8e170308ca81b43619ede)) - by @ghiscoding
+
 ## [0.4.5](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.4...v0.4.5) (2023-07-17)
 
 ### Bug Fixes
