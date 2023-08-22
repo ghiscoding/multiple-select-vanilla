@@ -969,15 +969,9 @@ export class MultipleSelectInstance {
       this.elm.value = selectedValues.length ? selectedValues[0] : '';
     } else {
       // when multiple values could be set, we need to loop through each
-      const selectOptions = this.elm.options;
-      for (let i = 0, ln = selectOptions.length; i < ln; i++) {
-        for (const selectedVal of selectedValues) {
-          const isSelected = selectedVal === selectOptions[i].value;
-          if (isSelected) {
-            selectOptions[i].selected = isSelected;
-          }
-        }
-      }
+      Array.from(this.elm.options).forEach((option) => {
+        option.selected = selectedValues.some((val) => val === option.value);
+      });
     }
 
     // trigger <select> change event
