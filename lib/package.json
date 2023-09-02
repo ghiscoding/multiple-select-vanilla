@@ -74,13 +74,13 @@
     "cssnano": "^6.0.1",
     "esbuild": "^0.19.2",
     "fs-extra": "^11.1.1",
-    "glob": "^10.3.3",
+    "glob": "^10.3.4",
     "npm-run-all2": "^6.0.6",
-    "postcss": "^8.4.28",
+    "postcss": "^8.4.29",
     "postcss-cli": "^10.1.0",
-    "sass": "^1.66.0",
-    "typescript": "^5.1.6",
+    "sass": "^1.66.1",
+    "typescript": "^5.2.2",
     "vite": "^4.4.9",
-    "vite-plugin-dts": "^3.5.2"
+    "vite-plugin-dts": "^3.5.3"
   }
 }
