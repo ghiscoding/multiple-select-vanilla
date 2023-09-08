@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.10](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.9...v0.4.10) (2023-09-08)
+
+### Bug Fixes
+
+* remove type module to support non-ESM, fixes [#123](https://github.com/ghiscoding/multiple-select-vanilla/issues/123) ([#126](https://github.com/ghiscoding/multiple-select-vanilla/issues/126)) ([63f2e82](https://github.com/ghiscoding/multiple-select-vanilla/commit/63f2e820b69f611d94043cc7e7c9ed84a1ce4209)) - by @ghiscoding
+
 ## [0.4.9](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.8...v0.4.9) (2023-08-22)
 
 ### Bug Fixes
