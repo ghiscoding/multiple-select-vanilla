@@ -54,7 +54,7 @@
     "@lerna-lite/publish": "^2.5.1",
     "@lerna-lite/watch": "^2.5.1",
     "@playwright/test": "^1.38.0",
-    "@types/node": "^20.6.0",
+    "@types/node": "^20.6.1",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "cross-env": "^7.0.3",
