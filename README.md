@@ -10,7 +10,7 @@
 We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods. You can also take a look at the "[Used by](#used-by)" section below to see real world applications taking advantage of this library.
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.6.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.6.0). The main difference from the original lib is that we dropped jQuery and we now use native code and this mean zero external dependency. We also added a few extra features which you can see shown below ([Changes vs Original lib](#changes-vs-original-lib)).
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.6.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.6.0). The main difference from the original lib is that we dropped jQuery and we now use native code and this mean zero external dependency. We also added a few extra features which you can see in the list below ([Changes vs Original lib](#changes-vs-original-lib)).
 
 This lib allows you to select multiple elements with checkboxes :).
 
@@ -36,11 +36,11 @@ npm install multiple-select-vanilla
 [The MIT License](https://github.com/ghiscoding/multiple-select-vanilla/blob/master/LICENSE)
 
 
-## Changes vs Original lib
+## Changes vs Original lib (`multiple-select`)
 New Multiple-Select Options:
 - dropped jQuery requirement and replaced necessary code with browser native code.
 - written in TypeScript which also brings typings support
-- added new features:
+- add extra features:
   - `showOkButton` to add an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
   - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height by available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
@@ -53,7 +53,7 @@ New Multiple-Select Options:
   - `dataTest` will add a `data-test` attribute on the `.ms-parent` and `.ms-drop` divs for easier E2E testing
 
 ### Used by
-This fork was created mostly to drop jQuery, and it is now in use in the following projects:
+This fork was created mostly to drop jQuery, and is used by a few other libraries that I maintain:
 - [Angular-Slickgrid](https://github.com/ghiscoding/Angular-Slickgrid)
 - [Aurelia-Slickgrid](https://github.com/ghiscoding/aurelia-slickgrid)
 - [Slickgrid-React](https://github.com/ghiscoding/slickgrid-react)
