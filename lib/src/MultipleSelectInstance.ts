@@ -75,7 +75,7 @@ export class MultipleSelectInstance {
    * When a soft destroy is called, we'll only remove it from the DOM but we'll keep all multipleSelect instances
    */
   destroy(hardDestroy = true) {
-    if (this.parentElm) {
+    if (this.elm && this.parentElm) {
       this.options.onDestroy({ hardDestroy });
       if (hardDestroy) {
         this.options.onHardDestroy();

@@ -23,7 +23,7 @@ export class VirtualScroll {
     this.rows = options.rows;
     this.scrollEl = options.scrollEl;
     this.contentEl = options.contentEl;
-    this.parentEl = options.contentEl.parentElement;
+    this.parentEl = options.contentEl?.parentElement;
     this.callback = options.callback;
 
     this.cache = {};
