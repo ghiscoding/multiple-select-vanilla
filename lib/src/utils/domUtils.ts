@@ -140,7 +140,7 @@ export function getElementSize(elm: HTMLElement, mode: 'inner' | 'outer' | 'scro
  */
 export function findParent(elm: HTMLElement, selector: string) {
   let targetElm: HTMLElement | null = null;
-  let parentElm = elm.parentElement;
+  let parentElm = elm?.parentElement;
 
   while (parentElm) {
     // query selector id (#some-id) or class (.some-class other-class)
