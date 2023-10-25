@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.11](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.10...v0.4.11) (2023-10-25)
+
+### Bug Fixes
+
+* make sure source element exists when calling `findParent` on it ([#136](https://github.com/ghiscoding/multiple-select-vanilla/issues/136)) ([0d7c185](https://github.com/ghiscoding/multiple-select-vanilla/commit/0d7c18593ee9c6f65c4e3f90e02d50d211589905)) - by @ghiscoding
+
 ## [0.4.10](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.9...v0.4.10) (2023-09-08)
 
 ### Bug Fixes
