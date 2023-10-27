@@ -66,6 +66,7 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   onFocus: () => false,
   onBlur: () => false,
   onOptgroupClick: () => false,
+  onBeforeClick: () => true,
   onClick: () => false,
   onFilter: () => false,
   onClear: () => false,

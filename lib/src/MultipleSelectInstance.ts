@@ -769,6 +769,16 @@ export class MultipleSelectInstance {
       const selectElm = e.currentTarget;
       const checked = selectElm.checked;
       const option = findByParam(this.data, '_key', selectElm.dataset.key);
+      const close = () => {
+        if (this.options.single && this.options.isOpen && !this.options.keepOpen) {
+          this.close();
+        }
+      };
+
+      if (this.options.onBeforeClick(option) === false) {
+        close();
+        return;
+      }
 
       this._check(option, checked);
       this.options.onClick(
@@ -780,9 +790,7 @@ export class MultipleSelectInstance {
         })
       );
 
-      if (this.options.single && this.options.isOpen && !this.options.keepOpen) {
-        this.close();
-      }
+      close();
     }) as EventListener);
   }
 

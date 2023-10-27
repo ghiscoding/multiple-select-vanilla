@@ -226,6 +226,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Fires when a an optgroup label is clicked on. */
   onOptgroupClick: (view: MultipleSelectView) => void;
 
+  /** Fires before a checkbox is clicked. Return `false` to prevent the click event. */
+  onBeforeClick: (view: MultipleSelectView) => boolean;
+
   /** Fires when a checkbox is checked or unchecked. */
   onClick: (view: MultipleSelectView) => void;
 
