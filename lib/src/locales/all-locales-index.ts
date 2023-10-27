@@ -5,6 +5,7 @@ export * from './multiple-select-es-ES';
 export * from './multiple-select-fr-FR';
 export * from './multiple-select-hu-HU';
 export * from './multiple-select-it-IT';
+export * from './multiple-select-ja-JP';
 export * from './multiple-select-pt-BR';
 export * from './multiple-select-ru-RU';
 export * from './multiple-select-vi-VN';
