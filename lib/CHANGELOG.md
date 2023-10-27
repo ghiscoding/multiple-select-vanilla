@@ -4,6 +4,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.11...v0.5.0) (2023-10-27)
+
+### Bug Fixes
+
+* updated onFilter event parameter to original search ([#140](https://github.com/ghiscoding/multiple-select-vanilla/issues/140)) ([02c1d45](https://github.com/ghiscoding/multiple-select-vanilla/commit/02c1d4564323f059d72bc0ae28c297073307f413)) - by @ghiscoding
+
+### Features
+
+* added `onBeforeClick` event ([#141](https://github.com/ghiscoding/multiple-select-vanilla/issues/141)) ([6b0cdb8](https://github.com/ghiscoding/multiple-select-vanilla/commit/6b0cdb87d102c3a2ac3af103020f4012c6eb4169)) - by @ghiscoding
+* added locale ja-JP ([#139](https://github.com/ghiscoding/multiple-select-vanilla/issues/139)) ([d473bd9](https://github.com/ghiscoding/multiple-select-vanilla/commit/d473bd9a361f6c082927185d30b8469df2b8f281)) - by @ghiscoding
+
 ## [0.4.11](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.10...v0.4.11) (2023-10-25)
 
 ### Bug Fixes
