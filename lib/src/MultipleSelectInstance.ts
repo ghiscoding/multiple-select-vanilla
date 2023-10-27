@@ -1286,7 +1286,7 @@ export class MultipleSelectInstance {
     this.updateSelected();
 
     if (!ignoreTrigger) {
-      this.options.onFilter(search);
+      this.options.onFilter(originalSearch);
     }
   }
 
