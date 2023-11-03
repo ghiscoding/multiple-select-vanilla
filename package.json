@@ -49,15 +49,15 @@
     "test:e2e:ui": "playwright test --config playwright/playwright.config.ts --ui",
     "test:report": "playwright show-report"
   },
-  "packageManager": "pnpm@8.10.0",
+  "packageManager": "pnpm@8.10.2",
   "devDependencies": {
     "@lerna-lite/cli": "^2.6.0",
     "@lerna-lite/publish": "^2.6.0",
     "@lerna-lite/watch": "^2.6.0",
     "@playwright/test": "^1.39.0",
-    "@types/node": "^20.8.9",
-    "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
+    "@types/node": "^20.8.10",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.52.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -66,7 +66,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "npm-run-all2": "^6.1.1",
-    "pnpm": "^8.10.0",
+    "pnpm": "^8.10.2",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
     "typescript": "^5.2.2"
