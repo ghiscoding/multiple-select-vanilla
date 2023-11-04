@@ -520,7 +520,7 @@ export class MultipleSelectInstance {
           : createDomElement('input', {
               type: 'checkbox',
               dataset: { name: this.selectGroupName, key: row._key },
-              ariaChecked: String(row.selected),
+              ariaChecked: String(row.selected || false),
               checked: row.selected,
               disabled: row.disabled,
             });
@@ -565,18 +565,27 @@ export class MultipleSelectInstance {
       return [createDomElement('li', { className: 'option-divider' })];
     }
 
-    const liElm = createDomElement('li', {
-      title,
-      className: multiple || classes ? (multiple + classes).trim() : '',
-    });
+    const liClasses = multiple || classes ? (multiple + classes).trim() : '';
+    const liElm = document.createElement('li');
+    if (liClasses) {
+      liElm.className = liClasses;
+    }
+    if (title) {
+      liElm.title = title;
+    }
     applyParsedStyleToElement(liElm, style);
 
-    const labelElm = createDomElement('label', { className: `${row.disabled ? 'disabled' : ''}` });
+    const labelClasses = `${row.disabled ? 'disabled' : ''}`;
+    const labelElm = document.createElement('label');
+    if (labelClasses) {
+      labelElm.className = labelClasses;
+    }
+
     const inputElm = createDomElement('input', {
       type,
       value: encodeURI(row.value),
       dataset: { key: row._key, name: this.selectItemName },
-      ariaChecked: String(row.selected),
+      ariaChecked: String(row.selected || false),
       checked: Boolean(row.selected),
       disabled: Boolean(row.disabled),
     });
