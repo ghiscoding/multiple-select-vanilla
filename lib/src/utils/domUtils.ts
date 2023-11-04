@@ -1,3 +1,5 @@
+import { toCamelCase } from './utils';
+
 export type InferType<T> = T extends infer R ? R : any;
 
 /* eslint-disable @typescript-eslint/indent */
@@ -9,6 +11,18 @@ export interface HtmlElementPosition {
   bottom: number;
   left: number;
   right: number;
+}
+
+export function applyParsedStyleToElement(elm: HTMLElement, styleStr: string) {
+  if (styleStr) {
+    const cstyles = styleStr.replace(/\s/g, '').split(';');
+    for (const cstyle of cstyles) {
+      const [styleProp, styleVal] = cstyle.trim().split(':');
+      if (styleProp && (elm as any).style) {
+        (elm as any).style[toCamelCase(styleProp)] = styleVal.trim();
+      }
+    }
+  }
 }
 
 /** calculate available space for each side of the DOM element */
@@ -68,6 +82,19 @@ export function createDomElement<T extends keyof HTMLElementTagNameMap, K extend
     appendToParent.appendChild(elm);
   }
   return elm;
+}
+
+/**
+ * Empty a DOM element by removing all of its DOM element children leaving with an empty element (basically an empty shell)
+ * @return {object} element - updated element
+ */
+export function emptyElement<T extends Element = Element>(element?: T | null): T | undefined | null {
+  while (element?.firstChild) {
+    if (element.lastChild) {
+      element.removeChild(element.lastChild);
+    }
+  }
+  return element;
 }
 
 /** Get HTML element offset with pure JS */
@@ -167,25 +194,6 @@ export function findParent(elm: HTMLElement, selector: string) {
 
 export function insertAfter(referenceNode: HTMLElement, newNode: HTMLElement) {
   referenceNode.parentNode?.insertBefore(newNode, referenceNode.nextSibling);
-}
-
-/**
- * HTML encode using a plain <div>
- * Create a in-memory div, set it's inner text(which a div can encode)
- * then grab the encoded contents back out.  The div never exists on the page.
- * @param {String} inputValue - input value to be encoded
- * @return {String}
- */
-export function htmlEncode(inputValue: string): string {
-  const val = typeof inputValue === 'string' ? inputValue : String(inputValue);
-  const entityMap: { [char: string]: string } = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;',
-  };
-  return (val || '').toString().replace(/[&<>"']/g, (s) => entityMap[s as keyof { [char: string]: string }]);
 }
 
 /** Display or hide matched element */
