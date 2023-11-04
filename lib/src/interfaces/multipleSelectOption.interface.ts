@@ -14,7 +14,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** defaults to 10, when using "autoAdjustDropHeight" we might want to add a bottom (or top) padding instead of taking the entire available space */
   adjustedHeightPadding: number;
 
-  /** Use optional string to override "All selected" text instead of `formatAllSelected()`, the latter should be prefered */
+  /** Use optional string to override "All selected" text instead of `formatAllSelected()`, the latter should be preferred */
   allSelectedText?: string;
 
   /** Auto-adjust the Drop menu height to fit with available space */
@@ -35,7 +35,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** HTML container to use for the drop menu, e.g. 'body' */
   container?: string | HTMLElement | null;
 
-  /** Use optional string to override selected count text "# of % selected" instead of `formatCountSelected()`, the latter should be prefered */
+  /** Use optional string to override selected count text "# of % selected" instead of `formatCountSelected()`, the latter should be preferred */
   countSelectedText?: string;
 
   /** provide custom data */
@@ -118,10 +118,10 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Provide a name to the multiple select element. By default this option is set to ''. */
   name?: string;
 
-  /** Use optional string to override text when filtering "No matches found" instead of `formatNoMatchesFound()`, the latter should be prefered */
+  /** Use optional string to override text when filtering "No matches found" instead of `formatNoMatchesFound()`, the latter should be preferred */
   noMatchesFoundText?: string;
 
-  /** Use optional string to override "OK" button text instead of `formatOkButton()`, the latter should be prefered */
+  /** Use optional string to override "OK" button text instead of `formatOkButton()`, the latter should be preferred */
   okButtonText?: string;
 
   /** Should we open the dropdown while hovering the select? */
@@ -139,7 +139,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Whether or not Multiple Select show select all checkbox. */
   selectAll?: boolean;
 
-  /** Use optional string to override "Select All" checkbox text instead of `formatSelectAll()`, the latter should be prefered */
+  /** Use optional string to override "Select All" checkbox text instead of `formatSelectAll()`, the latter should be preferred */
   selectAllText?: string;
 
   /** Whether or not Multiple Select allows you to select only one option.By default this option is set to false. */

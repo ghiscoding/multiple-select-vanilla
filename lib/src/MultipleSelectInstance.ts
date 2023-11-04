@@ -4,12 +4,12 @@
 import Constants from './constants';
 import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils';
 import {
+  applyParsedStyleToElement,
   calculateAvailableSpace,
   createDomElement,
   findParent,
   getElementOffset,
   getElementSize,
-  htmlEncode,
   insertAfter,
   toggleElement,
 } from './utils/domUtils';
@@ -228,9 +228,9 @@ export class MultipleSelectInstance {
       this.choiceElm.classList.add('disabled');
     }
 
-    this.selectAllName = `data-name="selectAll${name}"`;
-    this.selectGroupName = `data-name="selectGroup${name}"`;
-    this.selectItemName = `data-name="selectItem${name}"`;
+    this.selectAllName = `selectAll${name}`;
+    this.selectGroupName = `selectGroup${name}`;
+    this.selectItemName = `selectItem${name}`;
 
     if (!this.options.keepOpen) {
       this._bindEventService.unbind(document.body, 'click');
@@ -387,7 +387,12 @@ export class MultipleSelectInstance {
       const saLabelElm = document.createElement('label');
       createDomElement(
         'input',
-        { type: 'checkbox', checked: this.allSelected, dataset: { name: `selectAll${selectName}` } },
+        {
+          type: 'checkbox',
+          ariaChecked: String(this.allSelected),
+          checked: this.allSelected,
+          dataset: { name: `selectAll${selectName}` },
+        },
         saLabelElm
       );
       saLabelElm.appendChild(createDomElement('span', { textContent: this.formatSelectAll() }));
@@ -460,7 +465,9 @@ export class MultipleSelectInstance {
       }
     } else {
       if (this.ulElm) {
-        this.ulElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(rows.join('')) : rows.join('');
+        const htmlRows: string[] = [];
+        rows.forEach((rowElm) => htmlRows.push(rowElm.outerHTML));
+        this.ulElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(htmlRows.join('')) : htmlRows.join('');
       }
       this.updateDataStart = 0;
       this.updateDataEnd = this.updateData.length;
@@ -470,21 +477,21 @@ export class MultipleSelectInstance {
   }
 
   protected getListRows() {
-    const rows = [];
+    const rows: HTMLElement[] = [];
 
     this.updateData = [];
     this.data?.forEach((row) => {
       rows.push(...this.initListItem(row));
     });
 
-    rows.push(`<li class="ms-no-results">${this.formatNoMatchesFound()}</li>`);
+    rows.push(createDomElement('li', { className: 'ms-no-results', textContent: this.formatNoMatchesFound() }));
 
     return rows;
   }
 
-  protected initListItem(row: any, level = 0) {
+  protected initListItem(row: any, level = 0): HTMLElement[] {
     const isRenderAsHtml = this.options.renderOptionLabelAsHtml || this.options.useSelectOptionLabelToHtml;
-    const title = row?.title ? `title="${row.title}"` : '';
+    const title = row?.title || '';
     const multiple = this.options.multiple ? 'multiple' : '';
     const type = this.options.single ? 'radio' : 'checkbox';
     let classes = '';
@@ -505,39 +512,49 @@ export class MultipleSelectInstance {
 
     if (row.type === 'optgroup') {
       const customStyle = this.options.styler(row);
-      const style = customStyle ? `style="${customStyle}"` : '';
-      const html = [];
-      const group =
+      const styleStr = String(customStyle || '');
+      const htmlElms: HTMLElement[] = [];
+      const groupElm =
         this.options.hideOptgroupCheckboxes || this.options.single
-          ? `<span ${this.selectGroupName} data-key="${row._key}"></span>`
-          : `<input type="checkbox"
-          ${this.selectGroupName}
-          data-key="${row._key}"
-          ${row.selected ? ' checked="checked"' : ''}
-          ${row.disabled ? ' disabled="disabled"' : ''}
-        >`;
+          ? createDomElement('span', { dataset: { name: this.selectGroupName, key: row._key } })
+          : createDomElement('input', {
+              type: 'checkbox',
+              dataset: { name: this.selectGroupName, key: row._key },
+              ariaChecked: String(row.selected),
+              checked: row.selected,
+              disabled: row.disabled,
+            });
 
       if (!classes.includes('hide-radio') && (this.options.hideOptgroupCheckboxes || this.options.single)) {
         classes += 'hide-radio ';
       }
 
-      html.push(`
-        <li class="${`group ${classes}`.trim()}" ${style}>
-        <label class="optgroup${this.options.single || row.disabled ? ' disabled' : ''}">
-        ${group}${isRenderAsHtml ? row.label : htmlEncode(row.label)}
-        </label>
-        </li>
-      `);
+      const labelElm = createDomElement('label', {
+        className: `optgroup${this.options.single || row.disabled ? ' disabled' : ''}`,
+      });
+      labelElm.appendChild(groupElm);
+
+      const spanElm = document.createElement('span');
+      if (isRenderAsHtml) {
+        spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(row.label) : row.label;
+      } else {
+        spanElm.textContent = row.label;
+      }
+      labelElm.appendChild(spanElm);
+      const liElm = createDomElement('li', { className: `group ${classes}`.trim() });
+      applyParsedStyleToElement(liElm, styleStr);
+      liElm.appendChild(labelElm);
+      htmlElms.push(liElm);
 
       (row as OptGroupRowData).children.forEach((child: any) => {
-        html.push(...this.initListItem(child, 1));
+        htmlElms.push(...this.initListItem(child, 1));
       });
 
-      return html;
+      return htmlElms;
     }
 
     const customStyle = this.options.styler(row);
-    const style = customStyle ? `style="${customStyle}"` : '';
+    const style = String(customStyle || '');
     classes += row.classes || '';
 
     if (level && this.options.single) {
@@ -545,25 +562,40 @@ export class MultipleSelectInstance {
     }
 
     if (row.divider) {
-      return '<li class="option-divider"/>';
+      return [createDomElement('li', { className: 'option-divider' })];
     }
 
-    return [
-      `
-      <li ${multiple || classes ? `class="${(multiple + classes).trim()}"` : ''} ${title} ${style}>
-      <label ${row.disabled ? 'class="disabled"' : ''}>
-      <input type="${type}"
-        value="${encodeURI(row.value)}"
-        data-key="${row._key}"
-        ${this.selectItemName}
-        ${row.selected ? ' checked="checked"' : ''}
-        ${row.disabled ? ' disabled="disabled"' : ''}
-      >
-      <span>${isRenderAsHtml ? row.text : htmlEncode(row.text)}</span>
-      </label>
-      </li>
-    `,
-    ];
+    const liElm = createDomElement('li', {
+      title,
+      className: multiple || classes ? (multiple + classes).trim() : '',
+    });
+    applyParsedStyleToElement(liElm, style);
+
+    const labelElm = createDomElement('label', { className: `${row.disabled ? 'disabled' : ''}` });
+    const inputElm = createDomElement('input', {
+      type,
+      value: encodeURI(row.value),
+      dataset: { key: row._key, name: this.selectItemName },
+      ariaChecked: String(row.selected),
+      checked: Boolean(row.selected),
+      disabled: Boolean(row.disabled),
+    });
+    if (row.selected) {
+      inputElm.setAttribute('checked', 'checked');
+    }
+
+    const spanElm = document.createElement('span');
+    if (isRenderAsHtml) {
+      spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(row.text) : row.text;
+    } else {
+      spanElm.textContent = row.text;
+    }
+
+    labelElm.appendChild(inputElm);
+    labelElm.appendChild(spanElm);
+    liElm.appendChild(labelElm);
+
+    return [liElm];
   }
 
   protected initSelected(ignoreTrigger = false) {
@@ -571,9 +603,9 @@ export class MultipleSelectInstance {
 
     for (const row of this.data || []) {
       if ((row as OptGroupRowData).type === 'optgroup') {
-        const selectedCount = (row as OptGroupRowData).children.filter((child) => {
-          return child && child.selected && !child.disabled && child.visible;
-        }).length;
+        const selectedCount = (row as OptGroupRowData).children.filter(
+          (child) => child && child.selected && !child.disabled && child.visible
+        ).length;
 
         if ((row as OptGroupRowData).children.length) {
           row.selected =
@@ -609,7 +641,6 @@ export class MultipleSelectInstance {
 
     if (window.getComputedStyle) {
       computedWidth = window.getComputedStyle(this.elm).width;
-
       if (computedWidth === 'auto') {
         computedWidth = getElementSize(this.dropElm, 'outer', 'width') + 20;
       }
@@ -632,12 +663,12 @@ export class MultipleSelectInstance {
     this._bindEventService.unbind(this.noResultsElm);
 
     this.searchInputElm = this.dropElm.querySelector<HTMLInputElement>('.ms-search input');
-    this.selectAllElm = this.dropElm.querySelector<HTMLInputElement>(`input[${this.selectAllName}]`);
+    this.selectAllElm = this.dropElm.querySelector<HTMLInputElement>(`input[data-name="${this.selectAllName}"]`);
     this.selectGroupElms = this.dropElm.querySelectorAll<HTMLInputElement>(
-      `input[${this.selectGroupName}],span[${this.selectGroupName}]`
+      `input[data-name="${this.selectGroupName}"],span[data-name="${this.selectGroupName}"]`
     );
-    this.selectItemElms = this.dropElm.querySelectorAll<HTMLInputElement>(`input[${this.selectItemName}]:enabled`);
-    this.disableItemElms = this.dropElm.querySelectorAll<HTMLInputElement>(`input[${this.selectItemName}]:disabled`);
+    this.selectItemElms = this.dropElm.querySelectorAll<HTMLInputElement>(`input[data-name="${this.selectItemName}"]:enabled`);
+    this.disableItemElms = this.dropElm.querySelectorAll<HTMLInputElement>(`input[data-name="${this.selectItemName}"]:disabled`);
     this.noResultsElm = this.dropElm.querySelector<HTMLDivElement>('.ms-no-results');
 
     const toggleOpen = (e: MouseEvent & { target: HTMLElement }) => {
@@ -708,7 +739,7 @@ export class MultipleSelectInstance {
               }
             });
             if (visibleLiElms.length) {
-              const [selectItemAttrName] = this.selectItemName.split('='); // [data-name="selectItem"], we want "data-name" attribute
+              const selectItemAttrName = 'data-name'; // [data-name="selectItem"], we want "data-name" attribute
               if (visibleLiElms[0].hasAttribute(selectItemAttrName)) {
                 this.setSelects([visibleLiElms[0].value]);
               }
@@ -842,10 +873,8 @@ export class MultipleSelectInstance {
       if (this.options.container instanceof Node) {
         container = this.options.container as HTMLElement;
       } else if (typeof this.options.container === 'string') {
-        // prettier-ignore
-        container = this.options.container === 'body'
-            ? document.body
-            : document.querySelector(this.options.container) as HTMLElement;
+        container =
+          this.options.container === 'body' ? document.body : (document.querySelector(this.options.container) as HTMLElement);
       }
       container!.appendChild(this.dropElm);
       this.dropElm.style.top = `${offset?.top ?? 0}px`;
@@ -1092,7 +1121,7 @@ export class MultipleSelectInstance {
         let selected = false;
         if (type === 'text') {
           const divElm = document.createElement('div');
-          divElm.innerHTML = row.text;
+          divElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(row.text) : row.text;
           selected = values.includes(divElm.textContent?.trim() ?? '');
         } else {
           selected = values.includes(row._value || row.value);

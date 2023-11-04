@@ -23,7 +23,7 @@ export interface OptGroupRowData extends Omit<OptionRowData, 'text' | 'value'> {
 }
 
 export interface VirtualScrollOption {
-  rows: string[];
+  rows: HTMLElement[];
   scrollEl: HTMLElement;
   contentEl: HTMLElement;
   callback: () => void;

@@ -1,12 +1,20 @@
 import Constants from '../constants';
 import { VirtualScrollOption } from '../interfaces';
+import { emptyElement } from '../utils';
+
+interface VirtualCache {
+  bottom: number;
+  data: string;
+  scrollTop: number;
+  top: number;
+}
 
 export class VirtualScroll {
-  cache: any;
+  cache: VirtualCache;
   clusterRows?: number;
   dataStart!: number;
   dataEnd!: number;
-  rows: string[];
+  rows: HTMLElement[];
   scrollEl: HTMLElement;
   blockHeight?: number;
   clusterHeight?: number;
@@ -26,7 +34,7 @@ export class VirtualScroll {
     this.parentEl = options.contentEl?.parentElement;
     this.callback = options.callback;
 
-    this.cache = {};
+    this.cache = {} as VirtualCache;
     this.scrollTop = this.scrollEl.scrollTop;
 
     this.initDOM(this.rows);
@@ -43,22 +51,24 @@ export class VirtualScroll {
 
     this.scrollEl.addEventListener('scroll', onScroll, false);
     this.destroy = () => {
-      this.contentEl.innerHTML = '';
+      emptyElement(this.contentEl);
       this.scrollEl.removeEventListener('scroll', onScroll, false);
     };
   }
 
-  initDOM(rows: string[]) {
+  initDOM(rows: HTMLElement[]) {
     if (typeof this.clusterHeight === 'undefined') {
       this.cache.scrollTop = this.scrollEl.scrollTop;
-      const data = rows[0] + rows[0] + rows[0];
+      const data = rows[0].outerHTML + rows[0].outerHTML + rows[0].outerHTML;
       this.contentEl.innerHTML = this.sanitizer ? this.sanitizer(`${data}`) : `${data}`;
       this.cache.data = data;
       this.getRowsHeight();
     }
 
     const data = this.initData(rows, this.getNum());
-    const thisRows = data.rows.join('');
+    const htmlRows: string[] = [];
+    data.rows.forEach((row) => htmlRows.push(row.outerHTML));
+    const thisRows = htmlRows.join('');
     const dataChanged = this.checkChanges('data', thisRows);
     const topOffsetChanged = this.checkChanges('top', data.topOffset);
     const bottomOffsetChanged = this.checkChanges('bottom', data.bottomOffset);
@@ -106,7 +116,7 @@ export class VirtualScroll {
     return 0;
   }
 
-  initData(rows: string[], num: number) {
+  initData(rows: HTMLElement[], num: number) {
     if (rows.length < Constants.BLOCK_ROWS) {
       return {
         topOffset: 0,
@@ -139,7 +149,7 @@ export class VirtualScroll {
     };
   }
 
-  checkChanges(type: string, value: number | string) {
+  checkChanges<T extends keyof VirtualCache>(type: T, value: VirtualCache[T]) {
     const changed = value !== this.cache[type];
     this.cache[type] = value;
     return changed;
