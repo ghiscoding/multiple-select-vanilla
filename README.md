@@ -41,16 +41,17 @@ New Multiple-Select Options:
 - dropped jQuery requirement and replaced necessary code with browser native code.
 - written in TypeScript which also brings typings support
 - add extra features:
-  - `showOkButton` to add an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
   - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height by available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
   - `autoAdjustDropWidthByTextSize` automatically set the drop width size from the widest list option width
+  - `dataTest` will add a `data-test` attribute on the `.ms-parent` and `.ms-drop` divs for easier E2E testing
   - `useSelectOptionLabel` will use the `<option label="">` (from select option value) that can be used to display shorter text of selected options.
     - example: will show "1,3" instead of "January,March" (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options31))
   - `useSelectOptionLabelToHtml` similar to `useSelectOptionLabel` but also renders HTML.
   - `renderOptionLabelAsHtml` will render selected options as HTML code (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options27))
   - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options32)).
-  - `dataTest` will add a `data-test` attribute on the `.ms-parent` and `.ms-drop` divs for easier E2E testing
+  - `showOkButton` to add an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
+  - `showSearchClear` show a clear button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
 
 ### Used by
 This fork was created mostly to drop jQuery, and is used by a few other libraries that I maintain:
