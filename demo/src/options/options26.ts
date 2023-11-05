@@ -3,6 +3,7 @@ import { multipleSelect, OptionRowData, OptGroupRowData, MultipleSelectInstance 
 export default class Example {
   ms1?: MultipleSelectInstance;
   ms2?: MultipleSelectInstance;
+  ms3?: MultipleSelectInstance;
 
   mount() {
     this.ms1 = multipleSelect('#basic', {
@@ -28,13 +29,27 @@ export default class Example {
         return null;
       },
     }) as MultipleSelectInstance;
+
+    this.ms3 = multipleSelect('#select3', {
+      cssStyler: (row: OptionRowData | OptGroupRowData) => {
+        if (+(row?.value ?? 0) === 2) {
+          return { backgroundColor: '#6fbeff', color: '#0014ff', fontStyle: 'italic' } as CSSStyleDeclaration;
+        }
+        if (+(row?.value ?? 0) === 4) {
+          return { backgroundColor: '#972727', color: '#fff' } as CSSStyleDeclaration;
+        }
+        return null;
+      },
+    }) as MultipleSelectInstance;
   }
 
   unmount() {
     // destroy ms instance(s) to avoid DOM leaks
     this.ms1?.destroy();
     this.ms2?.destroy();
+    this.ms3?.destroy();
     this.ms1 = undefined;
     this.ms2 = undefined;
+    this.ms3 = undefined;
   }
 }
