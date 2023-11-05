@@ -15,7 +15,7 @@ import {
   toggleElement,
 } from './utils/domUtils';
 import type { HtmlElementPosition } from './utils/domUtils';
-import type { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
+import type { CSSStyleDeclarationWritable, MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
 import type { MultipleSelectLocales, OptGroupRowData, OptionDataObject, OptionRowData } from './interfaces';
 import { BindingEventService, VirtualScroll } from './services';
 
@@ -576,6 +576,12 @@ export class MultipleSelectInstance {
     }
     applyParsedStyleToElement(liElm, style);
 
+    const customStyleCss = this.options.cssStyler?.(row);
+    if (customStyleCss) {
+      for (const styleProp of Object.keys(customStyleCss)) {
+        liElm.style[styleProp as CSSStyleDeclarationWritable] = customStyleCss[styleProp as CSSStyleDeclarationWritable];
+      }
+    }
     const labelClasses = `${row.disabled ? 'disabled' : ''}`;
     const labelElm = document.createElement('label');
     if (labelClasses) {

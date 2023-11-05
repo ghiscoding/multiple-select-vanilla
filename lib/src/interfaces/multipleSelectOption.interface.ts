@@ -7,6 +7,16 @@ export interface MultipleSelectView {
   instance: any;
 }
 
+export type CSSStyleDeclarationReadonly =
+  | 'length'
+  | 'parentRule'
+  | 'getPropertyPriority'
+  | 'getPropertyValue'
+  | 'item'
+  | 'removeProperty'
+  | 'setProperty';
+export type CSSStyleDeclarationWritable = keyof Omit<CSSStyleDeclaration, CSSStyleDeclarationReadonly>;
+
 export interface MultipleSelectOption extends MultipleSelectLocale {
   /** @deprecated @alias `displayTitle` Add a title. By default this option is set to false. */
   addTitle?: boolean;
@@ -176,7 +186,10 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Customize the filter method, for example we use startWith */
   customFilter(options: LabelFilter | TextFilter): boolean;
 
-  /** The item styler function, return style string to custom the item style such as background: red. The function take one parameter: value. */
+  /** The item styler function, return style string to customize the item style such as background: red. The function take one parameter: value. */
+  cssStyler?: (value: OptionRowData | OptGroupRowData) => CSSStyleDeclaration | null;
+
+  /** @deprecated @use `cssStyler`. The item styler function, return style string to customize the item style such as background: red. The function take one parameter: value. */
   styler: (value: OptionRowData | OptGroupRowData) => string | boolean | null;
 
   /** Returns HTML label attribute of a DOM element */
