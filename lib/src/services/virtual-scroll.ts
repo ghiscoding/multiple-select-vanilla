@@ -4,7 +4,7 @@ import { emptyElement } from '../utils';
 
 interface VirtualCache {
   bottom: number;
-  data: string;
+  data: HTMLElement[];
   scrollTop: number;
   top: number;
 }
@@ -59,30 +59,30 @@ export class VirtualScroll {
   initDOM(rows: HTMLElement[]) {
     if (typeof this.clusterHeight === 'undefined') {
       this.cache.scrollTop = this.scrollEl.scrollTop;
-      const data = rows[0].outerHTML + rows[0].outerHTML + rows[0].outerHTML;
-      this.contentEl.innerHTML = this.sanitizer ? this.sanitizer(`${data}`) : `${data}`;
-      this.cache.data = data;
+
+      this.contentEl.appendChild(rows[0]);
+      this.contentEl.appendChild(rows[0]);
+      this.contentEl.appendChild(rows[0]);
+      this.cache.data = [rows[0]];
       this.getRowsHeight();
     }
 
     const data = this.initData(rows, this.getNum());
-    const htmlRows: string[] = [];
-    data.rows.forEach((row) => htmlRows.push(row.outerHTML));
-    const thisRows = htmlRows.join('');
-    const dataChanged = this.checkChanges('data', thisRows);
+    const dataChanged = this.checkChanges('data', data.rows);
     const topOffsetChanged = this.checkChanges('top', data.topOffset);
     const bottomOffsetChanged = this.checkChanges('bottom', data.bottomOffset);
-    const html = [];
+
+    emptyElement(this.contentEl);
 
     if (dataChanged && topOffsetChanged) {
       if (data.topOffset) {
-        html.push(this.getExtra('top', data.topOffset));
+        this.contentEl.appendChild(this.getExtra('top', data.topOffset));
       }
-      html.push(thisRows);
+      data.rows.forEach((h) => this.contentEl.appendChild(h));
+
       if (data.bottomOffset) {
-        html.push(this.getExtra('bottom', data.bottomOffset));
+        this.contentEl.appendChild(this.getExtra('bottom', data.bottomOffset));
       }
-      this.contentEl.innerHTML = this.sanitizer ? this.sanitizer(html.join('')) : html.join('');
     } else if (bottomOffsetChanged && this.contentEl.lastChild) {
       (this.contentEl.lastChild as HTMLElement).style.height = `${data.bottomOffset}px`;
     }
@@ -129,7 +129,7 @@ export class VirtualScroll {
     const end = start + this.clusterRows!;
     const topOffset = Math.max(start * this.itemHeight!, 0);
     const bottomOffset = Math.max((rows.length - end) * this.itemHeight!, 0);
-    const thisRows = [];
+    const thisRows: HTMLElement[] = [];
     let rowsAbove = start;
     if (topOffset < 1) {
       rowsAbove++;
@@ -161,6 +161,6 @@ export class VirtualScroll {
     if (height) {
       tag.style.height = `${height}px`;
     }
-    return tag.outerHTML;
+    return tag;
   }
 }
