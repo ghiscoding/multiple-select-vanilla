@@ -7,6 +7,7 @@ import {
   applyParsedStyleToElement,
   calculateAvailableSpace,
   createDomElement,
+  emptyElement,
   findParent,
   getElementOffset,
   getElementSize,
@@ -50,6 +51,10 @@ export class MultipleSelectInstance {
   protected updateDataEnd?: number;
   protected virtualScroll?: VirtualScroll | null;
   locales: MultipleSelectLocales = {};
+
+  get isRenderAsHtml() {
+    return this.options.renderOptionLabelAsHtml || this.options.useSelectOptionLabelToHtml;
+  }
 
   constructor(
     protected elm: HTMLSelectElement,
@@ -415,8 +420,8 @@ export class MultipleSelectInstance {
   }
 
   protected initListItems() {
-    const rows = this.getListRows();
     let offset = 0;
+    const rows = this.getListRows();
 
     if (this.options.selectAll && !this.options.single) {
       offset = -1;
@@ -465,9 +470,8 @@ export class MultipleSelectInstance {
       }
     } else {
       if (this.ulElm) {
-        const htmlRows: string[] = [];
-        rows.forEach((rowElm) => htmlRows.push(rowElm.outerHTML));
-        this.ulElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(htmlRows.join('')) : htmlRows.join('');
+        emptyElement(this.ulElm);
+        rows.forEach((rowElm) => this.ulElm!.appendChild(rowElm));
       }
       this.updateDataStart = 0;
       this.updateDataEnd = this.updateData.length;
@@ -478,19 +482,15 @@ export class MultipleSelectInstance {
 
   protected getListRows() {
     const rows: HTMLElement[] = [];
-
     this.updateData = [];
-    this.data?.forEach((row) => {
-      rows.push(...this.initListItem(row));
-    });
 
+    this.data?.forEach((row) => rows.push(...this.initListItem(row)));
     rows.push(createDomElement('li', { className: 'ms-no-results', textContent: this.formatNoMatchesFound() }));
 
     return rows;
   }
 
   protected initListItem(row: any, level = 0): HTMLElement[] {
-    const isRenderAsHtml = this.options.renderOptionLabelAsHtml || this.options.useSelectOptionLabelToHtml;
     const title = row?.title || '';
     const multiple = this.options.multiple ? 'multiple' : '';
     const type = this.options.single ? 'radio' : 'checkbox';
@@ -535,11 +535,7 @@ export class MultipleSelectInstance {
       labelElm.appendChild(groupElm);
 
       const spanElm = document.createElement('span');
-      if (isRenderAsHtml) {
-        spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(row.label) : row.label;
-      } else {
-        spanElm.textContent = row.label;
-      }
+      this.renderAsTextOrHtmlWhenEnabled(spanElm, row.label);
       labelElm.appendChild(spanElm);
       const liElm = createDomElement('li', { className: `group ${classes}`.trim() });
       applyParsedStyleToElement(liElm, styleStr);
@@ -594,11 +590,7 @@ export class MultipleSelectInstance {
     }
 
     const spanElm = document.createElement('span');
-    if (isRenderAsHtml) {
-      spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(row.text) : row.text;
-    } else {
-      spanElm.textContent = row.text;
-    }
+    this.renderAsTextOrHtmlWhenEnabled(spanElm, row.text);
 
     labelElm.appendChild(inputElm);
     labelElm.appendChild(spanElm);
@@ -747,11 +739,8 @@ export class MultipleSelectInstance {
                 visibleLiElms.push(selectedElm);
               }
             });
-            if (visibleLiElms.length) {
-              const selectItemAttrName = 'data-name'; // [data-name="selectItem"], we want "data-name" attribute
-              if (visibleLiElms[0].hasAttribute(selectItemAttrName)) {
-                this.setSelects([visibleLiElms[0].value]);
-              }
+            if (visibleLiElms.length && visibleLiElms[0].hasAttribute('data-name')) {
+              this.setSelects([visibleLiElms[0].value]);
             }
           } else {
             this.selectAllElm?.click();
@@ -955,6 +944,19 @@ export class MultipleSelectInstance {
     this.options.onClose();
   }
 
+  /**
+   * Renders value to an HTML element as text or as HTML with innerHTML when enabled
+   * @param elm
+   * @param value
+   */
+  protected renderAsTextOrHtmlWhenEnabled(elm: HTMLElement, value: string) {
+    if (this.isRenderAsHtml) {
+      elm.innerHTML = this.options.sanitizer ? this.options.sanitizer(value) : value;
+    } else {
+      elm.textContent = value;
+    }
+  }
+
   protected update(ignoreTrigger = false) {
     const valueSelects = this.getSelects();
     let textSelects = this.getSelects('text');
@@ -979,7 +981,7 @@ export class MultipleSelectInstance {
       if (sl === 0) {
         const placeholder = this.options.placeholder || '';
         spanElm.classList.add('ms-placeholder');
-        spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(placeholder) : placeholder;
+        this.renderAsTextOrHtmlWhenEnabled(spanElm, placeholder);
       } else if (sl < this.options.minimumCountSelected) {
         html = getSelectOptionHtml();
       } else if (this.formatAllSelected() && sl === this.dataTotal) {
@@ -991,13 +993,10 @@ export class MultipleSelectInstance {
       } else {
         html = getSelectOptionHtml();
       }
+
       if (html !== null) {
         spanElm?.classList.remove('ms-placeholder');
-        if (this.options.renderOptionLabelAsHtml || this.options.useSelectOptionLabelToHtml) {
-          spanElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(html) : html;
-        } else {
-          spanElm.textContent = html;
-        }
+        this.renderAsTextOrHtmlWhenEnabled(spanElm, html);
       }
 
       if (this.options.displayTitle || this.options.addTitle) {
@@ -1130,7 +1129,7 @@ export class MultipleSelectInstance {
         let selected = false;
         if (type === 'text') {
           const divElm = document.createElement('div');
-          divElm.innerHTML = this.options.sanitizer ? this.options.sanitizer(row.text) : row.text;
+          this.renderAsTextOrHtmlWhenEnabled(divElm, row.text);
           selected = values.includes(divElm.textContent?.trim() ?? '');
         } else {
           selected = values.includes(row._value || row.value);

@@ -98,15 +98,11 @@ export function findByParam(data: any, param: any, value: any) {
   }
 }
 
-export function stripScripts(str: string) {
-  const div = document.createElement('div');
-  div.innerHTML = str;
-  const scripts = div.getElementsByTagName('script');
-  let i = scripts.length;
-  while (i--) {
-    scripts[i].parentNode?.removeChild(scripts[i]);
-  }
-  return div.innerHTML;
+export function stripScripts(dirtyHtml: string) {
+  return dirtyHtml.replace(
+    /(\b)(on[a-z]+)(\s*)=([^>]*)|javascript:([^>]*)[^>]*|(<\s*)(\/*)script([<>]*).*(<\s*)(\/*)script(>*)|(&lt;|&#60;)(\/*)(script|script defer)(.*)(&#62;|&gt;|&gt;">)/gi,
+    ''
+  );
 }
 
 export function removeUndefined(obj: any) {

@@ -1,10 +1,11 @@
-import './style.scss';
-import mainHtml from './main.html?raw';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import 'font-awesome/css/font-awesome.css';
+import { createDomElement, emptyElement } from 'multiple-select-vanilla';
+
 import { exampleRouting, navbarRouting } from './app-routing';
-import { createDomElement } from 'multiple-select-vanilla';
+import mainHtml from './main.html?raw';
+import './style.scss';
 
 const pageLayoutGlobs = import.meta.glob('/src/./**/*.html', { as: 'raw', eager: true });
 
@@ -97,7 +98,7 @@ class Main {
 
   async loadRoute(routeName: string, changeBrowserState = true) {
     const contentElm = document.querySelector('.panel-wm-content') as HTMLElement;
-    contentElm.innerHTML = '';
+    emptyElement(contentElm);
     contentElm.classList.add('cloak');
     let foundRouter = navbarRouting.find((r) => r.name === routeName);
 
