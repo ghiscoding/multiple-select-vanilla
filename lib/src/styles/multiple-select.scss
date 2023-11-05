@@ -176,7 +176,8 @@
 }
 
 .ms-search {
-  display: inline-block;
+  display: flex;
+  box-sizing: border-box;
   position: relative;
   white-space: nowrap;
   width: 100%;
@@ -198,7 +199,25 @@
     margin: var(--ms-search-input-margin, $ms-search-input-margin);
   }
 
-  box-sizing: border-box;
+  span.icon-close {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 18px;
+    height: 100%;
+    width: 18px;
+
+    &:before {
+      content: '×';
+      color: #888;
+      font-weight: bold;
+    }
+
+    &:hover:before {
+      color: #333;
+    }
+  }
 }
 
 .ms-drop {

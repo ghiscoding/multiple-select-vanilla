@@ -154,6 +154,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Show a clear button, defaults to false */
   showClear?: boolean;
 
+  /** Show a clear button on the filter search input, defaults to false */
+  showSearchClear?: boolean;
+
   /** Display the OK button at bottom of the list when using multiple selection to easily close the drop, defaults to false. */
   showOkButton?: boolean;
 

@@ -46,6 +46,7 @@ import Options30 from './options/options30';
 import Options31 from './options/options31';
 import Options32 from './options/options32';
 import Options33 from './options/options33';
+import Options34 from './options/options34';
 import Methods01 from './methods/methods01';
 import Methods02 from './methods/methods02';
 import Methods03 from './methods/methods03';
@@ -122,6 +123,7 @@ export const exampleRouting = [
       { name: 'options31', view: '/src/options/options31.html', viewModel: Options31, title: 'Use Select Option as Label' },
       { name: 'options32', view: '/src/options/options32.html', viewModel: Options32, title: 'Sanitizer' },
       { name: 'options33', view: '/src/options/options33.html', viewModel: Options33, title: 'Classes' },
+      { name: 'options34', view: '/src/options/options34.html', viewModel: Options34, title: 'Show Search Clear' },
     ],
   },
   {
