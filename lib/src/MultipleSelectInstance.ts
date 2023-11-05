@@ -25,6 +25,7 @@ export class MultipleSelectInstance {
   protected fromHtml = false;
   protected choiceElm!: HTMLButtonElement;
   protected closeElm?: HTMLElement | null;
+  protected closeSearchElm?: HTMLElement | null;
   protected filterText = '';
   protected updateData: any[] = [];
   protected data?: Array<OptionRowData | OptGroupRowData> = [];
@@ -384,6 +385,10 @@ export class MultipleSelectInstance {
           placeholder: this.options.filterPlaceholder || '🔎︎',
         })
       );
+
+      if (this.options.showSearchClear) {
+        this.filterParentElm.appendChild(createDomElement('span', { className: 'icon-close' }));
+      }
     }
 
     if (this.options.selectAll && !this.options.single) {
@@ -663,6 +668,7 @@ export class MultipleSelectInstance {
     this._bindEventService.unbind(this.disableItemElms);
     this._bindEventService.unbind(this.noResultsElm);
 
+    this.closeSearchElm = this.filterParentElm?.querySelector('.icon-close');
     this.searchInputElm = this.dropElm.querySelector<HTMLInputElement>('.ms-search input');
     this.selectAllElm = this.dropElm.querySelector<HTMLInputElement>(`input[data-name="${this.selectAllName}"]`);
     this.selectGroupElms = this.dropElm.querySelectorAll<HTMLInputElement>(
@@ -702,7 +708,6 @@ export class MultipleSelectInstance {
     }
 
     this._bindEventService.bind(this.parentElm, 'keydown', ((e: KeyboardEvent) => {
-      // esc key
       if (e.code === 'Escape' && !this.options.keepOpen) {
         this.close();
         this.choiceElm.focus();
@@ -717,6 +722,17 @@ export class MultipleSelectInstance {
         this.updateSelected();
         this.update();
         this.options.onClear();
+      }) as EventListener);
+    }
+
+    if (this.closeSearchElm) {
+      this._bindEventService.bind(this.closeSearchElm, 'click', ((e: MouseEvent) => {
+        e.preventDefault();
+        if (this.searchInputElm) {
+          this.searchInputElm.value = '';
+          this.searchInputElm.focus();
+        }
+        this.filter();
       }) as EventListener);
     }
 

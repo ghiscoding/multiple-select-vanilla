@@ -12,6 +12,7 @@ export default class Example {
     this.ms1 = multipleSelect('#select', {
       filter: true,
       data,
+      showSearchClear: true,
     }) as MultipleSelectInstance;
   }
 
