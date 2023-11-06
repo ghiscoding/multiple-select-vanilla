@@ -187,7 +187,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   customFilter(options: LabelFilter | TextFilter): boolean;
 
   /** The item styler function, return style string to customize the item style such as background: red. The function take one parameter: value. */
-  cssStyler?: (value: OptionRowData | OptGroupRowData) => CSSStyleDeclaration | null;
+  cssStyler: (value: OptionRowData | OptGroupRowData) => CSSStyleDeclaration | null;
 
   /** @deprecated @use `cssStyler`. The item styler function, return style string to customize the item style such as background: red. The function take one parameter: value. */
   styler: (value: OptionRowData | OptGroupRowData) => string | boolean | null;

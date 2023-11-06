@@ -4,6 +4,7 @@
 import Constants from './constants';
 import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils';
 import {
+  applyCssRules,
   applyParsedStyleToElement,
   calculateAvailableSpace,
   createDomElement,
@@ -15,7 +16,7 @@ import {
   toggleElement,
 } from './utils/domUtils';
 import type { HtmlElementPosition } from './utils/domUtils';
-import type { CSSStyleDeclarationWritable, MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
+import type { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
 import type { MultipleSelectLocales, OptGroupRowData, OptionDataObject, OptionRowData } from './interfaces';
 import { BindingEventService, VirtualScroll } from './services';
 
@@ -516,6 +517,7 @@ export class MultipleSelectInstance {
     }
 
     if (row.type === 'optgroup') {
+      const customStyleRules = this.options.cssStyler(row);
       const customStyle = this.options.styler(row);
       const styleStr = String(customStyle || '');
       const htmlElms: HTMLElement[] = [];
@@ -544,6 +546,7 @@ export class MultipleSelectInstance {
       labelElm.appendChild(spanElm);
       const liElm = createDomElement('li', { className: `group ${classes}`.trim() });
       applyParsedStyleToElement(liElm, styleStr);
+      applyCssRules(liElm, customStyleRules);
       liElm.appendChild(labelElm);
       htmlElms.push(liElm);
 
@@ -554,6 +557,7 @@ export class MultipleSelectInstance {
       return htmlElms;
     }
 
+    const customStyleRules = this.options.cssStyler(row);
     const customStyle = this.options.styler(row);
     const style = String(customStyle || '');
     classes += row.classes || '';
@@ -574,14 +578,9 @@ export class MultipleSelectInstance {
     if (title) {
       liElm.title = title;
     }
-    applyParsedStyleToElement(liElm, style);
 
-    const customStyleCss = this.options.cssStyler?.(row);
-    if (customStyleCss) {
-      for (const styleProp of Object.keys(customStyleCss)) {
-        liElm.style[styleProp as CSSStyleDeclarationWritable] = customStyleCss[styleProp as CSSStyleDeclarationWritable];
-      }
-    }
+    applyParsedStyleToElement(liElm, style);
+    applyCssRules(liElm, customStyleRules);
     const labelClasses = `${row.disabled ? 'disabled' : ''}`;
     const labelElm = document.createElement('label');
     if (labelClasses) {

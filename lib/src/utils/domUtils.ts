@@ -1,3 +1,4 @@
+import { CSSStyleDeclarationWritable } from '../interfaces';
 import { toCamelCase } from './utils';
 
 export type InferType<T> = T extends infer R ? R : any;
@@ -11,6 +12,14 @@ export interface HtmlElementPosition {
   bottom: number;
   left: number;
   right: number;
+}
+
+export function applyCssRules(elm: HTMLElement, rules: CSSStyleDeclaration | null) {
+  if (elm && rules) {
+    for (const styleProp of Object.keys(rules)) {
+      elm.style[styleProp as CSSStyleDeclarationWritable] = rules[styleProp as CSSStyleDeclarationWritable];
+    }
+  }
 }
 
 export function applyParsedStyleToElement(elm: HTMLElement, styleStr: string) {

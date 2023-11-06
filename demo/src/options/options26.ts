@@ -6,7 +6,7 @@ export default class Example {
   ms3?: MultipleSelectInstance;
 
   mount() {
-    this.ms1 = multipleSelect('#basic', {
+    this.ms2 = multipleSelect('[data-test="select1"]', {
       styler: (row: OptionRowData | OptGroupRowData) => {
         if (+(row?.value ?? 0) === 1) {
           return 'background-color: #ffee00; color: #ff0000;';
@@ -18,7 +18,7 @@ export default class Example {
       },
     }) as MultipleSelectInstance;
 
-    this.ms2 = multipleSelect('#group', {
+    this.ms2 = multipleSelect('[data-test="select2"]', {
       styler: (row: OptionRowData | OptGroupRowData) => {
         if (row?.type === 'optgroup') {
           return 'color: #777; font-weight: normal;';
@@ -30,13 +30,25 @@ export default class Example {
       },
     }) as MultipleSelectInstance;
 
-    this.ms3 = multipleSelect('#select3', {
+    this.ms2 = multipleSelect('[data-test="select3"]', {
       cssStyler: (row: OptionRowData | OptGroupRowData) => {
         if (+(row?.value ?? 0) === 2) {
           return { backgroundColor: '#6fbeff', color: '#0014ff', fontStyle: 'italic' } as CSSStyleDeclaration;
         }
         if (+(row?.value ?? 0) === 4) {
           return { backgroundColor: '#972727', color: '#fff' } as CSSStyleDeclaration;
+        }
+        return null;
+      },
+    }) as MultipleSelectInstance;
+
+    this.ms2 = multipleSelect('[data-test="select4"]', {
+      cssStyler: (row: OptionRowData | OptGroupRowData) => {
+        if (row?.type === 'optgroup') {
+          return { color: '#787878', fontWeight: 'normal' } as CSSStyleDeclaration;
+        }
+        if (+(row?.value ?? 0) === 3) {
+          return { color: 'purple', textDecoration: 'underline' } as CSSStyleDeclaration;
         }
         return null;
       },
