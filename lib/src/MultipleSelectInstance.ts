@@ -972,7 +972,7 @@ export class MultipleSelectInstance {
    */
   protected renderAsTextOrHtmlWhenEnabled(elm: HTMLElement, value: string) {
     if (this.isRenderAsHtml) {
-      elm.innerHTML = this.options.sanitizer ? this.options.sanitizer(value) : value;
+      elm.innerHTML = (this.options.sanitizer ? this.options.sanitizer(value) : value) as unknown as string;
     } else {
       elm.textContent = value;
     }

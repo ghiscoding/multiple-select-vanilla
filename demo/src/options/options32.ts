@@ -13,7 +13,7 @@ export default class Example {
           : dirtyHtml,
 
       // or even better, use dedicated libraries like DOM Purify: https://github.com/cure53/DOMPurify
-      // sanitizer: (dirtyHtml) => DOMPurify.sanitize(dirtyHtml || '')
+      // sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
     }) as MultipleSelectInstance;
   }
 

@@ -255,5 +255,5 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
    * Sanitizes HTML code, for example `<script>`, to prevents XSS attacks.
    * A library like DOM Purify could be used to sanitize html code, for example: `sanitizer: (dirtyHtml) => DOMPurify.sanitize(dirtyHtml || '')`
    */
-  sanitizer?: (dirtyHtml: string) => string;
+  sanitizer?: (html: string) => string | TrustedHTML;
 }
