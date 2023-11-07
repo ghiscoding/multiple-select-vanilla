@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { multipleSelect, MultipleSelectInstance, TextFilter } from 'multiple-select-vanilla';
 
 export default class Example {
@@ -20,6 +21,7 @@ export default class Example {
         divElm.innerHTML = text;
         return divElm.textContent?.includes(search) ?? true;
       },
+      sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
     }) as MultipleSelectInstance;
 
     this.ms2 = multipleSelect('#from-data', {
@@ -31,6 +33,7 @@ export default class Example {
         { value: `44'`, text: `44'` },
         { value: `33`, text: `<span style="font-weight:bold">33</span>` },
       ],
+      sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }) as unknown as string,
     }) as MultipleSelectInstance;
 
     this.btnEnableElm = document.querySelector('#enableRenderHtml') as HTMLButtonElement;

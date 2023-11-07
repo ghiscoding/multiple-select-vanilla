@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
 
 export default class Example {
@@ -12,18 +13,21 @@ export default class Example {
       autoAdjustDropHeight: true,
       position: 'top',
       showOkButton: true,
+      sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
     }) as MultipleSelectInstance;
 
     this.ms2 = multipleSelect('#select2', {
       autoAdjustDropHeight: true,
       position: 'top',
       showOkButton: true,
+      sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
     }) as MultipleSelectInstance;
 
     this.ms3 = multipleSelect('#select3', {
       autoAdjustDropHeight: true,
       filter: true,
       position: 'top',
+      sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }) as unknown as string,
     }) as MultipleSelectInstance;
 
     this.ms4 = multipleSelect('#select4') as MultipleSelectInstance;
