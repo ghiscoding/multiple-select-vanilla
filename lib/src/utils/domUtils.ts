@@ -31,6 +31,10 @@ export function applyParsedStyleToElement(elm: HTMLElement, styleStr: string) {
         (elm as any).style[toCamelCase(styleProp)] = styleVal.trim();
       }
     }
+
+    console.warn(
+      '[multiple-select-vanilla] Please note that `styler` is deprecated, please migrate to `cssStyler` when possible.'
+    );
   }
 }
 
