@@ -11,7 +11,7 @@ export default defineConfig({
     timeout: 5000,
   },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
+  forbidOnly: Boolean(process.env.CI),
   use: {
     baseURL: 'http://localhost:3000/',
     headless: true,
@@ -26,10 +26,4 @@ export default defineConfig({
         // { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
       ]
     : [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
-  webServer: process.env.CI
-    ? {
-        command: 'pnpm serve',
-        port: 3000,
-      }
-    : undefined,
 });

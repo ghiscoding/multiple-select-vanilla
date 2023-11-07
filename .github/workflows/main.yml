@@ -52,6 +52,9 @@ jobs:
       - name: Install Playwright Browsers (chromium)
         run: pnpm exec playwright install chromium
 
+      - name: Start HTTP Server
+        run: pnpm serve:demo &
+
       - name: Find Playwright Summary Comment (when exist)
         if: ${{ github.event.pull_request.number }}
         uses: peter-evans/find-comment@v2
