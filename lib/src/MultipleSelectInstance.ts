@@ -283,7 +283,7 @@ export class MultipleSelectInstance {
       this.elm.childNodes.forEach((elm) => {
         const row = this.initRow(elm as HTMLOptionElement);
         if (row) {
-          data.push(this.initRow(elm as HTMLOptionElement));
+          data.push(row);
         }
       });
 
