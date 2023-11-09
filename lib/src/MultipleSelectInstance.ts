@@ -4,9 +4,9 @@
 import Constants from './constants';
 import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils';
 import {
-  applyCssRules,
-  applyParsedStyleToElement,
   calculateAvailableSpace,
+  convertItemRowToHtml,
+  convertStringStyleToElementStyle,
   createDomElement,
   emptyElement,
   findParent,
@@ -17,7 +17,7 @@ import {
 } from './utils/domUtils';
 import type { HtmlElementPosition } from './utils/domUtils';
 import type { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
-import type { MultipleSelectLocales, OptGroupRowData, OptionDataObject, OptionRowData } from './interfaces';
+import type { HtmlStruct, MultipleSelectLocales, OptGroupRowData, OptionDataObject, OptionRowData } from './interfaces';
 import { BindingEventService, VirtualScroll } from './services';
 
 export class MultipleSelectInstance {
@@ -421,7 +421,6 @@ export class MultipleSelectInstance {
         this.dropElm
       );
     }
-
     this.initListItems();
   }
 
@@ -449,8 +448,8 @@ export class MultipleSelectInstance {
           if (this.updateDataStart < 0) {
             this.updateDataStart = 0;
           }
-          if (this.updateDataEnd > (this.data?.length ?? 0)) {
-            this.updateDataEnd = this.data?.length ?? 0;
+          if (this.updateDataEnd > this.getDataLength()) {
+            this.updateDataEnd = this.getDataLength();
           }
         }
       };
@@ -477,7 +476,7 @@ export class MultipleSelectInstance {
     } else {
       if (this.ulElm) {
         emptyElement(this.ulElm);
-        rows.forEach((rowElm) => this.ulElm!.appendChild(rowElm));
+        rows.forEach((itemRow) => this.ulElm!.appendChild(convertItemRowToHtml(itemRow)));
       }
       this.updateDataStart = 0;
       this.updateDataEnd = this.updateData.length;
@@ -486,17 +485,19 @@ export class MultipleSelectInstance {
     this.events();
   }
 
-  protected getListRows() {
-    const rows: HTMLElement[] = [];
+  protected getListRows(): HtmlStruct[] {
+    const rows: HtmlStruct[] = [];
     this.updateData = [];
+    // console.time('perf');
 
     this.data?.forEach((row) => rows.push(...this.initListItem(row)));
-    rows.push(createDomElement('li', { className: 'ms-no-results', textContent: this.formatNoMatchesFound() }));
+    rows.push({ tagName: 'li', props: { className: 'ms-no-results', textContent: this.formatNoMatchesFound() } });
+    // console.timeEnd('perf');
 
     return rows;
   }
 
-  protected initListItem(row: any, level = 0): HTMLElement[] {
+  protected initListItem(row: OptionRowData | OptGroupRowData, level = 0): HtmlStruct[] {
     const title = row?.title || '';
     const multiple = this.options.multiple ? 'multiple' : '';
     const type = this.options.single ? 'radio' : 'checkbox';
@@ -520,46 +521,53 @@ export class MultipleSelectInstance {
       const customStyleRules = this.options.cssStyler(row);
       const customStyle = this.options.styler(row);
       const styleStr = String(customStyle || '');
-      const htmlElms: HTMLElement[] = [];
-      const groupElm =
+      const htmlBlocks: HtmlStruct[] = [];
+
+      const groupBlock =
         this.options.hideOptgroupCheckboxes || this.options.single
-          ? createDomElement('span', { dataset: { name: this.selectGroupName, key: row._key } })
-          : createDomElement('input', {
-              type: 'checkbox',
-              dataset: { name: this.selectGroupName, key: row._key },
-              ariaChecked: String(row.selected || false),
-              checked: row.selected,
-              disabled: row.disabled,
-            });
+          ? { tagName: 'span', props: { dataset: { name: this.selectGroupName, key: row._key } } }
+          : {
+              tagName: 'input',
+              props: {
+                type: 'checkbox',
+                dataset: { name: this.selectGroupName, key: row._key },
+                ariaChecked: String(row.selected || false),
+                checked: Boolean(row.selected),
+                disabled: row.disabled,
+              },
+            };
 
       if (!classes.includes('hide-radio') && (this.options.hideOptgroupCheckboxes || this.options.single)) {
         classes += 'hide-radio ';
       }
 
-      const labelElm = createDomElement('label', {
-        className: `optgroup${this.options.single || row.disabled ? ' disabled' : ''}`,
-      });
-      labelElm.appendChild(groupElm);
+      const spanLabelBlock: HtmlStruct = { tagName: 'span', props: {} };
+      this.applyAsTextOrHtmlWhenEnabled(spanLabelBlock.props, (row as OptGroupRowData).label);
 
-      const spanElm = document.createElement('span');
-      this.renderAsTextOrHtmlWhenEnabled(spanElm, row.label);
-      labelElm.appendChild(spanElm);
-      const liElm = createDomElement('li', { className: `group ${classes}`.trim() });
-      applyParsedStyleToElement(liElm, styleStr);
-      applyCssRules(liElm, customStyleRules);
-      liElm.appendChild(labelElm);
-      htmlElms.push(liElm);
+      const labelBlock: HtmlStruct = {
+        tagName: 'label',
+        props: { className: `optgroup${this.options.single || row.disabled ? ' disabled' : ''}` },
+        children: [groupBlock as HtmlStruct, spanLabelBlock],
+      };
+      const liBlock: HtmlStruct = { tagName: 'li', props: { className: `group ${classes}`.trim() }, children: [labelBlock] };
+      if (styleStr) {
+        liBlock.props.style = convertStringStyleToElementStyle(styleStr);
+      }
+      if (customStyleRules) {
+        liBlock.props.style = customStyleRules;
+      }
+      htmlBlocks.push(liBlock);
 
       (row as OptGroupRowData).children.forEach((child: any) => {
-        htmlElms.push(...this.initListItem(child, 1));
+        htmlBlocks.push(...this.initListItem(child, 1));
       });
 
-      return htmlElms;
+      return htmlBlocks;
     }
 
     const customStyleRules = this.options.cssStyler(row);
     const customStyle = this.options.styler(row);
-    const style = String(customStyle || '');
+    const styleStr = String(customStyle || '');
     classes += row.classes || '';
 
     if (level && this.options.single) {
@@ -567,46 +575,50 @@ export class MultipleSelectInstance {
     }
 
     if (row.divider) {
-      return [createDomElement('li', { className: 'option-divider' })];
+      return [{ tagName: 'li', props: { className: 'option-divider' } } as HtmlStruct];
     }
 
     const liClasses = multiple || classes ? (multiple + classes).trim() : '';
-    const liElm = document.createElement('li');
+    const labelClasses = `${row.disabled ? 'disabled' : ''}`;
+    const spanLabelBlock: HtmlStruct = { tagName: 'span', props: {} };
+    this.applyAsTextOrHtmlWhenEnabled(spanLabelBlock.props, (row as OptionRowData).text);
+
+    const inputBlock: HtmlStruct = {
+      tagName: 'input',
+      props: {
+        type,
+        value: encodeURI(row.value as string),
+        dataset: { key: row._key, name: this.selectItemName },
+        ariaChecked: String(row.selected || false),
+        checked: Boolean(row.selected),
+        disabled: Boolean(row.disabled),
+      },
+    };
+
+    if (row.selected) {
+      inputBlock.attrs = { checked: 'checked' };
+    }
+
+    const labelBlock: HtmlStruct = { tagName: 'label', props: {}, children: [inputBlock, spanLabelBlock] };
+    if (labelClasses) {
+      labelBlock.props.className = labelClasses;
+    }
+
+    const liBlock: HtmlStruct = { tagName: 'li', props: {}, children: [labelBlock] };
     if (liClasses) {
-      liElm.className = liClasses;
+      liBlock.props.className = liClasses;
     }
     if (title) {
-      liElm.title = title;
+      liBlock.props.title = title;
+    }
+    if (styleStr) {
+      liBlock.props.style = convertStringStyleToElementStyle(styleStr);
+    }
+    if (customStyleRules) {
+      liBlock.props.style = customStyleRules;
     }
 
-    applyParsedStyleToElement(liElm, style);
-    applyCssRules(liElm, customStyleRules);
-    const labelClasses = `${row.disabled ? 'disabled' : ''}`;
-    const labelElm = document.createElement('label');
-    if (labelClasses) {
-      labelElm.className = labelClasses;
-    }
-
-    const inputElm = createDomElement('input', {
-      type,
-      value: encodeURI(row.value),
-      dataset: { key: row._key, name: this.selectItemName },
-      ariaChecked: String(row.selected || false),
-      checked: Boolean(row.selected),
-      disabled: Boolean(row.disabled),
-    });
-    if (row.selected) {
-      inputElm.setAttribute('checked', 'checked');
-    }
-
-    const spanElm = document.createElement('span');
-    this.renderAsTextOrHtmlWhenEnabled(spanElm, row.text);
-
-    labelElm.appendChild(inputElm);
-    labelElm.appendChild(spanElm);
-    liElm.appendChild(labelElm);
-
-    return [liElm];
+    return [liBlock];
   }
 
   protected initSelected(ignoreTrigger = false) {
@@ -660,7 +672,6 @@ export class MultipleSelectInstance {
     }
 
     this.parentElm.style.width = `${this.options.width || computedWidth}px`;
-    // this.elm.style.display = 'inline-block';
     this.elm.classList.add('ms-offscreen');
   }
 
@@ -877,7 +888,7 @@ export class MultipleSelectInstance {
       this.noResultsElm.style.display = 'none';
     }
 
-    if (!this.data?.length) {
+    if (!this.getDataLength()) {
       if (this.selectAllElm?.parentElement) {
         this.selectAllElm.parentElement.style.display = 'none';
       }
@@ -918,7 +929,7 @@ export class MultipleSelectInstance {
     const multElms = this.dropElm.querySelectorAll<HTMLDivElement>('.multiple');
     multElms.forEach((multElm) => (multElm.style.width = `${this.options.multipleWidth}px`));
 
-    if (this.data?.length && this.options.filter) {
+    if (this.getDataLength() && this.options.filter) {
       if (this.searchInputElm) {
         this.searchInputElm.value = '';
         this.searchInputElm.focus();
@@ -966,15 +977,19 @@ export class MultipleSelectInstance {
   }
 
   /**
-   * Renders value to an HTML element as text or as HTML with innerHTML when enabled
+   * apply value to an HTML element as text or as HTML with innerHTML when enabled
    * @param elm
    * @param value
    */
-  protected renderAsTextOrHtmlWhenEnabled(elm: HTMLElement, value: string) {
+  protected applyAsTextOrHtmlWhenEnabled(elmOrProp: HTMLElement | any, value: string) {
+    if (!elmOrProp) {
+      elmOrProp = {};
+    }
     if (this.isRenderAsHtml) {
-      elm.innerHTML = (typeof this.options.sanitizer === 'function' ? this.options.sanitizer(value) : value) as unknown as string;
+      // prettier-ignore
+      elmOrProp.innerHTML = (typeof this.options.sanitizer === 'function' ? this.options.sanitizer(value) : value) as unknown as string;
     } else {
-      elm.textContent = value;
+      elmOrProp.textContent = value;
     }
   }
 
@@ -1002,7 +1017,7 @@ export class MultipleSelectInstance {
       if (sl === 0) {
         const placeholder = this.options.placeholder || '';
         spanElm.classList.add('ms-placeholder');
-        this.renderAsTextOrHtmlWhenEnabled(spanElm, placeholder);
+        this.applyAsTextOrHtmlWhenEnabled(spanElm, placeholder);
       } else if (sl < this.options.minimumCountSelected) {
         html = getSelectOptionHtml();
       } else if (this.formatAllSelected() && sl === this.dataTotal) {
@@ -1017,7 +1032,7 @@ export class MultipleSelectInstance {
 
       if (html !== null) {
         spanElm?.classList.remove('ms-placeholder');
-        this.renderAsTextOrHtmlWhenEnabled(spanElm, html);
+        this.applyAsTextOrHtmlWhenEnabled(spanElm, html);
       }
 
       if (this.options.displayTitle || this.options.addTitle) {
@@ -1079,6 +1094,10 @@ export class MultipleSelectInstance {
 
   getData() {
     return this.options.data;
+  }
+
+  getDataLength() {
+    return this.data?.length ?? 0;
   }
 
   /**
@@ -1150,7 +1169,7 @@ export class MultipleSelectInstance {
         let selected = false;
         if (type === 'text') {
           const divElm = document.createElement('div');
-          this.renderAsTextOrHtmlWhenEnabled(divElm, row.text);
+          this.applyAsTextOrHtmlWhenEnabled(divElm, row.text);
           selected = values.includes(divElm.textContent?.trim() ?? '');
         } else {
           selected = values.includes(row._value || row.value);

@@ -1,20 +1,13 @@
 import Constants from '../constants';
-import { VirtualScrollOption } from '../interfaces';
-import { emptyElement } from '../utils';
-
-interface VirtualCache {
-  bottom: number;
-  data: HTMLElement[];
-  scrollTop: number;
-  top: number;
-}
+import { HtmlStruct, VirtualCache, VirtualScrollOption } from '../interfaces';
+import { convertItemRowToHtml, emptyElement } from '../utils';
 
 export class VirtualScroll {
   cache: VirtualCache;
   clusterRows?: number;
   dataStart!: number;
   dataEnd!: number;
-  rows: HTMLElement[];
+  rows: HtmlStruct[];
   scrollEl: HTMLElement;
   blockHeight?: number;
   clusterHeight?: number;
@@ -56,13 +49,14 @@ export class VirtualScroll {
     };
   }
 
-  initDOM(rows: HTMLElement[]) {
+  initDOM(rows: HtmlStruct[]) {
     if (typeof this.clusterHeight === 'undefined') {
       this.cache.scrollTop = this.scrollEl.scrollTop;
+      const firstRowElm = convertItemRowToHtml(rows[0]);
 
-      this.contentEl.appendChild(rows[0]);
-      this.contentEl.appendChild(rows[0]);
-      this.contentEl.appendChild(rows[0]);
+      this.contentEl.appendChild(firstRowElm);
+      this.contentEl.appendChild(firstRowElm);
+      this.contentEl.appendChild(firstRowElm);
       this.cache.data = [rows[0]];
       this.getRowsHeight();
     }
@@ -78,7 +72,7 @@ export class VirtualScroll {
       if (data.topOffset) {
         this.contentEl.appendChild(this.getExtra('top', data.topOffset));
       }
-      data.rows.forEach((h) => this.contentEl.appendChild(h));
+      data.rows.forEach((h) => this.contentEl.appendChild(convertItemRowToHtml(h)));
 
       if (data.bottomOffset) {
         this.contentEl.appendChild(this.getExtra('bottom', data.bottomOffset));
@@ -116,7 +110,7 @@ export class VirtualScroll {
     return 0;
   }
 
-  initData(rows: HTMLElement[], num: number) {
+  initData(rows: HtmlStruct[], num: number) {
     if (rows.length < Constants.BLOCK_ROWS) {
       return {
         topOffset: 0,
@@ -129,7 +123,7 @@ export class VirtualScroll {
     const end = start + this.clusterRows!;
     const topOffset = Math.max(start * this.itemHeight!, 0);
     const bottomOffset = Math.max((rows.length - end) * this.itemHeight!, 0);
-    const thisRows: HTMLElement[] = [];
+    const thisRows: HtmlStruct[] = [];
     let rowsAbove = start;
     if (topOffset < 1) {
       rowsAbove++;
