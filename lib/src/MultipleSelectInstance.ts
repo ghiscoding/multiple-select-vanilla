@@ -283,7 +283,7 @@ export class MultipleSelectInstance {
       this.elm.childNodes.forEach((elm) => {
         const row = this.initRow(elm as HTMLOptionElement);
         if (row) {
-          data.push(this.initRow(elm as HTMLOptionElement));
+          data.push(row);
         }
       });
 
@@ -302,7 +302,7 @@ export class MultipleSelectInstance {
       row.text = this.options.textTemplate(elm);
       row.value = elm.value;
       row.visible = true;
-      row.selected = !!elm.selected;
+      row.selected = Boolean(elm.selected);
       row.disabled = groupDisabled || elm.disabled;
       row.classes = elm.getAttribute('class') || '';
       row.title = elm.getAttribute('title') || '';
@@ -325,7 +325,7 @@ export class MultipleSelectInstance {
       row.type = 'optgroup';
       row.label = this.options.labelTemplate(elm);
       row.visible = true;
-      row.selected = !!elm.selected;
+      row.selected = Boolean(elm.selected);
       row.disabled = elm.disabled;
       (row as OptGroupRowData).children = [];
       if (Object.keys(elm.dataset).length) {
@@ -517,12 +517,10 @@ export class MultipleSelectInstance {
     }
 
     if (row.type === 'optgroup') {
-      const customStyleRules = this.options.cssStyler(row);
-      const customStyle = this.options.styler(row);
-      const styleStr = String(customStyle || '');
+      // - group option row -
       const htmlBlocks: HtmlStruct[] = [];
 
-      const groupBlock =
+      const groupBlock: HtmlStruct =
         this.options.hideOptgroupCheckboxes || this.options.single
           ? { tagName: 'span', props: { dataset: { name: this.selectGroupName, key: row._key } } }
           : {
@@ -543,30 +541,34 @@ export class MultipleSelectInstance {
       const spanLabelBlock: HtmlStruct = { tagName: 'span', props: {} };
       this.applyAsTextOrHtmlWhenEnabled(spanLabelBlock.props, (row as OptGroupRowData).label);
 
-      const labelBlock: HtmlStruct = {
-        tagName: 'label',
-        props: { className: `optgroup${this.options.single || row.disabled ? ' disabled' : ''}` },
-        children: [groupBlock as HtmlStruct, spanLabelBlock],
+      const liBlock: HtmlStruct = {
+        tagName: 'li',
+        props: { className: `group ${classes}`.trim() },
+        children: [
+          {
+            tagName: 'label',
+            props: { className: `optgroup${this.options.single || row.disabled ? ' disabled' : ''}` },
+            children: [groupBlock, spanLabelBlock],
+          },
+        ],
       };
-      const liBlock: HtmlStruct = { tagName: 'li', props: { className: `group ${classes}`.trim() }, children: [labelBlock] };
-      if (styleStr) {
-        liBlock.props.style = convertStringStyleToElementStyle(styleStr);
+
+      const customStyleRules = this.options.cssStyler(row);
+      const customStylerStr = String(this.options.styler(row) || ''); // deprecated
+      if (customStylerStr) {
+        liBlock.props.style = convertStringStyleToElementStyle(customStylerStr);
       }
       if (customStyleRules) {
         liBlock.props.style = customStyleRules;
       }
       htmlBlocks.push(liBlock);
 
-      (row as OptGroupRowData).children.forEach((child: any) => {
-        htmlBlocks.push(...this.initListItem(child, 1));
-      });
+      (row as OptGroupRowData).children.forEach((child) => htmlBlocks.push(...this.initListItem(child, 1)));
 
       return htmlBlocks;
     }
 
-    const customStyleRules = this.options.cssStyler(row);
-    const customStyle = this.options.styler(row);
-    const styleStr = String(customStyle || '');
+    // - regular row -
     classes += row.classes || '';
 
     if (level && this.options.single) {
@@ -598,20 +600,16 @@ export class MultipleSelectInstance {
       inputBlock.attrs = { checked: 'checked' };
     }
 
-    const labelBlock: HtmlStruct = { tagName: 'label', props: {}, children: [inputBlock, spanLabelBlock] };
-    if (labelClasses) {
-      labelBlock.props.className = labelClasses;
-    }
+    const liBlock: HtmlStruct = {
+      tagName: 'li',
+      props: { className: liClasses, title },
+      children: [{ tagName: 'label', props: { className: labelClasses }, children: [inputBlock, spanLabelBlock] }],
+    };
 
-    const liBlock: HtmlStruct = { tagName: 'li', props: {}, children: [labelBlock] };
-    if (liClasses) {
-      liBlock.props.className = liClasses;
-    }
-    if (title) {
-      liBlock.props.title = title;
-    }
-    if (styleStr) {
-      liBlock.props.style = convertStringStyleToElementStyle(styleStr);
+    const customStyleRules = this.options.cssStyler(row);
+    const customStylerStr = String(this.options.styler(row) || ''); // deprecated
+    if (customStylerStr) {
+      liBlock.props.style = convertStringStyleToElementStyle(customStylerStr);
     }
     if (customStyleRules) {
       liBlock.props.style = customStyleRules;
@@ -902,8 +900,10 @@ export class MultipleSelectInstance {
       if (this.options.container instanceof Node) {
         container = this.options.container as HTMLElement;
       } else if (typeof this.options.container === 'string') {
-        container =
-          this.options.container === 'body' ? document.body : (document.querySelector(this.options.container) as HTMLElement);
+        // prettier-ignore
+        container = this.options.container === 'body' 
+          ? document.body 
+          : (document.querySelector(this.options.container) as HTMLElement);
       }
       container!.appendChild(this.dropElm);
       this.dropElm.style.top = `${offset?.top ?? 0}px`;
@@ -915,8 +915,8 @@ export class MultipleSelectInstance {
     const minHeight = this.options.minHeight;
     let maxHeight = this.options.maxHeight;
     if (this.options.maxHeightUnit === 'row') {
-      const liElm = this.dropElm.querySelector<HTMLLIElement>('ul>li');
-      maxHeight = getElementSize(liElm!, 'outer', 'height') * this.options.maxHeight;
+      maxHeight =
+        getElementSize(this.dropElm.querySelector('ul>li') as HTMLLIElement, 'outer', 'height') * this.options.maxHeight;
     }
     const ulElm = this.dropElm.querySelector('ul');
     if (ulElm) {
@@ -925,8 +925,9 @@ export class MultipleSelectInstance {
       }
       ulElm.style.maxHeight = `${maxHeight}px`;
     }
-    const multElms = this.dropElm.querySelectorAll<HTMLDivElement>('.multiple');
-    multElms.forEach((multElm) => (multElm.style.width = `${this.options.multipleWidth}px`));
+    this.dropElm
+      .querySelectorAll<HTMLDivElement>('.multiple')
+      .forEach((multElm) => (multElm.style.width = `${this.options.multipleWidth}px`));
 
     if (this.getDataLength() && this.options.filter) {
       if (this.searchInputElm) {
@@ -1036,7 +1037,9 @@ export class MultipleSelectInstance {
 
       if (this.options.displayTitle || this.options.addTitle) {
         if (this.options.addTitle) {
-          console.warn('[Multiple-Select-Vanilla] Please note that the `addTitle` option was replaced with `displayTitle`.');
+          console.warn(
+            '[Multiple-Select-Vanilla] Please note that the `addTitle` option was deprecated and replaced by `displayTitle`.'
+          );
         }
         const selectType = this.options.useSelectOptionLabel || this.options.useSelectOptionLabelToHtml ? 'value' : 'text';
         spanElm.title = this.getSelects(selectType).join(this.options.displayDelimiter);
@@ -1398,7 +1401,7 @@ export class MultipleSelectInstance {
       return true; // return true, since we adjusted the drop height
     }
 
-    // if we reached here, then we can assume that we didn't adjust the drop height
+    // if we reached this line, we can assume that the drop height wasn't adjusted
     return false;
   }
 
@@ -1439,8 +1442,7 @@ export class MultipleSelectInstance {
 
       // auto-adjust left/right position
       if (windowWidth - msDropWidth < selectOffsetLeft) {
-        const newLeftOffset = selectOffsetLeft - (msDropWidth - selectParentWidth);
-        this.dropElm.style.left = `${newLeftOffset}px`;
+        this.dropElm.style.left = `${selectOffsetLeft - (msDropWidth - selectParentWidth)}px`;
       }
     }
 
@@ -1502,7 +1504,6 @@ export class MultipleSelectInstance {
     const outer = document.createElement('div');
     outer.style.visibility = 'hidden';
     outer.style.width = '100px';
-    // outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
 
     document.body.appendChild(outer);
 
