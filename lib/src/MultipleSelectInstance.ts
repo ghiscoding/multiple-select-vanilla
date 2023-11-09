@@ -424,7 +424,7 @@ export class MultipleSelectInstance {
     this.initListItems();
   }
 
-  protected initListItems() {
+  protected initListItems(): HtmlStruct[] {
     let offset = 0;
     const rows = this.getListRows();
 
@@ -483,16 +483,15 @@ export class MultipleSelectInstance {
       this.virtualScroll = null;
     }
     this.events();
+
+    return rows;
   }
 
   protected getListRows(): HtmlStruct[] {
     const rows: HtmlStruct[] = [];
     this.updateData = [];
-    // console.time('perf');
-
     this.data?.forEach((row) => rows.push(...this.initListItem(row)));
     rows.push({ tagName: 'li', props: { className: 'ms-no-results', textContent: this.formatNoMatchesFound() } });
-    // console.timeEnd('perf');
 
     return rows;
   }
@@ -1061,7 +1060,7 @@ export class MultipleSelectInstance {
     }
   }
 
-  protected updateSelected() {
+  protected updateSelected(rows?: HtmlStruct[]) {
     for (let i = this.updateDataStart!; i < this.updateDataEnd!; i++) {
       const row = this.updateData[i];
       const inputElm = this.dropElm.querySelector<HTMLInputElement>(`input[data-key=${row._key}]`);
@@ -1088,7 +1087,7 @@ export class MultipleSelectInstance {
     toggleElement(this.noResultsElm, noResult);
 
     if (this.virtualScroll) {
-      this.virtualScroll.rows = this.getListRows();
+      this.virtualScroll.rows = rows ?? this.getListRows(); // recreate the rows list only when not already created
     }
   }
 
@@ -1366,9 +1365,9 @@ export class MultipleSelectInstance {
       }
     }
 
-    this.initListItems();
+    const rows = this.initListItems();
     this.initSelected(ignoreTrigger);
-    this.updateSelected();
+    this.updateSelected(rows); // no need to recreate the rows list twice
 
     if (!ignoreTrigger) {
       this.options.onFilter(originalSearch);
