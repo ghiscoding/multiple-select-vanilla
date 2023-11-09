@@ -1,11 +1,5 @@
-import { CSSStyleDeclarationWritable } from '../interfaces';
+import { HtmlStruct, InferDOMType } from '../interfaces';
 import { toCamelCase } from './utils';
-
-export type InferType<T> = T extends infer R ? R : any;
-
-/* eslint-disable @typescript-eslint/indent */
-export type InferDOMType<T> = T extends CSSStyleDeclaration ? Partial<CSSStyleDeclaration> : T extends infer R ? R : any;
-/* eslint-enable @typescript-eslint/indent */
 
 export interface HtmlElementPosition {
   top: number;
@@ -14,21 +8,14 @@ export interface HtmlElementPosition {
   right: number;
 }
 
-export function applyCssRules(elm: HTMLElement, rules: CSSStyleDeclaration | null) {
-  if (elm && rules) {
-    for (const styleProp of Object.keys(rules)) {
-      elm.style[styleProp as CSSStyleDeclarationWritable] = rules[styleProp as CSSStyleDeclarationWritable];
-    }
-  }
-}
-
-export function applyParsedStyleToElement(elm: HTMLElement, styleStr: string) {
+export function convertStringStyleToElementStyle(styleStr: string) {
+  const style: any = {};
   if (styleStr) {
     const cstyles = styleStr.replace(/\s/g, '').split(';');
     for (const cstyle of cstyles) {
       const [styleProp, styleVal] = cstyle.trim().split(':');
-      if (styleProp && (elm as any).style) {
-        (elm as any).style[toCamelCase(styleProp)] = styleVal.trim();
+      if (styleProp) {
+        style[toCamelCase(styleProp)] = styleVal.trim();
       }
     }
 
@@ -36,6 +23,7 @@ export function applyParsedStyleToElement(elm: HTMLElement, styleStr: string) {
       '[multiple-select-vanilla] Please note that `styler` is deprecated, please migrate to `cssStyler` when possible.'
     );
   }
+  return style;
 }
 
 /** calculate available space for each side of the DOM element */
@@ -91,10 +79,60 @@ export function createDomElement<T extends keyof HTMLElementTagNameMap, K extend
       }
     });
   }
-  if (appendToParent && appendToParent.appendChild) {
+  if (appendToParent?.appendChild) {
     appendToParent.appendChild(elm);
   }
   return elm;
+}
+
+/**
+ * From an HtmlBlock, create the DOM structure and append it to dedicated DOM element, for example:
+ *   `{ tagName: 'li', props: { className: 'some-class' }, attrs: { 'aria-label': 'some label' }, children: [] }`
+ * @param item
+ * @param appendToElm
+ */
+export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, parentElm?: HTMLElement): HTMLElement {
+  // innerHTML needs to be applied separately
+  let innerHTMLStr = '';
+  if (item.props?.innerHTML) {
+    innerHTMLStr = item.props.innerHTML;
+    delete item.props.innerHTML;
+  }
+
+  const elm = createDomElement(item.tagName, item.props, appendToElm);
+  let parent: HTMLElement | null | undefined = parentElm;
+  if (!parent) {
+    parent = elm;
+  }
+
+  if (innerHTMLStr) {
+    elm.innerHTML = innerHTMLStr; // type should already be as TrustedHTML
+  }
+
+  // add all custom DOM element attributes
+  if (item.attrs) {
+    for (const attrName of Object.keys(item.attrs)) {
+      elm.setAttribute(attrName, item.attrs[attrName]);
+    }
+  }
+
+  // use recursion when finding item children
+  if (item.children) {
+    for (const childItem of item.children) {
+      createDomStructure(childItem, elm, parent);
+    }
+  }
+
+  appendToElm?.appendChild(elm);
+  return elm;
+}
+
+/** takes an html block object and converts to a real HTMLElement */
+export function convertItemRowToHtml(item: HtmlStruct): HTMLElement {
+  if (item.hasOwnProperty('tagName')) {
+    return createDomStructure(item);
+  }
+  return document.createElement('li');
 }
 
 /**
