@@ -900,8 +900,10 @@ export class MultipleSelectInstance {
       if (this.options.container instanceof Node) {
         container = this.options.container as HTMLElement;
       } else if (typeof this.options.container === 'string') {
-        container =
-          this.options.container === 'body' ? document.body : (document.querySelector(this.options.container) as HTMLElement);
+        // prettier-ignore
+        container = this.options.container === 'body' 
+          ? document.body 
+          : (document.querySelector(this.options.container) as HTMLElement);
       }
       container!.appendChild(this.dropElm);
       this.dropElm.style.top = `${offset?.top ?? 0}px`;
@@ -913,8 +915,8 @@ export class MultipleSelectInstance {
     const minHeight = this.options.minHeight;
     let maxHeight = this.options.maxHeight;
     if (this.options.maxHeightUnit === 'row') {
-      const liElm = this.dropElm.querySelector<HTMLLIElement>('ul>li');
-      maxHeight = getElementSize(liElm!, 'outer', 'height') * this.options.maxHeight;
+      maxHeight =
+        getElementSize(this.dropElm.querySelector('ul>li') as HTMLLIElement, 'outer', 'height') * this.options.maxHeight;
     }
     const ulElm = this.dropElm.querySelector('ul');
     if (ulElm) {
@@ -923,8 +925,9 @@ export class MultipleSelectInstance {
       }
       ulElm.style.maxHeight = `${maxHeight}px`;
     }
-    const multElms = this.dropElm.querySelectorAll<HTMLDivElement>('.multiple');
-    multElms.forEach((multElm) => (multElm.style.width = `${this.options.multipleWidth}px`));
+    this.dropElm
+      .querySelectorAll<HTMLDivElement>('.multiple')
+      .forEach((multElm) => (multElm.style.width = `${this.options.multipleWidth}px`));
 
     if (this.getDataLength() && this.options.filter) {
       if (this.searchInputElm) {
@@ -1034,7 +1037,9 @@ export class MultipleSelectInstance {
 
       if (this.options.displayTitle || this.options.addTitle) {
         if (this.options.addTitle) {
-          console.warn('[Multiple-Select-Vanilla] Please note that the `addTitle` option was replaced with `displayTitle`.');
+          console.warn(
+            '[Multiple-Select-Vanilla] Please note that the `addTitle` option was deprecated and replaced by `displayTitle`.'
+          );
         }
         const selectType = this.options.useSelectOptionLabel || this.options.useSelectOptionLabelToHtml ? 'value' : 'text';
         spanElm.title = this.getSelects(selectType).join(this.options.displayDelimiter);
@@ -1396,7 +1401,7 @@ export class MultipleSelectInstance {
       return true; // return true, since we adjusted the drop height
     }
 
-    // if we reached here, then we can assume that we didn't adjust the drop height
+    // if we reached this line, we can assume that the drop height wasn't adjusted
     return false;
   }
 
@@ -1437,8 +1442,7 @@ export class MultipleSelectInstance {
 
       // auto-adjust left/right position
       if (windowWidth - msDropWidth < selectOffsetLeft) {
-        const newLeftOffset = selectOffsetLeft - (msDropWidth - selectParentWidth);
-        this.dropElm.style.left = `${newLeftOffset}px`;
+        this.dropElm.style.left = `${selectOffsetLeft - (msDropWidth - selectParentWidth)}px`;
       }
     }
 
@@ -1500,7 +1504,6 @@ export class MultipleSelectInstance {
     const outer = document.createElement('div');
     outer.style.visibility = 'hidden';
     outer.style.width = '100px';
-    // outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
 
     document.body.appendChild(outer);
 
