@@ -1,5 +1,5 @@
-import { HtmlStruct, InferDOMType } from '../interfaces';
-import { toCamelCase } from './utils';
+import { CSSStyleDeclarationWritable, HtmlStruct, InferDOMType } from '../interfaces';
+import { objectRemoveEmptyProps, toCamelCase } from './utils';
 
 export interface HtmlElementPosition {
   top: number;
@@ -8,14 +8,14 @@ export interface HtmlElementPosition {
   right: number;
 }
 
-export function convertStringStyleToElementStyle(styleStr: string) {
-  const style: any = {};
+export function convertStringStyleToElementStyle(styleStr: string): CSSStyleDeclaration {
+  const style = {} as CSSStyleDeclaration;
   if (styleStr) {
     const cstyles = styleStr.replace(/\s/g, '').split(';');
     for (const cstyle of cstyles) {
       const [styleProp, styleVal] = cstyle.trim().split(':');
       if (styleProp) {
-        style[toCamelCase(styleProp)] = styleVal.trim();
+        (style as any)[toCamelCase(styleProp) as CSSStyleDeclarationWritable] = styleVal.trim() as CSSStyleDeclarationWritable;
       }
     }
 
@@ -99,7 +99,7 @@ export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, 
     delete item.props.innerHTML;
   }
 
-  const elm = createDomElement(item.tagName, item.props, appendToElm);
+  const elm = createDomElement(item.tagName, objectRemoveEmptyProps(item.props), appendToElm);
   let parent: HTMLElement | null | undefined = parentElm;
   if (!parent) {
     parent = elm;

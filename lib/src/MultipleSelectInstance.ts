@@ -302,7 +302,7 @@ export class MultipleSelectInstance {
       row.text = this.options.textTemplate(elm);
       row.value = elm.value;
       row.visible = true;
-      row.selected = !!elm.selected;
+      row.selected = Boolean(elm.selected);
       row.disabled = groupDisabled || elm.disabled;
       row.classes = elm.getAttribute('class') || '';
       row.title = elm.getAttribute('title') || '';
@@ -325,7 +325,7 @@ export class MultipleSelectInstance {
       row.type = 'optgroup';
       row.label = this.options.labelTemplate(elm);
       row.visible = true;
-      row.selected = !!elm.selected;
+      row.selected = Boolean(elm.selected);
       row.disabled = elm.disabled;
       (row as OptGroupRowData).children = [];
       if (Object.keys(elm.dataset).length) {
@@ -517,12 +517,10 @@ export class MultipleSelectInstance {
     }
 
     if (row.type === 'optgroup') {
-      const customStyleRules = this.options.cssStyler(row);
-      const customStyle = this.options.styler(row);
-      const styleStr = String(customStyle || '');
+      // - group option row -
       const htmlBlocks: HtmlStruct[] = [];
 
-      const groupBlock =
+      const groupBlock: HtmlStruct =
         this.options.hideOptgroupCheckboxes || this.options.single
           ? { tagName: 'span', props: { dataset: { name: this.selectGroupName, key: row._key } } }
           : {
@@ -543,30 +541,34 @@ export class MultipleSelectInstance {
       const spanLabelBlock: HtmlStruct = { tagName: 'span', props: {} };
       this.applyAsTextOrHtmlWhenEnabled(spanLabelBlock.props, (row as OptGroupRowData).label);
 
-      const labelBlock: HtmlStruct = {
-        tagName: 'label',
-        props: { className: `optgroup${this.options.single || row.disabled ? ' disabled' : ''}` },
-        children: [groupBlock as HtmlStruct, spanLabelBlock],
+      const liBlock: HtmlStruct = {
+        tagName: 'li',
+        props: { className: `group ${classes}`.trim() },
+        children: [
+          {
+            tagName: 'label',
+            props: { className: `optgroup${this.options.single || row.disabled ? ' disabled' : ''}` },
+            children: [groupBlock, spanLabelBlock],
+          },
+        ],
       };
-      const liBlock: HtmlStruct = { tagName: 'li', props: { className: `group ${classes}`.trim() }, children: [labelBlock] };
-      if (styleStr) {
-        liBlock.props.style = convertStringStyleToElementStyle(styleStr);
+
+      const customStyleRules = this.options.cssStyler(row);
+      const customStylerStr = String(this.options.styler(row) || ''); // deprecated
+      if (customStylerStr) {
+        liBlock.props.style = convertStringStyleToElementStyle(customStylerStr);
       }
       if (customStyleRules) {
         liBlock.props.style = customStyleRules;
       }
       htmlBlocks.push(liBlock);
 
-      (row as OptGroupRowData).children.forEach((child: any) => {
-        htmlBlocks.push(...this.initListItem(child, 1));
-      });
+      (row as OptGroupRowData).children.forEach((child) => htmlBlocks.push(...this.initListItem(child, 1)));
 
       return htmlBlocks;
     }
 
-    const customStyleRules = this.options.cssStyler(row);
-    const customStyle = this.options.styler(row);
-    const styleStr = String(customStyle || '');
+    // - regular row -
     classes += row.classes || '';
 
     if (level && this.options.single) {
@@ -598,20 +600,16 @@ export class MultipleSelectInstance {
       inputBlock.attrs = { checked: 'checked' };
     }
 
-    const labelBlock: HtmlStruct = { tagName: 'label', props: {}, children: [inputBlock, spanLabelBlock] };
-    if (labelClasses) {
-      labelBlock.props.className = labelClasses;
-    }
+    const liBlock: HtmlStruct = {
+      tagName: 'li',
+      props: { className: liClasses, title },
+      children: [{ tagName: 'label', props: { className: labelClasses }, children: [inputBlock, spanLabelBlock] }],
+    };
 
-    const liBlock: HtmlStruct = { tagName: 'li', props: {}, children: [labelBlock] };
-    if (liClasses) {
-      liBlock.props.className = liClasses;
-    }
-    if (title) {
-      liBlock.props.title = title;
-    }
-    if (styleStr) {
-      liBlock.props.style = convertStringStyleToElementStyle(styleStr);
+    const customStyleRules = this.options.cssStyler(row);
+    const customStylerStr = String(this.options.styler(row) || ''); // deprecated
+    if (customStylerStr) {
+      liBlock.props.style = convertStringStyleToElementStyle(customStylerStr);
     }
     if (customStyleRules) {
       liBlock.props.style = customStyleRules;

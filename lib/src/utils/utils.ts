@@ -50,6 +50,17 @@ export function deepCopy(objectOrArray: any | any[]): any | any[] {
   return objectOrArray; // otherwise, return it as-is, could be primitive or else
 }
 
+export function isDefined(val: any) {
+  return val !== undefined && val !== null && val !== '';
+}
+
+export function objectRemoveEmptyProps(obj: any) {
+  if (typeof obj === 'object') {
+    return Object.fromEntries(Object.entries(obj).filter(([_, v]) => isDefined(v)));
+  }
+  return obj;
+}
+
 export function setDataKeys(data: any[]) {
   let total = 0;
 
