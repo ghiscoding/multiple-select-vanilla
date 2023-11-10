@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [18]
+        node: [18, 20]
 
     steps:
       - name: Clone repository
@@ -21,22 +21,27 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: Use latest version of Node.js
+      - name: Set NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version: "*"
+          node-version: ${{ matrix.node }}
+          cache: 'pnpm'
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v3
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-
-      - uses: pnpm/action-setup@v2.4.0
-        with:
-          version: 8
-          run_install: true
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Run pnpm install dependencies
+        run: pnpm install
 
       - run: pnpm --version
 
