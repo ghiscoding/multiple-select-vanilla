@@ -73,6 +73,11 @@ const ms1 = multipleSelect('#select1', {
    ]
 });
 ```
+with this code in place, we can use the following CSP meta (which is what we use in the lib demo, ref: [index.html](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/demo/index.html#L7))
+```html
+<meta http-equiv="Content-Security-Policy" content="default-src 'self';style-src 'self' data:; img-src * 'self' data: https:; require-trusted-types-for 'script'; trusted-types dompurify">
+```
+**Note** in our demo we are actually also using `unsafe-inline` because we are using Vite (which is not CSP compliant in Dev mode), but the library should work nonetheless without `unsafe-inline`.
 
 ### Used by
 This fork was created mostly to drop jQuery, and is used by a few other libraries that I maintain:
