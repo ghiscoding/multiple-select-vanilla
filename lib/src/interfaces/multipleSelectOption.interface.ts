@@ -193,10 +193,10 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   styler: (value: OptionRowData | OptGroupRowData) => string | boolean | null;
 
   /** Returns HTML label attribute of a DOM element */
-  labelTemplate: (elm: any) => string;
+  labelTemplate: (elm: HTMLOptionElement) => string;
 
-  /** Returns HTML text template of a DOM element */
-  textTemplate: (elm: any) => string;
+  /** Returns HTML text template of a DOM element as a string */
+  textTemplate: (elm: HTMLOptionElement) => string;
 
   // --
   // Events

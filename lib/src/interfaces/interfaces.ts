@@ -18,7 +18,6 @@ export interface HtmlStruct {
 export interface OptionRowData {
   text: string;
   value: string | number | boolean;
-  html?: HTMLElement;
   classes?: string;
   divider?: string;
   disabled?: boolean;
