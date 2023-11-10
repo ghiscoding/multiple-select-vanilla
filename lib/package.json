@@ -67,7 +67,7 @@
     "sass:copy": "cross-env copyfiles -u 2 src/styles/**/*.scss dist/styles/sass"
   },
   "devDependencies": {
-    "@types/trusted-types": "^2.0.5",
+    "@types/trusted-types": "^2.0.6",
     "autoprefixer": "^10.4.16",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
