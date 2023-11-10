@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.6.0...v0.6.1) (2023-11-10)
+
+### Bug Fixes
+
+* input checkbox value should always be included even when null ([#158](https://github.com/ghiscoding/multiple-select-vanilla/issues/158)) ([4d33cff](https://github.com/ghiscoding/multiple-select-vanilla/commit/4d33cff89a6bcbff347fe8bfbc6b6e6f75279202)) - by @ghiscoding
+
 # [0.6.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.5.0...v0.6.0) (2023-11-10)
 
 ### Features
