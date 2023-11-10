@@ -99,7 +99,7 @@ export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, 
     delete item.props.innerHTML;
   }
 
-  const elm = createDomElement(item.tagName, objectRemoveEmptyProps(item.props), appendToElm);
+  const elm = createDomElement(item.tagName, objectRemoveEmptyProps(item.props, ['class', 'title', 'style']), appendToElm);
   let parent: HTMLElement | null | undefined = parentElm;
   if (!parent) {
     parent = elm;
