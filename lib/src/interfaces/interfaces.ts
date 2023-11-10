@@ -18,6 +18,7 @@ export interface HtmlStruct {
 export interface OptionRowData {
   text: string;
   value: string | number | boolean;
+  html?: HTMLElement;
   classes?: string;
   divider?: string;
   disabled?: boolean;
@@ -25,6 +26,7 @@ export interface OptionRowData {
   visible?: boolean | string;
   title?: string;
   type?: 'option' | 'optgroup';
+  _data?: { divider?: string };
   _key?: string;
   _value?: string | number | boolean;
 }

@@ -283,7 +283,7 @@ export class MultipleSelectInstance {
       this.elm.childNodes.forEach((elm) => {
         const row = this.initRow(elm as HTMLOptionElement);
         if (row) {
-          data.push(row);
+          data.push(row as OptionRowData);
         }
       });
 
@@ -296,10 +296,10 @@ export class MultipleSelectInstance {
   }
 
   protected initRow(elm: HTMLOptionElement, groupDisabled?: boolean) {
-    const row: any = {};
+    const row = {} as OptionRowData | OptGroupRowData;
     if (elm.tagName?.toLowerCase() === 'option') {
       row.type = 'option';
-      row.text = this.options.textTemplate(elm);
+      (row as OptionRowData).text = this.options.textTemplate(elm);
       row.value = elm.value;
       row.visible = true;
       row.selected = Boolean(elm.selected);
@@ -323,7 +323,7 @@ export class MultipleSelectInstance {
 
     if (elm.tagName?.toLowerCase() === 'optgroup') {
       row.type = 'optgroup';
-      row.label = this.options.labelTemplate(elm);
+      (row as OptGroupRowData).label = this.options.labelTemplate(elm);
       row.visible = true;
       row.selected = Boolean(elm.selected);
       row.disabled = elm.disabled;
@@ -333,7 +333,7 @@ export class MultipleSelectInstance {
       }
 
       elm.childNodes.forEach((childNode) => {
-        (row as OptGroupRowData).children.push(this.initRow(childNode as HTMLOptionElement, row.disabled));
+        (row as OptGroupRowData).children.push(this.initRow(childNode as HTMLOptionElement, row.disabled) as OptionRowData);
       });
 
       return row;
@@ -1166,16 +1166,16 @@ export class MultipleSelectInstance {
 
   setSelects(values: any[], type = 'value', ignoreTrigger = false) {
     let hasChanged = false;
-    const _setSelects = (rows: any[]) => {
+    const _setSelects = (rows: Array<OptionRowData | OptGroupRowData>) => {
       for (const row of rows) {
         let selected = false;
         if (type === 'text') {
           const divElm = document.createElement('div');
-          this.applyAsTextOrHtmlWhenEnabled(divElm, row.text);
+          this.applyAsTextOrHtmlWhenEnabled(divElm, (row as OptionRowData).text);
           selected = values.includes(divElm.textContent?.trim() ?? '');
         } else {
           selected = values.includes(row._value || row.value);
-          if (!selected && row.value === `${+row.value}`) {
+          if (!selected && row.value === `${+(row as OptionRowData).value}`) {
             selected = values.includes(+row.value);
           }
         }
@@ -1261,7 +1261,7 @@ export class MultipleSelectInstance {
 
   protected _checkGroup(group: any, checked: boolean, ignoreUpdate?: boolean) {
     group.selected = checked;
-    group.children.forEach((row: any) => {
+    group.children.forEach((row: OptionRowData) => {
       if (row && !row.disabled && !row.divider && (ignoreUpdate || row.visible)) {
         row.selected = checked;
       }
