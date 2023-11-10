@@ -5,5 +5,5 @@
   pin: false,
   rangeStrategy: 'bump',
   packageRules: [],
-  schedule: ['on Friday'],
+  schedule: ['every 2 weeks on Friday'],
 }
