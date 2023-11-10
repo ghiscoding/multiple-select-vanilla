@@ -4,6 +4,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.5.0...v0.6.0) (2023-11-10)
+
+### Features
+
+* add `cssStyler` option to use typed CSSStyleDeclaration props ([#148](https://github.com/ghiscoding/multiple-select-vanilla/issues/148)) ([8ad2b28](https://github.com/ghiscoding/multiple-select-vanilla/commit/8ad2b286cfde7a319ffeba6479a02800d76b89d2)) - by @ghiscoding
+* add `showSearchClear` option to clear search input ([#147](https://github.com/ghiscoding/multiple-select-vanilla/issues/147)) ([32de6f2](https://github.com/ghiscoding/multiple-select-vanilla/commit/32de6f2d9844e0ddd71577276ada81af0dd4eb8b)) - by @ghiscoding
+* replace all dynamic html strings by pure HTML elements ([#144](https://github.com/ghiscoding/multiple-select-vanilla/issues/144)) ([adcc33d](https://github.com/ghiscoding/multiple-select-vanilla/commit/adcc33da1ee29b33f66dec08e4e572f5b052ed51)) - by @ghiscoding
+* VirtualScroll replace all html strings to pure HTML elements ([#146](https://github.com/ghiscoding/multiple-select-vanilla/issues/146)) ([8731387](https://github.com/ghiscoding/multiple-select-vanilla/commit/87313875f25b41caaf51e759cf261950977d112e)) - by @ghiscoding
+
+### Performance Improvements
+
+* don't recreate items list twice while filtering ([#154](https://github.com/ghiscoding/multiple-select-vanilla/issues/154)) ([5e58ceb](https://github.com/ghiscoding/multiple-select-vanilla/commit/5e58ceb4e02eee078437642715c48c1aa05af160)) - by @ghiscoding
+* use array of html struct instead of plain HTML Element ([#153](https://github.com/ghiscoding/multiple-select-vanilla/issues/153)) ([6731228](https://github.com/ghiscoding/multiple-select-vanilla/commit/67312286b1053b4779376d1d6dfbb2b99c6a16a3)) - by @ghiscoding
+
 # [0.5.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.4.11...v0.5.0) (2023-10-27)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "multiple-select-vanilla",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "exports": {
     ".": {
       "import": "./dist/esm/multiple-select.js",
