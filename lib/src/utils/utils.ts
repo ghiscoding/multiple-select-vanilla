@@ -54,8 +54,20 @@ export function isDefined(val: any) {
   return val !== undefined && val !== null && val !== '';
 }
 
-export function objectRemoveEmptyProps(obj: any) {
+/**
+ * Remove all empty props from an object, 
+ * we can optionally provide a fixed list of props to consider for removal (anything else will be excluded)
+ * @param {*} obj 
+ * @param {Array<String>} [clearProps] - optional list of props to consider for removal (anything else will be excluded)
+ * @returns cleaned object
+ */
+export function objectRemoveEmptyProps(obj: any, clearProps?: string[]) {
   if (typeof obj === 'object') {
+    if (clearProps) {
+      return Object.fromEntries(
+        Object.entries(obj).filter(([name, val]) => (!isDefined(val) && !clearProps.includes(name)) || isDefined(val))
+      );
+    }
     return Object.fromEntries(Object.entries(obj).filter(([_, v]) => isDefined(v)));
   }
   return obj;
