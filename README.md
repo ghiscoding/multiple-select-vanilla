@@ -53,6 +53,27 @@ New Multiple-Select Options:
   - `showOkButton` to add an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
   - `showSearchClear` show a clear button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
 
+## CSP Compliance
+The library is now CSP (Content Security Policy) compliant since `v0.6.0`, however there are some exceptions though. When using any html string as template (with `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`) then you will not be fully compliant unless you return `TrustedHTML`. You can achieve this by using the `sanitizer` method in combo with [DOMPurify](https://github.com/cure53/DOMPurify) to return `TrustedHTML` as shown below and you will now be fully compliant
+
+```typescript
+import DOMPurify from 'dompurify';
+import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
+
+const ms1 = multipleSelect('#select1', {
+   name: 'my-select',
+   single: false,
+   useSelectOptionLabelToHtml: true,
+   sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
+   data: [
+      {
+         text: '<i class="fa fa-star"></i> January',
+         value: 1,
+      },
+   ]
+});
+```
+
 ### Used by
 This fork was created mostly to drop jQuery, and is used by a few other libraries that I maintain:
 - [Angular-Slickgrid](https://github.com/ghiscoding/Angular-Slickgrid)
