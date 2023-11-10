@@ -55,9 +55,9 @@ export function isDefined(val: any) {
 }
 
 /**
- * Remove all empty props from an object, 
+ * Remove all empty props from an object,
  * we can optionally provide a fixed list of props to consider for removal (anything else will be excluded)
- * @param {*} obj 
+ * @param {*} obj
  * @param {Array<String>} [clearProps] - optional list of props to consider for removal (anything else will be excluded)
  * @returns cleaned object
  */
