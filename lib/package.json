@@ -1,25 +1,29 @@
 {
   "name": "multiple-select-vanilla",
   "version": "0.6.1",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/multiple-select.js",
-      "require": "./dist/cjs/multiple-select.js",
-      "default": "./dist/esm/multiple-select.js",
-      "types": "./dist/types/index.d.ts"
-    },
-    "./*": "./*"
-  },
+  "main": "./dist/cjs/multiple-select.js",
+  "module": "./dist/esm/multiple-select.js",
+  "types": "index.d.ts",
   "typesVersions": {
-    "*": {
+    ">=4.2": {
       "*": [
-        "./dist/types/index.d.ts"
+        "dist/types/*"
       ]
     }
   },
-  "types": "./dist/types/index.d.ts",
-  "main": "./dist/cjs/multiple-select.js",
-  "module": "./dist/esm/multiple-select.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "node": "./dist/cjs/multiple-select.js",
+      "require": "./dist/cjs/multiple-select.js",
+      "default": "./dist/esm/multiple-select.js"
+    },
+    "./dist/multiple-select-all-locales": "./dist/multiple-select-all-locales",
+    "./dist/multiple-select": "./dist/multiple-select",
+    "./dist/locales/*": "./dist/locales/*",
+    "./dist/styles/*": "./dist/styles/*",
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist"
   ],
