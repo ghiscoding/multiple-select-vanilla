@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.6.1...v0.6.2) (2023-11-11)
+
+### Bug Fixes
+
+* adjust types & exports for all bundler ([#161](https://github.com/ghiscoding/multiple-select-vanilla/issues/161)) ([b4ad0ac](https://github.com/ghiscoding/multiple-select-vanilla/commit/b4ad0ac98edd49b0b82dbf5180b326c1d6602e33)) - by @ghiscoding
+
 ## [0.6.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.6.0...v0.6.1) (2023-11-10)
 
 ### Bug Fixes
