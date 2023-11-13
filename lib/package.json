@@ -70,8 +70,10 @@
     "sass:watch": "sass src/styles:dist/styles/css --watch --style=compressed --quiet-deps --no-source-map",
     "sass:copy": "cross-env copyfiles -u 2 src/styles/**/*.scss dist/styles/sass"
   },
+  "dependencies": {
+    "@types/trusted-types": "^2.0.6"
+  },
   "devDependencies": {
-    "@types/trusted-types": "^2.0.6",
     "autoprefixer": "^10.4.16",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
