@@ -1,8 +1,14 @@
 # Change Log
-## Multiple-Select-Vanilla, visit the GitHub Page [multiple-select-vanilla](https://github.com/ghiscoding/multiple-select-vanilla)
+## Visit the [Multiple-Select-Vanilla](https://github.com/ghiscoding/multiple-select-vanilla) GitHub project or take a look at the [Live Demo](https://ghiscoding.github.io/multiple-select-vanilla)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.6.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.6.2...v0.6.3) (2023-11-13)
+
+### Bug Fixes
+
+* `@types/trusted-types` should be lib dependency ([#162](https://github.com/ghiscoding/multiple-select-vanilla/issues/162)) ([946de83](https://github.com/ghiscoding/multiple-select-vanilla/commit/946de83fdba432e554831fdb42447ad174c11ae5)) - by @ghiscoding
 
 ## [0.6.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v0.6.1...v0.6.2) (2023-11-11)
 
