@@ -62,6 +62,9 @@ importers:
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
+      servor:
+        specifier: ^4.0.2
+        version: 4.0.2
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -1837,7 +1840,7 @@ packages:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /chownr@2.0.0:
@@ -5699,6 +5702,11 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+    dev: true
+
+  /servor@4.0.2:
+    resolution: {integrity: sha512-MlmQ5Ntv4jDYUN060x/KEmN7emvIqKMZ9OkM+nY8Bf2+KkyLmGsTqWLyAN2cZr5oESAcH00UanUyyrlS1LRjFw==}
+    hasBin: true
     dev: true
 
   /set-blocking@2.0.0:
