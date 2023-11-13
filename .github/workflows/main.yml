@@ -5,11 +5,12 @@ on:
   push:
     branches: [main,next]
   pull_request_target:
-    types: [assigned, opened, synchronize, reopened]
+    types: [assigned, labeled, opened, synchronize, reopened]
     branches:
       - '**'
 jobs:
   run:
+    if: github.repository_owner == 'ghiscoding' || github.repository_owner == 'renovate-bot' || contains(github.event.pull_request.labels.*.name, 'run workflow')
     name: Node ${{ matrix.node }}
     runs-on: ubuntu-latest
     strategy:
