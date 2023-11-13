@@ -54,7 +54,7 @@ New Multiple-Select Options:
   - `showSearchClear` show a clear button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
 
 ## CSP Compliance
-The library is now CSP (Content Security Policy) compliant since `v0.6.0`, however there are some exceptions though. When using any html string as template (with `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`) then you will not be fully compliant unless you return `TrustedHTML`. You can achieve this by using the `sanitizer` method in combo with [DOMPurify](https://github.com/cure53/DOMPurify) to return `TrustedHTML` as shown below and you will now be fully compliant
+The library is now CSP (Content Security Policy) compliant since `v0.6.0`, however there are some exceptions to be aware of. When using any html string as template (with `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return `TrustedHTML`. You can achieve this by using the `sanitizer` method in combo with [DOMPurify](https://github.com/cure53/DOMPurify) to return `TrustedHTML` as shown below and with that in place you will again be CSP compliant.
 
 ```typescript
 import DOMPurify from 'dompurify';
@@ -73,11 +73,11 @@ const ms1 = multipleSelect('#select1', {
    ]
 });
 ```
-with this code in place, we can use the following CSP meta (which is what we use in the lib demo, ref: [index.html](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/demo/index.html#L7))
+with this code in place, we can use the following CSP meta tag (which is what we use in the lib demo, ref: [index.html](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/demo/index.html#L7))
 ```html
 <meta http-equiv="Content-Security-Policy" content="default-src 'self';style-src 'self' data:; img-src * 'self' data: https:; require-trusted-types-for 'script'; trusted-types dompurify">
 ```
-**Note** in our demo we are actually also using `unsafe-inline` because we are using Vite (which is not CSP compliant in Dev mode), but the library should work nonetheless without `unsafe-inline`.
+**Note** in our demo we are actually adding `unsafe-inline` simply because we are using Vite (which is not CSP compliant in Dev mode), but the library should work nonetheless without `unsafe-inline`.
 
 ### Used by
 This fork was created mostly to drop jQuery, and is used by a few other libraries that I maintain:
