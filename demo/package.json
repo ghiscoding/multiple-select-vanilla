@@ -22,11 +22,11 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.2",
     "dompurify": "^3.0.6",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "multiple-select-vanilla": "workspace:*"
   },
   "devDependencies": {
     "@types/dompurify": "^3.0.5",
-    "multiple-select-vanilla": "workspace:*",
     "sass": "^1.69.5",
     "typescript": "^5.2.2",
     "vite": "^4.5.0"
