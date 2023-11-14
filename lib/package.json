@@ -27,6 +27,7 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "author": {
     "name": "zhixin wen",
     "email": "wenzhixin2010@gmail.com",
