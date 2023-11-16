@@ -51,7 +51,11 @@ jobs:
       - name: Run pnpm install dependencies
         run: pnpm install
 
-      - name: Version
+      - name: Lerna Version
+        shell: bash
+        run: lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --dist-tag next --yes
+
+      - name: OTP
         uses: step-security/wait-for-secrets@v1
         id: wait-for-secrets
         with:
@@ -59,10 +63,6 @@ jobs:
             OTP: 
               name: 'OTP to publish package'
               description: 'OTP from authenticator app'
-
-      - name: Lerna Version
-        shell: bash
-        run: lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --dist-tag next --yes
 
       - name: Lerna Publish
         shell: bash
