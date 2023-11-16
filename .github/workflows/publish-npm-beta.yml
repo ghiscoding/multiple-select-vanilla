@@ -52,7 +52,7 @@ jobs:
       - name: Lerna Version 🏷️
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --yes
+        run: lerna version prerelease --conventional-commits --conventional-prerelease --preid alpha --yes
 
       - name: OTP
         uses: step-security/wait-for-secrets@v1
