@@ -8,13 +8,19 @@ permissions:
 
 jobs:
   deploy-npm-beta:
+    - if: ${{ github.event.pull_request.merged != true && contains('["ghiscoding"]', github.actor) != true }}
+        name: Ensure current actor is allowed to run the workflow
+        run: |
+          echo "Error: Your GitHub username (${{ github.actor }}) is not on the allowed list of admins for this workflow"
+          exit 1
+
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 3
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set NodeJS
@@ -48,8 +54,9 @@ jobs:
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        # git config user.name "Github Workflow (on behalf of ${{ github.actor }})"
         run: |
-          git config user.name "Github Workflow (on behalf of ${{ github.actor }})"
+          git config user.name "${{ github.actor }}"
           git config user.email "users.noreply.github.com"
           npm whoami
           npm run ci:publish:beta
