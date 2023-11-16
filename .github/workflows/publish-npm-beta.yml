@@ -52,9 +52,11 @@ jobs:
       - name: Lerna Version 🏷️
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "users.noreply.github.com"
+          pnpm whoami
           lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --yes
 
       - name: OTP
