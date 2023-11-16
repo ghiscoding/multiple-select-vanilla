@@ -52,7 +52,11 @@ jobs:
       - name: Lerna Version 🏷️
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --yes
+        run: |
+          git config user.name "${{ github.actor }})"
+          git config user.email "users.noreply.github.com"
+          npm whoami
+          lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --yes
 
       - name: OTP
         uses: step-security/wait-for-secrets@v1
