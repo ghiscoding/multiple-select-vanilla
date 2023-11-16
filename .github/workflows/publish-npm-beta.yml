@@ -53,7 +53,7 @@ jobs:
 
       - name: Lerna Version
         shell: bash
-        run: lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --dist-tag next --yes
+        run: lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --yes
 
       - name: OTP
         uses: step-security/wait-for-secrets@v1
@@ -73,4 +73,4 @@ jobs:
           git config user.name "Github Workflow (on behalf of ${{ github.actor }})"
           git config user.email "users.noreply.github.com"
           npm whoami
-          lerna publish prerelease from-package --yes --otp ${{ steps.wait-for-secrets.outputs.OTP }}
+          lerna publish prerelease from-package --dist-tag next --yes --otp ${{ steps.wait-for-secrets.outputs.OTP }}
