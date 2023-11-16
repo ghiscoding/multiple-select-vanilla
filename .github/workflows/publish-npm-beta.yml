@@ -51,8 +51,10 @@ jobs:
       - name: Run pnpm install dependencies
         run: pnpm install
 
-      - name: Lerna Version
+      - name: Lerna Version 🏷️
         shell: bash
+        env: 
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --yes
 
       - name: OTP
@@ -64,7 +66,7 @@ jobs:
               name: 'OTP to publish package'
               description: 'OTP from authenticator app'
 
-      - name: Lerna Publish
+      - name: Lerna Publish 📦
         shell: bash
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
