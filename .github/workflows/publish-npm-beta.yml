@@ -11,18 +11,39 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - name: Clone repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/setup-node@v4
+
+      - name: Set NodeJS
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org/
-          cache: npm
-          cache-dependency-path: '**/package.json'
-      - run: |
-          npm install
+          node-version: ${{ matrix.node }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Run pnpm install dependencies
+        run: pnpm install
+
       - name: Version & Publish
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
