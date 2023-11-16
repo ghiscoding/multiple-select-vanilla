@@ -55,7 +55,6 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "users.noreply.github.com"
-          npm whoami
           lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --yes
 
       - name: OTP
@@ -74,5 +73,4 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "users.noreply.github.com"
-          npm whoami
           lerna publish prerelease from-package --dist-tag next --yes --otp ${{ steps.wait-for-secrets.outputs.OTP }}
