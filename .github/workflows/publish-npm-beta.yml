@@ -49,6 +49,11 @@ jobs:
       - name: Run pnpm install dependencies
         run: pnpm install
 
+      - name: Lerna Version 🏷️
+        env: 
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --yes
+
       - name: OTP
         uses: step-security/wait-for-secrets@v1
         id: wait-for-secrets
@@ -58,12 +63,12 @@ jobs:
               name: 'OTP to publish package'
               description: 'OTP from authenticator app'
 
-      - name: Lerna Version 🏷️ and Publish 📦
+      - name: Lerna Publish 📦
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: |
           git config user.name "Github Workflow (on behalf of ${{ github.actor }})"
           git config user.email "users.noreply.github.com"
-          pnpm whoami
-          pnpm run ci:publish:beta -- --otp=${{ steps.wait-for-secrets.outputs.OTP }}
+          npm whoami
+          lerna publish prerelease from-package --dist-tag next --yes --otp ${{ steps.wait-for-secrets.outputs.OTP }}
