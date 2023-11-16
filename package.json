@@ -43,6 +43,7 @@
     "new-publish": "lerna publish from-package",
     "preroll-new-release": "echo Please update getting-started lib version before pushing release. ⚠️",
     "roll-new-release": "pnpm build && pnpm new-version && pnpm new-publish",
+    "ci:publish:beta": "lerna publish prerelease --conventional-commits --conventional-prerelease --preid beta --force-publish --dist-tag next --yes",
     "serve:demo": "pnpm -r --stream --filter=\"{demo/**}\" dev",
     "test:e2e": "playwright test --config playwright/playwright.config.ts",
     "test:e2e:debug": "playwright test --config playwright/playwright.config.ts --ui --debug",
