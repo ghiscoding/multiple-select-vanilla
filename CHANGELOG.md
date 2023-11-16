@@ -4,6 +4,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.4-beta.1 (2023-11-16)
+
+**Note:** Version bump only for package multiple-select-vanilla-root
+
 ## 0.6.4-beta.0 (2023-11-16)
 
 **Note:** Version bump only for package multiple-select-vanilla-root
