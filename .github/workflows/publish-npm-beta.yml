@@ -40,8 +40,8 @@ jobs:
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
         with:
           path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -51,13 +51,26 @@ jobs:
       - name: Run pnpm install dependencies
         run: pnpm install
 
-      - name: Version & Publish
+      - name: Version
+        uses: step-security/wait-for-secrets@v1
+        id: wait-for-secrets
+        with:
+          secrets: |
+            OTP: 
+              name: 'OTP to publish package'
+              description: 'OTP from authenticator app'
+
+      - name: Lerna Version
+        shell: bash
+        run: lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --dist-tag next --yes
+
+      - name: Lerna Publish
+        shell: bash
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        # git config user.name "Github Workflow (on behalf of ${{ github.actor }})"
         run: |
-          git config user.name "${{ github.actor }}"
+          git config user.name "Github Workflow (on behalf of ${{ github.actor }})"
           git config user.email "users.noreply.github.com"
           npm whoami
-          npm run ci:publish:beta
+          lerna publish prerelease from-package --yes --otp ${{ steps.wait-for-secrets.outputs.OTP }}
