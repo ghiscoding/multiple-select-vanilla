@@ -19,6 +19,13 @@ jobs:
         node: [20]
 
     steps:
+      - name: Retrieve current Date Time in EST
+        shell: bash
+        run: echo "START_TIME=$(TZ=":America/New_York" date -R|sed 's/.....$//')" >> $GITHUB_ENV
+
+      - name: print date
+        run: echo ${{ env.START_TIME }}
+        
       - name: Clone repository
         uses: actions/checkout@v4
         with:
