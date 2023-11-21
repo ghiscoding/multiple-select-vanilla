@@ -1,8 +1,8 @@
 {
   "name": "multiple-select-vanilla",
   "version": "0.6.4-beta.1",
-  "main": "./dist/cjs/multiple-select.js",
-  "module": "./dist/esm/multiple-select.js",
+  "main": "./dist/cjs/multiple-select.cjs",
+  "module": "./dist/esm/multiple-select.mjs",
   "types": "index.d.ts",
   "typesVersions": {
     ">=4.2": {
@@ -14,12 +14,11 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "node": "./dist/cjs/multiple-select.js",
-      "require": "./dist/cjs/multiple-select.js",
-      "default": "./dist/esm/multiple-select.js"
+      "node": "./dist/cjs/multiple-select.cjs",
+      "require": "./dist/cjs/multiple-select.cjs",
+      "default": "./dist/esm/multiple-select.mjs"
     },
-    "./dist/multiple-select-all-locales": "./dist/multiple-select-all-locales",
-    "./dist/multiple-select": "./dist/multiple-select",
+    "./dist/browser/*": "./dist/browser/*",
     "./dist/locales/*": "./dist/locales/*",
     "./dist/styles/*": "./dist/styles/*",
     "./package.json": "./package.json"
@@ -56,10 +55,8 @@
     "dev:init": "pnpm sass:build && pnpm build:locales && pnpm sass:copy && pnpm build:types && pnpm build:esm",
     "build:all": "node build-prod.mjs && pnpm build:types:prod",
     "build:watch": "cross-env NODE_ENV='development' node build-watch.mjs",
-    "build:locales": "esbuild src/locales/all-locales-index.ts --bundle --minify --format=iife --target=es2018 --sourcemap --outfile=dist/multiple-select-all-locales.js",
-    "build:web": "esbuild src/index.ts --bundle --minify --format=iife --target=es2018 --global-name=MultipleSelect --sourcemap --outfile=dist/multiple-select.min.js",
-    "build:cjs": "esbuild src/index.ts --bundle --minify --format=cjs --target=es2018 --outfile=dist/cjs/multiple-select.js",
-    "build:esm": "esbuild src/index.ts --bundle --minify --format=esm --target=es2018 --outfile=dist/esm/multiple-select.js",
+    "build:locales": "esbuild src/locales/all-locales-index.ts --bundle --minify --format=iife --target=es2021 --sourcemap --outfile=dist/locales/multiple-select-all-locales.mjs",
+    "build:esm": "esbuild src/index.ts --bundle --minify --format=esm --target=es2021 --outfile=dist/esm/multiple-select.mjs",
     "build:types": "tsc --emitDeclarationOnly --incremental --declarationMap false --outDir dist/types",
     "build:types:prod": "tsc --emitDeclarationOnly --incremental --declarationMap --outDir dist/types",
     "sass:build": "sass src/styles:dist/styles/css --style=compressed --quiet-deps --no-source-map",
@@ -68,20 +65,20 @@
     "sass:copy": "cross-env copyfiles -u 2 src/styles/**/*.scss dist/styles/sass"
   },
   "dependencies": {
-    "@types/trusted-types": "^2.0.6"
+    "@types/trusted-types": "^2.0.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "cssnano": "^6.0.1",
-    "esbuild": "^0.19.5",
+    "esbuild": "^0.19.7",
     "fs-extra": "^11.1.1",
     "glob": "^10.3.10",
     "npm-run-all2": "^6.1.1",
     "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0",
     "sass": "^1.69.5",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.2"
   }
 }
