@@ -4,6 +4,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0 (2023-11-22)
+
+### ⚠ BREAKING CHANGES
+
+* default `.js` as ESM, CJS to `.cjs` & build target ES2021 (#171)
+
+### Features
+
+* default `.js` as ESM, CJS to `.cjs` & build target ES2021 ([#171](https://github.com/ghiscoding/multiple-select-vanilla/issues/171)) ([5e99b03](https://github.com/ghiscoding/multiple-select-vanilla/commit/5e99b0310c8d75a7ededb25da8f6f28e4e33e184)) - by @ghiscoding
+
 ## 0.6.4-beta.1 (2023-11-16)
 
 **Note:** Version bump only for package multiple-select-vanilla-demo
