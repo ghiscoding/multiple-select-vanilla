@@ -69,6 +69,15 @@ jobs:
       - name: Build Website (GitHub demo site)
         run: pnpm build:demo
 
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist folders
+          path: |
+            lib/dist
+            demo/dist
+          retention-days: 5
+            
       - name: Install Playwright Browsers (chromium)
         run: pnpm exec playwright install chromium
 
