@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2-beta.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.0.2-beta.3...v1.0.2-beta.4) (2023-11-22)
+
+### Bug Fixes
+
+* package main export is using wrong file extension ([913f247](https://github.com/ghiscoding/multiple-select-vanilla/commit/913f247f56af7b7b7fe16493c8a9b8f58b343e2f)) - by @ghiscoding
+
 ## [1.0.2-beta.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.0.2-beta.2...v1.0.2-beta.3) (2023-11-22)
 
 **Note:** Version bump only for package multiple-select-vanilla-root
