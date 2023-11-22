@@ -69,7 +69,7 @@ jobs:
       - name: Build Website (GitHub demo site)
         run: pnpm build:demo
 
-      - name: Archive production artifacts
+      - name: Archive build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: dist folders
@@ -129,7 +129,7 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report/
-          retention-days: 15
+          retention-days: 5
 
       - name: Deploy Demo to gh-pages
         if: |
