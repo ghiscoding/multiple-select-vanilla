@@ -5,7 +5,7 @@ import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla'
 // import 'multiple-select-vanilla/dist/locales/multiple-select-es-ES';
 
 // 2. or load all locales at once
-import 'multiple-select-vanilla/dist/multiple-select-all-locales';
+import 'multiple-select-vanilla/dist/locales/multiple-select-all-locales';
 
 export default class Example {
   ms1?: MultipleSelectInstance;
