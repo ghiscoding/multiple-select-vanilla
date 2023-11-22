@@ -20,7 +20,9 @@
       "default": "./dist/esm/multiple-select.js"
     },
     "./dist/browser/*": "./dist/browser/*",
+    "./dist/browser-cjs/*": "./dist/browser/*",
     "./dist/locales/*": "./dist/locales/*",
+    "./dist/locales-cjs/*": "./dist/locales/*",
     "./dist/styles/*": "./dist/styles/*",
     "./package.json": "./package.json"
   },
