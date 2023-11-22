@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
-  "version": "0.6.4-beta.1",
+  "version": "1.0.0",
   "npmClient": "pnpm",
   "loglevel": "info",
   "command": {
