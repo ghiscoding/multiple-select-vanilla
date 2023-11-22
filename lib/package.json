@@ -1,8 +1,9 @@
 {
   "name": "multiple-select-vanilla",
   "version": "0.6.4-beta.1",
+  "type": "module",
   "main": "./dist/cjs/multiple-select.cjs",
-  "module": "./dist/esm/multiple-select.mjs",
+  "module": "./dist/esm/multiple-select.js",
   "types": "index.d.ts",
   "typesVersions": {
     ">=4.2": {
@@ -16,7 +17,7 @@
       "types": "./dist/types/index.d.ts",
       "node": "./dist/cjs/multiple-select.cjs",
       "require": "./dist/cjs/multiple-select.cjs",
-      "default": "./dist/esm/multiple-select.mjs"
+      "default": "./dist/esm/multiple-select.js"
     },
     "./dist/browser/*": "./dist/browser/*",
     "./dist/locales/*": "./dist/locales/*",

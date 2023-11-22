@@ -21,14 +21,21 @@
       <a href="https://www.jsdelivr.com/" target="__blank">jsDelivr</a> graciously provide CDNs for many JavaScript libraries
       including Multiple-Select-Vanilla. Just use the following CDN links.
     </p>
+    <p>
+      The project now ships its <code>.js</code> files as ESM by default, if you still wish to use the old CommonJS (CJS) format with <code>require()</code>,
+      then you will have to use <code>.cjs</code> file extension.
+    </p>
 
     <div style="background: #f7f7f7; padding: 10px">
       <pre>
 &lt;!-- Latest compiled and minified CSS --&gt;
 &lt;link href=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@1.0.0/dist/styles/css/multiple-select.css</span>&quot; rel=&quot;<span style="color:#880000">stylesheet</span>&quot;&gt;
 
-&lt;!-- Latest compiled and minified JavaScript (choose between CJS or MJS extension) --&gt;
-&lt;script src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@1.0.0/dist/browser/multiple-select.mjs</span>&quot;&gt;&lt;/script&gt;</pre>
+&lt;!-- (ESM requires <span style="color:#d63384">type=&quot;module&quot;</span>) Latest compiled and minified JavaScript --&gt;
+&lt;script type=&quot;module&quot; src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@1.0.0/dist/browser/multiple-select.js</span>&quot;&gt;&lt;/script&gt;
+
+&lt;!-- (CJS requires <span style="color:#d63384">.cjs</span> extension) Latest compiled and minified JavaScript --&gt;
+&lt;script src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@1.0.0/dist/browser/multiple-select.cjs</span>&quot;&gt;&lt;/script&gt;</pre>
     </div>
 
     <quote>
