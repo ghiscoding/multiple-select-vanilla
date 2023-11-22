@@ -2,7 +2,7 @@
   "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
   "version": "1.0.1",
   "npmClient": "pnpm",
-  "loglevel": "info",
+  "loglevel": "verbose",
   "command": {
     "publish": {
       "cleanupTempFiles": true,
