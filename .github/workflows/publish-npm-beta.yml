@@ -56,6 +56,9 @@ jobs:
       - name: Run pnpm install dependencies
         run: pnpm install
 
+      - name: Build Library
+        run: pnpm build
+
       - name: Lerna Version 🏷️
         env: 
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

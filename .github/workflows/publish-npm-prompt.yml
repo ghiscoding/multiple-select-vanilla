@@ -68,8 +68,8 @@ jobs:
       - name: Run pnpm install dependencies
         run: pnpm install
 
-      - name: Run all workspace TSC builds
-        run: pnpm build:full
+      - name: Build Library
+        run: pnpm build
 
       - name: Lerna Version (latest) 🏷️
         if: ${{ contains(inputs.tag, 'latest') }}
