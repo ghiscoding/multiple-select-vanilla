@@ -71,6 +71,15 @@ jobs:
       - name: Build Library
         run: pnpm build
 
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist folders
+          path: |
+            lib/dist
+            demo/dist
+          retention-days: 5
+          
       - name: Lerna Version (latest) 🏷️
         if: ${{ contains(inputs.tag, 'latest') }}
         env:
