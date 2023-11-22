@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2-beta.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.0.1...v1.0.2-beta.0) (2023-11-22)
+
+### Bug Fixes
+
+* revert to using `.js` for both CJS/ESM ([#173](https://github.com/ghiscoding/multiple-select-vanilla/issues/173)) ([fff2484](https://github.com/ghiscoding/multiple-select-vanilla/commit/fff2484593431cc52cc89d7fc6a00619bd62c14b)) - by @ghiscoding
+
 ## [1.0.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.0.0...v1.0.1) (2023-11-22)
 
 **Note:** Version bump only for package multiple-select-vanilla
