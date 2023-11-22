@@ -14,14 +14,12 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "node": "./dist/cjs/multiple-select.js",
-      "require": "./dist/cjs/multiple-select.js",
+      "node": "./dist/cjs/multiple-select.cjs",
+      "require": "./dist/cjs/multiple-select.cjs",
       "default": "./dist/esm/multiple-select.js"
     },
     "./dist/browser/*": "./dist/browser/*",
-    "./dist/browser-cjs/*": "./dist/browser/*",
     "./dist/locales/*": "./dist/locales/*",
-    "./dist/locales-cjs/*": "./dist/locales/*",
     "./dist/styles/*": "./dist/styles/*",
     "./package.json": "./package.json"
   },
