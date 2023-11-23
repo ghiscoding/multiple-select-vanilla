@@ -6,8 +6,8 @@
 [![npm](https://img.shields.io/npm/v/multiple-select-vanilla.svg?logo=npm&logoColor=fff&label=npm)](https://www.npmjs.com/package/multiple-select-vanilla)
 [![Actions Status](https://github.com/ghiscoding/multiple-select-vanilla/actions/workflows/main.yml/badge.svg)](https://github.com/ghiscoding/multiple-select-vanilla/actions)
 
-## Official Release now available 📣
-We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options/methods. You can also take a look at the "[Used by](#used-by)" section below to see real world applications taking advantage of this library.
+## Stable Release
+We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for displaying all available options/methods. You can also take a look at the "[Used by](#used-by)" section below to see real world applications taking advantage of this library.
 
 ## Description
 Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.6.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.6.0). The main difference from the original lib is that we dropped jQuery and we now use native code and this mean zero external dependency. We also added a few extra features which you can see in the list below ([Changes vs Original lib](#changes-vs-original-lib)).
