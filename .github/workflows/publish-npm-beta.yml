@@ -15,13 +15,13 @@ jobs:
         shell: bash
         run: echo "START_TIME=$(TZ=":America/New_York" date -R|sed 's/.....$//')" >> $GITHUB_ENV
 
-      - name: Echo date
+      - name: Current datetime - ${{ env.START_TIME }}
         run: echo ${{ env.START_TIME }}
-        
+
       - name: Clone repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 3
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - if: ${{ github.event.pull_request.merged != true && contains('["ghiscoding"]', github.actor) != true }}
@@ -67,9 +67,9 @@ jobs:
             lib/dist
             demo/dist
           retention-days: 5
-          
+
       - name: Lerna Version 🏷️
-        env: 
+        env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
@@ -77,21 +77,21 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           pnpm whoami
-          pnpm run lerna -- version prerelease --conventional-commits --conventional-prerelease --preid beta --force-publish --yes
+          pnpm exec lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --force-publish --yes
 
       - name: OTP
         uses: step-security/wait-for-secrets@v1
         id: wait-for-secrets
         with:
           secrets: |
-            OTP: 
+            OTP:
               name: 'OTP to publish package'
               description: 'OTP from authenticator app'
 
       - name: Lerna Publish 📦
-        env: 
+        env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
         run: |
-          pnpm run lerna -- publish from-package --force-publish --dist-tag next --yes --otp ${{ steps.wait-for-secrets.outputs.OTP }}
+          pnpm exec lerna publish from-package --force-publish --dist-tag next --yes --otp ${{ steps.wait-for-secrets.outputs.OTP }}

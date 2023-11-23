@@ -22,11 +22,6 @@
     "url": "http://github.com/ghiscoding/multiple-select-vanilla"
   },
   "scripts": {
-    "lerna": "lerna",
-    "ci:version": "lerna version --yes",
-    "ci:publish": "lerna publish from-package --force-publish --yes",
-    "ci:version:beta": "lerna version prerelease --conventional-commits --conventional-prerelease --preid beta --force-publish --yes",
-    "ci:publish:beta": "lerna publish from-package --force-publish --dist-tag next --yes",
     "clean": "rimraf --glob */dist */tsconfig.tsbuildinfo",
     "prebuild": "pnpm run clean && pnpm run prettier:write && pnpm run lint",
     "build": "pnpm -r --stream build",
