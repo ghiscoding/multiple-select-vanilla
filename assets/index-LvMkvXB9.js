@@ -1246,6 +1246,22 @@ var Al=Object.defineProperty;var wl=(e,t,n)=>t in e?Al(e,t,{enumerable:!0,config
     </div>
   </section>
 
+  <h5>CommonJS <code>require()</code> / ESM <code>import from</code></h5>
+    <p>
+      You can use the project as CommonJS <code>require()</code> or ESM <code>import from</code>, see example below:
+    </p>
+    <div style="background: #f7f7f7; padding: 10px">
+<pre>
+// CommonJS
+const { multipleSelect } = require('multiple-select-vanilla');
+multipleSelect('.multiple-select', {/*...*/});
+
+// ESM
+import { multipleSelect } from 'multiple-select-vanilla';
+multipleSelect('.multiple-select', {/*...*/});
+</pre>
+    </div>
+
   <section>
     <h5>Code Sample</h5>
     <div class="col-sm-10 col-lg-8">
