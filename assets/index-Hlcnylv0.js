@@ -1248,7 +1248,7 @@ var Al=Object.defineProperty;var wl=(e,t,n)=>t in e?Al(e,t,{enumerable:!0,config
 
   <h5>CommonJS <code>require()</code> / ESM <code>import from</code></h5>
     <p>
-      You can use the project as CommonJS <code>require()</code> or ESM <code>import from</code>, see example below:
+      The library provides both CommonJS or ESM, see the example below:
     </p>
     <div style="background: #f7f7f7; padding: 10px">
 <pre>
