@@ -8,8 +8,25 @@ test.describe('Example 02 - Multiple Select', () => {
     await page.locator('span').filter({ hasText: 'April' }).click();
     await page.locator('span').filter({ hasText: 'May' }).click();
     const parent1Span = await page.locator('div[data-test=select1] .ms-choice span');
-    await page.getByRole('button', { name: 'February, April, May' }).click();
+
     await expect(parent1Span).toHaveText('February, April, May');
+    await page.keyboard.press('ArrowDown');
+    const juneLoc = await page.locator('div[data-test=select1] .ms-drop li:nth-of-type(6)');
+    await expect(juneLoc).toBeFocused();
+    await expect(await juneLoc.locator('label')).toHaveText('June');
+    await page.keyboard.press('Enter');
+    await expect(parent1Span).toHaveText('4 of 12 selected');
+
+    // go up until we reach "Select All" and use Space to press the option
+    page.keyboard.press('ArrowUp');
+    page.keyboard.press('ArrowUp');
+    page.keyboard.press('ArrowUp');
+    page.keyboard.press('ArrowUp');
+    page.keyboard.press('ArrowUp');
+    page.keyboard.press('ArrowUp');
+    page.keyboard.press('Space');
+    await expect(parent1Span).toHaveText('All selected');
+    await page.getByRole('button', { name: 'All selected' }).click();
   });
 
   test('second select with multiple selection with optgroup and expect entire group to be selected', async ({ page }) => {
