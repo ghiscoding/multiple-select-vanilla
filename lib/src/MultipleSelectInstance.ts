@@ -34,6 +34,7 @@ export class MultipleSelectInstance {
   protected dropElm!: HTMLDivElement;
   protected okButtonElm?: HTMLButtonElement;
   protected filterParentElm?: HTMLDivElement | null;
+  protected lastFocusedItemKey = '';
   protected ulElm?: HTMLUListElement | null;
   protected parentElm!: HTMLDivElement;
   protected labelElm?: HTMLLabelElement | null;
@@ -42,7 +43,6 @@ export class MultipleSelectInstance {
   protected searchInputElm?: HTMLInputElement | null;
   protected selectGroupElms?: NodeListOf<HTMLInputElement>;
   protected selectItemElms?: NodeListOf<HTMLInputElement>;
-  protected disableItemElms?: NodeListOf<HTMLInputElement>;
   protected noResultsElm?: HTMLDivElement | null;
   protected options: MultipleSelectOption;
   protected selectAllName = '';
@@ -240,19 +240,25 @@ export class MultipleSelectInstance {
     this.selectItemName = `selectItem${name}`;
 
     if (!this.options.keepOpen) {
-      this._bindEventService.unbind(document.body, 'click');
-      this._bindEventService.bind(document.body, 'click', ((e: MouseEvent & { target: HTMLElement }) => {
-        if (e.target === this.choiceElm || findParent(e.target, '.ms-choice') === this.choiceElm) {
-          return;
-        }
+      this._bindEventService.unbindAll('body-click');
+      this._bindEventService.bind(
+        document.body,
+        'click',
+        ((e: MouseEvent & { target: HTMLElement }) => {
+          if (e.target === this.choiceElm || findParent(e.target, '.ms-choice') === this.choiceElm) {
+            return;
+          }
 
-        if (
-          (e.target === this.dropElm || (findParent(e.target, '.ms-drop') !== this.dropElm && e.target !== this.elm)) &&
-          this.options.isOpen
-        ) {
-          this.close();
-        }
-      }) as EventListener);
+          if (
+            (e.target === this.dropElm || (findParent(e.target, '.ms-drop') !== this.dropElm && e.target !== this.elm)) &&
+            this.options.isOpen
+          ) {
+            this.close();
+          }
+        }) as EventListener,
+        undefined,
+        'body-click'
+      );
     }
   }
 
@@ -521,7 +527,7 @@ export class MultipleSelectInstance {
       // - group option row -
       const htmlBlocks: HtmlStruct[] = [];
 
-      const groupBlock: HtmlStruct =
+      const itemOrGroupBlock: HtmlStruct =
         this.options.hideOptgroupCheckboxes || this.options.single
           ? { tagName: 'span', props: { dataset: { name: this.selectGroupName, key: row._key } } }
           : {
@@ -545,12 +551,15 @@ export class MultipleSelectInstance {
 
       const liBlock: HtmlStruct = {
         tagName: 'li',
-        props: { className: `group ${classes}`.trim(), tabIndex: classes.includes('hide-radio') || row.disabled ? -1 : 0 },
+        props: {
+          className: `group ${classes}`.trim(),
+          tabIndex: classes.includes('hide-radio') || row.disabled ? -1 : 0,
+        },
         children: [
           {
             tagName: 'label',
             props: { className: `optgroup${this.options.single || row.disabled ? ' disabled' : ''}` },
-            children: [groupBlock, spanLabelBlock],
+            children: [itemOrGroupBlock, spanLabelBlock],
           },
         ],
       };
@@ -605,7 +614,7 @@ export class MultipleSelectInstance {
 
     const liBlock: HtmlStruct = {
       tagName: 'li',
-      props: { className: liClasses, title, tabIndex: row.disabled ? -1 : 0 },
+      props: { className: liClasses, title, tabIndex: row.disabled ? -1 : 0, dataset: { key: row._key } },
       children: [{ tagName: 'label', props: { className: labelClasses }, children: [inputBlock, spanLabelBlock] }],
     };
 
@@ -676,13 +685,13 @@ export class MultipleSelectInstance {
   }
 
   protected events() {
-    this._bindEventService.unbind(this.okButtonElm);
-    this._bindEventService.unbind(this.searchInputElm);
-    this._bindEventService.unbind(this.selectAllElm);
-    this._bindEventService.unbind(this.selectGroupElms);
-    this._bindEventService.unbind(this.selectItemElms);
-    this._bindEventService.unbind(this.disableItemElms);
-    this._bindEventService.unbind(this.noResultsElm);
+    this._bindEventService.unbindAll([
+      'ok-button',
+      'search-input',
+      'select-all-checkbox',
+      'input-checkbox-list',
+      'group-checkbox-list',
+    ]);
 
     this.closeSearchElm = this.filterParentElm?.querySelector('.icon-close');
     this.searchInputElm = this.dropElm.querySelector<HTMLInputElement>('.ms-search input');
@@ -691,7 +700,6 @@ export class MultipleSelectInstance {
       `input[data-name="${this.selectGroupName}"],span[data-name="${this.selectGroupName}"]`
     );
     this.selectItemElms = this.dropElm.querySelectorAll<HTMLInputElement>(`input[data-name="${this.selectItemName}"]:enabled`);
-    this.disableItemElms = this.dropElm.querySelectorAll<HTMLInputElement>(`input[data-name="${this.selectItemName}"]:disabled`);
     this.noResultsElm = this.dropElm.querySelector<HTMLDivElement>('.ms-no-results');
 
     const toggleOpen = (e: MouseEvent & { target: HTMLElement }) => {
@@ -753,138 +761,193 @@ export class MultipleSelectInstance {
     }
 
     if (this.searchInputElm) {
-      this._bindEventService.bind(this.searchInputElm, 'keydown', ((e: KeyboardEvent) => {
-        // Ensure shift-tab causes lost focus from filter as with clicking away
-        if (e.code === 'Tab' && e.shiftKey) {
-          this.close();
-        }
-      }) as EventListener);
-
-      this._bindEventService.bind(this.searchInputElm, 'keyup', ((e: KeyboardEvent) => {
-        // enter or space
-        // Avoid selecting/deselecting if no choices made
-        if (this.options.filterAcceptOnEnter && ['Enter', 'Space'].includes(e.code) && this.searchInputElm?.value) {
-          if (this.options.single) {
-            const visibleLiElms: HTMLInputElement[] = [];
-            this.selectItemElms?.forEach((selectedElm) => {
-              if (selectedElm.closest('li')?.style.display !== 'none') {
-                visibleLiElms.push(selectedElm);
-              }
-            });
-            if (visibleLiElms.length && visibleLiElms[0].hasAttribute('data-name')) {
-              this.setSelects([visibleLiElms[0].value]);
-            }
-          } else {
-            this.selectAllElm?.click();
+      this._bindEventService.bind(
+        this.searchInputElm,
+        'keydown',
+        ((e: KeyboardEvent) => {
+          // Ensure shift-tab causes lost focus from filter as with clicking away
+          if (e.code === 'Tab' && e.shiftKey) {
+            this.close();
           }
-          this.close();
-          this.focus();
-          return;
-        }
-        this.filter();
-      }) as EventListener);
+        }) as EventListener,
+        undefined,
+        'search-input'
+      );
+
+      this._bindEventService.bind(
+        this.searchInputElm,
+        'keyup',
+        ((e: KeyboardEvent) => {
+          // enter or space
+          // Avoid selecting/deselecting if no choices made
+          if (this.options.filterAcceptOnEnter && ['Enter', 'Space'].includes(e.code) && this.searchInputElm?.value) {
+            if (this.options.single) {
+              const visibleLiElms: HTMLInputElement[] = [];
+              this.selectItemElms?.forEach((selectedElm) => {
+                if (selectedElm.closest('li')?.style.display !== 'none') {
+                  visibleLiElms.push(selectedElm);
+                }
+              });
+              if (visibleLiElms.length && visibleLiElms[0].hasAttribute('data-name')) {
+                this.setSelects([visibleLiElms[0].value]);
+              }
+            } else {
+              this.selectAllElm?.click();
+            }
+            this.close();
+            this.focus();
+            return;
+          }
+          this.filter();
+        }) as EventListener,
+        undefined,
+        'search-input'
+      );
     }
 
     if (this.selectAllElm) {
-      this._bindEventService.unbind(this.selectAllElm, 'click');
-      this._bindEventService.bind(this.selectAllElm, 'click', ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
-        this._checkAll(e.currentTarget?.checked);
-      }) as EventListener);
+      this._bindEventService.bind(
+        this.selectAllElm,
+        'click',
+        ((e: MouseEvent & { currentTarget: HTMLInputElement }) => this._checkAll(e.currentTarget?.checked)) as EventListener,
+        undefined,
+        'select-all-checkbox'
+      );
     }
 
     if (this.okButtonElm) {
-      this._bindEventService.unbind(this.okButtonElm, 'click');
-      this._bindEventService.bind(this.okButtonElm, 'click', ((e: MouseEvent & { target: HTMLElement }) => {
-        toggleOpen(e);
-        e.stopPropagation(); // Causes lost focus otherwise
-      }) as EventListener);
+      this._bindEventService.bind(
+        this.okButtonElm,
+        'click',
+        ((e: MouseEvent & { target: HTMLElement }) => {
+          toggleOpen(e);
+          e.stopPropagation(); // Causes lost focus otherwise
+        }) as EventListener,
+        undefined,
+        'ok-button'
+      );
     }
 
-    this._bindEventService.bind(this.selectGroupElms, 'click', ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
-      const selectElm = e.currentTarget;
-      const checked = selectElm.checked;
-      const group = findByParam(this.data, '_key', selectElm.dataset.key);
+    this._bindEventService.bind(
+      this.selectGroupElms,
+      'click',
+      ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
+        const selectElm = e.currentTarget;
+        const checked = selectElm.checked;
+        const group = findByParam(this.data, '_key', selectElm.dataset.key);
 
-      this._checkGroup(group, checked);
-      this.options.onOptgroupClick(
-        removeUndefined({
-          label: group.label,
-          selected: group.selected,
-          data: group._data,
-          children: group.children.map((child: any) => {
-            if (child) {
-              return removeUndefined({
-                text: child.text,
-                value: child.value,
-                selected: child.selected,
-                disabled: child.disabled,
-                data: child._data,
-              });
-            }
-          }),
-        })
-      );
-    }) as EventListener);
+        this._checkGroup(group, checked);
+        this.options.onOptgroupClick(
+          removeUndefined({
+            label: group.label,
+            selected: group.selected,
+            data: group._data,
+            children: group.children.map((child: any) => {
+              if (child) {
+                return removeUndefined({
+                  text: child.text,
+                  value: child.value,
+                  selected: child.selected,
+                  disabled: child.disabled,
+                  data: child._data,
+                });
+              }
+            }),
+          })
+        );
+      }) as EventListener,
+      undefined,
+      'group-checkbox-list'
+    );
 
-    this._bindEventService.bind(this.selectItemElms, 'click', ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
-      const selectElm = e.currentTarget;
-      const checked = selectElm.checked;
-      const option = findByParam(this.data, '_key', selectElm.dataset.key);
-      const close = () => {
-        if (this.options.single && this.options.isOpen && !this.options.keepOpen) {
-          this.close();
+    this._bindEventService.bind(
+      this.selectItemElms,
+      'click',
+      ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
+        const selectElm = e.currentTarget;
+        const checked = selectElm.checked;
+        const option = findByParam(this.data, '_key', selectElm.dataset.key);
+        const close = () => {
+          if (this.options.single && this.options.isOpen && !this.options.keepOpen) {
+            this.close();
+          }
+        };
+
+        if (this.options.onBeforeClick(option) === false) {
+          close();
+          return;
         }
-      };
 
-      if (this.options.onBeforeClick(option) === false) {
+        this._check(option, checked);
+        this.options.onClick(
+          removeUndefined({
+            text: option.text,
+            value: option.value,
+            selected: option.selected,
+            data: option._data,
+          })
+        );
+
         close();
-        return;
-      }
+      }) as EventListener,
+      undefined,
+      'input-checkbox-list'
+    );
 
-      this._check(option, checked);
-      this.options.onClick(
-        removeUndefined({
-          text: option.text,
-          value: option.value,
-          selected: option.selected,
-          data: option._data,
-        })
-      );
-
-      close();
-    }) as EventListener);
+    // if we previously had an item focused and the VirtualScroll recreates the list, we need to refocus on last item by its input data-key
+    if (this.lastFocusedItemKey) {
+      const input = this.dropElm.querySelector<HTMLInputElement>(`li[data-key=${this.lastFocusedItemKey}]`);
+      input?.focus();
+    }
 
     // add keydown event listeners to watch for up/down arrows and focus on previous/next item
     // we will ignore divider and if key pressed is the Enter/Space key then we'll instead select/deselect input checkbox
+    // we will also remove any previous bindings that might exist which happen when we use VirtualScroll
     const nodes = Array.from(this.dropElm.querySelectorAll<HTMLDivElement | HTMLLIElement>('div.ms-select-all, li'));
-    nodes.forEach((liElm, idx) => {
-      this._bindEventService.bind(liElm, 'keydown', ((e: KeyboardEvent & { target: HTMLElement }) => {
-        switch (e.key) {
-          case 'ArrowUp':
-            e.preventDefault();
-            if (idx > 0) {
-              this.focusOnUpDownItem(nodes, idx, e.key);
+    this._bindEventService.unbindAll('tabindex-arrow');
+    this._bindEventService.bind(
+      this.dropElm,
+      'keydown',
+      ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
+        const liElm = e.target.closest('.ms-select-all') || e.target.closest('li');
+        if (this.dropElm.contains(liElm)) {
+          let idx = 0;
+          const nodeLn = nodes.length;
+          for (idx = 0; idx < nodeLn; idx++) {
+            if (nodes[idx].isEqualNode(liElm)) {
+              break;
             }
-            break;
-          case 'ArrowDown':
-            e.preventDefault();
-            if (idx < nodes.length - 1) {
-              this.focusOnUpDownItem(nodes, idx, e.key);
-            }
-            break;
-          case 'Enter':
-          case ' ':
-            e.preventDefault();
-            liElm.querySelector('input')?.click();
-            if (this.options.single) {
-              this.choiceElm.focus();
-            }
-            break;
-          default:
-          // ignore
+          }
+          switch (e.key) {
+            case 'ArrowUp':
+              e.preventDefault();
+              if (idx > 0) {
+                this.lastFocusedItemKey = this.focusOnUpDownItem(nodes, idx, e.key)?.dataset.key || '';
+              }
+              break;
+            case 'ArrowDown':
+              e.preventDefault();
+              if (idx < nodes.length - 1) {
+                this.lastFocusedItemKey = this.focusOnUpDownItem(nodes, idx, e.key)?.dataset.key || '';
+              }
+              break;
+            case 'Enter':
+            case ' ':
+              e.preventDefault();
+              liElm!.querySelector('input')?.click();
+              if (this.options.single) {
+                this.choiceElm.focus();
+                this.lastFocusedItemKey = this.choiceElm?.dataset.key || '';
+              }
+              break;
+            default:
+            // ignore
+          }
         }
-      }) as EventListener);
-    });
+      }) as EventListener,
+      undefined,
+      'tabindex-arrow'
+    );
   }
 
   /** focus on next up/down item depending on arrow key pressed, we will ignore divider and focus on next item */
@@ -898,7 +961,11 @@ export class MultipleSelectInstance {
       }
       break;
     }
-    dirElm?.focus();
+    if (dirElm) {
+      dirElm.focus();
+      return dirElm;
+    }
+    return null;
   }
 
   /**

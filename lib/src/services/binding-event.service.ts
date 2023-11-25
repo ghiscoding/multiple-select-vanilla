@@ -1,7 +1,8 @@
 export interface ElementEventListener {
   element: Element;
-  eventName: string;
-  listener: EventListenerOrEventListenerObject;
+  eventName: keyof HTMLElementEventMap;
+  listener: EventListener;
+  groupName?: string;
 }
 
 export class BindingEventService {
@@ -22,41 +23,50 @@ export class BindingEventService {
   }
 
   /** Bind an event listener to any element */
-  bind(
-    elementOrElements: Element | NodeListOf<Element>,
-    eventNameOrNames: string | string[],
-    listener: EventListenerOrEventListenerObject,
-    options?: boolean | AddEventListenerOptions
+  bind<H extends HTMLElement = HTMLElement>(
+    elementOrElements: H | NodeListOf<H> | Window,
+    eventNameOrNames: keyof HTMLElementEventMap | Array<keyof HTMLElementEventMap>,
+    listener: EventListener,
+    listenerOptions?: boolean | AddEventListenerOptions,
+    groupName = ''
   ) {
+    // convert to array for looping in next task
     const eventNames = Array.isArray(eventNameOrNames) ? eventNameOrNames : [eventNameOrNames];
 
-    if ((elementOrElements as NodeListOf<HTMLElement>)?.forEach) {
-      (elementOrElements as NodeListOf<HTMLElement>)?.forEach((element) => {
+    if (typeof (elementOrElements as NodeListOf<H>)?.forEach === 'function') {
+      // multiple elements to bind to
+      (elementOrElements as NodeListOf<H>).forEach((element) => {
         for (const eventName of eventNames) {
           if (!this._distinctEvent || (this._distinctEvent && !this.hasBinding(element, eventName))) {
-            element.addEventListener(eventName, listener, options);
-            this._boundedEvents.push({ element, eventName, listener });
+            element.addEventListener(eventName, listener as EventListener, listenerOptions);
+            this._boundedEvents.push({ element, eventName, listener: listener as EventListener, groupName });
           }
         }
       });
     } else {
+      // single elements to bind to
       for (const eventName of eventNames) {
-        if (!this._distinctEvent || (this._distinctEvent && !this.hasBinding(elementOrElements as Element, eventName))) {
-          (elementOrElements as Element).addEventListener(eventName, listener, options);
-          this._boundedEvents.push({ element: elementOrElements as Element, eventName, listener });
+        if (!this._distinctEvent || (this._distinctEvent && !this.hasBinding(elementOrElements as H, eventName))) {
+          (elementOrElements as H).addEventListener(eventName, listener as EventListener, listenerOptions);
+          this._boundedEvents.push({
+            element: elementOrElements as H,
+            eventName,
+            listener: listener as EventListener,
+            groupName,
+          });
         }
       }
     }
   }
 
-  hasBinding(elm: Element, eventNameOrNames?: string | string[]): boolean {
+  hasBinding(elm: Element, eventNameOrNames?: keyof HTMLElementEventMap | Array<keyof HTMLElementEventMap>): boolean {
     return this._boundedEvents.some((f) => f.element === elm && (!eventNameOrNames || f.eventName === eventNameOrNames));
   }
 
-  /** Unbind all will remove every every event handlers that were bounded earlier */
+  /** Unbind a specific listener that was bounded earlier */
   unbind(
     elementOrElements?: Element | NodeListOf<Element> | null,
-    eventNameOrNames?: string | string[],
+    eventNameOrNames?: keyof HTMLElementEventMap | Array<keyof HTMLElementEventMap>,
     listener?: EventListenerOrEventListenerObject | null
   ) {
     if (elementOrElements) {
@@ -80,12 +90,29 @@ export class BindingEventService {
     }
   }
 
-  /** Unbind all will remove every every event handlers that were bounded earlier */
-  unbindAll() {
-    while (this._boundedEvents.length > 0) {
-      const boundedEvent = this._boundedEvents.pop() as ElementEventListener;
-      const { element, eventName, listener } = boundedEvent;
-      this.unbind(element, eventName, listener);
+  /**
+   * Unbind all event listeners that were bounded, optionally provide a group name to unbind all listeners assigned to that specific group only.
+   */
+  unbindAll(groupName?: string | string[]) {
+    if (groupName) {
+      const groupNames = Array.isArray(groupName) ? groupName : [groupName];
+      // unbind only the bounded event with a specific group
+      // Note: we need to loop in reverse order to avoid array reindexing (causing index offset) after a splice is called
+      for (let i = this._boundedEvents.length - 1; i >= 0; --i) {
+        const boundedEvent = this._boundedEvents[i];
+        if (groupNames.some((g) => g === boundedEvent.groupName)) {
+          const { element, eventName, listener } = boundedEvent;
+          this.unbind(element, eventName, listener);
+          this._boundedEvents.splice(i, 1);
+        }
+      }
+    } else {
+      // unbind everything
+      while (this._boundedEvents.length > 0) {
+        const boundedEvent = this._boundedEvents.pop() as ElementEventListener;
+        const { element, eventName, listener } = boundedEvent;
+        this.unbind(element, eventName, listener);
+      }
     }
   }
 }
