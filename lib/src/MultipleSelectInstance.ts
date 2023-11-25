@@ -48,7 +48,7 @@ export class MultipleSelectInstance {
   protected selectAllName = '';
   protected selectGroupName = '';
   protected selectItemName = '';
-  protected tabIndex?: string | null;
+  protected tabIndex?: number;
   protected updateDataStart?: number;
   protected updateDataEnd?: number;
   protected virtualScroll?: VirtualScroll | null;
@@ -186,17 +186,17 @@ export class MultipleSelectInstance {
     // add placeholder to choice button
     this.options.placeholder = this.options.placeholder || this.elm.getAttribute('placeholder') || '';
 
-    this.tabIndex = this.elm.getAttribute('tabindex');
-    let tabIndex = '';
+    this.tabIndex = this.elm.tabIndex;
+    let tabIndex: number | undefined;
     if (this.tabIndex !== null) {
       this.elm.tabIndex = -1;
-      tabIndex = this.tabIndex && `tabindex="${this.tabIndex}"`;
+      tabIndex = this.tabIndex;
     }
 
     this.choiceElm = createDomElement('button', { className: 'ms-choice', type: 'button' }, this.parentElm);
 
-    if (isNaN(tabIndex as any)) {
-      this.choiceElm.tabIndex = +tabIndex;
+    if (tabIndex !== undefined) {
+      this.choiceElm.tabIndex = tabIndex;
     }
 
     this.choiceElm.appendChild(createDomElement('span', { className: 'ms-placeholder', textContent: this.options.placeholder }));
@@ -394,7 +394,7 @@ export class MultipleSelectInstance {
 
     if (this.options.selectAll && !this.options.single) {
       const selectName = this.elm.getAttribute('name') || this.options.name || '';
-      this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all' });
+      this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all', tabIndex: 0 });
       const saLabelElm = document.createElement('label');
       createDomElement(
         'input',
@@ -403,6 +403,7 @@ export class MultipleSelectInstance {
           ariaChecked: String(this.allSelected),
           checked: this.allSelected,
           dataset: { name: `selectAll${selectName}` },
+          tabIndex: -1,
         },
         saLabelElm
       );
@@ -491,7 +492,7 @@ export class MultipleSelectInstance {
     const rows: HtmlStruct[] = [];
     this.updateData = [];
     this.data?.forEach((row) => rows.push(...this.initListItem(row)));
-    rows.push({ tagName: 'li', props: { className: 'ms-no-results', textContent: this.formatNoMatchesFound() } });
+    rows.push({ tagName: 'li', props: { className: 'ms-no-results', textContent: this.formatNoMatchesFound(), tabIndex: 0 } });
 
     return rows;
   }
@@ -531,6 +532,7 @@ export class MultipleSelectInstance {
                 ariaChecked: String(row.selected || false),
                 checked: Boolean(row.selected),
                 disabled: row.disabled,
+                tabIndex: -1,
               },
             };
 
@@ -543,7 +545,7 @@ export class MultipleSelectInstance {
 
       const liBlock: HtmlStruct = {
         tagName: 'li',
-        props: { className: `group ${classes}`.trim() },
+        props: { className: `group ${classes}`.trim(), tabIndex: classes.includes('hide-radio') || row.disabled ? -1 : 0 },
         children: [
           {
             tagName: 'label',
@@ -593,6 +595,7 @@ export class MultipleSelectInstance {
         ariaChecked: String(row.selected || false),
         checked: Boolean(row.selected),
         disabled: Boolean(row.disabled),
+        tabIndex: -1,
       },
     };
 
@@ -602,7 +605,7 @@ export class MultipleSelectInstance {
 
     const liBlock: HtmlStruct = {
       tagName: 'li',
-      props: { className: liClasses, title },
+      props: { className: liClasses, title, tabIndex: row.disabled ? -1 : 0 },
       children: [{ tagName: 'label', props: { className: labelClasses }, children: [inputBlock, spanLabelBlock] }],
     };
 
@@ -850,6 +853,52 @@ export class MultipleSelectInstance {
 
       close();
     }) as EventListener);
+
+    // add keydown event listeners to watch for up/down arrows and focus on previous/next item
+    // we will ignore divider and if key pressed is the Enter/Space key then we'll instead select/deselect input checkbox
+    const nodes = Array.from(this.dropElm.querySelectorAll<HTMLDivElement | HTMLLIElement>('div.ms-select-all, li'));
+    nodes.forEach((liElm, idx) => {
+      this._bindEventService.bind(liElm, 'keydown', ((e: KeyboardEvent & { target: HTMLElement }) => {
+        switch (e.key) {
+          case 'ArrowUp':
+            e.preventDefault();
+            if (idx > 0) {
+              this.focusOnUpDownItem(nodes, idx, e.key);
+            }
+            break;
+          case 'ArrowDown':
+            e.preventDefault();
+            if (idx < nodes.length - 1) {
+              this.focusOnUpDownItem(nodes, idx, e.key);
+            }
+            break;
+          case 'Enter':
+          case ' ':
+            e.preventDefault();
+            liElm.querySelector('input')?.click();
+            if (this.options.single) {
+              this.choiceElm.focus();
+            }
+            break;
+          default:
+          // ignore
+        }
+      }) as EventListener);
+    });
+  }
+
+  /** focus on next up/down item depending on arrow key pressed, we will ignore divider and focus on next item */
+  protected focusOnUpDownItem(items: HTMLElement[], itemIdx: number, direction: 'ArrowUp' | 'ArrowDown') {
+    let currentIdx = itemIdx;
+    let dirElm: HTMLElement | null;
+    while ((dirElm = items[direction === 'ArrowUp' ? currentIdx - 1 : currentIdx + 1])) {
+      if (dirElm.classList.contains('option-divider')) {
+        direction === 'ArrowUp' ? currentIdx-- : currentIdx++;
+        continue;
+      }
+      break;
+    }
+    dirElm?.focus();
   }
 
   /**
@@ -1326,7 +1375,7 @@ export class MultipleSelectInstance {
           const rowLabel = `${(row as OptGroupRowData)?.label ?? ''}`;
           if (row !== undefined && row !== null) {
             const visible = this.options.customFilter({
-              label: removeDiacritics(rowLabel.toLowerCase()),
+              label: removeDiacritics(rowLabel.toString().toLowerCase()),
               search: removeDiacritics(search),
               originalLabel: rowLabel,
               originalSearch,
@@ -1345,7 +1394,7 @@ export class MultipleSelectInstance {
             if (child !== undefined && child !== null) {
               const childText = `${(child as OptionRowData)?.text ?? ''}`;
               child.visible = this.options.customFilter({
-                text: removeDiacritics(childText.toLowerCase()),
+                text: removeDiacritics(childText.toString().toLowerCase()),
                 search: removeDiacritics(search),
                 originalText: childText,
                 originalSearch,
@@ -1359,7 +1408,7 @@ export class MultipleSelectInstance {
       } else {
         const rowText = `${(row as OptionRowData)?.text ?? ''}`;
         row.visible = this.options.customFilter({
-          text: removeDiacritics(rowText.toLowerCase()),
+          text: removeDiacritics(rowText.toString().toLowerCase()),
           search: removeDiacritics(search),
           originalText: rowText,
           originalSearch,
