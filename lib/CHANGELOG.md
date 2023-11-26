@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.0.3...v1.1.0) (2023-11-26)
+
+### Features
+
+* add tabindex to list item to control up/down arrow direction ([#176](https://github.com/ghiscoding/multiple-select-vanilla/issues/176)) ([763e13a](https://github.com/ghiscoding/multiple-select-vanilla/commit/763e13a7c0c511a21dd269e04988f8242d4f9c0a)) - by @ghiscoding
+
 ## 1.0.3 (2023-11-22)
 
 **Note:** Version bump only for package multiple-select-vanilla
