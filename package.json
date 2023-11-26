@@ -52,9 +52,9 @@
   },
   "packageManager": "pnpm@8.11.0",
   "devDependencies": {
-    "@lerna-lite/cli": "^2.7.2",
-    "@lerna-lite/publish": "^2.7.2",
-    "@lerna-lite/watch": "^2.7.2",
+    "@lerna-lite/cli": "^3.0.0",
+    "@lerna-lite/publish": "^3.0.0",
+    "@lerna-lite/watch": "^3.0.0",
     "@playwright/test": "^1.40.0",
     "@types/node": "^20.10.0",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
