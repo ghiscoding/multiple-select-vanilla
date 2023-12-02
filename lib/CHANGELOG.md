@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.1.0...v1.1.1) (2023-12-02)
+
+### Bug Fixes
+
+* add `aria-expanded` on ms-drop element, fixes [#178](https://github.com/ghiscoding/multiple-select-vanilla/issues/178) ([#179](https://github.com/ghiscoding/multiple-select-vanilla/issues/179)) ([1c2ccee](https://github.com/ghiscoding/multiple-select-vanilla/commit/1c2ccee7b744d5f654c4575da8b1b5732ee4938a)) - by @ghiscoding
+
 ## [1.1.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.0.3...v1.1.0) (2023-11-26)
 
 ### Features
