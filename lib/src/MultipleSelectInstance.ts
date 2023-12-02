@@ -208,7 +208,11 @@ export class MultipleSelectInstance {
     this.choiceElm.appendChild(createDomElement('div', { className: 'icon-caret' }));
 
     // default position is bottom
-    this.dropElm = createDomElement('div', { className: `ms-drop ${this.options.position}` }, this.parentElm);
+    this.dropElm = createDomElement(
+      'div',
+      { className: `ms-drop ${this.options.position}`, ariaExpanded: 'false' },
+      this.parentElm
+    );
 
     // add data-name attribute when name option is defined
     if (name) {
@@ -446,6 +450,7 @@ export class MultipleSelectInstance {
       if (!dropVisible) {
         this.dropElm.style.left = '-10000';
         this.dropElm.style.display = 'block';
+        this.dropElm.ariaExpanded = 'true';
       }
 
       const updateDataOffset = () => {
@@ -479,6 +484,7 @@ export class MultipleSelectInstance {
       if (!dropVisible) {
         this.dropElm.style.left = '0';
         this.dropElm.style.display = 'none';
+        this.dropElm.ariaExpanded = 'false';
       }
     } else {
       if (this.ulElm) {
@@ -992,6 +998,7 @@ export class MultipleSelectInstance {
     this.parentElm.classList.add('ms-parent-open');
     this.choiceElm?.querySelector('div')?.classList.add('open');
     this.dropElm.style.display = 'block';
+    this.dropElm.ariaExpanded = 'true';
 
     if (this.selectAllElm?.parentElement) {
       this.selectAllElm.parentElement.style.display = 'block';
@@ -1083,6 +1090,7 @@ export class MultipleSelectInstance {
     this.parentElm.classList.remove('ms-parent-open');
     this.choiceElm?.querySelector('div')?.classList.remove('open');
     this.dropElm.style.display = 'none';
+    this.dropElm.ariaExpanded = 'false';
 
     if (this.options.container) {
       this.parentElm.appendChild(this.dropElm);
