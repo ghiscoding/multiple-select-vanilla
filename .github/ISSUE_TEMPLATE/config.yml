@@ -1,8 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Questions
-    url: https://stackoverflow.com/search?q=slickgrid
-    about: Use Stack Overflow to find or ask for any related SlickGrid questions
-  - name: Discussions
+  - name: Questions & Discussions
     url: https://github.com/ghiscoding/multiple-select-vanilla/discussions
     about: Use GitHub discussions for message-board style questions and discussions.
