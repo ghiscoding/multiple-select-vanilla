@@ -34,7 +34,7 @@ body:
     id: system-info
     attributes:
       label: Environment Info
-      description: output of `npx envinfo --system --npmPackages 'Multiple-Select-Vanilla' --binaries --browsers`
+      description: output of `npx envinfo --system --npmPackages 'multiple-select-vanilla' --binaries --browsers`
       render: shell
       placeholder: |
         System
