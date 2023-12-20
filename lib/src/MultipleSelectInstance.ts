@@ -312,7 +312,7 @@ export class MultipleSelectInstance {
       (row as OptionRowData).text = this.options.textTemplate(elm);
       row.value = elm.value;
       row.visible = true;
-      row.selected = Boolean(elm.selected);
+      row.selected = !!elm.selected;
       row.disabled = groupDisabled || elm.disabled;
       row.classes = elm.getAttribute('class') || '';
       row.title = elm.getAttribute('title') || '';
@@ -335,7 +335,7 @@ export class MultipleSelectInstance {
       row.type = 'optgroup';
       (row as OptGroupRowData).label = this.options.labelTemplate(elm);
       row.visible = true;
-      row.selected = Boolean(elm.selected);
+      row.selected = !!elm.selected;
       row.disabled = elm.disabled;
       (row as OptGroupRowData).children = [];
       if (Object.keys(elm.dataset).length) {
@@ -542,7 +542,7 @@ export class MultipleSelectInstance {
                 type: 'checkbox',
                 dataset: { name: this.selectGroupName, key: row._key },
                 ariaChecked: String(row.selected || false),
-                checked: Boolean(row.selected),
+                checked: !!row.selected,
                 disabled: row.disabled,
                 tabIndex: -1,
               },
@@ -608,8 +608,8 @@ export class MultipleSelectInstance {
         value: encodeURI(row.value as string),
         dataset: { key: row._key, name: this.selectItemName },
         ariaChecked: String(row.selected || false),
-        checked: Boolean(row.selected),
-        disabled: Boolean(row.disabled),
+        checked: !!row.selected,
+        disabled: !!row.disabled,
         tabIndex: -1,
       },
     };
