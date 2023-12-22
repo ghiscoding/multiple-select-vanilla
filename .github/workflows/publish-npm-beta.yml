@@ -60,7 +60,7 @@ jobs:
         run: pnpm build
 
       - name: Archive build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist folders
           path: |

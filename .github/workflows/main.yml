@@ -70,7 +70,7 @@ jobs:
         run: pnpm build:demo
 
       - name: Archive build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist folders
           path: |
@@ -124,7 +124,7 @@ jobs:
             ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
           edit-mode: replace
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
