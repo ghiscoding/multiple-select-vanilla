@@ -72,13 +72,13 @@
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "cssnano": "^6.0.2",
-    "esbuild": "^0.19.10",
+    "esbuild": "^0.19.11",
     "fs-extra": "^11.2.0",
     "glob": "^10.3.10",
     "npm-run-all2": "^6.1.1",
     "postcss": "^8.4.32",
     "postcss-cli": "^11.0.0",
-    "sass": "^1.69.5",
+    "sass": "^1.69.6",
     "typescript": "^5.3.3"
   }
 }
