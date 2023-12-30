@@ -125,7 +125,7 @@ jobs:
         run: pnpm build:demo
 
       - name: Deploy to gh-pages
-        if: github.ref == 'refs/heads/master'
+        if: ${{ inputs.dryrun != true }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
