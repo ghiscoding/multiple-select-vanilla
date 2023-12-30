@@ -43,7 +43,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/ghiscoding/multiple-select-vanilla"
+    "url" : "https://github.com/ghiscoding/multiple-select-vanilla.git",
+    "directory": "packages/multiple-select-vanilla"
   },
   "publishConfig": {
     "access": "public"
