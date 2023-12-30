@@ -59,15 +59,6 @@ jobs:
       - name: Build Library
         run: pnpm build
 
-      - name: Archive build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist folders
-          path: |
-            lib/dist
-            demo/dist
-          retention-days: 5
-
       - name: Lerna Version 🏷️
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

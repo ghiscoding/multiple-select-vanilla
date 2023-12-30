@@ -29,7 +29,7 @@ npm install multiple-select-vanilla
 
 ## Changelog
 
-[CHANGELOG](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/lib/CHANGELOG.md)
+[CHANGELOG](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/multiple-select-vanilla/CHANGELOG.md)
 
 ## LICENSE
 
