@@ -197,6 +197,9 @@
     min-height: var(--ms-search-input-min-height, $ms-search-input-min-height);
     padding: var(--ms-search-input-padding, $ms-search-input-padding);
     margin: var(--ms-search-input-margin, $ms-search-input-margin);
+    &::placeholder {
+      color: var(--ms-search-input-placeholder, $ms-search-input-placeholder);
+    }
   }
 
   span.icon-close {

@@ -18,7 +18,8 @@
       </span>
     </h2>
     <div class="demo-subtitle">
-      Use <code>diacriticParser</code> callback option to remove diacritic signs (accents) from text while filtering items.
+      Use <code>diacriticParser</code> callback option to remove diacritic signs (accents) from text while filtering items. 
+      For example searching with "Fév" or "Fev" will return "Février" in both cases
     </div>
   </div>
 </div>
@@ -38,10 +39,31 @@
   <hr/>
 
   <div class="mb-3 row">
-    <label class="col-sm-2 text-end">Select</label>
+    <label class="col-sm-2 text-end">Custom Parser</label>
 
     <div class="col-sm-9">
       <select id="select1" multiple="multiple" data-test="select1" class="full-width">
+        <option value="1">Janvier</option>
+        <option value="2">Février</option>
+        <option value="3">Mars</option>
+        <option value="4">Avril</option>
+        <option value="5">Mai</option>
+        <option value="6">Juin</option>
+        <option value="7">Juillet</option>
+        <option value="8">Août</option>
+        <option value="9">Septembre</option>
+        <option value="10">Octobre</option>
+        <option value="11">Novembre</option>
+        <option value="12">Décembre</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 text-end">Default Built-in Parser</label>
+
+    <div class="col-sm-9">
+      <select id="select2" multiple="multiple" data-test="select2" class="full-width">
         <option value="1">Janvier</option>
         <option value="2">Février</option>
         <option value="3">Mars</option>
