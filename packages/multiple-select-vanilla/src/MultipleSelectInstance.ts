@@ -1450,8 +1450,8 @@ export class MultipleSelectInstance {
           const rowLabel = `${(row as OptGroupRowData)?.label ?? ''}`;
           if (row !== undefined && row !== null) {
             const visible = this.options.customFilter({
-              label: removeDiacritics(rowLabel.toString().toLowerCase()),
-              search: removeDiacritics(search),
+              label: removeDiacritics(rowLabel.toString().toLowerCase(), this.options.diacriticParser),
+              search: removeDiacritics(search, this.options.diacriticParser),
               originalLabel: rowLabel,
               originalSearch,
               row,
@@ -1469,8 +1469,8 @@ export class MultipleSelectInstance {
             if (child !== undefined && child !== null) {
               const childText = `${(child as OptionRowData)?.text ?? ''}`;
               child.visible = this.options.customFilter({
-                text: removeDiacritics(childText.toString().toLowerCase()),
-                search: removeDiacritics(search),
+                text: removeDiacritics(childText.toString().toLowerCase(), this.options.diacriticParser),
+                search: removeDiacritics(search, this.options.diacriticParser),
                 originalText: childText,
                 originalSearch,
                 row: child,
@@ -1483,8 +1483,8 @@ export class MultipleSelectInstance {
       } else {
         const rowText = `${(row as OptionRowData)?.text ?? ''}`;
         row.visible = this.options.customFilter({
-          text: removeDiacritics(rowText.toString().toLowerCase()),
-          search: removeDiacritics(search),
+          text: removeDiacritics(rowText.toString().toLowerCase(), this.options.diacriticParser),
+          search: removeDiacritics(search, this.options.diacriticParser),
           originalText: rowText,
           originalSearch,
           row,
