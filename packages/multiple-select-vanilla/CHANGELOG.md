@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.1.3...v1.2.0) (2024-01-13)
+
+### Features
+
+* remove previous diacritic unicodes and add `diacriticParser` ([#190](https://github.com/ghiscoding/multiple-select-vanilla/issues/190)) ([aaa9d92](https://github.com/ghiscoding/multiple-select-vanilla/commit/aaa9d92ef71e9b1ab9d2ca41ae98de301e50d09f)) - by @ghiscoding
+
 ## [1.1.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.1.2...v1.1.3) (2023-12-30)
 
 ### Bug Fixes
