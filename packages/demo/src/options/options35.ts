@@ -20,6 +20,7 @@ const diacritics = {
 
 export default class Example {
   ms1?: MultipleSelectInstance;
+  ms2?: MultipleSelectInstance;
   inLogElm!: HTMLInputElement;
   outLogElm!: HTMLInputElement;
 
@@ -29,7 +30,7 @@ export default class Example {
     this.ms1 = multipleSelect('#select1', {
       filter: true,
       showSearchClear: true,
-      placeholder: 'search with "é" or "û"',
+      filterPlaceholder: '🔎︎ search with "é", "û" or simply "u"',
       diacriticParser: (text: string) => {
         const output = text
           .split('')
@@ -41,11 +42,20 @@ export default class Example {
         return output;
       },
     }) as MultipleSelectInstance;
+
+    // default built-in diacritic parser (it uses the `normalize()` method)
+    this.ms2 = multipleSelect('#select2', {
+      filter: true,
+      showSearchClear: true,
+      filterPlaceholder: '🔎︎ search with "é", "û" or simply "u"',
+    }) as MultipleSelectInstance;
   }
 
   unmount() {
     // destroy ms instance(s) to avoid DOM leaks
     this.ms1?.destroy();
+    this.ms2?.destroy();
     this.ms1 = undefined;
+    this.ms2 = undefined;
   }
 }
