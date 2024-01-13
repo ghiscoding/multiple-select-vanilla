@@ -251,6 +251,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Fires when a checkbox filter is changed. */
   onFilter: (text?: string) => void;
 
+  /** Custom parser to remove diacritic signs (accents) from characters when filtering select list. */
+  diacriticParser: (text: string) => string;
+
   /**
    * Sanitizes HTML code, for example `<script>`, to prevents XSS attacks.
    * A library like DOM Purify could be used to sanitize html code, for example: `sanitizer: (dirtyHtml) => DOMPurify.sanitize(dirtyHtml || '')`
