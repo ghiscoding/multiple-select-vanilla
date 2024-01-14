@@ -8,6 +8,11 @@ on:
     types: [assigned, labeled, opened, synchronize, reopened]
     branches:
       - '**'
+
+permissions:
+  checks: write
+  pull-requests: write
+
 jobs:
   run:
     if: github.repository_owner == 'ghiscoding' || github.repository_owner == 'renovate-bot' || contains(github.event.pull_request.labels.*.name, 'run workflow')
@@ -90,37 +95,45 @@ jobs:
         with:
           run: pnpm test:e2e
 
-      - name: Define Playwright Outcome Text
-        id: pw_outcome
-        if: always()
-        run: |
-          if [ ${{ steps.playwrightsummary.outcome }} == 'failure' ]; then
-            printf "pw_outcome=Failure :rotating_light:" >> $GITHUB_OUTPUT
-          else
-            echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
-          fi
-        shell: bash
-
-      - name: Upsert Playwright Summary
-        if: |
-          github.event.pull_request.number &&
-          always()
-        uses: peter-evans/create-or-update-comment@v3
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ## :performing_arts: Playwright Summary - ${{ steps.pw_outcome.outputs.pw_outcome }}
-            ### [Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)
-            ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
-          edit-mode: replace
-
-      - uses: actions/upload-artifact@v4
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v2
         if: always()
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 5
+          comment_mode: 
+          files: |
+            playwright-report/*.xml
+
+      # - name: Define Playwright Outcome Text
+      #   id: pw_outcome
+      #   if: always()
+      #   run: |
+      #     if [ ${{ steps.playwrightsummary.outcome }} == 'failure' ]; then
+      #       printf "pw_outcome=Failure :rotating_light:" >> $GITHUB_OUTPUT
+      #     else
+      #       echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
+      #     fi
+      #   shell: bash
+
+      # - name: Upsert Playwright Summary
+      #   if: |
+      #     github.event.pull_request.number &&
+      #     always()
+      #   uses: peter-evans/create-or-update-comment@v3
+      #   with:
+      #     comment-id: ${{ steps.fc.outputs.comment-id }}
+      #     issue-number: ${{ github.event.pull_request.number }}
+      #     body: |
+      #       ## :performing_arts: Playwright Summary - ${{ steps.pw_outcome.outputs.pw_outcome }}
+      #       ### [Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)
+      #       ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
+      #     edit-mode: replace
+
+      # - uses: actions/upload-artifact@v4
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: playwright-report/
+      #     retention-days: 5
 
       - name: Deploy Demo to gh-pages
         if: |
