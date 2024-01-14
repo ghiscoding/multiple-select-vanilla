@@ -4,8 +4,7 @@ on:
   # but only for the main branch on Push and any branches on PR
   push:
     branches: [main,next]
-  pull_request_target:
-    types: [assigned, labeled, opened, synchronize, reopened]
+  pull_request:
     branches:
       - '**'
 
