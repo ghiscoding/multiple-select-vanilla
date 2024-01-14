@@ -80,20 +80,23 @@ jobs:
       - name: Start HTTP Server
         run: pnpm serve:demo &
 
-      - name: Find Playwright Summary Comment (when exist)
-        if: ${{ github.event.pull_request.number }}
-        uses: peter-evans/find-comment@v2
-        id: fc
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
-          body-includes: Playwright Summary
+      # - name: Find Playwright Summary Comment (when exist)
+      #   if: ${{ github.event.pull_request.number }}
+      #   uses: peter-evans/find-comment@v2
+      #   id: fc
+      #   with:
+      #     issue-number: ${{ github.event.pull_request.number }}
+      #     comment-author: 'github-actions[bot]'
+      #     body-includes: Playwright Summary
+
+      # - name: Run Playwright E2E Tests
+      #   uses: mathiasvr/command-output@v2.0.0
+      #   id: playwrightsummary
+      #   with:
+      #     run: pnpm test:e2e
 
       - name: Run Playwright E2E Tests
-        uses: mathiasvr/command-output@v2.0.0
-        id: playwrightsummary
-        with:
-          run: pnpm test:e2e
+        run: pnpm test:e2e
 
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action/composite@v2
