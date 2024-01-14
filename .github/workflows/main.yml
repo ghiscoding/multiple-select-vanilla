@@ -1,7 +1,5 @@
 name: CI Build
 on:
-  # Trigger the workflow on push or pull request,
-  # but only for the main branch on Push and any branches on PR
   push:
     branches: [main,next]
   pull_request:
@@ -79,21 +77,6 @@ jobs:
       - name: Start HTTP Server
         run: pnpm serve:demo &
 
-      # - name: Find Playwright Summary Comment (when exist)
-      #   if: ${{ github.event.pull_request.number }}
-      #   uses: peter-evans/find-comment@v2
-      #   id: fc
-      #   with:
-      #     issue-number: ${{ github.event.pull_request.number }}
-      #     comment-author: 'github-actions[bot]'
-      #     body-includes: Playwright Summary
-
-      # - name: Run Playwright E2E Tests
-      #   uses: mathiasvr/command-output@v2.0.0
-      #   id: playwrightsummary
-      #   with:
-      #     run: pnpm test:e2e
-
       - name: Run Playwright E2E Tests
         run: pnpm test:e2e
 
@@ -103,32 +86,7 @@ jobs:
         with:
           comment_mode: 
           files: |
-            playwright-report/*.xml
-
-      # - name: Define Playwright Outcome Text
-      #   id: pw_outcome
-      #   if: always()
-      #   run: |
-      #     if [ ${{ steps.playwrightsummary.outcome }} == 'failure' ]; then
-      #       printf "pw_outcome=Failure :rotating_light:" >> $GITHUB_OUTPUT
-      #     else
-      #       echo "pw_outcome=Success :tada:" >> $GITHUB_OUTPUT
-      #     fi
-      #   shell: bash
-
-      # - name: Upsert Playwright Summary
-      #   if: |
-      #     github.event.pull_request.number &&
-      #     always()
-      #   uses: peter-evans/create-or-update-comment@v3
-      #   with:
-      #     comment-id: ${{ steps.fc.outputs.comment-id }}
-      #     issue-number: ${{ github.event.pull_request.number }}
-      #     body: |
-      #       ## :performing_arts: Playwright Summary - ${{ steps.pw_outcome.outputs.pw_outcome }}
-      #       ### [Playwright Report](https://ghiscoding.github.io/multiple-select-vanilla/playwright-report)
-      #       ${{ steps.playwrightsummary.outputs.stdout }} ${{ steps.playwrightsummary.outputs.stderr }}
-      #     edit-mode: replace
+            playwright-report/**/*.xml
 
       - uses: actions/upload-artifact@v4
         if: always()
