@@ -34,7 +34,7 @@ npm install multiple-select-vanilla
 
 ## LICENSE
 
-[The MIT License](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/LICENSE)
+[MIT License](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/LICENSE)
 
 
 ## Changes vs Original lib (`multiple-select`)
@@ -53,7 +53,7 @@ New Multiple-Select Options:
   - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options32)).
   - `showOkButton` to add an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
   - `showSearchClear` show a clear button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
-  - `diacriticParser` can be used to parse and normalize diacritic signs when filtering select list (accents) (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options35))
+  - `diacriticParser` custom parser to normalize diacritic signs when filtering select list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options35))
 
 ## CSP Compliance
 The library is now CSP (Content Security Policy) compliant since `v0.6.0`, however there are some exceptions to be aware of. When using any html string as template (with `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return `TrustedHTML`. You can achieve this by using the `sanitizer` method in combo with [DOMPurify](https://github.com/cure53/DOMPurify) to return `TrustedHTML` as shown below and with that in place you will again be CSP compliant.
@@ -82,7 +82,7 @@ with this code in place, we can use the following CSP meta tag (which is what we
 **Note** in our demo we are actually adding `unsafe-inline` simply because we are using Vite (which is not CSP compliant in Dev mode), but the library should work nonetheless without `unsafe-inline`.
 
 ### Installation / Structure
-There are multiple ways to use the library
+There are multiple ways to use the library, you can see below the folder structure of the distribution files
 1. `dist/browser`: Standalone build which assigns `multipleSelect` on the `window.multipleSelect` object
    - browser standalone means that you can simply load it with `<script></script>` and then `multipleSelect('#mySelect')`
    - 2 builds are available CJS (`.cjs`) and ESM (`.js`) and for ESM you will need to load it with `<script type="module">`
@@ -112,7 +112,7 @@ dist/
 ```
 
 ### Used by
-This fork was created mostly to drop jQuery, and is used by a few other libraries that I maintain:
+This fork was created mostly to drop jQuery, and is used by a few other Open Source libraries that I also maintain:
 - [Angular-Slickgrid](https://github.com/ghiscoding/Angular-Slickgrid)
 - [Aurelia-Slickgrid](https://github.com/ghiscoding/aurelia-slickgrid)
 - [Slickgrid-React](https://github.com/ghiscoding/slickgrid-react)

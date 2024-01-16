@@ -15,4 +15,4 @@ npm install multiple-select-vanilla
 
 ## LICENSE
 
-[The MIT License](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/LICENSE)
+[MIT License](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/LICENSE)
