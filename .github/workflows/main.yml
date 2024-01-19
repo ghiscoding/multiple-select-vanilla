@@ -80,20 +80,28 @@ jobs:
       - name: Run Playwright E2E Tests
         run: pnpm test:e2e
 
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v2
-        if: always()
+      - name: Upload Event File
+        uses: actions/upload-artifact@v3
         with:
-          comment_mode: 
-          files: |
-            playwright-report/**/*.xml
+          name: Event File
+          path: ${{ github.event_path }}
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload Test Results
         if: always()
+        uses: actions/upload-artifact@v3
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 5
+          name: Test Results
+          path: |
+            playwright-report/**/*.xml
+        
+      # - name: Publish Test Results
+      #   uses: EnricoMi/publish-unit-test-result-action/composite@v2
+      #   if: always()
+      #   with:
+      #     comment_mode: 
+      #     files: |
+      #       playwright-report/**/*.xml
+
 
       - name: Deploy Demo to gh-pages
         if: |
