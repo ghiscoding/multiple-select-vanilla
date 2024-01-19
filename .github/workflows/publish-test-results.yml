@@ -1,4 +1,4 @@
-name: Test Results
+name: Playwright E2E Test Results
 
 on:
   workflow_run:
@@ -18,12 +18,6 @@ jobs:
 
       # needed unless run with comment_mode: off
       pull-requests: write
-
-      # only needed for private repository
-      contents: read
-
-      # only needed for private repository
-      issues: read
 
       # required by download step to access artifacts API
       actions: read
