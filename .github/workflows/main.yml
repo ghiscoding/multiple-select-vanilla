@@ -86,22 +86,13 @@ jobs:
           name: Event File
           path: ${{ github.event_path }}
 
-      - name: Upload Test Results
+      - name: Upload E2E Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Test Results
+          name: Playwright E2E Test Results
           path: |
             playwright-report/**/*.xml
-        
-      # - name: Publish Test Results
-      #   uses: EnricoMi/publish-unit-test-result-action/composite@v2
-      #   if: always()
-      #   with:
-      #     comment_mode: 
-      #     files: |
-      #       playwright-report/**/*.xml
-
 
       - name: Deploy Demo to gh-pages
         if: |
