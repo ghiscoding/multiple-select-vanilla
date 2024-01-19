@@ -81,14 +81,14 @@ jobs:
         run: pnpm test:e2e
 
       - name: Upload Event File
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Event File
           path: ${{ github.event_path }}
 
       - name: Upload Test Results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Test Results
           path: |
