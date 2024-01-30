@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.2.0...v1.2.1) (2024-01-30)
+
+### Bug Fixes
+
+* **npm:** publish src folder for source maps ([#202](https://github.com/ghiscoding/multiple-select-vanilla/issues/202)) ([a09d98a](https://github.com/ghiscoding/multiple-select-vanilla/commit/a09d98a7707b27d6c88cef2de861b2e3be420247)) - by @ghiscoding
+
 ## [1.2.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.1.3...v1.2.0) (2024-01-13)
 
 ### Features
