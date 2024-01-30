@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.2.1...v1.2.2) (2024-01-30)
+
+### Bug Fixes
+
+* **npm:** do not npm publish tsconfig.tsbuildinfo ([2871d00](https://github.com/ghiscoding/multiple-select-vanilla/commit/2871d0086df6f794e4ce96403607b04df28f2a7b)) - by @ghiscoding
+
 ## [1.2.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.2.0...v1.2.1) (2024-01-30)
 
 ### Bug Fixes
