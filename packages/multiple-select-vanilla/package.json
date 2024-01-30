@@ -24,7 +24,8 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "/dist",
+    "/src"
   ],
   "author": {
     "name": "zhixin wen",
