@@ -23,10 +23,6 @@
     "./dist/styles/*": "./dist/styles/*",
     "./package.json": "./package.json"
   },
-  "files": [
-    "/dist",
-    "/src"
-  ],
   "author": {
     "name": "zhixin wen",
     "email": "wenzhixin2010@gmail.com",
