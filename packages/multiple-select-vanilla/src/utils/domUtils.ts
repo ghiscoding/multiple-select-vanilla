@@ -92,21 +92,21 @@ export function createDomElement<T extends keyof HTMLElementTagNameMap, K extend
  * @param appendToElm
  */
 export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, parentElm?: HTMLElement): HTMLElement {
-  // innerHTML needs to be applied separately
-  let innerHTMLStr = '';
-  if (item.props?.innerHTML) {
-    innerHTMLStr = item.props.innerHTML;
-    delete item.props.innerHTML;
-  }
+  // to be CSP safe, we'll omit `innerHTML` and assign it manually afterward
+  const itemPropsOmitHtml = item.props?.innerHTML ? omitProp(item.props, 'innerHTML') : item.props;
 
-  const elm = createDomElement(item.tagName, objectRemoveEmptyProps(item.props, ['className', 'title', 'style']), appendToElm);
+  const elm = createDomElement(
+    item.tagName,
+    objectRemoveEmptyProps(itemPropsOmitHtml, ['className', 'title', 'style']),
+    appendToElm
+  );
   let parent: HTMLElement | null | undefined = parentElm;
   if (!parent) {
     parent = elm;
   }
 
-  if (innerHTMLStr) {
-    elm.innerHTML = innerHTMLStr; // type should already be as TrustedHTML
+  if (item.props.innerHTML) {
+    elm.innerHTML = item.props.innerHTML; // at this point, string type should already be as TrustedHTML
   }
 
   // add all custom DOM element attributes
@@ -245,6 +245,12 @@ export function findParent(elm: HTMLElement, selector: string) {
 
 export function insertAfter(referenceNode: HTMLElement, newNode: HTMLElement) {
   referenceNode.parentNode?.insertBefore(newNode, referenceNode.nextSibling);
+}
+
+export function omitProp(obj: any, key: string) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { [key]: omitted, ...rest } = obj;
+  return rest;
 }
 
 /** Display or hide matched element */
