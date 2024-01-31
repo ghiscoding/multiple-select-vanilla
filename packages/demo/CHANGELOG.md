@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.2.4...v1.2.5) (2024-01-31)
+
+### Bug Fixes
+
+* Virtual Scroll not working on large dataset w/HTML render enabled, fixes [#203](https://github.com/ghiscoding/multiple-select-vanilla/issues/203) ([#204](https://github.com/ghiscoding/multiple-select-vanilla/issues/204)) ([0f32e65](https://github.com/ghiscoding/multiple-select-vanilla/commit/0f32e65ab804ca089d945c8602d2e811f2df6f90)) - by @ghiscoding
+
 ## [1.2.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.2.3...v1.2.4) (2024-01-30)
 
 **Note:** Version bump only for package multiple-select-vanilla-demo
