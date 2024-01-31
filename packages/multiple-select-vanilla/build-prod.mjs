@@ -38,7 +38,7 @@ for (const format of buildFormats) {
   // this file is basically a legacy alternative to import via a <script> tag
   runBuild({
     format,
-    globalName: 'MultipleSelect',
+    globalName: 'multipleSelect',
     outfile: `dist/browser/multiple-select.${extension}`,
   });
 }

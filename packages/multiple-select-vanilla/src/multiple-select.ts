@@ -64,8 +64,3 @@ function _multipleSelect(
 multipleSelect.defaults = Constants.DEFAULTS;
 multipleSelect.locales = { ...English } as MultipleSelectLocales; // load English as default locale
 multipleSelect.methods = Constants.METHODS;
-
-// add it to the window object so it can be used as standalone
-if (typeof window !== 'undefined') {
-  window.multipleSelect = multipleSelect;
-}
