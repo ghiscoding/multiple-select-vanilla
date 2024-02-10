@@ -147,3 +147,12 @@ Before submitting a PR (pull request), please make sure that you followed these 
    - `pnpm run prettier:write`
 3. run a full Build (this will also run Prettier format, so you could skip step 2)
    - `pnpm run build`
+
+## Sponsors
+
+<div>
+  <img class="circle avatar-user" src="https://avatars.githubusercontent.com/u/48218815?s=52&amp;v=4" width="40" height="40" alt="@kevinburkett" />
+  <a href="/kevinburkett" class="Link">
+    <span class="wb-break-word ml-2">kevinburkett</span>
+  </a>
+</div>
