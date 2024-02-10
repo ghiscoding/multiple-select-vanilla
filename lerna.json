@@ -22,6 +22,6 @@
   },
   "changelogPreset": "conventional-changelog-conventionalcommits",
   "packages": [
-    "packages/*"
+    "packages/multiple-select-vanilla"
   ]
 }
