@@ -8,7 +8,7 @@ import { exampleRouting, navbarRouting } from './app-routing';
 import mainHtml from './main.html?raw';
 import './style.scss';
 
-const pageLayoutGlobs = import.meta.glob('/src/./**/*.html', { as: 'raw', eager: true });
+const pageLayoutGlobs = import.meta.glob('/src/./**/*.html', { query: '?raw', eager: true, import: 'default' });
 
 interface ViewRouter {
   name: string;
@@ -124,7 +124,7 @@ class Main {
     if (foundRouter) {
       this.currentRouter = foundRouter;
       // const html = await import(/*@vite-ignore*/ `${foundRouter.view}?raw`).default;
-      document.querySelector('.panel-wm-content')!.innerHTML = DOMPurify.sanitize(pageLayoutGlobs[foundRouter.view], {
+      document.querySelector('.panel-wm-content')!.innerHTML = DOMPurify.sanitize(pageLayoutGlobs[foundRouter.view] as string, {
         RETURN_TRUSTED_TYPE: true,
       }) as unknown as string;
       const vm = new foundRouter.viewModel() as ViewModel;
@@ -165,7 +165,7 @@ class Main {
     document.querySelectorAll('.panel-wm-left a.nav-link,.navbar-nav a.nav-link').forEach((link) => {
       link.classList.remove('active');
       if (unbindListeners) {
-        link.addEventListener('click', this.clickEventListener.bind(this) as EventListener);
+        link.removeEventListener('click', this.clickEventListener.bind(this) as EventListener);
       }
     });
   }
