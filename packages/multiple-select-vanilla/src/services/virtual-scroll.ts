@@ -44,8 +44,8 @@ export class VirtualScroll {
 
     this.scrollEl.addEventListener('scroll', onScroll, false);
     this.destroy = () => {
-      emptyElement(this.contentEl);
       this.scrollEl.removeEventListener('scroll', onScroll, false);
+      emptyElement(this.contentEl);
     };
   }
 

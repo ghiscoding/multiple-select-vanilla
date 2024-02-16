@@ -20,6 +20,9 @@ import type { MultipleSelectOption } from './interfaces/multipleSelectOption.int
 import type { HtmlStruct, MultipleSelectLocales, OptGroupRowData, OptionDataObject, OptionRowData } from './interfaces';
 import { BindingEventService, VirtualScroll } from './services';
 
+const OPTIONS_LIST_SELECTOR = '.ms-select-all, ul[role=combobox] li[role=option]';
+const OPTIONS_HIGHLIGHT_LIST_SELECTOR = '.ms-select-all.highlighted, ul[role=combobox] li[role=option].highlighted';
+
 export class MultipleSelectInstance {
   protected _bindEventService: BindingEventService;
   protected allSelected = false;
@@ -48,10 +51,12 @@ export class MultipleSelectInstance {
   protected selectAllName = '';
   protected selectGroupName = '';
   protected selectItemName = '';
-  protected tabIndex?: number;
   protected updateDataStart?: number;
   protected updateDataEnd?: number;
   protected virtualScroll?: VirtualScroll | null;
+  protected _currentHighlightIndex = -1;
+  protected _currentSelectedElm?: HTMLLIElement | HTMLDivElement;
+  protected isMoveUpRecalcRequired = false;
   locales: MultipleSelectLocales = {};
 
   get isRenderAsHtml() {
@@ -92,10 +97,6 @@ export class MultipleSelectInstance {
       }
       this.elm.classList.remove('ms-offscreen');
       this._bindEventService.unbindAll();
-
-      if (this.tabIndex) {
-        this.elm.tabIndex = +this.tabIndex;
-      }
 
       this.virtualScroll?.destroy();
       this.dropElm?.remove();
@@ -186,18 +187,7 @@ export class MultipleSelectInstance {
     // add placeholder to choice button
     this.options.placeholder = this.options.placeholder || this.elm.getAttribute('placeholder') || '';
 
-    this.tabIndex = this.elm.tabIndex;
-    let tabIndex: number | undefined;
-    if (this.tabIndex !== null) {
-      this.elm.tabIndex = -1;
-      tabIndex = this.tabIndex;
-    }
-
     this.choiceElm = createDomElement('button', { className: 'ms-choice', type: 'button' }, this.parentElm);
-
-    if (tabIndex !== undefined) {
-      this.choiceElm.tabIndex = tabIndex;
-    }
 
     this.choiceElm.appendChild(createDomElement('span', { className: 'ms-placeholder', textContent: this.options.placeholder }));
 
@@ -404,7 +394,7 @@ export class MultipleSelectInstance {
 
     if (this.options.selectAll && !this.options.single) {
       const selectName = this.elm.getAttribute('name') || this.options.name || '';
-      this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all', tabIndex: 0 });
+      this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all', dataset: { key: 'select_all' } });
       const saLabelElm = document.createElement('label');
       createDomElement(
         'input',
@@ -413,7 +403,6 @@ export class MultipleSelectInstance {
           ariaChecked: String(this.allSelected),
           checked: this.allSelected,
           dataset: { name: `selectAll${selectName}` },
-          tabIndex: -1,
         },
         saLabelElm
       );
@@ -423,6 +412,9 @@ export class MultipleSelectInstance {
     }
 
     this.ulElm = document.createElement('ul');
+    this.ulElm.role = 'combobox';
+    this.ulElm.ariaExpanded = 'false';
+    this.ulElm.ariaMultiSelectable = 'true';
     this.dropElm.appendChild(this.ulElm);
 
     if (this.options.showOkButton && !this.options.single) {
@@ -455,13 +447,24 @@ export class MultipleSelectInstance {
 
       const updateDataOffset = () => {
         if (this.virtualScroll) {
+          this._currentHighlightIndex = 0;
           this.updateDataStart = this.virtualScroll.dataStart + offset;
           this.updateDataEnd = this.virtualScroll.dataEnd + offset;
+
           if (this.updateDataStart < 0) {
             this.updateDataStart = 0;
+            this._currentHighlightIndex = 0;
           }
           if (this.updateDataEnd > this.getDataLength()) {
             this.updateDataEnd = this.getDataLength();
+          }
+
+          if (this.ulElm) {
+            if (this.isMoveUpRecalcRequired) {
+              this.recalculateArrowMove('up');
+            } else if (this.virtualScroll.dataStart > this.updateDataStart) {
+              this.recalculateArrowMove('down');
+            }
           }
         }
       };
@@ -504,7 +507,7 @@ export class MultipleSelectInstance {
     const rows: HtmlStruct[] = [];
     this.updateData = [];
     this.data?.forEach((dataRow) => rows.push(...this.initListItem(dataRow)));
-    rows.push({ tagName: 'li', props: { className: 'ms-no-results', textContent: this.formatNoMatchesFound(), tabIndex: 0 } });
+    rows.push({ tagName: 'li', props: { className: 'ms-no-results', textContent: this.formatNoMatchesFound() } });
 
     return rows;
   }
@@ -541,10 +544,8 @@ export class MultipleSelectInstance {
               props: {
                 type: 'checkbox',
                 dataset: { name: this.selectGroupName, key: dataRow._key },
-                ariaChecked: String(dataRow.selected || false),
                 checked: !!dataRow.selected,
                 disabled: dataRow.disabled,
-                tabIndex: -1,
               },
             };
 
@@ -557,8 +558,10 @@ export class MultipleSelectInstance {
       const liBlock: HtmlStruct = {
         tagName: 'li',
         props: {
-          className: `group ${classes}`.trim(),
-          tabIndex: classes.includes('hide-radio') || dataRow.disabled ? -1 : 0,
+          className: `group${this.options.single || dataRow.disabled ? ' disabled' : ''} ${classes}`.trim(),
+          role: 'option',
+          ariaSelected: String(!!dataRow.selected),
+          dataset: { key: dataRow._key },
         },
         children: [
           {
@@ -595,7 +598,10 @@ export class MultipleSelectInstance {
       return [{ tagName: 'li', props: { className: 'option-divider' } } as HtmlStruct];
     }
 
-    const liClasses = multiple || classes ? (multiple + classes).trim() : '';
+    let liClasses = multiple || classes ? (multiple + classes).trim() : '';
+    if (dataRow.disabled) {
+      liClasses += ' disabled';
+    }
     const labelClasses = `${dataRow.disabled ? 'disabled' : ''}`;
     const spanLabelBlock: HtmlStruct = { tagName: 'span', props: {} };
     this.applyAsTextOrHtmlWhenEnabled(spanLabelBlock.props, (dataRow as OptionRowData).text);
@@ -605,10 +611,8 @@ export class MultipleSelectInstance {
         type,
         value: encodeURI(dataRow.value as string),
         dataset: { key: dataRow._key, name: this.selectItemName },
-        ariaChecked: String(dataRow.selected || false),
         checked: !!dataRow.selected,
         disabled: !!dataRow.disabled,
-        tabIndex: -1,
       },
     };
 
@@ -618,7 +622,13 @@ export class MultipleSelectInstance {
 
     const liBlock: HtmlStruct = {
       tagName: 'li',
-      props: { className: liClasses, title, tabIndex: dataRow.disabled ? -1 : 0, dataset: { key: dataRow._key } },
+      props: {
+        className: liClasses,
+        role: 'option',
+        title,
+        ariaSelected: String(!!dataRow.selected),
+        dataset: { key: dataRow._key },
+      },
       children: [{ tagName: 'label', props: { className: labelClasses }, children: [inputBlock, spanLabelBlock] }],
     };
 
@@ -695,6 +705,8 @@ export class MultipleSelectInstance {
       'select-all-checkbox',
       'input-checkbox-list',
       'group-checkbox-list',
+      'hover-highlight',
+      'arrow-highlight',
     ]);
 
     this.closeSearchElm = this.filterParentElm?.querySelector('.icon-close');
@@ -904,72 +916,61 @@ export class MultipleSelectInstance {
       input?.focus();
     }
 
-    // add keydown event listeners to watch for up/down arrows and focus on previous/next item
-    // we will ignore divider and if key pressed is the Enter/Space key then we'll instead select/deselect input checkbox
-    // we will also remove any previous bindings that might exist which happen when we use VirtualScroll
-    const nodes = Array.from(this.dropElm.querySelectorAll<HTMLDivElement | HTMLLIElement>('div.ms-select-all, li'));
-    this._bindEventService.unbindAll('tabindex-arrow');
+    // when hovering an select option, we will also change the highlight to that option
     this._bindEventService.bind(
       this.dropElm,
-      'keydown',
+      'mouseover',
       ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
-        const liElm = e.target.closest('.ms-select-all') || e.target.closest('li');
+        const liElm = (e.target.closest('.ms-select-all') || e.target.closest('li')) as HTMLLIElement;
         if (this.dropElm.contains(liElm)) {
-          let idx = 0;
-          const nodeLn = nodes.length;
-          for (idx = 0; idx < nodeLn; idx++) {
-            if (nodes[idx].isEqualNode(liElm)) {
-              break;
-            }
-          }
-          switch (e.key) {
-            case 'ArrowUp':
-              e.preventDefault();
-              if (idx > 0) {
-                this.lastFocusedItemKey = this.focusOnUpDownItem(nodes, idx, e.key)?.dataset.key || '';
-              }
-              break;
-            case 'ArrowDown':
-              e.preventDefault();
-              if (idx < nodes.length - 1) {
-                this.lastFocusedItemKey = this.focusOnUpDownItem(nodes, idx, e.key)?.dataset.key || '';
-              }
-              break;
-            case 'Enter':
-            case ' ':
-              e.preventDefault();
-              liElm!.querySelector('input')?.click();
-              if (this.options.single) {
-                this.choiceElm.focus();
-                this.lastFocusedItemKey = this.choiceElm?.dataset.key || '';
-              }
-              break;
-            default:
-            // ignore
+          const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
+          const newIdx = Array.from(optionElms).findIndex((el) => el.dataset.key === liElm.dataset.key);
+          if (this._currentHighlightIndex !== newIdx && !liElm.classList.contains('disabled')) {
+            this._currentSelectedElm = liElm;
+            this._currentHighlightIndex = newIdx;
+            this.changeCurrentOptionHighlight(liElm);
           }
         }
       }) as EventListener,
       undefined,
-      'tabindex-arrow'
+      'hover-highlight'
     );
-  }
 
-  /** focus on next up/down item depending on arrow key pressed, we will ignore divider and focus on next item */
-  protected focusOnUpDownItem(items: HTMLElement[], itemIdx: number, direction: 'ArrowUp' | 'ArrowDown') {
-    let currentIdx = itemIdx;
-    let dirElm: HTMLElement | null;
-    while ((dirElm = items[direction === 'ArrowUp' ? currentIdx - 1 : currentIdx + 1])) {
-      if (dirElm.classList.contains('option-divider')) {
-        direction === 'ArrowUp' ? currentIdx-- : currentIdx++;
-        continue;
-      }
-      break;
-    }
-    if (dirElm) {
-      dirElm.focus();
-      return dirElm;
-    }
-    return null;
+    // add keydown event listeners to watch for up/down arrows and focus on previous/next item
+    // we will ignore divider and if key pressed is the Enter/Space key then we'll instead select/deselect input checkbox
+    // we will also remove any previous bindings that might exist which happen when we use VirtualScroll
+    this._bindEventService.bind(
+      this.dropElm,
+      'keydown',
+      ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
+        switch (e.key) {
+          case 'ArrowUp':
+            e.preventDefault();
+            this.moveFocusUp();
+            break;
+          case 'ArrowDown':
+            e.preventDefault();
+            this.moveFocusDown();
+            break;
+          case 'Enter':
+          case ' ':
+            if (e.key === ' ' && this.options.filter) {
+              return;
+            }
+            e.preventDefault();
+            this._currentSelectedElm?.querySelector('input')?.click();
+
+            // on single select, we should focus directly
+            if (this.options.single) {
+              this.choiceElm.focus();
+              this.lastFocusedItemKey = this.choiceElm?.dataset.key || '';
+            }
+            break;
+        }
+      }) as EventListener,
+      undefined,
+      'arrow-highlight'
+    );
   }
 
   /**
@@ -1056,7 +1057,16 @@ export class MultipleSelectInstance {
         this.searchInputElm.focus();
       }
       this.filter(true);
+    } else {
+      // highlight SelectAll or 1st select option when opening dropdown
+      if (this.selectAllElm) {
+        this.selectAllElm.focus();
+      } else if (ulElm) {
+        ulElm.tabIndex = 0;
+        ulElm.focus();
+      }
     }
+    this.moveFocusDown();
 
     if (this.options.autoAdjustDropWidthByTextSize) {
       this.adjustDropWidthByText();
@@ -1081,6 +1091,82 @@ export class MultipleSelectInstance {
     }
 
     this.options.onOpen();
+  }
+
+  protected highlightCurrentOption() {
+    const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
+
+    if (this._currentHighlightIndex <= optionElms.length) {
+      const currentOption = optionElms[this._currentHighlightIndex];
+
+      if (currentOption) {
+        this.lastFocusedItemKey = currentOption.dataset.key || '';
+        this._currentSelectedElm = currentOption;
+
+        // Scroll the current option into view
+        currentOption.scrollIntoView({ block: 'nearest' });
+        this.changeCurrentOptionHighlight(currentOption);
+      }
+    }
+  }
+
+  protected changeCurrentOptionHighlight(optionElm: HTMLLIElement | HTMLDivElement) {
+    optionElm.classList.add('highlighted');
+    const currentElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_HIGHLIGHT_LIST_SELECTOR) || [];
+    currentElms.forEach((option) => {
+      if (option !== optionElm) {
+        option.classList.remove('highlighted');
+      }
+    });
+  }
+
+  protected moveFocusDown() {
+    const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
+    if (this._currentHighlightIndex < optionElms.length - 1) {
+      this._currentHighlightIndex++;
+      if (optionElms[this._currentHighlightIndex]?.classList.contains('disabled')) {
+        this.moveFocusDown();
+      }
+    }
+    this.highlightCurrentOption();
+  }
+
+  protected moveFocusUp() {
+    const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
+    const idxToCompare = this.options.single ? 0 : 1;
+    if (this.virtualScroll && this._currentHighlightIndex <= idxToCompare && this.updateDataStart! > 0 && this.ulElm) {
+      const currentOptionElm = optionElms[this._currentHighlightIndex + (this.options.single ? 0 : 1)]; // skip SelectAll when using multiple
+      const dataKey = currentOptionElm?.dataset.key;
+      this.lastFocusedItemKey = dataKey as string;
+
+      // scroll up by 1 option row to trick the v-scroll in thinking it changed v-scroll page and it needs to recalculate its new offset
+      this.ulElm.scrollTop = this.ulElm.scrollTop - currentOptionElm?.getBoundingClientRect().height || 10;
+
+      // moveUp will be recalled by vScroll callback
+      this.isMoveUpRecalcRequired = true;
+      return;
+    }
+
+    if (this._currentHighlightIndex > 0) {
+      this._currentHighlightIndex--;
+      if (optionElms[this._currentHighlightIndex]?.classList.contains('disabled')) {
+        this.moveFocusUp();
+      }
+    }
+
+    this.highlightCurrentOption();
+  }
+
+  protected recalculateArrowMove(direction: 'up' | 'down') {
+    const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
+    const newIdx = Array.from(optionElms).findIndex((el) => el.dataset.key === this.lastFocusedItemKey);
+    this._currentHighlightIndex = newIdx - 1;
+    if (direction === 'down') {
+      this.moveFocusDown();
+    } else if (direction === 'up') {
+      this.moveFocusUp();
+      this.isMoveUpRecalcRequired = false;
+    }
   }
 
   close() {
@@ -1195,8 +1281,10 @@ export class MultipleSelectInstance {
         if (closestLiElm) {
           if (row.selected && !closestLiElm.classList.contains('selected')) {
             closestLiElm.classList.add('selected');
+            closestLiElm.ariaSelected = 'true';
           } else if (!row.selected) {
             closestLiElm.classList.remove('selected');
+            closestLiElm.ariaSelected = 'false';
           }
         }
       }
@@ -1205,6 +1293,7 @@ export class MultipleSelectInstance {
     const noResult = this.data?.filter((row) => row.visible).length === 0;
 
     if (this.selectAllElm) {
+      this.selectAllElm.ariaChecked = String(this.allSelected);
       this.selectAllElm.checked = this.allSelected;
       toggleElement(this.selectAllElm.closest('li'), !noResult);
     }
