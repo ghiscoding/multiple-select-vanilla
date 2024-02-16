@@ -74,9 +74,9 @@
     "fs-extra": "^11.2.0",
     "glob": "^10.3.10",
     "npm-run-all2": "^6.1.2",
-    "postcss": "^8.4.33",
+    "postcss": "^8.4.35",
     "postcss-cli": "^11.0.0",
-    "sass": "^1.70.0",
+    "sass": "^1.71.0",
     "typescript": "^5.3.3"
   }
 }
