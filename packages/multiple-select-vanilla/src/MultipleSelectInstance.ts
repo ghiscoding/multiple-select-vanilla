@@ -954,7 +954,8 @@ export class MultipleSelectInstance {
             break;
           case 'Enter':
           case ' ':
-            if (e.key === ' ' && this.options.filter) {
+            const liElm = e.target.closest('.ms-select-all') || e.target.closest('li');
+            if ((e.key === ' ' && this.options.filter) || (this.options.filterAcceptOnEnter && !liElm)) {
               return;
             }
             e.preventDefault();
