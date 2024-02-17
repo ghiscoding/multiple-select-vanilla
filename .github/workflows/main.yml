@@ -83,6 +83,7 @@ jobs:
         run: pnpm test:e2e
 
       - name: Upload Event File
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Event File
