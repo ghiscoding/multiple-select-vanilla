@@ -8,8 +8,7 @@ test.describe('Options 19 - Filter Only Optgroup', () => {
     expect(disabledLabel).toHaveText('000');
 
     await page.locator('.ms-parent').click();
-    await page.getByRole('textbox', { name: '🔎︎' }).fill('B');
-    await page.keyboard.press('Enter');
+    await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('B');
     await page.getByLabel('Group B').check();
 
     const labelElms = await page.locator('.ms-drop input[data-name="selectItem"]');

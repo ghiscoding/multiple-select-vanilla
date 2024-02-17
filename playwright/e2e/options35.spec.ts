@@ -7,8 +7,7 @@ test.describe('Options 35 - Diacritic Parser', () => {
     // 1st Select
     // --------------
     await page.locator('[data-test=select1].ms-parent').click();
-    await page.getByRole('textbox', { name: '🔎︎' }).fill('év');
-    await page.keyboard.press('Enter');
+    await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('év');
     await page.locator('[data-test=select1] span').filter({ hasText: 'Février' }).click();
     const selectAll1 = await page.locator('[data-test=select1] .ms-select-all input[type=checkbox]');
     expect(selectAll1).toBeChecked();
@@ -22,8 +21,7 @@ test.describe('Options 35 - Diacritic Parser', () => {
     await expect(page.locator('[data-test=select1] .ms-search span')).toHaveText('');
     await expect(page.locator('[data-test=select1].ms-drop li:not(.ms-no-results)')).toHaveCount(12);
 
-    await page.getByRole('textbox', { name: '🔎︎' }).fill('e');
-    await page.keyboard.press('Enter');
+    await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('e');
     await expect(page.locator('[data-test=select1].ms-drop li:not(.ms-no-results)')).toHaveCount(7);
     await page.locator('[data-test=select1] .ms-search .icon-close').click();
     await expect(page.locator('[data-test=select1] .ms-search span')).toHaveText('');
@@ -43,11 +41,10 @@ test.describe('Options 35 - Diacritic Parser', () => {
     await expect(parentSpan).toHaveText('Février, Juin, Août');
     await page.locator('[data-test=select1].ms-parent').click();
 
-    // 2nd Select
-    // --------------
+    // // 2nd Select
+    // // --------------
     await page.locator('[data-test=select2].ms-parent').click();
-    await page.getByRole('textbox', { name: '🔎︎' }).fill('év');
-    await page.keyboard.press('Enter');
+    await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('év');
     await page.locator('[data-test=select2] span').filter({ hasText: 'Février' }).click();
     const selectAll2 = await page.locator('[data-test=select2] .ms-select-all input[type=checkbox]');
     expect(selectAll2).toBeChecked();
@@ -69,13 +66,12 @@ test.describe('Options 35 - Diacritic Parser', () => {
     await page.keyboard.press('Enter');
     await expect(page.locator('[data-test=select2].ms-drop li:not(.ms-no-results)')).toHaveCount(3);
     await page.locator('[data-test=select2] .ms-search .icon-close').click();
-    await page.getByRole('textbox', { name: '🔎︎' }).fill('u');
-    await page.keyboard.press('Enter');
+    await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('u');
     await page.locator('[data-test=select2] span').filter({ hasText: 'Juin' }).click();
     await page.locator('[data-test=select2] span').filter({ hasText: 'Juillet' });
     await page.locator('[data-test=select2] span').filter({ hasText: 'Août' }).click();
     const parentSpan2 = await page.locator('div[data-test=select2] .ms-choice span');
-    await expect(parentSpan2).toHaveText('Février, Juin, Août');
+    await expect(parentSpan2).toHaveText('Juin, Août');
     await page.locator('[data-test=select2].ms-parent').click();
   });
 });

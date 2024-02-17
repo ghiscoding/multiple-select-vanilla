@@ -56,8 +56,7 @@ test.describe('Events Demo', () => {
       ].join('\n')
     );
 
-    await page.locator('.ms-search input').fill('1');
-    await page.keyboard.press('Enter');
+    await page.locator('.ms-search input').pressSequentially('1');
     await expect(textareaLoc).toHaveText(
       [
         'onAfterCreate event fire!',

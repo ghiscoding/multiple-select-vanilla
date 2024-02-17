@@ -12,7 +12,7 @@ test.describe('Example 11 - Bootstrap Theme', () => {
   test('select element have different element height & text font size', async ({ page }) => {
     await page.goto('#/example11');
     await page.getByRole('button', { name: 'form-control-sm' }).click();
-    await page.getByRole('listitem').filter({ hasText: 'January' }).locator('span').click();
+    await page.getByRole('option').filter({ hasText: 'January' }).locator('span').click();
 
     await assertDropHeight(page, '[data-test=select1] .ms-choice', 29);
     await assertDropHeight(page, '[data-test=select2] .ms-choice', 36);

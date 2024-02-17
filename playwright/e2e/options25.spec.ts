@@ -5,8 +5,8 @@ test.describe('Options 25 - Show OK Button', () => {
     await page.goto('#/options25');
     await page.locator('[data-test=select1].ms-parent').click();
     await page.getByRole('checkbox', { name: 'April' }).check();
-    await page.getByRole('listitem').filter({ hasText: 'March' }).locator('span').click();
-    await page.getByRole('listitem').filter({ hasText: 'February' }).locator('span').click();
+    await page.getByRole('option').filter({ hasText: 'March' }).locator('span').click();
+    await page.getByRole('option').filter({ hasText: 'February' }).locator('span').click();
     await page.getByRole('button', { name: 'OK' }).click();
 
     await page.locator('[data-test=select2].ms-parent').click();
