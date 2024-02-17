@@ -3,8 +3,11 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   base: './',
   server: {
-    port: 3000,
+    port: 4000,
     cors: true,
     host: 'localhost',
+  },
+  optimizeDeps: {
+    exclude: ['multiple-select-vanilla'],
   },
 });

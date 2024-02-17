@@ -5,19 +5,26 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Edge",
+      "name": "Chrome Debugger",
       "request": "launch",
-      "type": "msedge",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
+      "type": "chrome",
+      "sourceMaps": true,
+      "url": "http://localhost:4000",
+      "webRoot": "${workspaceFolder}/packages/demo",
+      "pathMapping": {
+        "/@fs/": ""
+      }
     },
     {
-      "name": "Vite - Edge Debugger",
-      "type": "msedge",
+      "name": "MS Edge Debugger",
       "request": "launch",
+      "type": "msedge",
       "sourceMaps": true,
-      "trace": false,
-      "url": "http://localhost:3000"
+      "url": "http://localhost:4000",
+      "webRoot": "${workspaceFolder}/packages/demo",
+      "pathMapping": {
+        "/@fs/": ""
+      }
     }
   ]
 }
