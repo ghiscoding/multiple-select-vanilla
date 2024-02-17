@@ -1,5 +1,10 @@
 @use 'sass:math';
 
+// $body-color: #ccc;
+$primary: teal;
+$btn-color: #fff;
+
+@import 'bootstrap';
 @import 'multiple-select-vanilla/dist/styles/css/multiple-select.css';
 
 $navbar-height: 60px;

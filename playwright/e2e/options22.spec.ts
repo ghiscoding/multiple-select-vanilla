@@ -5,7 +5,7 @@ test.describe('Options 22 - Filter By Data Length', () => {
     await page.goto('#/options22');
     await page.locator('[data-test="select1"].ms-parent').click();
     await expect(page.getByRole('textbox', { name: '🔎︎' })).toHaveCount(0);
-    await page.getByRole('listitem').filter({ hasText: 'abc' }).locator('label').click();
+    await page.getByRole('option').filter({ hasText: 'abc' }).locator('label').click();
 
     await page.locator('[data-test="select2"].ms-parent').click();
     await page.getByRole('textbox', { name: '🔎︎' });
@@ -21,7 +21,7 @@ test.describe('Options 22 - Filter By Data Length', () => {
     await page.getByRole('checkbox', { name: 'Group 3' }).check();
     await page.getByRole('button', { name: '5 of 11 selected' }).click();
     await page.getByRole('button', { name: '5 of 11 selected' }).click();
-    await page.getByRole('listitem').filter({ hasText: 'Group 1' }).locator('label').click();
+    await page.getByRole('option').filter({ hasText: 'Group 1' }).locator('label').click();
     await page.getByRole('button', { name: '8 of 11 selected' }).click();
   });
 });

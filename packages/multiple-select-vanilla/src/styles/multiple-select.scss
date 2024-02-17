@@ -133,6 +133,9 @@
     &:hover {
       background-color: var(--ms-select-all-text-hover-color, $ms-select-all-text-hover-color);
     }
+    &.highlighted {
+      background-color: var(--ms-option-highlight, $ms-option-highlight);
+    }
 
     label {
       display: inline-block;
@@ -144,7 +147,6 @@
       &:hover {
         cursor: pointer;
         border: var(--ms-select-all-label-hover-border, $ms-select-all-label-hover-border);
-        background-color: var(--ms-select-all-label-hover-bg-color, $ms-select-all-label-hover-bg-color);
       }
       input {
         margin-left: 0;
@@ -309,6 +311,9 @@
         padding: var(--ms-drop-option-divider-padding, $ms-drop-option-divider-padding);
         border-top: var(--ms-drop-option-divider-border-top, $ms-drop-option-divider-border-top);
       }
+      &.highlighted {
+        background-color: var(--ms-option-highlight, $ms-option-highlight);
+      }
     }
   }
 
@@ -318,6 +323,10 @@
       position: absolute;
       margin-left: var(--ms-drop-input-margin-left, $ms-drop-input-margin-left);
       margin-top: var(--ms-drop-input-margin-top, $ms-drop-input-margin-top);
+      accent-color: var(--ms-checkbox-color, $ms-checkbox-color);
+    }
+    &:focus { 
+      outline: var(--ms-input-focus-outline, $ms-input-focus-outline);
     }
   }
 

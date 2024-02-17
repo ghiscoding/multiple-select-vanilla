@@ -12,7 +12,7 @@ test.describe('Example 02 - Multiple Select', () => {
     await expect(parent1Span).toHaveText('February, April, May');
     await page.keyboard.press('ArrowDown');
     const juneLoc = await page.locator('div[data-test=select1] .ms-drop li:nth-of-type(6)');
-    await expect(juneLoc).toBeFocused();
+    await expect(juneLoc).toHaveClass('highlighted');
     await expect(await juneLoc.locator('label')).toHaveText('June');
     await page.keyboard.press('Enter');
     await expect(parent1Span).toHaveText('4 of 12 selected');

@@ -24,12 +24,12 @@ test.describe('Example 04 - Select Auto-Width', () => {
 
     assertDropWidth(page, 'div[data-test=select3].ms-parent', 315);
     await page.getByRole('button', { name: 'This is the first option and value is 1' }).first().click();
-    await page.getByRole('listitem').filter({ hasText: 'This is the fourth option and value is 4' }).locator('label').click();
+    await page.getByRole('option').filter({ hasText: 'This is the fourth option and value is 4' }).locator('label').click();
     await expect(page.locator('div[data-test=select3] .ms-choice span')).toHaveText('This is the fourth option and value is 4');
 
     assertDropWidth(page, 'div[data-test=select4].ms-parent', 200);
     await page.getByRole('button', { name: 'This is the first option and value is 1' }).click();
-    await page.getByRole('listitem').filter({ hasText: 'This is the fourth option and value is 4' }).locator('label').click();
+    await page.getByRole('option').filter({ hasText: 'This is the fourth option and value is 4' }).locator('label').click();
     await expect(page.locator('div[data-test=select4] .ms-choice span')).toHaveText('This is the fourth option and value is 4');
 
     assertDropWidth(page, 'div[data-test=select5].ms-parent', 120);

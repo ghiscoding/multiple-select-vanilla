@@ -9,8 +9,8 @@ test.describe('Example 12 - Font Awesome', () => {
     await expect(page.locator('.ms-drop').nth(0)).not.toBeVisible();
 
     await page.locator('.ms-parent').nth(1).click();
-    await page.getByRole('listitem').filter({ hasText: 'March' }).locator('span').click();
-    await page.getByRole('listitem').filter({ hasText: 'April' }).locator('span').click();
+    await page.getByRole('option').filter({ hasText: 'March' }).locator('span').click();
+    await page.getByRole('option').filter({ hasText: 'April' }).locator('span').click();
     // await expect( page.screenshot()).toMatchSnapshot();
     await page.getByRole('button', { name: 'OK' }).click();
   });
