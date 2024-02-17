@@ -13,7 +13,7 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: Boolean(process.env.CI),
   use: {
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'http://localhost:4000/',
     headless: true,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
