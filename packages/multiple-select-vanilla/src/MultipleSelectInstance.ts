@@ -414,7 +414,7 @@ export class MultipleSelectInstance {
     this.ulElm = document.createElement('ul');
     this.ulElm.role = 'combobox';
     this.ulElm.ariaExpanded = 'false';
-    this.ulElm.ariaMultiSelectable = 'true';
+    this.ulElm.ariaMultiSelectable = String(!this.options.single);
     this.dropElm.appendChild(this.ulElm);
 
     if (this.options.showOkButton && !this.options.single) {
