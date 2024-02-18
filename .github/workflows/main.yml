@@ -64,8 +64,11 @@ jobs:
 
       - run: pnpm --version
 
-      - name: Prettier Check
-        run: pnpm prettier:check
+      - name: Biome Lint Check
+        run: pnpm biome:lint:check
+
+      - name: Biome Format Check
+        run: pnpm biome:format:check
 
       - name: Build Library
         run: pnpm build:lib

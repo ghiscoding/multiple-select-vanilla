@@ -3,33 +3,30 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
 
-import Constants from './constants';
 import { MultipleSelectInstance } from './MultipleSelectInstance';
-import { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
+import Constants from './constants';
 import { MultipleSelectLocales } from './interfaces';
+import { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
 import English from './locales/multiple-select-en-US';
 
 /**
  * The multiplseSelect function is your entry to creating a MultipleSelect instance on any HTML Select Element.
  * You can provide a query selector as a string, a html node or an array of html nodes
  */
-export const multipleSelect = function (
+export const multipleSelect = (
   selector: ArrayLike<Node> | Node | string,
-  config?: Partial<Omit<MultipleSelectOption, 'onHardDestroy' | 'onAfterHardDestroy'>>
-): MultipleSelectInstance | MultipleSelectInstance[] {
+  config?: Partial<Omit<MultipleSelectOption, 'onHardDestroy' | 'onAfterHardDestroy'>>,
+): MultipleSelectInstance | MultipleSelectInstance[] => {
   if (typeof selector === 'string') {
     return _multipleSelect(document.querySelectorAll(selector), config);
-  } else if (selector instanceof Node) {
-    return _multipleSelect([selector], config);
-  } else {
-    return _multipleSelect(selector, config);
   }
+  if (selector instanceof Node) {
+    return _multipleSelect([selector], config);
+  }
+  return _multipleSelect(selector, config);
 };
 
-function _multipleSelect(
-  nodeList: ArrayLike<Node>,
-  config?: Partial<MultipleSelectOption>
-): MultipleSelectInstance | MultipleSelectInstance[] {
+function _multipleSelect(nodeList: ArrayLike<Node>, config?: Partial<MultipleSelectOption>): MultipleSelectInstance | MultipleSelectInstance[] {
   // static list
   const nodes = Array.from(nodeList) as HTMLElement[];
   const instances: MultipleSelectInstance[] = [];

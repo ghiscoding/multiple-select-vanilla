@@ -1,0 +1,76 @@
+{
+    "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+    "organizeImports": {
+        "enabled": true
+    },
+    "formatter": {
+        "enabled": true,
+        "indentWidth": 2,
+        "lineEnding": "lf",
+        "formatWithErrors": true,
+        "lineWidth": 145,
+        "indentStyle": "space",
+        "ignore": [
+            ".cache",
+            "dist/**",
+            "**/*.json",
+            "node_modules/**"
+        ]
+    },
+    "javascript": {
+        "parser": {
+            "unsafeParameterDecoratorsEnabled": true
+        },
+        "formatter": {
+            "arrowParentheses": "asNeeded",
+            "quoteProperties": "asNeeded",
+            "semicolons": "always",
+            "trailingComma": "all",
+            "indentStyle": "space",
+            "quoteStyle": "single"
+        }
+    },
+    "json": {
+        "formatter": {
+            "indentStyle": "space"
+        },
+        "parser": {
+            "allowComments": true
+        }
+    },
+    "linter": {
+        "enabled": true,
+        "ignore": [
+            ".cache",
+            "dist/**",
+            "**/*.json",
+            "node_modules/**"
+        ],
+        "rules": {
+            "recommended": true,
+            "complexity": {
+                "noForEach": "off",
+                "noStaticOnlyClass": "off",
+                "noUselessSwitchCase": "off"
+            },
+            "performance": {
+                "noDelete": "off"
+            },
+            "suspicious": {
+                "noAssignInExpressions": "off",
+                "noExplicitAny": "off",
+                "noPrototypeBuiltins": "off"
+            },
+            "style": {
+                "noNonNullAssertion": "off",
+                "noParameterAssign": "off",
+                "useExponentiationOperator": "off"
+            }
+        }
+    },
+    "vcs": {
+        "clientKind": "git",
+        "enabled": false,
+        "root": "./"
+    }
+}

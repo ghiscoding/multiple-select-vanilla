@@ -1,4 +1,4 @@
-import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   ms1?: MultipleSelectInstance;
@@ -8,8 +8,10 @@ export default class Example {
       placeholder: 'Placeholder with cross-site scripting code...<img src="not-found" onerror=alert("Hacked")>',
       sanitizer: (dirtyHtml: string) =>
         typeof dirtyHtml === 'string'
-          ? // prettier-ignore
-            decodeURIComponent(dirtyHtml).replace(/(\b)(on[a-z]+)(\s*)=|javascript:([^>]*)[^>]*|(<\s*)(\/*)script([<>]*).*(<\s*)(\/*)script(>*)|(&lt;)(\/*)(script|script defer)(.*)(&gt;|&gt;">)/gi, '')
+          ? decodeURIComponent(dirtyHtml).replace(
+              /(\b)(on[a-z]+)(\s*)=|javascript:([^>]*)[^>]*|(<\s*)(\/*)script([<>]*).*(<\s*)(\/*)script(>*)|(&lt;)(\/*)(script|script defer)(.*)(&gt;|&gt;">)/gi,
+              '',
+            )
           : dirtyHtml,
 
       // or even better, use dedicated libraries like DOM Purify: https://github.com/cure53/DOMPurify

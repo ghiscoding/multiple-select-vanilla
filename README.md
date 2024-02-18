@@ -141,11 +141,14 @@ If you wish to contribute to the project, please follow these steps:
 
 #### Pull Request Contribution
 
-Before submitting a PR (pull request), please make sure that you followed these steps for your PR to succeed:
-1. make sure that you already ran `pnpm install`
-2. run the Prettier code formatting npm script (or use step 3)
-   - `pnpm run prettier:write`
-3. run a full Build (this will also run Prettier format, so you could skip step 2)
+Before submitting a PR (pull request), please make sure that you followed these steps for a better chance of a successfull PR:
+
+1. make sure that you have already executed `pnpm install`
+2. run the Biome lint npm script (or simply use step 4)
+   - `pnpm run biome:lint:write`
+3. run the Biome code formatting npm script (or simply use step 4)
+   - `pnpm run biome:format:write`
+4. run a full Build (this will also run Biome lint/format, so you could skip step 2)
    - `pnpm run build`
 
 ## Sponsors

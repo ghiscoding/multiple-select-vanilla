@@ -19,9 +19,7 @@ export function convertStringStyleToElementStyle(styleStr: string): CSSStyleDecl
       }
     }
 
-    console.warn(
-      '[multiple-select-vanilla] Please note that `styler` is deprecated, please migrate to `cssStyler` when possible.'
-    );
+    console.warn('[multiple-select-vanilla] Please note that `styler` is deprecated, please migrate to `cssStyler` when possible.');
   }
   return style;
 }
@@ -65,12 +63,12 @@ export function calculateAvailableSpace(element: HTMLElement): { top: number; bo
 export function createDomElement<T extends keyof HTMLElementTagNameMap, K extends keyof HTMLElementTagNameMap[T]>(
   tagName: T,
   elementOptions?: { [P in K]: InferDOMType<HTMLElementTagNameMap[T][P]> },
-  appendToParent?: HTMLElement
+  appendToParent?: HTMLElement,
 ): HTMLElementTagNameMap[T] {
   const elm = document.createElement<T>(tagName);
 
   if (elementOptions) {
-    Object.keys(elementOptions).forEach((elmOptionKey) => {
+    Object.keys(elementOptions).forEach(elmOptionKey => {
       const elmValue = elementOptions[elmOptionKey as keyof typeof elementOptions];
       if (typeof elmValue === 'object') {
         Object.assign(elm[elmOptionKey as K] as object, elmValue);
@@ -95,11 +93,7 @@ export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, 
   // to be CSP safe, we'll omit `innerHTML` and assign it manually afterward
   const itemPropsOmitHtml = item.props?.innerHTML ? omitProp(item.props, 'innerHTML') : item.props;
 
-  const elm = createDomElement(
-    item.tagName,
-    objectRemoveEmptyProps(itemPropsOmitHtml, ['className', 'title', 'style']),
-    appendToElm
-  );
+  const elm = createDomElement(item.tagName, objectRemoveEmptyProps(itemPropsOmitHtml, ['className', 'title', 'style']), appendToElm);
   let parent: HTMLElement | null | undefined = parentElm;
   if (!parent) {
     parent = elm;
@@ -171,7 +165,7 @@ export function getElementOffset(element?: HTMLElement): HtmlElementPosition | u
 export function getElementSize(elm: HTMLElement, mode: 'inner' | 'outer' | 'scroll', type: 'height' | 'width') {
   // first try defined style width or offsetWidth (which include scroll & padding)
   let size = parseFloat(elm.style[type]);
-  if (!size || isNaN(size)) {
+  if (!size || Number.isNaN(size)) {
     switch (mode) {
       case 'outer':
         size = elm[type === 'width' ? 'offsetWidth' : 'offsetHeight'];
@@ -187,8 +181,8 @@ export function getElementSize(elm: HTMLElement, mode: 'inner' | 'outer' | 'scro
     size = elm.getBoundingClientRect()[type];
   }
 
-  // when 0 width, we'll try different ways
-  if (!size || isNaN(size)) {
+  if (!size || Number.isNaN(size)) {
+    // when 0 width, we'll try different ways
     // when element is auto or 0, we'll keep previous style values to get width and then reapply original values
     const prevDisplay = elm.style.display;
     const prevPosition = elm.style.position;
@@ -196,7 +190,7 @@ export function getElementSize(elm: HTMLElement, mode: 'inner' | 'outer' | 'scro
     elm.style.position = 'absolute';
     const widthStr = window.getComputedStyle(elm)[type];
     size = parseFloat(widthStr);
-    if (isNaN(size)) {
+    if (Number.isNaN(size)) {
       size = 0;
     }
 

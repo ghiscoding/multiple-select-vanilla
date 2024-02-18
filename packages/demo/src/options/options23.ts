@@ -1,4 +1,4 @@
-import { multipleSelect, MultipleSelectInstance, type TextFilter } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, type TextFilter, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   ms1?: MultipleSelectInstance;

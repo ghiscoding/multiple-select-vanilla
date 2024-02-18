@@ -1,4 +1,4 @@
-import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 import './example12.scss';
 
 export default class Example {
