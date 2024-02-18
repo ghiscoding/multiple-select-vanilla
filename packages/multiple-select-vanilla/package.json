@@ -46,6 +46,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "funding": {
+    "type": "ko_fi",
+    "url": "https://ko-fi.com/ghiscoding"
+  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "pnpm build:all && pnpm build:types:prod",

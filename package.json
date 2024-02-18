@@ -21,6 +21,10 @@
     "type": "git",
     "url": "https://github.com/ghiscoding/multiple-select-vanilla.git"
   },
+  "funding": {
+    "type": "ko_fi",
+    "url": "https://ko-fi.com/ghiscoding"
+  },
   "scripts": {
     "clean": "rimraf --glob */dist */tsconfig.tsbuildinfo",
     "prebuild": "pnpm clean && pnpm biome:lint:write && pnpm biome:format:write",
