@@ -12,7 +12,7 @@ export default class Example {
     }) as MultipleSelectInstance[];
 
     numberElm.addEventListener('change', () => {
-      this.ms.forEach((m) => {
+      this.ms.forEach(m => {
         m.refreshOptions({
           maxHeight: +numberElm.value,
           maxHeightUnit: 'row',
@@ -23,7 +23,7 @@ export default class Example {
 
   unmount() {
     // destroy ms instance(s) to avoid DOM leaks
-    this.ms.forEach((m) => m.destroy());
+    this.ms.forEach(m => m.destroy());
     this.ms = [];
   }
 }

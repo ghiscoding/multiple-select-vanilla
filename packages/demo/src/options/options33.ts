@@ -1,4 +1,4 @@
-import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 import 'multiple-select-vanilla/dist/styles/sass/themes/bootstrap.scss';
 
 export default class Example {
@@ -13,7 +13,7 @@ export default class Example {
 
   unmount() {
     // destroy ms instance(s) to avoid DOM leaks
-    this.ms.forEach((m) => m.destroy());
+    this.ms.forEach(m => m.destroy());
     this.ms = [];
   }
 }

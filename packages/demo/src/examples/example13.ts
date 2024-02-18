@@ -1,5 +1,5 @@
 import DOMPurify from 'dompurify';
-import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   createBtnElm?: HTMLButtonElement | null;
@@ -18,7 +18,7 @@ export default class Example {
       name: 'my-select',
       single: false,
       useSelectOptionLabelToHtml: true,
-      sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
+      sanitizer: html => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
       data: [
         {
           text: '<i class="fa fa-star"></i> January',

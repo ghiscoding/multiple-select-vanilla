@@ -14,7 +14,7 @@ export default class Example {
     this.btnElm!.removeEventListener('click', this.clickListener);
 
     // destroy ms instance(s) to avoid DOM leaks
-    this.ms.forEach((m) => m.destroy());
+    this.ms.forEach(m => m.destroy());
     this.ms = [];
   }
 

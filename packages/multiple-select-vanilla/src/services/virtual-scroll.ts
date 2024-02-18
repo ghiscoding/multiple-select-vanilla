@@ -72,7 +72,7 @@ export class VirtualScroll {
       if (data.topOffset) {
         this.contentEl.appendChild(this.getExtra('top', data.topOffset));
       }
-      data.rows.forEach((h) => this.contentEl.appendChild(convertItemRowToHtml(h)));
+      data.rows.forEach(h => this.contentEl.appendChild(convertItemRowToHtml(h)));
 
       if (data.bottomOffset) {
         this.contentEl.appendChild(this.getExtra('bottom', data.bottomOffset));

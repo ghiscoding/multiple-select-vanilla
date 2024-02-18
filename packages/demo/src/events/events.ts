@@ -1,4 +1,4 @@
-import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   logElm!: HTMLTextAreaElement;
@@ -26,13 +26,13 @@ export default class Example {
       onBlur: () => {
         this.log('onBlur event fire!\n');
       },
-      onOptgroupClick: (view) => {
+      onOptgroupClick: view => {
         this.log(`onOptgroupClick event fire! view: ${JSON.stringify(view)}\n`);
       },
-      onClick: (view) => {
+      onClick: view => {
         this.log(`onClick event fire! view: ${JSON.stringify(view)}\n`);
       },
-      onFilter: (text) => {
+      onFilter: text => {
         this.log(`onFilter event fire! text: ${text}\n`);
       },
       onAfterCreate: () => {

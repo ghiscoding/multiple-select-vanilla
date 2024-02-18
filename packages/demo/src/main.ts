@@ -1,7 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
-import 'font-awesome/css/font-awesome.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import DOMPurify from 'dompurify';
+import 'font-awesome/css/font-awesome.css';
 import { createDomElement, emptyElement } from 'multiple-select-vanilla';
 
 import { exampleRouting, navbarRouting } from './app-routing';
@@ -47,7 +47,7 @@ class Main {
     this.loadRoute(route);
 
     // on page load make route active, when changing route afterward that will be covered by each nav click events
-    Array.from(document.querySelectorAll('.panel-wm-left a.nav-link,.navbar-nav a.nav-link')).forEach((link) => {
+    Array.from(document.querySelectorAll('.panel-wm-left a.nav-link,.navbar-nav a.nav-link')).forEach(link => {
       if (route.includes(link.id)) {
         link.classList.add('active');
       }
@@ -103,14 +103,14 @@ class Main {
     const contentElm = document.querySelector('.panel-wm-content') as HTMLElement;
     emptyElement(contentElm);
     contentElm.classList.add('cloak');
-    let foundRouter = navbarRouting.find((r) => r.name === routeName);
+    let foundRouter = navbarRouting.find(r => r.name === routeName);
 
     if (foundRouter?.name === 'examples') {
       const exampleElm = document.querySelector('.nav-pills .nav-item a.nav-link');
       exampleElm?.classList.add('active');
     } else {
       for (const groupRoute of exampleRouting) {
-        const found = (groupRoute.routes as ViewRouter[]).find((r) => r.name === routeName);
+        const found = (groupRoute.routes as ViewRouter[]).find(r => r.name === routeName);
         if (found) {
           foundRouter = found;
         }
@@ -162,7 +162,7 @@ class Main {
   }
 
   removeAllActiveLinks(unbindListeners = false) {
-    document.querySelectorAll('.panel-wm-left a.nav-link,.navbar-nav a.nav-link').forEach((link) => {
+    document.querySelectorAll('.panel-wm-left a.nav-link,.navbar-nav a.nav-link').forEach(link => {
       link.classList.remove('active');
       if (unbindListeners) {
         link.removeEventListener('click', this.clickEventListener.bind(this) as EventListener);

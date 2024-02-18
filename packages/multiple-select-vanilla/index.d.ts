@@ -5,7 +5,7 @@ declare global {
     multipleSelect: {
       (
         selector: ArrayLike<Node> | Node | string,
-        config?: Partial<Omit<MultipleSelectOption, 'onHardDestroy' | 'onAfterHardDestroy'>>
+        config?: Partial<Omit<MultipleSelectOption, 'onHardDestroy' | 'onAfterHardDestroy'>>,
       ): MultipleSelectInstance | MultipleSelectInstance[];
       defaults: Partial<MultipleSelectInstance>;
       locales: {

@@ -49,9 +49,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   countSelectedText?: string;
 
   /** provide custom data */
-  data?:
-    | { [value: string]: number | string | boolean }
-    | Array<number | string | boolean | OptionRowData | OptionRowDivider | OptGroupRowData>;
+  data?: { [value: string]: number | string | boolean } | Array<number | string | boolean | OptionRowData | OptionRowDivider | OptGroupRowData>;
 
   /** Add "data-test" attribute to the "ms-parent" element */
   dataTest?: string;

@@ -3,8 +3,8 @@
  * Author: Nozomi Anzai<nozomi.anzai@gmail.com>
  */
 
-import { MultipleSelectLocale, MultipleSelectLocales } from '../interfaces';
 import { MultipleSelectInstance } from '../MultipleSelectInstance';
+import { MultipleSelectLocale, MultipleSelectLocales } from '../interfaces';
 
 const ms =
   typeof window !== 'undefined' && window.multipleSelect !== undefined

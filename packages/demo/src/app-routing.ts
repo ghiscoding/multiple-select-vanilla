@@ -1,4 +1,4 @@
-import GettingStarted from './getting-started';
+import Events from './events/events';
 import Example01 from './examples/example01';
 import Example02 from './examples/example02';
 import Example03 from './examples/example03';
@@ -13,6 +13,20 @@ import Example11 from './examples/example11';
 import Example12 from './examples/example12';
 import Example13 from './examples/example13';
 import Example14 from './examples/example14';
+import GettingStarted from './getting-started';
+import I18n from './i18n/i18n';
+import Methods01 from './methods/methods01';
+import Methods02 from './methods/methods02';
+import Methods03 from './methods/methods03';
+import Methods04 from './methods/methods04';
+import Methods05 from './methods/methods05';
+import Methods06 from './methods/methods06';
+import Methods07 from './methods/methods07';
+import Methods08 from './methods/methods08';
+import Methods09 from './methods/methods09';
+import Methods10 from './methods/methods10';
+import Methods11 from './methods/methods11';
+import Methods12 from './methods/methods12';
 import Options01 from './options/options01';
 import Options02 from './options/options02';
 import Options03 from './options/options03';
@@ -48,20 +62,6 @@ import Options32 from './options/options32';
 import Options33 from './options/options33';
 import Options34 from './options/options34';
 import Options35 from './options/options35';
-import Methods01 from './methods/methods01';
-import Methods02 from './methods/methods02';
-import Methods03 from './methods/methods03';
-import Methods04 from './methods/methods04';
-import Methods05 from './methods/methods05';
-import Methods06 from './methods/methods06';
-import Methods07 from './methods/methods07';
-import Methods08 from './methods/methods08';
-import Methods09 from './methods/methods09';
-import Methods10 from './methods/methods10';
-import Methods11 from './methods/methods11';
-import Methods12 from './methods/methods12';
-import Events from './events/events';
-import I18n from './i18n/i18n';
 
 export const navbarRouting = [
   { name: 'getting-started', view: '/src/getting-started.html', viewModel: GettingStarted, title: 'Getting Started' },

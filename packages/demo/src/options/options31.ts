@@ -1,5 +1,5 @@
 import DOMPurify from 'dompurify';
-import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   ms1?: MultipleSelectInstance;
@@ -12,7 +12,7 @@ export default class Example {
 
     this.ms2 = multipleSelect('#select2', {
       useSelectOptionLabelToHtml: true,
-      sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
+      sanitizer: html => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
       data: [
         {
           text: '<i class="fa fa-star"></i> January',

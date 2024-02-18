@@ -1,4 +1,4 @@
-import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 // map of diacritic signs against each alphabetical character
 const diacritics = {
@@ -34,7 +34,7 @@ export default class Example {
       diacriticParser: (text: string) => {
         const output = text
           .split('')
-          .map((l) => Object.keys(diacritics).find((k) => diacritics[k as keyof typeof diacritics].includes(l)) || l)
+          .map(l => Object.keys(diacritics).find(k => diacritics[k as keyof typeof diacritics].includes(l)) || l)
           .join('');
 
         this.inLogElm.value = text;

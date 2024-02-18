@@ -1,8 +1,8 @@
 import { exec, execSync } from 'child_process';
-import { buildSync } from 'esbuild';
-import copyfiles from 'copyfiles';
-import fs from 'fs-extra';
 import path from 'path';
+import copyfiles from 'copyfiles';
+import { buildSync } from 'esbuild';
+import fs from 'fs-extra';
 import { compile as sassCompile } from 'sass';
 
 const env = process.env.NODE_ENV;
@@ -37,7 +37,7 @@ function runLocaleBuild() {
   runBuild({
     entryPoints: ['./src/locales/all-locales-index.ts'],
     format: 'esm',
-    outfile: `dist/locales/multiple-select-all-locales.js`,
+    outfile: 'dist/locales/multiple-select-all-locales.js',
   });
 }
 
@@ -76,11 +76,11 @@ async function runCompilation(changedFiles) {
 
         fs.outputFileSync(
           `dist/styles/css/${posixPath.replace('.scss', '')}.css`,
-          sassCompile(`src/styles/${posixPath}`, { style: 'compressed', quietDeps: true, noSourceMap: true }).css
+          sassCompile(`src/styles/${posixPath}`, { style: 'compressed', quietDeps: true, noSourceMap: true }).css,
         );
       }
 
-      copyfiles([`src/styles/**/${filename}.scss`, 'dist/styles/sass'], { up: 2 }, (err) => {
+      copyfiles([`src/styles/**/${filename}.scss`, 'dist/styles/sass'], { up: 2 }, err => {
         if (err) {
           console.error(err);
         } else {

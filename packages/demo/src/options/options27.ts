@@ -1,5 +1,5 @@
 import DOMPurify from 'dompurify';
-import { multipleSelect, MultipleSelectInstance, TextFilter } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, TextFilter, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   ms1?: MultipleSelectInstance;
@@ -12,7 +12,7 @@ export default class Example {
       filter: true,
       displayTitle: true,
       renderOptionLabelAsHtml: true, // without this flag, html code will be showing as plain text
-      textTemplate: (el) => {
+      textTemplate: el => {
         return `<i class="fa fa-star"></i>${el.innerHTML}`;
       },
       customFilter: ({ search, text }: TextFilter) => {
@@ -21,7 +21,7 @@ export default class Example {
         divElm.innerHTML = text;
         return divElm.textContent?.includes(search) ?? true;
       },
-      sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
+      sanitizer: html => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
     }) as MultipleSelectInstance;
 
     this.ms2 = multipleSelect('#from-data', {
@@ -31,9 +31,9 @@ export default class Example {
       data: [
         { value: `50"`, text: `50"` },
         { value: `44'`, text: `44'` },
-        { value: `33`, text: `<span style="font-weight:bold">33</span>` },
+        { value: '33', text: `<span style="font-weight:bold">33</span>` },
       ],
-      sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }) as unknown as string,
+      sanitizer: html => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }) as unknown as string,
     }) as MultipleSelectInstance;
 
     this.btnEnableElm = document.querySelector('#enableRenderHtml') as HTMLButtonElement;

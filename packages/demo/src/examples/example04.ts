@@ -1,4 +1,4 @@
-import { multipleSelect, MultipleSelectInstance } from 'multiple-select-vanilla';
+import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   multiMs: MultipleSelectInstance[] = [];
@@ -27,7 +27,7 @@ export default class Example {
 
   unmount() {
     // destroy ms instance(s) to avoid DOM leaks
-    this.multiMs.forEach((m) => m.destroy());
+    this.multiMs.forEach(m => m.destroy());
     this.multiMs = [];
     this.singleMs?.destroy();
     this.singleMs = undefined;

@@ -64,9 +64,7 @@ export function isDefined(val: any) {
 export function objectRemoveEmptyProps(obj: any, clearProps?: string[]) {
   if (typeof obj === 'object') {
     if (clearProps) {
-      return Object.fromEntries(
-        Object.entries(obj).filter(([name, val]) => (!isDefined(val) && !clearProps.includes(name)) || isDefined(val))
-      );
+      return Object.fromEntries(Object.entries(obj).filter(([name, val]) => (!isDefined(val) && !clearProps.includes(name)) || isDefined(val)));
     }
     return Object.fromEntries(Object.entries(obj).filter(([_, v]) => isDefined(v)));
   }
@@ -124,12 +122,12 @@ export function findByParam(data: any, param: any, value: any) {
 export function stripScripts(dirtyHtml: string) {
   return dirtyHtml.replace(
     /(\b)(on[a-z]+)(\s*)=([^>]*)|javascript:([^>]*)[^>]*|(<\s*)(\/*)script([<>]*).*(<\s*)(\/*)script(>*)|(&lt;|&#60;)(\/*)(script|script defer)(.*)(&#62;|&gt;|&gt;">)/gi,
-    ''
+    '',
   );
 }
 
 export function removeUndefined(obj: any) {
-  Object.keys(obj).forEach((key) => (obj[key] === undefined ? delete obj[key] : ''));
+  Object.keys(obj).forEach(key => (obj[key] === undefined ? delete obj[key] : ''));
   return obj;
 }
 
@@ -148,6 +146,6 @@ export function removeDiacritics(str: string, customParser?: (t: string) => stri
     return str.normalize('NFD').replace(/[\u0300-\u036F]/g, '');
   }
   throw new Error(
-    '[Multiple-Select-Vanilla] `normalize()` function is not defined, you can optionally provide a custom parser via the `diacriticParser` option.'
+    '[Multiple-Select-Vanilla] `normalize()` function is not defined, you can optionally provide a custom parser via the `diacriticParser` option.',
   );
 }
