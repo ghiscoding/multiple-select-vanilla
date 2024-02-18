@@ -20,7 +20,7 @@ function runBuild(options) {
       minify: env === 'production',
       format: 'esm',
       target: 'es2021',
-      sourcemap: false,
+      sourcemap: true,
       logLevel: 'error',
       // outfile: env === 'production' ? './dist/multiple-select.min.js' : './dist/multiple-select.js',
       outfile: 'dist/esm/multiple-select.js',

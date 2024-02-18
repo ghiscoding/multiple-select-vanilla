@@ -26,7 +26,7 @@
     "url": "https://ko-fi.com/ghiscoding"
   },
   "scripts": {
-    "clean": "rimraf --glob */dist */tsconfig.tsbuildinfo",
+    "clean": "rimraf --glob **/dist */tsconfig.tsbuildinfo",
     "prebuild": "pnpm clean && pnpm biome:lint:write && pnpm biome:format:write",
     "build": "pnpm -r --stream build",
     "build:demo": "pnpm -r --stream --filter=\"{packages/demo/**}\" build",
