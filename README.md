@@ -11,7 +11,7 @@
 We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for displaying all available options/methods. You can also take a look at the "[Used by](#used-by)" section below to see real world applications taking advantage of this library.
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.7.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.7.0). The main difference from the original lib is that we dropped jQuery in favor of native browser code and this mean zero external dependency. As a bonus, a few extra features were also added to the library as you can see from the list shown below [Changes vs Original lib](#changes-vs-original-lib).
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.7.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.7.0). The main difference from the original lib is that we dropped jQuery in favor of native browser code and this mean zero external dependency. As a bonus, a few extra features were also added to the library as you can see from the list shown below [Changes vs Original lib](#changes-vs-original-lib-multiple-select).
 
 This lib allows you to select multiple elements with checkboxes :).
 
