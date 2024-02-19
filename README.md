@@ -11,7 +11,7 @@
 We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for displaying all available options/methods. You can also take a look at the "[Used by](#used-by)" section below to see real world applications taking advantage of this library.
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.7.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.7.0). The main difference from the original lib is that we dropped jQuery and we now use native code and this mean zero external dependency. We also added a few extra features which you can see in the list below ([Changes vs Original lib](#changes-vs-original-lib)).
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.7.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.7.0). The main difference from the original lib is that we dropped jQuery in favor of native browser code and this mean zero external dependency. As a bonus, a few extra features were also added to the library as you can see from the list shown below [Changes vs Original lib](#changes-vs-original-lib).
 
 This lib allows you to select multiple elements with checkboxes :).
 
@@ -46,8 +46,8 @@ New Multiple-Select Options:
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
   - `autoAdjustDropWidthByTextSize` automatically set the drop width size from the widest list option width
   - `dataTest` will add a `data-test` attribute on the `.ms-parent` and `.ms-drop` divs for easier E2E testing
-  - `useSelectOptionLabel` will use the `<option label="">` (from select option value) that can be used to display shorter text of selected options.
-    - example: will show "1,3" instead of "January,March" (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options31))
+  - `useSelectOptionLabel` will use the `<option label="">` that can be used to display shorter text of selected options.
+    - example: display "1,3" as label instead of "January,March" (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options31))
   - `useSelectOptionLabelToHtml` similar to `useSelectOptionLabel` but also renders HTML.
   - `renderOptionLabelAsHtml` will render selected options as HTML code (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options27))
   - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options32)).
@@ -128,7 +128,7 @@ This fork was created mostly to drop jQuery, and is used by a few other Open Sou
 
 If you wish to contribute to the project, please follow these steps:
 
-**Note**: this project uses [pnpm workspaces](https://pnpm.io/workspaces), you can install pnpm by following their [installation](https://pnpm.io/installation) or simply run `npx pnpm` to run any of the pnpm scripts shown below:
+**Note**: this project uses [pnpm workspaces](https://pnpm.io/workspaces), you can install pnpm by following their [installation](https://pnpm.io/installation) or use NodeJS `corepack enable` to run any of the pnpm scripts shown below:
 
 1. clone the lib:
    - `git clone https://github.com/ghiscoding/multiple-select-vanilla`
