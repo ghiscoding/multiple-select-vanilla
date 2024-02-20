@@ -24,6 +24,8 @@ The [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) website i
 
 ## Installation
 
+[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https:///pr.new/ghiscoding/multiple-select-vanilla)
+
 ```sh
 npm install multiple-select-vanilla
 ```
