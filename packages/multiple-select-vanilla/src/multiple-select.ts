@@ -5,8 +5,8 @@
 
 import { MultipleSelectInstance } from './MultipleSelectInstance';
 import Constants from './constants';
-import { MultipleSelectLocales } from './interfaces';
-import { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
+import type { MultipleSelectLocales } from './interfaces';
+import type { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
 import English from './locales/multiple-select-en-US';
 
 /**

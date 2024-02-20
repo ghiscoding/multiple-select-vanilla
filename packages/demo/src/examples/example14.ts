@@ -1,4 +1,4 @@
-import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
+import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   ms1: MultipleSelectInstance[] = [];

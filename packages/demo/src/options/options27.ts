@@ -1,5 +1,5 @@
 import DOMPurify from 'dompurify';
-import { MultipleSelectInstance, TextFilter, multipleSelect } from 'multiple-select-vanilla';
+import { type MultipleSelectInstance, type TextFilter, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   ms1?: MultipleSelectInstance;

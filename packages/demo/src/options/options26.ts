@@ -1,4 +1,4 @@
-import { MultipleSelectInstance, OptGroupRowData, OptionRowData, multipleSelect } from 'multiple-select-vanilla';
+import { type MultipleSelectInstance, type OptGroupRowData, type OptionRowData, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   ms1?: MultipleSelectInstance;

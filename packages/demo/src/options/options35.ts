@@ -1,4 +1,4 @@
-import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
+import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 // map of diacritic signs against each alphabetical character
 const diacritics = {

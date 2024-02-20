@@ -1,4 +1,4 @@
-import { CSSStyleDeclarationWritable, HtmlStruct, InferDOMType } from '../interfaces';
+import type { CSSStyleDeclarationWritable, HtmlStruct, InferDOMType } from '../interfaces';
 import { objectRemoveEmptyProps, toCamelCase } from './utils';
 
 export interface HtmlElementPosition {
