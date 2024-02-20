@@ -103,9 +103,6 @@ importers:
       glob:
         specifier: ^10.3.10
         version: 10.3.10
-      npm-run-all2:
-        specifier: ^6.1.2
-        version: 6.1.2
       postcss:
         specifier: ^8.4.35
         version: 8.4.35
