@@ -46,7 +46,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "pnpm build:all && pnpm build:types:prod",
-    "postbuild": "pnpm sass:build && sass:copy",
+    "postbuild": "pnpm sass:build && pnpm sass:copy",
     "dev:init": "pnpm sass:build && pnpm sass:copy && pnpm build:all",
     "build:all": "node build-prod.mjs && pnpm build:types:prod",
     "build:watch": "cross-env NODE_ENV='development' node build-watch.mjs",
