@@ -1,22 +1,15 @@
 {
   "name": "multiple-select-vanilla",
   "version": "1.2.5",
-  "main": "./dist/cjs/multiple-select.cjs",
-  "module": "./dist/esm/multiple-select.js",
-  "types": "index.d.ts",
-  "typesVersions": {
-    ">=4.2": {
-      "*": [
-        "dist/types/*"
-      ]
-    }
-  },
+  "main": "./dist/multiple-select.cjs",
+  "module": "./dist/multiple-select.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "node": "./dist/cjs/multiple-select.cjs",
-      "require": "./dist/cjs/multiple-select.cjs",
-      "default": "./dist/esm/multiple-select.js"
+      "types": "./dist/index.d.ts",
+      "node": "./dist/multiple-select.cjs",
+      "require": "./dist/multiple-select.cjs",
+      "default": "./dist/multiple-select.js"
     },
     "./dist/browser/*": "./dist/browser/*",
     "./dist/locales/*": "./dist/locales/*",
@@ -59,8 +52,8 @@
     "build:watch": "cross-env NODE_ENV='development' node build-watch.mjs",
     "build:locales": "esbuild src/locales/all-locales-index.ts --bundle --minify --format=iife --target=es2021 --sourcemap --outfile=dist/locales/multiple-select-all-locales.js",
     "build:esm": "esbuild src/index.ts --bundle --minify --format=esm --target=es2021 --sourcemap --outfile=dist/esm/multiple-select.js",
-    "build:types": "tsc --emitDeclarationOnly --incremental --declarationMap false --outDir dist/types",
-    "build:types:prod": "tsc --emitDeclarationOnly --incremental --declarationMap --outDir dist/types",
+    "build:types": "tsc --emitDeclarationOnly --incremental --declarationMap false --outDir dist",
+    "build:types:prod": "tsc --emitDeclarationOnly --incremental --declarationMap --outDir dist",
     "sass:build": "sass src/styles:dist/styles/css --style=compressed --quiet-deps --no-source-map",
     "postsass:build": "postcss dist/styles/css/**/* --dir dist/styles/css --base dist/styles/css --no-map --use cssnano --use autoprefixer --style=compressed",
     "sass:watch": "sass src/styles:dist/styles/css --watch --style=compressed --quiet-deps --no-source-map",

@@ -23,7 +23,7 @@ function runBuild(options) {
       sourcemap: true,
       logLevel: 'error',
       // outfile: env === 'production' ? './dist/multiple-select.min.js' : './dist/multiple-select.js',
-      outfile: 'dist/esm/multiple-select.js',
+      outfile: 'dist/multiple-select.js',
     },
     ...options,
   };
@@ -32,7 +32,7 @@ function runBuild(options) {
   console.info(`⚡️ Built in ${endTime - startTime}ms`);
 }
 
-function runLocaleBuild() {
+function runMergedLocaleBuild() {
   // merge all Locales into a single file "multiple-select-all-locales.js"
   runBuild({
     entryPoints: ['./src/locales/all-locales-index.ts'],
@@ -56,7 +56,16 @@ async function runCompilation(changedFiles) {
         tsLogged = true;
       }
       if (changedFile.includes('locales')) {
-        runLocaleBuild();
+        // rebuild changed locale and also merged locale into a single locale
+        const [_, locale] = changedFile.match(/locales[\\\/]multiple-select-(.*)\.ts$/) || [];
+        if (locale?.length === 5) {
+          runBuild({
+            entryPoints: [`src/locales/multiple-select-${locale}.ts`],
+            format: 'esm',
+            outfile: `dist/locales/multiple-select-${locale}.js`,
+          });
+        }
+        runMergedLocaleBuild();
       } else {
         runBuild();
       }
