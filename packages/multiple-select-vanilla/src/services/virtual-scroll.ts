@@ -1,5 +1,5 @@
 import Constants from '../constants';
-import { HtmlStruct, VirtualCache, VirtualScrollOption } from '../interfaces';
+import type { HtmlStruct, VirtualCache, VirtualScrollOption } from '../interfaces';
 import { convertItemRowToHtml, emptyElement } from '../utils';
 
 export class VirtualScroll {

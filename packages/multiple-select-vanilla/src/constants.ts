@@ -1,4 +1,4 @@
-import { LabelFilter, MultipleSelectOption, TextFilter } from './interfaces';
+import type { LabelFilter, MultipleSelectOption, TextFilter } from './interfaces';
 import English from './locales/multiple-select-en-US';
 
 const BLOCK_ROWS = 50;

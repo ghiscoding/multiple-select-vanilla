@@ -3,8 +3,8 @@
  * Author: Matej Puhony<info@puhony.eu>
  */
 
-import { MultipleSelectInstance } from '../MultipleSelectInstance';
-import { MultipleSelectLocale, MultipleSelectLocales } from '../interfaces';
+import type { MultipleSelectInstance } from '../MultipleSelectInstance';
+import type { MultipleSelectLocale, MultipleSelectLocales } from '../interfaces';
 
 const ms =
   typeof window !== 'undefined' && window.multipleSelect !== undefined

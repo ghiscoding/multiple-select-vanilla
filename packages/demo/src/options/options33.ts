@@ -1,4 +1,4 @@
-import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
+import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 import 'multiple-select-vanilla/dist/styles/sass/themes/bootstrap.scss';
 
 export default class Example {
