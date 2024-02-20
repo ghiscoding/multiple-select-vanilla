@@ -4,7 +4,7 @@
     "declaration": true,
     "declarationMap": true,
     "rootDir": "src",
-    "outDir": "dist/esm",
+    "outDir": "dist",
     "target": "ES2021",
     "useDefineForClassFields": true,
     "module": "ESNext",
