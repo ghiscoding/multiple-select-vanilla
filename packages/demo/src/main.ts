@@ -123,7 +123,6 @@ class Main {
 
     if (foundRouter) {
       this.currentRouter = foundRouter;
-      // const html = await import(/*@vite-ignore*/ `${foundRouter.view}?raw`).default;
       document.querySelector('.panel-wm-content')!.innerHTML = DOMPurify.sanitize(pageLayoutGlobs[foundRouter.view] as string, {
         RETURN_TRUSTED_TYPE: true,
       }) as unknown as string;

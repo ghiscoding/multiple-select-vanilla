@@ -242,7 +242,6 @@ export function insertAfter(referenceNode: HTMLElement, newNode: HTMLElement) {
 }
 
 export function omitProp(obj: any, key: string) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { [key]: omitted, ...rest } = obj;
   return rest;
 }
