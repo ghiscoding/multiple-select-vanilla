@@ -10,7 +10,7 @@ for (const format of buildFormats) {
   // multiple-select.js
   runBuild({
     format,
-    outfile: `dist/${format}/multiple-select.${extension}`,
+    outfile: `dist/multiple-select.${extension}`,
   });
 
   // build all locales
