@@ -11,7 +11,7 @@ const ms =
     ? window.multipleSelect
     : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
 
-(ms.locales as MultipleSelectLocales)['fr-FR'] = {
+export const French = {
   formatSelectAll() {
     return '[Tout sélectionner]';
   },
@@ -28,5 +28,7 @@ const ms =
     return 'Fermer';
   },
 } as MultipleSelectLocale;
+
+(ms.locales as MultipleSelectLocales)['fr-FR'] = French;
 
 export default ms.locales;

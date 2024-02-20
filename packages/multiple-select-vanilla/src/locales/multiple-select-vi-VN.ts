@@ -11,7 +11,7 @@ const ms =
     ? window.multipleSelect
     : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
 
-(ms.locales as MultipleSelectLocales)['vi-VN'] = {
+export const Vietnamese = {
   formatSelectAll() {
     return '[Tất cả]';
   },
@@ -28,5 +28,7 @@ const ms =
     return 'Đóng';
   },
 } as MultipleSelectLocale;
+
+(ms.locales as MultipleSelectLocales)['vi-VN'] = Vietnamese;
 
 export default ms.locales;

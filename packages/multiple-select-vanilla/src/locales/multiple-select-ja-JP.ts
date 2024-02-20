@@ -11,7 +11,7 @@ const ms =
     ? window.multipleSelect
     : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
 
-(ms.locales as MultipleSelectLocales)['ja-JP'] = {
+export const Japanese = {
   formatSelectAll() {
     return '[すべて選択]';
   },
@@ -28,5 +28,7 @@ const ms =
     return '閉める';
   },
 } as MultipleSelectLocale;
+
+(ms.locales as MultipleSelectLocales)['ja-JP'] = Japanese;
 
 export default ms.locales;

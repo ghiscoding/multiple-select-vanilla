@@ -59,7 +59,7 @@ export class MultipleSelectInstance {
   protected _currentHighlightIndex = -1;
   protected _currentSelectedElm?: HTMLLIElement | HTMLDivElement;
   protected isMoveUpRecalcRequired = false;
-  locales: MultipleSelectLocales = {};
+  locales = {} as MultipleSelectLocales;
 
   get isRenderAsHtml() {
     return this.options.renderOptionLabelAsHtml || this.options.useSelectOptionLabelToHtml;
@@ -120,6 +120,11 @@ export class MultipleSelectInstance {
 
   protected initLocale() {
     if (this.options.locale) {
+      if (typeof this.options.locale === 'object') {
+        Object.assign(this.options, this.options.locale);
+        return;
+      }
+
       const locales = window.multipleSelect.locales;
       const parts = this.options.locale.split(/-|_/);
 

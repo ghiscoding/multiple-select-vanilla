@@ -1,5 +1,6 @@
 {
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
-  "editor.formatOnPaste": false
+  "editor.formatOnPaste": false,
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

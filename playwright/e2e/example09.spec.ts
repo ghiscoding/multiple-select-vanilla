@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 09 - Locale', () => {
   test('changing locale should be reflected in dropdown & selected text', async ({ page }) => {
@@ -23,5 +23,17 @@ test.describe('Example 09 - Locale', () => {
     await page.getByRole('button', { name: 'Chọn tất cả' }).click();
     await page.getByText('[Tất cả]').click();
     await page.getByRole('button', { name: 'Đóng' }).click();
+    await page.locator('div[data-test=select1].ms-parent').click();
+  });
+
+  test('fixed named Locale import', async ({ page }) => {
+    await page.goto('#/example09');
+    await page.locator('div[data-test=select2].ms-parent').click();
+    await page.getByText('[Seleccionar todo]').click();
+    await page.getByRole('button', { name: 'Todos seleccionados' });
+    await page.getByRole('button', { name: 'Cerrar' }).click();
+
+    const parentLoc = await page.locator('div[data-test=select2].ms-parent');
+    await expect(parentLoc).not.toHaveClass('ms-parent-open');
   });
 });

@@ -1,4 +1,4 @@
-import { MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
+import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
   ms1?: MultipleSelectInstance;
@@ -26,11 +26,13 @@ export default class Example {
       },
 
       // 2. OR you could also use string pattern instead of the callback functions
-      // allSelectedText: 'Tous sélectionnés',
-      // countSelectedText: '# de % selectionnés',
-      // noMatchesFoundText: 'Aucun résultat',
-      // okButtonText: 'Fermer',
-      // selectAllText: 'Tout sélectionner',
+      /*
+      allSelectedText: 'Tous sélectionnés',
+      countSelectedText: '# de % selectionnés',
+      noMatchesFoundText: 'Aucun résultat',
+      okButtonText: 'Fermer',
+      selectAllText: 'Tout sélectionner',
+      */
     }) as MultipleSelectInstance;
   }
 

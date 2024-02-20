@@ -1,4 +1,5 @@
-import { LabelFilter, MultipleSelectLocale, OptGroupRowData, OptionRowData, OptionRowDivider, TextFilter } from './interfaces';
+import type { LabelFilter, OptGroupRowData, OptionRowData, OptionRowDivider, TextFilter } from './interfaces';
+import type { LocaleKey, MultipleSelectLocale } from './locale.interface';
 
 export interface MultipleSelectView {
   label: string;
@@ -97,7 +98,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   keepOpen?: boolean;
 
   /** Optional Locale */
-  locale?: string;
+  locale?: LocaleKey | MultipleSelectLocale;
 
   /** Defaults to 250, define the maximum height property of the dropdown list. */
   maxHeight: number;

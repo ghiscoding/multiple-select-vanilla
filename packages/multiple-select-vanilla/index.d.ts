@@ -8,14 +8,7 @@ declare global {
         config?: Partial<Omit<MultipleSelectOption, 'onHardDestroy' | 'onAfterHardDestroy'>>,
       ): MultipleSelectInstance | MultipleSelectInstance[];
       defaults: Partial<MultipleSelectInstance>;
-      locales: {
-        [localeKey: string]: {
-          formatSelectAll: () => string;
-          formatAllSelected: () => string;
-          formatCountSelected: (count: number, total: number) => string;
-          formatNoMatchesFound: () => string;
-        };
-      };
+      locales: Record<string, MultipleSelectLocale>;
       methods: string[];
     };
   }

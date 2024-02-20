@@ -11,24 +11,24 @@ const ms =
     ? window.multipleSelect
     : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
 
-(ms.locales as MultipleSelectLocales) = {
-  'en-US': {
-    formatSelectAll() {
-      return '[Select all]';
-    },
-    formatAllSelected() {
-      return 'All selected';
-    },
-    formatCountSelected(count: number, total: number) {
-      return `${count} of ${total} selected`;
-    },
-    formatNoMatchesFound() {
-      return 'No matches found';
-    },
-    formatOkButton() {
-      return 'OK';
-    },
-  } as MultipleSelectLocale,
-};
+export const English = {
+  formatSelectAll() {
+    return '[Select all]';
+  },
+  formatAllSelected() {
+    return 'All selected';
+  },
+  formatCountSelected(count: number, total: number) {
+    return `${count} of ${total} selected`;
+  },
+  formatNoMatchesFound() {
+    return 'No matches found';
+  },
+  formatOkButton() {
+    return 'OK';
+  },
+} as MultipleSelectLocale;
+
+(ms.locales as MultipleSelectLocales)['en-US'] = English;
 
 export default ms.locales;
