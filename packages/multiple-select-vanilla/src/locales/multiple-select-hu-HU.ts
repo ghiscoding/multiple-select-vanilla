@@ -11,7 +11,7 @@ const ms =
     ? window.multipleSelect
     : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
 
-(ms.locales as MultipleSelectLocales)['hu-HU'] = {
+export const Hungarian = {
   formatSelectAll() {
     return '[Összes kiválasztása]';
   },
@@ -28,5 +28,7 @@ const ms =
     return 'Bezár';
   },
 } as MultipleSelectLocale;
+
+(ms.locales as MultipleSelectLocales)['hu-HU'] = Hungarian;
 
 export default ms.locales;

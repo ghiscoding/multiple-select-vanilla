@@ -3,11 +3,15 @@
  * Author: HThuren<thuren.henrik@gmail.com>
  */
 
+import { MultipleSelectInstance } from '../MultipleSelectInstance';
 import { MultipleSelectLocale, MultipleSelectLocales } from '../interfaces';
 
-const ms = window.multipleSelect;
+const ms =
+  typeof window !== 'undefined' && window.multipleSelect !== undefined
+    ? window.multipleSelect
+    : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
 
-(ms.locales as MultipleSelectLocales)['da-DK'] = {
+export const Danish = {
   formatSelectAll() {
     return '[Vælg alle]';
   },
@@ -24,5 +28,7 @@ const ms = window.multipleSelect;
     return 'Lukke';
   },
 } as MultipleSelectLocale;
+
+(ms.locales as MultipleSelectLocales)['da-DK'] = Danish;
 
 export default ms.locales;

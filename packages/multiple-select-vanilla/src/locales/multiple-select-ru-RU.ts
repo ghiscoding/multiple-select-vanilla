@@ -11,7 +11,7 @@ const ms =
     ? window.multipleSelect
     : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
 
-(ms.locales as MultipleSelectLocales)['ru-RU'] = {
+export const Russian = {
   formatSelectAll() {
     return '[Выбрать все]';
   },
@@ -28,5 +28,7 @@ const ms =
     return 'Закрывать';
   },
 } as MultipleSelectLocale;
+
+(ms.locales as MultipleSelectLocales)['ru-RU'] = Russian;
 
 export default ms.locales;

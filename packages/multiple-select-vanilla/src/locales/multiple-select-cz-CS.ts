@@ -3,11 +3,15 @@
  * Author: Matej Puhony<info@puhony.eu>
  */
 
+import { MultipleSelectInstance } from '../MultipleSelectInstance';
 import { MultipleSelectLocale, MultipleSelectLocales } from '../interfaces';
 
-const ms = window.multipleSelect;
+const ms =
+  typeof window !== 'undefined' && window.multipleSelect !== undefined
+    ? window.multipleSelect
+    : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
 
-(ms.locales as MultipleSelectLocales)['cz-CS'] = {
+export const Czech = {
   formatSelectAll() {
     return '[Vybrat vše]';
   },
@@ -24,5 +28,7 @@ const ms = window.multipleSelect;
     return 'Zavřít';
   },
 } as MultipleSelectLocale;
+
+(ms.locales as MultipleSelectLocales)['cz-CS'] = Czech;
 
 export default ms.locales;

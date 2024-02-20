@@ -94,10 +94,6 @@ dist/
   browser/
     multiple-select.js              # ESM build, use with: window.multipleSelect
     multiple-select.cjs             # CJS (CommonJS) build, use with: window.multipleSelect
-  cjs/
-    multiple-select.cjs             # CJS (CommonJS), use with: require()
-  esm/
-    multiple-select.js              # ESM, use with: import from
   locales/
     multiple-select-all-locales.cjs # all-in-1 locales as CJS
     multiple-select-all-locales.js  # all-in-1 locales as ESM
@@ -108,7 +104,9 @@ dist/
   styles/                           # CSS and SASS Stylings
     css/
     sass/
-  types/                            # d.ts Type Definitions
+  index.d.ts                        # d.ts Type Definitions
+  multiple-select.cjs               # CJS (CommonJS), use with: require()
+  multiple-select.js                # ESM, use with: import from
 ```
 
 ### Used by

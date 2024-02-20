@@ -11,7 +11,7 @@ const ms =
     ? window.multipleSelect
     : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
 
-(ms.locales as MultipleSelectLocales)['zh-TW'] = {
+export const MandarinTraditional = {
   formatSelectAll() {
     return '[全選]';
   },
@@ -28,5 +28,7 @@ const ms =
     return '关闭';
   },
 } as MultipleSelectLocale;
+
+(ms.locales as MultipleSelectLocales)['zh-TW'] = MandarinTraditional;
 
 export default ms.locales;
