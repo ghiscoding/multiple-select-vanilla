@@ -435,7 +435,7 @@ export class MultipleSelectInstance {
       offset = -1;
     }
 
-    if (rows.length > Constants.BLOCK_ROWS * Constants.CLUSTER_BLOCKS) {
+    if (this.options.virtualScroll && rows.length > Constants.BLOCK_ROWS * Constants.CLUSTER_BLOCKS) {
       this.virtualScroll?.destroy();
 
       const dropVisible = this.dropElm.style.display !== 'none';
