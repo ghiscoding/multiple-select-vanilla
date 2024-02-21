@@ -178,7 +178,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Defaults to False, same as "useSelectOptionLabel" but will also render html */
   useSelectOptionLabelToHtml?: boolean;
 
-  /** 
+  /**
    * Defaults to True, Virtual Scroll is used to improve performance on large select options list.
    * The concept is to only render a subset of the options (~200) in the DOM, to consume less memory and improve the component's performance.
    */
