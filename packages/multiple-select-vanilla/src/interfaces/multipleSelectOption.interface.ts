@@ -91,7 +91,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Hide the option groupd checkboses. By default this is set to false. */
   hideOptgroupCheckboxes?: boolean;
 
-  /** Infinite Scroll will automatically reset the list (scroll back to top) whenever the scroll reaches the last item (end of the list) */
+  /** Defaults to False, Infinite Scroll will automatically reset the list (scroll back to top) whenever the scroll reaches the last item (end of the list) */
   infiniteScroll?: boolean;
 
   /** Whether or not Multiple Select open the select dropdown. */
