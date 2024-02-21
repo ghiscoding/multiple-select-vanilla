@@ -20,15 +20,15 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.2",
-    "dompurify": "^3.0.8",
+    "bootstrap": "^5.3.3",
+    "dompurify": "^3.0.9",
     "font-awesome": "^4.7.0",
     "multiple-select-vanilla": "workspace:*"
   },
   "devDependencies": {
     "@types/dompurify": "^3.0.5",
     "sass": "^1.71.0",
-    "typescript": "^5.3.3",
+    "typescript": "5.4.0-dev.20240220",
     "vite": "^5.1.3"
   }
 }
