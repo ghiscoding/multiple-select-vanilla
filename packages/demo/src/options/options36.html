@@ -1,0 +1,45 @@
+<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Infinite Scroll
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options36.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options36.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Enabling <code>infiniteScroll</code> will automatically scroll back to the top whenever reaching the end of the list (scrolling through either the mouse and/or arrow down). Note that this is not to be confused 
+      with Virtual Scroll which itself is enabled by default whenever the list is bigger than 200 items (the last list select below does use Virtual Scroll)
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">
+      Short List (25)
+    </label>
+
+    <div class="col-sm-10">
+      <select data-test="select1" id="select1" class="full-width"></select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Large List (2,000)</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" data-test="select2" id="select2" class="full-width"></select>
+    </div>
+  </div>
+</div>

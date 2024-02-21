@@ -11,7 +11,7 @@ test.describe('Methods 01 - getOptions()', () => {
     await page.goto('#/methods01');
     await page.getByRole('button', { name: 'getOptions' }).click();
     const strArray = [
-      `{`,
+      '{',
       `"name": "",`,
       `"placeholder": "",`,
       `"classes": "",`,

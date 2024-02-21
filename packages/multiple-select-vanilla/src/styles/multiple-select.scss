@@ -333,4 +333,8 @@
   .ms-no-results {
     display: none;
   }
+
+  .ms-infinite-option {
+    height: var(--ms-infinite-empty-option-height, $ms-infinite-empty-option-height);
+  }
 }

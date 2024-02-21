@@ -62,6 +62,7 @@ import Options32 from './options/options32';
 import Options33 from './options/options33';
 import Options34 from './options/options34';
 import Options35 from './options/options35';
+import Options36 from './options/options36';
 
 export const navbarRouting = [
   { name: 'getting-started', view: '/src/getting-started.html', viewModel: GettingStarted, title: 'Getting Started' },
@@ -126,6 +127,7 @@ export const exampleRouting = [
       { name: 'options33', view: '/src/options/options33.html', viewModel: Options33, title: 'Classes' },
       { name: 'options34', view: '/src/options/options34.html', viewModel: Options34, title: 'Show Search Clear' },
       { name: 'options35', view: '/src/options/options35.html', viewModel: Options35, title: 'Custom Diacritic Parser' },
+      { name: 'options36', view: '/src/options/options36.html', viewModel: Options36, title: 'Infinite Scroll' },
     ],
   },
   {
