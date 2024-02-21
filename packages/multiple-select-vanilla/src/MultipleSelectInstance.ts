@@ -498,6 +498,7 @@ export class MultipleSelectInstance {
       this.updateDataEnd = this.updateData.length;
       this.virtualScroll = null;
     }
+
     this.events();
 
     return rows;
@@ -507,6 +508,17 @@ export class MultipleSelectInstance {
     const rows: HtmlStruct[] = [];
     this.updateData = [];
     this.data?.forEach(dataRow => rows.push(...this.initListItem(dataRow)));
+
+    // when infinite scroll is enabled, we'll add an empty <li> element (that will never be clickable)
+    // so that scrolling to the last valid item will NOT automatically scroll back to the top of the list.
+    // However scrolling by 1 more item (the last invisible item) will at that time trigger the scroll back to the top of the list
+    if (this.options.infiniteScroll) {
+      rows.push({
+        tagName: 'li',
+        props: { className: 'ms-infinite-option', role: 'option', dataset: { key: 'infinite' } },
+      });
+    }
+
     rows.push({ tagName: 'li', props: { className: 'ms-no-results', textContent: this.formatNoMatchesFound() } });
 
     return rows;
@@ -703,6 +715,7 @@ export class MultipleSelectInstance {
       'group-checkbox-list',
       'hover-highlight',
       'arrow-highlight',
+      'option-list-scroll',
     ]);
 
     this.closeSearchElm = this.filterParentElm?.querySelector('.icon-close');
@@ -906,8 +919,8 @@ export class MultipleSelectInstance {
       'input-checkbox-list',
     );
 
-    // if we previously had an item focused and the VirtualScroll recreates the list, we need to refocus on last item by its input data-key
     if (this.lastFocusedItemKey) {
+      // if we previously had an item focused and the VirtualScroll recreates the list, we need to refocus on last item by its input data-key
       const input = this.dropElm.querySelector<HTMLInputElement>(`li[data-key=${this.lastFocusedItemKey}]`);
       input?.focus();
     }
@@ -969,6 +982,30 @@ export class MultipleSelectInstance {
       undefined,
       'arrow-highlight',
     );
+
+    if (this.ulElm && this.options.infiniteScroll) {
+      this._bindEventService.bind(this.ulElm, 'scroll', this.infiniteScrollHandler.bind(this) as EventListener, undefined, 'option-list-scroll');
+    }
+  }
+
+  /**
+   * Checks if user reached the end of the list through mouse scrolling and/or arrow down,
+   * then scroll back to the top whenever that happens.
+   */
+  protected infiniteScrollHandler(e: MouseEvent & { target: HTMLElement }) {
+    if (e.target && this.ulElm) {
+      const scrollPos = e.target.scrollTop + e.target.clientHeight;
+
+      if (scrollPos === this.ulElm.scrollHeight) {
+        if (this.virtualScroll) {
+          this.initListItems();
+        } else {
+          this.ulElm.scrollTop = 0;
+        }
+        this._currentHighlightIndex = 0;
+        this.highlightCurrentOption();
+      }
+    }
   }
 
   /**
