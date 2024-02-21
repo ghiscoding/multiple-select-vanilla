@@ -44,7 +44,9 @@ test.describe('Methods 01 - getOptions()', () => {
       `"autoAdjustDropWidthByTextSize": false,`,
       `"adjustedHeightPadding": 10,`,
       `"useSelectOptionLabel": false,`,
-      `"useSelectOptionLabelToHtml": false\n}`,
+      `"useSelectOptionLabelToHtml": false,`,
+      `"infiniteScroll": false,`,
+      `"virtualScroll": true\n}`,
     ].join('\n    ');
     await expect(dialogText).toContain(strArray);
   });

@@ -55,6 +55,9 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   useSelectOptionLabel: false,
   useSelectOptionLabelToHtml: false,
 
+  infiniteScroll: false,
+  virtualScroll: true,
+
   cssStyler: () => null,
   styler: () => false,
   textTemplate: (elm: HTMLOptionElement) => elm.innerHTML.trim(),

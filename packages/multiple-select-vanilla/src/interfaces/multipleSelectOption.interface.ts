@@ -91,7 +91,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Hide the option groupd checkboses. By default this is set to false. */
   hideOptgroupCheckboxes?: boolean;
 
-  /** Infinite Scroll will automatically reset the list (scroll back to top) whenever the scroll reaches the last item (end of the list) */
+  /** Defaults to False, Infinite Scroll will automatically reset the list (scroll back to top) whenever the scroll reaches the last item (end of the list) */
   infiniteScroll?: boolean;
 
   /** Whether or not Multiple Select open the select dropdown. */
@@ -177,6 +177,12 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
 
   /** Defaults to False, same as "useSelectOptionLabel" but will also render html */
   useSelectOptionLabelToHtml?: boolean;
+
+  /**
+   * Defaults to True, Virtual Scroll is used to improve performance with large set of data. The concept is to only render a subset
+   * of the options (~200) at a time to avoid polluting the DOM, it will also consume less memory and improve overall performance of your application.
+   */
+  virtualScroll?: boolean;
 
   /** Define the width property of the dropdown list, support a percentage setting.By default this option is set to undefined. Which is the same as the select input field. */
   width?: number | string;
