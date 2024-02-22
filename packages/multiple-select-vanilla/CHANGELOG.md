@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v2.0.1...v2.0.2) (2024-02-22)
+
+### Bug Fixes
+
+* opening drop should focus on next available option only initially ([#229](https://github.com/ghiscoding/multiple-select-vanilla/issues/229)) ([a268e80](https://github.com/ghiscoding/multiple-select-vanilla/commit/a268e8093012c3dabfca8a865134da7688bd2270)) - by @ghiscoding
+
 ## [2.0.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v2.0.0...v2.0.1) (2024-02-22)
 
 ### Bug Fixes
