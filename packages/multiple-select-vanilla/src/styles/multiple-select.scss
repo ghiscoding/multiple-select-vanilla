@@ -134,7 +134,7 @@
       background-color: var(--ms-select-all-text-hover-color, $ms-select-all-text-hover-color);
     }
     &.highlighted {
-      background-color: var(--ms-option-highlight, $ms-option-highlight);
+      background-color: var(--ms-option-highlight-bg-color, $ms-option-highlight-bg-color);
     }
 
     label {
@@ -192,11 +192,11 @@
     box-shadow: none;
     font-family: sans-serif;
     height: auto !important;
-    outline: 0;
     width: 100%;
     border: var(--ms-search-input-border, $ms-search-input-border);
     border-radius: var(--ms-search-input-border-radius, $ms-search-input-border-radius);
     min-height: var(--ms-search-input-min-height, $ms-search-input-min-height);
+    outline: var(--ms-search-input-outline, $ms-search-input-outline);
     padding: var(--ms-search-input-padding, $ms-search-input-padding);
     margin: var(--ms-search-input-margin, $ms-search-input-margin);
     &::placeholder {
@@ -228,6 +228,7 @@
 .ms-drop {
   ul {
     overflow: auto;
+    outline: var(--ms-drop-outline, $ms-drop-outline);
     margin: var(--ms-drop-list-margin, $ms-drop-list-margin);
     padding: var(--ms-drop-list-padding, $ms-drop-list-padding);
 
@@ -312,7 +313,7 @@
         border-top: var(--ms-drop-option-divider-border-top, $ms-drop-option-divider-border-top);
       }
       &.highlighted {
-        background-color: var(--ms-option-highlight, $ms-option-highlight);
+        background-color: var(--ms-option-highlight-bg-color, $ms-option-highlight-bg-color);
       }
     }
   }
