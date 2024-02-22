@@ -8,8 +8,8 @@
     ".": {
       "types": "./dist/index.d.ts",
       "node": "./dist/multiple-select.cjs",
-      "require": "./dist/multiple-select.cjs",
-      "default": "./dist/multiple-select.js"
+      "import": "./dist/multiple-select.js",
+      "require": "./dist/multiple-select.cjs"
     },
     "./dist/browser/*": "./dist/browser/*",
     "./dist/locales/*": "./dist/locales/*",
