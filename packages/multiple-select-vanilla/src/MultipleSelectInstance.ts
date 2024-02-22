@@ -1096,7 +1096,14 @@ export class MultipleSelectInstance {
         ulElm.focus();
       }
     }
-    this.moveFocusDown();
+    
+    if (this._currentHighlightIndex < 0) {
+      // on open drop initial, we'll focus on next available option
+      this.moveFocusDown();
+    } else {
+      // if it was already opened earlier, we'll keep same option index focused
+      this.highlightCurrentOption();
+    }
 
     if (this.options.autoAdjustDropWidthByTextSize) {
       this.adjustDropWidthByText();
