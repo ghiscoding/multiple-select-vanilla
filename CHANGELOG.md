@@ -12,6 +12,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [2.0.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.2.5...v2.0.0) (2024-02-21)
 
+> Refer to the [v2.0.0](https://github.com/ghiscoding/multiple-select-vanilla/releases/tag/v2.0.0) release for more info about the migration.
+
 ### ⚠ BREAKING CHANGES
 
 * export Locale as named exports (#219)
@@ -24,7 +26,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * add new option `infiniteScroll` auto-scroll back to top ([#224](https://github.com/ghiscoding/multiple-select-vanilla/issues/224)) ([fb74e74](https://github.com/ghiscoding/multiple-select-vanilla/commit/fb74e741801b830cb0281e85da065f21fb99dc8b)) - by @ghiscoding
 * change TS Types exports location ([#218](https://github.com/ghiscoding/multiple-select-vanilla/issues/218)) ([38d3142](https://github.com/ghiscoding/multiple-select-vanilla/commit/38d3142a6191c8c6ed5f6e137d2c0d8974334b57)) - by @ghiscoding
 * export Locale as named exports ([#219](https://github.com/ghiscoding/multiple-select-vanilla/issues/219)) ([6eb57ce](https://github.com/ghiscoding/multiple-select-vanilla/commit/6eb57cefd8ed71af5c776cdd089c6df36f02524a)) - by @ghiscoding
-* replace arrow up/down direction tabIndex by highlight, fix [#206](https://github.com/ghiscoding/multiple-select-vanilla/issues/206) ([#213](https://github.com/ghiscoding/multiple-select-vanilla/issues/213)) ([50be59c](https://github.com/ghiscoding/multiple-select-vanilla/commit/50be59c2fe1c4129141d5e082d4402e6da62a6ad)) - by @ghiscoding
+* replace arrow navigation `tabIndex`` by arrow navigation highlight, fixes [#206](https://github.com/ghiscoding/multiple-select-vanilla/issues/206) ([#213](https://github.com/ghiscoding/multiple-select-vanilla/issues/213)) ([50be59c](https://github.com/ghiscoding/multiple-select-vanilla/commit/50be59c2fe1c4129141d5e082d4402e6da62a6ad)) - by @ghiscoding
 
 ### Bug Fixes
 
