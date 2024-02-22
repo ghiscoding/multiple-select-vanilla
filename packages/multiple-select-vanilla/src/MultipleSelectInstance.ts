@@ -29,7 +29,7 @@ export class MultipleSelectInstance {
   protected fromHtml = false;
   protected choiceElm!: HTMLButtonElement;
   protected closeElm?: HTMLElement | null;
-  protected closeSearchElm?: HTMLElement | null;
+  protected clearSearchIconElm?: HTMLElement | null;
   protected filterText = '';
   protected updateData: any[] = [];
   protected data?: Array<OptionRowData | OptGroupRowData> = [];
@@ -718,7 +718,7 @@ export class MultipleSelectInstance {
       'option-list-scroll',
     ]);
 
-    this.closeSearchElm = this.filterParentElm?.querySelector('.icon-close');
+    this.clearSearchIconElm = this.filterParentElm?.querySelector('.icon-close');
     this.searchInputElm = this.dropElm.querySelector<HTMLInputElement>('.ms-search input');
     this.selectAllElm = this.dropElm.querySelector<HTMLInputElement>(`input[data-name="${this.selectAllName}"]`);
     this.selectGroupElms = this.dropElm.querySelectorAll<HTMLInputElement>(
@@ -774,13 +774,16 @@ export class MultipleSelectInstance {
       }) as EventListener);
     }
 
-    if (this.closeSearchElm) {
-      this._bindEventService.bind(this.closeSearchElm, 'click', ((e: MouseEvent) => {
+    if (this.clearSearchIconElm) {
+      this._bindEventService.bind(this.clearSearchIconElm, 'click', ((e: MouseEvent) => {
         e.preventDefault();
         if (this.searchInputElm) {
           this.searchInputElm.value = '';
           this.searchInputElm.focus();
         }
+        // move highlight back to top of the list
+        this._currentHighlightIndex = -1;
+        this.moveFocusDown();
         this.filter();
       }) as EventListener);
     }
@@ -1096,7 +1099,14 @@ export class MultipleSelectInstance {
         ulElm.focus();
       }
     }
-    this.moveFocusDown();
+
+    if (this._currentHighlightIndex < 0) {
+      // on open drop initial, we'll focus on next available option
+      this.moveFocusDown();
+    } else {
+      // if it was already opened earlier, we'll keep same option index focused
+      this.highlightCurrentOption();
+    }
 
     if (this.options.autoAdjustDropWidthByTextSize) {
       this.adjustDropWidthByText();
