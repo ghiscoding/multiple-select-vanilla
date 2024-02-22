@@ -1,6 +1,6 @@
 {
   "name": "multiple-select-vanilla",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "./dist/multiple-select.cjs",
   "module": "./dist/multiple-select.js",
   "types": "dist/index.d.ts",

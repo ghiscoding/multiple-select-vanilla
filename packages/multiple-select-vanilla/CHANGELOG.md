@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v2.0.0...v2.0.1) (2024-02-22)
+
+### Bug Fixes
+
+* add SASS/CSS variable to remove drop outline ([#228](https://github.com/ghiscoding/multiple-select-vanilla/issues/228)) ([bf4fa0f](https://github.com/ghiscoding/multiple-select-vanilla/commit/bf4fa0f706ea2eddfd25bc423a224918ae92efd1)) - by @ghiscoding
+
 ## [2.0.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v1.2.5...v2.0.0) (2024-02-21)
 
 ### ⚠ BREAKING CHANGES
