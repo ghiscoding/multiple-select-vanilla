@@ -1096,7 +1096,7 @@ export class MultipleSelectInstance {
         ulElm.focus();
       }
     }
-    
+
     if (this._currentHighlightIndex < 0) {
       // on open drop initial, we'll focus on next available option
       this.moveFocusDown();
