@@ -73,6 +73,6 @@
     "postcss": "^8.4.35",
     "postcss-cli": "^11.0.0",
     "sass": "^1.71.1",
-    "typescript": "5.4.0-dev.20240220"
+    "typescript": "5.4.1-rc"
   }
 }
