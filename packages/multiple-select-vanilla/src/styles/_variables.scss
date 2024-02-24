@@ -43,6 +43,7 @@ $ms-drop-list-item-level1-padding-left: 28px !default;
 $ms-drop-list-item-padding: 0.25rem 8px !default;
 $ms-drop-list-item-disabled-filter: Alpha(Opacity = 35) !default;
 $ms-drop-list-item-disabled-opacity: 0.35 !default;
+$ms-drop-scrollbar-color: #c1c1c1 #f1f1f1 !default;
 $ms-drop-zindex: 1050 !default;
 $ms-input-focus-outline: none !default;
 $ms-infinite-empty-option-height: 20px !default;
@@ -81,5 +82,28 @@ $ms-select-all-label-padding: 4px !default;
 $ms-select-all-label-span-padding: 0 0 0 20px !default;
 $ms-select-all-line-height: 18px !default;
 $ms-select-all-padding: 4px !default;
+$ms-select-all-text-font-weight: normal !default;
 $ms-select-all-text-color: darken($primary-color, 5%) !default;
 $ms-select-all-text-hover-color: transparent !default;
+
+.ms-dark-mode {
+    --ms-checkbox-color: #{lighten($primary-color, 5%)};
+    --ms-choice-border: 1px solid #757575;
+    --ms-choice-bgcolor: #262b2f;
+    --ms-choice-color: #d4d4d4;
+    --ms-drop-background: #2a2f34;
+    --ms-drop-border: 1px solid #585858;
+    --ms-drop-color: #cccccc;
+    --ms-drop-hide-radio-hover-bgcolor: #{darken($primary-color, 5%)};
+    --ms-drop-option-divider-border-top: 1px solid #696969;
+    --ms-drop-scrollbar-color: #828282 #424242;
+    --ms-option-highlight-bg-color: #{darken($primary-color, 10%)};
+    --ms-ok-button-bg-color: #262b2f;
+    --ms-ok-button-bg-hover-color: #24282c;
+    --ms-ok-button-border-color: #4a4a4a;
+    --ms-ok-button-text-color: #{lighten($primary-color, 5%)};
+    --ms-ok-button-text-hover-color: #{lighten($primary-color, 5%)};
+    --ms-select-all-border-bottom: 1px solid #5d5d5d;
+    --ms-select-all-text-color: #d4d4d4;
+    --ms-select-all-text-font-weight: bold;
+}

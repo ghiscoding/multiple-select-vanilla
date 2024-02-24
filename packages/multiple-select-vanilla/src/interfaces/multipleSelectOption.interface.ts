@@ -49,6 +49,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Use optional string to override selected count text "# of % selected" instead of `formatCountSelected()`, the latter should be preferred */
   countSelectedText?: string;
 
+  /** Dark Mode will add `.ms-dark-mode` CSS class to drop and parent elements */
+  darkMode?: boolean;
+
   /** provide custom data */
   data?: { [value: string]: number | string | boolean } | Array<number | string | boolean | OptionRowData | OptionRowDivider | OptGroupRowData>;
 
