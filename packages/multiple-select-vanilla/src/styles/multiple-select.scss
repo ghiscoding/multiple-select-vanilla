@@ -139,7 +139,7 @@
 
     label {
       display: inline-block;
-      font-weight: normal;
+      font-weight: var(--ms-select-all-text-font-weight, $ms-select-all-text-font-weight);
       padding: var(--ms-select-all-label-padding, $ms-select-all-label-padding);
       border: var(--ms-select-all-label-border, $ms-select-all-label-border);
       color: var(--ms-select-all-text-color, $ms-select-all-text-color);
@@ -231,6 +231,7 @@
     outline: var(--ms-drop-outline, $ms-drop-outline);
     margin: var(--ms-drop-list-margin, $ms-drop-list-margin);
     padding: var(--ms-drop-list-padding, $ms-drop-list-padding);
+    scrollbar-color: var(--ms-drop-scrollbar-color, $ms-drop-scrollbar-color);
 
     > li {
       background-image: none;

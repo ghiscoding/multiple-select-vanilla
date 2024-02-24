@@ -183,6 +183,10 @@ export class MultipleSelectInstance {
       dataset: { test: 'sel' },
     });
 
+    if (this.options.darkMode) {
+      this.parentElm.classList.add('ms-dark-mode');
+    }
+
     // add tooltip title only when provided
     const parentTitle = this.elm.getAttribute('title') || '';
     if (parentTitle) {
@@ -204,6 +208,10 @@ export class MultipleSelectInstance {
 
     // default position is bottom
     this.dropElm = createDomElement('div', { className: `ms-drop ${this.options.position}`, ariaExpanded: 'false' }, this.parentElm);
+
+    if (this.options.darkMode) {
+      this.dropElm.classList.add('ms-dark-mode');
+    }
 
     // add data-name attribute when name option is defined
     if (name) {
@@ -635,7 +643,6 @@ export class MultipleSelectInstance {
     const liBlock: HtmlStruct = {
       tagName: 'li',
       props: {
-        className: liClasses,
         role: 'option',
         title,
         ariaSelected: String(!!dataRow.selected),
@@ -643,6 +650,10 @@ export class MultipleSelectInstance {
       },
       children: [{ tagName: 'label', props: { className: labelClasses }, children: [inputBlock, spanLabelBlock] }],
     };
+
+    if (liClasses) {
+      liBlock.props.className = liClasses;
+    }
 
     const customStyleRules = this.options.cssStyler(dataRow);
     const customStylerStr = String(this.options.styler(dataRow) || ''); // deprecated

@@ -13,6 +13,7 @@ import Example11 from './examples/example11';
 import Example12 from './examples/example12';
 import Example13 from './examples/example13';
 import Example14 from './examples/example14';
+import Example15 from './examples/example15';
 import GettingStarted from './getting-started';
 import I18n from './i18n/i18n';
 import Methods01 from './methods/methods01';
@@ -87,6 +88,7 @@ export const exampleRouting = [
       { name: 'example12', view: '/src/examples/example12.html', viewModel: Example12, title: 'Checkbox/Radio Icons' },
       { name: 'example13', view: '/src/examples/example13.html', viewModel: Example13, title: 'Dynamically Create Select' },
       { name: 'example14', view: '/src/examples/example14.html', viewModel: Example14, title: 'The Divider' },
+      { name: 'example15', view: '/src/examples/example15.html', viewModel: Example15, title: 'Dark Mode' },
     ],
   },
   {
