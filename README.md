@@ -8,7 +8,7 @@
 [![Actions Status](https://github.com/ghiscoding/multiple-select-vanilla/actions/workflows/main.yml/badge.svg)](https://github.com/ghiscoding/multiple-select-vanilla/actions)
 
 ## Stable Release
-We now have a fully working and official release including a [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for displaying all available options/methods. You can also take a look at the "[Used by](#used-by)" section below to see real world applications taking advantage of this library.
+Take a look at the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot). You can also take a look at the "[Used by](#used-by)" section below to see real world applications taking advantage of this library.
 
 ## Description
 Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.7.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.7.0). The main difference from the original lib is that we dropped jQuery in favor of native browser code and this mean zero external dependency. As a bonus, a few extra features were also added to the library as you can see from the list shown below [Changes vs Original lib](#changes-vs-original-lib-multiple-select).
@@ -20,7 +20,7 @@ To get started take a look at the [Live demo](https://ghiscoding.github.io/multi
 
 ### Fully tested with [![Playwright](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg?logo=playwright)](https://playwright.dev/)
 
-The [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) website is also used by [Playwright](https://playwright.dev/) for E2E testing of the library, all examples are covered with Playwright tests.
+The [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) website is also helpful to run a full suite of E2E tests by using [Playwright](https://playwright.dev/), all project examples have dedicated Playwright tests.
 
 ## Installation
 
@@ -56,9 +56,10 @@ New Multiple-Select Options:
   - `showOkButton` to add an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
   - `showSearchClear` show a clear button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
   - `diacriticParser` custom parser to normalize diacritic signs when filtering select list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options35))
+  - Dark Mode theme
 
 ## CSP Compliance
-The library is now CSP (Content Security Policy) compliant since `v0.6.0`, however there are some exceptions to be aware of. When using any html string as template (with `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return `TrustedHTML`. You can achieve this by using the `sanitizer` method in combo with [DOMPurify](https://github.com/cure53/DOMPurify) to return `TrustedHTML` as shown below and with that in place you will again be CSP compliant.
+The library is now CSP (Content Security Policy) compliant, however there are some exceptions to be aware of. When using any html string as template (with `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return `TrustedHTML`. You can achieve this by using the `sanitizer` method in combo with [DOMPurify](https://github.com/cure53/DOMPurify) to return `TrustedHTML` as shown below and with that in place you will be CSP compliant.
 
 ```typescript
 import DOMPurify from 'dompurify';
@@ -112,7 +113,7 @@ dist/
 ```
 
 ### Used by
-This fork was created mostly to drop jQuery, and is used by a few other Open Source libraries that I also maintain:
+This fork was created mostly to drop jQuery, and it is used by a few other Open Source libraries of mine that I also maintain:
 - [Angular-Slickgrid](https://github.com/ghiscoding/Angular-Slickgrid)
 - [Aurelia-Slickgrid](https://github.com/ghiscoding/aurelia-slickgrid)
 - [Slickgrid-React](https://github.com/ghiscoding/slickgrid-react)
@@ -126,9 +127,9 @@ This fork was created mostly to drop jQuery, and is used by a few other Open Sou
 
 ### Development / Contributions
 
-If you wish to contribute to the project, please follow these steps:
+If you wish to contribute to the project, please follow the steps shown below:
 
-**Note**: this project uses [pnpm workspaces](https://pnpm.io/workspaces), you can install pnpm by following their [installation](https://pnpm.io/installation) or use NodeJS `corepack enable` to run any of the pnpm scripts shown below:
+**Note**: this project uses [pnpm workspaces](https://pnpm.io/workspaces), you can install pnpm by following their [installation](https://pnpm.io/installation) or use NodeJS `corepack enable` to run any of these pnpm scripts.
 
 1. clone the lib:
    - `git clone https://github.com/ghiscoding/multiple-select-vanilla`
@@ -141,7 +142,7 @@ If you wish to contribute to the project, please follow these steps:
 
 #### Pull Request Contribution
 
-Before submitting a PR (pull request), please make sure that you followed these steps for a better chance of a successfull PR:
+Before submitting a PR (pull request), please make sure that you followed the steps below for a better chance of a successfull PR:
 
 1. make sure that you have already executed `pnpm install`
 2. run the Biome lint npm script (or simply use step 4)
