@@ -8,7 +8,7 @@
 [![Actions Status](https://github.com/ghiscoding/multiple-select-vanilla/actions/workflows/main.yml/badge.svg)](https://github.com/ghiscoding/multiple-select-vanilla/actions)
 
 ## Stable Release
-Take a look at the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot). You can also take a look at the "[Used by](#used-by)" section below to see real world applications taking advantage of this library.
+Take a look at the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot). You can see the "[Used by](#used-by)" section below to visit real world projects taking advantage of this library.
 
 ## Description
 Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.7.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.7.0). The main difference from the original lib is that we dropped jQuery in favor of native browser code and this mean zero external dependency. As a bonus, a few extra features were also added to the library as you can see from the list shown below [Changes vs Original lib](#changes-vs-original-lib-multiple-select).
@@ -56,6 +56,7 @@ New Multiple-Select Options:
   - `showOkButton` to add an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
   - `showSearchClear` show a clear button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
   - `diacriticParser` custom parser to normalize diacritic signs when filtering select list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options35))
+  - replace tabIndex by arrow navigation highlight
   - Dark Mode theme (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/example15))
 
 ## CSP Compliance
@@ -69,7 +70,7 @@ const ms1 = multipleSelect('#select1', {
    name: 'my-select',
    single: false,
    useSelectOptionLabelToHtml: true,
-   sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }), // return TrustedType
+   sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }), // return TrustedHTML Type
    data: [
       { text: '<i class="fa fa-star"></i> January', value: 1 },
       { text: '<i class="fa fa-star"></i> February', value: 2 },
