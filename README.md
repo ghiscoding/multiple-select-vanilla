@@ -76,7 +76,7 @@ const ms1 = multipleSelect('#select1', {
    ]
 });
 ```
-with this code in place, we can now use the following CSP meta tag (which is what we use in the lib demo, ref: [index.html](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/index.html#L7))
+with this code in place, we can now use the following CSP meta tag (which is what we use in the demo [index.html](https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/index.html#L7))
 ```html
 <meta http-equiv="Content-Security-Policy" content="default-src 'self';style-src 'self' data:; img-src * 'self' data: https:; require-trusted-types-for 'script'; trusted-types dompurify">
 ```
