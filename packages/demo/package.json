@@ -29,6 +29,6 @@
     "@types/dompurify": "^3.0.5",
     "sass": "^1.71.1",
     "typescript": "5.4.1-rc",
-    "vite": "^5.1.4"
+    "vite": "^5.1.5"
   }
 }

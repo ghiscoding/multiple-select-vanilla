@@ -55,18 +55,18 @@
     "test:e2e:ui": "playwright test --config playwright/playwright.config.ts --ui",
     "test:report": "playwright show-report"
   },
-  "packageManager": "pnpm@8.15.3",
+  "packageManager": "pnpm@8.15.4",
   "devDependencies": {
     "@biomejs/biome": "^1.5.3",
-    "@lerna-lite/cli": "^3.3.0",
-    "@lerna-lite/publish": "^3.3.0",
-    "@lerna-lite/watch": "^3.3.0",
-    "@playwright/test": "^1.41.2",
-    "@types/node": "^20.11.19",
+    "@lerna-lite/cli": "^3.3.1",
+    "@lerna-lite/publish": "^3.3.1",
+    "@lerna-lite/watch": "^3.3.1",
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.24",
     "conventional-changelog-conventionalcommits": "^7.0.2",
     "cross-env": "^7.0.3",
     "npm-run-all2": "^6.1.2",
-    "pnpm": "^8.15.3",
+    "pnpm": "^8.15.4",
     "rimraf": "^5.0.5",
     "typescript": "5.4.1-rc"
   }
