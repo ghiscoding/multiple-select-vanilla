@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Methods 01 - getOptions()', () => {
   test('method returns default options when calling the method', async ({ page }) => {
     let dialogText = '';
-    page.on('dialog', async (alert) => {
+    page.on('dialog', async alert => {
       dialogText = alert.message();
       await alert.dismiss();
     });
@@ -45,6 +45,7 @@ test.describe('Methods 01 - getOptions()', () => {
       `"adjustedHeightPadding": 10,`,
       `"useSelectOptionLabel": false,`,
       `"useSelectOptionLabelToHtml": false,`,
+      `"navigationHighlight": true,`,
       `"infiniteScroll": false,`,
       `"virtualScroll": true\n}`,
     ].join('\n    ');
