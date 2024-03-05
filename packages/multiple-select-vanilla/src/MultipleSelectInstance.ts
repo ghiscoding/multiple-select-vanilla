@@ -939,63 +939,65 @@ export class MultipleSelectInstance {
       input?.focus();
     }
 
-    // when hovering an select option, we will also change the highlight to that option
-    this._bindEventService.bind(
-      this.dropElm,
-      'mouseover',
-      ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
-        const liElm = (e.target.closest('.ms-select-all') || e.target.closest('li')) as HTMLLIElement;
-        if (this.dropElm.contains(liElm)) {
-          const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
-          const newIdx = Array.from(optionElms).findIndex(el => el.dataset.key === liElm.dataset.key);
-          if (this._currentHighlightIndex !== newIdx && !liElm.classList.contains('disabled')) {
-            this._currentSelectedElm = liElm;
-            this._currentHighlightIndex = newIdx;
-            this.changeCurrentOptionHighlight(liElm);
-          }
-        }
-      }) as EventListener,
-      undefined,
-      'hover-highlight',
-    );
-
-    // add keydown event listeners to watch for up/down arrows and focus on previous/next item
-    // we will ignore divider and if key pressed is the Enter/Space key then we'll instead select/deselect input checkbox
-    // we will also remove any previous bindings that might exist which happen when we use VirtualScroll
-    this._bindEventService.bind(
-      this.dropElm,
-      'keydown',
-      ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
-        switch (e.key) {
-          case 'ArrowUp':
-            e.preventDefault();
-            this.moveFocusUp();
-            break;
-          case 'ArrowDown':
-            e.preventDefault();
-            this.moveFocusDown();
-            break;
-          case 'Enter':
-          case ' ': {
-            const liElm = e.target.closest('.ms-select-all') || e.target.closest('li');
-            if ((e.key === ' ' && this.options.filter) || (this.options.filterAcceptOnEnter && !liElm)) {
-              return;
+    if (this.options.navigationHighlight) {
+      // when hovering an select option, we will also change the highlight to that option
+      this._bindEventService.bind(
+        this.dropElm,
+        'mouseover',
+        ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
+          const liElm = (e.target.closest('.ms-select-all') || e.target.closest('li')) as HTMLLIElement;
+          if (this.dropElm.contains(liElm)) {
+            const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
+            const newIdx = Array.from(optionElms).findIndex(el => el.dataset.key === liElm.dataset.key);
+            if (this._currentHighlightIndex !== newIdx && !liElm.classList.contains('disabled')) {
+              this._currentSelectedElm = liElm;
+              this._currentHighlightIndex = newIdx;
+              this.changeCurrentOptionHighlight(liElm);
             }
-            e.preventDefault();
-            this._currentSelectedElm?.querySelector('input')?.click();
-
-            // on single select, we should focus directly
-            if (this.options.single) {
-              this.choiceElm.focus();
-              this.lastFocusedItemKey = this.choiceElm?.dataset.key || '';
-            }
-            break;
           }
-        }
-      }) as EventListener,
-      undefined,
-      'arrow-highlight',
-    );
+        }) as EventListener,
+        undefined,
+        'hover-highlight',
+      );
+
+      // add keydown event listeners to watch for up/down arrows and focus on previous/next item
+      // we will ignore divider and if key pressed is the Enter/Space key then we'll instead select/deselect input checkbox
+      // we will also remove any previous bindings that might exist which happen when we use VirtualScroll
+      this._bindEventService.bind(
+        this.dropElm,
+        'keydown',
+        ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
+          switch (e.key) {
+            case 'ArrowUp':
+              e.preventDefault();
+              this.moveFocusUp();
+              break;
+            case 'ArrowDown':
+              e.preventDefault();
+              this.moveFocusDown();
+              break;
+            case 'Enter':
+            case ' ': {
+              const liElm = e.target.closest('.ms-select-all') || e.target.closest('li');
+              if ((e.key === ' ' && this.options.filter) || (this.options.filterAcceptOnEnter && !liElm)) {
+                return;
+              }
+              e.preventDefault();
+              this._currentSelectedElm?.querySelector('input')?.click();
+
+              // on single select, we should focus directly
+              if (this.options.single) {
+                this.choiceElm.focus();
+                this.lastFocusedItemKey = this.choiceElm?.dataset.key || '';
+              }
+              break;
+            }
+          }
+        }) as EventListener,
+        undefined,
+        'arrow-highlight',
+      );
+    }
 
     if (this.ulElm && this.options.infiniteScroll) {
       this._bindEventService.bind(this.ulElm, 'scroll', this.infiniteScrollHandler.bind(this) as EventListener, undefined, 'option-list-scroll');

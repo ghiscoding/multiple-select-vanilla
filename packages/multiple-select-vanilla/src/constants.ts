@@ -55,6 +55,7 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   useSelectOptionLabel: false,
   useSelectOptionLabelToHtml: false,
 
+  navigationHighlight: true,
   infiniteScroll: false,
   virtualScroll: true,
 
