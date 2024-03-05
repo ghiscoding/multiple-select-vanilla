@@ -1,0 +1,137 @@
+<div class="row">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Navigation Highlight
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options02.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options02.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      The <code>navigationHighlight</code> is enabled by default and is very similar to <code>tabIndex</code>,
+      it listens to up/down arrows and mouse hovering. 
+      You can then click on Enter key to select the highlighted option without even losing your current focus.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Single Group Select</label>
+
+    <div class="col-sm-10">
+      <select class="multiple-select full-width" data-test="select1">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Multiple Select</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="multiple-select full-width" data-test="select2">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select3">
+        <optgroup label="Group 1" disabled="disabled">
+          <option value="1" selected>Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5" selected>Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7" disabled="disabled">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Select with Filter</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select4">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+        <option value="25">123</option>
+        <option value="26">234</option>
+        <option value="27">345</option>
+        <option value="28">456</option>
+        <option value="29">567</option>
+        <option value="30">678</option>
+        <option value="31">789</option>
+      </select>
+    </div>
+  </div>
+</div>

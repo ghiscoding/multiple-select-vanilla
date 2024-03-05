@@ -133,6 +133,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Provide a name to the multiple select element. By default this option is set to ''. */
   name?: string;
 
+  /** Defaults to True, arrow navigation (and mouse hover) to highlight and possibly change selected option(s). */
+  navigationHighlight?: boolean;
+
   /** Use optional string to override text when filtering "No matches found" instead of `formatNoMatchesFound()`, the latter should be preferred */
   noMatchesFoundText?: string;
 
