@@ -5032,11 +5032,11 @@ multipleSelect('.multiple-select', {/*...*/});
         <span class="small">
           <a
             target="_blank"
-            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options02.html"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options37.html"
             >html</a
           >
           |
-          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options02.ts"
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options37.ts"
             >ts</a
           >
         </span>
