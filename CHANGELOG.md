@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v2.1.0...v2.2.0) (2024-03-05)
+
+### Features
+
+* add `navigationHighlight` to optionally disable built-in feature ([#235](https://github.com/ghiscoding/multiple-select-vanilla/issues/235)) ([9da0baa](https://github.com/ghiscoding/multiple-select-vanilla/commit/9da0baad5c036988751d5fdfa692fd9be89b8c8a)) - by @ghiscoding
+
 ## [2.1.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v2.0.2...v2.1.0) (2024-02-24)
 
 ### Features
