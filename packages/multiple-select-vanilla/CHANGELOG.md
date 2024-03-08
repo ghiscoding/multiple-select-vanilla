@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v2.2.0...v2.2.1) (2024-03-08)
+
+### Bug Fixes
+
+* query DOM element without role for cross-platform compatibility ([#237](https://github.com/ghiscoding/multiple-select-vanilla/issues/237)) ([1a71fe4](https://github.com/ghiscoding/multiple-select-vanilla/commit/1a71fe4ba1dc41e369695fdf6d722868ce1e1791)) - by @ghiscoding
+
 ## [2.2.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v2.1.0...v2.2.0) (2024-03-05)
 
 ### Features
