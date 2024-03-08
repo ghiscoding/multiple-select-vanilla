@@ -20,8 +20,8 @@ import {
 } from './utils/domUtils';
 import type { HtmlElementPosition } from './utils/domUtils';
 
-const OPTIONS_LIST_SELECTOR = '.ms-select-all, ul[role=combobox] li[role=option]';
-const OPTIONS_HIGHLIGHT_LIST_SELECTOR = '.ms-select-all.highlighted, ul[role=combobox] li[role=option].highlighted';
+const OPTIONS_LIST_SELECTOR = '.ms-select-all, ul li[data-key]';
+const OPTIONS_HIGHLIGHT_LIST_SELECTOR = '.ms-select-all.highlighted, ul li[data-key].highlighted';
 
 export class MultipleSelectInstance {
   protected _bindEventService: BindingEventService;
