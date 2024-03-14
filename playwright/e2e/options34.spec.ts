@@ -9,7 +9,7 @@ test.describe('Options 34 - Show Search Clear button', () => {
     await page.getByRole('option').filter({ hasText: 'fgh' }).locator('label').click();
 
     await page.locator('[data-test=select1].ms-parent').click();
-    await page.locator('[data-test=select1] .ms-search .icon-close').click();
+    await page.locator('[data-test=select1] .ms-search .ms-icon-close').click();
     await expect(page.locator('[data-test=select1] .ms-search span')).toHaveText('');
     await page.locator('[data-test=select1].ms-parent').click();
     await expect(page.locator('[data-test=select1].ms-drop li.hide-radio')).toHaveCount(31);
@@ -22,7 +22,7 @@ test.describe('Options 34 - Show Search Clear button', () => {
     await page.getByRole('option').filter({ hasText: '333' }).locator('span').click();
 
     await page.locator('[data-test=select2].ms-parent').click();
-    await page.locator('[data-test=select2] .ms-search .icon-close').click();
+    await page.locator('[data-test=select2] .ms-search .ms-icon-close').click();
     await expect(page.locator('[data-test=select2] .ms-search span')).toHaveText('');
     await page.locator('[data-test=select2].ms-parent').click();
     await expect(page.locator('[data-test=select2].ms-drop li.hide-radio')).toHaveCount(37);
@@ -36,7 +36,7 @@ test.describe('Options 34 - Show Search Clear button', () => {
     await page.locator('[data-test=select3].ms-parent').click();
 
     await page.locator('[data-test=select3].ms-parent').click();
-    await page.locator('[data-test=select3] .ms-search .icon-close').click();
+    await page.locator('[data-test=select3] .ms-search .ms-icon-close').click();
     await expect(page.locator('[data-test=select3] .ms-search span')).toHaveText('');
     await page.locator('[data-test=select3].ms-parent').click();
     await expect(page.locator('[data-test=select3].ms-drop li')).toHaveCount(32);
@@ -47,7 +47,7 @@ test.describe('Options 34 - Show Search Clear button', () => {
     await page.getByRole('button', { name: '[Group 20: 210]' }).click();
 
     await page.locator('[data-test=select4].ms-parent').click();
-    await page.locator('[data-test=select4] .ms-search .icon-close').click();
+    await page.locator('[data-test=select4] .ms-search .ms-icon-close').click();
     await expect(page.locator('[data-test=select4] .ms-search span')).toHaveText('');
     await page.locator('[data-test=select4].ms-parent').click();
     await expect(page.locator('[data-test=select4].ms-drop li')).toHaveCount(38);

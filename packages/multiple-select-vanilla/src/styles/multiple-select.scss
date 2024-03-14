@@ -1,9 +1,30 @@
+@import './mixins';
 @import './variables';
 
 /*!
  * Multiple-Select-Vanilla styling
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
+
+// create couple of SVG icons
+@include createSvgClass("ms-icon-close", "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z");
+@include createSvgClass("ms-icon-chevron-down", "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z");
+
+.ms-parent, .ms-drop {
+  .ms-icon {
+    cursor: pointer;
+    display: inline-block;
+    background-color: currentColor;
+    flex-shrink: 0;
+    color: var(--ms-icon-color, $ms-icon-color);
+    font-size: var(--ms-icon-size, $ms-icon-size);
+    height: var(--ms-icon-size, $ms-icon-size);
+    width: var(--ms-icon-size, $ms-icon-size);
+    &:hover {
+      color: var(--ms-icon-color-hover, $ms-icon-color-hover);
+    }
+  }
+}
 
 .ms-offscreen {
   clip: rect(0 0 0 0) !important;
@@ -26,12 +47,13 @@
 }
 
 .ms-choice {
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  display: block;
   width: 100%;
   height: 26px;
-  padding: 0;
   overflow: hidden;
+  padding: var(--ms-choice-padding, $ms-choice-padding);
   background-color: var(--ms-choice-bgcolor, $ms-choice-bgcolor);
   border: var(--ms-choice-border, $ms-choice-border);
   border-radius: var(--ms-choice-border-radius, $ms-choice-border-radius);
@@ -51,7 +73,7 @@
 
   > {
     span {
-      position: absolute;
+      flex-grow: 1;
       top: 0;
       left: 0;
       right: 20px;
@@ -59,44 +81,16 @@
       overflow: hidden;
       text-overflow: ellipsis;
       display: block;
-      padding-left: 8px;
 
       &.ms-placeholder {
         color: var(--ms-placeholder-color, $ms-placeholder-color);
       }
     }
-    div.icon-close {
-      position: absolute;
-      top: 0px;
-      right: 16px;
-      height: 100%;
-      width: 16px;
-
-      &:before {
-        content: '×';
-        color: #888;
-        font-weight: bold;
-      }
-
-      &:hover:before {
-        color: #333;
-      }
+    div.ms-icon-close {
+      margin-right: 2px;
     }
-    div.icon-caret {
-      position: absolute;
-      width: 0;
-      height: 0;
-      top: 50%;
-      right: 8px;
-      margin-top: -2px;
-      border-color: #888 transparent transparent transparent;
-      border-style: solid;
-      border-width: 5px 4px 0 4px;
-
-      &.open {
-        border-color: transparent transparent #888 transparent;
-        border-width: 0 4px 5px 4px;
-      }
+    div.ms-icon-chevron-down {
+      font-size: var(--ms-chevron-icon-size, $ms-chevron-icon-size);
     }
   }
 }
@@ -179,6 +173,8 @@
 
 .ms-search {
   display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   position: relative;
   white-space: nowrap;
@@ -193,6 +189,8 @@
     font-family: sans-serif;
     height: auto !important;
     width: 100%;
+    color: var(--ms-search-input-color, $ms-search-input-color);
+    background-color: var(--ms-search-input-bg-color, $ms-search-input-bg-color);
     border: var(--ms-search-input-border, $ms-search-input-border);
     border-radius: var(--ms-search-input-border-radius, $ms-search-input-border-radius);
     min-height: var(--ms-search-input-min-height, $ms-search-input-min-height);
@@ -204,24 +202,9 @@
     }
   }
 
-  span.icon-close {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    right: 18px;
-    height: 100%;
-    width: 18px;
-
-    &:before {
-      content: '×';
-      color: #888;
-      font-weight: bold;
-    }
-
-    &:hover:before {
-      color: #333;
-    }
+  span.ms-icon-close {
+    height: var(--ms-icon-size, $ms-icon-size);
+    margin: var(--ms-search-icon-close-margin, $ms-search-icon-close-margin);
   }
 }
 
