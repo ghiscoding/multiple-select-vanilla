@@ -17,20 +17,20 @@ test.describe('Options 35 - Diacritic Parser', () => {
     await page.locator('[data-test=select1].ms-parent').click();
 
     await page.locator('[data-test=select1].ms-parent').click();
-    await page.locator('[data-test=select1] .ms-search .icon-close').click();
+    await page.locator('[data-test=select1] .ms-search .ms-icon-close').click();
     await expect(page.locator('[data-test=select1] .ms-search span')).toHaveText('');
     await expect(page.locator('[data-test=select1].ms-drop li:not(.ms-no-results)')).toHaveCount(12);
 
     await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('e');
     await expect(page.locator('[data-test=select1].ms-drop li:not(.ms-no-results)')).toHaveCount(7);
-    await page.locator('[data-test=select1] .ms-search .icon-close').click();
+    await page.locator('[data-test=select1] .ms-search .ms-icon-close').click();
     await expect(page.locator('[data-test=select1] .ms-search span')).toHaveText('');
 
     await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('û ');
     await expect(page.locator('input.in-log')).toHaveValue('û');
     await expect(page.locator('input.out-log')).toHaveValue('u');
     await expect(page.locator('[data-test=select1].ms-drop li:not(.ms-no-results)')).toHaveCount(3);
-    await page.locator('[data-test=select1] .ms-search .icon-close').click();
+    await page.locator('[data-test=select1] .ms-search .ms-icon-close').click();
     await page.getByRole('textbox', { name: '🔎︎' }).fill('u');
     await page.locator('[data-test=select1] span').filter({ hasText: 'Juin' }).click();
     await page.locator('[data-test=select1] span').filter({ hasText: 'Juillet' });
@@ -50,18 +50,18 @@ test.describe('Options 35 - Diacritic Parser', () => {
     await page.locator('[data-test=select2].ms-parent').click();
 
     await page.locator('[data-test=select2].ms-parent').click();
-    await page.locator('[data-test=select2] .ms-search .icon-close').click();
+    await page.locator('[data-test=select2] .ms-search .ms-icon-close').click();
     await expect(page.locator('[data-test=select2] .ms-search span')).toHaveText('');
     await expect(page.locator('[data-test=select2].ms-drop li:not(.ms-no-results)')).toHaveCount(12);
 
     await page.getByRole('textbox', { name: '🔎︎' }).press('e');
     await expect(page.locator('[data-test=select2].ms-drop li:not(.ms-no-results)')).toHaveCount(7);
-    await page.locator('[data-test=select2] .ms-search .icon-close').click();
+    await page.locator('[data-test=select2] .ms-search .ms-icon-close').click();
     await expect(page.locator('[data-test=select2] .ms-search span')).toHaveText('');
 
     await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('û ');
     await expect(page.locator('[data-test=select2].ms-drop li:not(.ms-no-results)')).toHaveCount(3);
-    await page.locator('[data-test=select2] .ms-search .icon-close').click();
+    await page.locator('[data-test=select2] .ms-search .ms-icon-close').click();
     await page.getByRole('textbox', { name: '🔎︎' }).press('u');
     await page.locator('[data-test=select2] span').filter({ hasText: 'Juin' }).click();
     await page.locator('[data-test=select2] span').filter({ hasText: 'Juillet' });

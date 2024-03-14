@@ -9,11 +9,6 @@
   .ms-choice {
     border: var(--ms-choice-border, $ms-choice-border);
     height: 100%;
-
-    > span {
-      top: 50%;
-      transform: translateY(-50%);
-    }
   }
 
   &.form-control-sm {

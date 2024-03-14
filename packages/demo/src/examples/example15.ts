@@ -15,7 +15,10 @@ export default class Example {
     this.ms3 = multipleSelect('.data-select', {
       darkMode: true,
       dataTest: 'select1',
+      filter: true,
       showOkButton: true,
+      showClear: true,
+      showSearchClear: true,
       data: [
         {
           value: 1,

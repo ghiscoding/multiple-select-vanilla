@@ -201,10 +201,10 @@ export class MultipleSelectInstance {
     this.choiceElm.appendChild(createDomElement('span', { className: 'ms-placeholder', textContent: this.options.placeholder }));
 
     if (this.options.showClear) {
-      this.choiceElm.appendChild(createDomElement('div', { className: 'icon-close' }));
+      this.choiceElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-close' }));
     }
 
-    this.choiceElm.appendChild(createDomElement('div', { className: 'icon-caret' }));
+    this.choiceElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-chevron-down' }));
 
     // default position is bottom
     this.dropElm = createDomElement('div', { className: `ms-drop ${this.options.position}`, ariaExpanded: 'false' }, this.parentElm);
@@ -225,7 +225,7 @@ export class MultipleSelectInstance {
       this.dropElm.dataset.test = dataTest;
     }
 
-    this.closeElm = this.choiceElm.querySelector('.icon-close');
+    this.closeElm = this.choiceElm.querySelector('.ms-icon-close');
 
     if (this.options.dropWidth) {
       this.dropElm.style.width = typeof this.options.dropWidth === 'string' ? this.options.dropWidth : `${this.options.dropWidth}px`;
@@ -396,7 +396,7 @@ export class MultipleSelectInstance {
       );
 
       if (this.options.showSearchClear) {
-        this.filterParentElm.appendChild(createDomElement('span', { className: 'icon-close' }));
+        this.filterParentElm.appendChild(createDomElement('span', { className: 'ms-icon ms-icon-close' }));
       }
     }
 
@@ -707,13 +707,14 @@ export class MultipleSelectInstance {
     if (window.getComputedStyle) {
       computedWidth = window.getComputedStyle(this.elm).width;
       if (computedWidth === 'auto') {
-        computedWidth = getElementSize(this.dropElm, 'outer', 'width') + 20;
+        computedWidth = getElementSize(this.dropElm, 'outer', 'width') + 15;
       }
     } else {
-      computedWidth = getElementSize(this.elm, 'outer', 'width') + 20;
+      computedWidth = getElementSize(this.elm, 'outer', 'width') + 15;
     }
 
     this.parentElm.style.width = `${this.options.width || computedWidth}px`;
+    console.log(this.parentElm.style.width);
     this.elm.classList.add('ms-offscreen');
   }
 
@@ -729,7 +730,7 @@ export class MultipleSelectInstance {
       'option-list-scroll',
     ]);
 
-    this.clearSearchIconElm = this.filterParentElm?.querySelector('.icon-close');
+    this.clearSearchIconElm = this.filterParentElm?.querySelector('.ms-icon-close');
     this.searchInputElm = this.dropElm.querySelector<HTMLInputElement>('.ms-search input');
     this.selectAllElm = this.dropElm.querySelector<HTMLInputElement>(`input[data-name="${this.selectAllName}"]`);
     this.selectGroupElms = this.dropElm.querySelectorAll<HTMLInputElement>(
@@ -740,7 +741,7 @@ export class MultipleSelectInstance {
 
     const toggleOpen = (e: MouseEvent & { target: HTMLElement }) => {
       e.preventDefault();
-      if (e.target.classList.contains('icon-close')) {
+      if (e.target.classList.contains('ms-icon-close')) {
         return;
       }
       this[this.options.isOpen ? 'close' : 'open']();
