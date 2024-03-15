@@ -1,8 +1,9 @@
 import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
-import './example15.scss';
+import './options38.scss';
 
 export default class Example {
+  pageContentElm: HTMLDivElement | null = null;
   ms1?: MultipleSelectInstance;
   ms2?: MultipleSelectInstance;
   ms3?: MultipleSelectInstance;
@@ -11,7 +12,9 @@ export default class Example {
   darkMode = true;
 
   mount() {
-    document.querySelector('.panel-wm-content')?.classList.add('dark-mode');
+    this.pageContentElm = document.querySelector<HTMLDivElement>('.panel-wm-content');
+    this.pageContentElm?.classList.add('dark-mode');
+    document.querySelector('#setDarkMode')?.addEventListener('click', () => this.toggleDarkMode());
 
     this.ms1 = multipleSelect('select[data-test=single]', { darkMode: true }) as MultipleSelectInstance;
     this.ms2 = multipleSelect('select[data-test=radio]', { darkMode: true }) as MultipleSelectInstance;
@@ -56,6 +59,20 @@ export default class Example {
     }) as MultipleSelectInstance;
   }
 
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode;
+    // this.ms?.forEach(m => m.refreshOptions({ darkMode: this.darkMode }));
+    this.ms1?.refreshOptions({ darkMode: this.darkMode });
+    this.ms2?.refreshOptions({ darkMode: this.darkMode });
+    this.ms3?.refreshOptions({ darkMode: this.darkMode });
+    this.ms4?.refreshOptions({ darkMode: this.darkMode });
+    this.ms5?.refreshOptions({ darkMode: this.darkMode });
+    if (this.pageContentElm) {
+      const action = this.darkMode ? 'add' : 'remove';
+      this.pageContentElm.classList[action]('dark-mode');
+    }
+  }
+
   unmount() {
     // destroy ms instance(s) to avoid DOM leaks
     this.ms1?.destroy();
@@ -68,6 +85,7 @@ export default class Example {
     this.ms3 = undefined;
     this.ms4 = undefined;
     this.ms5 = undefined;
-    document.querySelector('.panel-wm-content')?.classList.remove('dark-mode');
+    this.pageContentElm?.classList.remove('dark-mode');
+    document.querySelector('#setDarkMode')?.removeEventListener('click', () => this.toggleDarkMode());
   }
 }
