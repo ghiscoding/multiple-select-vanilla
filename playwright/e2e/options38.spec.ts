@@ -93,6 +93,7 @@ test.describe('Options 38 - Dark Mode', () => {
     await page.getByRole('button', { name: 'Toggle Dark Mode' }).click();
 
     // open 5th select drop
+    expect(await page.locator('.ms-parent[data-test=data1] .ms-choice .ms-icon-close')).not.toBeVisible();
     await page.locator('.ms-parent[data-test=data1]').click();
     await expect(await page.locator('.ms-parent[data-test=data1]')).toHaveClass(/ms-dark-mode/);
     await expect(await page.locator('.ms-drop[data-test=data1]')).toHaveClass(/ms-dark-mode/);

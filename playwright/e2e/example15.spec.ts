@@ -46,6 +46,7 @@ test.describe('Example 15 - Dark Mode', () => {
     await expect(parent3Span).toHaveText('6 of 12 selected');
     expect(await page.locator('div[data-test=group] div.ms-icon-caret')).not.toHaveClass(/open/);
 
+    expect(await page.locator('.ms-parent[data-test=data1] .ms-choice .ms-icon-close')).not.toBeVisible();
     await page.locator('div[data-test=data1] .ms-choice').click();
     const li5LabelElms = await page.locator('div[data-test=data1] li:not(.option-divider)');
     const li5DividerElms = await page.locator('div[data-test=data1] li.option-divider');
@@ -56,6 +57,7 @@ test.describe('Example 15 - Dark Mode', () => {
     expect(await page.locator('div[data-test=data1] div.ms-icon-caret')).toHaveClass(/open/);
     await page.getByRole('button', { name: 'Option 2' }).click();
     await expect(parent4Span).toHaveText('Option 2');
+    expect(await page.locator('.ms-parent[data-test=data1] .ms-choice .ms-icon-close')).toBeVisible();
     expect(await page.locator('div[data-test=data1] div.ms-icon-caret')).not.toHaveClass(/open/);
   });
 });

@@ -29,6 +29,7 @@ export class MultipleSelectInstance {
   protected allSelected = false;
   protected fromHtml = false;
   protected choiceElm!: HTMLButtonElement;
+  protected selectClearElm?: HTMLDivElement | null;
   protected closeElm?: HTMLElement | null;
   protected clearSearchIconElm?: HTMLElement | null;
   protected filterText = '';
@@ -202,7 +203,9 @@ export class MultipleSelectInstance {
     this.choiceElm.appendChild(createDomElement('span', { className: 'ms-placeholder', textContent: this.options.placeholder }));
 
     if (this.options.showClear) {
-      this.choiceElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-close' }));
+      this.selectClearElm = createDomElement('div', { className: 'ms-icon ms-icon-close' });
+      this.selectClearElm.style.display = 'none'; // don't show unless filled
+      this.choiceElm.appendChild(this.selectClearElm);
     }
 
     this.choiceElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-caret' }));
@@ -1295,6 +1298,12 @@ export class MultipleSelectInstance {
       if (html !== null) {
         spanElm?.classList.remove('ms-placeholder');
         this.applyAsTextOrHtmlWhenEnabled(spanElm, html);
+      }
+
+      // when showClear option is enabled, show clear icon only when drop has an actual selection
+      if (this.options.showClear && this.selectClearElm) {
+        const displayState = html ? 'block' : 'none';
+        this.selectClearElm.style.display = displayState;
       }
 
       if (this.options.displayTitle || this.options.addTitle) {
