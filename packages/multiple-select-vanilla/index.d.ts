@@ -1,4 +1,4 @@
-export {};
+export type {};
 
 declare global {
   interface Window {

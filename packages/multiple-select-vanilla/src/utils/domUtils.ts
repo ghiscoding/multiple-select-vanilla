@@ -164,7 +164,7 @@ export function getElementOffset(element?: HTMLElement): HtmlElementPosition | u
 
 export function getElementSize(elm: HTMLElement, mode: 'inner' | 'outer' | 'scroll', type: 'height' | 'width') {
   // first try defined style width or offsetWidth (which include scroll & padding)
-  let size = parseFloat(elm.style[type]);
+  let size = Number.parseFloat(elm.style[type]);
   if (!size || Number.isNaN(size)) {
     switch (mode) {
       case 'outer':
@@ -189,7 +189,7 @@ export function getElementSize(elm: HTMLElement, mode: 'inner' | 'outer' | 'scro
     elm.style.display = 'block';
     elm.style.position = 'absolute';
     const widthStr = window.getComputedStyle(elm)[type];
-    size = parseFloat(widthStr);
+    size = Number.parseFloat(widthStr);
     if (Number.isNaN(size)) {
       size = 0;
     }
