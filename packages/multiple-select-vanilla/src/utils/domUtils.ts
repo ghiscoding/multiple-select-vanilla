@@ -51,6 +51,17 @@ export function calculateAvailableSpace(element: HTMLElement): { top: number; bo
 }
 
 /**
+ * Accepts string containing the class or space-separated list of classes, and
+ * returns list of individual classes.
+ * Method properly takes into account extra whitespaces in the `className`
+ * e.g.: " class1    class2   " => will result in `['class1', 'class2']`.
+ * @param {String} className - space separated list of class names
+ */
+export function classNameToList(className = ''): string[] {
+  return className.split(' ').filter(cls => cls); // filter will remove whitespace entries
+}
+
+/**
  * Create a DOM Element with any optional attributes or properties.
  * It will only accept valid DOM element properties that `createElement` would accept.
  * For example: `createDomElement('div', { className: 'my-css-class' })`,

@@ -8,6 +8,7 @@ import { BindingEventService, VirtualScroll } from './services';
 import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils';
 import {
   calculateAvailableSpace,
+  classNameToList,
   convertItemRowToHtml,
   convertStringStyleToElementStyle,
   createDomElement,
@@ -179,7 +180,7 @@ export class MultipleSelectInstance {
 
     // restore class and title from select element
     this.parentElm = createDomElement('div', {
-      className: `ms-parent ${this.elm.className || ''} ${this.options.classes}`,
+      className: classNameToList(`ms-parent ${this.elm.className || ''} ${this.options.classes}`).join(' '),
       dataset: { test: 'sel' },
     });
 
@@ -578,7 +579,7 @@ export class MultipleSelectInstance {
       const liBlock: HtmlStruct = {
         tagName: 'li',
         props: {
-          className: `group${this.options.single || dataRow.disabled ? ' disabled' : ''} ${classes}`.trim(),
+          className: classNameToList(`group${this.options.single || dataRow.disabled ? ' disabled' : ''} ${classes}`).join(' '),
           role: 'option',
           ariaSelected: String(!!dataRow.selected),
           dataset: { key: dataRow._key },
@@ -586,7 +587,7 @@ export class MultipleSelectInstance {
         children: [
           {
             tagName: 'label',
-            props: { className: `optgroup${this.options.single || dataRow.disabled ? ' disabled' : ''}` },
+            props: { className: classNameToList(`optgroup${this.options.single || dataRow.disabled ? ' disabled' : ''}`).join(' ') },
             children: [itemOrGroupBlock, spanLabelBlock],
           },
         ],
