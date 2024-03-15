@@ -59,6 +59,7 @@
             "suspicious": {
                 "noAssignInExpressions": "off",
                 "noExplicitAny": "off",
+                "noMisleadingCharacterClass": "off",
                 "noPrototypeBuiltins": "off"
             },
             "style": {

@@ -1,8 +1,8 @@
-import { exec, execSync } from 'child_process';
-import path from 'path';
 import copyfiles from 'copyfiles';
 import { buildSync } from 'esbuild';
-import fs from 'fs-extra';
+import { outputFileSync } from 'fs-extra/esm';
+import { exec, execSync } from 'node:child_process';
+import path from 'node:path';
 import { compile as sassCompile } from 'sass';
 
 const env = process.env.NODE_ENV;
@@ -83,7 +83,7 @@ async function runCompilation(changedFiles) {
         const absoluteFilePath = path.relative(basePath, changedFile);
         const posixPath = absoluteFilePath.replaceAll('\\', '/');
 
-        fs.outputFileSync(
+        outputFileSync(
           `dist/styles/css/${posixPath.replace('.scss', '')}.css`,
           sassCompile(`src/styles/${posixPath}`, { style: 'compressed', quietDeps: true, noSourceMap: true }).css,
         );
