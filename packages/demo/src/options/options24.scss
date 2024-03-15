@@ -1,14 +1,16 @@
-.ms-parent[data-test=select3] {
-    font-size: 1.1em;
-    height: 32px;
-    .ms-choice {
-        height: 100%;
+.show-clear-container {
+    .ms-parent[data-test=select3] {
+        font-size: 1.1em;
+        height: 32px;
+        .ms-choice {
+            height: 100%;
+        }
     }
-}
-.ms-parent[data-test=select4] {
-    font-size: 1.1em;
-    height: 40px;
-    .ms-choice {
-        height: 100%;
+    .ms-parent[data-test=select4] {
+        font-size: 1.1em;
+        height: 40px;
+        .ms-choice {
+            height: 100%;
+        }
     }
 }
