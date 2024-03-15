@@ -86,7 +86,7 @@ export const exampleRouting = [
       { name: 'example08', view: '/src/examples/example08.html', viewModel: Example08, title: 'The Data' },
       { name: 'example09', view: '/src/examples/example09.html', viewModel: Example09, title: 'Locale' },
       { name: 'example10', view: '/src/examples/example10.html', viewModel: Example10, title: 'Large Select (Virtual Scroll)' },
-      { name: 'example11', view: '/src/examples/example11.html', viewModel: Example11, title: 'The Themes' },
+      { name: 'example11', view: '/src/examples/example11.html', viewModel: Example11, title: 'Themes / Sizes' },
       { name: 'example12', view: '/src/examples/example12.html', viewModel: Example12, title: 'Checkbox/Radio Icons' },
       { name: 'example13', view: '/src/examples/example13.html', viewModel: Example13, title: 'Dynamically Create Select' },
       { name: 'example14', view: '/src/examples/example14.html', viewModel: Example14, title: 'The Divider' },

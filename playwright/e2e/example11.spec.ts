@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 
 async function assertDropHeight(page: Page, selector: string, expectation: number, range = 3) {
   const dropElm = await page.locator(selector);
