@@ -1046,7 +1046,7 @@ export class MultipleSelectInstance {
     }
     this.options.isOpen = true;
     this.parentElm.classList.add('ms-parent-open');
-    this.choiceElm?.querySelector('div')?.classList.add('open');
+    this.choiceElm?.querySelector('div.ms-icon-caret')?.classList.add('open');
     this.dropElm.style.display = 'block';
     this.dropElm.ariaExpanded = 'true';
 
@@ -1226,7 +1226,7 @@ export class MultipleSelectInstance {
   close() {
     this.options.isOpen = false;
     this.parentElm.classList.remove('ms-parent-open');
-    this.choiceElm?.querySelector('div')?.classList.remove('open');
+    this.choiceElm?.querySelector('div.ms-icon-caret')?.classList.remove('open');
     this.dropElm.style.display = 'none';
     this.dropElm.ariaExpanded = 'false';
 
