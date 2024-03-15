@@ -1,5 +1,7 @@
 import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
+import './options24.scss';
+
 export default class Example {
   ms: MultipleSelectInstance[] = [];
 
