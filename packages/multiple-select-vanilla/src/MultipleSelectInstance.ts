@@ -204,7 +204,7 @@ export class MultipleSelectInstance {
       this.choiceElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-close' }));
     }
 
-    this.choiceElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-chevron-down' }));
+    this.choiceElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-caret' }));
 
     // default position is bottom
     this.dropElm = createDomElement('div', { className: `ms-drop ${this.options.position}`, ariaExpanded: 'false' }, this.parentElm);

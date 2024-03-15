@@ -8,7 +8,7 @@
 
 // create couple of SVG icons
 @include createSvgClass("ms-icon-close", "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z");
-@include createSvgClass("ms-icon-chevron-down", "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z");
+@include createSvgClass("ms-icon-caret", "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z");
 
 .ms-parent, .ms-drop {
   .ms-icon {
@@ -89,8 +89,11 @@
     div.ms-icon-close {
       margin-right: 2px;
     }
-    div.ms-icon-chevron-down {
+    div.ms-icon-caret {
       font-size: var(--ms-chevron-icon-size, $ms-chevron-icon-size);
+      &.open {
+        transform: scaleY(-1);
+      }
     }
   }
 }
