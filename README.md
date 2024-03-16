@@ -57,7 +57,7 @@ New Multiple-Select Options:
   - `showSearchClear` show a clear button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
   - `diacriticParser` custom parser to normalize diacritic signs when filtering select list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options35))
   - replace tabIndex by arrow navigation highlight
-  - Dark Mode theme (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/example15))
+  - `darkMode` option for a Dark Mode Theme (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options38))
 
 ## CSP Compliance
 The library is now CSP (Content Security Policy) compliant, however there are some exceptions to be aware of. When using any html string as template (with `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return `TrustedHTML`. You can achieve this by using the `sanitizer` method in combo with [DOMPurify](https://github.com/cure53/DOMPurify) to return `TrustedHTML` as shown below and with that in place you will be CSP compliant.
