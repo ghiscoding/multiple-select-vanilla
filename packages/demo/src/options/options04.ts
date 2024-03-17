@@ -7,7 +7,7 @@ export default class Example {
     this.ms1 = multipleSelect('select', {
       multiple: true,
       hideOptgroupCheckboxes: true,
-      multipleWidth: 60,
+      multipleWidth: 70,
     }) as MultipleSelectInstance;
   }
 

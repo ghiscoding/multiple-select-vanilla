@@ -8,10 +8,10 @@ test.describe('Options 20 - Filter Placeholder', () => {
     expect(placeholderLocator).toHaveCount(1);
     placeholderLocator.focus();
     await page.keyboard.type('de');
-    await page.getByLabel('def').check();
-    await page.getByLabel('cde').check();
-    const selectAllLoc = await page.locator('.ms-select-all input[type=checkbox]');
-    expect(selectAllLoc).toBeChecked();
+    await page.getByRole('option', { name: 'def' }).click();
+    await page.getByRole('option', { name: 'cde' }).click();
+    const selectAllLoc = await page.locator('.ms-select-all .icon-checkbox-container div');
+    await expect(selectAllLoc).toHaveClass('ms-icon ms-icon-check');
     await expect(page.locator('.ms-drop input[data-name="selectItem"]')).toHaveCount(2);
     await expect(page.locator('ul li.selected input[data-name="selectItem"]')).toHaveCount(2);
     await expect(page.locator('.ms-choice span')).toHaveText('cde, def');

@@ -21,12 +21,12 @@ test.describe('Options 24 - Show Clear button', () => {
 
     expect(await page.locator('.ms-parent[data-test=select3] .ms-choice .ms-icon-close')).not.toBeVisible();
     await page.locator('[data-test=select3].ms-parent').click();
-    await page.getByRole('checkbox', { name: 'February' }).check();
-    await page.getByRole('checkbox', { name: 'March' }).check();
-    await page.getByRole('checkbox', { name: 'April' }).check();
+    await page.getByRole('option', { name: 'February' }).click();
+    await page.getByRole('option', { name: 'March' }).click();
+    await page.getByRole('option', { name: 'April' }).click();
     expect(await page.locator('.ms-parent[data-test=select3] .ms-choice .ms-icon-close')).toBeVisible();
     await expect(page.locator('[data-test=select3] .ms-choice span')).toHaveText('February, March, April');
-    await page.getByRole('checkbox', { name: 'May' }).check();
+    await page.getByRole('option', { name: 'May' }).click();
     await expect(page.locator('[data-test=select3] .ms-choice span')).toHaveText('4 of 12 selected');
     await page.locator('[data-test=select3].ms-parent').click();
     await page.locator('[data-test=select3] .ms-choice .ms-icon-close').click();
@@ -35,9 +35,9 @@ test.describe('Options 24 - Show Clear button', () => {
 
     expect(await page.locator('.ms-parent[data-test=select4] .ms-choice .ms-icon-close')).not.toBeVisible();
     await page.locator('[data-test=select4].ms-parent').click();
-    await page.getByLabel('Group 2').check();
+    await page.getByRole('option', { name: 'Group 2' }).click();
     await expect(page.locator('[data-test=select4] .ms-choice span')).toHaveText('[Group 2: Option 4, Option 5, Option 6]');
-    await page.getByLabel('Group 3').check();
+    await page.getByRole('option', { name: 'Group 3' }).click();
     await expect(page.locator('[data-test=select4] .ms-choice span')).toHaveText('6 of 9 selected');
     await page.locator('[data-test=select4] .ms-choice .ms-icon-close').click();
     await expect(page.locator('[data-test=select4] .ms-choice span')).toHaveText('');

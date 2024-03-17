@@ -14,11 +14,11 @@ test.describe('Options 22 - Filter By Data Length', () => {
     await page.getByRole('button', { name: 'efg, fgh, ghi' }).click();
 
     await page.locator('[data-test="select3"].ms-parent').click();
-    await page.getByRole('checkbox', { name: 'Group 2' }).check();
+    await page.getByRole('option', { name: 'Group 2' }).click();
     await page.getByRole('button', { name: '[Group 2: Option 4, Option 5, Option 6]' }).click();
 
     await page.locator('[data-test="select4"].ms-parent').click();
-    await page.getByRole('checkbox', { name: 'Group 3' }).check();
+    await page.getByRole('option', { name: 'Group 3' }).click();
     await page.getByRole('button', { name: '5 of 11 selected' }).click();
     await page.getByRole('button', { name: '5 of 11 selected' }).click();
     await page.getByRole('option').filter({ hasText: 'Group 1' }).locator('label').click();

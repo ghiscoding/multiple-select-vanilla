@@ -6,7 +6,7 @@ export default class Example {
   mount() {
     this.ms = multipleSelect('select', {
       multiple: true,
-      multipleWidth: 60,
+      multipleWidth: 70,
     }) as MultipleSelectInstance[];
   }
 

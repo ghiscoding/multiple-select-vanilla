@@ -9,7 +9,7 @@ test.describe('Options 19 - Filter Only Optgroup', () => {
 
     await page.locator('.ms-parent').click();
     await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('B');
-    await page.getByLabel('Group B').check();
+    await page.getByText('Group B').click();
 
     const labelElms = await page.locator('.ms-drop input[data-name="selectItem"]');
     expect(labelElms).toHaveCount(5);
