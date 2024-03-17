@@ -32,13 +32,13 @@ test.describe('Example 04 - Select Auto-Width', () => {
     await page.getByRole('option').filter({ hasText: 'This is the fourth option and value is 4' }).locator('label').click();
     await expect(page.locator('div[data-test=select4] .ms-choice span')).toHaveText('This is the fourth option and value is 4');
 
-    assertDropWidth(page, 'div[data-test=select5].ms-parent', 115);
+    assertDropWidth(page, 'div[data-test=select5].ms-parent', 121);
     await page.locator('div:nth-child(5) > .col-sm-9 > .ms-parent > .ms-choice').click();
     await page.getByText('Group 2', { exact: true }).click();
     await page.getByRole('button', { name: '[Group 2: Option 4, Option 5, Option 6]' }).click();
     await expect(page.locator('div[data-test=select5] .ms-choice span')).toHaveText('[Group 2: Option 4, Option 5, Option 6]');
 
-    assertDropWidth(page, 'div[data-test=select6].ms-parent', 163);
+    assertDropWidth(page, 'div[data-test=select6].ms-parent', 169);
     await page.locator('div:nth-child(6) > .col-sm-9 > .ms-parent > .ms-choice').click();
     await page.getByText('This is group 2').click();
     await page.getByRole('button', { name: '[This is group 2: This is option 4, This is option 5, This is option 6]' }).click();
