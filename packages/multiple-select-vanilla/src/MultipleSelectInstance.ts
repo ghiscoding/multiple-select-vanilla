@@ -240,6 +240,7 @@ export class MultipleSelectInstance {
 
     if (this.elm.disabled) {
       this.choiceElm.classList.add('disabled');
+      this.choiceElm.disabled = true;
     }
 
     this.selectAllName = `selectAll${name}`;
@@ -1525,11 +1526,17 @@ export class MultipleSelectInstance {
   }
 
   enable() {
-    this.choiceElm?.classList.remove('disabled');
+    if (this.choiceElm) {
+      this.choiceElm.classList.remove('disabled');
+      this.choiceElm.disabled = true;
+    }
   }
 
   disable() {
-    this.choiceElm?.classList.add('disabled');
+    if (this.choiceElm) {
+      this.choiceElm?.classList.add('disabled');
+      this.choiceElm.disabled = false;
+    }
   }
 
   check(value: any) {

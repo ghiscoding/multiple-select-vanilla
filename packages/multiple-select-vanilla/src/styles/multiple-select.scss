@@ -16,7 +16,6 @@
 
 .ms-parent, .ms-drop {
   .ms-icon {
-    cursor: pointer;
     display: inline-block;
     background-color: currentColor;
     flex-shrink: 0;
@@ -35,6 +34,11 @@
 
   .ms-select-all,
   li:not(.hide-radio) {
+    cursor: pointer;
+    &.disabled {
+      cursor: default;
+    }
+
     .icon-checkbox-container {
       display: inline-flex;
       align-items: center;
@@ -253,6 +257,7 @@
   }
 
   span.ms-icon-close {
+    cursor: pointer;
     height: var(--ms-icon-size, $ms-icon-size);
     margin: var(--ms-search-icon-close-margin, $ms-search-icon-close-margin);
   }
