@@ -43,6 +43,7 @@ npm install multiple-select-vanilla
 New Multiple-Select Options:
 - dropped jQuery requirement and replaced necessary code with browser native code.
 - written in TypeScript which also brings typings support
+- revamped the UI to give it a Modern Look by changing CSS and using SVG icons.
 - add extra features:
   - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height by available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
