@@ -103,6 +103,9 @@
   text-decoration: none;
   user-select: none;
   white-space: nowrap;
+  &:hover {
+    border-color: var(--ms-choice-border-hover-color, $ms-choice-border-hover-color);
+  }
 
   &.disabled {
     border: var(--ms-choice-disabled-border, $ms-choice-disabled-border);
