@@ -7,8 +7,8 @@ test.describe('Options 03 - Hide Select All', () => {
     const selectAllElm = await page.locator('.ms-select-all');
     expect(selectAllElm).toHaveCount(0);
 
-    await page.getByLabel('Third').check();
-    await page.getByLabel('Second').check();
+    await page.getByRole('option', { name: 'Third' }).click();
+    await page.getByRole('option', { name: 'Second' }).click();
     await page.getByRole('button', { name: 'Second, Third' }).click();
   });
 });

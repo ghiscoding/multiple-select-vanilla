@@ -6,10 +6,10 @@ test.describe('Example 03 - Multiple Width', () => {
     await page.locator('div[data-test=select1].ms-parent').click();
     await page.getByRole('combobox').filter({ hasText: '30' }).locator('label');
     await page.getByRole('option', { name: '30' }).locator('label').click();
-    await page.getByRole('checkbox', { name: '15' }).check();
+    await page.getByRole('option', { name: '15' }).click();
     let elm16 = await page.locator('label').filter({ hasText: '16' });
     await elm16.click();
-    expect((await elm16!.boundingBox())!.width).toBe(44);
+    expect((await elm16!.boundingBox())!.width).toBe(54);
 
     elm16 = await page.locator('div[data-test=select1] .ms-drop li:nth-of-type(16)');
     await elm16.focus();
@@ -29,7 +29,8 @@ test.describe('Example 03 - Multiple Width', () => {
     await page.getByText('Group 1').click();
     await page.getByRole('button', { name: '5 of 15 selected' }).click();
     await page.getByRole('button', { name: '5 of 15 selected' }).click();
-    await page.getByRole('checkbox', { name: '3', exact: true }).uncheck();
+    await page.getByRole('option', { name: '3', exact: true }).click();
+    expect(await page.getByRole('option', { name: '3', exact: true }).locator('div').nth(1)).toHaveClass('ms-icon ms-icon-uncheck');
     await page.getByRole('button', { name: '4 of 15 selected' }).click();
     await page.getByRole('button', { name: '4 of 15 selected' }).click();
     await page.getByText('Group 2').click();
@@ -40,9 +41,11 @@ test.describe('Example 03 - Multiple Width', () => {
     await page.getByRole('option', { name: '15' }).locator('span').click();
     await page.getByRole('button', { name: '14 of 15 selected' }).click();
     await page.getByRole('button', { name: '14 of 15 selected' }).click();
-    await page.getByRole('checkbox', { name: '3', exact: true }).check();
-    const selectAll2 = await page.locator('[data-test=select2] .ms-select-all input[data-name=selectAll]');
-    await expect(selectAll2).toBeChecked();
+    const selectAll2 = await page.locator('[data-test=select2] .ms-select-all .icon-checkbox-container div');
+    await expect(selectAll2).toHaveClass('ms-icon ms-icon-minus');
+    await page.getByRole('option', { name: '3', exact: true }).click();
+    expect(await page.getByRole('option', { name: '3', exact: true }).locator('div').nth(1)).toHaveClass('ms-icon ms-icon-check');
+    await expect(selectAll2).toHaveClass('ms-icon ms-icon-check');
     await page.getByRole('button', { name: 'All selected' });
     const selectAllLoc = await page.locator('div[data-test=select2] .ms-drop .ms-select-all');
     await selectAllLoc.hover();

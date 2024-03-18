@@ -26,7 +26,8 @@ const OPTIONS_HIGHLIGHT_LIST_SELECTOR = '.ms-select-all.highlighted, ul li[data-
 
 export class MultipleSelectInstance {
   protected _bindEventService: BindingEventService;
-  protected allSelected = false;
+  protected isAllSelected = false;
+  protected isPartiallyAllSelected = false;
   protected fromHtml = false;
   protected choiceElm!: HTMLButtonElement;
   protected selectClearElm?: HTMLDivElement | null;
@@ -408,16 +409,21 @@ export class MultipleSelectInstance {
       const selectName = this.elm.getAttribute('name') || this.options.name || '';
       this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all', dataset: { key: 'select_all' } });
       const saLabelElm = document.createElement('label');
+      const saIconClass = this.isAllSelected ? 'ms-icon-check' : this.isPartiallyAllSelected ? 'ms-icon-minus' : 'ms-icon-uncheck';
+      const selectAllIconClass = `ms-icon ${saIconClass}`;
+      const saIconContainerElm = createDomElement('div', { className: 'icon-checkbox-container' }, saLabelElm);
       createDomElement(
         'input',
         {
           type: 'checkbox',
-          ariaChecked: String(this.allSelected),
-          checked: this.allSelected,
+          ariaChecked: String(this.isAllSelected),
+          checked: this.isAllSelected,
           dataset: { name: `selectAll${selectName}` },
         },
-        saLabelElm,
+        saIconContainerElm,
       );
+      createDomElement('div', { className: selectAllIconClass }, saIconContainerElm);
+
       saLabelElm.appendChild(createDomElement('span', { textContent: this.formatSelectAll() }));
       this.selectAllParentElm.appendChild(saLabelElm);
       this.dropElm.appendChild(this.selectAllParentElm);
@@ -540,6 +546,7 @@ export class MultipleSelectInstance {
     const title = dataRow?.title || '';
     const multiple = this.options.multiple ? 'multiple' : '';
     const type = this.options.single ? 'radio' : 'checkbox';
+    const isChecked = !!dataRow?.selected;
     let classes = '';
 
     if (!dataRow?.visible) {
@@ -564,13 +571,27 @@ export class MultipleSelectInstance {
         this.options.hideOptgroupCheckboxes || this.options.single
           ? { tagName: 'span', props: { dataset: { name: this.selectGroupName, key: dataRow._key } } }
           : {
-              tagName: 'input',
+              tagName: 'div',
               props: {
-                type: 'checkbox',
-                dataset: { name: this.selectGroupName, key: dataRow._key },
-                checked: !!dataRow.selected,
-                disabled: dataRow.disabled,
+                className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}`,
               },
+              children: [
+                {
+                  tagName: 'input',
+                  props: {
+                    type: 'checkbox',
+                    dataset: { name: this.selectGroupName, key: dataRow._key },
+                    checked: isChecked,
+                    disabled: dataRow.disabled,
+                  },
+                },
+                {
+                  tagName: 'div',
+                  props: {
+                    className: `ms-icon ${isChecked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : 'ms-icon-uncheck'}`,
+                  },
+                },
+              ],
             };
 
       if (!classes.includes('hide-radio') && (this.options.hideOptgroupCheckboxes || this.options.single)) {
@@ -584,7 +605,7 @@ export class MultipleSelectInstance {
         props: {
           className: classNameToList(`group${this.options.single || dataRow.disabled ? ' disabled' : ''} ${classes}`).join(' '),
           role: 'option',
-          ariaSelected: String(!!dataRow.selected),
+          ariaSelected: String(isChecked),
           dataset: { key: dataRow._key },
         },
         children: [
@@ -635,7 +656,7 @@ export class MultipleSelectInstance {
         type,
         value: encodeURI(dataRow.value as string),
         dataset: { key: dataRow._key, name: this.selectItemName },
-        checked: !!dataRow.selected,
+        checked: isChecked,
         disabled: !!dataRow.disabled,
       },
     };
@@ -644,15 +665,29 @@ export class MultipleSelectInstance {
       inputBlock.attrs = { checked: 'checked' };
     }
 
+    const iconContainerBlock: HtmlStruct = {
+      tagName: 'div',
+      props: { className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}` },
+      children: [
+        inputBlock,
+        {
+          tagName: 'div',
+          props: {
+            className: `ms-icon ${inputBlock.props.checked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : 'ms-icon-uncheck'}`,
+          },
+        },
+      ],
+    };
+
     const liBlock: HtmlStruct = {
       tagName: 'li',
       props: {
         role: 'option',
         title,
-        ariaSelected: String(!!dataRow.selected),
+        ariaSelected: String(isChecked),
         dataset: { key: dataRow._key },
       },
-      children: [{ tagName: 'label', props: { className: labelClasses }, children: [inputBlock, spanLabelBlock] }],
+      children: [{ tagName: 'label', props: { className: labelClasses }, children: [iconContainerBlock, spanLabelBlock] }],
     };
 
     if (liClasses) {
@@ -691,13 +726,14 @@ export class MultipleSelectInstance {
       }
     }
 
-    this.allSelected =
+    this.isAllSelected =
       this.data?.filter((row: OptionRowData | OptGroupRowData) => {
         return row.selected && !row.disabled && row.visible;
       }).length === this.data?.filter(row => !row.disabled && row.visible && !row.divider).length;
+    this.isPartiallyAllSelected = !this.isAllSelected && selectedTotal > 0;
 
     if (!ignoreTrigger) {
-      if (this.allSelected) {
+      if (this.isAllSelected) {
         this.options.onCheckAll();
       } else if (selectedTotal === 0) {
         this.options.onUncheckAll();
@@ -718,7 +754,6 @@ export class MultipleSelectInstance {
     }
 
     this.parentElm.style.width = `${this.options.width || computedWidth}px`;
-    console.log(this.parentElm.style.width);
     this.elm.classList.add('ms-offscreen');
   }
 
@@ -1055,7 +1090,7 @@ export class MultipleSelectInstance {
     this.dropElm.ariaExpanded = 'true';
 
     if (this.selectAllElm?.parentElement) {
-      this.selectAllElm.parentElement.style.display = 'block';
+      this.selectAllElm.parentElement.style.display = 'inline-flex';
     }
 
     if (this.noResultsElm) {
@@ -1339,11 +1374,14 @@ export class MultipleSelectInstance {
       if (inputElm) {
         inputElm.checked = row.selected;
         const closestLiElm = inputElm.closest('li');
-        if (closestLiElm) {
+        const iconDivElm = closestLiElm?.querySelector('.icon-checkbox-container div');
+        if (closestLiElm && iconDivElm) {
           if (row.selected && !closestLiElm.classList.contains('selected')) {
+            iconDivElm.className = `ms-icon ms-icon-${inputElm.type === 'radio' ? 'radio' : 'check'}`;
             closestLiElm.classList.add('selected');
             closestLiElm.ariaSelected = 'true';
           } else if (!row.selected) {
+            iconDivElm.className = 'ms-icon ms-icon-uncheck';
             closestLiElm.classList.remove('selected');
             closestLiElm.ariaSelected = 'false';
           }
@@ -1354,8 +1392,21 @@ export class MultipleSelectInstance {
     const noResult = this.data?.filter(row => row.visible).length === 0;
 
     if (this.selectAllElm) {
-      this.selectAllElm.ariaChecked = String(this.allSelected);
-      this.selectAllElm.checked = this.allSelected;
+      this.selectAllElm.ariaChecked = String(this.isAllSelected);
+      const checkboxIconElm = this.dropElm.querySelector('.ms-select-all .icon-checkbox-container div');
+      if (checkboxIconElm) {
+        let iconClass = '';
+        if (this.isAllSelected) {
+          iconClass = 'ms-icon-check';
+        } else if (this.isPartiallyAllSelected) {
+          iconClass = 'ms-icon-minus';
+        } else {
+          iconClass = 'ms-icon-uncheck';
+        }
+        checkboxIconElm.className = `ms-icon ${iconClass}`;
+      }
+
+      this.selectAllElm.checked = this.isAllSelected;
       toggleElement(this.selectAllElm.closest('li'), !noResult);
     }
 
@@ -1497,7 +1548,7 @@ export class MultipleSelectInstance {
     this._check(option, false);
   }
 
-  protected _check(option: any, checked: boolean) {
+  protected _check(option: OptGroupRowData | OptionRowData, checked: boolean) {
     if (this.options.single) {
       this._checkAll(false, true);
     }

@@ -5,7 +5,6 @@ test.describe('Options 28 - Label Template', () => {
     await page.goto('#/options28');
     await page.locator('.ms-parent').click();
 
-    // await page.locator('.ms-drop li input[data-name="selectItem"]').check();
     await page.locator('.ms-drop ul li label').nth(1).click();
     let parentSpanLoc = await page.locator('.ms-parent .ms-choice span').innerHTML();
     await expect(parentSpanLoc).toBe('[<i class="fa fa-star"></i>Group 1: Option 1]');

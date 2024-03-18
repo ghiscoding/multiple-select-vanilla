@@ -10,9 +10,9 @@ test.describe('Options 05 - Custom Drop Width', () => {
     expect(dropWidth).toBeGreaterThanOrEqual(570);
     expect(dropWidth).toBeLessThan(590);
 
-    await page.getByLabel('6', { exact: true }).check();
-    await page.getByLabel('8', { exact: true }).check();
-    await page.getByLabel('30').check();
+    await page.getByRole('option', { name: '6', exact: true }).click();
+    await page.getByRole('option', { name: '8', exact: true }).click();
+    await page.getByRole('option', { name: '30' }).click();
     await page.getByRole('button', { name: '6, 8, 30' }).click();
   });
 });

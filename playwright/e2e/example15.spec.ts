@@ -17,6 +17,8 @@ test.describe('Example 15 - Dark Mode', () => {
     const li2LabelElms = await page.locator('div[data-test=radio] li[role=option]');
     const li2DividerElms = await page.locator('div[data-test=radio] li.option-divider');
     expect(await page.locator('div[data-test=radio] div.ms-icon-caret')).toHaveClass(/open/);
+    expect(await page.locator('div[data-test=radio] .icon-checkbox-container.radio div').nth(1)).toHaveClass('ms-icon ms-icon-radio');
+    expect(await page.locator('div[data-test=radio] .icon-checkbox-container.radio div')).toHaveCount(12);
     await page.locator('div[data-test=radio] .ms-drop li label').filter({ hasText: 'April' }).click();
     expect(await page.locator('div[data-test=radio] div.ms-icon-caret')).not.toHaveClass(/open/);
     await expect(li2LabelElms).toHaveCount(12);
@@ -34,17 +36,14 @@ test.describe('Example 15 - Dark Mode', () => {
     expect(await page.locator('div[data-test=multiple] div.ms-icon-caret')).not.toHaveClass(/open/);
     await expect(parent2Span).toHaveText('February');
 
-    await page.locator('div[data-test=group] .ms-choice').click();
-    const li4LabelElms = await page.locator('div[data-test=group] li:not(.option-divider)');
-    const li4DividerElms = await page.locator('div[data-test=group] li.option-divider');
-    await expect(li4LabelElms).toHaveCount(15);
-    await expect(li4DividerElms).toHaveCount(4);
-    await page.getByText('Group 1').click();
+    await page.getByRole('button', { name: '[Group 1: Option 1], [Group 2: Option 5]' }).click();
+    await page.getByRole('option', { name: 'Group 2' }).click();
+    await page.getByRole('button', { name: '[Group 1: Option 1], [Group 2: Option 5]' });
+    await page.getByRole('button', { name: '4 of 9 selected' }).click();
+    await page.getByRole('button', { name: '4 of 9 selected' }).click();
+    await page.getByRole('option', { name: 'Option 4' }).click();
     expect(await page.locator('div[data-test=group] div.ms-icon-caret')).toHaveClass(/open/);
-    await page.locator('div[data-test=group].ms-parent').click();
-    const parent3Span = await page.locator('div[data-test=group] .ms-choice span');
-    await expect(parent3Span).toHaveText('6 of 12 selected');
-    expect(await page.locator('div[data-test=group] div.ms-icon-caret')).not.toHaveClass(/open/);
+    await page.getByRole('button', { name: '[Group 1: Option 1], [Group 2: Option 5, Option 6]' }).click();
 
     expect(await page.locator('.ms-parent[data-test=data1] .ms-choice .ms-icon-close')).not.toBeVisible();
     await page.locator('div[data-test=data1] .ms-choice').click();

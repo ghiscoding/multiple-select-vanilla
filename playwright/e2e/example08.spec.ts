@@ -37,10 +37,10 @@ test.describe('Example 08 - Data Property', () => {
     await expect(page.locator('div[data-test=select5] .ms-choice')).toHaveText('[Group 1: January]');
     await page.locator('div[data-test=select5].ms-parent').click();
     await page.getByRole('option').filter({ hasText: 'March' }).locator('label').click();
-    await page.getByLabel('Group 2').check();
+    await page.getByRole('option', { name: 'Group 2' }).click();
     await page.getByRole('button', { name: '8 of 12 selected' }).click();
     await page.getByRole('button', { name: '8 of 12 selected' }).click();
-    await page.getByLabel('Group 1').check();
+    await page.getByRole('option', { name: 'Group 1' }).click();
     await page.getByRole('button', { name: '11 of 12 selected' }).click();
   });
 });

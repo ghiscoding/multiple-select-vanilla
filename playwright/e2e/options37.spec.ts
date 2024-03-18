@@ -50,8 +50,8 @@ test.describe('Option 37 - Navigation Highlight', () => {
     page.keyboard.press('ArrowDown');
     page.keyboard.press('Enter');
     await page.keyboard.type('de');
-    await page.getByLabel('def').check();
-    await page.getByLabel('cde').check();
+    await page.getByRole('option', { name: 'def' }).click();
+    await page.getByRole('option', { name: 'cde' }).click();
     const selectAllLoc = await page.locator('[data-test=select4] .ms-select-all input[type=checkbox]');
     expect(selectAllLoc).toBeChecked();
     await expect(page.locator('[data-test=select4].ms-drop input[data-name="selectItem"]')).toHaveCount(2);

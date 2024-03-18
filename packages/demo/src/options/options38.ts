@@ -17,7 +17,7 @@ export default class Example {
     document.querySelector('#setDarkMode')?.addEventListener('click', () => this.toggleDarkMode());
 
     this.ms1 = multipleSelect('select[data-test=single]', { darkMode: true }) as MultipleSelectInstance;
-    this.ms2 = multipleSelect('select[data-test=radio]', { darkMode: true }) as MultipleSelectInstance;
+    this.ms2 = multipleSelect('select[data-test=radio]', { darkMode: true, singleRadio: true }) as MultipleSelectInstance;
     this.ms3 = multipleSelect('select[data-test=multiple]', { darkMode: true }) as MultipleSelectInstance;
     this.ms4 = multipleSelect('select[data-test=group]', { darkMode: true }) as MultipleSelectInstance;
     this.ms5 = multipleSelect('select[data-test=data1]', {

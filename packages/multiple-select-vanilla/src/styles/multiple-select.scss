@@ -4,11 +4,15 @@
 /*!
  * Multiple-Select-Vanilla styling
  * @author zhixin wen <wenzhixin2010@gmail.com>
+ * @contributor Ghislain B.
  */
 
-// create couple of SVG icons
-@include createSvgClass("ms-icon-close", "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z");
+// create some SVG icons used by the lib
 @include createSvgClass("ms-icon-caret", "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z");
+@include createSvgClass("ms-icon-close", "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z");
+@include createSvgClass("ms-icon-check", "M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z");
+@include createSvgClass("ms-icon-minus", "M20 14H4V10H20");
+@include createSvgClass("ms-icon-radio", "M12 3.7c4.6 0 8.3 3.7 8.3 8.3s-3.7 8.3-8.3 8.3-8.3-3.7-8.3-8.3S7.4 3.7 12 3.7z");
 
 .ms-parent, .ms-drop {
   .ms-icon {
@@ -22,6 +26,42 @@
     width: var(--ms-icon-size, $ms-icon-size);
     &:hover {
       color: var(--ms-icon-color-hover, $ms-icon-color-hover);
+    }
+  }
+
+  li.hide-radio .icon-checkbox-container {
+    display: none;
+  }
+
+  .ms-select-all,
+  li:not(.hide-radio) {
+    .icon-checkbox-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: var(--ms-checkbox-icon-container-height, $ms-checkbox-icon-container-height);
+      width: var(--ms-checkbox-icon-container-width, $ms-checkbox-icon-container-width);
+      border: var(--ms-checkbox-icon-container-border, $ms-checkbox-icon-container-border);
+      border-radius: 0.125rem;
+     
+      div {
+        font-size: 14px;
+        color: var(--ms-checkbox-color, $ms-checkbox-color);
+        &:hover {
+          color: var(--ms-checkbox-hover-color, $ms-checkbox-hover-color);
+        }
+        // since we use the div container with a border, we don't actually need an icon for unchecked 
+        // BUT since we want to keep the same size, we can simply hide the mask to keep the same size
+        &.ms-icon-uncheck {
+          visibility: hidden;
+        }
+      }
+      &.radio {
+        border-radius: 50%;
+      }
+      & + span {
+        padding-left: var(--ms-label-text-padding-left, $ms-label-text-padding-left);
+      }
     }
   }
 }
@@ -135,7 +175,8 @@
     }
 
     label {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       font-weight: var(--ms-select-all-text-font-weight, $ms-select-all-text-font-weight);
       padding: var(--ms-select-all-label-padding, $ms-select-all-label-padding);
       border: var(--ms-select-all-label-border, $ms-select-all-label-border);
@@ -146,10 +187,13 @@
         border: var(--ms-select-all-label-hover-border, $ms-select-all-label-hover-border);
       }
       input {
+        // hide original input checkbox since we use an SVG over it
+        opacity: 0;
+        width: 0;
         margin-left: 0;
       }
-      span {
-        padding: var(--ms-select-all-label-span-padding, $ms-select-all-label-span-padding);
+      div {
+        display: inline-flex;
       }
     }
   }
@@ -220,6 +264,7 @@
     scrollbar-color: var(--ms-drop-scrollbar-color, $ms-drop-scrollbar-color);
 
     > li {
+      cursor: pointer;
       background-image: none;
       list-style: none;
       position: static;
@@ -253,15 +298,18 @@
 
       label {
         cursor: pointer;
-        display: block;
+        display: flex;
+        align-items: center;
         font-weight: normal;
         position: relative;
         white-space: nowrap;
+        flex: 0 0 100%;
         margin-bottom: var(--ms-label-margin-bottom, $ms-label-margin-bottom);
         min-height: var(--ms-label-min-height, $ms-label-min-height);
         padding: var(--ms-label-padding, $ms-label-padding);
 
         &.optgroup {
+          color: var(--ms-optgroup-color, $ms-optgroup-color);
           font-weight: var(--ms-drop-optgroup-font-weight, $ms-drop-optgroup-font-weight);
         }
       }
@@ -308,6 +356,9 @@
   input {
     &[type='radio'],
     &[type='checkbox'] {
+      // make input checkbox invisible but don't hide it since ms-select uses hide for something else
+      opacity: 0;
+      width: 0;
       position: absolute;
       margin-left: var(--ms-drop-input-margin-left, $ms-drop-input-margin-left);
       margin-top: var(--ms-drop-input-margin-top, $ms-drop-input-margin-top);
