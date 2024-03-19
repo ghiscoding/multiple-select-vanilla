@@ -29,6 +29,8 @@ $ms-icon-size: 1em !default;
 $ms-chevron-icon-size: 1.2em !default;
 $ms-choice-text-align: left !default;
 $ms-choice-line-height: 26px !default;
+$ms-choice-focus-border-color: lighten($ms-primary-color, 60%) !default;
+$ms-choice-focus-box-shadow: 0 0 0 2px rgba($ms-primary-color,.25) !default;
 $ms-drop-background: #fff !default;
 $ms-drop-color: #000 !default;
 $ms-drop-border: 1px solid #aaa !default;
