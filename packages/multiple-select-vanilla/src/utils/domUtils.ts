@@ -1,5 +1,5 @@
-import type { CSSStyleDeclarationWritable, HtmlStruct, InferDOMType } from '../interfaces';
-import { objectRemoveEmptyProps, toCamelCase } from './utils';
+import type { HtmlStruct, InferDOMType } from '../interfaces';
+import { objectRemoveEmptyProps } from './utils';
 
 export interface HtmlElementPosition {
   top: number;
