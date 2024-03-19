@@ -60,7 +60,6 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   virtualScroll: true,
 
   cssStyler: () => null,
-  styler: () => false,
   textTemplate: (elm: HTMLOptionElement) => elm.innerHTML.trim(),
   labelTemplate: (elm: HTMLOptionElement) => elm.label,
 
