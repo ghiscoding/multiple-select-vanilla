@@ -8,22 +8,6 @@ export interface HtmlElementPosition {
   right: number;
 }
 
-export function convertStringStyleToElementStyle(styleStr: string): CSSStyleDeclaration {
-  const style = {} as CSSStyleDeclaration;
-  if (styleStr) {
-    const cstyles = styleStr.replace(/\s/g, '').split(';');
-    for (const cstyle of cstyles) {
-      const [styleProp, styleVal] = cstyle.trim().split(':');
-      if (styleProp) {
-        (style as any)[toCamelCase(styleProp) as CSSStyleDeclarationWritable] = styleVal.trim() as CSSStyleDeclarationWritable;
-      }
-    }
-
-    console.warn('[multiple-select-vanilla] Please note that `styler` is deprecated, please migrate to `cssStyler` when possible.');
-  }
-  return style;
-}
-
 /** calculate available space for each side of the DOM element */
 export function calculateAvailableSpace(element: HTMLElement): { top: number; bottom: number; left: number; right: number } {
   let bottom = 0;

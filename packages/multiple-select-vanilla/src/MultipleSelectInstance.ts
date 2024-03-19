@@ -10,7 +10,6 @@ import {
   calculateAvailableSpace,
   classNameToList,
   convertItemRowToHtml,
-  convertStringStyleToElementStyle,
   createDomElement,
   emptyElement,
   findParent,
@@ -626,10 +625,6 @@ export class MultipleSelectInstance {
       };
 
       const customStyleRules = this.options.cssStyler(dataRow);
-      const customStylerStr = String(this.options.styler(dataRow) || ''); // deprecated
-      if (customStylerStr) {
-        liBlock.props.style = convertStringStyleToElementStyle(customStylerStr);
-      }
       if (customStyleRules) {
         liBlock.props.style = customStyleRules;
       }
@@ -713,10 +708,6 @@ export class MultipleSelectInstance {
     }
 
     const customStyleRules = this.options.cssStyler(dataRow);
-    const customStylerStr = String(this.options.styler(dataRow) || ''); // deprecated
-    if (customStylerStr) {
-      liBlock.props.style = convertStringStyleToElementStyle(customStylerStr);
-    }
     if (customStyleRules) {
       liBlock.props.style = customStyleRules;
     }
@@ -1359,10 +1350,7 @@ export class MultipleSelectInstance {
         this.selectClearElm.style.display = displayState;
       }
 
-      if (this.options.displayTitle || this.options.addTitle) {
-        if (this.options.addTitle) {
-          console.warn('[Multiple-Select-Vanilla] Please note that the `addTitle` option was deprecated and replaced by `displayTitle`.');
-        }
+      if (this.options.displayTitle) {
         const selectType = this.options.useSelectOptionLabel || this.options.useSelectOptionLabelToHtml ? 'value' : 'text';
         spanElm.title = this.getSelects(selectType).join(this.options.displayDelimiter);
       }

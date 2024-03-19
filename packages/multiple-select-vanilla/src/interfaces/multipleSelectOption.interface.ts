@@ -19,9 +19,6 @@ export type CSSStyleDeclarationReadonly =
 export type CSSStyleDeclarationWritable = keyof Omit<CSSStyleDeclaration, CSSStyleDeclarationReadonly>;
 
 export interface MultipleSelectOption extends MultipleSelectLocale {
-  /** @deprecated @alias `displayTitle` Add a title. By default this option is set to false. */
-  addTitle?: boolean;
-
   /** defaults to 10, when using "autoAdjustDropHeight" we might want to add a bottom (or top) padding instead of taking the entire available space */
   adjustedHeightPadding: number;
 
@@ -197,14 +194,11 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   // Methods
   // ------------
 
-  /** Customize the filter method, for example we use startWith */
-  customFilter(options: LabelFilter | TextFilter): boolean;
-
   /** The item styler function, return style string to customize the item style such as background: red. The function take one parameter: value. */
   cssStyler: (value: OptionRowData | OptGroupRowData) => CSSStyleDeclaration | null;
 
-  /** @deprecated @use `cssStyler`. The item styler function, return style string to customize the item style such as background: red. The function take one parameter: value. */
-  styler: (value: OptionRowData | OptGroupRowData) => string | boolean | null;
+  /** Customize the filter method, for example we use startWith */
+  customFilter(options: LabelFilter | TextFilter): boolean;
 
   /** Returns HTML label attribute of a DOM element */
   labelTemplate: (elm: HTMLOptionElement) => string;
