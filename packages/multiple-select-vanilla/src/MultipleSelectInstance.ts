@@ -548,6 +548,7 @@ export class MultipleSelectInstance {
     const multiple = this.options.multiple ? 'multiple' : '';
     const type = this.options.single ? 'radio' : 'checkbox';
     const isChecked = !!dataRow?.selected;
+    const isSingleWithoutRadioIcon = this.options.single && !this.options.singleRadio;
     let classes = '';
 
     if (!dataRow?.visible) {
@@ -556,7 +557,7 @@ export class MultipleSelectInstance {
 
     this.updateData.push(dataRow);
 
-    if (this.options.single && !this.options.singleRadio) {
+    if (isSingleWithoutRadioIcon) {
       classes = 'hide-radio ';
     }
 
@@ -568,32 +569,38 @@ export class MultipleSelectInstance {
       // - group option row -
       const htmlBlocks: HtmlStruct[] = [];
 
-      const itemOrGroupBlock: HtmlStruct =
-        this.options.hideOptgroupCheckboxes || this.options.single
-          ? { tagName: 'span', props: { dataset: { name: this.selectGroupName, key: dataRow._key } } }
-          : {
-              tagName: 'div',
-              props: {
-                className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}`,
+      let itemOrGroupBlock: HtmlStruct;
+      if (this.options.hideOptgroupCheckboxes || this.options.single) {
+        itemOrGroupBlock = { tagName: 'span', props: { dataset: { name: this.selectGroupName, key: dataRow._key } } };
+      } else {
+        const inputCheckboxStruct: HtmlStruct = {
+          tagName: 'input',
+          props: {
+            type: 'checkbox',
+            dataset: { name: this.selectGroupName, key: dataRow._key },
+            checked: isChecked,
+            disabled: dataRow.disabled,
+          },
+        };
+
+        // when creating a block that has multiple selections, we'll add the icon checkbox container
+        // otherwise it will be just the input checkbox
+        if (isSingleWithoutRadioIcon) {
+          itemOrGroupBlock = inputCheckboxStruct;
+        } else {
+          itemOrGroupBlock = {
+            tagName: 'div',
+            props: { className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}` },
+            children: [
+              inputCheckboxStruct,
+              {
+                tagName: 'div',
+                props: { className: `ms-icon ${isChecked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : 'ms-icon-uncheck'}` },
               },
-              children: [
-                {
-                  tagName: 'input',
-                  props: {
-                    type: 'checkbox',
-                    dataset: { name: this.selectGroupName, key: dataRow._key },
-                    checked: isChecked,
-                    disabled: dataRow.disabled,
-                  },
-                },
-                {
-                  tagName: 'div',
-                  props: {
-                    className: `ms-icon ${isChecked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : 'ms-icon-uncheck'}`,
-                  },
-                },
-              ],
-            };
+            ],
+          };
+        }
+      }
 
       if (!classes.includes('hide-radio') && (this.options.hideOptgroupCheckboxes || this.options.single)) {
         classes += 'hide-radio ';
@@ -688,7 +695,17 @@ export class MultipleSelectInstance {
         ariaSelected: String(isChecked),
         dataset: { key: dataRow._key },
       },
-      children: [{ tagName: 'label', props: { className: labelClasses }, children: [iconContainerBlock, spanLabelBlock] }],
+      children: [
+        {
+          tagName: 'label',
+          props: { className: labelClasses },
+          children: [
+            // add icon container when showing radio OR using multiple select
+            isSingleWithoutRadioIcon ? inputBlock : iconContainerBlock,
+            spanLabelBlock,
+          ],
+        },
+      ],
     };
 
     if (liClasses) {
@@ -1376,15 +1393,19 @@ export class MultipleSelectInstance {
         inputElm.checked = row.selected;
         const closestLiElm = inputElm.closest('li');
         const iconDivElm = closestLiElm?.querySelector('.icon-checkbox-container div');
-        if (closestLiElm && iconDivElm) {
+        if (closestLiElm) {
           if (row.selected && !closestLiElm.classList.contains('selected')) {
-            iconDivElm.className = `ms-icon ms-icon-${inputElm.type === 'radio' ? 'radio' : 'check'}`;
             closestLiElm.classList.add('selected');
             closestLiElm.ariaSelected = 'true';
+            if (iconDivElm) {
+              iconDivElm.className = `ms-icon ms-icon-${inputElm.type === 'radio' ? 'radio' : 'check'}`;
+            }
           } else if (!row.selected) {
-            iconDivElm.className = 'ms-icon ms-icon-uncheck';
             closestLiElm.classList.remove('selected');
             closestLiElm.ariaSelected = 'false';
+            if (iconDivElm) {
+              iconDivElm.className = 'ms-icon ms-icon-uncheck';
+            }
           }
         }
       }

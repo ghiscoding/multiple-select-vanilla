@@ -3,9 +3,8 @@ import { test, expect } from '@playwright/test';
 test.describe('Methods 02 - refreshOtions()', () => {
   test('clicking on the 1st button "refreshOptions" will remove the search filter', async ({ page }) => {
     await page.goto('#/methods02');
-    // await page.locator('div[data-test=single] .ms-choice').filter({ hasText: 'January' }).click();
-
     await page.locator('.ms-parent[data-test=select1]').click();
+
     let searchLoc = await page.locator('.ms-drop[data-test=select1] .ms-search input');
     await expect(searchLoc).toHaveCount(1);
     await searchLoc.focus();
