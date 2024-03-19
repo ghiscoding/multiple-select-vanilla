@@ -7,9 +7,6 @@
 [![npm](https://img.shields.io/npm/v/multiple-select-vanilla.svg?logo=npm&logoColor=fff&label=npm)](https://www.npmjs.com/package/multiple-select-vanilla)
 [![Actions Status](https://github.com/ghiscoding/multiple-select-vanilla/actions/workflows/main.yml/badge.svg)](https://github.com/ghiscoding/multiple-select-vanilla/actions)
 
-## Stable Release
-Take a look at the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot). You can see the "[Used by](#used-by)" section below to visit real world projects taking advantage of this library.
-
 ## Description
 Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.7.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.7.0). The main difference from the original lib is that we dropped jQuery in favor of native browser code and this mean zero external dependency. As a bonus, a few extra features were also added to the library as you can see from the list shown below [Changes vs Original lib](#changes-vs-original-lib-multiple-select).
 
@@ -17,6 +14,9 @@ This lib allows you to select multiple elements with checkboxes :).
 
 To get started take a look at the [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options and methods that the library offers.
 
+## Demo
+Take a look at the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot). 
+You can also take a look at the "[Used by](#used-by)" section below to visit real world Open Source projects taking advantage of this library.
 
 ### Fully tested with [![Playwright](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg?logo=playwright)](https://playwright.dev/)
 
@@ -43,7 +43,7 @@ npm install multiple-select-vanilla
 New Multiple-Select Options:
 - dropped jQuery requirement and replaced necessary code with browser native code.
 - written in TypeScript which also brings typings support
-- revamped the UI to give it a Modern Look by changing CSS and using SVG icons.
+- revamped the UI to give it a more Modern Look by updating CSS and using SVG icons.
 - add extra features:
   - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height by available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
@@ -58,7 +58,7 @@ New Multiple-Select Options:
   - `showSearchClear` show a clear button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
   - `diacriticParser` custom parser to normalize diacritic signs when filtering select list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options35))
   - replace tabIndex by arrow navigation highlight
-  - `darkMode` option for a Dark Mode Theme (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options38))
+  - `darkMode` option for a **Dark Mode** Theme (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options38))
 
 ## CSP Compliance
 The library is now CSP (Content Security Policy) compliant, however there are some exceptions to be aware of. When using any html string as template (with `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return `TrustedHTML`. You can achieve this by using the `sanitizer` method in combo with [DOMPurify](https://github.com/cure53/DOMPurify) to return `TrustedHTML` as shown below and with that in place you will be CSP compliant.
@@ -108,12 +108,12 @@ dist/
     css/
     sass/
   index.d.ts                        # d.ts Type Definitions
-  multiple-select.cjs               # CJS (CommonJS), use with: require()
-  multiple-select.js                # ESM, use with: import from
+  multiple-select.cjs               # CJS (CommonJS), used by: require()
+  multiple-select.js                # ESM, used by: import from
 ```
 
 ### Used by
-This fork was created mostly to drop jQuery, and it is used by a few other Open Source libraries of mine that I also maintain:
+This fork was created mostly to drop jQuery, and it is used by a few other Open Source projects of mine that I also maintain:
 - [Angular-Slickgrid](https://github.com/ghiscoding/Angular-Slickgrid)
 - [Aurelia-Slickgrid](https://github.com/ghiscoding/aurelia-slickgrid)
 - [Slickgrid-React](https://github.com/ghiscoding/slickgrid-react)
@@ -145,9 +145,9 @@ If you wish to contribute to the project, please follow the steps shown below:
 Before submitting a PR (pull request), please make sure that you followed the steps below for a better chance of a successfull PR:
 
 1. make sure that you have already executed `pnpm install`
-2. run the Biome lint npm script (or simply use step 4)
+2. run the Biome lint npm script (or simply jump to step 4)
    - `pnpm run biome:lint:write`
-3. run the Biome code formatting npm script (or simply use step 4)
+3. run the Biome code formatting npm script (or simply jump to step 4)
    - `pnpm run biome:format:write`
 4. run a full Build (this will also run Biome lint/format, so you could skip step 2)
    - `pnpm run build`
