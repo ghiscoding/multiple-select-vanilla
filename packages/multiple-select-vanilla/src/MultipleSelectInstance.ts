@@ -1528,14 +1528,14 @@ export class MultipleSelectInstance {
   enable() {
     if (this.choiceElm) {
       this.choiceElm.classList.remove('disabled');
-      this.choiceElm.disabled = true;
+      this.choiceElm.disabled = false;
     }
   }
 
   disable() {
     if (this.choiceElm) {
       this.choiceElm?.classList.add('disabled');
-      this.choiceElm.disabled = false;
+      this.choiceElm.disabled = true;
     }
   }
 
