@@ -104,11 +104,16 @@
   line-height: var(--ms-choice-line-height, $ms-choice-line-height);
   color: var(--ms-choice-color, $ms-choice-color);
   text-align: var(--ms-choice-text-align, $ms-choice-text-align);
+  outline: var(--ms-drop-outline, $ms-drop-outline);
   text-decoration: none;
   user-select: none;
   white-space: nowrap;
   &:hover {
     border-color: var(--ms-choice-border-hover-color, $ms-choice-border-hover-color);
+  }
+  &:focus {
+    border-color: var(--ms-choice-focus-border-color, $ms-choice-focus-border-color);
+    box-shadow: var(--ms-choice-focus-box-shadow, $ms-choice-focus-box-shadow);
   }
 
   &.disabled {

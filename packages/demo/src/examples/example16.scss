@@ -1,0 +1,15 @@
+.example12 {
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  .ms-parent {
+    font-size: 1.1em;
+    height: 50px;
+    .ms-choice {
+        height: 100%;
+    }
+  }
+}
