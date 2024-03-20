@@ -5,6 +5,19 @@
     border-radius: 50%;
     vertical-align: middle;
   }
+  .image-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .name-section {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .job-section {
+    font-size: 13px;
+    line-height: 16px;
+  }
   .ms-parent {
     font-size: 1.1em;
     height: 50px;
