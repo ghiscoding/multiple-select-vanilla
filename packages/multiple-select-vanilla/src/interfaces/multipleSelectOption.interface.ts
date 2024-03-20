@@ -100,6 +100,12 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Keep the select dropdown always open.By default this option is set to false. */
   keepOpen?: boolean;
 
+  /**
+   * For accessibility, you can provide a Label Id to be associated to the select button element (`.ms-choice`).
+   * An example can be `labelId: "custom-label"` which will be assigned to `id` and `aria-labelledby` attributes of the `.ms-choice` button.
+   */
+  labelId?: string;
+
   /** Optional Locale */
   locale?: LocaleKey | MultipleSelectLocale;
 

@@ -200,6 +200,11 @@ export class MultipleSelectInstance {
 
     this.choiceElm = createDomElement('button', { className: 'ms-choice', type: 'button' }, this.parentElm);
 
+    if (this.options.labelId) {
+      this.choiceElm.id = this.options.labelId;
+      this.choiceElm.setAttribute('aria-labelledby', this.options.labelId);
+    }
+
     this.choiceElm.appendChild(createDomElement('span', { className: 'ms-placeholder', textContent: this.options.placeholder }));
 
     if (this.options.showClear) {
