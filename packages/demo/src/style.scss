@@ -90,6 +90,9 @@ h2 .links {
 .content-text section {
   margin-bottom: 30px;
 }
+label {
+  font-weight: 500;
+}
 
 /** Sidebar (left) and Content (right) */
 @media (min-width: 1200px) {
