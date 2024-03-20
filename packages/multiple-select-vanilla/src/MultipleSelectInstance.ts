@@ -843,7 +843,7 @@ export class MultipleSelectInstance {
         }
         // move highlight back to top of the list
         this._currentHighlightIndex = -1;
-        this.moveFocusDown();
+        this.moveHighlightDown();
         this.filter();
       }) as EventListener);
     }
@@ -993,7 +993,7 @@ export class MultipleSelectInstance {
       this._bindEventService.bind(
         this.dropElm,
         'mouseover',
-        ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
+        ((e: MouseEvent & { target: HTMLDivElement | HTMLLIElement }) => {
           const liElm = (e.target.closest('.ms-select-all') || e.target.closest('li')) as HTMLLIElement;
           if (this.dropElm.contains(liElm)) {
             const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
@@ -1019,27 +1019,48 @@ export class MultipleSelectInstance {
           switch (e.key) {
             case 'ArrowUp':
               e.preventDefault();
-              this.moveFocusUp();
+              this.moveHighlightUp();
               break;
             case 'ArrowDown':
               e.preventDefault();
-              this.moveFocusDown();
+              this.moveHighlightDown();
               break;
             case 'Enter':
             case ' ': {
-              const liElm = e.target.closest('.ms-select-all') || e.target.closest('li');
-              if ((e.key === ' ' && this.options.filter) || (this.options.filterAcceptOnEnter && !liElm)) {
-                return;
-              }
-              e.preventDefault();
-              this._currentSelectedElm?.querySelector('input')?.click();
+              // if we're focused on the OK button then don't execute following block
+              if (document.activeElement !== this.okButtonElm) {
+                const liElm = e.target.closest('.ms-select-all') || e.target.closest('li');
+                if ((e.key === ' ' && this.options.filter) || (this.options.filterAcceptOnEnter && !liElm)) {
+                  return;
+                }
+                e.preventDefault();
+                this._currentSelectedElm?.querySelector('input')?.click();
 
-              // on single select, we should focus directly
-              if (this.options.single) {
-                this.choiceElm.focus();
-                this.lastFocusedItemKey = this.choiceElm?.dataset.key || '';
+                // on single select, we should focus directly
+                if (this.options.single) {
+                  this.choiceElm.focus();
+                  this.lastFocusedItemKey = this.choiceElm?.dataset.key || '';
+                }
               }
               break;
+            }
+            case 'Tab': {
+              // when clicking Tab, we'll focus on OK button when available
+              // or with Shift+Tab we'll either focus first option when coming
+              // from OK button or close drop if we're already in the lsit
+              e.preventDefault();
+              if (e.shiftKey) {
+                if (document.activeElement === this.okButtonElm) {
+                  this.focusSelectAllOrList();
+                  this.highlightCurrentOption();
+                } else {
+                  this.close();
+                  this.choiceElm.focus();
+                }
+              } else {
+                this.changeCurrentOptionHighlight();
+                this.okButtonElm?.focus();
+              }
             }
           }
         }) as EventListener,
@@ -1135,12 +1156,12 @@ export class MultipleSelectInstance {
     if (this.options.maxHeightUnit === 'row') {
       maxHeight = getElementSize(this.dropElm.querySelector('ul>li') as HTMLLIElement, 'outer', 'height') * this.options.maxHeight;
     }
-    const ulElm = this.dropElm.querySelector('ul');
-    if (ulElm) {
+    this.ulElm ??= this.dropElm.querySelector('ul');
+    if (this.ulElm) {
       if (minHeight) {
-        ulElm.style.minHeight = `${minHeight}px`;
+        this.ulElm.style.minHeight = `${minHeight}px`;
       }
-      ulElm.style.maxHeight = `${maxHeight}px`;
+      this.ulElm.style.maxHeight = `${maxHeight}px`;
     }
     this.dropElm.querySelectorAll<HTMLDivElement>('.multiple').forEach(multElm => {
       multElm.style.width = `${this.options.multipleWidth}px`;
@@ -1154,17 +1175,12 @@ export class MultipleSelectInstance {
       this.filter(true);
     } else {
       // highlight SelectAll or 1st select option when opening dropdown
-      if (this.selectAllElm) {
-        this.selectAllElm.focus();
-      } else if (ulElm) {
-        ulElm.tabIndex = 0;
-        ulElm.focus();
-      }
+      this.focusSelectAllOrList();
     }
 
     if (this._currentHighlightIndex < 0) {
       // on open drop initial, we'll focus on next available option
-      this.moveFocusDown();
+      this.moveHighlightDown();
     } else {
       // if it was already opened earlier, we'll keep same option index focused
       this.highlightCurrentOption();
@@ -1195,6 +1211,15 @@ export class MultipleSelectInstance {
     this.options.onOpen();
   }
 
+  protected focusSelectAllOrList() {
+    if (this.selectAllElm) {
+      this.selectAllElm.focus();
+    } else if (this.ulElm) {
+      this.ulElm.tabIndex = 0;
+      this.ulElm.focus();
+    }
+  }
+
   protected highlightCurrentOption() {
     const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
 
@@ -1212,8 +1237,9 @@ export class MultipleSelectInstance {
     }
   }
 
-  protected changeCurrentOptionHighlight(optionElm: HTMLLIElement | HTMLDivElement) {
-    optionElm.classList.add('highlighted');
+  /** Change highlighted option, or remove highlight when nothing is provided */
+  protected changeCurrentOptionHighlight(optionElm?: HTMLLIElement | HTMLDivElement) {
+    optionElm?.classList.add('highlighted');
     const currentElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_HIGHLIGHT_LIST_SELECTOR) || [];
     currentElms.forEach(option => {
       if (option !== optionElm) {
@@ -1222,18 +1248,18 @@ export class MultipleSelectInstance {
     });
   }
 
-  protected moveFocusDown() {
+  protected moveHighlightDown() {
     const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
     if (this._currentHighlightIndex < optionElms.length - 1) {
       this._currentHighlightIndex++;
       if (optionElms[this._currentHighlightIndex]?.classList.contains('disabled')) {
-        this.moveFocusDown();
+        this.moveHighlightDown();
       }
     }
     this.highlightCurrentOption();
   }
 
-  protected moveFocusUp() {
+  protected moveHighlightUp() {
     const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
     const idxToCompare = this.options.single ? 0 : 1;
     if (this.virtualScroll && this._currentHighlightIndex <= idxToCompare && this.updateDataStart! > 0 && this.ulElm) {
@@ -1252,7 +1278,7 @@ export class MultipleSelectInstance {
     if (this._currentHighlightIndex > 0) {
       this._currentHighlightIndex--;
       if (optionElms[this._currentHighlightIndex]?.classList.contains('disabled')) {
-        this.moveFocusUp();
+        this.moveHighlightUp();
       }
     }
 
@@ -1264,9 +1290,9 @@ export class MultipleSelectInstance {
     const newIdx = Array.from(optionElms).findIndex(el => el.dataset.key === this.lastFocusedItemKey);
     this._currentHighlightIndex = newIdx - 1;
     if (direction === 'down') {
-      this.moveFocusDown();
+      this.moveHighlightDown();
     } else if (direction === 'up') {
-      this.moveFocusUp();
+      this.moveHighlightUp();
       this.isMoveUpRecalcRequired = false;
     }
   }
