@@ -40,6 +40,7 @@ export class MultipleSelectInstance {
   protected okButtonElm?: HTMLButtonElement;
   protected filterParentElm?: HTMLDivElement | null;
   protected lastFocusedItemKey = '';
+  protected lastMouseOverPosition = '';
   protected ulElm?: HTMLUListElement | null;
   protected parentElm!: HTMLDivElement;
   protected labelElm?: HTMLLabelElement | null;
@@ -1002,7 +1003,8 @@ export class MultipleSelectInstance {
         'mouseover',
         ((e: MouseEvent & { target: HTMLDivElement | HTMLLIElement }) => {
           const liElm = (e.target.closest('.ms-select-all') || e.target.closest('li')) as HTMLLIElement;
-          if (this.dropElm.contains(liElm) && this.scrolledByMouse) {
+
+          if (this.dropElm.contains(liElm) && this.lastMouseOverPosition !== `${e.clientX}:${e.clientY}`) {
             const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
             const newIdx = Array.from(optionElms).findIndex(el => el.dataset.key === liElm.dataset.key);
             if (this._currentHighlightIndex !== newIdx && !liElm.classList.contains('disabled')) {
@@ -1011,6 +1013,7 @@ export class MultipleSelectInstance {
               this.changeCurrentOptionHighlight(liElm);
             }
           }
+          this.lastMouseOverPosition = `${e.clientX}:${e.clientY}`;
         }) as EventListener,
         undefined,
         'hover-highlight',
