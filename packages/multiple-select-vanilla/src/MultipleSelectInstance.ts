@@ -53,6 +53,7 @@ export class MultipleSelectInstance {
   protected selectAllName = '';
   protected selectGroupName = '';
   protected selectItemName = '';
+  protected scrolledByMouse = false;
   protected openDelayTimer: NodeJS.Timeout | undefined;
 
   protected updateDataStart?: number;
@@ -538,10 +539,11 @@ export class MultipleSelectInstance {
     if (this.options.infiniteScroll) {
       rows.push({
         tagName: 'li',
-        props: { className: 'ms-infinite-option', role: 'option', dataset: { key: 'infinite' } },
+        props: { className: 'ms-infinite-option', role: 'option' },
       });
     }
 
+    // add a "No Results" option that is hidden by default
     rows.push({ tagName: 'li', props: { className: 'ms-no-results', textContent: this.formatNoMatchesFound() } });
 
     return rows;
@@ -1000,7 +1002,7 @@ export class MultipleSelectInstance {
         'mouseover',
         ((e: MouseEvent & { target: HTMLDivElement | HTMLLIElement }) => {
           const liElm = (e.target.closest('.ms-select-all') || e.target.closest('li')) as HTMLLIElement;
-          if (this.dropElm.contains(liElm)) {
+          if (this.dropElm.contains(liElm) && this.scrolledByMouse) {
             const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
             const newIdx = Array.from(optionElms).findIndex(el => el.dataset.key === liElm.dataset.key);
             if (this._currentHighlightIndex !== newIdx && !liElm.classList.contains('disabled')) {
@@ -1083,19 +1085,26 @@ export class MultipleSelectInstance {
    * Checks if user reached the end of the list through mouse scrolling and/or arrow down,
    * then scroll back to the top whenever that happens.
    */
-  protected infiniteScrollHandler(e: MouseEvent & { target: HTMLElement }) {
-    if (e.target && this.ulElm) {
-      const scrollPos = e.target.scrollTop + e.target.clientHeight;
+  protected infiniteScrollHandler(e: (MouseEvent & { target: HTMLElement }) | null, idx?: number, fullCount?: number) {
+    let needHighlightRecalc = false;
 
+    if (e?.target && this.ulElm && this.scrolledByMouse) {
+      const scrollPos = e.target.scrollTop + e.target.clientHeight;
       if (scrollPos === this.ulElm.scrollHeight) {
-        if (this.virtualScroll) {
-          this.initListItems();
-        } else {
-          this.ulElm.scrollTop = 0;
-        }
-        this._currentHighlightIndex = 0;
-        this.highlightCurrentOption();
+        needHighlightRecalc = true;
       }
+    } else if (idx !== undefined && idx + 1 === fullCount) {
+      needHighlightRecalc = true;
+    }
+
+    if (needHighlightRecalc && this.ulElm) {
+      if (this.virtualScroll) {
+        this.initListItems();
+      } else {
+        this.ulElm.scrollTop = 0;
+      }
+      this._currentHighlightIndex = 0;
+      this.highlightCurrentOption();
     }
   }
 
@@ -1236,8 +1245,11 @@ export class MultipleSelectInstance {
         this._currentSelectedElm = currentOption;
 
         // Scroll the current option into view
+        // use a global flag to differentiate scroll by mouse or by scrollIntoView
+        this.scrolledByMouse = false;
         currentOption.scrollIntoView({ block: 'nearest' });
         this.changeCurrentOptionHighlight(currentOption);
+        setTimeout(() => (this.scrolledByMouse = true), 10);
       }
     }
   }
@@ -1255,11 +1267,15 @@ export class MultipleSelectInstance {
 
   protected moveHighlightDown() {
     const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
-    if (this._currentHighlightIndex < optionElms.length - 1) {
+    const domOptionsCount = optionElms.length;
+
+    if (this._currentHighlightIndex < domOptionsCount - 1) {
       this._currentHighlightIndex++;
       if (optionElms[this._currentHighlightIndex]?.classList.contains('disabled')) {
         this.moveHighlightDown();
       }
+    } else if (this.options.infiniteScroll) {
+      this.infiniteScrollHandler(null, this._currentHighlightIndex, domOptionsCount);
     }
     this.highlightCurrentOption();
   }
