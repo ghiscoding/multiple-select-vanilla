@@ -21,7 +21,6 @@ export default class Example {
         { value: '4', text: `<img alt="avatar4" src="${avatar4}" class="avatar"> Julia` },
         { value: '5', text: `<img alt="avatar5" src="${avatar5}" class="avatar"> Catherine` },
       ],
-      infiniteScroll: true,
       renderOptionLabelAsHtml: true, // without this flag, html code will be showing as plain text
     }) as MultipleSelectInstance;
 
