@@ -4,6 +4,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v2.2.1...v3.0.0) (2024-03-22)
+
+### ⚠ BREAKING CHANGES
+
+* remove deprecated options (#251)
+* new Modern Look by using SVG icons (#247)
+
+### Features
+
+* add new `labelId` option for accessibility ([#254](https://github.com/ghiscoding/multiple-select-vanilla/issues/254)) ([f66852f](https://github.com/ghiscoding/multiple-select-vanilla/commit/f66852f8bc59c8e21a96c4d6e79ce2874a4b51dc)) - by @ghiscoding
+* new Modern Look by using SVG icons ([#247](https://github.com/ghiscoding/multiple-select-vanilla/issues/247)) ([a89059f](https://github.com/ghiscoding/multiple-select-vanilla/commit/a89059fcb849dacc9f814e5f98f86019a7bdfc57)) - by @ghiscoding
+* remove deprecated options ([#251](https://github.com/ghiscoding/multiple-select-vanilla/issues/251)) ([a25882f](https://github.com/ghiscoding/multiple-select-vanilla/commit/a25882f09e412efd17b510041d55b3b76c1d84b8)) - by @ghiscoding
+* replace caret & clear icons by SVG icons ([#238](https://github.com/ghiscoding/multiple-select-vanilla/issues/238)) ([a5bc462](https://github.com/ghiscoding/multiple-select-vanilla/commit/a5bc462cc59e9ee8e0104dba87a188dc3b06d85c)) - by @ghiscoding
+
+### Bug Fixes
+
+* add `classNameToList()` function to remove extra spaces in classes ([#244](https://github.com/ghiscoding/multiple-select-vanilla/issues/244)) ([a0adf0c](https://github.com/ghiscoding/multiple-select-vanilla/commit/a0adf0c49085a28204b65257d6be817dd3447303)) - by @ghiscoding
+* clicking Tab key should focus on OK btn or Shift+Tab to inverse ([1b06a99](https://github.com/ghiscoding/multiple-select-vanilla/commit/1b06a9997967a1fcdfc92d17fd38e145ef90911c)) - by @ghiscoding
+* don't show pointer cursor when hovering disabled element ([#248](https://github.com/ghiscoding/multiple-select-vanilla/issues/248)) ([15caab9](https://github.com/ghiscoding/multiple-select-vanilla/commit/15caab92f0f4a386dd1b49de72041cb64ba5c7ab)) - by @ghiscoding
+* flip icon vertically when select drop is open ([#240](https://github.com/ghiscoding/multiple-select-vanilla/issues/240)) ([1d74e26](https://github.com/ghiscoding/multiple-select-vanilla/commit/1d74e26f4a94d0a54fd03bf46c7cee32d4150cfa)) - by @ghiscoding
+* infinite scroll with arrow navigation should work with short list ([#256](https://github.com/ghiscoding/multiple-select-vanilla/issues/256)) ([57f8d6a](https://github.com/ghiscoding/multiple-select-vanilla/commit/57f8d6a44108b0cf504a9bc62312895382aadcf8)) - by @ghiscoding
+* nav highlight shouldn't follow mouse pos when using nav arrows ([#257](https://github.com/ghiscoding/multiple-select-vanilla/issues/257)) ([3c4950d](https://github.com/ghiscoding/multiple-select-vanilla/commit/3c4950d0b6ab0ecdf1b0efc8cd9ad413e8e334af)) - by @ghiscoding
+* only add icon container element when actually used ([#250](https://github.com/ghiscoding/multiple-select-vanilla/issues/250)) ([7406bd3](https://github.com/ghiscoding/multiple-select-vanilla/commit/7406bd39eb17153f866dae977e114b978ffbcf78)) - by @ghiscoding
+* select drop caret icon not flipping vertically when opened ([#243](https://github.com/ghiscoding/multiple-select-vanilla/issues/243)) ([42c87f7](https://github.com/ghiscoding/multiple-select-vanilla/commit/42c87f76954f3eabb0593a33cdf6cdb060dc487a)) - by @ghiscoding
+* when using `showClear`, don't show btn unless having selection ([#245](https://github.com/ghiscoding/multiple-select-vanilla/issues/245)) ([28ad6b4](https://github.com/ghiscoding/multiple-select-vanilla/commit/28ad6b43ca9faf303f293b1102ccf511f8b4122d)) - by @ghiscoding
+
 ## [2.2.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v2.2.0...v2.2.1) (2024-03-08)
 
 ### Bug Fixes
