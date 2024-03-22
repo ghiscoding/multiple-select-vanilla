@@ -1,6 +1,6 @@
 {
   "name": "multiple-select-vanilla",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "main": "./dist/multiple-select.cjs",
   "module": "./dist/multiple-select.js",
   "types": "dist/index.d.ts",
@@ -63,16 +63,16 @@
     "@types/trusted-types": "^2.0.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.18",
+    "autoprefixer": "^10.4.19",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
-    "cssnano": "^6.1.0",
+    "cssnano": "^6.1.1",
     "esbuild": "^0.20.2",
     "fs-extra": "^11.2.0",
     "glob": "^10.3.10",
-    "postcss": "^8.4.36",
+    "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
     "sass": "^1.72.0",
-    "typescript": "5.4.2"
+    "typescript": "5.4.3"
   }
 }

@@ -1,8 +1,8 @@
+import { exec, execSync } from 'node:child_process';
+import path from 'node:path';
 import copyfiles from 'copyfiles';
 import { buildSync } from 'esbuild';
 import { outputFileSync } from 'fs-extra/esm';
-import { exec, execSync } from 'node:child_process';
-import path from 'node:path';
 import { compile as sassCompile } from 'sass';
 
 const env = process.env.NODE_ENV;
