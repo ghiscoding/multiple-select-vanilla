@@ -1,0 +1,5359 @@
+var Ll=Object.defineProperty;var $l=(n,t,e)=>t in n?Ll(n,t,{enumerable:!0,configurable:!0,writable:!0,value:e}):n[t]=e;var c=(n,t,e)=>($l(n,typeof t!="symbol"?t+"":t,e),e);(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))o(i);new MutationObserver(i=>{for(const s of i)if(s.type==="childList")for(const l of s.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&o(l)}).observe(document,{childList:!0,subtree:!0});function e(i){const s={};return i.integrity&&(s.integrity=i.integrity),i.referrerPolicy&&(s.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?s.credentials="include":i.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function o(i){if(i.ep)return;i.ep=!0;const s=e(i);fetch(i.href,s)}})();const Il=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Events
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/events/events.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/events/events.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Multiple Select has some callback events.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Events </label>
+
+    <div class="col-sm-10">
+      <textarea class="form-control" readonly rows="10" style="background-color: #f0f0f0"></textarea>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Rl=`<div class="row">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Single Select
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example01.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example01.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Single select without any options.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Basic Select</label>
+
+    <div class="col-sm-10">
+      <select class="full-width">
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Multiple Select</label>
+
+    <div class="col-sm-10">
+      <select class="multiple-select full-width" data-test="select1">
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Group Select</label>
+
+    <div class="col-sm-10">
+      <select class="full-width">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Multiple Select</label>
+
+    <div class="col-sm-10">
+      <select class="multiple-select full-width" data-test="select2">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="my-5 offset-sm-1 col-sm-10">
+  <hr />
+</div>
+
+<div class="row mt-4">
+  <label class="col-sm-2">Code Sample</label>
+  <div class="col-sm-10 col-lg-8">
+    <iframe
+      style="height: 100%; width: 60%; position: absolute"
+      src="data:text/html;charset=utf-8,
+      <head><base target='_blank' /></head>
+      <body><script src='https://gist.github.com/ghiscoding/d9136bb871e43cf93da6b58cd3e1ccfe.js'><\/script>
+      </body>"
+    >
+    </iframe>
+  </div>
+</div>
+`,Pl=`<div class="row">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Multiple Select
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example02.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example02.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Multiple select without any options.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Multiple Select</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="multiple-select full-width" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Multiple Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="multiple-select full-width" data-test="select2">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Hl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Multiple Items
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example03.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example03.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>multiple</code> and <code>multipleWidth</code> options to enable multiple items.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Basic Select</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Group Select</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select2">
+        <optgroup label="Group 1">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Fl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Auto Width
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example04.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example04.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Auto width by default without setting width style.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-3"> Auto width </label>
+
+    <div class="col-sm-9">
+      <select class="select" data-test="select1">
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3"> Data width </label>
+
+    <div class="col-sm-9">
+      <select class="data" data-test="select2"></select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3"> Large width </label>
+
+    <div class="col-sm-9">
+      <select class="select" data-test="select3">
+        <option value="1">This is the first option and value is 1</option>
+        <option value="2">This is the second option and value is 2</option>
+        <option value="3">This is the third option and value is 3</option>
+        <option value="4">This is the fourth option and value is 4</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3"> Dropdown width </label>
+
+    <div class="col-sm-9">
+      <select class="select" data-test="select4" data-width="200">
+        <option value="1">This is the first option and value is 1</option>
+        <option value="2">This is the second option and value is 2</option>
+        <option value="3">This is the third option and value is 3</option>
+        <option value="4">This is the fourth option and value is 4</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3"> Group Select </label>
+
+    <div class="col-sm-9">
+      <select class="select" data-test="select5" multiple="multiple">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3"> Large Group </label>
+
+    <div class="col-sm-9">
+      <select class="select" data-test="select6" multiple="multiple">
+        <optgroup label="This is group 1">
+          <option value="1">This is option 1</option>
+          <option value="2">This is option 2</option>
+          <option value="3">This is option 3</option>
+        </optgroup>
+        <optgroup label="This is group 2">
+          <option value="4">This is option 4</option>
+          <option value="5">This is option 5</option>
+          <option value="6">This is option 6</option>
+        </optgroup>
+        <optgroup label="This is group 3">
+          <option value="7">This is option 7</option>
+          <option value="8">This is option 8</option>
+          <option value="9">This is option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Bl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Disabled Select
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example05.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example05.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Show a disabled select width <code>disabled</code> attribute.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Disabled Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" disabled="disabled" class="full-width">
+        <option value="1" selected>January</option>
+        <option value="2">February</option>
+        <option value="3" selected>March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ul=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Selected/Disabled Options
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example06.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example06.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Selected or Disabled options.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-testid="select1">
+        <option value="1" selected="selected">January</option>
+        <option value="2" disabled="disabled">February</option>
+        <option value="3" selected="selected" disabled="disabled">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-selectid="select2">
+        <optgroup label="Group 1" disabled="disabled">
+          <option value="1" selected>Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5" selected>Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7" disabled="disabled">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Gl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Submit Select
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example07.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example07.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Submit select with <code>name</code> attribute in form.</div>
+  </div>
+</div>
+
+<div>
+  <form>
+    <div class="mb-3 row">
+      <label class="col-sm-2"> Single Select </label>
+
+      <div class="col-sm-10">
+        <select name="select1" class="full-width">
+          <option value="1">First</option>
+          <option value="2">Second</option>
+          <option value="3">Third</option>
+          <option value="4">Fourth</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-sm-2"> Multiple Select </label>
+
+      <div class="col-sm-10">
+        <select name="select2" class="full-width" data-test="select2" multiple required>
+          <option value="1">First</option>
+          <option value="2">Second</option>
+          <option value="3">Third</option>
+          <option value="4">Fourth</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-10 offset-sm-2">
+        <button type="button" class="btn btn-primary submit7" data-testid="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+`,jl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Data
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example08.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example08.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>data</code> as data source.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Array </label>
+
+    <div class="col-sm-10">
+      <select id="basic" class="full-width" multiple></select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Object </label>
+
+    <div class="col-sm-10">
+      <select id="object" class="full-width" multiple></select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> String Array </label>
+
+    <div class="col-sm-10">
+      <select id="string" class="full-width" multiple></select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Number Array </label>
+
+    <div class="col-sm-10">
+      <select id="number" class="full-width" multiple></select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Array </label>
+
+    <div class="col-sm-10">
+      <select id="group" class="full-width" multiple></select>
+    </div>
+  </div>
+</div>
+`,Jl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Locale
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example09.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example09.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>locale</code> to set the locale.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-3"> Locale Select </label>
+
+    <div class="col-sm-9">
+      <select id="locale" class="full-width">
+        <option value="en-US">English</option>
+        <option value="fr-FR">French</option>
+        <option value="es-ES">Spanish</option>
+        <option value="it-IT">Italian</option>
+        <option value="vi-VN">Vietnamese</option>
+        <option value="zh-CN">简体中文</option>
+        <option value="zh-TW">繁體中文</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3"> Result Select </label>
+
+    <div class="col-sm-9">
+      <select id="dynamic-select" class="full-width" multiple="multiple">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+  
+  <hr />
+
+  <div class="mb-3 row">
+    <label class="col-sm-3">named Locale import (Spanish)</label>
+
+    <div class="col-sm-9">
+      <select id="fixed-import" class="full-width" multiple="multiple">
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Wl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Large Select - Virtual Scroll
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example10.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example10.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Virtual Scroll will automatically be used with a large set of data.
+      We recommend keeping this option enabled at all time, but in some cases you could also disable it via the <code>virtualScroll</code> option
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">
+      Basic Array
+    </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" data-test="select10-1" id="select1" class="full-width"></select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Object Array</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" data-test="select10-2" id="select2" class="full-width"></select>
+    </div>
+  </div>
+</div>`,Vl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Themes / Sizes
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example11.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example11.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Multiple select with Bootstrap theme.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label col-form-label-sm">Select</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="form-control form-control-sm" data-test="select1" placeholder="form-control-sm">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Select</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="form-control" data-test="select2" placeholder="form-control">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label col-form-label-lg">Select</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="form-control form-control-lg" data-test="select3" placeholder="form-control-lg">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Dropdown Select</label>
+
+    <div class="col-sm-10">
+      <select class="form-control ms-dropdown" data-test="select4">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Dropdown Dividers</label>
+
+    <div class="col-sm-10">
+      <select class="form-control ms-dropdown ms-dropdown-divider" data-test="select5">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,ql=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Checkbox/Radio Icons
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example12.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example12.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Display checkbox or radio icons 
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label col-form-label-sm"> Single Select </label>
+
+    <div class="col-sm-10">
+      <select id="single" class="awesome-select full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Multiple Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" id="multiple" class="awesome-select full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,zl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Dynamically create Multiple-Select with Data collection
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example13.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example13.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Dynamically create a Multiple-Select instance with <code>data</code> property.
+      <br />
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Create </label>
+
+    <div class="col-sm-10">
+      <button id="destroyBtn" class="btn btn-danger btn-sm">Destroy</button>
+      <button id="createBtn" class="btn btn-primary btn-sm">Dynamically Create</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Use Select Option Label & Render HTML</label>
+
+    <div class="col-sm-9">
+      <select id="select1" class="full-width" data-test="select1"></select>
+    </div>
+  </div>
+</div>
+`,Kl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Divider
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example14.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example14.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Display an option as a divider.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Single Select</label>
+
+    <div class="col-sm-10">
+      <select id="single" class="select full-width" data-test="single">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option data-divider="true"></option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option data-divider="true"></option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Multiple Select</label>
+
+    <div class="col-sm-10">
+      <select id="multiple" class="select full-width" data-test="multiple" multiple>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option data-divider="true"></option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option data-divider="true"></option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Group Select</label>
+
+    <div class="col-sm-10">
+      <select id="group" class="select full-width" data-test="group" multiple>
+        <option data-divider="true"></option>
+        <optgroup label="Group 1">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option data-divider="true"></option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+        </optgroup>
+        <option data-divider="true"></option>
+        <optgroup label="Group 2">
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option data-divider="true"></option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Data Select 1</label>
+
+    <div class="col-sm-10">
+      <select id="data-select1" class="data-select full-width" data-test="data1" multiple></select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Data Select 2</label>
+
+    <div class="col-sm-10">
+      <select id="data-select2" class="data-select full-width" data-test="data2" multiple></select>
+    </div>
+  </div>
+</div>
+`,Yl=`<div class="example15-container">
+  <div class="row mb-2">
+    <div class="col-md-12 title-desc">
+      <h2 class="bd-title">
+        Dark Mode
+        <span class="float-end links">
+          Code <span class="fa fa-link"></span>
+          <span class="small">
+            <a
+              target="_blank"
+              href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example15.html"
+              >html</a
+            >
+            |
+            <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example15.ts"
+              >ts</a
+            >
+          </span>
+        </span>
+      </h2>
+      <div class="demo-subtitle">
+        Dark Mode requires <code>darkMode</code> option to be enabled, when that happens it will add <code>.ms-dark-mode</code> to the parent and drop elements.
+        The dark theme is configured through CSS variables which you can also customize yourself. 
+        You can also toggle Dark Mode at any time dynamically via <code>refreshOptions()</code>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <div class="mb-3 row">
+      <label class="col-sm-2">Single Select</label>
+  
+      <div class="col-sm-10">
+        <select id="single" class="select full-width ms-dark-mode" data-test="single">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option data-divider="true"></option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option data-divider="true"></option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-sm-2">Single Radio</label>
+  
+      <div class="col-sm-10">
+        <select id="single" class="radio full-width ms-dark-mode" data-test="radio">
+          <option value="1">January</option>
+          <option value="2" selected>February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option data-divider="true"></option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option data-divider="true"></option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="mb-3 row">
+      <label class="col-sm-2">Multiple Select</label>
+  
+      <div class="col-sm-10">
+        <select id="multiple" class="select full-width" data-test="multiple" multiple>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option data-divider="true"></option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option data-divider="true"></option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="mb-3 row">
+      <label class="col-sm-2">Group Select</label>
+  
+      <div class="col-sm-10">
+        <select id="group" class="select full-width" data-test="group" multiple>
+        <optgroup label="Group 1" disabled="disabled">
+          <option value="1" selected>Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5" selected>Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7" disabled="disabled">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+      </div>
+    </div>
+  
+    <div class="mb-3 row">
+      <label class="col-sm-2">Data Select 1</label>
+  
+      <div class="col-sm-10">
+        <select id="data-select" class="data-select full-width" data-test="data1" multiple></select>
+      </div>
+    </div>
+  </div>
+</div>
+`,Xl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Use Images as Text Template
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example12.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example12.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Display avatar images by using <code>textTemplate</code> to render HTML with image src. Note that the use of <code>sanitizer</code> with tools like DOM Purify is recommended when using <code>textTemplate</code>.
+    </div>
+  </div>
+</div>
+
+<div class="example12">
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Avatar Template</label>
+
+    <div class="col-sm-10">
+      <select id="select1" class="full-width" data-test="select1">
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Avatar Text Template</label>
+
+    <div class="col-sm-10">
+      <select id="select2" class="full-width" data-test="select2">
+        <option value="1">Eric::Developer</option>
+        <option value="2">Smith::Accounting</option>
+        <option value="3">Erika::Designer</option>
+        <option value="4">Julia::Finance</option>
+        <option value="5">Catherine::HR</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ql=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">Getting Started</h2>
+  </div>
+</div>
+
+<div class="content-text">
+  <h3>Download</h3>
+  <hr />
+
+  <section>
+    <h5>GitHub <i class="fa fa-link"></i></h5>
+    <p>
+      <a href="https://github.com/ghiscoding/multiple-select-vanilla">https://github.com/ghiscoding/multiple-select-vanilla</a>
+    </p>
+  </section>
+
+  <section>
+    <h5>CDN</h5>
+    <p>
+      <a href="https://www.jsdelivr.com/" target="__blank">jsDelivr</a> graciously provide CDNs for many JavaScript libraries
+      including Multiple-Select-Vanilla. Just use the following CDN links.
+    </p>
+    <p>
+      The project now ships its <code>.js</code> files as ESM by default, if you still wish to use the old CommonJS (CJS) format with <code>require()</code>,
+      then you will have to use <code>.cjs</code> file extension.
+    </p>
+
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>
+&lt;!-- Latest compiled and minified CSS --&gt;
+&lt;link href=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@2.0.0/dist/styles/css/multiple-select.css</span>&quot; rel=&quot;<span style="color:#880000">stylesheet</span>&quot;&gt;
+
+&lt;!-- (ESM requires <span style="color:#d63384">type=&quot;module&quot;</span>) Latest compiled and minified JavaScript --&gt;
+&lt;script type=&quot;module&quot; src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@2.0.0/dist/browser/multiple-select.js</span>&quot;&gt;&lt;/script&gt;
+
+&lt;!-- (CJS requires <span style="color:#d63384">.cjs</span> extension) Latest compiled and minified JavaScript --&gt;
+&lt;script src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@2.0.0/dist/browser/multiple-select.cjs</span>&quot;&gt;&lt;/script&gt;</pre>
+    </div>
+
+    <quote>
+      <b>Note:</b> the <code>dist/browser</code> location is the only one providing the <code>MultipleSelect</code> on the <code>window</code> object.
+    </quote>
+  </section>
+
+  <section>
+    <h5>NPM</h5>
+    <p>Install and manage Multiple Select's CSS, JavaScript using NPM.</p>
+
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>$ npm install multiple-select-vanilla</pre>
+    </div>
+  </section>
+
+  <h5>CommonJS <code>require()</code> / ESM <code>import from</code></h5>
+    <p>
+      The library provides both CommonJS or ESM, see the example below:
+    </p>
+    <div style="background: #f7f7f7; padding: 10px">
+<pre>
+// CommonJS
+const { multipleSelect } = require('multiple-select-vanilla');
+multipleSelect('.multiple-select', {/*...*/});
+
+// ESM
+import { multipleSelect } from 'multiple-select-vanilla';
+multipleSelect('.multiple-select', {/*...*/});
+</pre>
+    </div>
+
+  <section>
+    <h5>Code Sample</h5>
+    <div class="col-sm-10 col-lg-8">
+      <iframe
+        style="height: 100%; width: 60%; position: absolute"
+        src="data:text/html;charset=utf-8,
+        <head><base target='_blank' /></head>
+        <body><script src='https://gist.github.com/ghiscoding/786008e40a13d64a1cf813aff8a3d8dc.js'><\/script>
+        </body>"
+      >
+      </iframe>
+    </div>
+  </section>
+</div>
+`,Zl=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The i18n
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/i18n/i18n.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/i18n/i18n.ts">ts</a>
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Custom i18n options, for example French is used here.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">Janvier</option>
+        <option value="2">Février</option>
+        <option value="3">Mars</option>
+        <option value="4">Avril</option>
+        <option value="5">Mai</option>
+        <option value="6">Juin</option>
+        <option value="7">Juillet</option>
+        <option value="8">Août</option>
+        <option value="9">Septembre</option>
+        <option value="10">Octobre</option>
+        <option value="11">Novembre</option>
+        <option value="12">Décembre</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="my-5 offset-sm-1 col-sm-10">
+    <hr />
+  </div>
+
+  <div class="row mt-5">
+    <label class="col-sm-2">Code Sample</label>
+    <div class="col-sm-10 col-lg-8">
+      <iframe
+        style="height: 100%; width: 60%; position: absolute"
+        src="data:text/html;charset=utf-8,
+        <head><base target='_blank' /></head>
+        <body><script src='https://gist.github.com/ghiscoding/337a664ffd1564d2f95c3f9d1b814172.js'><\/script><\/script>
+        </body>"
+      >
+      </iframe>
+    </div>
+  </div>
+</div>
+`,Zi=`<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-2" href="https://github.com/ghiscoding/multiple-select-vanilla">
+      <img src="./favicon.png" alt="Multiple-Select-Vanilla" width="34" />
+      <span>Multiple Select Vanilla</span>
+    </a>
+    <div class="github-button-container">
+      <a href="https://github.com/ghiscoding/multiple-select-vanilla">
+        <img src="https://img.shields.io/github/stars/ghiscoding/multiple-select-vanilla?style=social" />
+      </a>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-target="#navbarContent"
+      aria-controls="navbarContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end me-2" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid template-body">
+  <div class="panel-wm">
+    <section id="panel-left" class="panel-wm-left">
+      <ul class="well nav nav-pills nav-stacked">
+        <!-- All Example Routes -->
+      </ul>
+    </section>
+
+    <section class="panel-wm-content"></section>
+  </div>
+</div>
+`,ta=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The getOptions
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods01.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods01.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>multipleSelect('select').getOptions()</code> to get the options object.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Methods </label>
+
+    <div class="col-sm-10">
+      <button id="getOptions" class="btn btn-secondary">getOptions</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="text1">text1</option>
+        <option value="text2">text2</option>
+        <option value="text3">text3</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,ea=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The refreshOptions
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods02.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods02.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>multipleSelect('select').refreshOptions({ filter: false })</code> to refresh the options object.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Methods </label>
+
+    <div class="col-sm-5">
+      <button id="refreshOptions" class="btn btn-secondary">refreshOptions</button>
+      <button id="setDarkMode" class="btn btn-secondary">Toggle Dark Mode</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width select1" data-test="select1">
+        <option value="text1">text1</option>
+        <option value="text2">text2</option>
+        <option value="text3">text3</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Multiple Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width select2" data-test="select2">
+        <option value="task1">Task 1</option>
+        <option value="task2">Task 2</option>
+        <option value="task3">Task 3</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,na=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The setSelects/getSelects
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods03.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods03.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>multipleSelect('select').setSelects([])</code> and <code>multipleSelect('select').getSelects()</code> to set
+      selects and get selects.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Methods </label>
+
+    <div class="col-sm-10">
+      <button id="setSelectsBtn" class="btn btn-secondary">SetSelects</button>
+      <button id="getSelectsBtn" class="btn btn-secondary">GetSelects</button>
+      <button id="setSelectsBtn2" class="btn btn-secondary">SetSelects by 'text'</button>
+      <button id="getSelectsBtn2" class="btn btn-secondary">GetSelects by 'text'</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,oa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The enable/disable
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods04.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods04.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>multipleSelect('select').enable()</code> and <code>multipleSelect('select').disable()</code> to enable and disable
+      select.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Methods </label>
+
+    <div class="col-sm-10">
+      <button id="enableBtn" class="btn btn-secondary">Enable</button>
+      <button id="disableBtn" class="btn btn-secondary">Disable</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,ia=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The open/close
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods05.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods05.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>multipleSelect('select').open()</code> and <code>multipleSelect('select').close()</code> to open and close the
+      select dropdown list.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Methods </label>
+
+    <div class="col-sm-10">
+      <button id="openBtn" class="btn btn-secondary">Open</button>
+      <button id="closeBtn" class="btn btn-secondary">Close</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,sa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The check/uncheck
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods06.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods06.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Methods: <code>multipleSelect('select').check(2)</code> and <code>multipleSelect('select').uncheck(2)</code> to check and
+      uncheck a select option.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Methods </label>
+
+    <div class="col-sm-10">
+      <button id="checkBtn" class="btn btn-secondary">Check</button>
+      <button id="uncheckBtn" class="btn btn-secondary">Uncheck</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Single Select </label>
+
+    <div class="col-sm-10">
+      <select data-test="select1">
+        <option value="1">Value 1</option>
+        <option value="2">Value 2</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Multiple Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select2">
+        <option value="1" selected>Value 1</option>
+        <option value="2">Value 2</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select3">
+        <optgroup label="Group 1">
+          <option value="1" selected>Value 1</option>
+          <option value="2">Value 2</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="3" selected>Value 3</option>
+          <option value="4">Value 4</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,la=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The checkAll/uncheckAll
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods07.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods07.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>multipleSelect('select').checkAll()</code> and <code>multipleSelect('select').uncheckAll()</code> to check and
+      uncheck all options.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Methods </label>
+
+    <div class="col-sm-10">
+      <button id="checkAllBtn" class="btn btn-secondary">Check All</button>
+      <button id="uncheckAllBtn" class="btn btn-secondary">Uncheck All</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select2">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,aa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The checkInvert
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods08.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods08.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Methods: <code>multipleSelect('select').checkInvert()</code> to invert check all items.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Methods </label>
+
+    <div class="col-sm-10">
+      <button id="checkInvert" class="btn btn-secondary">Check Invert</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select2">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,ra=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The focus/blur
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods09.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods09.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>multipleSelect('select').focus()</code> and <code>multipleSelect('select').blur()</code> to focus and blur the
+      select.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Methods </label>
+
+    <div class="col-sm-10">
+      <button id="focusBtn" class="btn btn-secondary">Focus</button>
+      <button id="blurBtn" class="btn btn-secondary">Blur</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,pa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The refresh
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods10.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods10.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>multiple('select').refresh()</code> to refresh/reload the Multiple Select. If you're dynamically adding/removing
+      option tags on the original select via AJAX or DOM manipulation methods, call refresh to reflect the changes.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Option text </label>
+    <div class="col-sm-10">
+      <input id="refreshInput" class="form-control" type="text" required="required" placeholder="Enter text" />
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Option attribute </label>
+    <div class="col-sm-10">
+      <label class="checkbox"> <input id="refreshSelected" type="checkbox" /> Selected </label>
+      <label class="checkbox"> <input id="refreshDisabled" type="checkbox" /> Disabled </label>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"></label>
+    <div class="col-sm-10">
+      <button id="refreshAdd" class="btn btn-secondary">Add + Refresh</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Result Select </label>
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="text1">text1</option>
+        <option value="text2">text2</option>
+        <option value="text3">text3</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,ca=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The destroy
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods11.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods11.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>multiple('select').destroy()</code> to destroy the select.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Methods </label>
+
+    <div class="col-sm-10">
+      <button id="destroyBtn" class="btn btn-danger">Destroy</button>
+      <button id="buildBtn" class="btn btn-primary">Build</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="my-5 offset-sm-1 col-sm-10">
+    <hr />
+  </div>
+
+  <div class="row mt-5">
+    <label class="col-sm-2">Code Sample</label>
+    <div class="col-sm-10 col-lg-8">
+      <iframe
+        style="height: 100%; width: 60%; position: absolute"
+        src="data:text/html;charset=utf-8,
+        <head><base target='_blank' /></head>
+        <body><script src='https://gist.github.com/ghiscoding/4ab63b63f7374017e79151328f70ba73.js'><\/script>
+        </body>"
+      >
+      </iframe>
+    </div>
+  </div>
+</div>
+`,ua=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The getData
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods12.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods12.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>multipleSelect('getData')</code> to get the loaded data.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Methods</label>
+
+    <div class="col-sm-10">
+      <button id="getData" class="btn btn-secondary">getData</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Basic Select</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="text1">text1</option>
+        <option value="text2">text2</option>
+        <option value="text3">text3</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,da=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Placeholder
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options01.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options01.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>placeholder</code> attribute or <code>placeholder: ''</code> option to set placeholder.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Via attribute </label>
+
+    <div class="col-sm-10">
+      <select
+        id="select1"
+        class="full-width"
+        data-test="select1"
+        multiple="multiple"
+        placeholder="Here is the placeholder via attribute"
+      >
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Via options </label>
+
+    <div class="col-sm-10">
+      <select id="select2" class="full-width" data-test="select2" multiple="multiple">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,ma=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Single Radio
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options02.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options02.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>singleRadio: true</code> to show the radio input.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-3">Basic Select</label>
+
+    <div class="col-sm-9">
+      <select class="full-width" data-test="select1">
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3">Group Select</label>
+
+    <div class="col-sm-9">
+      <select class="full-width" data-test="select2">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3">Single Select with Empty Option</label>
+
+    <div class="col-sm-9">
+      <select class="multiple-select full-width" data-test="select3">
+        <option value=""></option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,ha=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Hide Select All
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options03.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options03.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>selectAll: false</code> to hide select all.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Hide Select All </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,va=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Hide Optgroup Checkboxes
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options04.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options04.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>hideOptgroupCheckboxes: true</code> option to hide the optgroup checkboxes.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <optgroup label="Group 1">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,fa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Custom Dropdown Width
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options05.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options05.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>dropWidth: 580</code> option to custom the dropdown width.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,ba=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Max Height
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options06.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options06.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>maxHeight: 140</code> option to custom the dropdown max height.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,ga=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Max Height Unit
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options07.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options07.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>maxHeightUnit: 'row'</code> option to set the max height unit.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Max Rows </label>
+
+    <div class="col-sm-10">
+      <input id="number" type="number" value="5" min="1" max="10" />
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Single Select </label>
+
+    <div class="col-sm-10">
+      <select class="full-width" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Multiple Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select2">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,_a=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Position
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options08.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options08.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>position: 'top'</code> to set the select dropdown in top position.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row" style="margin-top: 200px">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ea=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Display Values
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options09.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options09.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>displayValues: true</code> option to display selected values instead text.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,ya=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Display Title
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options10.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options10.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>displayTitle: true</code> option to display title (for tooltip) of selected text.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,wa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Display Delimiter
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options11.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options11.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>displayDelimiter: ' | '</code> option to custom the display delimiter.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Sa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Minimum Count Selected
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options12.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options12.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>minimumCountSelected: 8</code> option and the <code>%s of %s selected</code> will be shown only if more than 8
+      items where selected.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Aa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Ellipsis
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options13.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options13.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>ellipsis: true</code> option to display ... after selected options instead of <code>%s of %s selected</code>.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,ka=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Is Open
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options14.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options14.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>isOpen: true</code> to open the dropdown by default.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Oa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Keep Open
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options15.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options15.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>keepOpen: true</code> to keep the select dropdown always open.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ta=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Open On Hover
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options16.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options16.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>openOnHover: true</code> to open the select dropdown by hover instead of click.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,xa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Container
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options17.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options17.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>container</code> option to solve the cut off problem for example parent node is <code>overflow: hidden</code>.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> No container </label>
+
+    <div class="col-sm-10">
+      <div class="parent" style="overflow: hidden">
+        <select multiple="multiple" class="select1 full-width" data-test="select1">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> With data-container </label>
+
+    <div class="col-sm-10 my-container">
+      <div class="parent" style="overflow: hidden">
+        <select multiple="multiple" data-container=".my-container" class="select2 full-width" data-test="select2">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> With container option </label>
+
+    <div class="col-sm-10 my-container">
+      <div class="parent" style="overflow: hidden">
+        <select multiple="multiple" class="select3 full-width" data-test="select3">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Body Container </label>
+
+    <div class="col-sm-10">
+      <div class="parent" style="overflow: hidden">
+        <select multiple="multiple" class="select4 full-width" data-test="select4">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+`,Ca=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Filter
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options18.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options18.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>filter: true</code> to enable filter feature.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Single Select </label>
+
+    <div class="col-sm-10">
+      <select class="full-width" data-test="select1">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+        <option value="25">123</option>
+        <option value="26">234</option>
+        <option value="27">345</option>
+        <option value="28">456</option>
+        <option value="29">567</option>
+        <option value="30">678</option>
+        <option value="31">789</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Single Group </label>
+
+    <div class="col-sm-10">
+      <select class="full-width" data-test="select2">
+        <optgroup label="Group 10">
+          <option value="1">000</option>
+          <option value="2">111</option>
+          <option value="3">222</option>
+        </optgroup>
+        <optgroup label="Group 11">
+          <option value="4">333</option>
+          <option value="5">444</option>
+          <option value="6">555</option>
+        </optgroup>
+        <optgroup label="Group 12">
+          <option value="7">666</option>
+          <option value="8">777</option>
+          <option value="9">888</option>
+          <option value="10">999</option>
+        </optgroup>
+        <optgroup label="Group 20">
+          <option value="11">210</option>
+          <option value="12">321</option>
+          <option value="13">432</option>
+        </optgroup>
+        <optgroup label="Group 21">
+          <option value="14">543</option>
+          <option value="15">654</option>
+          <option value="16">765</option>
+        </optgroup>
+        <optgroup label="Group 22">
+          <option value="17">876</option>
+          <option value="18">987</option>
+          <option value="19">098</option>
+        </optgroup>
+        <optgroup label="Group 30">
+          <option value="20">012</option>
+          <option value="21">123</option>
+          <option value="22">234</option>
+        </optgroup>
+        <optgroup label="Group 31">
+          <option value="23">345</option>
+          <option value="24">456</option>
+          <option value="25">567</option>
+        </optgroup>
+        <optgroup label="Group 32">
+          <option value="26">678</option>
+          <option value="27">789</option>
+          <option value="28">890</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select3">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+        <option value="25">123</option>
+        <option value="26">234</option>
+        <option value="27">345</option>
+        <option value="28">456</option>
+        <option value="29">567</option>
+        <option value="30">678</option>
+        <option value="31">789</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select4">
+        <optgroup label="Group 10">
+          <option value="1">000</option>
+          <option value="2">111</option>
+          <option value="3">222</option>
+        </optgroup>
+        <optgroup label="Group 11">
+          <option value="4">333</option>
+          <option value="5">444</option>
+          <option value="6">555</option>
+        </optgroup>
+        <optgroup label="Group 12">
+          <option value="7">666</option>
+          <option value="8">777</option>
+          <option value="9">888</option>
+          <option value="10">999</option>
+        </optgroup>
+        <optgroup label="Group 20">
+          <option value="11">210</option>
+          <option value="12">321</option>
+          <option value="13">432</option>
+        </optgroup>
+        <optgroup label="Group 21">
+          <option value="14">543</option>
+          <option value="15">654</option>
+          <option value="16">765</option>
+        </optgroup>
+        <optgroup label="Group 22">
+          <option value="17">876</option>
+          <option value="18">987</option>
+          <option value="19">098</option>
+        </optgroup>
+        <optgroup label="Group 30">
+          <option value="20">012</option>
+          <option value="21">123</option>
+          <option value="22">234</option>
+        </optgroup>
+        <optgroup label="Group 31">
+          <option value="23">345</option>
+          <option value="24">456</option>
+          <option value="25">567</option>
+        </optgroup>
+        <optgroup label="Group 32">
+          <option value="26">678</option>
+          <option value="27">789</option>
+          <option value="28">890</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Da=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Filter Only Optgroup
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options19.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options19.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>filterGroup: true</code> to filter optgroups only and not options.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <optgroup label="Group A">
+          <option value="1" disabled>000</option>
+          <option value="2">111</option>
+          <option value="3">222</option>
+          <option value="4">333</option>
+          <option value="5">444</option>
+        </optgroup>
+        <optgroup label="Group B">
+          <option value="6">555</option>
+          <option value="7">666</option>
+          <option value="8">777</option>
+          <option value="9">888</option>
+          <option value="10">999</option>
+        </optgroup>
+        <optgroup label="Group C">
+          <option value="20">012</option>
+          <option value="21">123</option>
+          <option value="22">234</option>
+          <option value="23">345</option>
+        </optgroup>
+        <optgroup label="Group D">
+          <option value="20">456</option>
+          <option value="21">567</option>
+          <option value="22">678</option>
+          <option value="23">789</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Na=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Filter Placeholder
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options20.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options20.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>filterPlaceholder: 'The filter placeholder'</code> to set the filter placeholder.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+        <option value="25">123</option>
+        <option value="26">234</option>
+        <option value="27">345</option>
+        <option value="28">456</option>
+        <option value="29">567</option>
+        <option value="30">678</option>
+        <option value="31">789</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ma=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Filter Accept On Enter
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options21.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options21.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>filterAcceptOnEnter: true</code> option to speed up keyboard use. Enter filter text and then hit
+      <code>ENTER</code> or <code>SPACE</code> will auto click <code>select all</code> and close the dropdown.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Single Select </label>
+
+    <div class="col-sm-10">
+      <select class="full-width" data-test="select1">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+        <option value="25">123</option>
+        <option value="26">234</option>
+        <option value="27">345</option>
+        <option value="28">456</option>
+        <option value="29">567</option>
+        <option value="30">678</option>
+        <option value="31">789</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Multiple Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select2">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+        <option value="25">123</option>
+        <option value="26">234</option>
+        <option value="27">345</option>
+        <option value="28">456</option>
+        <option value="29">567</option>
+        <option value="30">678</option>
+        <option value="31">789</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,La=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Filter By Data Length
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options22.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options22.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>filterByDataLength: 10</code> option to auto enable filter when the data length is more than 10.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select class="full-width" data-test="select1">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Multiple Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select2">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select3">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+          <option value="10">Option 10</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select2 </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select4">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+          <option value="10">Option 10</option>
+          <option value="11">Option 11</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,$a=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Custom Filter
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options23.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options23.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>customFilter</code> to custom filter, in this case we filter by <code>startWith</code>.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-3 checkbox"> <input type="checkbox" /> Case Sensitive </label>
+
+    <div class="col-sm-9">
+      <select multiple="multiple" class="full-width">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ia=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Show Clear
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options24.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options24.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>showClear</code> to show the clear icon to uncheck all selected items but only when the select is filled with a selection.</div>
+  </div>
+</div>
+
+<div class="show-clear-container">
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Single Select </label>
+
+    <div class="col-sm-10">
+      <select class="full-width" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Single </label>
+
+    <div class="col-sm-10">
+      <select class="full-width" data-test="select2">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select3">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select (bigger size)</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select4">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ra=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Show OK Button
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options25.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options25.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>showOkButton</code> to show the OK button at bottom of the list when using multiple selection to easily close the
+      drop. A single select will not show the OK button.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Multiple Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="select1 full-width" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="select2 full-width" data-test="select2">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Multiple Select with Filter </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="select3 full-width" data-test="select3">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Single Select</label>
+
+    <div class="col-sm-10">
+      <select class="select4 full-width" data-test="select4">
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Pa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Styler / CSS Styler
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options26.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options26.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>styler</code> to custom the item style.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> CSS Styler </label>
+
+    <div class="col-sm-10">
+      <select id="select3" multiple="multiple" class="full-width" data-test="select3">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select id="group2" multiple="multiple" class="full-width" data-test="select4">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ha=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Text Template
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options27.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options27.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>textTemplate</code> to customize the text template and <code>renderOptionLabelAsHtml</code> to render selected
+      labels as HTML.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-4">Enable/Disable <code>renderOptionLabelAsHtml</code> option</label>
+
+    <div class="col-sm-8">
+      <button id="enableRenderHtml" class="btn btn-primary">Enable renderOptionLabelAsHtml</button>
+      <button id="disableRenderHtml" class="btn btn-secondary">Disable renderOptionLabelAsHtml</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-4">Basic Select</label>
+
+    <div class="col-sm-8">
+      <select id="basic" data-test="select1" multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-4">From Data</label>
+
+    <div class="col-sm-8">
+      <select id="from-data" data-test="select2" class="full-width" multiple></select>
+      </select>
+    </div>
+  </div>
+</div>
+`,Fa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Label Template
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options28.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options28.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>labelTemplate</code> to custom the optgroup label template and <code>renderOptionLabelAsHtml</code> to render
+      selected labels as HTML.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ba=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Auto-Adjust Drop Position
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options29.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options29.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>autoAdjustDropPosition</code> to automatically adjust the drop position from available space (top, bottom).
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row" style="margin-top: calc(100vh - 275px)">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select2">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ua=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Auto-Adjust Drop Height/Width
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options30.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options30.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>autoAdjustDropWidthByTextSize</code> to automatically adjust the drop width by the largest option width from the
+      found in the list. <br />
+      Use <code>autoAdjustDropHeight</code> to automatically adjust the drop max height calculated from the available space.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Adjust drop width by option list content</label>
+
+    <div class="col-sm-9">
+      <select id="select1" multiple="multiple" data-width="75" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Resize drop height (width: 200px)</label>
+
+    <div class="col-sm-9">
+      <select id="select2" multiple="multiple" data-width="200" data-test="select2">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Resize drop height (width: auto)</label>
+
+    <div class="col-sm-9">
+      <select id="select3" multiple="multiple" data-test="select3">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end"> Dropdown width </label>
+
+    <div class="col-sm-9">
+      <select id="select4" data-width="200" data-test="select4">
+        <option value="1">This is the first option and value is 1</option>
+        <option value="2">This is the second option and value is 2</option>
+        <option value="3">This is the third option and value is 3</option>
+        <option value="4">This is the fourth option and value is 4</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ga=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Use Select Option as Label
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options31.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options31.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>useSelectOptionLabel</code> to display select option value as
+      <code>&lt;option label=""&gt;&lt;/option&gt;</code> to display shorter text as the selected values in the parent select.
+      <br />
+      Use <code>useSelectOptionLabelToHtml</code> which is the same as "useSelectOptionLabel" but will also render html option
+      values.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Use Select Option Label</label>
+
+    <div class="col-sm-9">
+      <select id="select1" multiple="multiple" data-width="150" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3" selected>March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6" selected>June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Use Select Option Label & Render HTML</label>
+
+    <div class="col-sm-9">
+      <select id="select2" multiple="multiple" data-width="150" data-test="select2"></select>
+    </div>
+  </div>
+</div>
+`,ja=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Sanitizer
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options32.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options32.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>sanitizer</code> callback option to sanitize all html code and prevent cross-site scripting attack. We can easily
+      configure it with external library like <a href="https://github.com/cure53/DOMPurify">DOMPurify</a> or a simple regular
+      expression.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Select placeholder with XSS</label>
+
+    <div class="col-sm-9">
+      <select id="select1" multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ja=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Classes
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options33.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options33.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>classes</code>, <code>classPrefix</code>, <code>size</code> to define the class and size of select.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label col-form-label-sm">Small Select</label>
+
+    <div class="col-sm-9">
+      <select id="select1" multiple="multiple" class="full-width" data-size="sm" data-test="select1" placeholder="data-size='sm'">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Normal Select</label>
+
+    <div class="col-sm-9">
+      <select id="select2" multiple="multiple" class="full-width" data-test="select2">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label col-form-label-lg">Large Select</label>
+
+    <div class="col-sm-9">
+      <select id="select3" multiple="multiple" data-size="lg" data-test="select3" placeholder="data-size='lg'">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+  </div>
+</div>
+`,Wa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Show Search Clear
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options34.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options34.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>showSearchClear</code> to show the clear icon to empty the search filter input (you need to open the select dropdown to see the input filter).</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Single Select </label>
+
+    <div class="col-sm-10">
+      <select class="full-width" data-test="select1">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+        <option value="25">123</option>
+        <option value="26">234</option>
+        <option value="27">345</option>
+        <option value="28">456</option>
+        <option value="29">567</option>
+        <option value="30">678</option>
+        <option value="31">789</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Single Group </label>
+
+    <div class="col-sm-10">
+      <select class="full-width" data-test="select2">
+        <optgroup label="Group 10">
+          <option value="1">000</option>
+          <option value="2">111</option>
+          <option value="3">222</option>
+        </optgroup>
+        <optgroup label="Group 11">
+          <option value="4">333</option>
+          <option value="5">444</option>
+          <option value="6">555</option>
+        </optgroup>
+        <optgroup label="Group 12">
+          <option value="7">666</option>
+          <option value="8">777</option>
+          <option value="9">888</option>
+          <option value="10">999</option>
+        </optgroup>
+        <optgroup label="Group 20">
+          <option value="11">210</option>
+          <option value="12">321</option>
+          <option value="13">432</option>
+        </optgroup>
+        <optgroup label="Group 21">
+          <option value="14">543</option>
+          <option value="15">654</option>
+          <option value="16">765</option>
+        </optgroup>
+        <optgroup label="Group 22">
+          <option value="17">876</option>
+          <option value="18">987</option>
+          <option value="19">098</option>
+        </optgroup>
+        <optgroup label="Group 30">
+          <option value="20">012</option>
+          <option value="21">123</option>
+          <option value="22">234</option>
+        </optgroup>
+        <optgroup label="Group 31">
+          <option value="23">345</option>
+          <option value="24">456</option>
+          <option value="25">567</option>
+        </optgroup>
+        <optgroup label="Group 32">
+          <option value="26">678</option>
+          <option value="27">789</option>
+          <option value="28">890</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select3">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+        <option value="25">123</option>
+        <option value="26">234</option>
+        <option value="27">345</option>
+        <option value="28">456</option>
+        <option value="29">567</option>
+        <option value="30">678</option>
+        <option value="31">789</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select4">
+        <optgroup label="Group 10">
+          <option value="1">000</option>
+          <option value="2">111</option>
+          <option value="3">222</option>
+        </optgroup>
+        <optgroup label="Group 11">
+          <option value="4">333</option>
+          <option value="5">444</option>
+          <option value="6">555</option>
+        </optgroup>
+        <optgroup label="Group 12">
+          <option value="7">666</option>
+          <option value="8">777</option>
+          <option value="9">888</option>
+          <option value="10">999</option>
+        </optgroup>
+        <optgroup label="Group 20">
+          <option value="11">210</option>
+          <option value="12">321</option>
+          <option value="13">432</option>
+        </optgroup>
+        <optgroup label="Group 21">
+          <option value="14">543</option>
+          <option value="15">654</option>
+          <option value="16">765</option>
+        </optgroup>
+        <optgroup label="Group 22">
+          <option value="17">876</option>
+          <option value="18">987</option>
+          <option value="19">098</option>
+        </optgroup>
+        <optgroup label="Group 30">
+          <option value="20">012</option>
+          <option value="21">123</option>
+          <option value="22">234</option>
+        </optgroup>
+        <optgroup label="Group 31">
+          <option value="23">345</option>
+          <option value="24">456</option>
+          <option value="25">567</option>
+        </optgroup>
+        <optgroup label="Group 32">
+          <option value="26">678</option>
+          <option value="27">789</option>
+          <option value="28">890</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`,Va=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Custom Diacritic Parser
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options35.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options35.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>diacriticParser</code> callback option to remove diacritic signs (accents) from text while filtering items. 
+      For example searching with "Fév" or "Fev" will return "Février" in both cases
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row align-middle">
+    <label class="col-sm-2 py-1 text-end">in/out parsing</label>
+    <div class="col-sm-3">
+      <input class="form-control in-log" readonly style="background-color: #f0f0f0"/>
+    </div>
+    <div class="py-1 col-sm-1 w-35px">=&gt;</div>
+    <div class="col-sm-3 text-start">
+      <input class="form-control out-log" readonly style="background-color: #f0f0f0"/>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 text-end">Custom Parser</label>
+
+    <div class="col-sm-9">
+      <select id="select1" multiple="multiple" data-test="select1" class="full-width">
+        <option value="1">Janvier</option>
+        <option value="2">Février</option>
+        <option value="3">Mars</option>
+        <option value="4">Avril</option>
+        <option value="5">Mai</option>
+        <option value="6">Juin</option>
+        <option value="7">Juillet</option>
+        <option value="8">Août</option>
+        <option value="9">Septembre</option>
+        <option value="10">Octobre</option>
+        <option value="11">Novembre</option>
+        <option value="12">Décembre</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 text-end">Default Built-in Parser</label>
+
+    <div class="col-sm-9">
+      <select id="select2" multiple="multiple" data-test="select2" class="full-width">
+        <option value="1">Janvier</option>
+        <option value="2">Février</option>
+        <option value="3">Mars</option>
+        <option value="4">Avril</option>
+        <option value="5">Mai</option>
+        <option value="6">Juin</option>
+        <option value="7">Juillet</option>
+        <option value="8">Août</option>
+        <option value="9">Septembre</option>
+        <option value="10">Octobre</option>
+        <option value="11">Novembre</option>
+        <option value="12">Décembre</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,qa=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Infinite Scroll
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options36.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options36.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Enabling <code>infiniteScroll</code> will automatically scroll back to the top whenever reaching the end of the list (scrolling through either the mouse and/or arrow down). Note that this is not to be confused 
+      with Virtual Scroll which itself is enabled by default whenever the list is bigger than 200 items (the last list select below does use Virtual Scroll)
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">
+      Short List (25)
+    </label>
+
+    <div class="col-sm-10">
+      <select data-test="select1" id="select1" class="full-width"></select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Large List (2,000)</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" data-test="select2" id="select2" class="full-width"></select>
+    </div>
+  </div>
+</div>`,za=`<div class="row">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Navigation Highlight
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options37.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options37.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      The <code>navigationHighlight</code> is enabled by default and is very similar to <code>tabIndex</code>,
+      it listens to up/down arrows and mouse hovering. 
+      You can then click on Enter key to select the highlighted option without even losing your current focus.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Single Group Select</label>
+
+    <div class="col-sm-10">
+      <select class="multiple-select full-width" data-test="select1">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Multiple Select</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="multiple-select full-width" data-test="select2">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"> Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select3">
+        <optgroup label="Group 1" disabled="disabled">
+          <option value="1" selected>Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5" selected>Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7" disabled="disabled">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Select with Filter</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select4">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+        <option value="25">123</option>
+        <option value="26">234</option>
+        <option value="27">345</option>
+        <option value="28">456</option>
+        <option value="29">567</option>
+        <option value="30">678</option>
+        <option value="31">789</option>
+      </select>
+    </div>
+  </div>
+</div>
+`,Ka=`<div class="example15-container">
+  <div class="row mb-2">
+    <div class="col-md-12 title-desc">
+      <h2 class="bd-title">
+        Dark Mode
+        <span class="float-end links">
+          Code <span class="fa fa-link"></span>
+          <span class="small">
+            <a
+              target="_blank"
+              href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options15.html"
+              >html</a
+            >
+            |
+            <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options15.ts"
+              >ts</a
+            >
+          </span>
+        </span>
+      </h2>
+      <div class="demo-subtitle">
+        Dark Mode requires <code>darkMode</code> option to be enabled, when that happens it will add <code>.ms-dark-mode</code> to the parent and drop elements.
+        The dark theme is configured through CSS variables which you can also customize yourself. 
+        You can also toggle Dark Mode at any time dynamically via <code>refreshOptions()</code>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <div class="mb-3 row">
+      <label class="col-sm-2"> Methods </label>
+  
+      <div class="col-sm-5">
+        <button id="setDarkMode" class="btn btn-secondary">Toggle Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-sm-2">Single Select</label>
+  
+      <div class="col-sm-10">
+        <select id="single" class="select full-width" data-test="single">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option data-divider="true"></option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option data-divider="true"></option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-sm-2">Single Radio</label>
+  
+      <div class="col-sm-10">
+        <select id="single" class="radio full-width" data-test="radio">
+          <option value="1">January</option>
+          <option value="2" selected>February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option data-divider="true"></option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option data-divider="true"></option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="mb-3 row">
+      <label class="col-sm-2">Multiple Select</label>
+  
+      <div class="col-sm-10">
+        <select id="multiple" class="select full-width" data-test="multiple" multiple>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option data-divider="true"></option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option data-divider="true"></option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="mb-3 row">
+      <label class="col-sm-2">Group Select</label>
+  
+      <div class="col-sm-10">
+        <select id="group" class="select full-width" data-test="group" multiple>
+        <optgroup label="Group 1" disabled="disabled">
+          <option value="1" selected>Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5" selected>Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7" disabled="disabled">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+      </div>
+    </div>
+  
+    <div class="mb-3 row">
+      <label class="col-sm-2">Data Select 1</label>
+  
+      <div class="col-sm-10">
+        <select id="data-select" class="data-select full-width" data-test="data1" multiple></select>
+      </div>
+    </div>
+  </div>
+</div>
+`,Ya=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Label Id <small>(for accessibility)</small>
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options03.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options03.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      In order for the select to be accessible, it should be linked to a label, use <code>labelId</code> option
+      to associate your label  to the select button (the label must be created by yourself and linked via the <code>for</code> attribute). 
+      Using this option will link the <code>id</code> and <code>aria-labelledby</code> of the <code>.ms-choice</code> select button with your custom label. 
+    </div>
+    <div class="demo-subtitle">
+      Clicking the label will open the select dropdown.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-10">
+    <label class="mb-2" for="custom-label">My Select Label</label>
+  </div>
+  <div class="mb-10">
+    <select class="col-sm-8">
+      <option value="1">First</option>
+      <option value="2">Second</option>
+      <option value="3">Third</option>
+      <option value="4">Fourth</option>
+    </select>
+  </div>
+</div>
+`;var K="top",it="bottom",st="right",Y="left",An="auto",Te=[K,it,st,Y],ne="start",Ee="end",ts="clippingParents",Eo="viewport",fe="popper",es="reference",ao=Te.reduce(function(n,t){return n.concat([t+"-"+ne,t+"-"+Ee])},[]),yo=[].concat(Te,[An]).reduce(function(n,t){return n.concat([t,t+"-"+ne,t+"-"+Ee])},[]),ns="beforeRead",os="read",is="afterRead",ss="beforeMain",ls="main",as="afterMain",rs="beforeWrite",ps="write",cs="afterWrite",us=[ns,os,is,ss,ls,as,rs,ps,cs];function St(n){return n?(n.nodeName||"").toLowerCase():null}function lt(n){if(n==null)return window;if(n.toString()!=="[object Window]"){var t=n.ownerDocument;return t&&t.defaultView||window}return n}function oe(n){var t=lt(n).Element;return n instanceof t||n instanceof Element}function rt(n){var t=lt(n).HTMLElement;return n instanceof t||n instanceof HTMLElement}function wo(n){if(typeof ShadowRoot>"u")return!1;var t=lt(n).ShadowRoot;return n instanceof t||n instanceof ShadowRoot}function Xa(n){var t=n.state;Object.keys(t.elements).forEach(function(e){var o=t.styles[e]||{},i=t.attributes[e]||{},s=t.elements[e];!rt(s)||!St(s)||(Object.assign(s.style,o),Object.keys(i).forEach(function(l){var a=i[l];a===!1?s.removeAttribute(l):s.setAttribute(l,a===!0?"":a)}))})}function Qa(n){var t=n.state,e={popper:{position:t.options.strategy,left:"0",top:"0",margin:"0"},arrow:{position:"absolute"},reference:{}};return Object.assign(t.elements.popper.style,e.popper),t.styles=e,t.elements.arrow&&Object.assign(t.elements.arrow.style,e.arrow),function(){Object.keys(t.elements).forEach(function(o){var i=t.elements[o],s=t.attributes[o]||{},l=Object.keys(t.styles.hasOwnProperty(o)?t.styles[o]:e[o]),a=l.reduce(function(r,d){return r[d]="",r},{});!rt(i)||!St(i)||(Object.assign(i.style,a),Object.keys(s).forEach(function(r){i.removeAttribute(r)}))})}}const So={name:"applyStyles",enabled:!0,phase:"write",fn:Xa,effect:Qa,requires:["computeStyles"]};function yt(n){return n.split("-")[0]}var ee=Math.max,_n=Math.min,ye=Math.round;function ro(){var n=navigator.userAgentData;return n!=null&&n.brands&&Array.isArray(n.brands)?n.brands.map(function(t){return t.brand+"/"+t.version}).join(" "):navigator.userAgent}function ds(){return!/^((?!chrome|android).)*safari/i.test(ro())}function we(n,t,e){t===void 0&&(t=!1),e===void 0&&(e=!1);var o=n.getBoundingClientRect(),i=1,s=1;t&&rt(n)&&(i=n.offsetWidth>0&&ye(o.width)/n.offsetWidth||1,s=n.offsetHeight>0&&ye(o.height)/n.offsetHeight||1);var l=oe(n)?lt(n):window,a=l.visualViewport,r=!ds()&&e,d=(o.left+(r&&a?a.offsetLeft:0))/i,u=(o.top+(r&&a?a.offsetTop:0))/s,f=o.width/i,w=o.height/s;return{width:f,height:w,top:u,right:d+f,bottom:u+w,left:d,x:d,y:u}}function Ao(n){var t=we(n),e=n.offsetWidth,o=n.offsetHeight;return Math.abs(t.width-e)<=1&&(e=t.width),Math.abs(t.height-o)<=1&&(o=t.height),{x:n.offsetLeft,y:n.offsetTop,width:e,height:o}}function ms(n,t){var e=t.getRootNode&&t.getRootNode();if(n.contains(t))return!0;if(e&&wo(e)){var o=t;do{if(o&&n.isSameNode(o))return!0;o=o.parentNode||o.host}while(o)}return!1}function $t(n){return lt(n).getComputedStyle(n)}function Za(n){return["table","td","th"].indexOf(St(n))>=0}function Jt(n){return((oe(n)?n.ownerDocument:n.document)||window.document).documentElement}function kn(n){return St(n)==="html"?n:n.assignedSlot||n.parentNode||(wo(n)?n.host:null)||Jt(n)}function Zo(n){return!rt(n)||$t(n).position==="fixed"?null:n.offsetParent}function tr(n){var t=/firefox/i.test(ro()),e=/Trident/i.test(ro());if(e&&rt(n)){var o=$t(n);if(o.position==="fixed")return null}var i=kn(n);for(wo(i)&&(i=i.host);rt(i)&&["html","body"].indexOf(St(i))<0;){var s=$t(i);if(s.transform!=="none"||s.perspective!=="none"||s.contain==="paint"||["transform","perspective"].indexOf(s.willChange)!==-1||t&&s.willChange==="filter"||t&&s.filter&&s.filter!=="none")return i;i=i.parentNode}return null}function Ve(n){for(var t=lt(n),e=Zo(n);e&&Za(e)&&$t(e).position==="static";)e=Zo(e);return e&&(St(e)==="html"||St(e)==="body"&&$t(e).position==="static")?t:e||tr(n)||t}function ko(n){return["top","bottom"].indexOf(n)>=0?"x":"y"}function je(n,t,e){return ee(n,_n(t,e))}function er(n,t,e){var o=je(n,t,e);return o>e?e:o}function hs(){return{top:0,right:0,bottom:0,left:0}}function vs(n){return Object.assign({},hs(),n)}function fs(n,t){return t.reduce(function(e,o){return e[o]=n,e},{})}var nr=function(t,e){return t=typeof t=="function"?t(Object.assign({},e.rects,{placement:e.placement})):t,vs(typeof t!="number"?t:fs(t,Te))};function or(n){var t,e=n.state,o=n.name,i=n.options,s=e.elements.arrow,l=e.modifiersData.popperOffsets,a=yt(e.placement),r=ko(a),d=[Y,st].indexOf(a)>=0,u=d?"height":"width";if(!(!s||!l)){var f=nr(i.padding,e),w=Ao(s),E=r==="y"?K:Y,O=r==="y"?it:st,A=e.rects.reference[u]+e.rects.reference[r]-l[r]-e.rects.popper[u],T=l[r]-e.rects.reference[r],D=Ve(s),L=D?r==="y"?D.clientHeight||0:D.clientWidth||0:0,k=A/2-T/2,S=f[E],x=L-w[u]-f[O],N=L/2-w[u]/2+k,R=je(S,N,x),G=r;e.modifiersData[o]=(t={},t[G]=R,t.centerOffset=R-N,t)}}function ir(n){var t=n.state,e=n.options,o=e.element,i=o===void 0?"[data-popper-arrow]":o;i!=null&&(typeof i=="string"&&(i=t.elements.popper.querySelector(i),!i)||ms(t.elements.popper,i)&&(t.elements.arrow=i))}const bs={name:"arrow",enabled:!0,phase:"main",fn:or,effect:ir,requires:["popperOffsets"],requiresIfExists:["preventOverflow"]};function Se(n){return n.split("-")[1]}var sr={top:"auto",right:"auto",bottom:"auto",left:"auto"};function lr(n,t){var e=n.x,o=n.y,i=t.devicePixelRatio||1;return{x:ye(e*i)/i||0,y:ye(o*i)/i||0}}function ti(n){var t,e=n.popper,o=n.popperRect,i=n.placement,s=n.variation,l=n.offsets,a=n.position,r=n.gpuAcceleration,d=n.adaptive,u=n.roundOffsets,f=n.isFixed,w=l.x,E=w===void 0?0:w,O=l.y,A=O===void 0?0:O,T=typeof u=="function"?u({x:E,y:A}):{x:E,y:A};E=T.x,A=T.y;var D=l.hasOwnProperty("x"),L=l.hasOwnProperty("y"),k=Y,S=K,x=window;if(d){var N=Ve(e),R="clientHeight",G="clientWidth";if(N===lt(e)&&(N=Jt(e),$t(N).position!=="static"&&a==="absolute"&&(R="scrollHeight",G="scrollWidth")),N=N,i===K||(i===Y||i===st)&&s===Ee){S=it;var B=f&&N===x&&x.visualViewport?x.visualViewport.height:N[R];A-=B-o.height,A*=r?1:-1}if(i===Y||(i===K||i===it)&&s===Ee){k=st;var M=f&&N===x&&x.visualViewport?x.visualViewport.width:N[G];E-=M-o.width,E*=r?1:-1}}var U=Object.assign({position:a},d&&sr),q=u===!0?lr({x:E,y:A},lt(e)):{x:E,y:A};if(E=q.x,A=q.y,r){var j;return Object.assign({},U,(j={},j[S]=L?"0":"",j[k]=D?"0":"",j.transform=(x.devicePixelRatio||1)<=1?"translate("+E+"px, "+A+"px)":"translate3d("+E+"px, "+A+"px, 0)",j))}return Object.assign({},U,(t={},t[S]=L?A+"px":"",t[k]=D?E+"px":"",t.transform="",t))}function ar(n){var t=n.state,e=n.options,o=e.gpuAcceleration,i=o===void 0?!0:o,s=e.adaptive,l=s===void 0?!0:s,a=e.roundOffsets,r=a===void 0?!0:a,d={placement:yt(t.placement),variation:Se(t.placement),popper:t.elements.popper,popperRect:t.rects.popper,gpuAcceleration:i,isFixed:t.options.strategy==="fixed"};t.modifiersData.popperOffsets!=null&&(t.styles.popper=Object.assign({},t.styles.popper,ti(Object.assign({},d,{offsets:t.modifiersData.popperOffsets,position:t.options.strategy,adaptive:l,roundOffsets:r})))),t.modifiersData.arrow!=null&&(t.styles.arrow=Object.assign({},t.styles.arrow,ti(Object.assign({},d,{offsets:t.modifiersData.arrow,position:"absolute",adaptive:!1,roundOffsets:r})))),t.attributes.popper=Object.assign({},t.attributes.popper,{"data-popper-placement":t.placement})}const Oo={name:"computeStyles",enabled:!0,phase:"beforeWrite",fn:ar,data:{}};var nn={passive:!0};function rr(n){var t=n.state,e=n.instance,o=n.options,i=o.scroll,s=i===void 0?!0:i,l=o.resize,a=l===void 0?!0:l,r=lt(t.elements.popper),d=[].concat(t.scrollParents.reference,t.scrollParents.popper);return s&&d.forEach(function(u){u.addEventListener("scroll",e.update,nn)}),a&&r.addEventListener("resize",e.update,nn),function(){s&&d.forEach(function(u){u.removeEventListener("scroll",e.update,nn)}),a&&r.removeEventListener("resize",e.update,nn)}}const To={name:"eventListeners",enabled:!0,phase:"write",fn:function(){},effect:rr,data:{}};var pr={left:"right",right:"left",bottom:"top",top:"bottom"};function vn(n){return n.replace(/left|right|bottom|top/g,function(t){return pr[t]})}var cr={start:"end",end:"start"};function ei(n){return n.replace(/start|end/g,function(t){return cr[t]})}function xo(n){var t=lt(n),e=t.pageXOffset,o=t.pageYOffset;return{scrollLeft:e,scrollTop:o}}function Co(n){return we(Jt(n)).left+xo(n).scrollLeft}function ur(n,t){var e=lt(n),o=Jt(n),i=e.visualViewport,s=o.clientWidth,l=o.clientHeight,a=0,r=0;if(i){s=i.width,l=i.height;var d=ds();(d||!d&&t==="fixed")&&(a=i.offsetLeft,r=i.offsetTop)}return{width:s,height:l,x:a+Co(n),y:r}}function dr(n){var t,e=Jt(n),o=xo(n),i=(t=n.ownerDocument)==null?void 0:t.body,s=ee(e.scrollWidth,e.clientWidth,i?i.scrollWidth:0,i?i.clientWidth:0),l=ee(e.scrollHeight,e.clientHeight,i?i.scrollHeight:0,i?i.clientHeight:0),a=-o.scrollLeft+Co(n),r=-o.scrollTop;return $t(i||e).direction==="rtl"&&(a+=ee(e.clientWidth,i?i.clientWidth:0)-s),{width:s,height:l,x:a,y:r}}function Do(n){var t=$t(n),e=t.overflow,o=t.overflowX,i=t.overflowY;return/auto|scroll|overlay|hidden/.test(e+i+o)}function gs(n){return["html","body","#document"].indexOf(St(n))>=0?n.ownerDocument.body:rt(n)&&Do(n)?n:gs(kn(n))}function Je(n,t){var e;t===void 0&&(t=[]);var o=gs(n),i=o===((e=n.ownerDocument)==null?void 0:e.body),s=lt(o),l=i?[s].concat(s.visualViewport||[],Do(o)?o:[]):o,a=t.concat(l);return i?a:a.concat(Je(kn(l)))}function po(n){return Object.assign({},n,{left:n.x,top:n.y,right:n.x+n.width,bottom:n.y+n.height})}function mr(n,t){var e=we(n,!1,t==="fixed");return e.top=e.top+n.clientTop,e.left=e.left+n.clientLeft,e.bottom=e.top+n.clientHeight,e.right=e.left+n.clientWidth,e.width=n.clientWidth,e.height=n.clientHeight,e.x=e.left,e.y=e.top,e}function ni(n,t,e){return t===Eo?po(ur(n,e)):oe(t)?mr(t,e):po(dr(Jt(n)))}function hr(n){var t=Je(kn(n)),e=["absolute","fixed"].indexOf($t(n).position)>=0,o=e&&rt(n)?Ve(n):n;return oe(o)?t.filter(function(i){return oe(i)&&ms(i,o)&&St(i)!=="body"}):[]}function vr(n,t,e,o){var i=t==="clippingParents"?hr(n):[].concat(t),s=[].concat(i,[e]),l=s[0],a=s.reduce(function(r,d){var u=ni(n,d,o);return r.top=ee(u.top,r.top),r.right=_n(u.right,r.right),r.bottom=_n(u.bottom,r.bottom),r.left=ee(u.left,r.left),r},ni(n,l,o));return a.width=a.right-a.left,a.height=a.bottom-a.top,a.x=a.left,a.y=a.top,a}function _s(n){var t=n.reference,e=n.element,o=n.placement,i=o?yt(o):null,s=o?Se(o):null,l=t.x+t.width/2-e.width/2,a=t.y+t.height/2-e.height/2,r;switch(i){case K:r={x:l,y:t.y-e.height};break;case it:r={x:l,y:t.y+t.height};break;case st:r={x:t.x+t.width,y:a};break;case Y:r={x:t.x-e.width,y:a};break;default:r={x:t.x,y:t.y}}var d=i?ko(i):null;if(d!=null){var u=d==="y"?"height":"width";switch(s){case ne:r[d]=r[d]-(t[u]/2-e[u]/2);break;case Ee:r[d]=r[d]+(t[u]/2-e[u]/2);break}}return r}function Ae(n,t){t===void 0&&(t={});var e=t,o=e.placement,i=o===void 0?n.placement:o,s=e.strategy,l=s===void 0?n.strategy:s,a=e.boundary,r=a===void 0?ts:a,d=e.rootBoundary,u=d===void 0?Eo:d,f=e.elementContext,w=f===void 0?fe:f,E=e.altBoundary,O=E===void 0?!1:E,A=e.padding,T=A===void 0?0:A,D=vs(typeof T!="number"?T:fs(T,Te)),L=w===fe?es:fe,k=n.rects.popper,S=n.elements[O?L:w],x=vr(oe(S)?S:S.contextElement||Jt(n.elements.popper),r,u,l),N=we(n.elements.reference),R=_s({reference:N,element:k,strategy:"absolute",placement:i}),G=po(Object.assign({},k,R)),B=w===fe?G:N,M={top:x.top-B.top+D.top,bottom:B.bottom-x.bottom+D.bottom,left:x.left-B.left+D.left,right:B.right-x.right+D.right},U=n.modifiersData.offset;if(w===fe&&U){var q=U[i];Object.keys(M).forEach(function(j){var At=[st,it].indexOf(j)>=0?1:-1,kt=[K,it].indexOf(j)>=0?"y":"x";M[j]+=q[kt]*At})}return M}function fr(n,t){t===void 0&&(t={});var e=t,o=e.placement,i=e.boundary,s=e.rootBoundary,l=e.padding,a=e.flipVariations,r=e.allowedAutoPlacements,d=r===void 0?yo:r,u=Se(o),f=u?a?ao:ao.filter(function(O){return Se(O)===u}):Te,w=f.filter(function(O){return d.indexOf(O)>=0});w.length===0&&(w=f);var E=w.reduce(function(O,A){return O[A]=Ae(n,{placement:A,boundary:i,rootBoundary:s,padding:l})[yt(A)],O},{});return Object.keys(E).sort(function(O,A){return E[O]-E[A]})}function br(n){if(yt(n)===An)return[];var t=vn(n);return[ei(n),t,ei(t)]}function gr(n){var t=n.state,e=n.options,o=n.name;if(!t.modifiersData[o]._skip){for(var i=e.mainAxis,s=i===void 0?!0:i,l=e.altAxis,a=l===void 0?!0:l,r=e.fallbackPlacements,d=e.padding,u=e.boundary,f=e.rootBoundary,w=e.altBoundary,E=e.flipVariations,O=E===void 0?!0:E,A=e.allowedAutoPlacements,T=t.options.placement,D=yt(T),L=D===T,k=r||(L||!O?[vn(T)]:br(T)),S=[T].concat(k).reduce(function($,Z){return $.concat(yt(Z)===An?fr(t,{placement:Z,boundary:u,rootBoundary:f,padding:d,flipVariations:O,allowedAutoPlacements:A}):Z)},[]),x=t.rects.reference,N=t.rects.popper,R=new Map,G=!0,B=S[0],M=0;M<S.length;M++){var U=S[M],q=yt(U),j=Se(U)===ne,At=[K,it].indexOf(q)>=0,kt=At?"width":"height",z=Ae(t,{placement:U,boundary:u,rootBoundary:f,altBoundary:w,padding:d}),Q=At?j?st:Y:j?it:K;x[kt]>N[kt]&&(Q=vn(Q));var le=vn(Q),gt=[];if(s&&gt.push(z[q]<=0),a&&gt.push(z[Q]<=0,z[le]<=0),gt.every(function($){return $})){B=U,G=!1;break}R.set(U,gt)}if(G)for(var H=O?3:1,ae=function(Z){var Ot=S.find(function(zt){var mt=R.get(zt);if(mt)return mt.slice(0,Z).every(function(re){return re})});if(Ot)return B=Ot,"break"},P=H;P>0;P--){var qt=ae(P);if(qt==="break")break}t.placement!==B&&(t.modifiersData[o]._skip=!0,t.placement=B,t.reset=!0)}}const Es={name:"flip",enabled:!0,phase:"main",fn:gr,requiresIfExists:["offset"],data:{_skip:!1}};function oi(n,t,e){return e===void 0&&(e={x:0,y:0}),{top:n.top-t.height-e.y,right:n.right-t.width+e.x,bottom:n.bottom-t.height+e.y,left:n.left-t.width-e.x}}function ii(n){return[K,st,it,Y].some(function(t){return n[t]>=0})}function _r(n){var t=n.state,e=n.name,o=t.rects.reference,i=t.rects.popper,s=t.modifiersData.preventOverflow,l=Ae(t,{elementContext:"reference"}),a=Ae(t,{altBoundary:!0}),r=oi(l,o),d=oi(a,i,s),u=ii(r),f=ii(d);t.modifiersData[e]={referenceClippingOffsets:r,popperEscapeOffsets:d,isReferenceHidden:u,hasPopperEscaped:f},t.attributes.popper=Object.assign({},t.attributes.popper,{"data-popper-reference-hidden":u,"data-popper-escaped":f})}const ys={name:"hide",enabled:!0,phase:"main",requiresIfExists:["preventOverflow"],fn:_r};function Er(n,t,e){var o=yt(n),i=[Y,K].indexOf(o)>=0?-1:1,s=typeof e=="function"?e(Object.assign({},t,{placement:n})):e,l=s[0],a=s[1];return l=l||0,a=(a||0)*i,[Y,st].indexOf(o)>=0?{x:a,y:l}:{x:l,y:a}}function yr(n){var t=n.state,e=n.options,o=n.name,i=e.offset,s=i===void 0?[0,0]:i,l=yo.reduce(function(u,f){return u[f]=Er(f,t.rects,s),u},{}),a=l[t.placement],r=a.x,d=a.y;t.modifiersData.popperOffsets!=null&&(t.modifiersData.popperOffsets.x+=r,t.modifiersData.popperOffsets.y+=d),t.modifiersData[o]=l}const ws={name:"offset",enabled:!0,phase:"main",requires:["popperOffsets"],fn:yr};function wr(n){var t=n.state,e=n.name;t.modifiersData[e]=_s({reference:t.rects.reference,element:t.rects.popper,strategy:"absolute",placement:t.placement})}const No={name:"popperOffsets",enabled:!0,phase:"read",fn:wr,data:{}};function Sr(n){return n==="x"?"y":"x"}function Ar(n){var t=n.state,e=n.options,o=n.name,i=e.mainAxis,s=i===void 0?!0:i,l=e.altAxis,a=l===void 0?!1:l,r=e.boundary,d=e.rootBoundary,u=e.altBoundary,f=e.padding,w=e.tether,E=w===void 0?!0:w,O=e.tetherOffset,A=O===void 0?0:O,T=Ae(t,{boundary:r,rootBoundary:d,padding:f,altBoundary:u}),D=yt(t.placement),L=Se(t.placement),k=!L,S=ko(D),x=Sr(S),N=t.modifiersData.popperOffsets,R=t.rects.reference,G=t.rects.popper,B=typeof A=="function"?A(Object.assign({},t.rects,{placement:t.placement})):A,M=typeof B=="number"?{mainAxis:B,altAxis:B}:Object.assign({mainAxis:0,altAxis:0},B),U=t.modifiersData.offset?t.modifiersData.offset[t.placement]:null,q={x:0,y:0};if(N){if(s){var j,At=S==="y"?K:Y,kt=S==="y"?it:st,z=S==="y"?"height":"width",Q=N[S],le=Q+T[At],gt=Q-T[kt],H=E?-G[z]/2:0,ae=L===ne?R[z]:G[z],P=L===ne?-G[z]:-R[z],qt=t.elements.arrow,$=E&&qt?Ao(qt):{width:0,height:0},Z=t.modifiersData["arrow#persistent"]?t.modifiersData["arrow#persistent"].padding:hs(),Ot=Z[At],zt=Z[kt],mt=je(0,R[z],$[z]),re=k?R[z]/2-H-mt-Ot-M.mainAxis:ae-mt-Ot-M.mainAxis,Xe=k?-R[z]/2+H+mt+zt+M.mainAxis:P+mt+zt+M.mainAxis,_t=t.elements.arrow&&Ve(t.elements.arrow),Tt=_t?S==="y"?_t.clientTop||0:_t.clientLeft||0:0,pe=(j=U==null?void 0:U[S])!=null?j:0,Ne=Q+re-pe-Tt,Rt=Q+Xe-pe,Kt=je(E?_n(le,Ne):le,Q,E?ee(gt,Rt):gt);N[S]=Kt,q[S]=Kt-Q}if(a){var Yt,Qe=S==="x"?K:Y,Ze=S==="x"?it:st,xt=N[x],Pt=x==="y"?"height":"width",Ht=xt+T[Qe],Ct=xt-T[Ze],Et=[K,Y].indexOf(D)!==-1,Me=(Yt=U==null?void 0:U[x])!=null?Yt:0,Le=Et?Ht:xt-R[Pt]-G[Pt]-Me+M.altAxis,$e=Et?xt+R[Pt]+G[Pt]-Me-M.altAxis:Ct,ce=E&&Et?er(Le,xt,$e):je(E?Le:Ht,xt,E?$e:Ct);N[x]=ce,q[x]=ce-xt}t.modifiersData[o]=q}}const Ss={name:"preventOverflow",enabled:!0,phase:"main",fn:Ar,requiresIfExists:["offset"]};function kr(n){return{scrollLeft:n.scrollLeft,scrollTop:n.scrollTop}}function Or(n){return n===lt(n)||!rt(n)?xo(n):kr(n)}function Tr(n){var t=n.getBoundingClientRect(),e=ye(t.width)/n.offsetWidth||1,o=ye(t.height)/n.offsetHeight||1;return e!==1||o!==1}function xr(n,t,e){e===void 0&&(e=!1);var o=rt(t),i=rt(t)&&Tr(t),s=Jt(t),l=we(n,i,e),a={scrollLeft:0,scrollTop:0},r={x:0,y:0};return(o||!o&&!e)&&((St(t)!=="body"||Do(s))&&(a=Or(t)),rt(t)?(r=we(t,!0),r.x+=t.clientLeft,r.y+=t.clientTop):s&&(r.x=Co(s))),{x:l.left+a.scrollLeft-r.x,y:l.top+a.scrollTop-r.y,width:l.width,height:l.height}}function Cr(n){var t=new Map,e=new Set,o=[];n.forEach(function(s){t.set(s.name,s)});function i(s){e.add(s.name);var l=[].concat(s.requires||[],s.requiresIfExists||[]);l.forEach(function(a){if(!e.has(a)){var r=t.get(a);r&&i(r)}}),o.push(s)}return n.forEach(function(s){e.has(s.name)||i(s)}),o}function Dr(n){var t=Cr(n);return us.reduce(function(e,o){return e.concat(t.filter(function(i){return i.phase===o}))},[])}function Nr(n){var t;return function(){return t||(t=new Promise(function(e){Promise.resolve().then(function(){t=void 0,e(n())})})),t}}function Mr(n){var t=n.reduce(function(e,o){var i=e[o.name];return e[o.name]=i?Object.assign({},i,o,{options:Object.assign({},i.options,o.options),data:Object.assign({},i.data,o.data)}):o,e},{});return Object.keys(t).map(function(e){return t[e]})}var si={placement:"bottom",modifiers:[],strategy:"absolute"};function li(){for(var n=arguments.length,t=new Array(n),e=0;e<n;e++)t[e]=arguments[e];return!t.some(function(o){return!(o&&typeof o.getBoundingClientRect=="function")})}function On(n){n===void 0&&(n={});var t=n,e=t.defaultModifiers,o=e===void 0?[]:e,i=t.defaultOptions,s=i===void 0?si:i;return function(a,r,d){d===void 0&&(d=s);var u={placement:"bottom",orderedModifiers:[],options:Object.assign({},si,s),modifiersData:{},elements:{reference:a,popper:r},attributes:{},styles:{}},f=[],w=!1,E={state:u,setOptions:function(D){var L=typeof D=="function"?D(u.options):D;A(),u.options=Object.assign({},s,u.options,L),u.scrollParents={reference:oe(a)?Je(a):a.contextElement?Je(a.contextElement):[],popper:Je(r)};var k=Dr(Mr([].concat(o,u.options.modifiers)));return u.orderedModifiers=k.filter(function(S){return S.enabled}),O(),E.update()},forceUpdate:function(){if(!w){var D=u.elements,L=D.reference,k=D.popper;if(li(L,k)){u.rects={reference:xr(L,Ve(k),u.options.strategy==="fixed"),popper:Ao(k)},u.reset=!1,u.placement=u.options.placement,u.orderedModifiers.forEach(function(M){return u.modifiersData[M.name]=Object.assign({},M.data)});for(var S=0;S<u.orderedModifiers.length;S++){if(u.reset===!0){u.reset=!1,S=-1;continue}var x=u.orderedModifiers[S],N=x.fn,R=x.options,G=R===void 0?{}:R,B=x.name;typeof N=="function"&&(u=N({state:u,options:G,name:B,instance:E})||u)}}}},update:Nr(function(){return new Promise(function(T){E.forceUpdate(),T(u)})}),destroy:function(){A(),w=!0}};if(!li(a,r))return E;E.setOptions(d).then(function(T){!w&&d.onFirstUpdate&&d.onFirstUpdate(T)});function O(){u.orderedModifiers.forEach(function(T){var D=T.name,L=T.options,k=L===void 0?{}:L,S=T.effect;if(typeof S=="function"){var x=S({state:u,name:D,instance:E,options:k}),N=function(){};f.push(x||N)}})}function A(){f.forEach(function(T){return T()}),f=[]}return E}}var Lr=On(),$r=[To,No,Oo,So],Ir=On({defaultModifiers:$r}),Rr=[To,No,Oo,So,ws,Es,Ss,bs,ys],Mo=On({defaultModifiers:Rr});const As=Object.freeze(Object.defineProperty({__proto__:null,afterMain:as,afterRead:is,afterWrite:cs,applyStyles:So,arrow:bs,auto:An,basePlacements:Te,beforeMain:ss,beforeRead:ns,beforeWrite:rs,bottom:it,clippingParents:ts,computeStyles:Oo,createPopper:Mo,createPopperBase:Lr,createPopperLite:Ir,detectOverflow:Ae,end:Ee,eventListeners:To,flip:Es,hide:ys,left:Y,main:ls,modifierPhases:us,offset:ws,placements:yo,popper:fe,popperGenerator:On,popperOffsets:No,preventOverflow:Ss,read:os,reference:es,right:st,start:ne,top:K,variationPlacements:ao,viewport:Eo,write:ps},Symbol.toStringTag,{value:"Module"}));/*!
+  * Bootstrap v5.3.3 (https://getbootstrap.com/)
+  * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  */const Bt=new Map,Rn={set(n,t,e){Bt.has(n)||Bt.set(n,new Map);const o=Bt.get(n);if(!o.has(t)&&o.size!==0){console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(o.keys())[0]}.`);return}o.set(t,e)},get(n,t){return Bt.has(n)&&Bt.get(n).get(t)||null},remove(n,t){if(!Bt.has(n))return;const e=Bt.get(n);e.delete(t),e.size===0&&Bt.delete(n)}},Pr=1e6,Hr=1e3,co="transitionend",ks=n=>(n&&window.CSS&&window.CSS.escape&&(n=n.replace(/#([^\s"#']+)/g,(t,e)=>`#${CSS.escape(e)}`)),n),Fr=n=>n==null?`${n}`:Object.prototype.toString.call(n).match(/\s([a-z]+)/i)[1].toLowerCase(),Br=n=>{do n+=Math.floor(Math.random()*Pr);while(document.getElementById(n));return n},Ur=n=>{if(!n)return 0;let{transitionDuration:t,transitionDelay:e}=window.getComputedStyle(n);const o=Number.parseFloat(t),i=Number.parseFloat(e);return!o&&!i?0:(t=t.split(",")[0],e=e.split(",")[0],(Number.parseFloat(t)+Number.parseFloat(e))*Hr)},Os=n=>{n.dispatchEvent(new Event(co))},Mt=n=>!n||typeof n!="object"?!1:(typeof n.jquery<"u"&&(n=n[0]),typeof n.nodeType<"u"),Ut=n=>Mt(n)?n.jquery?n[0]:n:typeof n=="string"&&n.length>0?document.querySelector(ks(n)):null,xe=n=>{if(!Mt(n)||n.getClientRects().length===0)return!1;const t=getComputedStyle(n).getPropertyValue("visibility")==="visible",e=n.closest("details:not([open])");if(!e)return t;if(e!==n){const o=n.closest("summary");if(o&&o.parentNode!==e||o===null)return!1}return t},Gt=n=>!n||n.nodeType!==Node.ELEMENT_NODE||n.classList.contains("disabled")?!0:typeof n.disabled<"u"?n.disabled:n.hasAttribute("disabled")&&n.getAttribute("disabled")!=="false",Ts=n=>{if(!document.documentElement.attachShadow)return null;if(typeof n.getRootNode=="function"){const t=n.getRootNode();return t instanceof ShadowRoot?t:null}return n instanceof ShadowRoot?n:n.parentNode?Ts(n.parentNode):null},En=()=>{},qe=n=>{n.offsetHeight},xs=()=>window.jQuery&&!document.body.hasAttribute("data-bs-no-jquery")?window.jQuery:null,Pn=[],Gr=n=>{document.readyState==="loading"?(Pn.length||document.addEventListener("DOMContentLoaded",()=>{for(const t of Pn)t()}),Pn.push(n)):n()},pt=()=>document.documentElement.dir==="rtl",dt=n=>{Gr(()=>{const t=xs();if(t){const e=n.NAME,o=t.fn[e];t.fn[e]=n.jQueryInterface,t.fn[e].Constructor=n,t.fn[e].noConflict=()=>(t.fn[e]=o,n.jQueryInterface)}})},nt=(n,t=[],e=n)=>typeof n=="function"?n(...t):e,Cs=(n,t,e=!0)=>{if(!e){nt(n);return}const i=Ur(t)+5;let s=!1;const l=({target:a})=>{a===t&&(s=!0,t.removeEventListener(co,l),nt(n))};t.addEventListener(co,l),setTimeout(()=>{s||Os(t)},i)},Lo=(n,t,e,o)=>{const i=n.length;let s=n.indexOf(t);return s===-1?!e&&o?n[i-1]:n[0]:(s+=e?1:-1,o&&(s=(s+i)%i),n[Math.max(0,Math.min(s,i-1))])},jr=/[^.]*(?=\..*)\.|.*/,Jr=/\..*/,Wr=/::\d+$/,Hn={};let ai=1;const Ds={mouseenter:"mouseover",mouseleave:"mouseout"},Vr=new Set(["click","dblclick","mouseup","mousedown","contextmenu","mousewheel","DOMMouseScroll","mouseover","mouseout","mousemove","selectstart","selectend","keydown","keypress","keyup","orientationchange","touchstart","touchmove","touchend","touchcancel","pointerdown","pointermove","pointerup","pointerleave","pointercancel","gesturestart","gesturechange","gestureend","focus","blur","change","reset","select","submit","focusin","focusout","load","unload","beforeunload","resize","move","DOMContentLoaded","readystatechange","error","abort","scroll"]);function Ns(n,t){return t&&`${t}::${ai++}`||n.uidEvent||ai++}function Ms(n){const t=Ns(n);return n.uidEvent=t,Hn[t]=Hn[t]||{},Hn[t]}function qr(n,t){return function e(o){return $o(o,{delegateTarget:n}),e.oneOff&&h.off(n,o.type,t),t.apply(n,[o])}}function zr(n,t,e){return function o(i){const s=n.querySelectorAll(t);for(let{target:l}=i;l&&l!==this;l=l.parentNode)for(const a of s)if(a===l)return $o(i,{delegateTarget:l}),o.oneOff&&h.off(n,i.type,t,e),e.apply(l,[i])}}function Ls(n,t,e=null){return Object.values(n).find(o=>o.callable===t&&o.delegationSelector===e)}function $s(n,t,e){const o=typeof t=="string",i=o?e:t||e;let s=Is(n);return Vr.has(s)||(s=n),[o,i,s]}function ri(n,t,e,o,i){if(typeof t!="string"||!n)return;let[s,l,a]=$s(t,e,o);t in Ds&&(l=(O=>function(A){if(!A.relatedTarget||A.relatedTarget!==A.delegateTarget&&!A.delegateTarget.contains(A.relatedTarget))return O.call(this,A)})(l));const r=Ms(n),d=r[a]||(r[a]={}),u=Ls(d,l,s?e:null);if(u){u.oneOff=u.oneOff&&i;return}const f=Ns(l,t.replace(jr,"")),w=s?zr(n,e,l):qr(n,l);w.delegationSelector=s?e:null,w.callable=l,w.oneOff=i,w.uidEvent=f,d[f]=w,n.addEventListener(a,w,s)}function uo(n,t,e,o,i){const s=Ls(t[e],o,i);s&&(n.removeEventListener(e,s,!!i),delete t[e][s.uidEvent])}function Kr(n,t,e,o){const i=t[e]||{};for(const[s,l]of Object.entries(i))s.includes(o)&&uo(n,t,e,l.callable,l.delegationSelector)}function Is(n){return n=n.replace(Jr,""),Ds[n]||n}const h={on(n,t,e,o){ri(n,t,e,o,!1)},one(n,t,e,o){ri(n,t,e,o,!0)},off(n,t,e,o){if(typeof t!="string"||!n)return;const[i,s,l]=$s(t,e,o),a=l!==t,r=Ms(n),d=r[l]||{},u=t.startsWith(".");if(typeof s<"u"){if(!Object.keys(d).length)return;uo(n,r,l,s,i?e:null);return}if(u)for(const f of Object.keys(r))Kr(n,r,f,t.slice(1));for(const[f,w]of Object.entries(d)){const E=f.replace(Wr,"");(!a||t.includes(E))&&uo(n,r,l,w.callable,w.delegationSelector)}},trigger(n,t,e){if(typeof t!="string"||!n)return null;const o=xs(),i=Is(t),s=t!==i;let l=null,a=!0,r=!0,d=!1;s&&o&&(l=o.Event(t,e),o(n).trigger(l),a=!l.isPropagationStopped(),r=!l.isImmediatePropagationStopped(),d=l.isDefaultPrevented());const u=$o(new Event(t,{bubbles:a,cancelable:!0}),e);return d&&u.preventDefault(),r&&n.dispatchEvent(u),u.defaultPrevented&&l&&l.preventDefault(),u}};function $o(n,t={}){for(const[e,o]of Object.entries(t))try{n[e]=o}catch{Object.defineProperty(n,e,{configurable:!0,get(){return o}})}return n}function pi(n){if(n==="true")return!0;if(n==="false")return!1;if(n===Number(n).toString())return Number(n);if(n===""||n==="null")return null;if(typeof n!="string")return n;try{return JSON.parse(decodeURIComponent(n))}catch{return n}}function Fn(n){return n.replace(/[A-Z]/g,t=>`-${t.toLowerCase()}`)}const Lt={setDataAttribute(n,t,e){n.setAttribute(`data-bs-${Fn(t)}`,e)},removeDataAttribute(n,t){n.removeAttribute(`data-bs-${Fn(t)}`)},getDataAttributes(n){if(!n)return{};const t={},e=Object.keys(n.dataset).filter(o=>o.startsWith("bs")&&!o.startsWith("bsConfig"));for(const o of e){let i=o.replace(/^bs/,"");i=i.charAt(0).toLowerCase()+i.slice(1,i.length),t[i]=pi(n.dataset[o])}return t},getDataAttribute(n,t){return pi(n.getAttribute(`data-bs-${Fn(t)}`))}};class ze{static get Default(){return{}}static get DefaultType(){return{}}static get NAME(){throw new Error('You have to implement the static method "NAME", for each component!')}_getConfig(t){return t=this._mergeConfigObj(t),t=this._configAfterMerge(t),this._typeCheckConfig(t),t}_configAfterMerge(t){return t}_mergeConfigObj(t,e){const o=Mt(e)?Lt.getDataAttribute(e,"config"):{};return{...this.constructor.Default,...typeof o=="object"?o:{},...Mt(e)?Lt.getDataAttributes(e):{},...typeof t=="object"?t:{}}}_typeCheckConfig(t,e=this.constructor.DefaultType){for(const[o,i]of Object.entries(e)){const s=t[o],l=Mt(s)?"element":Fr(s);if(!new RegExp(i).test(l))throw new TypeError(`${this.constructor.NAME.toUpperCase()}: Option "${o}" provided type "${l}" but expected type "${i}".`)}}}const Yr="5.3.3";class bt extends ze{constructor(t,e){super(),t=Ut(t),t&&(this._element=t,this._config=this._getConfig(e),Rn.set(this._element,this.constructor.DATA_KEY,this))}dispose(){Rn.remove(this._element,this.constructor.DATA_KEY),h.off(this._element,this.constructor.EVENT_KEY);for(const t of Object.getOwnPropertyNames(this))this[t]=null}_queueCallback(t,e,o=!0){Cs(t,e,o)}_getConfig(t){return t=this._mergeConfigObj(t,this._element),t=this._configAfterMerge(t),this._typeCheckConfig(t),t}static getInstance(t){return Rn.get(Ut(t),this.DATA_KEY)}static getOrCreateInstance(t,e={}){return this.getInstance(t)||new this(t,typeof e=="object"?e:null)}static get VERSION(){return Yr}static get DATA_KEY(){return`bs.${this.NAME}`}static get EVENT_KEY(){return`.${this.DATA_KEY}`}static eventName(t){return`${t}${this.EVENT_KEY}`}}const Bn=n=>{let t=n.getAttribute("data-bs-target");if(!t||t==="#"){let e=n.getAttribute("href");if(!e||!e.includes("#")&&!e.startsWith("."))return null;e.includes("#")&&!e.startsWith("#")&&(e=`#${e.split("#")[1]}`),t=e&&e!=="#"?e.trim():null}return t?t.split(",").map(e=>ks(e)).join(","):null},y={find(n,t=document.documentElement){return[].concat(...Element.prototype.querySelectorAll.call(t,n))},findOne(n,t=document.documentElement){return Element.prototype.querySelector.call(t,n)},children(n,t){return[].concat(...n.children).filter(e=>e.matches(t))},parents(n,t){const e=[];let o=n.parentNode.closest(t);for(;o;)e.push(o),o=o.parentNode.closest(t);return e},prev(n,t){let e=n.previousElementSibling;for(;e;){if(e.matches(t))return[e];e=e.previousElementSibling}return[]},next(n,t){let e=n.nextElementSibling;for(;e;){if(e.matches(t))return[e];e=e.nextElementSibling}return[]},focusableChildren(n){const t=["a","button","input","textarea","select","details","[tabindex]",'[contenteditable="true"]'].map(e=>`${e}:not([tabindex^="-"])`).join(",");return this.find(t,n).filter(e=>!Gt(e)&&xe(e))},getSelectorFromElement(n){const t=Bn(n);return t&&y.findOne(t)?t:null},getElementFromSelector(n){const t=Bn(n);return t?y.findOne(t):null},getMultipleElementsFromSelector(n){const t=Bn(n);return t?y.find(t):[]}},Tn=(n,t="hide")=>{const e=`click.dismiss${n.EVENT_KEY}`,o=n.NAME;h.on(document,e,`[data-bs-dismiss="${o}"]`,function(i){if(["A","AREA"].includes(this.tagName)&&i.preventDefault(),Gt(this))return;const s=y.getElementFromSelector(this)||this.closest(`.${o}`);n.getOrCreateInstance(s)[t]()})},Xr="alert",Qr="bs.alert",Rs=`.${Qr}`,Zr=`close${Rs}`,tp=`closed${Rs}`,ep="fade",np="show";class xn extends bt{static get NAME(){return Xr}close(){if(h.trigger(this._element,Zr).defaultPrevented)return;this._element.classList.remove(np);const e=this._element.classList.contains(ep);this._queueCallback(()=>this._destroyElement(),this._element,e)}_destroyElement(){this._element.remove(),h.trigger(this._element,tp),this.dispose()}static jQueryInterface(t){return this.each(function(){const e=xn.getOrCreateInstance(this);if(typeof t=="string"){if(e[t]===void 0||t.startsWith("_")||t==="constructor")throw new TypeError(`No method named "${t}"`);e[t](this)}})}}Tn(xn,"close");dt(xn);const op="button",ip="bs.button",sp=`.${ip}`,lp=".data-api",ap="active",ci='[data-bs-toggle="button"]',rp=`click${sp}${lp}`;class Cn extends bt{static get NAME(){return op}toggle(){this._element.setAttribute("aria-pressed",this._element.classList.toggle(ap))}static jQueryInterface(t){return this.each(function(){const e=Cn.getOrCreateInstance(this);t==="toggle"&&e[t]()})}}h.on(document,rp,ci,n=>{n.preventDefault();const t=n.target.closest(ci);Cn.getOrCreateInstance(t).toggle()});dt(Cn);const pp="swipe",Ce=".bs.swipe",cp=`touchstart${Ce}`,up=`touchmove${Ce}`,dp=`touchend${Ce}`,mp=`pointerdown${Ce}`,hp=`pointerup${Ce}`,vp="touch",fp="pen",bp="pointer-event",gp=40,_p={endCallback:null,leftCallback:null,rightCallback:null},Ep={endCallback:"(function|null)",leftCallback:"(function|null)",rightCallback:"(function|null)"};class yn extends ze{constructor(t,e){super(),this._element=t,!(!t||!yn.isSupported())&&(this._config=this._getConfig(e),this._deltaX=0,this._supportPointerEvents=!!window.PointerEvent,this._initEvents())}static get Default(){return _p}static get DefaultType(){return Ep}static get NAME(){return pp}dispose(){h.off(this._element,Ce)}_start(t){if(!this._supportPointerEvents){this._deltaX=t.touches[0].clientX;return}this._eventIsPointerPenTouch(t)&&(this._deltaX=t.clientX)}_end(t){this._eventIsPointerPenTouch(t)&&(this._deltaX=t.clientX-this._deltaX),this._handleSwipe(),nt(this._config.endCallback)}_move(t){this._deltaX=t.touches&&t.touches.length>1?0:t.touches[0].clientX-this._deltaX}_handleSwipe(){const t=Math.abs(this._deltaX);if(t<=gp)return;const e=t/this._deltaX;this._deltaX=0,e&&nt(e>0?this._config.rightCallback:this._config.leftCallback)}_initEvents(){this._supportPointerEvents?(h.on(this._element,mp,t=>this._start(t)),h.on(this._element,hp,t=>this._end(t)),this._element.classList.add(bp)):(h.on(this._element,cp,t=>this._start(t)),h.on(this._element,up,t=>this._move(t)),h.on(this._element,dp,t=>this._end(t)))}_eventIsPointerPenTouch(t){return this._supportPointerEvents&&(t.pointerType===fp||t.pointerType===vp)}static isSupported(){return"ontouchstart"in document.documentElement||navigator.maxTouchPoints>0}}const yp="carousel",wp="bs.carousel",Wt=`.${wp}`,Ps=".data-api",Sp="ArrowLeft",Ap="ArrowRight",kp=500,Pe="next",me="prev",be="left",fn="right",Op=`slide${Wt}`,Un=`slid${Wt}`,Tp=`keydown${Wt}`,xp=`mouseenter${Wt}`,Cp=`mouseleave${Wt}`,Dp=`dragstart${Wt}`,Np=`load${Wt}${Ps}`,Mp=`click${Wt}${Ps}`,Hs="carousel",on="active",Lp="slide",$p="carousel-item-end",Ip="carousel-item-start",Rp="carousel-item-next",Pp="carousel-item-prev",Fs=".active",Bs=".carousel-item",Hp=Fs+Bs,Fp=".carousel-item img",Bp=".carousel-indicators",Up="[data-bs-slide], [data-bs-slide-to]",Gp='[data-bs-ride="carousel"]',jp={[Sp]:fn,[Ap]:be},Jp={interval:5e3,keyboard:!0,pause:"hover",ride:!1,touch:!0,wrap:!0},Wp={interval:"(number|boolean)",keyboard:"boolean",pause:"(string|boolean)",ride:"(boolean|string)",touch:"boolean",wrap:"boolean"};class Ke extends bt{constructor(t,e){super(t,e),this._interval=null,this._activeElement=null,this._isSliding=!1,this.touchTimeout=null,this._swipeHelper=null,this._indicatorsElement=y.findOne(Bp,this._element),this._addEventListeners(),this._config.ride===Hs&&this.cycle()}static get Default(){return Jp}static get DefaultType(){return Wp}static get NAME(){return yp}next(){this._slide(Pe)}nextWhenVisible(){!document.hidden&&xe(this._element)&&this.next()}prev(){this._slide(me)}pause(){this._isSliding&&Os(this._element),this._clearInterval()}cycle(){this._clearInterval(),this._updateInterval(),this._interval=setInterval(()=>this.nextWhenVisible(),this._config.interval)}_maybeEnableCycle(){if(this._config.ride){if(this._isSliding){h.one(this._element,Un,()=>this.cycle());return}this.cycle()}}to(t){const e=this._getItems();if(t>e.length-1||t<0)return;if(this._isSliding){h.one(this._element,Un,()=>this.to(t));return}const o=this._getItemIndex(this._getActive());if(o===t)return;const i=t>o?Pe:me;this._slide(i,e[t])}dispose(){this._swipeHelper&&this._swipeHelper.dispose(),super.dispose()}_configAfterMerge(t){return t.defaultInterval=t.interval,t}_addEventListeners(){this._config.keyboard&&h.on(this._element,Tp,t=>this._keydown(t)),this._config.pause==="hover"&&(h.on(this._element,xp,()=>this.pause()),h.on(this._element,Cp,()=>this._maybeEnableCycle())),this._config.touch&&yn.isSupported()&&this._addTouchEventListeners()}_addTouchEventListeners(){for(const o of y.find(Fp,this._element))h.on(o,Dp,i=>i.preventDefault());const e={leftCallback:()=>this._slide(this._directionToOrder(be)),rightCallback:()=>this._slide(this._directionToOrder(fn)),endCallback:()=>{this._config.pause==="hover"&&(this.pause(),this.touchTimeout&&clearTimeout(this.touchTimeout),this.touchTimeout=setTimeout(()=>this._maybeEnableCycle(),kp+this._config.interval))}};this._swipeHelper=new yn(this._element,e)}_keydown(t){if(/input|textarea/i.test(t.target.tagName))return;const e=jp[t.key];e&&(t.preventDefault(),this._slide(this._directionToOrder(e)))}_getItemIndex(t){return this._getItems().indexOf(t)}_setActiveIndicatorElement(t){if(!this._indicatorsElement)return;const e=y.findOne(Fs,this._indicatorsElement);e.classList.remove(on),e.removeAttribute("aria-current");const o=y.findOne(`[data-bs-slide-to="${t}"]`,this._indicatorsElement);o&&(o.classList.add(on),o.setAttribute("aria-current","true"))}_updateInterval(){const t=this._activeElement||this._getActive();if(!t)return;const e=Number.parseInt(t.getAttribute("data-bs-interval"),10);this._config.interval=e||this._config.defaultInterval}_slide(t,e=null){if(this._isSliding)return;const o=this._getActive(),i=t===Pe,s=e||Lo(this._getItems(),o,i,this._config.wrap);if(s===o)return;const l=this._getItemIndex(s),a=E=>h.trigger(this._element,E,{relatedTarget:s,direction:this._orderToDirection(t),from:this._getItemIndex(o),to:l});if(a(Op).defaultPrevented||!o||!s)return;const d=!!this._interval;this.pause(),this._isSliding=!0,this._setActiveIndicatorElement(l),this._activeElement=s;const u=i?Ip:$p,f=i?Rp:Pp;s.classList.add(f),qe(s),o.classList.add(u),s.classList.add(u);const w=()=>{s.classList.remove(u,f),s.classList.add(on),o.classList.remove(on,f,u),this._isSliding=!1,a(Un)};this._queueCallback(w,o,this._isAnimated()),d&&this.cycle()}_isAnimated(){return this._element.classList.contains(Lp)}_getActive(){return y.findOne(Hp,this._element)}_getItems(){return y.find(Bs,this._element)}_clearInterval(){this._interval&&(clearInterval(this._interval),this._interval=null)}_directionToOrder(t){return pt()?t===be?me:Pe:t===be?Pe:me}_orderToDirection(t){return pt()?t===me?be:fn:t===me?fn:be}static jQueryInterface(t){return this.each(function(){const e=Ke.getOrCreateInstance(this,t);if(typeof t=="number"){e.to(t);return}if(typeof t=="string"){if(e[t]===void 0||t.startsWith("_")||t==="constructor")throw new TypeError(`No method named "${t}"`);e[t]()}})}}h.on(document,Mp,Up,function(n){const t=y.getElementFromSelector(this);if(!t||!t.classList.contains(Hs))return;n.preventDefault();const e=Ke.getOrCreateInstance(t),o=this.getAttribute("data-bs-slide-to");if(o){e.to(o),e._maybeEnableCycle();return}if(Lt.getDataAttribute(this,"slide")==="next"){e.next(),e._maybeEnableCycle();return}e.prev(),e._maybeEnableCycle()});h.on(window,Np,()=>{const n=y.find(Gp);for(const t of n)Ke.getOrCreateInstance(t)});dt(Ke);const Vp="collapse",qp="bs.collapse",Ye=`.${qp}`,zp=".data-api",Kp=`show${Ye}`,Yp=`shown${Ye}`,Xp=`hide${Ye}`,Qp=`hidden${Ye}`,Zp=`click${Ye}${zp}`,Gn="show",_e="collapse",sn="collapsing",tc="collapsed",ec=`:scope .${_e} .${_e}`,nc="collapse-horizontal",oc="width",ic="height",sc=".collapse.show, .collapse.collapsing",mo='[data-bs-toggle="collapse"]',lc={parent:null,toggle:!0},ac={parent:"(null|element)",toggle:"boolean"};class We extends bt{constructor(t,e){super(t,e),this._isTransitioning=!1,this._triggerArray=[];const o=y.find(mo);for(const i of o){const s=y.getSelectorFromElement(i),l=y.find(s).filter(a=>a===this._element);s!==null&&l.length&&this._triggerArray.push(i)}this._initializeChildren(),this._config.parent||this._addAriaAndCollapsedClass(this._triggerArray,this._isShown()),this._config.toggle&&this.toggle()}static get Default(){return lc}static get DefaultType(){return ac}static get NAME(){return Vp}toggle(){this._isShown()?this.hide():this.show()}show(){if(this._isTransitioning||this._isShown())return;let t=[];if(this._config.parent&&(t=this._getFirstLevelChildren(sc).filter(a=>a!==this._element).map(a=>We.getOrCreateInstance(a,{toggle:!1}))),t.length&&t[0]._isTransitioning||h.trigger(this._element,Kp).defaultPrevented)return;for(const a of t)a.hide();const o=this._getDimension();this._element.classList.remove(_e),this._element.classList.add(sn),this._element.style[o]=0,this._addAriaAndCollapsedClass(this._triggerArray,!0),this._isTransitioning=!0;const i=()=>{this._isTransitioning=!1,this._element.classList.remove(sn),this._element.classList.add(_e,Gn),this._element.style[o]="",h.trigger(this._element,Yp)},l=`scroll${o[0].toUpperCase()+o.slice(1)}`;this._queueCallback(i,this._element,!0),this._element.style[o]=`${this._element[l]}px`}hide(){if(this._isTransitioning||!this._isShown()||h.trigger(this._element,Xp).defaultPrevented)return;const e=this._getDimension();this._element.style[e]=`${this._element.getBoundingClientRect()[e]}px`,qe(this._element),this._element.classList.add(sn),this._element.classList.remove(_e,Gn);for(const i of this._triggerArray){const s=y.getElementFromSelector(i);s&&!this._isShown(s)&&this._addAriaAndCollapsedClass([i],!1)}this._isTransitioning=!0;const o=()=>{this._isTransitioning=!1,this._element.classList.remove(sn),this._element.classList.add(_e),h.trigger(this._element,Qp)};this._element.style[e]="",this._queueCallback(o,this._element,!0)}_isShown(t=this._element){return t.classList.contains(Gn)}_configAfterMerge(t){return t.toggle=!!t.toggle,t.parent=Ut(t.parent),t}_getDimension(){return this._element.classList.contains(nc)?oc:ic}_initializeChildren(){if(!this._config.parent)return;const t=this._getFirstLevelChildren(mo);for(const e of t){const o=y.getElementFromSelector(e);o&&this._addAriaAndCollapsedClass([e],this._isShown(o))}}_getFirstLevelChildren(t){const e=y.find(ec,this._config.parent);return y.find(t,this._config.parent).filter(o=>!e.includes(o))}_addAriaAndCollapsedClass(t,e){if(t.length)for(const o of t)o.classList.toggle(tc,!e),o.setAttribute("aria-expanded",e)}static jQueryInterface(t){const e={};return typeof t=="string"&&/show|hide/.test(t)&&(e.toggle=!1),this.each(function(){const o=We.getOrCreateInstance(this,e);if(typeof t=="string"){if(typeof o[t]>"u")throw new TypeError(`No method named "${t}"`);o[t]()}})}}h.on(document,Zp,mo,function(n){(n.target.tagName==="A"||n.delegateTarget&&n.delegateTarget.tagName==="A")&&n.preventDefault();for(const t of y.getMultipleElementsFromSelector(this))We.getOrCreateInstance(t,{toggle:!1}).toggle()});dt(We);const ui="dropdown",rc="bs.dropdown",ie=`.${rc}`,Io=".data-api",pc="Escape",di="Tab",cc="ArrowUp",mi="ArrowDown",uc=2,dc=`hide${ie}`,mc=`hidden${ie}`,hc=`show${ie}`,vc=`shown${ie}`,Us=`click${ie}${Io}`,Gs=`keydown${ie}${Io}`,fc=`keyup${ie}${Io}`,ge="show",bc="dropup",gc="dropend",_c="dropstart",Ec="dropup-center",yc="dropdown-center",Zt='[data-bs-toggle="dropdown"]:not(.disabled):not(:disabled)',wc=`${Zt}.${ge}`,bn=".dropdown-menu",Sc=".navbar",Ac=".navbar-nav",kc=".dropdown-menu .dropdown-item:not(.disabled):not(:disabled)",Oc=pt()?"top-end":"top-start",Tc=pt()?"top-start":"top-end",xc=pt()?"bottom-end":"bottom-start",Cc=pt()?"bottom-start":"bottom-end",Dc=pt()?"left-start":"right-start",Nc=pt()?"right-start":"left-start",Mc="top",Lc="bottom",$c={autoClose:!0,boundary:"clippingParents",display:"dynamic",offset:[0,2],popperConfig:null,reference:"toggle"},Ic={autoClose:"(boolean|string)",boundary:"(string|element)",display:"string",offset:"(array|string|function)",popperConfig:"(null|object|function)",reference:"(string|element|object)"};class wt extends bt{constructor(t,e){super(t,e),this._popper=null,this._parent=this._element.parentNode,this._menu=y.next(this._element,bn)[0]||y.prev(this._element,bn)[0]||y.findOne(bn,this._parent),this._inNavbar=this._detectNavbar()}static get Default(){return $c}static get DefaultType(){return Ic}static get NAME(){return ui}toggle(){return this._isShown()?this.hide():this.show()}show(){if(Gt(this._element)||this._isShown())return;const t={relatedTarget:this._element};if(!h.trigger(this._element,hc,t).defaultPrevented){if(this._createPopper(),"ontouchstart"in document.documentElement&&!this._parent.closest(Ac))for(const o of[].concat(...document.body.children))h.on(o,"mouseover",En);this._element.focus(),this._element.setAttribute("aria-expanded",!0),this._menu.classList.add(ge),this._element.classList.add(ge),h.trigger(this._element,vc,t)}}hide(){if(Gt(this._element)||!this._isShown())return;const t={relatedTarget:this._element};this._completeHide(t)}dispose(){this._popper&&this._popper.destroy(),super.dispose()}update(){this._inNavbar=this._detectNavbar(),this._popper&&this._popper.update()}_completeHide(t){if(!h.trigger(this._element,dc,t).defaultPrevented){if("ontouchstart"in document.documentElement)for(const o of[].concat(...document.body.children))h.off(o,"mouseover",En);this._popper&&this._popper.destroy(),this._menu.classList.remove(ge),this._element.classList.remove(ge),this._element.setAttribute("aria-expanded","false"),Lt.removeDataAttribute(this._menu,"popper"),h.trigger(this._element,mc,t)}}_getConfig(t){if(t=super._getConfig(t),typeof t.reference=="object"&&!Mt(t.reference)&&typeof t.reference.getBoundingClientRect!="function")throw new TypeError(`${ui.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);return t}_createPopper(){if(typeof As>"u")throw new TypeError("Bootstrap's dropdowns require Popper (https://popper.js.org)");let t=this._element;this._config.reference==="parent"?t=this._parent:Mt(this._config.reference)?t=Ut(this._config.reference):typeof this._config.reference=="object"&&(t=this._config.reference);const e=this._getPopperConfig();this._popper=Mo(t,this._menu,e)}_isShown(){return this._menu.classList.contains(ge)}_getPlacement(){const t=this._parent;if(t.classList.contains(gc))return Dc;if(t.classList.contains(_c))return Nc;if(t.classList.contains(Ec))return Mc;if(t.classList.contains(yc))return Lc;const e=getComputedStyle(this._menu).getPropertyValue("--bs-position").trim()==="end";return t.classList.contains(bc)?e?Tc:Oc:e?Cc:xc}_detectNavbar(){return this._element.closest(Sc)!==null}_getOffset(){const{offset:t}=this._config;return typeof t=="string"?t.split(",").map(e=>Number.parseInt(e,10)):typeof t=="function"?e=>t(e,this._element):t}_getPopperConfig(){const t={placement:this._getPlacement(),modifiers:[{name:"preventOverflow",options:{boundary:this._config.boundary}},{name:"offset",options:{offset:this._getOffset()}}]};return(this._inNavbar||this._config.display==="static")&&(Lt.setDataAttribute(this._menu,"popper","static"),t.modifiers=[{name:"applyStyles",enabled:!1}]),{...t,...nt(this._config.popperConfig,[t])}}_selectMenuItem({key:t,target:e}){const o=y.find(kc,this._menu).filter(i=>xe(i));o.length&&Lo(o,e,t===mi,!o.includes(e)).focus()}static jQueryInterface(t){return this.each(function(){const e=wt.getOrCreateInstance(this,t);if(typeof t=="string"){if(typeof e[t]>"u")throw new TypeError(`No method named "${t}"`);e[t]()}})}static clearMenus(t){if(t.button===uc||t.type==="keyup"&&t.key!==di)return;const e=y.find(wc);for(const o of e){const i=wt.getInstance(o);if(!i||i._config.autoClose===!1)continue;const s=t.composedPath(),l=s.includes(i._menu);if(s.includes(i._element)||i._config.autoClose==="inside"&&!l||i._config.autoClose==="outside"&&l||i._menu.contains(t.target)&&(t.type==="keyup"&&t.key===di||/input|select|option|textarea|form/i.test(t.target.tagName)))continue;const a={relatedTarget:i._element};t.type==="click"&&(a.clickEvent=t),i._completeHide(a)}}static dataApiKeydownHandler(t){const e=/input|textarea/i.test(t.target.tagName),o=t.key===pc,i=[cc,mi].includes(t.key);if(!i&&!o||e&&!o)return;t.preventDefault();const s=this.matches(Zt)?this:y.prev(this,Zt)[0]||y.next(this,Zt)[0]||y.findOne(Zt,t.delegateTarget.parentNode),l=wt.getOrCreateInstance(s);if(i){t.stopPropagation(),l.show(),l._selectMenuItem(t);return}l._isShown()&&(t.stopPropagation(),l.hide(),s.focus())}}h.on(document,Gs,Zt,wt.dataApiKeydownHandler);h.on(document,Gs,bn,wt.dataApiKeydownHandler);h.on(document,Us,wt.clearMenus);h.on(document,fc,wt.clearMenus);h.on(document,Us,Zt,function(n){n.preventDefault(),wt.getOrCreateInstance(this).toggle()});dt(wt);const js="backdrop",Rc="fade",hi="show",vi=`mousedown.bs.${js}`,Pc={className:"modal-backdrop",clickCallback:null,isAnimated:!1,isVisible:!0,rootElement:"body"},Hc={className:"string",clickCallback:"(function|null)",isAnimated:"boolean",isVisible:"boolean",rootElement:"(element|string)"};class Js extends ze{constructor(t){super(),this._config=this._getConfig(t),this._isAppended=!1,this._element=null}static get Default(){return Pc}static get DefaultType(){return Hc}static get NAME(){return js}show(t){if(!this._config.isVisible){nt(t);return}this._append();const e=this._getElement();this._config.isAnimated&&qe(e),e.classList.add(hi),this._emulateAnimation(()=>{nt(t)})}hide(t){if(!this._config.isVisible){nt(t);return}this._getElement().classList.remove(hi),this._emulateAnimation(()=>{this.dispose(),nt(t)})}dispose(){this._isAppended&&(h.off(this._element,vi),this._element.remove(),this._isAppended=!1)}_getElement(){if(!this._element){const t=document.createElement("div");t.className=this._config.className,this._config.isAnimated&&t.classList.add(Rc),this._element=t}return this._element}_configAfterMerge(t){return t.rootElement=Ut(t.rootElement),t}_append(){if(this._isAppended)return;const t=this._getElement();this._config.rootElement.append(t),h.on(t,vi,()=>{nt(this._config.clickCallback)}),this._isAppended=!0}_emulateAnimation(t){Cs(t,this._getElement(),this._config.isAnimated)}}const Fc="focustrap",Bc="bs.focustrap",wn=`.${Bc}`,Uc=`focusin${wn}`,Gc=`keydown.tab${wn}`,jc="Tab",Jc="forward",fi="backward",Wc={autofocus:!0,trapElement:null},Vc={autofocus:"boolean",trapElement:"element"};class Ws extends ze{constructor(t){super(),this._config=this._getConfig(t),this._isActive=!1,this._lastTabNavDirection=null}static get Default(){return Wc}static get DefaultType(){return Vc}static get NAME(){return Fc}activate(){this._isActive||(this._config.autofocus&&this._config.trapElement.focus(),h.off(document,wn),h.on(document,Uc,t=>this._handleFocusin(t)),h.on(document,Gc,t=>this._handleKeydown(t)),this._isActive=!0)}deactivate(){this._isActive&&(this._isActive=!1,h.off(document,wn))}_handleFocusin(t){const{trapElement:e}=this._config;if(t.target===document||t.target===e||e.contains(t.target))return;const o=y.focusableChildren(e);o.length===0?e.focus():this._lastTabNavDirection===fi?o[o.length-1].focus():o[0].focus()}_handleKeydown(t){t.key===jc&&(this._lastTabNavDirection=t.shiftKey?fi:Jc)}}const bi=".fixed-top, .fixed-bottom, .is-fixed, .sticky-top",gi=".sticky-top",ln="padding-right",_i="margin-right";class ho{constructor(){this._element=document.body}getWidth(){const t=document.documentElement.clientWidth;return Math.abs(window.innerWidth-t)}hide(){const t=this.getWidth();this._disableOverFlow(),this._setElementAttributes(this._element,ln,e=>e+t),this._setElementAttributes(bi,ln,e=>e+t),this._setElementAttributes(gi,_i,e=>e-t)}reset(){this._resetElementAttributes(this._element,"overflow"),this._resetElementAttributes(this._element,ln),this._resetElementAttributes(bi,ln),this._resetElementAttributes(gi,_i)}isOverflowing(){return this.getWidth()>0}_disableOverFlow(){this._saveInitialAttribute(this._element,"overflow"),this._element.style.overflow="hidden"}_setElementAttributes(t,e,o){const i=this.getWidth(),s=l=>{if(l!==this._element&&window.innerWidth>l.clientWidth+i)return;this._saveInitialAttribute(l,e);const a=window.getComputedStyle(l).getPropertyValue(e);l.style.setProperty(e,`${o(Number.parseFloat(a))}px`)};this._applyManipulationCallback(t,s)}_saveInitialAttribute(t,e){const o=t.style.getPropertyValue(e);o&&Lt.setDataAttribute(t,e,o)}_resetElementAttributes(t,e){const o=i=>{const s=Lt.getDataAttribute(i,e);if(s===null){i.style.removeProperty(e);return}Lt.removeDataAttribute(i,e),i.style.setProperty(e,s)};this._applyManipulationCallback(t,o)}_applyManipulationCallback(t,e){if(Mt(t)){e(t);return}for(const o of y.find(t,this._element))e(o)}}const qc="modal",zc="bs.modal",ct=`.${zc}`,Kc=".data-api",Yc="Escape",Xc=`hide${ct}`,Qc=`hidePrevented${ct}`,Vs=`hidden${ct}`,qs=`show${ct}`,Zc=`shown${ct}`,tu=`resize${ct}`,eu=`click.dismiss${ct}`,nu=`mousedown.dismiss${ct}`,ou=`keydown.dismiss${ct}`,iu=`click${ct}${Kc}`,Ei="modal-open",su="fade",yi="show",jn="modal-static",lu=".modal.show",au=".modal-dialog",ru=".modal-body",pu='[data-bs-toggle="modal"]',cu={backdrop:!0,focus:!0,keyboard:!0},uu={backdrop:"(boolean|string)",focus:"boolean",keyboard:"boolean"};class ke extends bt{constructor(t,e){super(t,e),this._dialog=y.findOne(au,this._element),this._backdrop=this._initializeBackDrop(),this._focustrap=this._initializeFocusTrap(),this._isShown=!1,this._isTransitioning=!1,this._scrollBar=new ho,this._addEventListeners()}static get Default(){return cu}static get DefaultType(){return uu}static get NAME(){return qc}toggle(t){return this._isShown?this.hide():this.show(t)}show(t){this._isShown||this._isTransitioning||h.trigger(this._element,qs,{relatedTarget:t}).defaultPrevented||(this._isShown=!0,this._isTransitioning=!0,this._scrollBar.hide(),document.body.classList.add(Ei),this._adjustDialog(),this._backdrop.show(()=>this._showElement(t)))}hide(){!this._isShown||this._isTransitioning||h.trigger(this._element,Xc).defaultPrevented||(this._isShown=!1,this._isTransitioning=!0,this._focustrap.deactivate(),this._element.classList.remove(yi),this._queueCallback(()=>this._hideModal(),this._element,this._isAnimated()))}dispose(){h.off(window,ct),h.off(this._dialog,ct),this._backdrop.dispose(),this._focustrap.deactivate(),super.dispose()}handleUpdate(){this._adjustDialog()}_initializeBackDrop(){return new Js({isVisible:!!this._config.backdrop,isAnimated:this._isAnimated()})}_initializeFocusTrap(){return new Ws({trapElement:this._element})}_showElement(t){document.body.contains(this._element)||document.body.append(this._element),this._element.style.display="block",this._element.removeAttribute("aria-hidden"),this._element.setAttribute("aria-modal",!0),this._element.setAttribute("role","dialog"),this._element.scrollTop=0;const e=y.findOne(ru,this._dialog);e&&(e.scrollTop=0),qe(this._element),this._element.classList.add(yi);const o=()=>{this._config.focus&&this._focustrap.activate(),this._isTransitioning=!1,h.trigger(this._element,Zc,{relatedTarget:t})};this._queueCallback(o,this._dialog,this._isAnimated())}_addEventListeners(){h.on(this._element,ou,t=>{if(t.key===Yc){if(this._config.keyboard){this.hide();return}this._triggerBackdropTransition()}}),h.on(window,tu,()=>{this._isShown&&!this._isTransitioning&&this._adjustDialog()}),h.on(this._element,nu,t=>{h.one(this._element,eu,e=>{if(!(this._element!==t.target||this._element!==e.target)){if(this._config.backdrop==="static"){this._triggerBackdropTransition();return}this._config.backdrop&&this.hide()}})})}_hideModal(){this._element.style.display="none",this._element.setAttribute("aria-hidden",!0),this._element.removeAttribute("aria-modal"),this._element.removeAttribute("role"),this._isTransitioning=!1,this._backdrop.hide(()=>{document.body.classList.remove(Ei),this._resetAdjustments(),this._scrollBar.reset(),h.trigger(this._element,Vs)})}_isAnimated(){return this._element.classList.contains(su)}_triggerBackdropTransition(){if(h.trigger(this._element,Qc).defaultPrevented)return;const e=this._element.scrollHeight>document.documentElement.clientHeight,o=this._element.style.overflowY;o==="hidden"||this._element.classList.contains(jn)||(e||(this._element.style.overflowY="hidden"),this._element.classList.add(jn),this._queueCallback(()=>{this._element.classList.remove(jn),this._queueCallback(()=>{this._element.style.overflowY=o},this._dialog)},this._dialog),this._element.focus())}_adjustDialog(){const t=this._element.scrollHeight>document.documentElement.clientHeight,e=this._scrollBar.getWidth(),o=e>0;if(o&&!t){const i=pt()?"paddingLeft":"paddingRight";this._element.style[i]=`${e}px`}if(!o&&t){const i=pt()?"paddingRight":"paddingLeft";this._element.style[i]=`${e}px`}}_resetAdjustments(){this._element.style.paddingLeft="",this._element.style.paddingRight=""}static jQueryInterface(t,e){return this.each(function(){const o=ke.getOrCreateInstance(this,t);if(typeof t=="string"){if(typeof o[t]>"u")throw new TypeError(`No method named "${t}"`);o[t](e)}})}}h.on(document,iu,pu,function(n){const t=y.getElementFromSelector(this);["A","AREA"].includes(this.tagName)&&n.preventDefault(),h.one(t,qs,i=>{i.defaultPrevented||h.one(t,Vs,()=>{xe(this)&&this.focus()})});const e=y.findOne(lu);e&&ke.getInstance(e).hide(),ke.getOrCreateInstance(t).toggle(this)});Tn(ke);dt(ke);const du="offcanvas",mu="bs.offcanvas",It=`.${mu}`,zs=".data-api",hu=`load${It}${zs}`,vu="Escape",wi="show",Si="showing",Ai="hiding",fu="offcanvas-backdrop",Ks=".offcanvas.show",bu=`show${It}`,gu=`shown${It}`,_u=`hide${It}`,ki=`hidePrevented${It}`,Ys=`hidden${It}`,Eu=`resize${It}`,yu=`click${It}${zs}`,wu=`keydown.dismiss${It}`,Su='[data-bs-toggle="offcanvas"]',Au={backdrop:!0,keyboard:!0,scroll:!1},ku={backdrop:"(boolean|string)",keyboard:"boolean",scroll:"boolean"};class jt extends bt{constructor(t,e){super(t,e),this._isShown=!1,this._backdrop=this._initializeBackDrop(),this._focustrap=this._initializeFocusTrap(),this._addEventListeners()}static get Default(){return Au}static get DefaultType(){return ku}static get NAME(){return du}toggle(t){return this._isShown?this.hide():this.show(t)}show(t){if(this._isShown||h.trigger(this._element,bu,{relatedTarget:t}).defaultPrevented)return;this._isShown=!0,this._backdrop.show(),this._config.scroll||new ho().hide(),this._element.setAttribute("aria-modal",!0),this._element.setAttribute("role","dialog"),this._element.classList.add(Si);const o=()=>{(!this._config.scroll||this._config.backdrop)&&this._focustrap.activate(),this._element.classList.add(wi),this._element.classList.remove(Si),h.trigger(this._element,gu,{relatedTarget:t})};this._queueCallback(o,this._element,!0)}hide(){if(!this._isShown||h.trigger(this._element,_u).defaultPrevented)return;this._focustrap.deactivate(),this._element.blur(),this._isShown=!1,this._element.classList.add(Ai),this._backdrop.hide();const e=()=>{this._element.classList.remove(wi,Ai),this._element.removeAttribute("aria-modal"),this._element.removeAttribute("role"),this._config.scroll||new ho().reset(),h.trigger(this._element,Ys)};this._queueCallback(e,this._element,!0)}dispose(){this._backdrop.dispose(),this._focustrap.deactivate(),super.dispose()}_initializeBackDrop(){const t=()=>{if(this._config.backdrop==="static"){h.trigger(this._element,ki);return}this.hide()},e=!!this._config.backdrop;return new Js({className:fu,isVisible:e,isAnimated:!0,rootElement:this._element.parentNode,clickCallback:e?t:null})}_initializeFocusTrap(){return new Ws({trapElement:this._element})}_addEventListeners(){h.on(this._element,wu,t=>{if(t.key===vu){if(this._config.keyboard){this.hide();return}h.trigger(this._element,ki)}})}static jQueryInterface(t){return this.each(function(){const e=jt.getOrCreateInstance(this,t);if(typeof t=="string"){if(e[t]===void 0||t.startsWith("_")||t==="constructor")throw new TypeError(`No method named "${t}"`);e[t](this)}})}}h.on(document,yu,Su,function(n){const t=y.getElementFromSelector(this);if(["A","AREA"].includes(this.tagName)&&n.preventDefault(),Gt(this))return;h.one(t,Ys,()=>{xe(this)&&this.focus()});const e=y.findOne(Ks);e&&e!==t&&jt.getInstance(e).hide(),jt.getOrCreateInstance(t).toggle(this)});h.on(window,hu,()=>{for(const n of y.find(Ks))jt.getOrCreateInstance(n).show()});h.on(window,Eu,()=>{for(const n of y.find("[aria-modal][class*=show][class*=offcanvas-]"))getComputedStyle(n).position!=="fixed"&&jt.getOrCreateInstance(n).hide()});Tn(jt);dt(jt);const Ou=/^aria-[\w-]*$/i,Xs={"*":["class","dir","id","lang","role",Ou],a:["target","href","title","rel"],area:[],b:[],br:[],col:[],code:[],dd:[],div:[],dl:[],dt:[],em:[],hr:[],h1:[],h2:[],h3:[],h4:[],h5:[],h6:[],i:[],img:["src","srcset","alt","title","width","height"],li:[],ol:[],p:[],pre:[],s:[],small:[],span:[],sub:[],sup:[],strong:[],u:[],ul:[]},Tu=new Set(["background","cite","href","itemtype","longdesc","poster","src","xlink:href"]),xu=/^(?!javascript:)(?:[a-z0-9+.-]+:|[^&:/?#]*(?:[/?#]|$))/i,Cu=(n,t)=>{const e=n.nodeName.toLowerCase();return t.includes(e)?Tu.has(e)?!!xu.test(n.nodeValue):!0:t.filter(o=>o instanceof RegExp).some(o=>o.test(e))};function Du(n,t,e){if(!n.length)return n;if(e&&typeof e=="function")return e(n);const i=new window.DOMParser().parseFromString(n,"text/html"),s=[].concat(...i.body.querySelectorAll("*"));for(const l of s){const a=l.nodeName.toLowerCase();if(!Object.keys(t).includes(a)){l.remove();continue}const r=[].concat(...l.attributes),d=[].concat(t["*"]||[],t[a]||[]);for(const u of r)Cu(u,d)||l.removeAttribute(u.nodeName)}return i.body.innerHTML}const Nu="TemplateFactory",Mu={allowList:Xs,content:{},extraClass:"",html:!1,sanitize:!0,sanitizeFn:null,template:"<div></div>"},Lu={allowList:"object",content:"object",extraClass:"(string|function)",html:"boolean",sanitize:"boolean",sanitizeFn:"(null|function)",template:"string"},$u={entry:"(string|element|function|null)",selector:"(string|element)"};class Iu extends ze{constructor(t){super(),this._config=this._getConfig(t)}static get Default(){return Mu}static get DefaultType(){return Lu}static get NAME(){return Nu}getContent(){return Object.values(this._config.content).map(t=>this._resolvePossibleFunction(t)).filter(Boolean)}hasContent(){return this.getContent().length>0}changeContent(t){return this._checkContent(t),this._config.content={...this._config.content,...t},this}toHtml(){const t=document.createElement("div");t.innerHTML=this._maybeSanitize(this._config.template);for(const[i,s]of Object.entries(this._config.content))this._setContent(t,s,i);const e=t.children[0],o=this._resolvePossibleFunction(this._config.extraClass);return o&&e.classList.add(...o.split(" ")),e}_typeCheckConfig(t){super._typeCheckConfig(t),this._checkContent(t.content)}_checkContent(t){for(const[e,o]of Object.entries(t))super._typeCheckConfig({selector:e,entry:o},$u)}_setContent(t,e,o){const i=y.findOne(o,t);if(i){if(e=this._resolvePossibleFunction(e),!e){i.remove();return}if(Mt(e)){this._putElementInTemplate(Ut(e),i);return}if(this._config.html){i.innerHTML=this._maybeSanitize(e);return}i.textContent=e}}_maybeSanitize(t){return this._config.sanitize?Du(t,this._config.allowList,this._config.sanitizeFn):t}_resolvePossibleFunction(t){return nt(t,[this])}_putElementInTemplate(t,e){if(this._config.html){e.innerHTML="",e.append(t);return}e.textContent=t.textContent}}const Ru="tooltip",Pu=new Set(["sanitize","allowList","sanitizeFn"]),Jn="fade",Hu="modal",an="show",Fu=".tooltip-inner",Oi=`.${Hu}`,Ti="hide.bs.modal",He="hover",Wn="focus",Bu="click",Uu="manual",Gu="hide",ju="hidden",Ju="show",Wu="shown",Vu="inserted",qu="click",zu="focusin",Ku="focusout",Yu="mouseenter",Xu="mouseleave",Qu={AUTO:"auto",TOP:"top",RIGHT:pt()?"left":"right",BOTTOM:"bottom",LEFT:pt()?"right":"left"},Zu={allowList:Xs,animation:!0,boundary:"clippingParents",container:!1,customClass:"",delay:0,fallbackPlacements:["top","right","bottom","left"],html:!1,offset:[0,6],placement:"top",popperConfig:null,sanitize:!0,sanitizeFn:null,selector:!1,template:'<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',title:"",trigger:"hover focus"},td={allowList:"object",animation:"boolean",boundary:"(string|element)",container:"(string|element|boolean)",customClass:"(string|function)",delay:"(number|object)",fallbackPlacements:"array",html:"boolean",offset:"(array|string|function)",placement:"(string|function)",popperConfig:"(null|object|function)",sanitize:"boolean",sanitizeFn:"(null|function)",selector:"(string|boolean)",template:"string",title:"(string|element|function)",trigger:"string"};class De extends bt{constructor(t,e){if(typeof As>"u")throw new TypeError("Bootstrap's tooltips require Popper (https://popper.js.org)");super(t,e),this._isEnabled=!0,this._timeout=0,this._isHovered=null,this._activeTrigger={},this._popper=null,this._templateFactory=null,this._newContent=null,this.tip=null,this._setListeners(),this._config.selector||this._fixTitle()}static get Default(){return Zu}static get DefaultType(){return td}static get NAME(){return Ru}enable(){this._isEnabled=!0}disable(){this._isEnabled=!1}toggleEnabled(){this._isEnabled=!this._isEnabled}toggle(){if(this._isEnabled){if(this._activeTrigger.click=!this._activeTrigger.click,this._isShown()){this._leave();return}this._enter()}}dispose(){clearTimeout(this._timeout),h.off(this._element.closest(Oi),Ti,this._hideModalHandler),this._element.getAttribute("data-bs-original-title")&&this._element.setAttribute("title",this._element.getAttribute("data-bs-original-title")),this._disposePopper(),super.dispose()}show(){if(this._element.style.display==="none")throw new Error("Please use show on visible elements");if(!(this._isWithContent()&&this._isEnabled))return;const t=h.trigger(this._element,this.constructor.eventName(Ju)),o=(Ts(this._element)||this._element.ownerDocument.documentElement).contains(this._element);if(t.defaultPrevented||!o)return;this._disposePopper();const i=this._getTipElement();this._element.setAttribute("aria-describedby",i.getAttribute("id"));const{container:s}=this._config;if(this._element.ownerDocument.documentElement.contains(this.tip)||(s.append(i),h.trigger(this._element,this.constructor.eventName(Vu))),this._popper=this._createPopper(i),i.classList.add(an),"ontouchstart"in document.documentElement)for(const a of[].concat(...document.body.children))h.on(a,"mouseover",En);const l=()=>{h.trigger(this._element,this.constructor.eventName(Wu)),this._isHovered===!1&&this._leave(),this._isHovered=!1};this._queueCallback(l,this.tip,this._isAnimated())}hide(){if(!this._isShown()||h.trigger(this._element,this.constructor.eventName(Gu)).defaultPrevented)return;if(this._getTipElement().classList.remove(an),"ontouchstart"in document.documentElement)for(const i of[].concat(...document.body.children))h.off(i,"mouseover",En);this._activeTrigger[Bu]=!1,this._activeTrigger[Wn]=!1,this._activeTrigger[He]=!1,this._isHovered=null;const o=()=>{this._isWithActiveTrigger()||(this._isHovered||this._disposePopper(),this._element.removeAttribute("aria-describedby"),h.trigger(this._element,this.constructor.eventName(ju)))};this._queueCallback(o,this.tip,this._isAnimated())}update(){this._popper&&this._popper.update()}_isWithContent(){return!!this._getTitle()}_getTipElement(){return this.tip||(this.tip=this._createTipElement(this._newContent||this._getContentForTemplate())),this.tip}_createTipElement(t){const e=this._getTemplateFactory(t).toHtml();if(!e)return null;e.classList.remove(Jn,an),e.classList.add(`bs-${this.constructor.NAME}-auto`);const o=Br(this.constructor.NAME).toString();return e.setAttribute("id",o),this._isAnimated()&&e.classList.add(Jn),e}setContent(t){this._newContent=t,this._isShown()&&(this._disposePopper(),this.show())}_getTemplateFactory(t){return this._templateFactory?this._templateFactory.changeContent(t):this._templateFactory=new Iu({...this._config,content:t,extraClass:this._resolvePossibleFunction(this._config.customClass)}),this._templateFactory}_getContentForTemplate(){return{[Fu]:this._getTitle()}}_getTitle(){return this._resolvePossibleFunction(this._config.title)||this._element.getAttribute("data-bs-original-title")}_initializeOnDelegatedTarget(t){return this.constructor.getOrCreateInstance(t.delegateTarget,this._getDelegateConfig())}_isAnimated(){return this._config.animation||this.tip&&this.tip.classList.contains(Jn)}_isShown(){return this.tip&&this.tip.classList.contains(an)}_createPopper(t){const e=nt(this._config.placement,[this,t,this._element]),o=Qu[e.toUpperCase()];return Mo(this._element,t,this._getPopperConfig(o))}_getOffset(){const{offset:t}=this._config;return typeof t=="string"?t.split(",").map(e=>Number.parseInt(e,10)):typeof t=="function"?e=>t(e,this._element):t}_resolvePossibleFunction(t){return nt(t,[this._element])}_getPopperConfig(t){const e={placement:t,modifiers:[{name:"flip",options:{fallbackPlacements:this._config.fallbackPlacements}},{name:"offset",options:{offset:this._getOffset()}},{name:"preventOverflow",options:{boundary:this._config.boundary}},{name:"arrow",options:{element:`.${this.constructor.NAME}-arrow`}},{name:"preSetPlacement",enabled:!0,phase:"beforeMain",fn:o=>{this._getTipElement().setAttribute("data-popper-placement",o.state.placement)}}]};return{...e,...nt(this._config.popperConfig,[e])}}_setListeners(){const t=this._config.trigger.split(" ");for(const e of t)if(e==="click")h.on(this._element,this.constructor.eventName(qu),this._config.selector,o=>{this._initializeOnDelegatedTarget(o).toggle()});else if(e!==Uu){const o=e===He?this.constructor.eventName(Yu):this.constructor.eventName(zu),i=e===He?this.constructor.eventName(Xu):this.constructor.eventName(Ku);h.on(this._element,o,this._config.selector,s=>{const l=this._initializeOnDelegatedTarget(s);l._activeTrigger[s.type==="focusin"?Wn:He]=!0,l._enter()}),h.on(this._element,i,this._config.selector,s=>{const l=this._initializeOnDelegatedTarget(s);l._activeTrigger[s.type==="focusout"?Wn:He]=l._element.contains(s.relatedTarget),l._leave()})}this._hideModalHandler=()=>{this._element&&this.hide()},h.on(this._element.closest(Oi),Ti,this._hideModalHandler)}_fixTitle(){const t=this._element.getAttribute("title");t&&(!this._element.getAttribute("aria-label")&&!this._element.textContent.trim()&&this._element.setAttribute("aria-label",t),this._element.setAttribute("data-bs-original-title",t),this._element.removeAttribute("title"))}_enter(){if(this._isShown()||this._isHovered){this._isHovered=!0;return}this._isHovered=!0,this._setTimeout(()=>{this._isHovered&&this.show()},this._config.delay.show)}_leave(){this._isWithActiveTrigger()||(this._isHovered=!1,this._setTimeout(()=>{this._isHovered||this.hide()},this._config.delay.hide))}_setTimeout(t,e){clearTimeout(this._timeout),this._timeout=setTimeout(t,e)}_isWithActiveTrigger(){return Object.values(this._activeTrigger).includes(!0)}_getConfig(t){const e=Lt.getDataAttributes(this._element);for(const o of Object.keys(e))Pu.has(o)&&delete e[o];return t={...e,...typeof t=="object"&&t?t:{}},t=this._mergeConfigObj(t),t=this._configAfterMerge(t),this._typeCheckConfig(t),t}_configAfterMerge(t){return t.container=t.container===!1?document.body:Ut(t.container),typeof t.delay=="number"&&(t.delay={show:t.delay,hide:t.delay}),typeof t.title=="number"&&(t.title=t.title.toString()),typeof t.content=="number"&&(t.content=t.content.toString()),t}_getDelegateConfig(){const t={};for(const[e,o]of Object.entries(this._config))this.constructor.Default[e]!==o&&(t[e]=o);return t.selector=!1,t.trigger="manual",t}_disposePopper(){this._popper&&(this._popper.destroy(),this._popper=null),this.tip&&(this.tip.remove(),this.tip=null)}static jQueryInterface(t){return this.each(function(){const e=De.getOrCreateInstance(this,t);if(typeof t=="string"){if(typeof e[t]>"u")throw new TypeError(`No method named "${t}"`);e[t]()}})}}dt(De);const ed="popover",nd=".popover-header",od=".popover-body",id={...De.Default,content:"",offset:[0,8],placement:"right",template:'<div class="popover" role="tooltip"><div class="popover-arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',trigger:"click"},sd={...De.DefaultType,content:"(null|string|element|function)"};class Ro extends De{static get Default(){return id}static get DefaultType(){return sd}static get NAME(){return ed}_isWithContent(){return this._getTitle()||this._getContent()}_getContentForTemplate(){return{[nd]:this._getTitle(),[od]:this._getContent()}}_getContent(){return this._resolvePossibleFunction(this._config.content)}static jQueryInterface(t){return this.each(function(){const e=Ro.getOrCreateInstance(this,t);if(typeof t=="string"){if(typeof e[t]>"u")throw new TypeError(`No method named "${t}"`);e[t]()}})}}dt(Ro);const ld="scrollspy",ad="bs.scrollspy",Po=`.${ad}`,rd=".data-api",pd=`activate${Po}`,xi=`click${Po}`,cd=`load${Po}${rd}`,ud="dropdown-item",he="active",dd='[data-bs-spy="scroll"]',Vn="[href]",md=".nav, .list-group",Ci=".nav-link",hd=".nav-item",vd=".list-group-item",fd=`${Ci}, ${hd} > ${Ci}, ${vd}`,bd=".dropdown",gd=".dropdown-toggle",_d={offset:null,rootMargin:"0px 0px -25%",smoothScroll:!1,target:null,threshold:[.1,.5,1]},Ed={offset:"(number|null)",rootMargin:"string",smoothScroll:"boolean",target:"element",threshold:"array"};class Dn extends bt{constructor(t,e){super(t,e),this._targetLinks=new Map,this._observableSections=new Map,this._rootElement=getComputedStyle(this._element).overflowY==="visible"?null:this._element,this._activeTarget=null,this._observer=null,this._previousScrollData={visibleEntryTop:0,parentScrollTop:0},this.refresh()}static get Default(){return _d}static get DefaultType(){return Ed}static get NAME(){return ld}refresh(){this._initializeTargetsAndObservables(),this._maybeEnableSmoothScroll(),this._observer?this._observer.disconnect():this._observer=this._getNewObserver();for(const t of this._observableSections.values())this._observer.observe(t)}dispose(){this._observer.disconnect(),super.dispose()}_configAfterMerge(t){return t.target=Ut(t.target)||document.body,t.rootMargin=t.offset?`${t.offset}px 0px -30%`:t.rootMargin,typeof t.threshold=="string"&&(t.threshold=t.threshold.split(",").map(e=>Number.parseFloat(e))),t}_maybeEnableSmoothScroll(){this._config.smoothScroll&&(h.off(this._config.target,xi),h.on(this._config.target,xi,Vn,t=>{const e=this._observableSections.get(t.target.hash);if(e){t.preventDefault();const o=this._rootElement||window,i=e.offsetTop-this._element.offsetTop;if(o.scrollTo){o.scrollTo({top:i,behavior:"smooth"});return}o.scrollTop=i}}))}_getNewObserver(){const t={root:this._rootElement,threshold:this._config.threshold,rootMargin:this._config.rootMargin};return new IntersectionObserver(e=>this._observerCallback(e),t)}_observerCallback(t){const e=l=>this._targetLinks.get(`#${l.target.id}`),o=l=>{this._previousScrollData.visibleEntryTop=l.target.offsetTop,this._process(e(l))},i=(this._rootElement||document.documentElement).scrollTop,s=i>=this._previousScrollData.parentScrollTop;this._previousScrollData.parentScrollTop=i;for(const l of t){if(!l.isIntersecting){this._activeTarget=null,this._clearActiveClass(e(l));continue}const a=l.target.offsetTop>=this._previousScrollData.visibleEntryTop;if(s&&a){if(o(l),!i)return;continue}!s&&!a&&o(l)}}_initializeTargetsAndObservables(){this._targetLinks=new Map,this._observableSections=new Map;const t=y.find(Vn,this._config.target);for(const e of t){if(!e.hash||Gt(e))continue;const o=y.findOne(decodeURI(e.hash),this._element);xe(o)&&(this._targetLinks.set(decodeURI(e.hash),e),this._observableSections.set(e.hash,o))}}_process(t){this._activeTarget!==t&&(this._clearActiveClass(this._config.target),this._activeTarget=t,t.classList.add(he),this._activateParents(t),h.trigger(this._element,pd,{relatedTarget:t}))}_activateParents(t){if(t.classList.contains(ud)){y.findOne(gd,t.closest(bd)).classList.add(he);return}for(const e of y.parents(t,md))for(const o of y.prev(e,fd))o.classList.add(he)}_clearActiveClass(t){t.classList.remove(he);const e=y.find(`${Vn}.${he}`,t);for(const o of e)o.classList.remove(he)}static jQueryInterface(t){return this.each(function(){const e=Dn.getOrCreateInstance(this,t);if(typeof t=="string"){if(e[t]===void 0||t.startsWith("_")||t==="constructor")throw new TypeError(`No method named "${t}"`);e[t]()}})}}h.on(window,cd,()=>{for(const n of y.find(dd))Dn.getOrCreateInstance(n)});dt(Dn);const yd="tab",wd="bs.tab",se=`.${wd}`,Sd=`hide${se}`,Ad=`hidden${se}`,kd=`show${se}`,Od=`shown${se}`,Td=`click${se}`,xd=`keydown${se}`,Cd=`load${se}`,Dd="ArrowLeft",Di="ArrowRight",Nd="ArrowUp",Ni="ArrowDown",qn="Home",Mi="End",te="active",Li="fade",zn="show",Md="dropdown",Qs=".dropdown-toggle",Ld=".dropdown-menu",Kn=`:not(${Qs})`,$d='.list-group, .nav, [role="tablist"]',Id=".nav-item, .list-group-item",Rd=`.nav-link${Kn}, .list-group-item${Kn}, [role="tab"]${Kn}`,Zs='[data-bs-toggle="tab"], [data-bs-toggle="pill"], [data-bs-toggle="list"]',Yn=`${Rd}, ${Zs}`,Pd=`.${te}[data-bs-toggle="tab"], .${te}[data-bs-toggle="pill"], .${te}[data-bs-toggle="list"]`;class Oe extends bt{constructor(t){super(t),this._parent=this._element.closest($d),this._parent&&(this._setInitialAttributes(this._parent,this._getChildren()),h.on(this._element,xd,e=>this._keydown(e)))}static get NAME(){return yd}show(){const t=this._element;if(this._elemIsActive(t))return;const e=this._getActiveElem(),o=e?h.trigger(e,Sd,{relatedTarget:t}):null;h.trigger(t,kd,{relatedTarget:e}).defaultPrevented||o&&o.defaultPrevented||(this._deactivate(e,t),this._activate(t,e))}_activate(t,e){if(!t)return;t.classList.add(te),this._activate(y.getElementFromSelector(t));const o=()=>{if(t.getAttribute("role")!=="tab"){t.classList.add(zn);return}t.removeAttribute("tabindex"),t.setAttribute("aria-selected",!0),this._toggleDropDown(t,!0),h.trigger(t,Od,{relatedTarget:e})};this._queueCallback(o,t,t.classList.contains(Li))}_deactivate(t,e){if(!t)return;t.classList.remove(te),t.blur(),this._deactivate(y.getElementFromSelector(t));const o=()=>{if(t.getAttribute("role")!=="tab"){t.classList.remove(zn);return}t.setAttribute("aria-selected",!1),t.setAttribute("tabindex","-1"),this._toggleDropDown(t,!1),h.trigger(t,Ad,{relatedTarget:e})};this._queueCallback(o,t,t.classList.contains(Li))}_keydown(t){if(![Dd,Di,Nd,Ni,qn,Mi].includes(t.key))return;t.stopPropagation(),t.preventDefault();const e=this._getChildren().filter(i=>!Gt(i));let o;if([qn,Mi].includes(t.key))o=e[t.key===qn?0:e.length-1];else{const i=[Di,Ni].includes(t.key);o=Lo(e,t.target,i,!0)}o&&(o.focus({preventScroll:!0}),Oe.getOrCreateInstance(o).show())}_getChildren(){return y.find(Yn,this._parent)}_getActiveElem(){return this._getChildren().find(t=>this._elemIsActive(t))||null}_setInitialAttributes(t,e){this._setAttributeIfNotExists(t,"role","tablist");for(const o of e)this._setInitialAttributesOnChild(o)}_setInitialAttributesOnChild(t){t=this._getInnerElement(t);const e=this._elemIsActive(t),o=this._getOuterElement(t);t.setAttribute("aria-selected",e),o!==t&&this._setAttributeIfNotExists(o,"role","presentation"),e||t.setAttribute("tabindex","-1"),this._setAttributeIfNotExists(t,"role","tab"),this._setInitialAttributesOnTargetPanel(t)}_setInitialAttributesOnTargetPanel(t){const e=y.getElementFromSelector(t);e&&(this._setAttributeIfNotExists(e,"role","tabpanel"),t.id&&this._setAttributeIfNotExists(e,"aria-labelledby",`${t.id}`))}_toggleDropDown(t,e){const o=this._getOuterElement(t);if(!o.classList.contains(Md))return;const i=(s,l)=>{const a=y.findOne(s,o);a&&a.classList.toggle(l,e)};i(Qs,te),i(Ld,zn),o.setAttribute("aria-expanded",e)}_setAttributeIfNotExists(t,e,o){t.hasAttribute(e)||t.setAttribute(e,o)}_elemIsActive(t){return t.classList.contains(te)}_getInnerElement(t){return t.matches(Yn)?t:y.findOne(Yn,t)}_getOuterElement(t){return t.closest(Id)||t}static jQueryInterface(t){return this.each(function(){const e=Oe.getOrCreateInstance(this);if(typeof t=="string"){if(e[t]===void 0||t.startsWith("_")||t==="constructor")throw new TypeError(`No method named "${t}"`);e[t]()}})}}h.on(document,Td,Zs,function(n){["A","AREA"].includes(this.tagName)&&n.preventDefault(),!Gt(this)&&Oe.getOrCreateInstance(this).show()});h.on(window,Cd,()=>{for(const n of y.find(Pd))Oe.getOrCreateInstance(n)});dt(Oe);const Hd="toast",Fd="bs.toast",Vt=`.${Fd}`,Bd=`mouseover${Vt}`,Ud=`mouseout${Vt}`,Gd=`focusin${Vt}`,jd=`focusout${Vt}`,Jd=`hide${Vt}`,Wd=`hidden${Vt}`,Vd=`show${Vt}`,qd=`shown${Vt}`,zd="fade",$i="hide",rn="show",pn="showing",Kd={animation:"boolean",autohide:"boolean",delay:"number"},Yd={animation:!0,autohide:!0,delay:5e3};class Nn extends bt{constructor(t,e){super(t,e),this._timeout=null,this._hasMouseInteraction=!1,this._hasKeyboardInteraction=!1,this._setListeners()}static get Default(){return Yd}static get DefaultType(){return Kd}static get NAME(){return Hd}show(){if(h.trigger(this._element,Vd).defaultPrevented)return;this._clearTimeout(),this._config.animation&&this._element.classList.add(zd);const e=()=>{this._element.classList.remove(pn),h.trigger(this._element,qd),this._maybeScheduleHide()};this._element.classList.remove($i),qe(this._element),this._element.classList.add(rn,pn),this._queueCallback(e,this._element,this._config.animation)}hide(){if(!this.isShown()||h.trigger(this._element,Jd).defaultPrevented)return;const e=()=>{this._element.classList.add($i),this._element.classList.remove(pn,rn),h.trigger(this._element,Wd)};this._element.classList.add(pn),this._queueCallback(e,this._element,this._config.animation)}dispose(){this._clearTimeout(),this.isShown()&&this._element.classList.remove(rn),super.dispose()}isShown(){return this._element.classList.contains(rn)}_maybeScheduleHide(){this._config.autohide&&(this._hasMouseInteraction||this._hasKeyboardInteraction||(this._timeout=setTimeout(()=>{this.hide()},this._config.delay)))}_onInteraction(t,e){switch(t.type){case"mouseover":case"mouseout":{this._hasMouseInteraction=e;break}case"focusin":case"focusout":{this._hasKeyboardInteraction=e;break}}if(e){this._clearTimeout();return}const o=t.relatedTarget;this._element===o||this._element.contains(o)||this._maybeScheduleHide()}_setListeners(){h.on(this._element,Bd,t=>this._onInteraction(t,!0)),h.on(this._element,Ud,t=>this._onInteraction(t,!1)),h.on(this._element,Gd,t=>this._onInteraction(t,!0)),h.on(this._element,jd,t=>this._onInteraction(t,!1))}_clearTimeout(){clearTimeout(this._timeout),this._timeout=null}static jQueryInterface(t){return this.each(function(){const e=Nn.getOrCreateInstance(this,t);if(typeof t=="string"){if(typeof e[t]>"u")throw new TypeError(`No method named "${t}"`);e[t](this)}})}}Tn(Nn);dt(Nn);/*! @license DOMPurify 3.0.11 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.0.11/LICENSE */const{entries:tl,setPrototypeOf:Ii,isFrozen:Xd,getPrototypeOf:Qd,getOwnPropertyDescriptor:Zd}=Object;let{freeze:X,seal:ut,create:el}=Object,{apply:vo,construct:fo}=typeof Reflect<"u"&&Reflect;X||(X=function(t){return t});ut||(ut=function(t){return t});vo||(vo=function(t,e,o){return t.apply(e,o)});fo||(fo=function(t,e){return new t(...e)});const cn=at(Array.prototype.forEach),Ri=at(Array.prototype.pop),Fe=at(Array.prototype.push),gn=at(String.prototype.toLowerCase),Xn=at(String.prototype.toString),Pi=at(String.prototype.match),Be=at(String.prototype.replace),tm=at(String.prototype.indexOf),em=at(String.prototype.trim),ht=at(Object.prototype.hasOwnProperty),ot=at(RegExp.prototype.test),Ue=nm(TypeError);function at(n){return function(t){for(var e=arguments.length,o=new Array(e>1?e-1:0),i=1;i<e;i++)o[i-1]=arguments[i];return vo(n,t,o)}}function nm(n){return function(){for(var t=arguments.length,e=new Array(t),o=0;o<t;o++)e[o]=arguments[o];return fo(n,e)}}function C(n,t){let e=arguments.length>2&&arguments[2]!==void 0?arguments[2]:gn;Ii&&Ii(n,null);let o=t.length;for(;o--;){let i=t[o];if(typeof i=="string"){const s=e(i);s!==i&&(Xd(t)||(t[o]=s),i=s)}n[i]=!0}return n}function om(n){for(let t=0;t<n.length;t++)ht(n,t)||(n[t]=null);return n}function Qt(n){const t=el(null);for(const[e,o]of tl(n))ht(n,e)&&(Array.isArray(o)?t[e]=om(o):o&&typeof o=="object"&&o.constructor===Object?t[e]=Qt(o):t[e]=o);return t}function un(n,t){for(;n!==null;){const o=Zd(n,t);if(o){if(o.get)return at(o.get);if(typeof o.value=="function")return at(o.value)}n=Qd(n)}function e(){return null}return e}const Hi=X(["a","abbr","acronym","address","area","article","aside","audio","b","bdi","bdo","big","blink","blockquote","body","br","button","canvas","caption","center","cite","code","col","colgroup","content","data","datalist","dd","decorator","del","details","dfn","dialog","dir","div","dl","dt","element","em","fieldset","figcaption","figure","font","footer","form","h1","h2","h3","h4","h5","h6","head","header","hgroup","hr","html","i","img","input","ins","kbd","label","legend","li","main","map","mark","marquee","menu","menuitem","meter","nav","nobr","ol","optgroup","option","output","p","picture","pre","progress","q","rp","rt","ruby","s","samp","section","select","shadow","small","source","spacer","span","strike","strong","style","sub","summary","sup","table","tbody","td","template","textarea","tfoot","th","thead","time","tr","track","tt","u","ul","var","video","wbr"]),Qn=X(["svg","a","altglyph","altglyphdef","altglyphitem","animatecolor","animatemotion","animatetransform","circle","clippath","defs","desc","ellipse","filter","font","g","glyph","glyphref","hkern","image","line","lineargradient","marker","mask","metadata","mpath","path","pattern","polygon","polyline","radialgradient","rect","stop","style","switch","symbol","text","textpath","title","tref","tspan","view","vkern"]),Zn=X(["feBlend","feColorMatrix","feComponentTransfer","feComposite","feConvolveMatrix","feDiffuseLighting","feDisplacementMap","feDistantLight","feDropShadow","feFlood","feFuncA","feFuncB","feFuncG","feFuncR","feGaussianBlur","feImage","feMerge","feMergeNode","feMorphology","feOffset","fePointLight","feSpecularLighting","feSpotLight","feTile","feTurbulence"]),im=X(["animate","color-profile","cursor","discard","font-face","font-face-format","font-face-name","font-face-src","font-face-uri","foreignobject","hatch","hatchpath","mesh","meshgradient","meshpatch","meshrow","missing-glyph","script","set","solidcolor","unknown","use"]),to=X(["math","menclose","merror","mfenced","mfrac","mglyph","mi","mlabeledtr","mmultiscripts","mn","mo","mover","mpadded","mphantom","mroot","mrow","ms","mspace","msqrt","mstyle","msub","msup","msubsup","mtable","mtd","mtext","mtr","munder","munderover","mprescripts"]),sm=X(["maction","maligngroup","malignmark","mlongdiv","mscarries","mscarry","msgroup","mstack","msline","msrow","semantics","annotation","annotation-xml","mprescripts","none"]),Fi=X(["#text"]),Bi=X(["accept","action","align","alt","autocapitalize","autocomplete","autopictureinpicture","autoplay","background","bgcolor","border","capture","cellpadding","cellspacing","checked","cite","class","clear","color","cols","colspan","controls","controlslist","coords","crossorigin","datetime","decoding","default","dir","disabled","disablepictureinpicture","disableremoteplayback","download","draggable","enctype","enterkeyhint","face","for","headers","height","hidden","high","href","hreflang","id","inputmode","integrity","ismap","kind","label","lang","list","loading","loop","low","max","maxlength","media","method","min","minlength","multiple","muted","name","nonce","noshade","novalidate","nowrap","open","optimum","pattern","placeholder","playsinline","poster","preload","pubdate","radiogroup","readonly","rel","required","rev","reversed","role","rows","rowspan","spellcheck","scope","selected","shape","size","sizes","span","srclang","start","src","srcset","step","style","summary","tabindex","title","translate","type","usemap","valign","value","width","xmlns","slot"]),eo=X(["accent-height","accumulate","additive","alignment-baseline","ascent","attributename","attributetype","azimuth","basefrequency","baseline-shift","begin","bias","by","class","clip","clippathunits","clip-path","clip-rule","color","color-interpolation","color-interpolation-filters","color-profile","color-rendering","cx","cy","d","dx","dy","diffuseconstant","direction","display","divisor","dur","edgemode","elevation","end","fill","fill-opacity","fill-rule","filter","filterunits","flood-color","flood-opacity","font-family","font-size","font-size-adjust","font-stretch","font-style","font-variant","font-weight","fx","fy","g1","g2","glyph-name","glyphref","gradientunits","gradienttransform","height","href","id","image-rendering","in","in2","k","k1","k2","k3","k4","kerning","keypoints","keysplines","keytimes","lang","lengthadjust","letter-spacing","kernelmatrix","kernelunitlength","lighting-color","local","marker-end","marker-mid","marker-start","markerheight","markerunits","markerwidth","maskcontentunits","maskunits","max","mask","media","method","mode","min","name","numoctaves","offset","operator","opacity","order","orient","orientation","origin","overflow","paint-order","path","pathlength","patterncontentunits","patterntransform","patternunits","points","preservealpha","preserveaspectratio","primitiveunits","r","rx","ry","radius","refx","refy","repeatcount","repeatdur","restart","result","rotate","scale","seed","shape-rendering","specularconstant","specularexponent","spreadmethod","startoffset","stddeviation","stitchtiles","stop-color","stop-opacity","stroke-dasharray","stroke-dashoffset","stroke-linecap","stroke-linejoin","stroke-miterlimit","stroke-opacity","stroke","stroke-width","style","surfacescale","systemlanguage","tabindex","targetx","targety","transform","transform-origin","text-anchor","text-decoration","text-rendering","textlength","type","u1","u2","unicode","values","viewbox","visibility","version","vert-adv-y","vert-origin-x","vert-origin-y","width","word-spacing","wrap","writing-mode","xchannelselector","ychannelselector","x","x1","x2","xmlns","y","y1","y2","z","zoomandpan"]),Ui=X(["accent","accentunder","align","bevelled","close","columnsalign","columnlines","columnspan","denomalign","depth","dir","display","displaystyle","encoding","fence","frame","height","href","id","largeop","length","linethickness","lspace","lquote","mathbackground","mathcolor","mathsize","mathvariant","maxsize","minsize","movablelimits","notation","numalign","open","rowalign","rowlines","rowspacing","rowspan","rspace","rquote","scriptlevel","scriptminsize","scriptsizemultiplier","selection","separator","separators","stretchy","subscriptshift","supscriptshift","symmetric","voffset","width","xmlns"]),dn=X(["xlink:href","xml:id","xlink:title","xml:space","xmlns:xlink"]),lm=ut(/\{\{[\w\W]*|[\w\W]*\}\}/gm),am=ut(/<%[\w\W]*|[\w\W]*%>/gm),rm=ut(/\${[\w\W]*}/gm),pm=ut(/^data-[\-\w.\u00B7-\uFFFF]/),cm=ut(/^aria-[\-\w]+$/),nl=ut(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i),um=ut(/^(?:\w+script|data):/i),dm=ut(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g),ol=ut(/^html$/i),mm=ut(/^[a-z][.\w]*(-[.\w]+)+$/i);var Gi=Object.freeze({__proto__:null,MUSTACHE_EXPR:lm,ERB_EXPR:am,TMPLIT_EXPR:rm,DATA_ATTR:pm,ARIA_ATTR:cm,IS_ALLOWED_URI:nl,IS_SCRIPT_OR_DATA:um,ATTR_WHITESPACE:dm,DOCTYPE_NAME:ol,CUSTOM_ELEMENT:mm});const hm=function(){return typeof window>"u"?null:window},vm=function(t,e){if(typeof t!="object"||typeof t.createPolicy!="function")return null;let o=null;const i="data-tt-policy-suffix";e&&e.hasAttribute(i)&&(o=e.getAttribute(i));const s="dompurify"+(o?"#"+o:"");try{return t.createPolicy(s,{createHTML(l){return l},createScriptURL(l){return l}})}catch{return console.warn("TrustedTypes policy "+s+" could not be created."),null}};function il(){let n=arguments.length>0&&arguments[0]!==void 0?arguments[0]:hm();const t=_=>il(_);if(t.version="3.0.11",t.removed=[],!n||!n.document||n.document.nodeType!==9)return t.isSupported=!1,t;let{document:e}=n;const o=e,i=o.currentScript,{DocumentFragment:s,HTMLTemplateElement:l,Node:a,Element:r,NodeFilter:d,NamedNodeMap:u=n.NamedNodeMap||n.MozNamedAttrMap,HTMLFormElement:f,DOMParser:w,trustedTypes:E}=n,O=r.prototype,A=un(O,"cloneNode"),T=un(O,"nextSibling"),D=un(O,"childNodes"),L=un(O,"parentNode");if(typeof l=="function"){const _=e.createElement("template");_.content&&_.content.ownerDocument&&(e=_.content.ownerDocument)}let k,S="";const{implementation:x,createNodeIterator:N,createDocumentFragment:R,getElementsByTagName:G}=e,{importNode:B}=o;let M={};t.isSupported=typeof tl=="function"&&typeof L=="function"&&x&&x.createHTMLDocument!==void 0;const{MUSTACHE_EXPR:U,ERB_EXPR:q,TMPLIT_EXPR:j,DATA_ATTR:At,ARIA_ATTR:kt,IS_SCRIPT_OR_DATA:z,ATTR_WHITESPACE:Q,CUSTOM_ELEMENT:le}=Gi;let{IS_ALLOWED_URI:gt}=Gi,H=null;const ae=C({},[...Hi,...Qn,...Zn,...to,...Fi]);let P=null;const qt=C({},[...Bi,...eo,...Ui,...dn]);let $=Object.seal(el(null,{tagNameCheck:{writable:!0,configurable:!1,enumerable:!0,value:null},attributeNameCheck:{writable:!0,configurable:!1,enumerable:!0,value:null},allowCustomizedBuiltInElements:{writable:!0,configurable:!1,enumerable:!0,value:!1}})),Z=null,Ot=null,zt=!0,mt=!0,re=!1,Xe=!0,_t=!1,Tt=!1,pe=!1,Ne=!1,Rt=!1,Kt=!1,Yt=!1,Qe=!0,Ze=!1;const xt="user-content-";let Pt=!0,Ht=!1,Ct={},Et=null;const Me=C({},["annotation-xml","audio","colgroup","desc","foreignobject","head","iframe","math","mi","mn","mo","ms","mtext","noembed","noframes","noscript","plaintext","script","style","svg","template","thead","title","video","xmp"]);let Le=null;const $e=C({},["audio","video","img","source","image","track"]);let ce=null;const Ho=C({},["alt","class","for","id","label","name","pattern","placeholder","role","summary","title","value","style","xmlns"]),tn="http://www.w3.org/1998/Math/MathML",en="http://www.w3.org/2000/svg",Dt="http://www.w3.org/1999/xhtml";let ue=Dt,Mn=!1,Ln=null;const kl=C({},[tn,en,Dt],Xn);let Ie=null;const Ol=["application/xhtml+xml","text/html"],Tl="text/html";let J=null,de=null;const xl=e.createElement("form"),Fo=function(p){return p instanceof RegExp||p instanceof Function},$n=function(){let p=arguments.length>0&&arguments[0]!==void 0?arguments[0]:{};if(!(de&&de===p)){if((!p||typeof p!="object")&&(p={}),p=Qt(p),Ie=Ol.indexOf(p.PARSER_MEDIA_TYPE)===-1?Tl:p.PARSER_MEDIA_TYPE,J=Ie==="application/xhtml+xml"?Xn:gn,H=ht(p,"ALLOWED_TAGS")?C({},p.ALLOWED_TAGS,J):ae,P=ht(p,"ALLOWED_ATTR")?C({},p.ALLOWED_ATTR,J):qt,Ln=ht(p,"ALLOWED_NAMESPACES")?C({},p.ALLOWED_NAMESPACES,Xn):kl,ce=ht(p,"ADD_URI_SAFE_ATTR")?C(Qt(Ho),p.ADD_URI_SAFE_ATTR,J):Ho,Le=ht(p,"ADD_DATA_URI_TAGS")?C(Qt($e),p.ADD_DATA_URI_TAGS,J):$e,Et=ht(p,"FORBID_CONTENTS")?C({},p.FORBID_CONTENTS,J):Me,Z=ht(p,"FORBID_TAGS")?C({},p.FORBID_TAGS,J):{},Ot=ht(p,"FORBID_ATTR")?C({},p.FORBID_ATTR,J):{},Ct=ht(p,"USE_PROFILES")?p.USE_PROFILES:!1,zt=p.ALLOW_ARIA_ATTR!==!1,mt=p.ALLOW_DATA_ATTR!==!1,re=p.ALLOW_UNKNOWN_PROTOCOLS||!1,Xe=p.ALLOW_SELF_CLOSE_IN_ATTR!==!1,_t=p.SAFE_FOR_TEMPLATES||!1,Tt=p.WHOLE_DOCUMENT||!1,Rt=p.RETURN_DOM||!1,Kt=p.RETURN_DOM_FRAGMENT||!1,Yt=p.RETURN_TRUSTED_TYPE||!1,Ne=p.FORCE_BODY||!1,Qe=p.SANITIZE_DOM!==!1,Ze=p.SANITIZE_NAMED_PROPS||!1,Pt=p.KEEP_CONTENT!==!1,Ht=p.IN_PLACE||!1,gt=p.ALLOWED_URI_REGEXP||nl,ue=p.NAMESPACE||Dt,$=p.CUSTOM_ELEMENT_HANDLING||{},p.CUSTOM_ELEMENT_HANDLING&&Fo(p.CUSTOM_ELEMENT_HANDLING.tagNameCheck)&&($.tagNameCheck=p.CUSTOM_ELEMENT_HANDLING.tagNameCheck),p.CUSTOM_ELEMENT_HANDLING&&Fo(p.CUSTOM_ELEMENT_HANDLING.attributeNameCheck)&&($.attributeNameCheck=p.CUSTOM_ELEMENT_HANDLING.attributeNameCheck),p.CUSTOM_ELEMENT_HANDLING&&typeof p.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements=="boolean"&&($.allowCustomizedBuiltInElements=p.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements),_t&&(mt=!1),Kt&&(Rt=!0),Ct&&(H=C({},Fi),P=[],Ct.html===!0&&(C(H,Hi),C(P,Bi)),Ct.svg===!0&&(C(H,Qn),C(P,eo),C(P,dn)),Ct.svgFilters===!0&&(C(H,Zn),C(P,eo),C(P,dn)),Ct.mathMl===!0&&(C(H,to),C(P,Ui),C(P,dn))),p.ADD_TAGS&&(H===ae&&(H=Qt(H)),C(H,p.ADD_TAGS,J)),p.ADD_ATTR&&(P===qt&&(P=Qt(P)),C(P,p.ADD_ATTR,J)),p.ADD_URI_SAFE_ATTR&&C(ce,p.ADD_URI_SAFE_ATTR,J),p.FORBID_CONTENTS&&(Et===Me&&(Et=Qt(Et)),C(Et,p.FORBID_CONTENTS,J)),Pt&&(H["#text"]=!0),Tt&&C(H,["html","head","body"]),H.table&&(C(H,["tbody"]),delete Z.tbody),p.TRUSTED_TYPES_POLICY){if(typeof p.TRUSTED_TYPES_POLICY.createHTML!="function")throw Ue('TRUSTED_TYPES_POLICY configuration option must provide a "createHTML" hook.');if(typeof p.TRUSTED_TYPES_POLICY.createScriptURL!="function")throw Ue('TRUSTED_TYPES_POLICY configuration option must provide a "createScriptURL" hook.');k=p.TRUSTED_TYPES_POLICY,S=k.createHTML("")}else k===void 0&&(k=vm(E,i)),k!==null&&typeof S=="string"&&(S=k.createHTML(""));X&&X(p),de=p}},Bo=C({},["mi","mo","mn","ms","mtext"]),Uo=C({},["foreignobject","desc","title","annotation-xml"]),Cl=C({},["title","style","font","a","script"]),Go=C({},[...Qn,...Zn,...im]),jo=C({},[...to,...sm]),Dl=function(p){let v=L(p);(!v||!v.tagName)&&(v={namespaceURI:ue,tagName:"template"});const b=gn(p.tagName),I=gn(v.tagName);return Ln[p.namespaceURI]?p.namespaceURI===en?v.namespaceURI===Dt?b==="svg":v.namespaceURI===tn?b==="svg"&&(I==="annotation-xml"||Bo[I]):!!Go[b]:p.namespaceURI===tn?v.namespaceURI===Dt?b==="math":v.namespaceURI===en?b==="math"&&Uo[I]:!!jo[b]:p.namespaceURI===Dt?v.namespaceURI===en&&!Uo[I]||v.namespaceURI===tn&&!Bo[I]?!1:!jo[b]&&(Cl[b]||!Go[b]):!!(Ie==="application/xhtml+xml"&&Ln[p.namespaceURI]):!1},Ft=function(p){Fe(t.removed,{element:p});try{p.parentNode.removeChild(p)}catch{p.remove()}},In=function(p,v){try{Fe(t.removed,{attribute:v.getAttributeNode(p),from:v})}catch{Fe(t.removed,{attribute:null,from:v})}if(v.removeAttribute(p),p==="is"&&!P[p])if(Rt||Kt)try{Ft(v)}catch{}else try{v.setAttribute(p,"")}catch{}},Jo=function(p){let v=null,b=null;if(Ne)p="<remove></remove>"+p;else{const V=Pi(p,/^[\r\n\t ]+/);b=V&&V[0]}Ie==="application/xhtml+xml"&&ue===Dt&&(p='<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>'+p+"</body></html>");const I=k?k.createHTML(p):p;if(ue===Dt)try{v=new w().parseFromString(I,Ie)}catch{}if(!v||!v.documentElement){v=x.createDocument(ue,"template",null);try{v.documentElement.innerHTML=Mn?S:I}catch{}}const W=v.body||v.documentElement;return p&&b&&W.insertBefore(e.createTextNode(b),W.childNodes[0]||null),ue===Dt?G.call(v,Tt?"html":"body")[0]:Tt?v.documentElement:W},Wo=function(p){return N.call(p.ownerDocument||p,p,d.SHOW_ELEMENT|d.SHOW_COMMENT|d.SHOW_TEXT|d.SHOW_PROCESSING_INSTRUCTION|d.SHOW_CDATA_SECTION,null)},Nl=function(p){return p instanceof f&&(typeof p.nodeName!="string"||typeof p.textContent!="string"||typeof p.removeChild!="function"||!(p.attributes instanceof u)||typeof p.removeAttribute!="function"||typeof p.setAttribute!="function"||typeof p.namespaceURI!="string"||typeof p.insertBefore!="function"||typeof p.hasChildNodes!="function")},Vo=function(p){return typeof a=="function"&&p instanceof a},Nt=function(p,v,b){M[p]&&cn(M[p],I=>{I.call(t,v,b,de)})},qo=function(p){let v=null;if(Nt("beforeSanitizeElements",p,null),Nl(p))return Ft(p),!0;const b=J(p.nodeName);if(Nt("uponSanitizeElement",p,{tagName:b,allowedTags:H}),p.hasChildNodes()&&!Vo(p.firstElementChild)&&ot(/<[/\w]/g,p.innerHTML)&&ot(/<[/\w]/g,p.textContent)||p.nodeType===7)return Ft(p),!0;if(!H[b]||Z[b]){if(!Z[b]&&Ko(b)&&($.tagNameCheck instanceof RegExp&&ot($.tagNameCheck,b)||$.tagNameCheck instanceof Function&&$.tagNameCheck(b)))return!1;if(Pt&&!Et[b]){const I=L(p)||p.parentNode,W=D(p)||p.childNodes;if(W&&I){const V=W.length;for(let tt=V-1;tt>=0;--tt)I.insertBefore(A(W[tt],!0),T(p))}}return Ft(p),!0}return p instanceof r&&!Dl(p)||(b==="noscript"||b==="noembed"||b==="noframes")&&ot(/<\/no(script|embed|frames)/i,p.innerHTML)?(Ft(p),!0):(_t&&p.nodeType===3&&(v=p.textContent,cn([U,q,j],I=>{v=Be(v,I," ")}),p.textContent!==v&&(Fe(t.removed,{element:p.cloneNode()}),p.textContent=v)),Nt("afterSanitizeElements",p,null),!1)},zo=function(p,v,b){if(Qe&&(v==="id"||v==="name")&&(b in e||b in xl))return!1;if(!(mt&&!Ot[v]&&ot(At,v))){if(!(zt&&ot(kt,v))){if(!P[v]||Ot[v]){if(!(Ko(p)&&($.tagNameCheck instanceof RegExp&&ot($.tagNameCheck,p)||$.tagNameCheck instanceof Function&&$.tagNameCheck(p))&&($.attributeNameCheck instanceof RegExp&&ot($.attributeNameCheck,v)||$.attributeNameCheck instanceof Function&&$.attributeNameCheck(v))||v==="is"&&$.allowCustomizedBuiltInElements&&($.tagNameCheck instanceof RegExp&&ot($.tagNameCheck,b)||$.tagNameCheck instanceof Function&&$.tagNameCheck(b))))return!1}else if(!ce[v]){if(!ot(gt,Be(b,Q,""))){if(!((v==="src"||v==="xlink:href"||v==="href")&&p!=="script"&&tm(b,"data:")===0&&Le[p])){if(!(re&&!ot(z,Be(b,Q,"")))){if(b)return!1}}}}}}return!0},Ko=function(p){return p!=="annotation-xml"&&Pi(p,le)},Yo=function(p){Nt("beforeSanitizeAttributes",p,null);const{attributes:v}=p;if(!v)return;const b={attrName:"",attrValue:"",keepAttr:!0,allowedAttributes:P};let I=v.length;for(;I--;){const W=v[I],{name:V,namespaceURI:tt,value:Xt}=W,Re=J(V);let et=V==="value"?Xt:em(Xt);if(b.attrName=Re,b.attrValue=et,b.keepAttr=!0,b.forceKeepAttr=void 0,Nt("uponSanitizeAttribute",p,b),et=b.attrValue,b.forceKeepAttr||(In(V,p),!b.keepAttr))continue;if(!Xe&&ot(/\/>/i,et)){In(V,p);continue}_t&&cn([U,q,j],Qo=>{et=Be(et,Qo," ")});const Xo=J(p.nodeName);if(zo(Xo,Re,et)){if(Ze&&(Re==="id"||Re==="name")&&(In(V,p),et=xt+et),k&&typeof E=="object"&&typeof E.getAttributeType=="function"&&!tt)switch(E.getAttributeType(Xo,Re)){case"TrustedHTML":{et=k.createHTML(et);break}case"TrustedScriptURL":{et=k.createScriptURL(et);break}}try{tt?p.setAttributeNS(tt,V,et):p.setAttribute(V,et),Ri(t.removed)}catch{}}}Nt("afterSanitizeAttributes",p,null)},Ml=function _(p){let v=null;const b=Wo(p);for(Nt("beforeSanitizeShadowDOM",p,null);v=b.nextNode();)Nt("uponSanitizeShadowNode",v,null),!qo(v)&&(v.content instanceof s&&_(v.content),Yo(v));Nt("afterSanitizeShadowDOM",p,null)};return t.sanitize=function(_){let p=arguments.length>1&&arguments[1]!==void 0?arguments[1]:{},v=null,b=null,I=null,W=null;if(Mn=!_,Mn&&(_="<!-->"),typeof _!="string"&&!Vo(_))if(typeof _.toString=="function"){if(_=_.toString(),typeof _!="string")throw Ue("dirty is not a string, aborting")}else throw Ue("toString is not a function");if(!t.isSupported)return _;if(pe||$n(p),t.removed=[],typeof _=="string"&&(Ht=!1),Ht){if(_.nodeName){const Xt=J(_.nodeName);if(!H[Xt]||Z[Xt])throw Ue("root node is forbidden and cannot be sanitized in-place")}}else if(_ instanceof a)v=Jo("<!---->"),b=v.ownerDocument.importNode(_,!0),b.nodeType===1&&b.nodeName==="BODY"||b.nodeName==="HTML"?v=b:v.appendChild(b);else{if(!Rt&&!_t&&!Tt&&_.indexOf("<")===-1)return k&&Yt?k.createHTML(_):_;if(v=Jo(_),!v)return Rt?null:Yt?S:""}v&&Ne&&Ft(v.firstChild);const V=Wo(Ht?_:v);for(;I=V.nextNode();)qo(I)||(I.content instanceof s&&Ml(I.content),Yo(I));if(Ht)return _;if(Rt){if(Kt)for(W=R.call(v.ownerDocument);v.firstChild;)W.appendChild(v.firstChild);else W=v;return(P.shadowroot||P.shadowrootmode)&&(W=B.call(o,W,!0)),W}let tt=Tt?v.outerHTML:v.innerHTML;return Tt&&H["!doctype"]&&v.ownerDocument&&v.ownerDocument.doctype&&v.ownerDocument.doctype.name&&ot(ol,v.ownerDocument.doctype.name)&&(tt="<!DOCTYPE "+v.ownerDocument.doctype.name+`>
+`+tt),_t&&cn([U,q,j],Xt=>{tt=Be(tt,Xt," ")}),k&&Yt?k.createHTML(tt):tt},t.setConfig=function(){let _=arguments.length>0&&arguments[0]!==void 0?arguments[0]:{};$n(_),pe=!0},t.clearConfig=function(){de=null,pe=!1},t.isValidAttribute=function(_,p,v){de||$n({});const b=J(_),I=J(p);return zo(b,I,v)},t.addHook=function(_,p){typeof p=="function"&&(M[_]=M[_]||[],Fe(M[_],p))},t.removeHook=function(_){if(M[_])return Ri(M[_])},t.removeHooks=function(_){M[_]&&(M[_]=[])},t.removeAllHooks=function(){M={}},t}var ft=il(),fm=Object.defineProperty,bm=(n,t,e)=>t in n?fm(n,t,{enumerable:!0,configurable:!0,writable:!0,value:e}):n[t]=e,g=(n,t,e)=>(bm(n,typeof t!="symbol"?t+"":t,e),e),gm=class{constructor(n){g(this,"_distinctEvent"),g(this,"_boundedEvents",[]),this._distinctEvent=(n==null?void 0:n.distinctEvent)??!1}get boundedEvents(){return this._boundedEvents}dispose(){this.unbindAll(),this._boundedEvents=[]}bind(n,t,e,o,i=""){let s=Array.isArray(t)?t:[t];if(typeof(n==null?void 0:n.forEach)=="function")n.forEach(l=>{for(let a of s)(!this._distinctEvent||this._distinctEvent&&!this.hasBinding(l,a))&&(l.addEventListener(a,e,o),this._boundedEvents.push({element:l,eventName:a,listener:e,groupName:i}))});else for(let l of s)(!this._distinctEvent||this._distinctEvent&&!this.hasBinding(n,l))&&(n.addEventListener(l,e,o),this._boundedEvents.push({element:n,eventName:l,listener:e,groupName:i}))}hasBinding(n,t){return this._boundedEvents.some(e=>e.element===n&&(!t||e.eventName===t))}unbind(n,t,e){var o;if(n){let i=Array.isArray(n)?n:[n],s=Array.isArray(t)?t||"":[t||""];for(let l of i){e||(e=this._boundedEvents.find(a=>{if(a.element===l&&(!t||a.eventName===t))return a.listener}));for(let a of s)(o=l==null?void 0:l.removeEventListener)==null||o.call(l,a,e)}}}unbindAll(n){if(n){let t=Array.isArray(n)?n:[n];for(let e=this._boundedEvents.length-1;e>=0;--e){let o=this._boundedEvents[e];if(t.some(i=>i===o.groupName)){let{element:i,eventName:s,listener:l}=o;this.unbind(i,s,l),this._boundedEvents.splice(e,1)}}}else for(;this._boundedEvents.length>0;){let t=this._boundedEvents.pop(),{element:e,eventName:o,listener:i}=t;this.unbind(e,o,i)}}},sl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},_m={formatSelectAll(){return"[Select all]"},formatAllSelected(){return"All selected"},formatCountSelected(n,t){return`${n} of ${t} selected`},formatNoMatchesFound(){return"No matches found"},formatOkButton(){return"OK"}};sl.locales["en-US"]=_m;var ll=sl.locales,Em=50,ym=4,al={name:"",placeholder:"",classes:"",classPrefix:"",data:void 0,locale:void 0,selectAll:!0,single:void 0,singleRadio:!1,multiple:!1,hideOptgroupCheckboxes:!1,multipleWidth:80,width:void 0,dropWidth:void 0,maxHeight:250,maxHeightUnit:"px",position:"bottom",displayValues:!1,displayTitle:!1,displayDelimiter:", ",minimumCountSelected:3,ellipsis:!1,isOpen:!1,keepOpen:!1,openOnHover:!1,container:null,filter:!1,filterGroup:!1,filterPlaceholder:"",filterAcceptOnEnter:!1,filterByDataLength:void 0,customFilter(n){let{text:t,label:e,search:o}=n;return(e||t||"").includes(o)},showClear:!1,autoAdjustDropHeight:!1,autoAdjustDropPosition:!1,autoAdjustDropWidthByTextSize:!1,adjustedHeightPadding:10,useSelectOptionLabel:!1,useSelectOptionLabelToHtml:!1,navigationHighlight:!0,infiniteScroll:!1,virtualScroll:!0,cssStyler:()=>null,textTemplate:n=>n.innerHTML.trim(),labelTemplate:n=>n.label,onOpen:()=>!1,onClose:()=>!1,onCheckAll:()=>!1,onUncheckAll:()=>!1,onFocus:()=>!1,onBlur:()=>!1,onOptgroupClick:()=>!1,onBeforeClick:()=>!0,onClick:()=>!1,onFilter:()=>!1,onClear:()=>!1,onAfterCreate:()=>!1,onDestroy:()=>!1,onAfterDestroy:()=>!1,onDestroyed:()=>!1},wm=["init","getOptions","refreshOptions","getSelects","setSelects","enable","disable","open","close","check","uncheck","checkAll","uncheckAll","checkInvert","focus","blur","refresh","destroy"];Object.assign(al,ll["en-US"]);var Sm={BLOCK_ROWS:Em,CLUSTER_BLOCKS:ym,DEFAULTS:al,METHODS:wm},vt=Sm;function Am(n,t,e=!1){let o=Object.keys(n),i=Object.keys(t);if(e&&o.length!==i.length)return!1;for(let s of o)if(i.includes(s)&&n[s]!==t[s])return!1;return!0}function bo(n){let t=()=>{let i={};for(let s in n)Object.prototype.hasOwnProperty.call(n,s)&&(i[s]=bo(n[s]));return i},e=()=>n.map(i=>bo(i)),o=Object.prototype.toString.call(n).slice(8,-1).toLowerCase();return o==="object"?t():o==="array"?e():n}function no(n){return n!=null&&n!==""}function km(n,t){return typeof n=="object"?Object.fromEntries(t?Object.entries(n).filter(([e,o])=>!no(o)&&!t.includes(e)||no(o)):Object.entries(n).filter(([e,o])=>no(o))):n}function Om(n){let t=0;return n.forEach((e,o)=>{e.type==="optgroup"?(e._key=`group_${o}`,e.visible=typeof e.visible>"u"?!0:e.visible,e.children.forEach((i,s)=>{i&&(i.visible=typeof(i==null?void 0:i.visible)>"u"?!0:i.visible,i.divider||(i._key=`option_${o}_${s}`,t+=1))})):(e.visible=typeof e.visible>"u"?!0:e.visible,e.divider||(e._key=`option_${o}`,t+=1))}),t}function mn(n,t,e){if(Array.isArray(n))for(let o of n){if(o[t]===e||o[t]===`${+o[t]}`&&+o[t]===e)return o;if(o.type==="optgroup"){for(let i of o.children)if(i&&(i[t]===e||i[t]===`${+i[t]}`&&+i[t]===e))return i}}}function Tm(n){return n.replace(/(\b)(on[a-z]+)(\s*)=([^>]*)|javascript:([^>]*)[^>]*|(<\s*)(\/*)script([<>]*).*(<\s*)(\/*)script(>*)|(&lt;|&#60;)(\/*)(script|script defer)(.*)(&#62;|&gt;|&gt;">)/gi,"")}function oo(n){return Object.keys(n).forEach(t=>n[t]===void 0?delete n[t]:""),n}function ve(n,t){if(typeof n!="string")return n;if(typeof t=="function")return t(n);if(typeof n.normalize=="function")return n.normalize("NFD").replace(/[\u0300-\u036F]/g,"");throw new Error("[Multiple-Select-Vanilla] `normalize()` function is not defined, you can optionally provide a custom parser via the `diacriticParser` option.")}function io(n){let t=0,e=0,o=0,i=0,s=window.innerHeight??0,l=window.innerWidth??0,a=Dm(),r=a.top,d=a.left,u=_o(n);if(u){let f=u.top??0,w=u.left??0;e=f-r,t=s-(f-r),o=w-d,i=l-(w-d)}return{top:e,bottom:t,left:o,right:i}}function so(n=""){return n.split(" ").filter(t=>t)}function F(n,t,e){let o=document.createElement(n);return t&&Object.keys(t).forEach(i=>{let s=t[i];typeof s=="object"?Object.assign(o[i],s):o[i]=t[i]}),e!=null&&e.appendChild&&e.appendChild(o),o}function rl(n,t,e){var s;let o=(s=n.props)!=null&&s.innerHTML?Cm(n.props,"innerHTML"):n.props,i=F(n.tagName,km(o,["className","title","style"]),t);if(n.props.innerHTML&&(i.innerHTML=n.props.innerHTML),n.attrs)for(let l of Object.keys(n.attrs))i.setAttribute(l,n.attrs[l]);if(n.children)for(let l of n.children)rl(l,i);return t==null||t.appendChild(i),i}function go(n){return n.hasOwnProperty("tagName")?rl(n):document.createElement("li")}function Sn(n){for(;n!=null&&n.firstChild;)n.lastChild&&n.removeChild(n.lastChild);return n}function _o(n){var l;if(!n)return;let t=(l=n==null?void 0:n.getBoundingClientRect)==null?void 0:l.call(n),e=0,o=0,i=0,s=0;return(t==null?void 0:t.top)!==void 0&&t.left!==void 0&&(e=t.top+window.pageYOffset,o=t.left+window.pageXOffset,s=t.right,i=t.bottom),{top:e,left:o,bottom:i,right:s}}function hn(n,t,e){let o=Number.parseFloat(n.style[e]);if(!o||Number.isNaN(o)){switch(t){case"outer":o=n[e==="width"?"offsetWidth":"offsetHeight"];break;case"scroll":o=n[e==="width"?"scrollWidth":"scrollHeight"];break;case"inner":default:o=n[e==="width"?"clientWidth":"clientHeight"];break}o=n.getBoundingClientRect()[e]}if(!o||Number.isNaN(o)){let i=n.style.display,s=n.style.position;n.style.display="block",n.style.position="absolute";let l=window.getComputedStyle(n)[e];o=Number.parseFloat(l),Number.isNaN(o)&&(o=0),n.style.display=i,n.style.position=s}return o||0}function ji(n,t){let e=null,o=n==null?void 0:n.parentElement;for(;o;){let[i,s,l,a]=t.match(/^([a-z]*)([#.]{1})([a-z\-]+)$/i)||[];if(l&&a)for(let r of a.replace(l,"").split(" "))o.classList.contains(r)&&(s?(o==null?void 0:o.tagName.toLowerCase())===s&&(e=o):e=o);o=o.parentElement}return e}function xm(n,t){var e;(e=n.parentNode)==null||e.insertBefore(t,n.nextSibling)}function Cm(n,t){let{[t]:e,...o}=n;return o}function Ji(n,t){n!=null&&n.style&&(n.style.display=n.style.display==="none"&&t!==!1||t===!0?"block":"none")}function Dm(){return{left:window.pageXOffset||document.documentElement.scrollLeft||0,top:window.pageYOffset||document.documentElement.scrollTop||0}}var Nm=class{constructor(n){var e;g(this,"cache"),g(this,"clusterRows"),g(this,"dataStart"),g(this,"dataEnd"),g(this,"rows"),g(this,"scrollEl"),g(this,"blockHeight"),g(this,"clusterHeight"),g(this,"contentEl"),g(this,"parentEl"),g(this,"itemHeight"),g(this,"lastCluster"),g(this,"scrollTop"),g(this,"destroy"),g(this,"callback"),g(this,"sanitizer"),this.rows=n.rows,this.scrollEl=n.scrollEl,this.contentEl=n.contentEl,this.parentEl=(e=n.contentEl)==null?void 0:e.parentElement,this.callback=n.callback,this.cache={},this.scrollTop=this.scrollEl.scrollTop,this.initDOM(this.rows),this.scrollEl.scrollTop=this.scrollTop,this.lastCluster=0;let t=()=>{this.lastCluster!==(this.lastCluster=this.getNum())&&(this.initDOM(this.rows),this.callback())};this.scrollEl.addEventListener("scroll",t,!1),this.destroy=()=>{this.scrollEl.removeEventListener("scroll",t,!1),Sn(this.contentEl)}}initDOM(n){if(typeof this.clusterHeight>"u"){this.cache.scrollTop=this.scrollEl.scrollTop;let s=go(n[0]);this.contentEl.appendChild(s),this.contentEl.appendChild(s),this.contentEl.appendChild(s),this.cache.data=[n[0]],this.getRowsHeight()}let t=this.initData(n,this.getNum()),e=this.checkChanges("data",t.rows),o=this.checkChanges("top",t.topOffset),i=this.checkChanges("bottom",t.bottomOffset);Sn(this.contentEl),e&&o?(t.topOffset&&this.contentEl.appendChild(this.getExtra("top",t.topOffset)),t.rows.forEach(s=>this.contentEl.appendChild(go(s))),t.bottomOffset&&this.contentEl.appendChild(this.getExtra("bottom",t.bottomOffset))):i&&this.contentEl.lastChild&&(this.contentEl.lastChild.style.height=`${t.bottomOffset}px`)}getRowsHeight(){var n;if(typeof this.itemHeight>"u"){let t=((n=this.parentEl)==null?void 0:n.style.display)||"";this.parentEl&&(t===""||t==="none")&&(this.parentEl.style.display="block");let e=this.contentEl.children,o=e[Math.floor(e.length/2)];this.itemHeight=o.offsetHeight,this.parentEl&&(this.parentEl.style.display=t)}this.blockHeight=this.itemHeight*vt.BLOCK_ROWS,this.clusterRows=vt.BLOCK_ROWS*vt.CLUSTER_BLOCKS,this.clusterHeight=this.blockHeight*vt.CLUSTER_BLOCKS}getNum(){this.scrollTop=this.scrollEl.scrollTop;let n=(this.clusterHeight||0)-(this.blockHeight||0);return n&&Math.floor(this.scrollTop/n)||0}initData(n,t){if(n.length<vt.BLOCK_ROWS)return{topOffset:0,bottomOffset:0,rowsAbove:0,rows:n};let e=Math.max((this.clusterRows-vt.BLOCK_ROWS)*t,0),o=e+this.clusterRows,i=Math.max(e*this.itemHeight,0),s=Math.max((n.length-o)*this.itemHeight,0),l=[],a=e;i<1&&a++;for(let r=e;r<o;r++)n[r]&&l.push(n[r]);return this.dataStart=e,this.dataEnd=o,{topOffset:i,bottomOffset:s,rowsAbove:a,rows:l}}checkChanges(n,t){let e=t!==this.cache[n];return this.cache[n]=t,e}getExtra(n,t){let e=document.createElement("li");return e.className=`virtual-scroll-${n}`,t&&(e.style.height=`${t}px`),e}},Ge=".ms-select-all, ul li[data-key]",Mm=".ms-select-all.highlighted, ul li[data-key].highlighted",Lm=class{constructor(t,e){this.elm=t,g(this,"_bindEventService"),g(this,"isAllSelected",!1),g(this,"isPartiallyAllSelected",!1),g(this,"fromHtml",!1),g(this,"choiceElm"),g(this,"selectClearElm"),g(this,"closeElm"),g(this,"clearSearchIconElm"),g(this,"filterText",""),g(this,"updateData",[]),g(this,"data",[]),g(this,"dataTotal"),g(this,"dropElm"),g(this,"okButtonElm"),g(this,"filterParentElm"),g(this,"lastFocusedItemKey",""),g(this,"lastMouseOverPosition",""),g(this,"ulElm"),g(this,"parentElm"),g(this,"labelElm"),g(this,"selectAllParentElm"),g(this,"selectAllElm"),g(this,"searchInputElm"),g(this,"selectGroupElms"),g(this,"selectItemElms"),g(this,"noResultsElm"),g(this,"options"),g(this,"selectAllName",""),g(this,"selectGroupName",""),g(this,"selectItemName",""),g(this,"scrolledByMouse",!1),g(this,"openDelayTimer"),g(this,"updateDataStart"),g(this,"updateDataEnd"),g(this,"virtualScroll"),g(this,"_currentHighlightIndex",-1),g(this,"_currentSelectedElm"),g(this,"isMoveUpRecalcRequired",!1),g(this,"locales",{}),this.options=Object.assign({},vt.DEFAULTS,this.elm.dataset,e),this._bindEventService=new gm({distinctEvent:!0})}get isRenderAsHtml(){return this.options.renderOptionLabelAsHtml||this.options.useSelectOptionLabelToHtml}init(){this.initLocale(),this.initContainer(),this.initData(),this.initSelected(!0),this.initFilter(),this.initDrop(),this.initView(),this.options.onAfterCreate()}destroy(t=!0){var e,o,i,s,l;this.elm&&this.parentElm&&(this.options.onDestroy({hardDestroy:t}),t&&this.options.onHardDestroy(),this.elm.parentElement&&this.parentElm.parentElement&&this.elm.parentElement.insertBefore(this.elm,this.parentElm.parentElement.firstChild),this.elm.classList.remove("ms-offscreen"),this._bindEventService.unbindAll(),(e=this.virtualScroll)==null||e.destroy(),(o=this.dropElm)==null||o.remove(),(i=this.parentElm.parentNode)==null||i.removeChild(this.parentElm),this.fromHtml&&(delete this.options.data,this.fromHtml=!1),this.options.onAfterDestroy({hardDestroy:t}),t&&((l=(s=this.options).onAfterHardDestroy)==null||l.call(s),Object.keys(this.options).forEach(a=>delete this[a])))}initLocale(){if(this.options.locale){if(typeof this.options.locale=="object"){Object.assign(this.options,this.options.locale);return}let t=window.multipleSelect.locales,e=this.options.locale.split(/-|_/);if(e[0]=e[0].toLowerCase(),e[1]&&(e[1]=e[1].toUpperCase()),t[this.options.locale])Object.assign(this.options,t[this.options.locale]);else if(t[e.join("-")])Object.assign(this.options,t[e.join("-")]);else if(t[e[0]])Object.assign(this.options,t[e[0]]);else throw new Error(`[multiple-select-vanilla] invalid locales "${this.options.locale}", make sure to import it before using it`)}}initContainer(){var i;let t=this.elm.getAttribute("name")||this.options.name||"";this.options.classes&&this.elm.classList.add(this.options.classes),this.options.classPrefix&&(this.elm.classList.add(this.options.classPrefix),this.options.size&&this.elm.classList.add(`${this.options.classPrefix}-${this.options.size}`)),this.elm.style.display="none",this.labelElm=this.elm.closest("label"),!this.labelElm&&this.elm.id&&(this.labelElm=document.createElement("label"),this.labelElm.htmlFor=this.elm.id),(i=this.labelElm)!=null&&i.querySelector("input")&&(this.labelElm=null),typeof this.options.single>"u"&&(this.options.single=!this.elm.multiple),this.parentElm=F("div",{className:so(`ms-parent ${this.elm.className||""} ${this.options.classes}`).join(" "),dataset:{test:"sel"}}),this.options.darkMode&&this.parentElm.classList.add("ms-dark-mode");let e=this.elm.getAttribute("title")||"";e&&(this.parentElm.title=e),this.options.placeholder=this.options.placeholder||this.elm.getAttribute("placeholder")||"",this.choiceElm=F("button",{className:"ms-choice",type:"button"},this.parentElm),this.options.labelId&&(this.choiceElm.id=this.options.labelId,this.choiceElm.setAttribute("aria-labelledby",this.options.labelId)),this.choiceElm.appendChild(F("span",{className:"ms-placeholder",textContent:this.options.placeholder})),this.options.showClear&&(this.selectClearElm=F("div",{className:"ms-icon ms-icon-close"}),this.selectClearElm.style.display="none",this.choiceElm.appendChild(this.selectClearElm)),this.choiceElm.appendChild(F("div",{className:"ms-icon ms-icon-caret"})),this.dropElm=F("div",{className:`ms-drop ${this.options.position}`,ariaExpanded:"false"},this.parentElm),this.options.darkMode&&this.dropElm.classList.add("ms-dark-mode"),t&&(this.dropElm.dataset.name=t);let o=this.elm.getAttribute("data-test")||this.options.dataTest;o&&(this.parentElm.dataset.test=o,this.dropElm.dataset.test=o),this.closeElm=this.choiceElm.querySelector(".ms-icon-close"),this.options.dropWidth&&(this.dropElm.style.width=typeof this.options.dropWidth=="string"?this.options.dropWidth:`${this.options.dropWidth}px`),xm(this.elm,this.parentElm),this.elm.disabled&&(this.choiceElm.classList.add("disabled"),this.choiceElm.disabled=!0),this.selectAllName=`selectAll${t}`,this.selectGroupName=`selectGroup${t}`,this.selectItemName=`selectItem${t}`,this.options.keepOpen||(this._bindEventService.unbindAll("body-click"),this._bindEventService.bind(document.body,"click",s=>{s.target===this.choiceElm||ji(s.target,".ms-choice")===this.choiceElm||(s.target===this.dropElm||ji(s.target,".ms-drop")!==this.dropElm&&s.target!==this.elm)&&this.options.isOpen&&this.close()},void 0,"body-click"))}initData(){let t=[];if(this.options.data){if(Array.isArray(this.options.data))this.data=this.options.data.map(e=>typeof e=="string"||typeof e=="number"?{text:e,value:e}:e);else if(typeof this.options.data=="object"){for(let[e,o]of Object.entries(this.options.data))t.push({value:e,text:`${o}`});this.data=t}}else this.elm.childNodes.forEach(e=>{let o=this.initRow(e);o&&t.push(o)}),this.options.data=t,this.data=t,this.fromHtml=!0;this.dataTotal=Om(this.data||[])}initRow(t,e){var i,s;let o={};return((i=t.tagName)==null?void 0:i.toLowerCase())==="option"?(o.type="option",o.text=this.options.textTemplate(t),o.value=t.value,o.visible=!0,o.selected=!!t.selected,o.disabled=e||t.disabled,o.classes=t.getAttribute("class")||"",o.title=t.getAttribute("title")||"",t.dataset.value&&(o._value=t.dataset.value),Object.keys(t.dataset).length&&(o._data=t.dataset,o._data.divider&&(o.divider=o._data.divider)),o):((s=t.tagName)==null?void 0:s.toLowerCase())==="optgroup"?(o.type="optgroup",o.label=this.options.labelTemplate(t),o.visible=!0,o.selected=!!t.selected,o.disabled=t.disabled,o.children=[],Object.keys(t.dataset).length&&(o._data=t.dataset),t.childNodes.forEach(l=>{o.children.push(this.initRow(l,o.disabled))}),o):null}initDrop(){this.initList(),this.update(!0),this.options.isOpen&&this.open(10),this.options.openOnHover&&this.parentElm&&(this._bindEventService.bind(this.parentElm,"mouseover",()=>this.open(null)),this._bindEventService.bind(this.parentElm,"mouseout",()=>this.close()))}initFilter(){if(this.filterText="",this.options.filter||!this.options.filterByDataLength)return;let t=0;for(let e of this.data||[])e.type==="optgroup"?t+=e.children.length:t+=1;this.options.filter=t>this.options.filterByDataLength}initList(){if(this.options.filter&&(this.filterParentElm=F("div",{className:"ms-search"},this.dropElm),this.filterParentElm.appendChild(F("input",{autocomplete:"off",autocapitalize:"off",spellcheck:!1,type:"text",placeholder:this.options.filterPlaceholder||"🔎︎"})),this.options.showSearchClear&&this.filterParentElm.appendChild(F("span",{className:"ms-icon ms-icon-close"}))),this.options.selectAll&&!this.options.single){let t=this.elm.getAttribute("name")||this.options.name||"";this.selectAllParentElm=F("div",{className:"ms-select-all",dataset:{key:"select_all"}});let e=document.createElement("label"),o=`ms-icon ${this.isAllSelected?"ms-icon-check":this.isPartiallyAllSelected?"ms-icon-minus":"ms-icon-uncheck"}`,i=F("div",{className:"icon-checkbox-container"},e);F("input",{type:"checkbox",ariaChecked:String(this.isAllSelected),checked:this.isAllSelected,dataset:{name:`selectAll${t}`}},i),F("div",{className:o},i),e.appendChild(F("span",{textContent:this.formatSelectAll()})),this.selectAllParentElm.appendChild(e),this.dropElm.appendChild(this.selectAllParentElm)}this.ulElm=document.createElement("ul"),this.ulElm.role="combobox",this.ulElm.ariaExpanded="false",this.ulElm.ariaMultiSelectable=String(!this.options.single),this.dropElm.appendChild(this.ulElm),this.options.showOkButton&&!this.options.single&&(this.okButtonElm=F("button",{className:"ms-ok-button",type:"button",textContent:this.formatOkButton()},this.dropElm)),this.initListItems()}initListItems(){var o;let t=0,e=this.getListRows();if(this.options.selectAll&&!this.options.single&&(t=-1),this.options.virtualScroll&&e.length>vt.BLOCK_ROWS*vt.CLUSTER_BLOCKS){(o=this.virtualScroll)==null||o.destroy();let i=this.dropElm.style.display!=="none";i||(this.dropElm.style.left="-10000",this.dropElm.style.display="block",this.dropElm.ariaExpanded="true");let s=()=>{this.virtualScroll&&(this._currentHighlightIndex=0,this.updateDataStart=this.virtualScroll.dataStart+t,this.updateDataEnd=this.virtualScroll.dataEnd+t,this.updateDataStart<0&&(this.updateDataStart=0,this._currentHighlightIndex=0),this.updateDataEnd>this.getDataLength()&&(this.updateDataEnd=this.getDataLength()),this.ulElm&&(this.isMoveUpRecalcRequired?this.recalculateArrowMove("up"):this.virtualScroll.dataStart>this.updateDataStart&&this.recalculateArrowMove("down")))};this.ulElm&&(this.virtualScroll=new Nm({rows:e,scrollEl:this.ulElm,contentEl:this.ulElm,sanitizer:this.options.sanitizer,callback:()=>{s(),this.events()}})),s(),i||(this.dropElm.style.left="0",this.dropElm.style.display="none",this.dropElm.ariaExpanded="false")}else this.ulElm&&(Sn(this.ulElm),e.forEach(i=>this.ulElm.appendChild(go(i)))),this.updateDataStart=0,this.updateDataEnd=this.updateData.length,this.virtualScroll=null;return this.events(),e}getListRows(){var e;let t=[];return this.updateData=[],(e=this.data)==null||e.forEach(o=>t.push(...this.initListItem(o))),this.options.infiniteScroll&&t.push({tagName:"li",props:{className:"ms-infinite-option",role:"option"}}),t.push({tagName:"li",props:{className:"ms-no-results",textContent:this.formatNoMatchesFound()}}),t}initListItem(t,e=0){let o=(t==null?void 0:t.title)||"",i=this.options.multiple?"multiple":"",s=this.options.single?"radio":"checkbox",l=!!(t!=null&&t.selected),a=this.options.single&&!this.options.singleRadio,r="";if(!(t!=null&&t.visible))return[];if(this.updateData.push(t),a&&(r="hide-radio "),t.selected&&(r+="selected "),t.type==="optgroup"){let T=[],D;if(this.options.hideOptgroupCheckboxes||this.options.single)D={tagName:"span",props:{dataset:{name:this.selectGroupName,key:t._key}}};else{let x={tagName:"input",props:{type:"checkbox",dataset:{name:this.selectGroupName,key:t._key},checked:l,disabled:t.disabled}};a?D=x:D={tagName:"div",props:{className:`icon-checkbox-container${s==="radio"?" radio":""}`},children:[x,{tagName:"div",props:{className:`ms-icon ${l?s==="radio"?"ms-icon-radio":"ms-icon-check":"ms-icon-uncheck"}`}}]}}!r.includes("hide-radio")&&(this.options.hideOptgroupCheckboxes||this.options.single)&&(r+="hide-radio ");let L={tagName:"span",props:{}};this.applyAsTextOrHtmlWhenEnabled(L.props,t.label);let k={tagName:"li",props:{className:so(`group${this.options.single||t.disabled?" disabled":""} ${r}`).join(" "),role:"option",ariaSelected:String(l),dataset:{key:t._key}},children:[{tagName:"label",props:{className:so(`optgroup${this.options.single||t.disabled?" disabled":""}`).join(" ")},children:[D,L]}]},S=this.options.cssStyler(t);return S&&(k.props.style=S),T.push(k),t.children.forEach(x=>T.push(...this.initListItem(x,1))),T}if(r+=t.classes||"",e&&this.options.single&&(r+=`option-level-${e} `),t.divider)return[{tagName:"li",props:{className:"option-divider"}}];let d=i||r?(i+r).trim():"";t.disabled&&(d+=" disabled");let u=`${t.disabled?"disabled":""}`,f={tagName:"span",props:{}};this.applyAsTextOrHtmlWhenEnabled(f.props,t.text);let w={tagName:"input",props:{type:s,value:encodeURI(t.value),dataset:{key:t._key,name:this.selectItemName},checked:l,disabled:!!t.disabled}};t.selected&&(w.attrs={checked:"checked"});let E={tagName:"div",props:{className:`icon-checkbox-container${s==="radio"?" radio":""}`},children:[w,{tagName:"div",props:{className:`ms-icon ${w.props.checked?s==="radio"?"ms-icon-radio":"ms-icon-check":"ms-icon-uncheck"}`}}]},O={tagName:"li",props:{role:"option",title:o,ariaSelected:String(l),dataset:{key:t._key}},children:[{tagName:"label",props:{className:u},children:[a?w:E,f]}]};d&&(O.props.className=d);let A=this.options.cssStyler(t);return A&&(O.props.style=A),[O]}initSelected(t=!1){var o,i;let e=0;for(let s of this.data||[])if(s.type==="optgroup"){let l=s.children.filter(a=>(a==null?void 0:a.selected)&&!a.disabled&&a.visible).length;s.children.length&&(s.selected=!this.options.single&&l&&l===s.children.filter(a=>a&&!a.disabled&&a.visible&&!a.divider).length),e+=l}else e+=s.selected&&!s.disabled&&s.visible?1:0;this.isAllSelected=((o=this.data)==null?void 0:o.filter(s=>s.selected&&!s.disabled&&s.visible).length)===((i=this.data)==null?void 0:i.filter(s=>!s.disabled&&s.visible&&!s.divider).length),this.isPartiallyAllSelected=!this.isAllSelected&&e>0,t||(this.isAllSelected?this.options.onCheckAll():e===0&&this.options.onUncheckAll())}initView(){let t;window.getComputedStyle?(t=window.getComputedStyle(this.elm).width,t==="auto"&&(t=hn(this.dropElm,"outer","width")+15)):t=hn(this.elm,"outer","width")+15,this.parentElm.style.width=`${this.options.width||t}px`,this.elm.classList.add("ms-offscreen")}events(){var e,o;this._bindEventService.unbindAll(["ok-button","search-input","select-all-checkbox","input-checkbox-list","group-checkbox-list","hover-highlight","arrow-highlight","option-list-scroll"]),this.clearSearchIconElm=(e=this.filterParentElm)==null?void 0:e.querySelector(".ms-icon-close"),this.searchInputElm=this.dropElm.querySelector(".ms-search input"),this.selectAllElm=this.dropElm.querySelector(`input[data-name="${this.selectAllName}"]`),this.selectGroupElms=this.dropElm.querySelectorAll(`input[data-name="${this.selectGroupName}"],span[data-name="${this.selectGroupName}"]`),this.selectItemElms=this.dropElm.querySelectorAll(`input[data-name="${this.selectItemName}"]:enabled`),this.noResultsElm=this.dropElm.querySelector(".ms-no-results");let t=i=>{i.preventDefault(),!i.target.classList.contains("ms-icon-close")&&this[this.options.isOpen?"close":"open"]()};this.labelElm&&this._bindEventService.bind(this.labelElm,"click",i=>{i.target.nodeName.toLowerCase()==="label"&&(t(i),(!this.options.filter||!this.options.isOpen)&&this.focus(),i.stopPropagation())}),this._bindEventService.bind(this.choiceElm,"click",t),this.options.onFocus&&this._bindEventService.bind(this.choiceElm,"focus",this.options.onFocus),this.options.onBlur&&this._bindEventService.bind(this.choiceElm,"blur",this.options.onBlur),this._bindEventService.bind(this.parentElm,"keydown",i=>{i.code==="Escape"&&!this.options.keepOpen&&(this.close(),this.choiceElm.focus())}),this.closeElm&&this._bindEventService.bind(this.closeElm,"click",i=>{i.preventDefault(),this._checkAll(!1,!0),this.initSelected(!1),this.updateSelected(),this.update(),this.options.onClear()}),this.clearSearchIconElm&&this._bindEventService.bind(this.clearSearchIconElm,"click",i=>{i.preventDefault(),this.searchInputElm&&(this.searchInputElm.value="",this.searchInputElm.focus()),this._currentHighlightIndex=-1,this.moveHighlightDown(),this.filter()}),this.searchInputElm&&(this._bindEventService.bind(this.searchInputElm,"keydown",i=>{i.code==="Tab"&&i.shiftKey&&this.close()},void 0,"search-input"),this._bindEventService.bind(this.searchInputElm,"keyup",i=>{var s,l,a;if(this.options.filterAcceptOnEnter&&["Enter","Space"].includes(i.code)&&((s=this.searchInputElm)!=null&&s.value)){if(this.options.single){let r=[];(l=this.selectItemElms)==null||l.forEach(d=>{var u;((u=d.closest("li"))==null?void 0:u.style.display)!=="none"&&r.push(d)}),r.length&&r[0].hasAttribute("data-name")&&this.setSelects([r[0].value])}else(a=this.selectAllElm)==null||a.click();this.close(),this.focus();return}this.filter()},void 0,"search-input")),this.selectAllElm&&this._bindEventService.bind(this.selectAllElm,"click",i=>{var s;return this._checkAll((s=i.currentTarget)==null?void 0:s.checked)},void 0,"select-all-checkbox"),this.okButtonElm&&this._bindEventService.bind(this.okButtonElm,"click",i=>{t(i),i.stopPropagation()},void 0,"ok-button"),this._bindEventService.bind(this.selectGroupElms,"click",i=>{let s=i.currentTarget,l=s.checked,a=mn(this.data,"_key",s.dataset.key);this._checkGroup(a,l),this.options.onOptgroupClick(oo({label:a.label,selected:a.selected,data:a._data,children:a.children.map(r=>{if(r)return oo({text:r.text,value:r.value,selected:r.selected,disabled:r.disabled,data:r._data})})}))},void 0,"group-checkbox-list"),this._bindEventService.bind(this.selectItemElms,"click",i=>{let s=i.currentTarget,l=s.checked,a=mn(this.data,"_key",s.dataset.key),r=()=>{this.options.single&&this.options.isOpen&&!this.options.keepOpen&&this.close()};if(this.options.onBeforeClick(a)===!1){r();return}this._check(a,l),this.options.onClick(oo({text:a.text,value:a.value,selected:a.selected,data:a._data})),r()},void 0,"input-checkbox-list"),this.lastFocusedItemKey&&((o=this.dropElm.querySelector(`li[data-key=${this.lastFocusedItemKey}]`))==null||o.focus()),this.options.navigationHighlight&&(this._bindEventService.bind(this.dropElm,"mouseover",i=>{var l;let s=i.target.closest(".ms-select-all")||i.target.closest("li");if(this.dropElm.contains(s)&&this.lastMouseOverPosition!==`${i.clientX}:${i.clientY}`){let a=((l=this.dropElm)==null?void 0:l.querySelectorAll(Ge))||[],r=Array.from(a).findIndex(d=>d.dataset.key===s.dataset.key);this._currentHighlightIndex!==r&&!s.classList.contains("disabled")&&(this._currentSelectedElm=s,this._currentHighlightIndex=r,this.changeCurrentOptionHighlight(s))}this.lastMouseOverPosition=`${i.clientX}:${i.clientY}`},void 0,"hover-highlight"),this._bindEventService.bind(this.dropElm,"keydown",i=>{var s,l,a,r;switch(i.key){case"ArrowUp":i.preventDefault(),this.moveHighlightUp();break;case"ArrowDown":i.preventDefault(),this.moveHighlightDown();break;case"Enter":case" ":{if(document.activeElement!==this.okButtonElm){let d=i.target.closest(".ms-select-all")||i.target.closest("li");if(i.key===" "&&this.options.filter||this.options.filterAcceptOnEnter&&!d)return;i.preventDefault(),(l=(s=this._currentSelectedElm)==null?void 0:s.querySelector("input"))==null||l.click(),this.options.single&&(this.choiceElm.focus(),this.lastFocusedItemKey=((a=this.choiceElm)==null?void 0:a.dataset.key)||"")}break}case"Tab":i.preventDefault(),i.shiftKey?document.activeElement===this.okButtonElm?(this.focusSelectAllOrList(),this.highlightCurrentOption()):(this.close(),this.choiceElm.focus()):(this.changeCurrentOptionHighlight(),(r=this.okButtonElm)==null||r.focus())}},void 0,"arrow-highlight")),this.ulElm&&this.options.infiniteScroll&&this._bindEventService.bind(this.ulElm,"scroll",this.infiniteScrollHandler.bind(this),void 0,"option-list-scroll")}infiniteScrollHandler(t,e,o){let i=!1;t!=null&&t.target&&this.ulElm&&this.scrolledByMouse?t.target.scrollTop+t.target.clientHeight===this.ulElm.scrollHeight&&(i=!0):e!==void 0&&e+1===o&&(i=!0),i&&this.ulElm&&(this.virtualScroll?this.initListItems():this.ulElm.scrollTop=0,this._currentHighlightIndex=0,this.highlightCurrentOption())}open(t=0){t!==null&&t>=0?(clearTimeout(this.openDelayTimer),this.openDelayTimer=setTimeout(()=>this.openDrop(),t)):this.openDrop()}openDrop(){var i,s,l,a,r;if((i=this.choiceElm)!=null&&i.classList.contains("disabled"))return;if(this.options.isOpen=!0,this.parentElm.classList.add("ms-parent-open"),(l=(s=this.choiceElm)==null?void 0:s.querySelector("div.ms-icon-caret"))==null||l.classList.add("open"),this.dropElm.style.display="block",this.dropElm.ariaExpanded="true",(a=this.selectAllElm)!=null&&a.parentElement&&(this.selectAllElm.parentElement.style.display="inline-flex"),this.noResultsElm&&(this.noResultsElm.style.display="none"),this.getDataLength()||((r=this.selectAllElm)!=null&&r.parentElement&&(this.selectAllElm.parentElement.style.display="none"),this.noResultsElm&&(this.noResultsElm.style.display="block")),this.options.container){let d=_o(this.dropElm),u;this.options.container instanceof Node?u=this.options.container:typeof this.options.container=="string"&&(u=this.options.container==="body"?document.body:document.querySelector(this.options.container)),u.appendChild(this.dropElm),this.dropElm.style.top=`${(d==null?void 0:d.top)??0}px`,this.dropElm.style.left=`${(d==null?void 0:d.left)??0}px`,this.dropElm.style.minWidth="auto",this.dropElm.style.width=`${hn(this.parentElm,"outer","width")}px`}let t=this.options.minHeight,e=this.options.maxHeight;this.options.maxHeightUnit==="row"&&(e=hn(this.dropElm.querySelector("ul>li"),"outer","height")*this.options.maxHeight),this.ulElm??(this.ulElm=this.dropElm.querySelector("ul")),this.ulElm&&(t&&(this.ulElm.style.minHeight=`${t}px`),this.ulElm.style.maxHeight=`${e}px`),this.dropElm.querySelectorAll(".multiple").forEach(d=>{d.style.width=`${this.options.multipleWidth}px`}),this.getDataLength()&&this.options.filter?(this.searchInputElm&&(this.searchInputElm.value="",this.searchInputElm.focus()),this.filter(!0)):this.focusSelectAllOrList(),this._currentHighlightIndex<0?this.moveHighlightDown():this.highlightCurrentOption(),this.options.autoAdjustDropWidthByTextSize&&this.adjustDropWidthByText();let o=this.options.position;if(this.options.autoAdjustDropHeight){if(this.options.autoAdjustDropPosition){let{bottom:d,top:u}=io(this.dropElm),f=this.dropElm.getBoundingClientRect().height;o=d<f&&u>d?"top":"bottom"}this.adjustDropHeight(o)}this.options.autoAdjustDropPosition&&this.adjustDropPosition(!0),this.options.onOpen()}focusSelectAllOrList(){this.selectAllElm?this.selectAllElm.focus():this.ulElm&&(this.ulElm.tabIndex=0,this.ulElm.focus())}highlightCurrentOption(){var e;let t=((e=this.dropElm)==null?void 0:e.querySelectorAll(Ge))||[];if(this._currentHighlightIndex<=t.length){let o=t[this._currentHighlightIndex];o&&(this.lastFocusedItemKey=o.dataset.key||"",this._currentSelectedElm=o,this.scrolledByMouse=!1,o.scrollIntoView({block:"nearest"}),this.changeCurrentOptionHighlight(o),setTimeout(()=>this.scrolledByMouse=!0,10))}}changeCurrentOptionHighlight(t){var e;t==null||t.classList.add("highlighted"),(((e=this.dropElm)==null?void 0:e.querySelectorAll(Mm))||[]).forEach(o=>{o!==t&&o.classList.remove("highlighted")})}moveHighlightDown(){var o,i;let t=((o=this.dropElm)==null?void 0:o.querySelectorAll(Ge))||[],e=t.length;this._currentHighlightIndex<e-1?(this._currentHighlightIndex++,(i=t[this._currentHighlightIndex])!=null&&i.classList.contains("disabled")&&this.moveHighlightDown()):this.options.infiniteScroll&&this.infiniteScrollHandler(null,this._currentHighlightIndex,e),this.highlightCurrentOption()}moveHighlightUp(){var o,i;let t=((o=this.dropElm)==null?void 0:o.querySelectorAll(Ge))||[],e=this.options.single?0:1;if(this.virtualScroll&&this._currentHighlightIndex<=e&&this.updateDataStart>0&&this.ulElm){let s=t[this._currentHighlightIndex+(this.options.single?0:1)],l=s==null?void 0:s.dataset.key;this.lastFocusedItemKey=l,this.ulElm.scrollTop=this.ulElm.scrollTop-(s==null?void 0:s.getBoundingClientRect().height)||10,this.isMoveUpRecalcRequired=!0;return}this._currentHighlightIndex>0&&(this._currentHighlightIndex--,(i=t[this._currentHighlightIndex])!=null&&i.classList.contains("disabled")&&this.moveHighlightUp()),this.highlightCurrentOption()}recalculateArrowMove(t){var i;let e=((i=this.dropElm)==null?void 0:i.querySelectorAll(Ge))||[],o=Array.from(e).findIndex(s=>s.dataset.key===this.lastFocusedItemKey);this._currentHighlightIndex=o-1,t==="down"?this.moveHighlightDown():t==="up"&&(this.moveHighlightUp(),this.isMoveUpRecalcRequired=!1)}close(){var t,e;this.options.isOpen=!1,this.parentElm.classList.remove("ms-parent-open"),(e=(t=this.choiceElm)==null?void 0:t.querySelector("div.ms-icon-caret"))==null||e.classList.remove("open"),this.dropElm.style.display="none",this.dropElm.ariaExpanded="false",this.options.container&&(this.parentElm.appendChild(this.dropElm),this.dropElm.style.top="auto",this.dropElm.style.left="auto"),this.options.onClose()}applyAsTextOrHtmlWhenEnabled(t,e){t||(t={}),this.isRenderAsHtml?t.innerHTML=typeof this.options.sanitizer=="function"?this.options.sanitizer(e):e:t.textContent=e}update(t=!1){var d;let e=this.getSelects(),o=this.getSelects("text");this.options.displayValues&&(o=e);let i=(d=this.choiceElm)==null?void 0:d.querySelector("span"),s=e.length,l=null,a=()=>{if(this.options.useSelectOptionLabel||this.options.useSelectOptionLabelToHtml){let u=e.join(this.options.displayDelimiter);return this.options.useSelectOptionLabelToHtml?Tm(u):u}return o.join(this.options.displayDelimiter)};if(i){if(s===0){let u=this.options.placeholder||"";i.classList.add("ms-placeholder"),this.applyAsTextOrHtmlWhenEnabled(i,u)}else s<this.options.minimumCountSelected?l=a():this.formatAllSelected()&&s===this.dataTotal?l=this.formatAllSelected():this.options.ellipsis&&s>this.options.minimumCountSelected?l=`${o.slice(0,this.options.minimumCountSelected).join(this.options.displayDelimiter)}...`:this.formatCountSelected(s,this.dataTotal)&&s>this.options.minimumCountSelected?l=this.formatCountSelected(s,this.dataTotal):l=a();if(l!==null&&(i==null||i.classList.remove("ms-placeholder"),this.applyAsTextOrHtmlWhenEnabled(i,l)),this.options.showClear&&this.selectClearElm){let u=l?"block":"none";this.selectClearElm.style.display=u}if(this.options.displayTitle){let u=this.options.useSelectOptionLabel||this.options.useSelectOptionLabelToHtml?"value":"text";i.title=this.getSelects(u).join(this.options.displayDelimiter)}}let r=this.getSelects();this.options.single?this.elm.value=r.length?r[0]:"":Array.from(this.elm.options).forEach(u=>{u.selected=r.some(f=>f===u.value)}),t||this.elm.dispatchEvent(new Event("change"))}updateSelected(t){var o;for(let i=this.updateDataStart;i<this.updateDataEnd;i++){let s=this.updateData[i],l=this.dropElm.querySelector(`input[data-key=${s._key}]`);if(l){l.checked=s.selected;let a=l.closest("li"),r=a==null?void 0:a.querySelector(".icon-checkbox-container div");a&&(s.selected&&!a.classList.contains("selected")?(a.classList.add("selected"),a.ariaSelected="true",r&&(r.className=`ms-icon ms-icon-${l.type==="radio"?"radio":"check"}`)):s.selected||(a.classList.remove("selected"),a.ariaSelected="false",r&&(r.className="ms-icon ms-icon-uncheck")))}}let e=((o=this.data)==null?void 0:o.filter(i=>i.visible).length)===0;if(this.selectAllElm){this.selectAllElm.ariaChecked=String(this.isAllSelected);let i=this.dropElm.querySelector(".ms-select-all .icon-checkbox-container div");if(i){let s="";this.isAllSelected?s="ms-icon-check":this.isPartiallyAllSelected?s="ms-icon-minus":s="ms-icon-uncheck",i.className=`ms-icon ${s}`}this.selectAllElm.checked=this.isAllSelected,Ji(this.selectAllElm.closest("li"),!e)}Ji(this.noResultsElm,e),this.virtualScroll&&(this.virtualScroll.rows=t??this.getListRows())}getData(){return this.options.data}getDataLength(){var t;return((t=this.data)==null?void 0:t.length)??0}getOptions(t=!0){let e=Object.assign({},this.options);return delete e.data,t?bo(e):this.options}refreshOptions(t){Am(this.options,t,!0)||(this.options=Object.assign(this.options,t),this.destroy(!1),this.init())}getDropElement(){return this.dropElm}getParentElement(){return this.parentElm}getSelects(t="value"){let e=[];for(let o of this.data||[])if(o.type==="optgroup"){let i=o.children.filter(s=>s==null?void 0:s.selected);if(!i.length)continue;if(t==="value"||this.options.single)e.push(...i.map(s=>t==="value"&&s._value||s[t]));else{let s=[];s.push("["),s.push(o.label),s.push(`: ${i.map(l=>l[t]).join(", ")}`),s.push("]"),e.push(s.join(""))}}else o.selected&&e.push(t==="value"&&o._value||o[t]);return e}setSelects(t,e="value",o=!1){let i=!1,s=l=>{var a;for(let r of l){let d=!1;if(e==="text"){let u=document.createElement("div");this.applyAsTextOrHtmlWhenEnabled(u,r.text),d=t.includes(((a=u.textContent)==null?void 0:a.trim())??"")}else d=t.includes(r._value||r.value),!d&&r.value===`${+r.value}`&&(d=t.includes(+r.value));r.selected!==d&&(i=!0),r.selected=d}};for(let l of this.data||[])l.type==="optgroup"?s(l.children):s([l]);i&&(this.initSelected(o),this.updateSelected(),this.update(o))}enable(){this.choiceElm&&(this.choiceElm.classList.remove("disabled"),this.choiceElm.disabled=!1)}disable(){var t;this.choiceElm&&((t=this.choiceElm)==null||t.classList.add("disabled"),this.choiceElm.disabled=!0)}check(t){let e=mn(this.data,"value",t);e&&this._check(e,!0)}uncheck(t){let e=mn(this.data,"value",t);e&&this._check(e,!1)}_check(t,e){this.options.single&&this._checkAll(!1,!0),t.selected=e,this.initSelected(),this.updateSelected(),this.update()}checkAll(){this._checkAll(!0)}uncheckAll(){this._checkAll(!1)}_checkAll(t,e){for(let o of this.data||[])o.type==="optgroup"?this._checkGroup(o,t,!0):!o.disabled&&!o.divider&&(e||o.visible)&&(o.selected=t);e||(this.initSelected(),this.updateSelected(),this.update())}_checkGroup(t,e,o){t.selected=e,t.children.forEach(i=>{i&&!i.disabled&&!i.divider&&(o||i.visible)&&(i.selected=e)}),o||(this.initSelected(),this.updateSelected(),this.update())}checkInvert(){if(!this.options.single){for(let t of this.data||[])if(t.type==="optgroup")for(let e of t.children)e&&(e.divider||(e.selected=!e.selected));else t&&!t.divider&&(t.selected=!t.selected);this.initSelected(),this.updateSelected(),this.update()}}focus(){var t;(t=this.choiceElm)==null||t.focus(),this.options.onFocus()}blur(){var t;(t=this.choiceElm)==null||t.blur(),this.options.onBlur()}refresh(){this.destroy(!1),this.init()}filter(t){var s;let e=((s=this.searchInputElm)==null?void 0:s.value.trim())??"",o=e.toLowerCase();if(this.filterText===o)return;this.filterText=o;for(let l of this.data||[])if(l.type==="optgroup")if(this.options.filterGroup){let a=`${(l==null?void 0:l.label)??""}`;if(l!=null){let r=this.options.customFilter({label:ve(a.toString().toLowerCase(),this.options.diacriticParser),search:ve(o,this.options.diacriticParser),originalLabel:a,originalSearch:e,row:l});l.visible=r;for(let d of l.children)d&&(d.visible=r)}}else{for(let a of l.children)if(a!=null){let r=`${(a==null?void 0:a.text)??""}`;a.visible=this.options.customFilter({text:ve(r.toString().toLowerCase(),this.options.diacriticParser),search:ve(o,this.options.diacriticParser),originalText:r,originalSearch:e,row:a,parent:l})}l.visible=l.children.filter(a=>a==null?void 0:a.visible).length>0}else{let a=`${(l==null?void 0:l.text)??""}`;l.visible=this.options.customFilter({text:ve(a.toString().toLowerCase(),this.options.diacriticParser),search:ve(o,this.options.diacriticParser),originalText:a,originalSearch:e,row:l})}let i=this.initListItems();this.initSelected(t),this.updateSelected(i),t||this.options.onFilter(e)}adjustDropHeight(t){var u,f,w,E;let e=t!=="top",o=((u=this.filterParentElm)==null?void 0:u.getBoundingClientRect().height)??0,i=((f=this.okButtonElm)==null?void 0:f.getBoundingClientRect().height)??0,s=this.options.single?0:((w=this.selectAllParentElm)==null?void 0:w.getBoundingClientRect().height)??0,l=o+i+s+5,{bottom:a,top:r}=io(this.parentElm),d=this.options.maxHeight;if(e?d=a-l-this.options.adjustedHeightPadding:d=r-l-this.options.adjustedHeightPadding,!this.options.maxHeight||this.options.maxHeight&&d<this.options.maxHeight){let O=(E=this.dropElm)==null?void 0:E.querySelector("ul");return O&&(O.style.maxHeight=`${d}px`),!0}return!1}adjustDropPosition(t){let e="bottom";if(this.dropElm&&this.parentElm){let{bottom:o,top:i}=io(this.dropElm),{top:s,left:l}=_o(this.parentElm),a=this.dropElm.getBoundingClientRect().height,r=this.dropElm.getBoundingClientRect().width,d=document.body.offsetWidth||window.innerWidth,u=this.parentElm.getBoundingClientRect().width;if(o>a)e="bottom";else if(a>o&&i>o){if(this.options.container){let f=s-a;f<0&&(f=0),(f>0||t)&&(e="top",this.dropElm.style.top=`${f<0?0:f}px`)}else e="top",this.dropElm.classList.add(e);this.dropElm.classList.remove("bottom")}d-r<l&&(this.dropElm.style.left=`${l-(r-u)}px`)}return e}adjustDropWidthByText(){let t=this.parentElm.scrollWidth;(this.options.dropWidth||this.options.width)&&(t=this.options.dropWidth||this.options.width||0);let e=this.dropElm.querySelector(".ms-select-all span"),o=this.dropElm.querySelector("ul"),i=26,s=(e==null?void 0:e.clientWidth)??0+i,l=o.scrollHeight>o.clientHeight?this.getScrollbarWidth():0,a=0;this.dropElm.querySelectorAll("li label").forEach(r=>{r.scrollWidth>a&&(a=r.scrollWidth)}),a+=i+l,a<s&&(a=s),this.options.maxWidth&&a>this.options.maxWidth&&(a=this.options.maxWidth),this.options.minWidth&&a<this.options.minWidth&&(a=this.options.minWidth),(t==="100%"||+t<a)&&(this.dropElm.style.width=`${a}px`,this.dropElm.style.maxWidth=`${a}px`)}getScrollbarWidth(){var s;let t=document.createElement("div");t.style.visibility="hidden",t.style.width="100px",document.body.appendChild(t);let e=t.offsetWidth;t.style.overflow="scroll";let o=document.createElement("div");o.style.width="100%",t.appendChild(o);let i=o.offsetWidth;return(s=t.parentNode)==null||s.removeChild(t),e-i}formatAllSelected(){return this.options.allSelectedText||this.options.formatAllSelected()}formatCountSelected(t,e){return this.options.countSelectedText?this.options.countSelectedText.replace("#",`${t}`).replace("%",`${e}`):this.options.formatCountSelected(t,e)}formatNoMatchesFound(){return this.options.noMatchesFoundText||this.options.formatNoMatchesFound()}formatOkButton(){return this.options.okButtonText||this.options.formatOkButton()}formatSelectAll(){return this.options.selectAllText||this.options.formatSelectAll()}},m=(n,t)=>typeof n=="string"?lo(document.querySelectorAll(n),t):n instanceof Node?lo([n],t):lo(n,t);function lo(n,t){let e=Array.from(n),o=[];for(let i=0;i<e.length;i++){let s=e[i];try{s._multipleSelect!==void 0&&(s._multipleSelect.destroy(),delete s._multipleSelect),s._multipleSelect=new Lm(s,t||{}),s._multipleSelect.init();let l=s._multipleSelect.getOptions(!1);l.onHardDestroy=()=>delete s._multipleSelect,l.onAfterHardDestroyed=()=>o[i]=null,o.push(s._multipleSelect)}catch(l){console.error(l)}}return o.length===1?o[0]:o}m.defaults=vt.DEFAULTS;m.locales={...ll};m.methods=vt.METHODS;typeof window<"u"&&(window.multipleSelect=m);let $m=class{constructor(){c(this,"logElm");c(this,"ms1")}mount(){this.logElm=document.querySelector("textarea"),this.ms1=m("select",{filter:!0,onOpen:()=>{this.log(`onOpen event fire!
+`)},onClose:()=>{this.log(`onClose event fire!
+`)},onCheckAll:()=>{this.log(`onCheckAll event fire!
+`)},onUncheckAll:()=>{this.log(`onUncheckAll event fire!
+`)},onFocus:()=>{this.log(`onFocus event fire!
+`)},onBlur:()=>{this.log(`onBlur event fire!
+`)},onOptgroupClick:t=>{this.log(`onOptgroupClick event fire! view: ${JSON.stringify(t)}
+`)},onClick:t=>{this.log(`onClick event fire! view: ${JSON.stringify(t)}
+`)},onFilter:t=>{this.log(`onFilter event fire! text: ${t}
+`)},onAfterCreate:()=>{this.log(`onAfterCreate event fire!
+`)}})}log(t){this.logElm.textContent+=t,this.logElm.scrollTo(0,this.logElm.scrollHeight)}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},pl=class{constructor(){c(this,"ms",[])}mount(){this.ms=m(".multiple-select")}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},Im=class{constructor(){c(this,"ms",[])}mount(){this.ms=m(".multiple-select")}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},Rm=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select",{multiple:!0,multipleWidth:70})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},Pm=class{constructor(){c(this,"multiMs",[]);c(this,"singleMs")}mount(){this.multiMs=m(".select"),this.singleMs=m(".data",{data:[{value:1,text:"Options 1",selected:!0},{value:2,text:"Options 2"},{value:3,text:"Options 3"}]})}unmount(){var t;this.multiMs.forEach(e=>e.destroy()),this.multiMs=[],(t=this.singleMs)==null||t.destroy(),this.singleMs=void 0}},Hm=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select")}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Fm=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select")}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},Bm=class{constructor(){c(this,"btnElm");c(this,"ms",[]);c(this,"clickListener",()=>{const t=this.serialize(document.querySelector("form"));alert(t)})}mount(){this.ms=m("select"),this.btnElm=document.querySelector(".submit7"),this.btnElm.addEventListener("click",this.clickListener)}unmount(){this.btnElm.removeEventListener("click",this.clickListener),this.ms.forEach(t=>t.destroy()),this.ms=[]}serialize(t){const e=[];return t.querySelectorAll("[name]").forEach(o=>{const i=Array.from(o.selectedOptions);for(const s of i)e.push(`${o.name}=${s.value}`)}),e.length>0?e.join("&"):!1}},Um=class{constructor(){c(this,"ms1");c(this,"ms2");c(this,"ms3");c(this,"ms4");c(this,"ms5")}mount(){this.ms1=m("#basic",{dataTest:"select1",data:[{text:"January",value:1},{text:"February",value:2},{text:"March",value:3},{text:"April",value:4},{text:"May",value:5},{text:"June",value:6},{text:"July",value:7},{text:"August",value:8},{text:"September",value:9},{text:"October",value:10},{text:"November",value:11},{text:"December",value:12}]}),this.ms2=m("#object",{dataTest:"select2",data:{1:"January",2:"February",3:"March",4:"April",5:"May",6:"June",7:"July",8:"August",9:"September",10:"October",11:"November",12:"December"}}),this.ms3=m("#string",{dataTest:"select3",data:["January","February","March"]}),this.ms4=m("#number",{dataTest:"select4",data:[1,2,3]}),this.ms5=m("#group",{dataTest:"select5",data:[{type:"optgroup",label:"Group 1",children:[{text:"January",value:1,selected:!0},{text:"February",value:2,disabled:!0},{text:"March",value:3},{text:"April",value:4},{text:"May",value:5},{text:"June",value:6}]},{type:"optgroup",label:"Group 2",children:[{text:"July",value:7},{text:"August",value:8},{text:"September",value:9},{text:"October",value:10},{text:"November",value:11},{text:"December",value:12}]}]})}unmount(){var t,e,o,i,s;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),(o=this.ms3)==null||o.destroy(),(i=this.ms4)==null||i.destroy(),(s=this.ms5)==null||s.destroy(),this.ms1=void 0,this.ms2=void 0,this.ms3=void 0,this.ms4=void 0,this.ms5=void 0}};var cl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},ul={formatSelectAll(){return"[Seleccionar todo]"},formatAllSelected(){return"Todos seleccionados"},formatCountSelected(n,t){return`${n} de ${t} seleccionado`},formatNoMatchesFound(){return"No se encontraron coincidencias"},formatOkButton(){return"Cerrar"}};cl.locales["es-ES"]=ul;cl.locales;var dl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},Gm={formatSelectAll(){return"[Vybrat vše]"},formatAllSelected(){return"Vše vybráno"},formatCountSelected(n,t){return`${n} z ${t} vybráno`},formatNoMatchesFound(){return"Nebylo nalezeno"},formatOkButton(){return"Zavřít"}};dl.locales["cz-CS"]=Gm;dl.locales;var ml=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},jm={formatSelectAll(){return"[Vælg alle]"},formatAllSelected(){return"Alle valgt"},formatCountSelected(n,t){return`${n} af ${t} valgt`},formatNoMatchesFound(){return"Søgning uden resultat"},formatOkButton(){return"Lukke"}};ml.locales["da-DK"]=jm;ml.locales;var hl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},Jm={formatSelectAll(){return"[Select all]"},formatAllSelected(){return"All selected"},formatCountSelected(n,t){return`${n} of ${t} selected`},formatNoMatchesFound(){return"No matches found"},formatOkButton(){return"OK"}};hl.locales["en-US"]=Jm;hl.locales;var vl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},Wm={formatSelectAll(){return"[Seleccionar todo]"},formatAllSelected(){return"Todos seleccionados"},formatCountSelected(n,t){return`${n} de ${t} seleccionado`},formatNoMatchesFound(){return"No se encontraron coincidencias"},formatOkButton(){return"Cerrar"}};vl.locales["es-ES"]=Wm;vl.locales;var fl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},Vm={formatSelectAll(){return"[Tout sélectionner]"},formatAllSelected(){return"Tous sélectionnés"},formatCountSelected(n,t){return`${n} de ${t} sélectionnés`},formatNoMatchesFound(){return"Aucun résultat"},formatOkButton(){return"Fermer"}};fl.locales["fr-FR"]=Vm;fl.locales;var bl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},qm={formatSelectAll(){return"[Összes kiválasztása]"},formatAllSelected(){return"Összes kiválasztva"},formatCountSelected(n,t){return`${n} / ${t} kiválasztva`},formatNoMatchesFound(){return"Nincs találat"},formatOkButton(){return"Bezár"}};bl.locales["hu-HU"]=qm;bl.locales;var gl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},zm={formatSelectAll(){return"[Seleziona tutti]"},formatAllSelected(){return"Tutti selezionati"},formatCountSelected(n,t){return`${n} di ${t} selezionati`},formatNoMatchesFound(){return"Nessun risultato"},formatOkButton(){return"Chiudere"}};gl.locales["it-IT"]=zm;gl.locales;var _l=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},Km={formatSelectAll(){return"[すべて選択]"},formatAllSelected(){return"すべて選択"},formatCountSelected(n,t){return`${t} 件中 ${n} 件選択`},formatNoMatchesFound(){return"見つかりません"},formatOkButton(){return"閉める"}};_l.locales["ja-JP"]=Km;_l.locales;var El=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},Ym={formatSelectAll(){return"[Selecionar todos]"},formatAllSelected(){return"Todos selecionados"},formatCountSelected(n,t){return`${n} de ${t} selecionado(s)`},formatNoMatchesFound(){return"Nenhum resultado encontrado"},formatOkButton(){return"Fechar"}};El.locales["pt-BR"]=Ym;El.locales;var yl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},Xm={formatSelectAll(){return"[Выбрать все]"},formatAllSelected(){return"Выбрано все"},formatCountSelected(n,t){return`${n} из ${t} выбрано`},formatNoMatchesFound(){return"Совпадений не найдено"},formatOkButton(){return"Закрывать"}};yl.locales["ru-RU"]=Xm;yl.locales;var wl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},Qm={formatSelectAll(){return"[Tất cả]"},formatAllSelected(){return"Chọn tất cả"},formatCountSelected(n,t){return`Đã chọn ${n} trong ${t}`},formatNoMatchesFound(){return"Không tìm thấy kết quả."},formatOkButton(){return"Đóng"}};wl.locales["vi-VN"]=Qm;wl.locales;var Sl=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},Zm={formatSelectAll(){return"[全选]"},formatAllSelected(){return"已选择所有记录"},formatCountSelected(n,t){return`已从${t}条记录中选择${n}条`},formatNoMatchesFound(){return"没有找到记录"},formatOkButton(){return"关闭"}};Sl.locales["zh-CN"]=Zm;Sl.locales;var Al=typeof window<"u"&&window.multipleSelect!==void 0?window.multipleSelect:{locales:{}},th={formatSelectAll(){return"[全選]"},formatAllSelected(){return"已選擇所有記錄"},formatCountSelected(n,t){return`已從${t}條記錄中選擇${n}條`},formatNoMatchesFound(){return"沒有找到記錄"},formatOkButton(){return"关闭"}};Al.locales["zh-TW"]=th;Al.locales;let eh=class{constructor(){c(this,"ms0");c(this,"ms1");c(this,"ms2")}mount(){const t=document.querySelector("#locale");t.addEventListener("change",e=>{this.updateLocale(e.target.value)}),this.ms0=m(t),this.ms1=m("#dynamic-select",{filter:!0,showOkButton:!0,dataTest:"select1"}),this.ms2=m("#fixed-import",{filter:!0,showOkButton:!0,dataTest:"select2",locale:ul})}unmount(){var t,e,o;(t=this.ms0)==null||t.destroy(),(e=this.ms1)==null||e.destroy(),(o=this.ms2)==null||o.destroy(),this.ms0=void 0,this.ms1=void 0,this.ms2=void 0}updateLocale(t){var e,o;(e=this.ms1)==null||e.destroy(),(o=this.ms1)==null||o.refreshOptions({locale:t})}},nh=class{constructor(){c(this,"ms1");c(this,"ms2")}mount(){const t=[],e=[];for(let o=0;o<1e4;o++)t.push(o);for(let o=0;o<1e4;o++)e.push({text:`<i class="fa fa-star"></i> Task ${o}`,value:o});this.ms1=m("#select1",{filter:!0,data:t,showSearchClear:!0}),this.ms2=m("#select2",{filter:!0,data:e,showSearchClear:!0,useSelectOptionLabelToHtml:!0})}unmount(){var t,e;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),this.ms1=void 0,this.ms2=void 0}},oh=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select")}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},ih=class{constructor(){c(this,"ms1");c(this,"ms2")}mount(){this.ms1=m("#single",{singleRadio:!0}),this.ms2=m("#multiple",{showOkButton:!0})}unmount(){var t,e;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),this.ms1=void 0,this.ms2=void 0}},sh=class{constructor(){c(this,"createBtnElm");c(this,"destroyBtnElm");c(this,"ms1")}mount(){this.createBtnElm=document.querySelector("#createBtn"),this.destroyBtnElm=document.querySelector("#destroyBtn"),this.createBtnElm.addEventListener("click",this.createMultipleSelect.bind(this)),this.destroyBtnElm.addEventListener("click",this.destroyMultiSelect.bind(this))}createMultipleSelect(){this.ms1=m("#select1",{name:"my-select",single:!1,useSelectOptionLabelToHtml:!0,sanitizer:t=>ft.sanitize(t,{RETURN_TRUSTED_TYPE:!0}),data:[{text:'<i class="fa fa-star"></i> January',value:1},{text:"February",value:2},{text:"March",value:3},{text:"April",value:4},{text:"May",value:5},{text:"June",value:6},{text:"July",value:7},{text:"August",value:8},{text:"September",value:9},{text:"October",value:10},{text:"November",value:11},{text:"December",value:12}]}),this.ms1.setSelects([1,3,4])}destroyMultiSelect(){var t;console.log("destroy"),(t=this.ms1)==null||t.destroy(),this.ms1=void 0}unmount(){this.destroyMultiSelect(),this.createBtnElm.removeEventListener("click",this.createMultipleSelect.bind(this)),this.destroyBtnElm.removeEventListener("click",this.destroyMultiSelect.bind(this))}},lh=class{constructor(){c(this,"ms1",[]);c(this,"ms2",[])}mount(){this.ms1=m(".select"),this.ms2=m(".data-select",{dataTest:"select1",data:[{value:1,text:"Option 1"},{value:2,text:"Option 2"},{value:3,text:"Option 3"},{divider:!0},{value:4,text:"Option 4"},{value:5,text:"Option 5"},{value:6,text:"Option 6"}]})}unmount(){this.ms1.forEach(t=>t.destroy()),this.ms2.forEach(t=>t.destroy()),this.ms1=[],this.ms2=[]}},ah=class{constructor(){c(this,"ms1");c(this,"ms2");c(this,"ms3");c(this,"ms4");c(this,"ms5");c(this,"darkMode",!0)}mount(){var t;(t=document.querySelector(".panel-wm-content"))==null||t.classList.add("dark-mode"),this.ms1=m("select[data-test=single]",{darkMode:!0}),this.ms2=m("select[data-test=radio]",{darkMode:!0,singleRadio:!0}),this.ms3=m("select[data-test=multiple]",{darkMode:!0}),this.ms4=m("select[data-test=group]",{darkMode:!0}),this.ms5=m("select[data-test=data1]",{darkMode:!0,dataTest:"select1",filter:!0,showOkButton:!0,showClear:!0,showSearchClear:!0,data:[{value:1,text:"Option 1"},{value:2,text:"Option 2"},{value:3,text:"Option 3"},{divider:!0},{value:4,text:"Option 4"},{value:5,text:"Option 5"},{value:6,text:"Option 6"}]})}unmount(){var t,e,o,i,s,l;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),(o=this.ms3)==null||o.destroy(),(i=this.ms4)==null||i.destroy(),(s=this.ms5)==null||s.destroy(),this.ms1=void 0,this.ms2=void 0,this.ms3=void 0,this.ms4=void 0,this.ms5=void 0,(l=document.querySelector(".panel-wm-content"))==null||l.classList.remove("dark-mode")}};const Wi=""+new URL("avatar1-Dfqkz6jG.png",import.meta.url).href,Vi=""+new URL("avatar2-C5pX2a2d.png",import.meta.url).href,qi=""+new URL("avatar3-COtlxv_R.png",import.meta.url).href,zi=""+new URL("avatar4-Dom6eBE9.png",import.meta.url).href,Ki=""+new URL("avatar5-B_ltAQdV.png",import.meta.url).href;let rh=class{constructor(){c(this,"ms1");c(this,"ms2")}mount(){this.ms1=m("[data-test=select1]",{data:[{value:"1",text:`<img alt="avatar1" src="${Wi}" class="avatar"> Eric`},{value:"2",text:`<img alt="avatar2" src="${Vi}" class="avatar"> Smith`},{value:"3",text:`<img alt="avatar3" src="${qi}" class="avatar"> Erika`},{value:"4",text:`<img alt="avatar4" src="${zi}" class="avatar"> Julia`},{value:"5",text:`<img alt="avatar5" src="${Ki}" class="avatar"> Catherine`}],renderOptionLabelAsHtml:!0}),this.ms2=m("[data-test=select2]",{singleRadio:!0,renderOptionLabelAsHtml:!0,textTemplate:t=>{const[e,o]=t.textContent.split("::");return`<div class="image-container"><img alt="avatar${t.value}" src="${this.getAvatarByIdx(t.value)}" class="avatar"><div class="text-container"><div class="name-section">${e}</div><div class="job-section">${o}</div></div></div>`},sanitizer:t=>ft.sanitize(t,{RETURN_TRUSTED_TYPE:!0})})}unmount(){var t,e;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),this.ms1=void 0,this.ms2=void 0}getAvatarByIdx(t){let e;switch(+t){case 1:e=Wi;break;case 2:e=Vi;break;case 3:e=qi;break;case 4:e=zi;break;case 5:e=Ki;break}return e}},ph=class{},ch=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{filter:!0,showOkButton:!0,formatAllSelected(){return"Tous sélectionnés"},formatCountSelected(t,e){return`${t} de ${e} sélectionnés`},formatNoMatchesFound(){return"Aucun résultat"},formatOkButton(){return"Fermer"},formatSelectAll(){return"[Tout sélectionner]"}})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},uh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{filter:!0}),document.querySelector("#getOptions").addEventListener("click",()=>{alert(JSON.stringify(this.ms1.getOptions(),null,4))})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},dh=class{constructor(){c(this,"ms1");c(this,"ms2");c(this,"darkMode2",!1)}mount(){var t,e;this.ms1=m(".select1",{filter:!0}),this.ms2=m(".select2",{darkMode:this.darkMode2,showOkButton:!0}),(t=document.querySelector("#refreshOptions"))==null||t.addEventListener("click",()=>this.refreshOption1()),(e=document.querySelector("#setDarkMode"))==null||e.addEventListener("click",()=>this.toggleDarkMode2())}refreshOption1(){var t;(t=this.ms1)==null||t.refreshOptions({filter:!1})}toggleDarkMode2(){var t;this.darkMode2=!this.darkMode2,(t=this.ms2)==null||t.refreshOptions({darkMode:this.darkMode2})}unmount(){var t,e,o,i;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),this.ms1=void 0,this.ms2=void 0,(o=document.querySelector("#refreshOptions"))==null||o.removeEventListener("click",()=>this.refreshOption1()),(i=document.querySelector("#setDarkMode"))==null||i.removeEventListener("click",()=>this.toggleDarkMode2())}},mh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{filter:!0}),document.querySelector("#setSelectsBtn").addEventListener("click",()=>{var t;(t=this.ms1)==null||t.setSelects([1,3])}),document.querySelector("#getSelectsBtn").addEventListener("click",()=>{var t,e;alert(`Selected values: ${(t=this.ms1)==null?void 0:t.getSelects()}`),alert(`Selected texts: ${(e=this.ms1)==null?void 0:e.getSelects("text")}`)}),document.querySelector("#setSelectsBtn2").addEventListener("click",()=>{var t;(t=this.ms1)==null||t.setSelects(["February","April"],"text")}),document.querySelector("#getSelectsBtn2").addEventListener("click",()=>{var t;alert(`Selected values: ${(t=this.ms1)==null?void 0:t.getSelects("text")}`)})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},hh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select"),document.querySelector("#enableBtn").addEventListener("click",()=>{var t;(t=this.ms1)==null||t.enable()}),document.querySelector("#disableBtn").addEventListener("click",()=>{var t;(t=this.ms1)==null||t.disable()})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},vh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select"),document.querySelector("#openBtn").addEventListener("click",()=>{var t;(t=this.ms1)==null||t.open()}),document.querySelector("#closeBtn").addEventListener("click",()=>{var t;(t=this.ms1)==null||t.close()})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},fh=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select"),document.querySelector("#checkBtn").addEventListener("click",()=>{for(const t of this.ms)t.check(2)}),document.querySelector("#uncheckBtn").addEventListener("click",()=>{for(const t of this.ms)t.uncheck(2)})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},bh=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select"),document.querySelector("#checkAllBtn").addEventListener("click",()=>{for(const t of this.ms)t.checkAll()}),document.querySelector("#uncheckAllBtn").addEventListener("click",()=>{for(const t of this.ms)t.uncheckAll()})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},gh=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select"),document.querySelector("#checkInvert").addEventListener("click",()=>{for(const t of this.ms)t.checkInvert()})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},_h=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select"),document.querySelector("#focusBtn").addEventListener("click",()=>{var t;(t=this.ms1)==null||t.focus()}),document.querySelector("#blurBtn").addEventListener("click",()=>{var t;(t=this.ms1)==null||t.blur()})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Eh=class{constructor(){c(this,"ms1")}mount(){const t=document.querySelector("select");this.ms1=m(t),document.querySelector("#refreshAdd").addEventListener("click",()=>{var a;const e=document.querySelector("#refreshInput"),o=document.querySelector("#refreshSelected"),i=document.querySelector("#refreshDisabled"),s=e.value.trim(),l=document.createElement("option");if(l.value=s,l.text=s,!s){e.focus();return}o.checked&&(l.selected=!0),i.checked&&(l.disabled=!0),e.value="",t.appendChild(l),(a=this.ms1)==null||a.refresh()})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},yh=class{constructor(){c(this,"buildBtnElm");c(this,"destroyBtnElm");c(this,"ms1")}mount(){this.buildBtnElm=document.querySelector("#buildBtn"),this.destroyBtnElm=document.querySelector("#destroyBtn"),this.destroyBtnElm.addEventListener("click",this.destroyMultiSelect.bind(this)),this.buildBtnElm.addEventListener("click",this.createMultipleSelect.bind(this)),this.ms1=m("select")}createMultipleSelect(){this.ms1=m("select")}destroyMultiSelect(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=null}unmount(){this.destroyMultiSelect(),this.buildBtnElm.removeEventListener("click",this.destroyMultiSelect.bind(this)),this.destroyBtnElm.removeEventListener("click",this.createMultipleSelect.bind(this))}},wh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{filter:!0}),document.querySelector("#getData").addEventListener("click",()=>{console.log("tt",JSON.stringify(this.ms1.getData())),alert(JSON.stringify(this.ms1.getData(),null,4))})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Sh=class{constructor(){c(this,"ms1");c(this,"ms2")}mount(){this.ms1=m("#select1"),this.ms2=m("#select2",{placeholder:"Here is the placeholder via javascript"})}unmount(){var t,e;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),this.ms1=void 0,this.ms2=void 0}},Ah=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select",{singleRadio:!0})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},kh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{selectAll:!1})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Oh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{multiple:!0,hideOptgroupCheckboxes:!0,multipleWidth:70})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Th=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{multiple:!0,width:500,multipleWidth:70,dropWidth:580})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},xh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{maxHeight:140})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Ch=class{constructor(){c(this,"ms",[])}mount(){const t=document.querySelector("#number");this.ms=m("select",{maxHeight:+t.value,maxHeightUnit:"row"}),t.addEventListener("change",()=>{this.ms.forEach(e=>{e.refreshOptions({maxHeight:+t.value,maxHeightUnit:"row"})})})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},Dh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{position:"top"})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Nh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{displayValues:!0})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Mh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{displayTitle:!0})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Lh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{displayDelimiter:" | "})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},$h=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{minimumCountSelected:8})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Ih=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{ellipsis:!0,minimumCountSelected:5})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Rh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{isOpen:!0})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Ph=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{keepOpen:!0})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Hh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{openOnHover:!0})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Fh=class{constructor(){c(this,"ms1");c(this,"ms2");c(this,"ms3");c(this,"ms4")}mount(){this.ms1=m(".select1"),this.ms2=m(".select2"),this.ms3=m(".select3",{container:".my-container"}),this.ms4=m(".select4",{autoAdjustDropPosition:!0,container:"body"})}unmount(){var t,e,o,i;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),(o=this.ms3)==null||o.destroy(),(i=this.ms4)==null||i.destroy(),this.ms1=void 0,this.ms2=void 0,this.ms3=void 0,this.ms4=void 0}},Bh=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select",{filter:!0})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},Uh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{filter:!0,filterGroup:!0})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Gh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{filter:!0,filterPlaceholder:"The filter placeholder"})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},jh=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select",{filter:!0,filterAcceptOnEnter:!0})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},Jh=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select",{filterByDataLength:10})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},Wh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{filter:!0,customFilter:({text:t,search:e,originalText:o,originalSearch:i})=>document.querySelector("input").checked?o.indexOf(i)===0:t.indexOf(e)===0})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Vh=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select",{showClear:!0})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},qh=class{constructor(){c(this,"ms",[])}mount(){this.ms.push(m(".select1",{showOkButton:!0})),this.ms.push(m(".select2",{showOkButton:!0})),this.ms.push(m(".select3",{showOkButton:!0,filter:!0})),this.ms.push(m(".select4",{showOkButton:!0}))}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},zh=class{constructor(){c(this,"ms1");c(this,"ms2")}mount(){this.ms1=m('[data-test="select3"]',{cssStyler:t=>+((t==null?void 0:t.value)??0)==2?{backgroundColor:"#6fbeff",color:"#0014ff",fontStyle:"italic"}:+((t==null?void 0:t.value)??0)==4?{backgroundColor:"#972727",color:"#fff"}:null}),this.ms2=m('[data-test="select4"]',{cssStyler:t=>(t==null?void 0:t.type)==="optgroup"?{color:"#787878",fontWeight:"normal"}:+((t==null?void 0:t.value)??0)==3?{color:"purple",textDecoration:"underline"}:null})}unmount(){var t,e;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),this.ms1=void 0,this.ms2=void 0}},Kh=class{constructor(){c(this,"ms1");c(this,"ms2");c(this,"btnEnableElm");c(this,"btnDisableElm")}mount(){this.ms1=m("#basic",{filter:!0,displayTitle:!0,renderOptionLabelAsHtml:!0,textTemplate:t=>`<i class="fa fa-star"></i>${t.innerHTML}`,customFilter:({search:t,text:e})=>{var i;const o=document.createElement("div");return o.innerHTML=e,((i=o.textContent)==null?void 0:i.includes(t))??!0},sanitizer:t=>ft.sanitize(t,{RETURN_TRUSTED_TYPE:!0})}),this.ms2=m("#from-data",{dataTest:"select1",displayTitle:!0,renderOptionLabelAsHtml:!0,data:[{value:'50"',text:'50"'},{value:"44'",text:"44'"},{value:"33",text:'<span style="font-weight:bold">33</span>'}],sanitizer:t=>ft.sanitize(t,{RETURN_TRUSTED_TYPE:!0})}),this.btnEnableElm=document.querySelector("#enableRenderHtml"),this.btnEnableElm.addEventListener("click",()=>this.renderAsHtmlHandler(!0)),this.btnDisableElm=document.querySelector("#disableRenderHtml"),this.btnDisableElm.addEventListener("click",()=>this.renderAsHtmlHandler(!1))}renderAsHtmlHandler(t){var e,o;(e=this.ms1)==null||e.refreshOptions({renderOptionLabelAsHtml:t}),(o=this.ms2)==null||o.refreshOptions({renderOptionLabelAsHtml:t})}unmount(){var t,e,o,i;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),this.ms1=void 0,this.ms2=void 0,(o=this.btnEnableElm)==null||o.removeEventListener("click",()=>this.renderAsHtmlHandler(!0)),(i=this.btnDisableElm)==null||i.removeEventListener("click",()=>this.renderAsHtmlHandler(!1))}},Yh=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{renderOptionLabelAsHtml:!0,labelTemplate:t=>`<i class="fa fa-star"></i>${t.getAttribute("label")}`,sanitizer:t=>ft.sanitize(t,{RETURN_TRUSTED_TYPE:!0})})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},Xh=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select",{autoAdjustDropPosition:!0})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},Qh=class{constructor(){c(this,"ms1");c(this,"ms2");c(this,"ms3");c(this,"ms4")}mount(){this.ms1=m("#select1",{autoAdjustDropWidthByTextSize:!0,autoAdjustDropHeight:!0,position:"top",showOkButton:!0,sanitizer:t=>ft.sanitize(t,{RETURN_TRUSTED_TYPE:!0})}),this.ms2=m("#select2",{autoAdjustDropHeight:!0,position:"top",showOkButton:!0,sanitizer:t=>ft.sanitize(t,{RETURN_TRUSTED_TYPE:!0})}),this.ms3=m("#select3",{autoAdjustDropHeight:!0,filter:!0,position:"top",sanitizer:t=>ft.sanitize(t,{RETURN_TRUSTED_TYPE:!0})}),this.ms4=m("#select4")}unmount(){var t,e,o,i;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),(o=this.ms3)==null||o.destroy(),(i=this.ms4)==null||i.destroy(),this.ms1=void 0,this.ms2=void 0,this.ms3=void 0,this.ms4=void 0}},Zh=class{constructor(){c(this,"ms1");c(this,"ms2")}mount(){this.ms1=m("#select1",{useSelectOptionLabel:!0}),this.ms2=m("#select2",{useSelectOptionLabelToHtml:!0,sanitizer:t=>ft.sanitize(t,{RETURN_TRUSTED_TYPE:!0}),data:[{text:'<i class="fa fa-star"></i> January',value:'<i class="fa fa-star"></i>1',selected:!0},{text:"February",value:"2"},{text:"March",value:3},{text:"April",value:4},{text:"May",value:5},{text:"June",value:6},{text:"July",value:7},{text:"August",value:8},{text:"September",value:9},{text:"October",value:10},{text:"November",value:11},{text:"December",value:12}]})}unmount(){var t,e;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),this.ms1=void 0,this.ms2=void 0}},tv=class{constructor(){c(this,"ms1")}mount(){this.ms1=m("#select1",{placeholder:'Placeholder with cross-site scripting code...<img src="not-found" onerror=alert("Hacked")>',sanitizer:t=>typeof t=="string"?decodeURIComponent(t).replace(/(\b)(on[a-z]+)(\s*)=|javascript:([^>]*)[^>]*|(<\s*)(\/*)script([<>]*).*(<\s*)(\/*)script(>*)|(&lt;)(\/*)(script|script defer)(.*)(&gt;|&gt;">)/gi,""):t})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}},ev=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select",{classes:"form-control",classPrefix:"form-control"})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}},nv=class{constructor(){c(this,"ms",[])}mount(){this.ms=m("select",{filter:!0,showSearchClear:!0})}unmount(){this.ms.forEach(t=>t.destroy()),this.ms=[]}};const Yi={a:"ÀÁÂÃÄÅàáâãäåĀāąĄ",c:"ÇçćĆčČ",d:"đĐďĎ",e:"ÈÉÊËèéêëěĚĒēęĘ",i:"ÌÍÎÏìíîïĪī",l:"łŁ",n:"ÑñňŇńŃ",o:"ÒÓÔÕÕÖØòóôõöøŌō",r:"řŘ",s:"ŠšśŚ",t:"ťŤ",u:"ÙÚÛÜùúûüůŮŪū",y:"ŸÿýÝ",z:"ŽžżŻźŹ"};let ov=class{constructor(){c(this,"ms1");c(this,"ms2");c(this,"inLogElm");c(this,"outLogElm")}mount(){this.inLogElm=document.querySelector("input.in-log"),this.outLogElm=document.querySelector("input.out-log"),this.ms1=m("#select1",{filter:!0,showSearchClear:!0,filterPlaceholder:'🔎︎ search with "é", "û" or simply "u"',diacriticParser:t=>{const e=t.split("").map(o=>Object.keys(Yi).find(i=>Yi[i].includes(o))||o).join("");return this.inLogElm.value=t,this.outLogElm.value=e,e}}),this.ms2=m("#select2",{filter:!0,showSearchClear:!0,filterPlaceholder:'🔎︎ search with "é", "û" or simply "u"'})}unmount(){var t,e;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),this.ms1=void 0,this.ms2=void 0}},iv=class{constructor(){c(this,"ms1");c(this,"ms2")}mount(){const t=[],e=[];for(let o=0;o<25;o++)t.push({text:`Title ${o}`,value:o});for(let o=0;o<2e3;o++)e.push({text:`<i class="fa fa-star"></i> Task ${o}`,value:o});this.ms1=m("#select1",{data:t,infiniteScroll:!0}),this.ms2=m("#select2",{filter:!0,data:e,showSearchClear:!0,useSelectOptionLabelToHtml:!0,infiniteScroll:!0})}unmount(){var t,e;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),this.ms1=void 0,this.ms2=void 0}},sv=class{constructor(){c(this,"ms1");c(this,"ms2");c(this,"ms3");c(this,"ms4")}mount(){this.ms1=m("select[data-test=select1]"),this.ms2=m("select[data-test=select2]"),this.ms3=m("select[data-test=select3]"),this.ms4=m("select[data-test=select4]",{filter:!0})}unmount(){var t,e,o,i;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),(o=this.ms3)==null||o.destroy(),(i=this.ms4)==null||i.destroy(),this.ms1=void 0,this.ms2=void 0,this.ms3=void 0,this.ms4=void 0}},lv=class{constructor(){c(this,"pageContentElm",null);c(this,"ms1");c(this,"ms2");c(this,"ms3");c(this,"ms4");c(this,"ms5");c(this,"darkMode",!0)}mount(){var t,e;this.pageContentElm=document.querySelector(".panel-wm-content"),(t=this.pageContentElm)==null||t.classList.add("dark-mode"),(e=document.querySelector("#setDarkMode"))==null||e.addEventListener("click",()=>this.toggleDarkMode()),this.ms1=m("select[data-test=single]",{darkMode:!0}),this.ms2=m("select[data-test=radio]",{darkMode:!0,singleRadio:!0}),this.ms3=m("select[data-test=multiple]",{darkMode:!0}),this.ms4=m("select[data-test=group]",{darkMode:!0}),this.ms5=m("select[data-test=data1]",{darkMode:!0,dataTest:"select1",filter:!0,showOkButton:!0,showClear:!0,showSearchClear:!0,data:[{value:1,text:"Option 1"},{value:2,text:"Option 2"},{value:3,text:"Option 3"},{divider:!0},{value:4,text:"Option 4"},{value:5,text:"Option 5"},{value:6,text:"Option 6"}]})}toggleDarkMode(){var t,e,o,i,s;if(this.darkMode=!this.darkMode,(t=this.ms1)==null||t.refreshOptions({darkMode:this.darkMode}),(e=this.ms2)==null||e.refreshOptions({darkMode:this.darkMode}),(o=this.ms3)==null||o.refreshOptions({darkMode:this.darkMode}),(i=this.ms4)==null||i.refreshOptions({darkMode:this.darkMode}),(s=this.ms5)==null||s.refreshOptions({darkMode:this.darkMode}),this.pageContentElm){const l=this.darkMode?"add":"remove";this.pageContentElm.classList[l]("dark-mode")}}unmount(){var t,e,o,i,s,l,a;(t=this.ms1)==null||t.destroy(),(e=this.ms2)==null||e.destroy(),(o=this.ms3)==null||o.destroy(),(i=this.ms4)==null||i.destroy(),(s=this.ms5)==null||s.destroy(),this.ms1=void 0,this.ms2=void 0,this.ms3=void 0,this.ms4=void 0,this.ms5=void 0,(l=this.pageContentElm)==null||l.classList.remove("dark-mode"),(a=document.querySelector("#setDarkMode"))==null||a.removeEventListener("click",()=>this.toggleDarkMode())}};class av{constructor(){c(this,"ms1")}mount(){this.ms1=m("select",{labelId:"custom-label"})}unmount(){var t;(t=this.ms1)==null||t.destroy(),this.ms1=void 0}}const Xi=[{name:"getting-started",view:"/src/getting-started.html",viewModel:ph,title:"Getting Started"},{name:"examples",view:"/src/examples/example01.html",viewModel:pl,title:"Examples"}],Qi=[{name:"Welcomes",routes:[{name:"example01",view:"/src/examples/example01.html",viewModel:pl,title:"Single Select"},{name:"example02",view:"/src/examples/example02.html",viewModel:Im,title:"Multiple Select"},{name:"example03",view:"/src/examples/example03.html",viewModel:Rm,title:"Multiple Items"},{name:"example04",view:"/src/examples/example04.html",viewModel:Pm,title:"Auto Width"},{name:"example05",view:"/src/examples/example05.html",viewModel:Hm,title:"Disabled Select"},{name:"example06",view:"/src/examples/example06.html",viewModel:Fm,title:"Selected/Disabled Options"},{name:"example07",view:"/src/examples/example07.html",viewModel:Bm,title:"Submit Select"},{name:"example08",view:"/src/examples/example08.html",viewModel:Um,title:"The Data"},{name:"example09",view:"/src/examples/example09.html",viewModel:eh,title:"Locale"},{name:"example10",view:"/src/examples/example10.html",viewModel:nh,title:"Large Select (Virtual Scroll)"},{name:"example11",view:"/src/examples/example11.html",viewModel:oh,title:"Themes / Sizes"},{name:"example12",view:"/src/examples/example12.html",viewModel:ih,title:"Checkbox/Radio Icons"},{name:"example13",view:"/src/examples/example13.html",viewModel:sh,title:"Dynamically Create Select"},{name:"example14",view:"/src/examples/example14.html",viewModel:lh,title:"The Divider"},{name:"example15",view:"/src/examples/example15.html",viewModel:ah,title:"Dark Mode"},{name:"example16",view:"/src/examples/example16.html",viewModel:rh,title:"Template with Images"}]},{name:"Options",routes:[{name:"options01",view:"/src/options/options01.html",viewModel:Sh,title:"The Placeholder"},{name:"options02",view:"/src/options/options02.html",viewModel:Ah,title:"Single Radio"},{name:"options03",view:"/src/options/options03.html",viewModel:kh,title:"Hide Select All"},{name:"options04",view:"/src/options/options04.html",viewModel:Oh,title:"Hide Optgroup Checkboxes"},{name:"options05",view:"/src/options/options05.html",viewModel:Th,title:"Custom Dropdown Width"},{name:"options06",view:"/src/options/options06.html",viewModel:xh,title:"Max Height"},{name:"options07",view:"/src/options/options07.html",viewModel:Ch,title:"Max Height Unit"},{name:"options08",view:"/src/options/options08.html",viewModel:Dh,title:"The Position"},{name:"options09",view:"/src/options/options09.html",viewModel:Nh,title:"Display Values"},{name:"options10",view:"/src/options/options10.html",viewModel:Mh,title:"Display Title"},{name:"options11",view:"/src/options/options11.html",viewModel:Lh,title:"Display Delimiter"},{name:"options12",view:"/src/options/options12.html",viewModel:$h,title:"Minimum Count Selected"},{name:"options13",view:"/src/options/options13.html",viewModel:Ih,title:"The Ellipsis"},{name:"options14",view:"/src/options/options14.html",viewModel:Rh,title:"Is Open"},{name:"options15",view:"/src/options/options15.html",viewModel:Ph,title:"Keep Open"},{name:"options16",view:"/src/options/options16.html",viewModel:Hh,title:"Open On Hover"},{name:"options17",view:"/src/options/options17.html",viewModel:Fh,title:"The Container"},{name:"options18",view:"/src/options/options18.html",viewModel:Bh,title:"The Filter"},{name:"options19",view:"/src/options/options19.html",viewModel:Uh,title:"Filter Only Optgroup"},{name:"options20",view:"/src/options/options20.html",viewModel:Gh,title:"Filter Placeholder"},{name:"options21",view:"/src/options/options21.html",viewModel:jh,title:"Filter Accept On Enter"},{name:"options22",view:"/src/options/options22.html",viewModel:Jh,title:"Filter By Data Length"},{name:"options23",view:"/src/options/options23.html",viewModel:Wh,title:"Custom Filter"},{name:"options24",view:"/src/options/options24.html",viewModel:Vh,title:"Show Clear"},{name:"options25",view:"/src/options/options25.html",viewModel:qh,title:"Show OK Button"},{name:"options26",view:"/src/options/options26.html",viewModel:zh,title:"The Styler"},{name:"options27",view:"/src/options/options27.html",viewModel:Kh,title:"Text Template"},{name:"options28",view:"/src/options/options28.html",viewModel:Yh,title:"Label Template"},{name:"options29",view:"/src/options/options29.html",viewModel:Xh,title:"Auto-Adjust Drop Position"},{name:"options30",view:"/src/options/options30.html",viewModel:Qh,title:"Auto-Adjust Drop Height/Width"},{name:"options31",view:"/src/options/options31.html",viewModel:Zh,title:"Use Select Option as Label"},{name:"options32",view:"/src/options/options32.html",viewModel:tv,title:"Sanitizer"},{name:"options33",view:"/src/options/options33.html",viewModel:ev,title:"Classes"},{name:"options34",view:"/src/options/options34.html",viewModel:nv,title:"Show Search Clear"},{name:"options35",view:"/src/options/options35.html",viewModel:ov,title:"Custom Diacritic Parser"},{name:"options36",view:"/src/options/options36.html",viewModel:iv,title:"Infinite Scroll"},{name:"options37",view:"/src/options/options37.html",viewModel:sv,title:"Navigation Highlight"},{name:"options38",view:"/src/options/options38.html",viewModel:lv,title:"Dark Mode"},{name:"options39",view:"/src/options/options39.html",viewModel:av,title:"Label Id (aria-labelledby)"}]},{name:"Methods",routes:[{name:"methods01",view:"/src/methods/methods01.html",viewModel:uh,title:"The getOptions"},{name:"methods02",view:"/src/methods/methods02.html",viewModel:dh,title:"The refreshOptions"},{name:"methods03",view:"/src/methods/methods03.html",viewModel:mh,title:"The setSelects/getSelects"},{name:"methods04",view:"/src/methods/methods04.html",viewModel:hh,title:"The enable/disable"},{name:"methods05",view:"/src/methods/methods05.html",viewModel:vh,title:"The open/close"},{name:"methods06",view:"/src/methods/methods06.html",viewModel:fh,title:"The check/uncheck"},{name:"methods07",view:"/src/methods/methods07.html",viewModel:bh,title:"The checkAll/uncheckAll"},{name:"methods08",view:"/src/methods/methods08.html",viewModel:gh,title:"The checkInvert"},{name:"methods09",view:"/src/methods/methods09.html",viewModel:_h,title:"The focus/blur"},{name:"methods10",view:"/src/methods/methods10.html",viewModel:Eh,title:"The refresh"},{name:"methods11",view:"/src/methods/methods11.html",viewModel:yh,title:"The destroy"},{name:"methods12",view:"/src/methods/methods12.html",viewModel:wh,title:"The getData"}]},{name:"Events",routes:[{name:"events",view:"/src/events/events.html",viewModel:$m,title:"The Events"}]},{name:"I18N",routes:[{name:"i18n",view:"/src/i18n/i18n.html",viewModel:ch,title:"The i18n"}]}],rv=Object.assign({"/src/events/events.html":Il,"/src/examples/example01.html":Rl,"/src/examples/example02.html":Pl,"/src/examples/example03.html":Hl,"/src/examples/example04.html":Fl,"/src/examples/example05.html":Bl,"/src/examples/example06.html":Ul,"/src/examples/example07.html":Gl,"/src/examples/example08.html":jl,"/src/examples/example09.html":Jl,"/src/examples/example10.html":Wl,"/src/examples/example11.html":Vl,"/src/examples/example12.html":ql,"/src/examples/example13.html":zl,"/src/examples/example14.html":Kl,"/src/examples/example15.html":Yl,"/src/examples/example16.html":Xl,"/src/getting-started.html":Ql,"/src/i18n/i18n.html":Zl,"/src/main.html":Zi,"/src/methods/methods01.html":ta,"/src/methods/methods02.html":ea,"/src/methods/methods03.html":na,"/src/methods/methods04.html":oa,"/src/methods/methods05.html":ia,"/src/methods/methods06.html":sa,"/src/methods/methods07.html":la,"/src/methods/methods08.html":aa,"/src/methods/methods09.html":ra,"/src/methods/methods10.html":pa,"/src/methods/methods11.html":ca,"/src/methods/methods12.html":ua,"/src/options/options01.html":da,"/src/options/options02.html":ma,"/src/options/options03.html":ha,"/src/options/options04.html":va,"/src/options/options05.html":fa,"/src/options/options06.html":ba,"/src/options/options07.html":ga,"/src/options/options08.html":_a,"/src/options/options09.html":Ea,"/src/options/options10.html":ya,"/src/options/options11.html":wa,"/src/options/options12.html":Sa,"/src/options/options13.html":Aa,"/src/options/options14.html":ka,"/src/options/options15.html":Oa,"/src/options/options16.html":Ta,"/src/options/options17.html":xa,"/src/options/options18.html":Ca,"/src/options/options19.html":Da,"/src/options/options20.html":Na,"/src/options/options21.html":Ma,"/src/options/options22.html":La,"/src/options/options23.html":$a,"/src/options/options24.html":Ia,"/src/options/options25.html":Ra,"/src/options/options26.html":Pa,"/src/options/options27.html":Ha,"/src/options/options28.html":Fa,"/src/options/options29.html":Ba,"/src/options/options30.html":Ua,"/src/options/options31.html":Ga,"/src/options/options32.html":ja,"/src/options/options33.html":Ja,"/src/options/options34.html":Wa,"/src/options/options35.html":Va,"/src/options/options36.html":qa,"/src/options/options37.html":za,"/src/options/options38.html":Ka,"/src/options/options39.html":Ya});class pv{constructor(){c(this,"loading",!0);c(this,"currentModel");c(this,"currentRouter");c(this,"defaultRouteName","getting-started");c(this,"stateBangChar","#/");c(this,"baseUrl",window.location.origin+window.location.pathname);c(this,"viewModelObj",{})}async init(){const t=window.location;document.querySelector("#app").innerHTML=ft.sanitize(Zi,{RETURN_TRUSTED_TYPE:!0});let e=t.hash.replace(this.stateBangChar,"");(!e||e==="/"||e==="#")&&(e=this.defaultRouteName),this.createRouteLinks(),this.loadRoute(e),Array.from(document.querySelectorAll(".panel-wm-left a.nav-link,.navbar-nav a.nav-link")).forEach(o=>{e.includes(o.id)&&o.classList.add("active")}),window.onpopstate=()=>{const i=window.location.hash.replace(this.stateBangChar,"");this.removeAllActiveLinks();const s=document.querySelector(`#${i}`);s&&(s.scrollIntoView(),s.classList.add("active")),this.loadRoute(i||this.defaultRouteName,!1)}}createRouteLinks(){var t,e,o;for(const i of Xi){const s=F("li",{className:"nav-item"});F("a",{id:i.name,className:"nav-link",textContent:i.title},s).addEventListener("click",this.clickEventListener.bind(this)),(t=document.querySelector(".navbar-nav"))==null||t.appendChild(s)}for(const i of Qi){const s=F("li",{className:"m-1"});F("p",{className:"navbar-vertical-label mb-1",textContent:i.name},s),(e=document.querySelector(".nav-pills"))==null||e.appendChild(s);for(const l of i.routes){const a=F("li",{className:"nav-item"}),r=F("a",{id:l.name,className:"nav-link",textContent:l.title});r.addEventListener("click",this.clickEventListener.bind(this)),a.appendChild(r),(o=document.querySelector(".nav-pills"))==null||o.appendChild(a)}}}async loadRoute(t,e=!0){var s;const o=document.querySelector(".panel-wm-content");Sn(o),o.classList.add("cloak");let i=Xi.find(l=>l.name===t);if((i==null?void 0:i.name)==="examples"){const l=document.querySelector(".nav-pills .nav-item a.nav-link");l==null||l.classList.add("active")}else for(const l of Qi){const a=l.routes.find(r=>r.name===t);a&&(i=a)}if(this.currentModel&&this.unmountCurrentVM(this.currentModel,this.currentRouter),i){this.currentRouter=i,document.querySelector(".panel-wm-content").innerHTML=ft.sanitize(rv[i.view],{RETURN_TRUSTED_TYPE:!0});const l=new i.viewModel;this.currentModel=l,window[i.name]=(s=l.mount)==null?void 0:s.call(l),window.onbeforeunload=()=>{var a;o.classList.add("cloak"),(a=l.unmount)==null||a.call(l),this.removeAllActiveLinks(!0),this.unmountAll(),i!=null&&i.name&&delete window[i.name]}}e&&window.history.pushState({},t,`${this.baseUrl}${this.stateBangChar}${t}`),document.title=`Multiple-Select-Vanilla · ${t}`,o.classList.remove("cloak")}async clickEventListener(t){this.removeAllActiveLinks();const e=t.target;e.classList.toggle("active"),this.loadRoute(e.id)}removeAllActiveLinks(t=!1){document.querySelectorAll(".panel-wm-left a.nav-link,.navbar-nav a.nav-link").forEach(e=>{e.classList.remove("active"),t&&e.removeEventListener("click",this.clickEventListener.bind(this))})}unmountCurrentVM(t,e){var o;(o=t.unmount)==null||o.call(t),e&&delete window[e.name]}unmountAll(){for(const t of Object.keys(this.viewModelObj)){const e=this.viewModelObj[t];if(typeof(e==null?void 0:e.unmount)=="function"){e==null||e.unmount();for(const o of Object.keys(e))e[o]=null}window[t]=null,this.viewModelObj[t]=null,delete window[t],delete this.viewModelObj[t]}}}const cv=new pv;cv.init();
