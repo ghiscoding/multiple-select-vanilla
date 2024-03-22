@@ -8,11 +8,11 @@
  */
 
 // create some SVG icons used by the lib
-@include createSvgClass("ms-icon-caret", "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z");
-@include createSvgClass("ms-icon-close", "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z");
-@include createSvgClass("ms-icon-check", "M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z");
-@include createSvgClass("ms-icon-minus", "M20 14H4V10H20");
-@include createSvgClass("ms-icon-radio", "M12 3.7c4.6 0 8.3 3.7 8.3 8.3s-3.7 8.3-8.3 8.3-8.3-3.7-8.3-8.3S7.4 3.7 12 3.7z");
+@include createSvgClass("ms-icon-caret", $ms-icon-caret-svg-path);
+@include createSvgClass("ms-icon-close", $ms-icon-close-svg-path);
+@include createSvgClass("ms-icon-check", $ms-icon-check-svg-path);
+@include createSvgClass("ms-icon-minus", $ms-icon-minus-svg-path);
+@include createSvgClass("ms-icon-radio", $ms-icon-radio-svg-path);
 
 .ms-parent, .ms-drop {
   .ms-icon {
