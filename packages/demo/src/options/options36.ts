@@ -7,10 +7,10 @@ export default class Example {
   mount() {
     const data1 = [];
     const data2 = [];
-    for (let i = 0; i < 25; i++) {
+    for (let i = 1; i <= 25; i++) {
       data1.push({ text: `Title ${i}`, value: i });
     }
-    for (let i = 0; i < 2000; i++) {
+    for (let i = 1; i <= 2000; i++) {
       data2.push({ text: `<i class="fa fa-star"></i> Task ${i}`, value: i });
     }
 

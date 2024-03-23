@@ -3,19 +3,19 @@ import type { HtmlStruct, VirtualCache, VirtualScrollOption } from '../interface
 import { convertItemRowToHtml, emptyElement } from '../utils';
 
 export class VirtualScroll {
-  cache: VirtualCache;
-  clusterRows?: number;
+  protected clusterRows?: number;
+  protected cache: VirtualCache;
+  protected scrollEl: HTMLElement;
+  protected blockHeight?: number;
+  protected clusterHeight?: number;
+  protected contentEl: HTMLElement;
+  protected parentEl: HTMLElement | null;
+  protected itemHeight?: number;
+  protected lastCluster: number;
+  protected scrollTop: number;
   dataStart!: number;
   dataEnd!: number;
   rows: HtmlStruct[];
-  scrollEl: HTMLElement;
-  blockHeight?: number;
-  clusterHeight?: number;
-  contentEl: HTMLElement;
-  parentEl: HTMLElement | null;
-  itemHeight?: number;
-  lastCluster: number;
-  scrollTop: number;
   destroy: () => void;
   callback: () => void;
   sanitizer?: (dirtyHtml: string) => string;
@@ -49,7 +49,14 @@ export class VirtualScroll {
     };
   }
 
-  initDOM(rows: HtmlStruct[]) {
+  reset(rows: HtmlStruct[]) {
+    this.lastCluster = 0;
+    this.cache = {} as any;
+    emptyElement(this.contentEl);
+    this.initDOM(rows);
+  }
+
+  protected initDOM(rows: HtmlStruct[]) {
     if (typeof this.clusterHeight === 'undefined') {
       this.cache.scrollTop = this.scrollEl.scrollTop;
       const firstRowElm = convertItemRowToHtml(rows[0]);
@@ -82,7 +89,7 @@ export class VirtualScroll {
     }
   }
 
-  getRowsHeight() {
+  protected getRowsHeight() {
     if (typeof this.itemHeight === 'undefined') {
       // make sure parent is not hidden before reading item list height
       const prevParentDisplay = this.parentEl?.style.display || '';
@@ -101,7 +108,7 @@ export class VirtualScroll {
     this.clusterHeight = this.blockHeight * Constants.CLUSTER_BLOCKS;
   }
 
-  getNum() {
+  protected getNum() {
     this.scrollTop = this.scrollEl.scrollTop;
     const blockSize = (this.clusterHeight || 0) - (this.blockHeight || 0);
     if (blockSize) {
@@ -110,7 +117,7 @@ export class VirtualScroll {
     return 0;
   }
 
-  initData(rows: HtmlStruct[], num: number) {
+  protected initData(rows: HtmlStruct[], num: number) {
     if (rows.length < Constants.BLOCK_ROWS) {
       return {
         topOffset: 0,
@@ -143,13 +150,13 @@ export class VirtualScroll {
     };
   }
 
-  checkChanges<T extends keyof VirtualCache>(type: T, value: VirtualCache[T]) {
+  protected checkChanges<T extends keyof VirtualCache>(type: T, value: VirtualCache[T]) {
     const changed = value !== this.cache[type];
     this.cache[type] = value;
     return changed;
   }
 
-  getExtra(className: string, height: number) {
+  protected getExtra(className: string, height: number) {
     const tag = document.createElement('li');
     tag.className = `virtual-scroll-${className}`;
     if (height) {
