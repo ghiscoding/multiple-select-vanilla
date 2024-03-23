@@ -73,6 +73,7 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   onBeforeClick: () => true,
   onClick: () => false,
   onFilter: () => false,
+  onFilterClear: () => false,
   onClear: () => false,
   onAfterCreate: () => false,
   onDestroy: () => false,

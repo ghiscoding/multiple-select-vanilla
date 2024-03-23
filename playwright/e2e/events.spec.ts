@@ -71,5 +71,26 @@ test.describe('Events Demo', () => {
         'onFilter event fire! text: 1',
       ].join('\n'),
     );
+
+    await page.locator('.ms-search .ms-icon-close').click();
+    await expect(textareaLoc).toHaveText(
+      [
+        'onAfterCreate event fire!',
+        'onFocus event fire!',
+        'onBlur event fire!',
+        'onOpen event fire!',
+        'onFocus event fire!',
+        'onClose event fire!',
+        'onBlur event fire!',
+        'onOpen event fire!',
+        'onOptgroupClick event fire! view: {"label":"Group 1","selected":true,"children":[null,{"text":"Option 1","value":"1","selected":true,"disabled":false},null,{"text":"Option 2","value":"2","selected":true,"disabled":false},null,{"text":"Option 3","value":"3","selected":true,"disabled":false},null]}',
+        'onCheckAll event fire!',
+        'onCheckAll event fire!',
+        'onFilter event fire! text: 1',
+        'onCheckAll event fire!',
+        'onFilter event fire! text: ',
+        'onFilterClear event fire!',
+      ].join('\n'),
+    );
   });
 });
