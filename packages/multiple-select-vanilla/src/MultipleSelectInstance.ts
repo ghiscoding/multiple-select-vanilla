@@ -764,10 +764,10 @@ export class MultipleSelectInstance {
     if (window.getComputedStyle) {
       computedWidth = window.getComputedStyle(this.elm).width;
       if (computedWidth === 'auto') {
-        computedWidth = getElementSize(this.dropElm, 'outer', 'width') + 15;
+        computedWidth = getElementSize(this.dropElm, 'outer', 'width') + 20;
       }
     } else {
-      computedWidth = getElementSize(this.elm, 'outer', 'width') + 15;
+      computedWidth = getElementSize(this.elm, 'outer', 'width') + 20;
     }
 
     this.parentElm.style.width = `${this.options.width || computedWidth}px`;
