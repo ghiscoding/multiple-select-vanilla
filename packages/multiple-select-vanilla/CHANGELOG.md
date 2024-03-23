@@ -4,6 +4,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.0.0...v3.1.0) (2024-03-23)
+
+### Features
+
+* add new event `onFilterClear` missing ([#260](https://github.com/ghiscoding/multiple-select-vanilla/issues/260)) ([cb8923c](https://github.com/ghiscoding/multiple-select-vanilla/commit/cb8923c889b86fd09a6ef426d3e92da6b8a8d0b4)) - by @ghiscoding
+
+### Bug Fixes
+
+* add missing CSS/SASS variables for SVG icons ([cc11a8b](https://github.com/ghiscoding/multiple-select-vanilla/commit/cc11a8b1957de714a4e24e515e7361fe126c586b)) - by @ghiscoding
+* select drop should equal same width as select button ([#259](https://github.com/ghiscoding/multiple-select-vanilla/issues/259)) ([6f854a1](https://github.com/ghiscoding/multiple-select-vanilla/commit/6f854a152eda9d1776ed153a0713f1d00d3230f3)) - by @ghiscoding
+* tweak CSS and use same border color for both drop & button ([1f774d0](https://github.com/ghiscoding/multiple-select-vanilla/commit/1f774d0a020174ed80e85d3f60ce6acd4ab820eb)) - by @ghiscoding
+* vscroll event mem leak causing unexpected behavior after filtering ([#261](https://github.com/ghiscoding/multiple-select-vanilla/issues/261)) ([74fed35](https://github.com/ghiscoding/multiple-select-vanilla/commit/74fed353fb1229f583fc87fb1f27742389e108f6)) - by @ghiscoding
+
 ## [3.0.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v2.2.1...v3.0.0) (2024-03-22)
 
 ### ⚠ BREAKING CHANGES
