@@ -8,6 +8,7 @@ export default class Example {
     this.logElm = document.querySelector('textarea') as HTMLTextAreaElement;
     this.ms1 = multipleSelect('select', {
       filter: true,
+      showSearchClear: true,
       onOpen: () => {
         this.log('onOpen event fire!\n');
       },
@@ -34,6 +35,9 @@ export default class Example {
       },
       onFilter: text => {
         this.log(`onFilter event fire! text: ${text}\n`);
+      },
+      onFilterClear: () => {
+        this.log('onFilterClear event fire!\n');
       },
       onAfterCreate: () => {
         this.log('onAfterCreate event fire!\n');

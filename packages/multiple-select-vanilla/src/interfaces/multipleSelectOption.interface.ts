@@ -265,6 +265,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Fires when a checkbox filter is changed. */
   onFilter: (text?: string) => void;
 
+  /** Fires when the search filter is cleared. */
+  onFilterClear: () => void;
+
   /** Custom parser to remove diacritic signs (accents) from characters when filtering select list. */
   diacriticParser: (text: string) => string;
 

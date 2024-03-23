@@ -853,6 +853,7 @@ export class MultipleSelectInstance {
         this._currentHighlightIndex = -1;
         this.moveHighlightDown();
         this.filter();
+        this.options.onFilterClear();
       }) as EventListener);
     }
 

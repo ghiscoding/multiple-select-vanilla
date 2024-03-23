@@ -7,6 +7,7 @@ export default class Example {
     this.ms = multipleSelect('select', {
       filter: true,
       showSearchClear: true,
+      // onFilterClear: () => console.log('search filter cleared'),
     }) as MultipleSelectInstance[];
   }
 
