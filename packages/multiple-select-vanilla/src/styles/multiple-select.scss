@@ -138,7 +138,8 @@
       margin-right: 2px;
     }
     div.ms-icon-caret {
-      font-size: var(--ms-chevron-icon-size, $ms-chevron-icon-size);
+      height: var(--ms-chevron-icon-size, $ms-chevron-icon-size);
+      width: var(--ms-chevron-icon-size, $ms-chevron-icon-size);
       &.open {
         transform: scaleY(-1);
       }
