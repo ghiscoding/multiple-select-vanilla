@@ -460,9 +460,7 @@ export class MultipleSelectInstance {
       offset = -1;
     }
 
-    if (this.options.virtualScroll && rows.length > Constants.BLOCK_ROWS * Constants.CLUSTER_BLOCKS) {
-      this.virtualScroll?.destroy();
-
+    if (rows.length > Constants.BLOCK_ROWS * Constants.CLUSTER_BLOCKS) {
       const dropVisible = this.dropElm.style.display !== 'none';
       if (!dropVisible) {
         this.dropElm.style.left = '-10000';
@@ -480,8 +478,9 @@ export class MultipleSelectInstance {
             this.updateDataStart = 0;
             this._currentHighlightIndex = 0;
           }
-          if (this.updateDataEnd > this.getDataLength()) {
-            this.updateDataEnd = this.getDataLength();
+          const dataLn = this.getDataLength();
+          if (this.updateDataEnd > dataLn) {
+            this.updateDataEnd = dataLn;
           }
 
           if (this.ulElm) {
@@ -495,18 +494,21 @@ export class MultipleSelectInstance {
       };
 
       if (this.ulElm) {
-        this.virtualScroll = new VirtualScroll({
-          rows,
-          scrollEl: this.ulElm,
-          contentEl: this.ulElm,
-          sanitizer: this.options.sanitizer,
-          callback: () => {
-            updateDataOffset();
-            this.events();
-          },
-        });
+        if (!this.virtualScroll) {
+          this.virtualScroll = new VirtualScroll({
+            rows,
+            scrollEl: this.ulElm,
+            contentEl: this.ulElm,
+            sanitizer: this.options.sanitizer,
+            callback: () => {
+              updateDataOffset();
+              this.events();
+            },
+          });
+        } else {
+          this.virtualScroll.reset(rows);
+        }
       }
-
       updateDataOffset();
 
       if (!dropVisible) {
@@ -521,7 +523,6 @@ export class MultipleSelectInstance {
       }
       this.updateDataStart = 0;
       this.updateDataEnd = this.updateData.length;
-      this.virtualScroll = null;
     }
 
     this.events();
