@@ -66,13 +66,13 @@
     "autoprefixer": "^10.4.19",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
-    "cssnano": "^6.1.1",
+    "cssnano": "^7.0.1",
     "esbuild": "^0.20.2",
     "fs-extra": "^11.2.0",
-    "glob": "^10.3.10",
+    "glob": "^10.3.12",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
-    "sass": "^1.72.0",
-    "typescript": "5.4.3"
+    "sass": "^1.75.0",
+    "typescript": "5.4.5"
   }
 }

@@ -42,8 +42,8 @@ npm install multiple-select-vanilla
 ## Changes vs Original lib (`multiple-select`)
 New Multiple-Select Options:
 - dropped jQuery requirement and replaced necessary code with browser native code.
-- written in TypeScript which also brings typings support
-- revamped the UI to give it a more Modern Look by updating CSS and using SVG icons.
+- rewritten in TypeScript to also add typings support (`d.ts`)
+- revamped the UI to give it a more Modern Look by updating the CSS and using SVG icons (CSS/SASS variables are also availables)
 - add extra features:
   - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height by available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
@@ -57,11 +57,11 @@ New Multiple-Select Options:
   - `showOkButton` to add an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
   - `showSearchClear` show a clear button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
   - `diacriticParser` custom parser to normalize diacritic signs when filtering select list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options35))
-  - replace tabIndex by arrow navigation highlight
-  - `darkMode` option for a **Dark Mode** Theme (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options38))
+  - replace tabIndex by a more intuitive navigation & highlight by using arrow keys (or mouse hover)
+  - `darkMode` option for a new **Dark Mode** Theme (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options38))
 
 ## CSP Compliance
-The library is now CSP (Content Security Policy) compliant, however there are some exceptions to be aware of. When using any html string as template (with `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return `TrustedHTML`. You can achieve this by using the `sanitizer` method in combo with [DOMPurify](https://github.com/cure53/DOMPurify) to return `TrustedHTML` as shown below and with that in place you will be CSP compliant.
+The library is now CSP (Content Security Policy) compliant, however there are some exceptions to be aware of. When using any HTML strings as template (when using `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML). You can achieve safety by using the `sanitizer` method in combo with an external library like [DOMPurify](https://github.com/cure53/DOMPurify) to return `TrustedHTML` as shown below and with that in place you will be CSP compliant.
 
 ```typescript
 import DOMPurify from 'dompurify';
@@ -85,10 +85,10 @@ with this code in place, we can now use the following CSP meta tag (which is wha
 > **Note** that in our demo we are actually adding `unsafe-inline` simply because we are using Vite (which is not CSP compliant in Dev mode), but the library should work nonetheless without `unsafe-inline`.
 
 ### Installation / Structure
-There are multiple ways to use the library, you can see below the folder structure of the distribution files
+There are multiple ways to install and use the library, you can see below the folder structure of the distribution files
 1. `dist/browser`: Standalone build which assigns `multipleSelect` on the `window.multipleSelect` object
    - browser standalone means that you can simply load it with `<script></script>` and then `multipleSelect('#mySelect')`
-   - 2 builds are available CJS (`.cjs`) and ESM (`.js`) and for ESM you will need to load it with `<script type="module">`
+   - 2 builds are available CJS (`.cjs`) and ESM (`.js`) and for the latter you will need to load it with `<script type="module">`
 2. `cjs`: to use as CommonJS with `require('multiple-select-vanilla')`
 3. `esm`: to use as ESM with `import from 'multiple-select-vanilla'`
 
