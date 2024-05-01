@@ -125,7 +125,8 @@
   > {
     span {
       display: flex;
-      flex-grow: 1;
+      flex: 1;
+      align-items: center;
       column-gap: 4px;
       white-space: nowrap;
       overflow: hidden;
