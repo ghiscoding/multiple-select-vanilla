@@ -60,6 +60,9 @@
         border-radius: 50%;
       }
       & + span {
+        display: inline-flex;
+        align-items: center;
+        column-gap: 4px;
         padding-left: var(--ms-label-text-padding-left, $ms-label-text-padding-left);
       }
     }
@@ -121,14 +124,12 @@
 
   > {
     span {
+      display: flex;
       flex-grow: 1;
-      top: 0;
-      left: 0;
-      right: 20px;
+      column-gap: 4px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      display: block;
 
       &.ms-placeholder {
         color: var(--ms-placeholder-color, $ms-placeholder-color);
