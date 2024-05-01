@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.1.0...v3.1.1) (2024-05-01)
+
+### Bug Fixes
+
+* better flex alignment of label span ([48c6fe9](https://github.com/ghiscoding/multiple-select-vanilla/commit/48c6fe997f76bcf7e35369148176d4c4d814d516)) - by @ghiscoding
+
 ## [3.1.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.0.0...v3.1.0) (2024-03-23)
 
 ### Features
