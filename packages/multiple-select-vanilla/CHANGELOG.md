@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.1.2...v3.1.3) (2024-05-02)
+
+### Bug Fixes
+
+* remove column gap and leave it to be customizable by user ([#270](https://github.com/ghiscoding/multiple-select-vanilla/issues/270)) ([9db3fd4](https://github.com/ghiscoding/multiple-select-vanilla/commit/9db3fd476979dfa82afc2e02d8720c59265ddbcd)) - by @ghiscoding
+
 ## [3.1.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.1.1...v3.1.2) (2024-05-01)
 
 ### Bug Fixes
