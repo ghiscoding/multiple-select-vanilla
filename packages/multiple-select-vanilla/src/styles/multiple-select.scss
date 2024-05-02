@@ -62,7 +62,7 @@
       & + span {
         display: inline-flex;
         align-items: center;
-        column-gap: 4px;
+        column-gap: var(--ms-label-column-gap, $ms-label-column-gap);
         padding-left: var(--ms-label-text-padding-left, $ms-label-text-padding-left);
       }
     }
@@ -127,10 +127,10 @@
       display: flex;
       flex: 1;
       align-items: center;
-      column-gap: 4px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      column-gap: var(--ms-label-column-gap, $ms-label-column-gap);
 
       &.ms-placeholder {
         color: var(--ms-placeholder-color, $ms-placeholder-color);
