@@ -21,13 +21,13 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
-    "dompurify": "^3.1.1",
+    "dompurify": "^3.1.2",
     "font-awesome": "^4.7.0",
     "multiple-select-vanilla": "workspace:*"
   },
   "devDependencies": {
     "@types/dompurify": "^3.0.5",
-    "sass": "^1.75.0",
+    "sass": "^1.76.0",
     "typescript": "5.4.5",
     "vite": "^5.2.10"
   }
