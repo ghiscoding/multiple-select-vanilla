@@ -826,9 +826,8 @@ export class MultipleSelectInstance {
     }
 
     this._bindEventService.bind(this.parentElm, 'keydown', ((e: KeyboardEvent) => {
-      if (e.code === 'Escape' && !this.options.keepOpen) {
-        this.close();
-        this.choiceElm.focus();
+      if (e.code === 'Escape') {
+        this.handleEscapeKey();
       }
     }) as EventListener);
 
@@ -1037,6 +1036,9 @@ export class MultipleSelectInstance {
               e.preventDefault();
               this.moveHighlightDown();
               break;
+            case 'Escape':
+              this.handleEscapeKey();
+              break;
             case 'Enter':
             case ' ': {
               // if we're focused on the OK button then don't execute following block
@@ -1073,6 +1075,7 @@ export class MultipleSelectInstance {
                 this.changeCurrentOptionHighlight();
                 this.okButtonElm?.focus();
               }
+              break;
             }
           }
         }) as EventListener,
@@ -1083,6 +1086,13 @@ export class MultipleSelectInstance {
 
     if (this.ulElm && this.options.infiniteScroll) {
       this._bindEventService.bind(this.ulElm, 'scroll', this.infiniteScrollHandler.bind(this) as EventListener, undefined, 'option-list-scroll');
+    }
+  }
+
+  protected handleEscapeKey() {
+    if (!this.options.keepOpen) {
+      this.close();
+      this.choiceElm.focus();
     }
   }
 
@@ -1118,14 +1128,20 @@ export class MultipleSelectInstance {
    * The default delay is 0ms (which is 1 CPU cycle) when nothing is provided, to avoid a delay we can pass `-1` or `null`
    * @param {number} [openDelay=0] - provide an optional delay, defaults to 0
    */
-  open(openDelay: number | null = 0) {
-    if (openDelay !== null && openDelay >= 0) {
-      // eslint-disable-next-line prefer-const
-      clearTimeout(this.openDelayTimer);
-      this.openDelayTimer = setTimeout(() => this.openDrop(), openDelay);
-    } else {
-      this.openDrop();
-    }
+  open(openDelay: number | null = 0): Promise<void> {
+    return new Promise(resolve => {
+      if (openDelay !== null && openDelay >= 0) {
+        // eslint-disable-next-line prefer-const
+        clearTimeout(this.openDelayTimer);
+        this.openDelayTimer = setTimeout(() => {
+          this.openDrop();
+          resolve();
+        }, openDelay);
+      } else {
+        this.openDrop();
+        resolve();
+      }
+    });
   }
 
   protected openDrop() {
