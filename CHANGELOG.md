@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.1.3...v3.1.4) (2024-05-07)
+
+### Bug Fixes
+
+* Escape key should always close drop ([#271](https://github.com/ghiscoding/multiple-select-vanilla/issues/271)) ([84e317b](https://github.com/ghiscoding/multiple-select-vanilla/commit/84e317bf56d5efca9f2a43e57877b4d48172a971)) - by @ghiscoding
+
 ## [3.1.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.1.2...v3.1.3) (2024-05-02)
 
 ### Bug Fixes
