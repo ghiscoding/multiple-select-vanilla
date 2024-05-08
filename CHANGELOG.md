@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.1.4...v3.2.0) (2024-05-08)
+
+### Features
+
+* add reason param to `onClose(reason)` ([#273](https://github.com/ghiscoding/multiple-select-vanilla/issues/273)) ([b3ae32f](https://github.com/ghiscoding/multiple-select-vanilla/commit/b3ae32fd4beeca419f3abe36a964423e68c33b57)) - by @ghiscoding
+
 ## [3.1.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.1.3...v3.1.4) (2024-05-07)
 
 ### Bug Fixes
