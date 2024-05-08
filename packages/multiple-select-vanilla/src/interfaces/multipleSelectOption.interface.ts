@@ -8,6 +8,17 @@ export interface MultipleSelectView {
   instance: any;
 }
 
+export type CloseReason =
+  | 'body.click'
+  | 'hover.mouseout'
+  | 'key.shift+tab'
+  | 'key.escape'
+  | 'key.enter'
+  | 'key.space'
+  | 'selection'
+  | 'toggle.close'
+  | 'custom';
+
 export type CSSStyleDeclarationReadonly =
   | 'length'
   | 'parentRule'
@@ -239,7 +250,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   onClear: () => void;
 
   /** Fires when the dropdown list is close. */
-  onClose: () => void;
+  onClose: (reason?: CloseReason) => void;
 
   /** Fires when all the options are checked by either clicking the `Select all` checkbox, or when the `checkall` method is programatically called. */
   onCheckAll: () => void;
