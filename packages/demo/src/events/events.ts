@@ -12,8 +12,8 @@ export default class Example {
       onOpen: () => {
         this.log('onOpen event fire!\n');
       },
-      onClose: () => {
-        this.log('onClose event fire!\n');
+      onClose: reason => {
+        this.log(`onClose event fire! Reason: "${reason}"\n`);
       },
       onCheckAll: () => {
         this.log('onCheckAll event fire!\n');

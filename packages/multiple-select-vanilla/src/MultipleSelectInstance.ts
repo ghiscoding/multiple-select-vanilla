@@ -3,7 +3,7 @@
  */
 import Constants from './constants';
 import type { HtmlStruct, MultipleSelectLocales, OptGroupRowData, OptionDataObject, OptionRowData } from './interfaces';
-import type { MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
+import type { CloseReason, MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
 import { BindingEventService, VirtualScroll } from './services';
 import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils';
 import {
@@ -267,7 +267,7 @@ export class MultipleSelectInstance {
             (e.target === this.dropElm || (findParent(e.target, '.ms-drop') !== this.dropElm && e.target !== this.elm)) &&
             this.options.isOpen
           ) {
-            this.close();
+            this.close('body.click');
           }
         }) as EventListener,
         undefined,
@@ -372,7 +372,7 @@ export class MultipleSelectInstance {
 
     if (this.options.openOnHover && this.parentElm) {
       this._bindEventService.bind(this.parentElm, 'mouseover', () => this.open(null));
-      this._bindEventService.bind(this.parentElm, 'mouseout', () => this.close());
+      this._bindEventService.bind(this.parentElm, 'mouseout', () => this.close('hover.mouseout'));
     }
   }
 
@@ -801,7 +801,7 @@ export class MultipleSelectInstance {
       if (e.target.classList.contains('ms-icon-close')) {
         return;
       }
-      this[this.options.isOpen ? 'close' : 'open']();
+      this.options.isOpen ? this.close('toggle.close') : this.open();
     };
 
     if (this.labelElm) {
@@ -864,7 +864,7 @@ export class MultipleSelectInstance {
         ((e: KeyboardEvent) => {
           // Ensure shift-tab causes lost focus from filter as with clicking away
           if (e.code === 'Tab' && e.shiftKey) {
-            this.close();
+            this.close('key.shift+tab');
           }
         }) as EventListener,
         undefined,
@@ -891,7 +891,7 @@ export class MultipleSelectInstance {
             } else {
               this.selectAllElm?.click();
             }
-            this.close();
+            this.close(`key.${e.code.toLowerCase() as 'enter' | 'space'}`);
             this.focus();
             return;
           }
@@ -966,7 +966,7 @@ export class MultipleSelectInstance {
         const option = findByParam(this.data, '_key', selectElm.dataset.key);
         const close = () => {
           if (this.options.single && this.options.isOpen && !this.options.keepOpen) {
-            this.close();
+            this.close('selection');
           }
         };
 
@@ -1068,7 +1068,7 @@ export class MultipleSelectInstance {
                   this.focusSelectAllOrList();
                   this.highlightCurrentOption();
                 } else {
-                  this.close();
+                  this.close('key.shift+tab');
                   this.choiceElm.focus();
                 }
               } else {
@@ -1091,7 +1091,7 @@ export class MultipleSelectInstance {
 
   protected handleEscapeKey() {
     if (!this.options.keepOpen) {
-      this.close();
+      this.close('key.escape');
       this.choiceElm.focus();
     }
   }
@@ -1339,7 +1339,7 @@ export class MultipleSelectInstance {
     }
   }
 
-  close() {
+  close(reason?: CloseReason) {
     this.options.isOpen = false;
     this.parentElm.classList.remove('ms-parent-open');
     this.choiceElm?.querySelector('div.ms-icon-caret')?.classList.remove('open');
@@ -1351,7 +1351,7 @@ export class MultipleSelectInstance {
       this.dropElm.style.top = 'auto';
       this.dropElm.style.left = 'auto';
     }
-    this.options.onClose();
+    this.options.onClose(reason);
   }
 
   /**
