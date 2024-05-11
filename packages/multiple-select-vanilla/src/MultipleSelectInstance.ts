@@ -36,7 +36,7 @@ export class MultipleSelectInstance {
   protected updateData: any[] = [];
   protected data?: Array<OptionRowData | OptGroupRowData> = [];
   protected dataTotal?: any;
-  protected dropElm!: HTMLDivElement;
+  protected dropElm?: HTMLDivElement;
   protected okButtonElm?: HTMLButtonElement;
   protected filterParentElm?: HTMLDivElement | null;
   protected lastFocusedItemKey = '';
@@ -106,6 +106,7 @@ export class MultipleSelectInstance {
 
       this.virtualScroll?.destroy();
       this.dropElm?.remove();
+      this.dropElm = undefined;
       this.parentElm.parentNode?.removeChild(this.parentElm);
 
       if (this.fromHtml) {
@@ -433,14 +434,14 @@ export class MultipleSelectInstance {
 
       saLabelElm.appendChild(createDomElement('span', { textContent: this.formatSelectAll() }));
       this.selectAllParentElm.appendChild(saLabelElm);
-      this.dropElm.appendChild(this.selectAllParentElm);
+      this.dropElm?.appendChild(this.selectAllParentElm);
     }
 
     this.ulElm = document.createElement('ul');
     this.ulElm.role = 'combobox';
     this.ulElm.ariaExpanded = 'false';
     this.ulElm.ariaMultiSelectable = String(!this.options.single);
-    this.dropElm.appendChild(this.ulElm);
+    this.dropElm?.appendChild(this.ulElm);
 
     if (this.options.showOkButton && !this.options.single) {
       this.okButtonElm = createDomElement(
@@ -461,8 +462,8 @@ export class MultipleSelectInstance {
     }
 
     if (rows.length > Constants.BLOCK_ROWS * Constants.CLUSTER_BLOCKS) {
-      const dropVisible = this.dropElm.style.display !== 'none';
-      if (!dropVisible) {
+      const dropVisible = this.dropElm && this.dropElm?.style.display !== 'none';
+      if (!dropVisible && this.dropElm) {
         this.dropElm.style.left = '-10000';
         this.dropElm.style.display = 'block';
         this.dropElm.ariaExpanded = 'true';
@@ -511,7 +512,7 @@ export class MultipleSelectInstance {
       }
       updateDataOffset();
 
-      if (!dropVisible) {
+      if (!dropVisible && this.dropElm) {
         this.dropElm.style.left = '0';
         this.dropElm.style.display = 'none';
         this.dropElm.ariaExpanded = 'false';
@@ -788,13 +789,13 @@ export class MultipleSelectInstance {
     ]);
 
     this.clearSearchIconElm = this.filterParentElm?.querySelector('.ms-icon-close');
-    this.searchInputElm = this.dropElm.querySelector<HTMLInputElement>('.ms-search input');
-    this.selectAllElm = this.dropElm.querySelector<HTMLInputElement>(`input[data-name="${this.selectAllName}"]`);
-    this.selectGroupElms = this.dropElm.querySelectorAll<HTMLInputElement>(
+    this.searchInputElm = this.dropElm?.querySelector<HTMLInputElement>('.ms-search input');
+    this.selectAllElm = this.dropElm?.querySelector<HTMLInputElement>(`input[data-name="${this.selectAllName}"]`);
+    this.selectGroupElms = this.dropElm?.querySelectorAll<HTMLInputElement>(
       `input[data-name="${this.selectGroupName}"],span[data-name="${this.selectGroupName}"]`,
     );
-    this.selectItemElms = this.dropElm.querySelectorAll<HTMLInputElement>(`input[data-name="${this.selectItemName}"]:enabled`);
-    this.noResultsElm = this.dropElm.querySelector<HTMLDivElement>('.ms-no-results');
+    this.selectItemElms = this.dropElm?.querySelectorAll<HTMLInputElement>(`input[data-name="${this.selectItemName}"]:enabled`);
+    this.noResultsElm = this.dropElm?.querySelector<HTMLDivElement>('.ms-no-results');
 
     const toggleOpen = (e: MouseEvent & { target: HTMLElement }) => {
       e.preventDefault();
@@ -925,79 +926,83 @@ export class MultipleSelectInstance {
       );
     }
 
-    this._bindEventService.bind(
-      this.selectGroupElms,
-      'click',
-      ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
-        const selectElm = e.currentTarget;
-        const checked = selectElm.checked;
-        const group = findByParam(this.data, '_key', selectElm.dataset.key);
+    if (this.selectGroupElms) {
+      this._bindEventService.bind(
+        this.selectGroupElms,
+        'click',
+        ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
+          const selectElm = e.currentTarget;
+          const checked = selectElm.checked;
+          const group = findByParam(this.data, '_key', selectElm.dataset.key);
 
-        this._checkGroup(group, checked);
-        this.options.onOptgroupClick(
-          removeUndefined({
-            label: group.label,
-            selected: group.selected,
-            data: group._data,
-            children: group.children.map((child: any) => {
-              if (child) {
-                return removeUndefined({
-                  text: child.text,
-                  value: child.value,
-                  selected: child.selected,
-                  disabled: child.disabled,
-                  data: child._data,
-                });
-              }
+          this._checkGroup(group, checked);
+          this.options.onOptgroupClick(
+            removeUndefined({
+              label: group.label,
+              selected: group.selected,
+              data: group._data,
+              children: group.children.map((child: any) => {
+                if (child) {
+                  return removeUndefined({
+                    text: child.text,
+                    value: child.value,
+                    selected: child.selected,
+                    disabled: child.disabled,
+                    data: child._data,
+                  });
+                }
+              }),
             }),
-          }),
-        );
-      }) as EventListener,
-      undefined,
-      'group-checkbox-list',
-    );
+          );
+        }) as EventListener,
+        undefined,
+        'group-checkbox-list',
+      );
+    }
 
-    this._bindEventService.bind(
-      this.selectItemElms,
-      'click',
-      ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
-        const selectElm = e.currentTarget;
-        const checked = selectElm.checked;
-        const option = findByParam(this.data, '_key', selectElm.dataset.key);
-        const close = () => {
-          if (this.options.single && this.options.isOpen && !this.options.keepOpen) {
-            this.close('selection');
+    if (this.selectItemElms) {
+      this._bindEventService.bind(
+        this.selectItemElms,
+        'click',
+        ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
+          const selectElm = e.currentTarget;
+          const checked = selectElm.checked;
+          const option = findByParam(this.data, '_key', selectElm.dataset.key);
+          const close = () => {
+            if (this.options.single && this.options.isOpen && !this.options.keepOpen) {
+              this.close('selection');
+            }
+          };
+
+          if (this.options.onBeforeClick(option) === false) {
+            close();
+            return;
           }
-        };
 
-        if (this.options.onBeforeClick(option) === false) {
+          this._check(option, checked);
+          this.options.onClick(
+            removeUndefined({
+              text: option.text,
+              value: option.value,
+              selected: option.selected,
+              data: option._data,
+            }),
+          );
+
           close();
-          return;
-        }
+        }) as EventListener,
+        undefined,
+        'input-checkbox-list',
+      );
+    }
 
-        this._check(option, checked);
-        this.options.onClick(
-          removeUndefined({
-            text: option.text,
-            value: option.value,
-            selected: option.selected,
-            data: option._data,
-          }),
-        );
-
-        close();
-      }) as EventListener,
-      undefined,
-      'input-checkbox-list',
-    );
-
-    if (this.lastFocusedItemKey) {
+    if (this.lastFocusedItemKey && this.dropElm) {
       // if we previously had an item focused and the VirtualScroll recreates the list, we need to refocus on last item by its input data-key
       const input = this.dropElm.querySelector<HTMLInputElement>(`li[data-key=${this.lastFocusedItemKey}]`);
       input?.focus();
     }
 
-    if (this.options.navigationHighlight) {
+    if (this.options.navigationHighlight && this.dropElm) {
       // when hovering an select option, we will also change the highlight to that option
       this._bindEventService.bind(
         this.dropElm,
@@ -1005,7 +1010,7 @@ export class MultipleSelectInstance {
         ((e: MouseEvent & { target: HTMLDivElement | HTMLLIElement }) => {
           const liElm = (e.target.closest('.ms-select-all') || e.target.closest('li')) as HTMLLIElement;
 
-          if (this.dropElm.contains(liElm) && this.lastMouseOverPosition !== `${e.clientX}:${e.clientY}`) {
+          if (this.dropElm?.contains(liElm) && this.lastMouseOverPosition !== `${e.clientX}:${e.clientY}`) {
             const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
             const newIdx = Array.from(optionElms).findIndex(el => el.dataset.key === liElm.dataset.key);
             if (this._currentHighlightIndex !== newIdx && !liElm.classList.contains('disabled')) {
@@ -1145,7 +1150,7 @@ export class MultipleSelectInstance {
   }
 
   protected openDrop() {
-    if (this.choiceElm?.classList.contains('disabled')) {
+    if (!this.dropElm || this.choiceElm?.classList.contains('disabled')) {
       return;
     }
     this.options.isOpen = true;
@@ -1343,13 +1348,15 @@ export class MultipleSelectInstance {
     this.options.isOpen = false;
     this.parentElm.classList.remove('ms-parent-open');
     this.choiceElm?.querySelector('div.ms-icon-caret')?.classList.remove('open');
-    this.dropElm.style.display = 'none';
-    this.dropElm.ariaExpanded = 'false';
+    if (this.dropElm) {
+      this.dropElm.style.display = 'none';
+      this.dropElm.ariaExpanded = 'false';
 
-    if (this.options.container) {
-      this.parentElm.appendChild(this.dropElm);
-      this.dropElm.style.top = 'auto';
-      this.dropElm.style.left = 'auto';
+      if (this.options.container) {
+        this.parentElm.appendChild(this.dropElm);
+        this.dropElm.style.top = 'auto';
+        this.dropElm.style.left = 'auto';
+      }
     }
     this.options.onClose(reason);
   }
@@ -1444,7 +1451,7 @@ export class MultipleSelectInstance {
   protected updateSelected(rows?: HtmlStruct[]) {
     for (let i = this.updateDataStart!; i < this.updateDataEnd!; i++) {
       const row = this.updateData[i];
-      const inputElm = this.dropElm.querySelector<HTMLInputElement>(`input[data-key=${row._key}]`);
+      const inputElm = this.dropElm?.querySelector<HTMLInputElement>(`input[data-key=${row._key}]`);
       if (inputElm) {
         inputElm.checked = row.selected;
         const closestLiElm = inputElm.closest('li');
@@ -1471,7 +1478,7 @@ export class MultipleSelectInstance {
 
     if (this.selectAllElm) {
       this.selectAllElm.ariaChecked = String(this.isAllSelected);
-      const checkboxIconElm = this.dropElm.querySelector('.ms-select-all .icon-checkbox-container div');
+      const checkboxIconElm = this.dropElm?.querySelector('.ms-select-all .icon-checkbox-container div');
       if (checkboxIconElm) {
         let iconClass = '';
         if (this.isAllSelected) {
@@ -1857,53 +1864,55 @@ export class MultipleSelectInstance {
   }
 
   protected adjustDropWidthByText() {
-    const parentWidth = this.parentElm.scrollWidth;
+    if (this.dropElm) {
+      const parentWidth = this.parentElm.scrollWidth;
 
-    // keep the dropWidth/width as reference, if our new calculated width is below then we will re-adjust (else do nothing)
-    let currentDefinedWidth: number | string = parentWidth;
-    if (this.options.dropWidth || this.options.width) {
-      currentDefinedWidth = this.options.dropWidth || this.options.width || 0;
-    }
-
-    // calculate the "Select All" element width, this text is configurable which is why we recalculate every time
-    const selectAllSpanElm = this.dropElm.querySelector<HTMLSpanElement>('.ms-select-all span');
-    const dropUlElm = this.dropElm.querySelector('ul') as HTMLUListElement;
-
-    const liPadding = 26; // there are multiple padding involved, let's fix it at 26px
-
-    const selectAllElmWidth = selectAllSpanElm?.clientWidth ?? 0 + liPadding;
-    const hasScrollbar = dropUlElm.scrollHeight > dropUlElm.clientHeight;
-    const scrollbarWidth = hasScrollbar ? this.getScrollbarWidth() : 0;
-    let contentWidth = 0;
-
-    this.dropElm.querySelectorAll('li label').forEach(elm => {
-      if (elm.scrollWidth > contentWidth) {
-        contentWidth = elm.scrollWidth;
+      // keep the dropWidth/width as reference, if our new calculated width is below then we will re-adjust (else do nothing)
+      let currentDefinedWidth: number | string = parentWidth;
+      if (this.options.dropWidth || this.options.width) {
+        currentDefinedWidth = this.options.dropWidth || this.options.width || 0;
       }
-    });
 
-    // add a padding & include the browser scrollbar width
-    contentWidth += liPadding + scrollbarWidth;
+      // calculate the "Select All" element width, this text is configurable which is why we recalculate every time
+      const selectAllSpanElm = this.dropElm.querySelector<HTMLSpanElement>('.ms-select-all span');
+      const dropUlElm = this.dropElm.querySelector('ul') as HTMLUListElement;
 
-    // make sure the new calculated width is wide enough to include the "Select All" text (this text is configurable)
-    if (contentWidth < selectAllElmWidth) {
-      contentWidth = selectAllElmWidth;
-    }
+      const liPadding = 26; // there are multiple padding involved, let's fix it at 26px
 
-    // if a maxWidth is defined, make sure our new calculate width is not over the maxWidth
-    if (this.options.maxWidth && contentWidth > this.options.maxWidth) {
-      contentWidth = this.options.maxWidth;
-    }
+      const selectAllElmWidth = selectAllSpanElm?.clientWidth ?? 0 + liPadding;
+      const hasScrollbar = dropUlElm.scrollHeight > dropUlElm.clientHeight;
+      const scrollbarWidth = hasScrollbar ? this.getScrollbarWidth() : 0;
+      let contentWidth = 0;
 
-    // if a minWidth is defined, make sure our new calculate width is not below the minWidth
-    if (this.options.minWidth && contentWidth < this.options.minWidth) {
-      contentWidth = this.options.minWidth;
-    }
+      this.dropElm.querySelectorAll('li label').forEach(elm => {
+        if (elm.scrollWidth > contentWidth) {
+          contentWidth = elm.scrollWidth;
+        }
+      });
 
-    // finally re-adjust the drop to the new calculated width when necessary
-    if (currentDefinedWidth === '100%' || +currentDefinedWidth < contentWidth) {
-      this.dropElm.style.width = `${contentWidth}px`;
-      this.dropElm.style.maxWidth = `${contentWidth}px`;
+      // add a padding & include the browser scrollbar width
+      contentWidth += liPadding + scrollbarWidth;
+
+      // make sure the new calculated width is wide enough to include the "Select All" text (this text is configurable)
+      if (contentWidth < selectAllElmWidth) {
+        contentWidth = selectAllElmWidth;
+      }
+
+      // if a maxWidth is defined, make sure our new calculate width is not over the maxWidth
+      if (this.options.maxWidth && contentWidth > this.options.maxWidth) {
+        contentWidth = this.options.maxWidth;
+      }
+
+      // if a minWidth is defined, make sure our new calculate width is not below the minWidth
+      if (this.options.minWidth && contentWidth < this.options.minWidth) {
+        contentWidth = this.options.minWidth;
+      }
+
+      // finally re-adjust the drop to the new calculated width when necessary
+      if (currentDefinedWidth === '100%' || +currentDefinedWidth < contentWidth) {
+        this.dropElm.style.width = `${contentWidth}px`;
+        this.dropElm.style.maxWidth = `${contentWidth}px`;
+      }
     }
   }
 

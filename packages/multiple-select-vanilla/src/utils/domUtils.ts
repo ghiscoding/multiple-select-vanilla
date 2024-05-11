@@ -157,7 +157,11 @@ export function getElementOffset(element?: HTMLElement): HtmlElementPosition | u
   return { top, left, bottom, right };
 }
 
-export function getElementSize(elm: HTMLElement, mode: 'inner' | 'outer' | 'scroll', type: 'height' | 'width') {
+export function getElementSize(elm: HTMLElement | undefined, mode: 'inner' | 'outer' | 'scroll', type: 'height' | 'width') {
+  if (!elm) {
+    return 0;
+  }
+
   // first try defined style width or offsetWidth (which include scroll & padding)
   let size = Number.parseFloat(elm.style[type]);
   if (!size || Number.isNaN(size)) {
