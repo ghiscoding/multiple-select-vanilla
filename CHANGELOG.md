@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.2.0...v3.2.1) (2024-05-11)
+
+### Bug Fixes
+
+* only open drop when exists after open delay ([#277](https://github.com/ghiscoding/multiple-select-vanilla/issues/277)) ([866ee53](https://github.com/ghiscoding/multiple-select-vanilla/commit/866ee5302bf6b90621eb232b8863365d76d0fba3)) - by @ghiscoding
+
 ## [3.2.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.1.4...v3.2.0) (2024-05-08)
 
 ### Features
