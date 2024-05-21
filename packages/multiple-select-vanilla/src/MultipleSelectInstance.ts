@@ -260,12 +260,13 @@ export class MultipleSelectInstance {
         document.body,
         'click',
         ((e: MouseEvent & { target: HTMLElement }) => {
-          if (e.target === this.choiceElm || findParent(e.target, '.ms-choice') === this.choiceElm) {
+          if (e.composedPath()[0] === this.choiceElm || findParent(e.composedPath()[0] as HTMLElement, '.ms-choice') === this.choiceElm) {
             return;
           }
 
           if (
-            (e.target === this.dropElm || (findParent(e.target, '.ms-drop') !== this.dropElm && e.target !== this.elm)) &&
+            (e.composedPath()[0] === this.dropElm ||
+              (findParent(e.composedPath()[0] as HTMLElement, '.ms-drop') !== this.dropElm && e.composedPath()[0] !== this.elm)) &&
             this.options.isOpen
           ) {
             this.close('body.click');
@@ -799,7 +800,7 @@ export class MultipleSelectInstance {
 
     const toggleOpen = (e: MouseEvent & { target: HTMLElement }) => {
       e.preventDefault();
-      if (e.target.classList.contains('ms-icon-close')) {
+      if ((e.composedPath()[0] as HTMLElement).classList.contains('ms-icon-close')) {
         return;
       }
       this.options.isOpen ? this.close('toggle.close') : this.open();
@@ -807,7 +808,7 @@ export class MultipleSelectInstance {
 
     if (this.labelElm) {
       this._bindEventService.bind(this.labelElm, 'click', ((e: MouseEvent & { target: HTMLElement }) => {
-        if (e.target.nodeName.toLowerCase() !== 'label') {
+        if ((e.composedPath()[0] as HTMLElement).nodeName.toLowerCase() !== 'label') {
           return;
         }
         toggleOpen(e);
@@ -1008,7 +1009,8 @@ export class MultipleSelectInstance {
         this.dropElm,
         'mouseover',
         ((e: MouseEvent & { target: HTMLDivElement | HTMLLIElement }) => {
-          const liElm = (e.target.closest('.ms-select-all') || e.target.closest('li')) as HTMLLIElement;
+          const liElm = ((e.composedPath()[0] as HTMLElement).closest('.ms-select-all') ||
+            (e.composedPath()[0] as HTMLElement).closest('li')) as HTMLLIElement;
 
           if (this.dropElm?.contains(liElm) && this.lastMouseOverPosition !== `${e.clientX}:${e.clientY}`) {
             const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
@@ -1048,7 +1050,8 @@ export class MultipleSelectInstance {
             case ' ': {
               // if we're focused on the OK button then don't execute following block
               if (document.activeElement !== this.okButtonElm) {
-                const liElm = e.target.closest('.ms-select-all') || e.target.closest('li');
+                const liElm =
+                  (e.composedPath()[0] as HTMLElement).closest('.ms-select-all') || (e.composedPath()[0] as HTMLElement).closest('li');
                 if ((e.key === ' ' && this.options.filter) || (this.options.filterAcceptOnEnter && !liElm)) {
                   return;
                 }
@@ -1108,8 +1111,8 @@ export class MultipleSelectInstance {
   protected infiniteScrollHandler(e: (MouseEvent & { target: HTMLElement }) | null, idx?: number, fullCount?: number) {
     let needHighlightRecalc = false;
 
-    if (e?.target && this.ulElm && this.scrolledByMouse) {
-      const scrollPos = e.target.scrollTop + e.target.clientHeight;
+    if (e?.composedPath()[0] && this.ulElm && this.scrolledByMouse) {
+      const scrollPos = (e.composedPath()[0] as HTMLElement).scrollTop + (e.composedPath()[0] as HTMLElement).clientHeight;
       if (scrollPos === this.ulElm.scrollHeight) {
         needHighlightRecalc = true;
       }

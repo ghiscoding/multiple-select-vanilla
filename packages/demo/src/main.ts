@@ -154,7 +154,7 @@ class Main {
     this.removeAllActiveLinks();
 
     // change active link to new route
-    const targetElm = e.target as HTMLElement;
+    const targetElm = e.composedPath()[0] as HTMLElement;
     targetElm.classList.toggle('active');
 
     this.loadRoute(targetElm.id);
