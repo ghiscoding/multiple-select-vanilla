@@ -533,9 +533,8 @@ export class MultipleSelectInstance {
   }
 
   protected getEventTarget(e: Event & { target: HTMLElement }): HTMLElement {
-    // @ts-expect-error
     if (e.composedPath) {
-      return this.getEventTarget(e) as HTMLElement;
+      return e.composedPath()[0] as HTMLElement;
     }
     return e.target as HTMLElement;
   }
