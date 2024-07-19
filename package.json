@@ -56,18 +56,18 @@
     "test:report": "playwright show-report",
     "playwright:install": "pnpm exec playwright install"
   },
-  "packageManager": "pnpm@8.15.8",
+  "packageManager": "pnpm@8.15.9",
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@lerna-lite/cli": "^3.7.0",
-    "@lerna-lite/publish": "^3.7.0",
-    "@lerna-lite/watch": "^3.7.0",
-    "@playwright/test": "^1.45.1",
-    "@types/node": "^20.14.10",
+    "@lerna-lite/cli": "^3.7.1",
+    "@lerna-lite/publish": "^3.7.1",
+    "@lerna-lite/watch": "^3.7.1",
+    "@playwright/test": "^1.45.2",
+    "@types/node": "^20.14.11",
     "conventional-changelog-conventionalcommits": "^7.0.2",
     "cross-env": "^7.0.3",
     "npm-run-all2": "^6.2.2",
-    "pnpm": "^8.15.8",
+    "pnpm": "^8.15.9",
     "rimraf": "^5.0.9",
     "typescript": "5.5.3"
   }
