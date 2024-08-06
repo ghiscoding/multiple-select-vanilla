@@ -63,16 +63,16 @@
     "@types/trusted-types": "^2.0.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.20",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "cssnano": "^7.0.4",
     "esbuild": "^0.23.0",
     "fs-extra": "^11.2.0",
     "glob": "^10.4.5",
-    "postcss": "^8.4.39",
+    "postcss": "^8.4.41",
     "postcss-cli": "^11.0.0",
     "sass": "^1.77.8",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   }
 }

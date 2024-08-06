@@ -28,7 +28,7 @@
   "devDependencies": {
     "@types/dompurify": "^3.0.5",
     "sass": "^1.77.8",
-    "typescript": "5.5.3",
-    "vite": "^5.3.4"
+    "typescript": "5.5.4",
+    "vite": "^5.3.5"
   }
 }
