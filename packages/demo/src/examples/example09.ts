@@ -18,7 +18,9 @@ export default class Example {
       this.updateLocale(event.target.value as LocaleKey);
     }) as EventListener);
 
-    this.ms0 = multipleSelect(elm) as MultipleSelectInstance;
+    this.ms0 = multipleSelect(elm, {
+      maxHeight: 400,
+    }) as MultipleSelectInstance;
     this.ms1 = multipleSelect('#dynamic-select', {
       filter: true,
       showOkButton: true,
