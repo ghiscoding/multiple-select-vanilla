@@ -38,7 +38,7 @@
     "dev:demo": "pnpm -r --stream --filter=\"{packages/demo/**}\" dev",
     "dev:lib": "pnpm -r --stream --filter=\"{packages/multiple-select-vanilla/**}\" dev",
     "biome:lint:check": "biome lint ./packages",
-    "biome:lint:write": "biome check --apply ./packages",
+    "biome:lint:write": "biome lint --write ./packages",
     "biome:format:check": "biome format ./packages",
     "biome:format:write": "biome format --write ./packages",
     "preview:version": "lerna version --dry-run",
