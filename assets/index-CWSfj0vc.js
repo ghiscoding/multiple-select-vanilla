@@ -765,12 +765,12 @@ var Pl=Object.defineProperty;var Hl=(n,t,e)=>t in n?Pl(n,t,{enumerable:!0,config
       <select id="locale" class="full-width">
         <option value="en-US">English</option>
         <option value="fr-FR">French</option>
-        <option value="es-ES">Spanish</option>
+        <option value="de-DE">German</option>
         <option value="it-IT">Italian</option>
+        <option value="es-ES">Spanish</option>
         <option value="vi-VN">Vietnamese</option>
         <option value="zh-CN">简体中文</option>
         <option value="zh-TW">繁體中文</option>
-        <option value="de-DE">German</option>
       </select>
     </div>
   </div>
@@ -799,7 +799,7 @@ var Pl=Object.defineProperty;var Hl=(n,t,e)=>t in n?Pl(n,t,{enumerable:!0,config
   <hr />
 
   <div class="mb-3 row">
-    <label class="col-sm-3">named Locale import (Spanish)</label>
+    <label class="col-sm-3">named Locale import (i.e. Spanish)</label>
 
     <div class="col-sm-9">
       <select id="fixed-import" class="full-width" multiple="multiple">
@@ -1421,20 +1421,20 @@ var Pl=Object.defineProperty;var Hl=(n,t,e)=>t in n?Pl(n,t,{enumerable:!0,config
       including Multiple-Select-Vanilla. Just use the following CDN links.
     </p>
     <p>
-      The project now ships its <code>.js</code> files as ESM by default, if you still wish to use the old CommonJS (CJS) format with <code>require()</code>,
+      The project now ships its <code>.js</code> files as ESM by default, if you still wish to use the legacy CommonJS (CJS) format with <code>require()</code>,
       then you will have to use <code>.cjs</code> file extension.
     </p>
 
     <div style="background: #f7f7f7; padding: 10px">
       <pre>
 &lt;!-- Latest compiled and minified CSS --&gt;
-&lt;link href=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.1.4/dist/styles/css/multiple-select.css</span>&quot; rel=&quot;<span style="color:#880000">stylesheet</span>&quot;&gt;
+&lt;link href=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.3.0/dist/styles/css/multiple-select.css</span>&quot; rel=&quot;<span style="color:#880000">stylesheet</span>&quot;&gt;
 
 &lt;!-- (ESM requires <span style="color:#d63384">type=&quot;module&quot;</span>) Latest compiled and minified JavaScript --&gt;
-&lt;script type=&quot;module&quot; src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.1.4/dist/browser/multiple-select.js</span>&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot; src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.3.0/dist/browser/multiple-select.js</span>&quot;&gt;&lt;/script&gt;
 
 &lt;!-- (CJS requires <span style="color:#d63384">.cjs</span> extension) Latest compiled and minified JavaScript --&gt;
-&lt;script src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.1.4/dist/browser/multiple-select.cjs</span>&quot;&gt;&lt;/script&gt;</pre>
+&lt;script src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.3.0/dist/browser/multiple-select.cjs</span>&quot;&gt;&lt;/script&gt;</pre>
     </div>
 
     <quote>
