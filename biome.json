@@ -25,7 +25,6 @@
             "arrowParentheses": "asNeeded",
             "quoteProperties": "asNeeded",
             "semicolons": "always",
-            "trailingComma": "all",
             "indentStyle": "space",
             "quoteStyle": "single"
         }
