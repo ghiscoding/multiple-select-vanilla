@@ -1,5 +1,6 @@
 export * from './multiple-select-cz-CS';
 export * from './multiple-select-da-DK';
+export * from './multiple-select-de-DE';
 export * from './multiple-select-en-US';
 export * from './multiple-select-es-ES';
 export * from './multiple-select-fr-FR';

@@ -2,6 +2,7 @@
 export type LocaleKey =
   | 'cz-CS'
   | 'da-DK'
+  | 'de-DE'
   | 'en-US'
   | 'es-ES'
   | 'fr-FR'
