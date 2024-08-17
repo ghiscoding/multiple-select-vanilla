@@ -1,3 +1,5 @@
+import type { TrustedHTML } from 'trusted-types/lib';
+
 export type InferDOMType<T> = T extends CSSStyleDeclaration ? Partial<CSSStyleDeclaration> : T extends infer R ? R : any;
 
 export type OptionDataObject = { [value: string]: number | string | boolean };
