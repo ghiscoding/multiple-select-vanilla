@@ -1,3 +1,5 @@
+import type { TrustedHTML } from 'trusted-types/lib';
+
 import type { LabelFilter, OptGroupRowData, OptionRowData, OptionRowDivider, TextFilter } from './interfaces';
 import type { LocaleKey, MultipleSelectLocale } from './locale.interface';
 
