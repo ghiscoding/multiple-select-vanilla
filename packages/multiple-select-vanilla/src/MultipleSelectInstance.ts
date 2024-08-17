@@ -55,7 +55,7 @@ export class MultipleSelectInstance {
   protected selectGroupName = '';
   protected selectItemName = '';
   protected scrolledByMouse = false;
-  protected openDelayTimer: NodeJS.Timeout | undefined;
+  protected openDelayTimer?: number;
 
   protected updateDataStart?: number;
   protected updateDataEnd?: number;
@@ -1145,8 +1145,8 @@ export class MultipleSelectInstance {
     return new Promise(resolve => {
       if (openDelay !== null && openDelay >= 0) {
         // eslint-disable-next-line prefer-const
-        clearTimeout(this.openDelayTimer);
-        this.openDelayTimer = setTimeout(() => {
+        window.clearTimeout(this.openDelayTimer);
+        this.openDelayTimer = window.setTimeout(() => {
           this.openDrop();
           resolve();
         }, openDelay);
@@ -1283,7 +1283,7 @@ export class MultipleSelectInstance {
         this.scrolledByMouse = false;
         currentOption.scrollIntoView({ block: 'nearest' });
         this.changeCurrentOptionHighlight(currentOption);
-        setTimeout(() => (this.scrolledByMouse = true), 10);
+        window.setTimeout(() => (this.scrolledByMouse = true), 10);
       }
     }
   }
