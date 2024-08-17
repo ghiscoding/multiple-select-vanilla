@@ -66,7 +66,7 @@ export default class Example {
       ],
     }) as MultipleSelectInstance;
 
-    // setTimeout(() => {
+    // window.setTimeout(() => {
     //   this.ms2?.setSelects(['<i class="fa fa-star"></i>1', 2, 3]);
     // }, 2000);
   }
