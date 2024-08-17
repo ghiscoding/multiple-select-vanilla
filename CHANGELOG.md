@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.0...v3.3.1) (2024-08-17)
+
+### Bug Fixes
+
+* add missing TrustedHTML type ([#292](https://github.com/ghiscoding/multiple-select-vanilla/issues/292)) ([5411b67](https://github.com/ghiscoding/multiple-select-vanilla/commit/5411b679e92e2ad6a45f185560ba0fd9d98a2cfb)) - by @ghiscoding
+
 ## [3.3.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.2.2...v3.3.0) (2024-08-06)
 
 ### Features
