@@ -1,4 +1,4 @@
-name: 🏷️ Publish NPM Latest
+name: 🏷️ Lerna Publish NPM Latest
 
 on:
   workflow_dispatch:
@@ -122,8 +122,11 @@ jobs:
           pnpm exec lerna publish from-package --force-publish --yes --otp ${{ steps.wait-for-secrets.outputs.OTP }}
 
       - name: Build Website (GitHub demo site)
+        if: ${{ inputs.dryrun != true }}
         run: pnpm build:demo
 
+        # deploy (re-publish) GitHub demo page with a Prod build but only when merging to "master" branch
+        # and the commit message contains the text "chore: release"
       - name: Deploy to gh-pages
         if: ${{ inputs.dryrun != true }}
         uses: peaceiris/actions-gh-pages@v4
