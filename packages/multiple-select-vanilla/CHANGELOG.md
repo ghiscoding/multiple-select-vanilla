@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.2...v3.3.3) (2024-09-03)
+
+### Bug Fixes
+
+* package export not detected as ESM in Vitest ([#297](https://github.com/ghiscoding/multiple-select-vanilla/issues/297)) ([6803609](https://github.com/ghiscoding/multiple-select-vanilla/commit/6803609fa8774fe027e15685732c767f35487921)) - by @ghiscoding
+
 ## [3.3.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.1...v3.3.2) (2024-08-17)
 
 ### Bug Fixes

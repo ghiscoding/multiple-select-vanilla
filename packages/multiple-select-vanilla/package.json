@@ -1,6 +1,6 @@
 {
   "name": "multiple-select-vanilla",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
