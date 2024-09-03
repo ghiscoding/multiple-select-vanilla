@@ -1,21 +1,21 @@
 {
   "name": "multiple-select-vanilla",
   "version": "3.3.2",
-  "main": "./dist/multiple-select.cjs",
-  "module": "./dist/multiple-select.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "node": "./dist/multiple-select.cjs",
       "import": "./dist/multiple-select.js",
-      "require": "./dist/multiple-select.cjs"
+      "require": "./dist/multiple-select.cjs",
+      "node": "./dist/multiple-select.cjs"
     },
     "./dist/browser/*": "./dist/browser/*",
     "./dist/locales/*": "./dist/locales/*",
     "./dist/styles/*": "./dist/styles/*",
     "./package.json": "./package.json"
   },
+  "module": "./dist/multiple-select.js",
+  "main": "./dist/multiple-select.cjs",
   "author": {
     "name": "zhixin wen",
     "email": "wenzhixin2010@gmail.com",
