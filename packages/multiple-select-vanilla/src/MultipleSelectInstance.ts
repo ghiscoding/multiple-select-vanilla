@@ -1803,7 +1803,7 @@ export class MultipleSelectInstance {
     const isDropPositionBottom = position !== 'top';
     const filterHeight = this.filterParentElm?.getBoundingClientRect().height ?? 0;
     const okButtonHeight = this.okButtonElm?.getBoundingClientRect().height ?? 0;
-    const selectAllHeight = this.options.single ? 0 : this.selectAllParentElm?.getBoundingClientRect().height ?? 0;
+    const selectAllHeight = this.options.single ? 0 : (this.selectAllParentElm?.getBoundingClientRect().height ?? 0);
     const msDropMinimalHeight = filterHeight + okButtonHeight + selectAllHeight + 5;
 
     const { bottom: spaceBottom, top: spaceTop } = calculateAvailableSpace(this.parentElm);
