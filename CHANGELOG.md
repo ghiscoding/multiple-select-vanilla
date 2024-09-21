@@ -4,6 +4,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.3...v3.3.4) (2024-09-21)
+
+### Bug Fixes
+
+* improve hybrid exports ([cc622b1](https://github.com/ghiscoding/multiple-select-vanilla/commit/cc622b1df5eb8cb48477a0f2e9e8b3e6fd1b9693)) - by @ghiscoding
+* SASS deprecated `lighten` and `darken` methods ([#301](https://github.com/ghiscoding/multiple-select-vanilla/issues/301)) ([1938720](https://github.com/ghiscoding/multiple-select-vanilla/commit/19387205c80c3e288fc50175c4bd8c23a5aa4713)) - by @ghiscoding
+
 ## [3.3.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.2...v3.3.3) (2024-09-03)
 
 ### Bug Fixes

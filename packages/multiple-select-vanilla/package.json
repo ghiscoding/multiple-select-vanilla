@@ -1,7 +1,7 @@
 {
   "name": "multiple-select-vanilla",
   "description": "This lib allows you to select multiple elements with checkboxes",
-  "version": "3.3.3",
+  "version": "3.3.4",
   "keywords": [
     "checkboxes",
     "multiple-select",
