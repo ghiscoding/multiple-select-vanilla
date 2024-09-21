@@ -1,21 +1,13 @@
 {
   "name": "multiple-select-vanilla",
+  "description": "This lib allows you to select multiple elements with checkboxes",
   "version": "3.3.3",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/multiple-select.js",
-      "require": "./dist/multiple-select.cjs",
-      "node": "./dist/multiple-select.cjs"
-    },
-    "./dist/browser/*": "./dist/browser/*",
-    "./dist/locales/*": "./dist/locales/*",
-    "./dist/styles/*": "./dist/styles/*",
-    "./package.json": "./package.json"
-  },
-  "module": "./dist/multiple-select.js",
-  "main": "./dist/multiple-select.cjs",
+  "keywords": [
+    "checkboxes",
+    "multiple-select",
+    "single-select",
+    "select"
+  ],
   "author": {
     "name": "zhixin wen",
     "email": "wenzhixin2010@gmail.com",
@@ -27,14 +19,28 @@
     }
   ],
   "homepage": "https://github.com/ghiscoding/multiple-select-vanilla",
-  "bugs": {
-    "url": "https://github.com/ghiscoding/multiple-select-vanilla/issues"
-  },
   "license": "MIT",
+  "main": "./dist/multiple-select.cjs",
+  "module": "./dist/multiple-select.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/multiple-select.js",
+      "require": "./dist/multiple-select.cjs"
+    },
+    "./dist/browser/*": "./dist/browser/*",
+    "./dist/locales/*": "./dist/locales/*",
+    "./dist/styles/*": "./dist/styles/*",
+    "./package.json": "./package.json"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ghiscoding/multiple-select-vanilla.git",
     "directory": "packages/multiple-select-vanilla"
+  },
+  "bugs": {
+    "url": "https://github.com/ghiscoding/multiple-select-vanilla/issues"
   },
   "publishConfig": {
     "access": "public"
