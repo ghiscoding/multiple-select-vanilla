@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 /*
  * Multiple-Select-Vanilla SASS variables.
  * You can also CSS variables by simply replacing `$ms-` prefix with `--ms-`
@@ -11,7 +13,7 @@ $ms-primary-color: $primary-color !default;
 $ms-item-border: 1px solid transparent !default;
 $ms-item-hover-border: 1px solid #d5d5d5 !default;
 $ms-checkbox-color: $ms-primary-color !default;
-$ms-checkbox-hover-color: darken($ms-primary-color, 3%) !default;
+$ms-checkbox-hover-color: color.adjust($ms-primary-color, $lightness: -3%) !default;
 $ms-checkbox-icon-container-border: 1px solid #d0d0d0 !default;
 $ms-checkbox-icon-container-height: 1.05rem !default;
 $ms-checkbox-icon-container-width: 1.05rem !default;
@@ -34,7 +36,7 @@ $ms-icon-size: 1em !default;
 $ms-chevron-icon-size: 1.2em !default;
 $ms-choice-text-align: left !default;
 $ms-choice-line-height: 26px !default;
-$ms-choice-focus-border-color: lighten($ms-primary-color, 60%) !default;
+$ms-choice-focus-border-color: color.adjust($ms-primary-color, $lightness: 60%) !default;
 $ms-choice-focus-box-shadow: 0 0 0 1.5px rgba($ms-primary-color,.35) !default;
 $ms-drop-background: #fff !default;
 $ms-drop-color: #000 !default;
@@ -82,7 +84,7 @@ $ms-ok-button-border-width: 1px 0 0 0 !default;
 $ms-ok-button-font-weight: 600 !default;
 $ms-ok-button-padding: 0 !default;
 $ms-ok-button-text-color: $ms-primary-color !default;
-$ms-ok-button-text-hover-color: darken($ms-primary-color, 5%) !default;
+$ms-ok-button-text-hover-color: color.adjust($ms-primary-color, $lightness: -5%) !default;
 $ms-ok-button-height: 26px !default;
 $ms-ok-button-width: 100% !default;
 $ms-ok-button-text-align: center !default;
@@ -109,33 +111,33 @@ $ms-select-all-label-padding: 4px !default;
 $ms-select-all-line-height: 18px !default;
 $ms-select-all-padding: 4px !default;
 $ms-select-all-text-font-weight: normal !default;
-$ms-select-all-text-color: darken($ms-primary-color, 5%) !default;
+$ms-select-all-text-color: color.adjust($ms-primary-color, $lightness: -5%) !default;
 $ms-select-all-text-hover-color: transparent !default;
 
 .ms-dark-mode {
-    --ms-checkbox-color: #{lighten($ms-primary-color, 10%)};
-    --ms-checkbox-hover-color: #{lighten($ms-primary-color, 13%)};
+    --ms-checkbox-color: #{color.adjust($ms-primary-color, $lightness: 10%)};
+    --ms-checkbox-hover-color: #{color.adjust($ms-primary-color, $lightness: 13%)};
     --ms-checkbox-icon-container-border: 1px solid #797979;
     --ms-choice-border: 1px solid #757575;
     --ms-choice-bgcolor: #262b2f;
     --ms-choice-color: #d4d4d4;
     --ms-choice-border-hover-color: #7f7f7f;
-    --ms-choice-focus-border-color: #{lighten($ms-primary-color, 5%)};
+    --ms-choice-focus-border-color: #{color.adjust($ms-primary-color, $lightness: 5%)};
     --ms-choice-focus-box-shadow: 0 0 0 2px #{rgba($ms-primary-color,.2)};
     --ms-drop-background: #2a2f34;
     --ms-drop-border: 1px solid #585858;
     --ms-drop-color: #cccccc;
-    --ms-drop-hide-radio-hover-bgcolor: #{darken($ms-primary-color, 5%)};
+    --ms-drop-hide-radio-hover-bgcolor: #{color.adjust($ms-primary-color, $lightness: -5%)};
     --ms-drop-option-divider-border-top: 1px solid #696969;
     --ms-drop-scrollbar-color: #828282 #424242;
     --ms-icon-color: #bcbcbc;
     --ms-icon-color-hover: #d0d0d0;
-    --ms-option-highlight-bg-color: #{darken($ms-primary-color, 10%)};
+    --ms-option-highlight-bg-color: #{color.adjust($ms-primary-color, $lightness: -10%)};
     --ms-ok-button-bg-color: #262b2f;
     --ms-ok-button-bg-hover-color: #24282c;
     --ms-ok-button-border-color: #4a4a4a;
-    --ms-ok-button-text-color: #{lighten($ms-primary-color, 5%)};
-    --ms-ok-button-text-hover-color: #{lighten($ms-primary-color, 5%)};
+    --ms-ok-button-text-color: #{color.adjust($ms-primary-color, $lightness: 5%)};
+    --ms-ok-button-text-hover-color: #{color.adjust($ms-primary-color, $lightness: 5%)};
     --ms-optgroup-color: #fff;
     --ms-search-input-bg-color: #2f353a;
     --ms-search-input-color: #d4d4d4;
