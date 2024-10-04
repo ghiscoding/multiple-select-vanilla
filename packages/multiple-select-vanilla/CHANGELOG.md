@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.5](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.4...v3.3.5) (2024-10-04)
+
+### Bug Fixes
+
+* full CJS/ESM hybrid support with tsup ([#303](https://github.com/ghiscoding/multiple-select-vanilla/issues/303)) ([002e090](https://github.com/ghiscoding/multiple-select-vanilla/commit/002e09026ce2f11d959cbb224788780221ff908b)) - by @ghiscoding
+
 ## [3.3.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.3...v3.3.4) (2024-09-21)
 
 ### Bug Fixes
