@@ -1,5 +1,5 @@
 import { buildSync } from 'esbuild';
-import { globSync } from 'glob';
+import { globSync } from 'tinyglobby';
 
 const buildFormats = ['cjs', 'esm'];
 const localeFiles = globSync('src/locales/**/*.ts');
@@ -7,11 +7,14 @@ const localeEntryPoints = [];
 
 for (const format of buildFormats) {
   const extension = format === 'cjs' ? 'cjs' : 'js';
-  // multiple-select.js
+
+  // - let's use TSUP to get valid hybrid (CJS/ESM) approach with are-the-types-wrong, however keep the rest of the build
+  /*
   runBuild({
     format,
-    outfile: `dist/multiple-select.${extension}`,
+    outfile: `dist/index.${extension}`,
   });
+  */
 
   // build all locales
   for (const localeFile of localeFiles) {
