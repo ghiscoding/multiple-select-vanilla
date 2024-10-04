@@ -57,12 +57,12 @@
     "playwright:install": "pnpm exec playwright install"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.2",
-    "@lerna-lite/cli": "^3.9.1",
-    "@lerna-lite/publish": "^3.9.1",
-    "@lerna-lite/watch": "^3.9.1",
+    "@biomejs/biome": "^1.9.3",
+    "@lerna-lite/cli": "^3.9.2",
+    "@lerna-lite/publish": "^3.9.2",
+    "@lerna-lite/watch": "^3.9.2",
     "@playwright/test": "^1.47.2",
-    "@types/node": "^22.5.5",
+    "@types/node": "^22.7.4",
     "conventional-changelog-conventionalcommits": "^7.0.2",
     "cross-env": "^7.0.3",
     "npm-run-all2": "^6.2.3",
