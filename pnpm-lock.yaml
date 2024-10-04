@@ -14,23 +14,23 @@ importers:
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: ^1.9.2
+        specifier: ^1.9.3
         version: 1.9.3
       '@lerna-lite/cli':
-        specifier: ^3.9.1
-        version: 3.9.1(@lerna-lite/publish@3.9.1)(@lerna-lite/version@3.9.1)(@lerna-lite/watch@3.9.1)(typescript@5.6.2)
+        specifier: ^3.9.2
+        version: 3.9.2(@lerna-lite/publish@3.9.2)(@lerna-lite/version@3.9.2)(@lerna-lite/watch@3.9.2)(typescript@5.6.2)
       '@lerna-lite/publish':
-        specifier: ^3.9.1
-        version: 3.9.1(@lerna-lite/watch@3.9.1)(typescript@5.6.2)
+        specifier: ^3.9.2
+        version: 3.9.2(@lerna-lite/watch@3.9.2)(typescript@5.6.2)
       '@lerna-lite/watch':
-        specifier: ^3.9.1
-        version: 3.9.1(@lerna-lite/publish@3.9.1)(typescript@5.6.2)
+        specifier: ^3.9.2
+        version: 3.9.2(@lerna-lite/publish@3.9.2)(typescript@5.6.2)
       '@playwright/test':
         specifier: ^1.47.2
         version: 1.47.2
       '@types/node':
-        specifier: ^22.5.5
-        version: 22.5.5
+        specifier: ^22.7.4
+        version: 22.7.4
       conventional-changelog-conventionalcommits:
         specifier: ^7.0.2
         version: 7.0.2
@@ -59,8 +59,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
       dompurify:
-        specifier: ^3.1.6
-        version: 3.1.6
+        specifier: ^3.1.7
+        version: 3.1.7
       font-awesome:
         specifier: ^4.7.0
         version: 4.7.0
@@ -72,14 +72,14 @@ importers:
         specifier: ^3.0.5
         version: 3.0.5
       sass:
-        specifier: ^1.79.3
-        version: 1.79.3
+        specifier: ^1.79.4
+        version: 1.79.4
       typescript:
         specifier: 5.6.2
         version: 5.6.2
       vite:
-        specifier: ^5.4.7
-        version: 5.4.7(@types/node@22.5.5)(sass@1.79.3)
+        specifier: ^5.4.8
+        version: 5.4.8(@types/node@22.7.4)(sass@1.79.4)
 
   packages/multiple-select-vanilla:
     dependencies:
@@ -118,8 +118,8 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0(postcss@8.4.47)
       sass:
-        specifier: ^1.79.3
-        version: 1.79.3
+        specifier: ^1.79.4
+        version: 1.79.4
       tinyglobby:
         specifier: ^0.2.9
         version: 0.2.9
@@ -931,7 +931,7 @@ packages:
       '@inquirer/figures': 1.0.6
       '@inquirer/type': 2.0.0
       '@types/mute-stream': 0.0.4
-      '@types/node': 22.5.5
+      '@types/node': 22.7.4
       '@types/wrap-ansi': 3.0.0
       ansi-escapes: 4.3.2
       cli-width: 4.1.0
@@ -942,18 +942,13 @@ packages:
       yoctocolors-cjs: 2.1.2
     dev: true
 
-  /@inquirer/expand@2.3.0:
-    resolution: {integrity: sha512-qnJsUcOGCSG1e5DTOErmv2BPQqrtT6uzqn1vI/aYGiPKq+FgslGZmtdnXbhuI7IlT7OByDoEEqdnhUnVR2hhLw==}
+  /@inquirer/expand@3.0.1:
+    resolution: {integrity: sha512-ToG8d6RIbnVpbdPdiN7BCxZGiHOTomOX94C2FaT5KOHupV40tKEDozp12res6cMIfRKrXLJyexAZhWVHgbALSQ==}
     engines: {node: '>=18'}
     dependencies:
       '@inquirer/core': 9.2.1
-      '@inquirer/type': 1.5.5
+      '@inquirer/type': 2.0.0
       yoctocolors-cjs: 2.1.2
-    dev: true
-
-  /@inquirer/figures@1.0.5:
-    resolution: {integrity: sha512-79hP/VWdZ2UVc9bFGJnoQ/lQMpL74mGgzSYX1xUqCVk7/v73vJCMw1VuyWN1jGkZ9B3z7THAbySqGbCNefcjfA==}
-    engines: {node: '>=18'}
     dev: true
 
   /@inquirer/figures@1.0.6:
@@ -961,30 +956,23 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /@inquirer/input@2.3.0:
-    resolution: {integrity: sha512-XfnpCStx2xgh1LIRqPXrTNEEByqQWoxsWYzNRSEUxJ5c6EQlhMogJ3vHKu8aXuTacebtaZzMAHwEL0kAflKOBw==}
+  /@inquirer/input@3.0.1:
+    resolution: {integrity: sha512-BDuPBmpvi8eMCxqC5iacloWqv+5tQSJlUafYWUe31ow1BVXjW2a5qe3dh4X/Z25Wp22RwvcaLCc2siHobEOfzg==}
     engines: {node: '>=18'}
     dependencies:
       '@inquirer/core': 9.2.1
-      '@inquirer/type': 1.5.5
+      '@inquirer/type': 2.0.0
     dev: true
 
-  /@inquirer/select@2.5.0:
-    resolution: {integrity: sha512-YmDobTItPP3WcEI86GvPo+T2sRHkxxOq/kXmsBjHS5BVXUgvgZ5AfJjkvQvZr03T81NnI3KrrRuMzeuYUQRFOA==}
+  /@inquirer/select@3.0.1:
+    resolution: {integrity: sha512-lUDGUxPhdWMkN/fHy1Lk7pF3nK1fh/gqeyWXmctefhxLYxlDsc7vsPBEpxrfVGDsVdyYJsiJoD4bJ1b623cV1Q==}
     engines: {node: '>=18'}
     dependencies:
       '@inquirer/core': 9.2.1
-      '@inquirer/figures': 1.0.5
-      '@inquirer/type': 1.5.5
+      '@inquirer/figures': 1.0.6
+      '@inquirer/type': 2.0.0
       ansi-escapes: 4.3.2
       yoctocolors-cjs: 2.1.2
-    dev: true
-
-  /@inquirer/type@1.5.5:
-    resolution: {integrity: sha512-MzICLu4yS7V8AA61sANROZ9vT1H3ooca5dSmI1FjZkzq7o/koMsRfQSzRtFo+F3Ao4Sf1C0bpLKejpKB/+j6MA==}
-    engines: {node: '>=18'}
-    dependencies:
-      mute-stream: 1.0.0
     dev: true
 
   /@inquirer/type@2.0.0:
@@ -1040,8 +1028,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.5.0
     dev: true
 
-  /@lerna-lite/cli@3.9.1(@lerna-lite/publish@3.9.1)(@lerna-lite/version@3.9.1)(@lerna-lite/watch@3.9.1)(typescript@5.6.2):
-    resolution: {integrity: sha512-WAqBZZbXJsRZRRLUwIUCI21croYF9AiOQI86nXV75u0booqZJhUQyp7bnj54Eb23+Y0PEjN1qxMiIhiAPRPYOQ==}
+  /@lerna-lite/cli@3.9.2(@lerna-lite/publish@3.9.2)(@lerna-lite/version@3.9.2)(@lerna-lite/watch@3.9.2)(typescript@5.6.2):
+    resolution: {integrity: sha512-luplQHUv3HeZ+YWBH+Q2NApEhEhczQDhzORoHwT5GofZQSsnINKD5PSUQrRBLRRp5rgXB587vSTQF6OoQV0mWw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -1065,12 +1053,12 @@ packages:
       '@lerna-lite/watch':
         optional: true
     dependencies:
-      '@lerna-lite/core': 3.9.1(typescript@5.6.2)
-      '@lerna-lite/init': 3.9.1(typescript@5.6.2)
+      '@lerna-lite/core': 3.9.2(typescript@5.6.2)
+      '@lerna-lite/init': 3.9.2(typescript@5.6.2)
       '@lerna-lite/npmlog': 3.8.0
-      '@lerna-lite/publish': 3.9.1(@lerna-lite/watch@3.9.1)(typescript@5.6.2)
-      '@lerna-lite/version': 3.9.1(@lerna-lite/publish@3.9.1)(@lerna-lite/watch@3.9.1)(typescript@5.6.2)
-      '@lerna-lite/watch': 3.9.1(@lerna-lite/publish@3.9.1)(typescript@5.6.2)
+      '@lerna-lite/publish': 3.9.2(@lerna-lite/watch@3.9.2)(typescript@5.6.2)
+      '@lerna-lite/version': 3.9.2(@lerna-lite/publish@3.9.2)(@lerna-lite/watch@3.9.2)(typescript@5.6.2)
+      '@lerna-lite/watch': 3.9.2(@lerna-lite/publish@3.9.2)(typescript@5.6.2)
       dedent: 1.5.3
       dotenv: 16.4.5
       import-local: 3.2.0
@@ -1083,16 +1071,15 @@ packages:
       - typescript
     dev: true
 
-  /@lerna-lite/core@3.9.1(typescript@5.6.2):
-    resolution: {integrity: sha512-xIJcHu6be937nNNtkHaaj37pdc+GtwdiO60iURGqHZJNPaN2lq00bqcSQ3OVuszpBQXGaMI3DuvDTdxoZR7clg==}
+  /@lerna-lite/core@3.9.2(typescript@5.6.2):
+    resolution: {integrity: sha512-phbTnRNAMRvAtYiCl70SUaVWItAwY6HOznUgKt1vykReW3PabNEfb+sbq69/a7FS2qeQaCSAmAjO9fkVaEjUjw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     dependencies:
-      '@inquirer/expand': 2.3.0
-      '@inquirer/input': 2.3.0
-      '@inquirer/select': 2.5.0
+      '@inquirer/expand': 3.0.1
+      '@inquirer/input': 3.0.1
+      '@inquirer/select': 3.0.1
       '@lerna-lite/npmlog': 3.8.0
       '@npmcli/run-script': 8.1.0
-      chalk: 5.3.0
       clone-deep: 4.0.1
       config-chain: 1.1.13
       cosmiconfig: 9.0.0(typescript@5.6.2)
@@ -1108,6 +1095,7 @@ packages:
       npm-package-arg: 11.0.3
       p-map: 7.0.2
       p-queue: 8.0.1
+      picocolors: 1.1.0
       resolve-from: 5.0.0
       semver: 7.6.3
       slash: 5.1.0
@@ -1122,11 +1110,11 @@ packages:
       - typescript
     dev: true
 
-  /@lerna-lite/filter-packages@3.9.1(typescript@5.6.2):
-    resolution: {integrity: sha512-q43dm046Hotg5ITbfkvDLffrjhpGzFvVUAlhwTdC5vFti6wFKHvu4+0Uv1CJeIp1Wb1X88hyU4zaPWRJzaCkTA==}
+  /@lerna-lite/filter-packages@3.9.2(typescript@5.6.2):
+    resolution: {integrity: sha512-8ky2QMMqINU1Apb+lBEVnAzWyJF1x0l7r7EJRbyvAAmQhLQ9vLKi8rtdzXVt1dczWr/mYTWqUj6o+S+BqT8Csg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     dependencies:
-      '@lerna-lite/core': 3.9.1(typescript@5.6.2)
+      '@lerna-lite/core': 3.9.2(typescript@5.6.2)
       '@lerna-lite/npmlog': 3.8.0
       multimatch: 7.0.0
     transitivePeerDependencies:
@@ -1136,11 +1124,11 @@ packages:
       - typescript
     dev: true
 
-  /@lerna-lite/init@3.9.1(typescript@5.6.2):
-    resolution: {integrity: sha512-2QwvKiMOLOpBxXxZxMo28LF/M6JTfjdyah7nWgWUaJDbr2ew6ZL23fLIq/irtWaOn4LTViwWzEdY4zGGQKrNmg==}
+  /@lerna-lite/init@3.9.2(typescript@5.6.2):
+    resolution: {integrity: sha512-2YNlZsUk2DBcAUpIy4ZKjaNgi2bQ87+P96xqxaUGw5s+oFCgJJZwPGKORH/Slm9d5m1cPTpywiBBgbgG18JUwQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     dependencies:
-      '@lerna-lite/core': 3.9.1(typescript@5.6.2)
+      '@lerna-lite/core': 3.9.2(typescript@5.6.2)
       fs-extra: 11.2.0
       p-map: 7.0.2
       write-json-file: 6.0.0
@@ -1166,21 +1154,20 @@ packages:
       wide-align: 1.1.5
     dev: true
 
-  /@lerna-lite/publish@3.9.1(@lerna-lite/watch@3.9.1)(typescript@5.6.2):
-    resolution: {integrity: sha512-j85gQZ4B+S/e13lwoQhzlJ3YQHBuR80xvCqMf+oFrCxsyfOHXtZB1kdAsOQFCR9j1jcAiCnz+6V2xr06visJ8Q==}
+  /@lerna-lite/publish@3.9.2(@lerna-lite/watch@3.9.2)(typescript@5.6.2):
+    resolution: {integrity: sha512-H/2/1JWgx0GnhYaLN47DJAx8r3jMp6BTrtgX0KomAskJKPl85QerEkBCwg1NQ0UcAqVISbhwrLx9U8rvUZBIeA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     dependencies:
-      '@lerna-lite/cli': 3.9.1(@lerna-lite/publish@3.9.1)(@lerna-lite/version@3.9.1)(@lerna-lite/watch@3.9.1)(typescript@5.6.2)
-      '@lerna-lite/core': 3.9.1(typescript@5.6.2)
+      '@lerna-lite/cli': 3.9.2(@lerna-lite/publish@3.9.2)(@lerna-lite/version@3.9.2)(@lerna-lite/watch@3.9.2)(typescript@5.6.2)
+      '@lerna-lite/core': 3.9.2(typescript@5.6.2)
       '@lerna-lite/npmlog': 3.8.0
-      '@lerna-lite/version': 3.9.1(@lerna-lite/publish@3.9.1)(@lerna-lite/watch@3.9.1)(typescript@5.6.2)
+      '@lerna-lite/version': 3.9.2(@lerna-lite/publish@3.9.2)(@lerna-lite/watch@3.9.2)(typescript@5.6.2)
       '@npmcli/arborist': 7.5.4
-      '@npmcli/package-json': 5.2.0
+      '@npmcli/package-json': 5.2.1
       byte-size: 9.0.0
-      chalk: 5.3.0
       columnify: 1.6.0
       fs-extra: 11.2.0
-      glob: 10.4.5
+      globby: 14.0.2
       has-unicode: 2.0.1
       libnpmaccess: 8.0.6
       libnpmpublish: 9.0.9
@@ -1191,6 +1178,7 @@ packages:
       p-map: 7.0.2
       p-pipe: 4.0.0
       pacote: 18.0.6
+      picocolors: 1.1.0
       semver: 7.6.3
       ssri: 11.0.0
       tar: 6.2.1
@@ -1206,16 +1194,15 @@ packages:
       - typescript
     dev: true
 
-  /@lerna-lite/version@3.9.1(@lerna-lite/publish@3.9.1)(@lerna-lite/watch@3.9.1)(typescript@5.6.2):
-    resolution: {integrity: sha512-gljKw4HvmL+YSOYqMEXV2BhcrVrh+k5fO3ecVo8NxC0t43DTCLgKWvY6BAp9XJuxD/achTaw2nr1QbIsfpsylQ==}
+  /@lerna-lite/version@3.9.2(@lerna-lite/publish@3.9.2)(@lerna-lite/watch@3.9.2)(typescript@5.6.2):
+    resolution: {integrity: sha512-Gev5HLFW7UCkBuYnXBHLHj+/9CJtH8g1CBZ3Fjc7OdIHVOivFH/2Dzm+PbWsxbn0QGIyt4qJPIFCvOw8eo/Adw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     dependencies:
-      '@lerna-lite/cli': 3.9.1(@lerna-lite/publish@3.9.1)(@lerna-lite/version@3.9.1)(@lerna-lite/watch@3.9.1)(typescript@5.6.2)
-      '@lerna-lite/core': 3.9.1(typescript@5.6.2)
+      '@lerna-lite/cli': 3.9.2(@lerna-lite/publish@3.9.2)(@lerna-lite/version@3.9.2)(@lerna-lite/watch@3.9.2)(typescript@5.6.2)
+      '@lerna-lite/core': 3.9.2(typescript@5.6.2)
       '@lerna-lite/npmlog': 3.8.0
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 21.0.2
-      chalk: 5.3.0
       conventional-changelog-angular: 7.0.0
       conventional-changelog-core: 7.0.0
       conventional-changelog-writer: 7.0.1
@@ -1237,6 +1224,7 @@ packages:
       p-map: 7.0.2
       p-pipe: 4.0.0
       p-reduce: 3.0.0
+      picocolors: 1.1.0
       pify: 6.1.0
       semver: 7.6.3
       slash: 5.1.0
@@ -1255,13 +1243,13 @@ packages:
       - typescript
     dev: true
 
-  /@lerna-lite/watch@3.9.1(@lerna-lite/publish@3.9.1)(typescript@5.6.2):
-    resolution: {integrity: sha512-pxezZNSYh6Fe7XEoErXi96vbuuU/aCoNkOrKqXfxJJCi1mOBM3YsOV3Xavt3QQQ6DdT8MFz2TG/KdLxpqS7cMA==}
+  /@lerna-lite/watch@3.9.2(@lerna-lite/publish@3.9.2)(typescript@5.6.2):
+    resolution: {integrity: sha512-g/k5YCsXjxlxw5fm3fjBnJRhEm3BOeGuF3GTLRsGTr+gvgkPOs+FIHxg5Xu1um5wimtoMPcK9Mi4Rj6AjIoIYg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     dependencies:
-      '@lerna-lite/cli': 3.9.1(@lerna-lite/publish@3.9.1)(@lerna-lite/version@3.9.1)(@lerna-lite/watch@3.9.1)(typescript@5.6.2)
-      '@lerna-lite/core': 3.9.1(typescript@5.6.2)
-      '@lerna-lite/filter-packages': 3.9.1(typescript@5.6.2)
+      '@lerna-lite/cli': 3.9.2(@lerna-lite/publish@3.9.2)(@lerna-lite/version@3.9.2)(@lerna-lite/watch@3.9.2)(typescript@5.6.2)
+      '@lerna-lite/core': 3.9.2(typescript@5.6.2)
+      '@lerna-lite/filter-packages': 3.9.2(typescript@5.6.2)
       chokidar: 3.6.0
     transitivePeerDependencies:
       - '@lerna-lite/exec'
@@ -1303,7 +1291,7 @@ packages:
       agent-base: 7.1.0
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.4
-      lru-cache: 10.4.1
+      lru-cache: 10.4.3
       socks-proxy-agent: 8.0.2
     transitivePeerDependencies:
       - supports-color
@@ -1321,7 +1309,7 @@ packages:
       '@npmcli/metavuln-calculator': 7.1.1
       '@npmcli/name-from-folder': 2.0.0
       '@npmcli/node-gyp': 3.0.0
-      '@npmcli/package-json': 5.2.0
+      '@npmcli/package-json': 5.2.1
       '@npmcli/query': 3.1.0
       '@npmcli/redact': 2.0.0
       '@npmcli/run-script': 8.1.0
@@ -1331,7 +1319,7 @@ packages:
       hosted-git-info: 7.0.2
       json-parse-even-better-errors: 3.0.2
       json-stringify-nice: 1.1.4
-      lru-cache: 10.4.1
+      lru-cache: 10.4.3
       minimatch: 9.0.5
       nopt: 7.2.1
       npm-install-checks: 6.3.0
@@ -1366,7 +1354,7 @@ packages:
     engines: {node: ^16.14.0 || >=18.0.0}
     dependencies:
       '@npmcli/promise-spawn': 7.0.1
-      lru-cache: 10.4.1
+      lru-cache: 10.4.3
       npm-pick-manifest: 9.0.1
       proc-log: 3.0.0
       promise-inflight: 1.0.1
@@ -1422,6 +1410,21 @@ packages:
 
   /@npmcli/package-json@5.2.0:
     resolution: {integrity: sha512-qe/kiqqkW0AGtvBjL8TJKZk/eBBSpnJkUWvHdQ9jM2lKHXRYYJuyNpJPlJw3c8QjC2ow6NZYiLExhUaeJelbxQ==}
+    engines: {node: ^16.14.0 || >=18.0.0}
+    dependencies:
+      '@npmcli/git': 5.0.4
+      glob: 10.4.5
+      hosted-git-info: 7.0.2
+      json-parse-even-better-errors: 3.0.2
+      normalize-package-data: 6.0.1
+      proc-log: 4.2.0
+      semver: 7.6.3
+    transitivePeerDependencies:
+      - bluebird
+    dev: true
+
+  /@npmcli/package-json@5.2.1:
+    resolution: {integrity: sha512-f7zYC6kQautXHvNbLEWgD/uGu1+xCn9izgqBfgItWSx22U0ZDekxN08A1vM8cTxj/cRVe0Q94Ode+tdoYmIOOQ==}
     engines: {node: ^16.14.0 || >=18.0.0}
     dependencies:
       '@npmcli/git': 5.0.4
@@ -1814,11 +1817,11 @@ packages:
   /@types/mute-stream@0.0.4:
     resolution: {integrity: sha512-CPM9nzrCPPJHQNA9keH9CVkVI+WR5kMa+7XEs5jcGQ0VoAGnLv242w8lIVgwAEfmE4oufJRaTc9PNLQl0ioAow==}
     dependencies:
-      '@types/node': 22.5.5
+      '@types/node': 22.7.4
     dev: true
 
-  /@types/node@22.5.5:
-    resolution: {integrity: sha512-Xjs4y5UPO/CLdzpgR6GirZJx36yScjh73+2NlLlkFRSoQN8B0DpfXPdZGnvVmLRLOsqDpOfTNv7D9trgGhmOIA==}
+  /@types/node@22.7.4:
+    resolution: {integrity: sha512-y+NPi1rFzDs1NdQHHToqeiX2TIS79SWEAw9GYhkkx8bD0ChpfqC+n2j5OXOCpzfojBEBt6DnEnnG9MY0zk1XLg==}
     dependencies:
       undici-types: 6.19.6
     dev: true
@@ -1855,7 +1858,7 @@ packages:
     resolution: {integrity: sha512-o/zjMZRhJxny7OyEF+Op8X+efiELC7k7yOjMzgfzVqOzXqkBkWI79YoTdOtsuWd5BWhAGAuOY/Xa6xpiaWXiNg==}
     engines: {node: '>= 14'}
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.7
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2060,7 +2063,7 @@ packages:
       '@npmcli/fs': 3.1.1
       fs-minipass: 3.0.3
       glob: 10.4.5
-      lru-cache: 10.4.1
+      lru-cache: 10.4.3
       minipass: 7.1.2
       minipass-collect: 2.0.1
       minipass-flush: 1.0.5
@@ -2558,18 +2561,6 @@ packages:
     engines: {node: '>= 12'}
     dev: true
 
-  /debug@4.3.4:
-    resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
-    engines: {node: '>=6.0'}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-    dependencies:
-      ms: 2.1.2
-    dev: true
-
   /debug@4.3.7:
     resolution: {integrity: sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==}
     engines: {node: '>=6.0'}
@@ -2631,8 +2622,8 @@ packages:
       domelementtype: 2.3.0
     dev: true
 
-  /dompurify@3.1.6:
-    resolution: {integrity: sha512-cTOAhc36AalkjtBpfG6O8JimdTMWNXjiePT2xQH/ppBGi/4uIpmj8eKyIkMJErXWARyINV/sB38yf8JCLF5pbQ==}
+  /dompurify@3.1.7:
+    resolution: {integrity: sha512-VaTstWtsneJY8xzy7DekmYWEOZcmzIe3Qb3zPd4STve1OBTa+e+WmS1ITQec1fZYXI3HCsOZZiSMpG6oxoWMWQ==}
     dev: false
 
   /domutils@3.1.0:
@@ -3187,7 +3178,7 @@ packages:
     resolution: {integrity: sha512-puUZAUKT5m8Zzvs72XWy3HtvVbTWljRE66cP60bxJzAqf2DgICo7lYTY2IHUmLnNpjYvw5bvmoHvPc0QO2a62w==}
     engines: {node: ^16.14.0 || >=18.0.0}
     dependencies:
-      lru-cache: 10.4.1
+      lru-cache: 10.4.3
     dev: true
 
   /http-cache-semantics@4.1.1:
@@ -3199,7 +3190,7 @@ packages:
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.0
-      debug: 4.3.4
+      debug: 4.3.7
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3209,7 +3200,7 @@ packages:
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.0
-      debug: 4.3.4
+      debug: 4.3.7
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3765,10 +3756,6 @@ packages:
     hasBin: true
     dev: true
 
-  /ms@2.1.2:
-    resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
-    dev: true
-
   /ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
@@ -4106,7 +4093,7 @@ packages:
     dependencies:
       '@npmcli/git': 5.0.4
       '@npmcli/installed-package-contents': 2.1.0
-      '@npmcli/package-json': 5.2.0
+      '@npmcli/package-json': 5.2.1
       '@npmcli/promise-spawn': 7.0.1
       '@npmcli/run-script': 8.1.0
       cacache: 18.0.3
@@ -4916,14 +4903,14 @@ packages:
     dev: true
     optional: true
 
-  /sass@1.79.3:
-    resolution: {integrity: sha512-m7dZxh0W9EZ3cw50Me5GOuYm/tVAJAn91SUnohLRo9cXBixGUOdvmryN+dXpwR831bhoY3Zv7rEFt85PUwTmzA==}
+  /sass@1.79.4:
+    resolution: {integrity: sha512-K0QDSNPXgyqO4GZq2HO5Q70TLxTH6cIT59RdoCHMivrC8rqzaTw5ab9prjz9KUN1El4FLXrBXJhik61JR4HcGg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
       chokidar: 4.0.0
       immutable: 4.3.5
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
     dev: true
 
   /semver@7.6.3:
@@ -5004,7 +4991,7 @@ packages:
     engines: {node: '>= 14'}
     dependencies:
       agent-base: 7.1.0
-      debug: 4.3.4
+      debug: 4.3.7
       socks: 2.8.1
     transitivePeerDependencies:
       - supports-color
@@ -5023,11 +5010,6 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       is-plain-obj: 4.1.0
-    dev: true
-
-  /source-map-js@1.2.0:
-    resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
-    engines: {node: '>=0.10.0'}
     dev: true
 
   /source-map-js@1.2.1:
@@ -5358,7 +5340,7 @@ packages:
     engines: {node: ^16.14.0 || >=18.0.0}
     dependencies:
       '@tufjs/models': 2.0.0
-      debug: 4.3.4
+      debug: 4.3.7
       make-fetch-happen: 13.0.0
     transitivePeerDependencies:
       - supports-color
@@ -5480,8 +5462,8 @@ packages:
       builtins: 5.0.1
     dev: true
 
-  /vite@5.4.7(@types/node@22.5.5)(sass@1.79.3):
-    resolution: {integrity: sha512-5l2zxqMEPVENgvzTuBpHer2awaetimj2BGkhBPdnwKbPNOlHsODU+oiazEZzLK7KhAnOrO+XGYJYn4ZlUhDtDQ==}
+  /vite@5.4.8(@types/node@22.7.4)(sass@1.79.4):
+    resolution: {integrity: sha512-FqrItQ4DT1NC4zCUqMB4c4AZORMKIa0m8/URVCZ77OZ/QSNeJ54bU1vrFADbDsuwfIPcgknRkmqakQcgnL4GiQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -5511,11 +5493,11 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 22.5.5
+      '@types/node': 22.7.4
       esbuild: 0.21.5
       postcss: 8.4.47
       rollup: 4.22.2
-      sass: 1.79.3
+      sass: 1.79.4
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
