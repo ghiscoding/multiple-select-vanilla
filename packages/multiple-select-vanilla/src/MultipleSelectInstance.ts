@@ -2,10 +2,12 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
 import Constants from './constants';
-import type { HtmlStruct, MultipleSelectLocales, OptGroupRowData, OptionDataObject, OptionRowData } from './interfaces';
-import type { CloseReason, MultipleSelectOption } from './interfaces/multipleSelectOption.interface';
-import { BindingEventService, VirtualScroll } from './services';
-import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils';
+import type { HtmlStruct, OptGroupRowData, OptionDataObject, OptionRowData } from './models/interfaces';
+import type { MultipleSelectLocales } from './models/locale.interface';
+import type { CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface';
+import { BindingEventService } from './services/binding-event.service';
+import { VirtualScroll } from './services/virtual-scroll';
+import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils/utils';
 import {
   calculateAvailableSpace,
   classNameToList,

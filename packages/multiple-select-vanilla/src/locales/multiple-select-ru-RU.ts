@@ -4,7 +4,7 @@
  */
 
 import type { MultipleSelectInstance } from '../MultipleSelectInstance';
-import type { MultipleSelectLocale, MultipleSelectLocales } from '../interfaces';
+import type { MultipleSelectLocale, MultipleSelectLocales } from '../models/locale.interface';
 
 const ms =
   typeof window !== 'undefined' && window.multipleSelect !== undefined

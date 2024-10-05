@@ -1,4 +1,4 @@
-import type { HtmlStruct, InferDOMType } from '../interfaces';
+import type { HtmlStruct, InferDOMType } from '../models/interfaces';
 import { objectRemoveEmptyProps } from './utils';
 
 export interface HtmlElementPosition {

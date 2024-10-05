@@ -3,7 +3,7 @@ import { defineConfig } from 'tsup';
 export default defineConfig(options => [
   // for bundlers like vite, rollup, esbuild, webpack etc
   {
-    entry: ['src/**.ts'],
+    entry: ['src/index.ts'],
     format: ['esm'],
     splitting: false,
     sourcemap: true,
@@ -27,17 +27,17 @@ export default defineConfig(options => [
   },
 
   // IIFE bundle js for cdn (window object for legacy <script>)
-  // {
-  //   entry: {
-  //     'multiple-select': 'src/index.ts',
-  //   },
-  //   format: ['iife'],
-  //   globalName: 'MultipleSelect',
-  //   splitting: false,
-  //   sourcemap: true,
-  //   clean: true,
-  //   outExtension: ({ format }) => ({
-  //     js: '.iife.js',
-  //   }),
-  // },
+  {
+    entry: {
+      'browser/multiple-select': 'src/index.ts',
+    },
+    format: ['iife'],
+    globalName: 'MultipleSelect',
+    splitting: false,
+    sourcemap: true,
+    // clean: true,
+    outExtension: ({ format }) => ({
+      js: '.iife.js',
+    }),
+  },
 ]);
