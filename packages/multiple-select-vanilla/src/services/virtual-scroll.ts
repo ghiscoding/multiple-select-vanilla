@@ -1,6 +1,6 @@
 import Constants from '../constants';
-import type { HtmlStruct, VirtualCache, VirtualScrollOption } from '../interfaces';
-import { convertItemRowToHtml, emptyElement } from '../utils';
+import type { HtmlStruct, VirtualCache, VirtualScrollOption } from '../models/interfaces';
+import { convertItemRowToHtml, emptyElement } from '../utils/domUtils';
 
 export class VirtualScroll {
   protected clusterRows?: number;

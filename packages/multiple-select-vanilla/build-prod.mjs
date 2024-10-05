@@ -37,13 +37,16 @@ for (const format of buildFormats) {
     outfile: `dist/locales/multiple-select-all-locales.${extension}`,
   });
 
+  // - let's use TSUP to get valid hybrid (CJS/ESM) approach with are-the-types-wrong, however keep the rest of the build
   // finally, create a regular bundle as a standalone which will be accessible as MultipleSelect from the global window object
   // this file is basically a legacy alternative to import via a <script> tag
+  /*
   runBuild({
     format,
     globalName: 'MultipleSelect',
     outfile: `dist/browser/multiple-select.${extension}`,
   });
+  */
 }
 
 function runBuild(options) {
