@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.6](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.5...v3.3.6) (2024-10-05)
+
+### Bug Fixes
+
+* avoid barrel files, keep only 1 entry file ([#304](https://github.com/ghiscoding/multiple-select-vanilla/issues/304)) ([64e895b](https://github.com/ghiscoding/multiple-select-vanilla/commit/64e895b1aecefa9192a80711dd421fe4a5f0797c)) - by @ghiscoding
+
 ## [3.3.5](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.4...v3.3.5) (2024-10-04)
 
 ### Bug Fixes
