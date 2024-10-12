@@ -26,6 +26,7 @@
     "url": "https://ko-fi.com/ghiscoding"
   },
   "scripts": {
+    "are-types-wrong": "pnpm -r --stream --filter=\"{packages/multiple-select-vanilla/**}\" are-types-wrong",
     "clean": "rimraf --glob **/dist **/tsconfig.tsbuildinfo",
     "prebuild": "pnpm clean && pnpm biome:lint:write && pnpm biome:format:write",
     "build": "pnpm -r --stream build",
