@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.7](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.6...v3.3.7) (2024-10-12)
+
+### Bug Fixes
+
+* remove tsup, replace with esbuild + dts with tsc ([#307](https://github.com/ghiscoding/multiple-select-vanilla/issues/307)) ([21713a7](https://github.com/ghiscoding/multiple-select-vanilla/commit/21713a70054a16044d37ef9cc27c7a831f18c3db)) - by @ghiscoding
+
 ## [3.3.6](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.5...v3.3.6) (2024-10-05)
 
 ### Bug Fixes
