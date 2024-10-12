@@ -1,4 +1,6 @@
-export type {};
+import type { MultipleSelectLocale } from './src/models/locale.interface.js';
+import type { MultipleSelectInstance } from './src/MultipleSelectInstance.js';
+import type { MultipleSelectOption } from './src/models/multipleSelectOption.interface.js';
 
 declare global {
   interface Window {
