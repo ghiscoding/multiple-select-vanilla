@@ -22,13 +22,12 @@
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
         "types": "./dist/index.d.ts",
-        "default": "./dist/index.mjs"
+        "default": "./dist/index.js"
       },
       "require": {
         "types": "./dist/index.d.cts",
@@ -56,19 +55,18 @@
     "url": "https://ko-fi.com/ghiscoding"
   },
   "scripts": {
-    "are-type-wrong": "attw --pack .",
+    "are-types-wrong": "attw --pack .",
     "clean": "rimraf dist",
-    "esbuild:prod": "node build-prod.mjs",
-    "build": "pnpm clean && node build-prod.mjs && pnpm build:types:prod && tsup && pnpm sass:build && pnpm sass:copy",
-    "build:esbuild": "pnpm build:all && pnpm build:types:prod",
-    "postbuild:esbuild": "pnpm sass:build && pnpm sass:copy",
+    "build": "pnpm build:all && pnpm build:types:prod && pnpm clone:dts",
+    "postbuild": "pnpm sass:build && pnpm sass:copy",
     "dev:init": "pnpm sass:build && pnpm sass:copy && pnpm build:all",
-    "build:all": "node build-prod.mjs && pnpm build:types:prod",
+    "build:all": "node build-prod.mjs",
     "build:watch": "cross-env NODE_ENV='development' node build-watch.mjs",
     "build:locales": "esbuild src/locales/all-locales-index.ts --bundle --minify --format=iife --target=es2021 --sourcemap --outfile=dist/locales/multiple-select-all-locales.js",
     "build:esm": "esbuild src/index.ts --bundle --minify --format=esm --target=es2021 --sourcemap --outfile=dist/multiple-select.js",
     "build:types": "tsc --emitDeclarationOnly --incremental --declarationMap false --outDir dist",
-    "build:types:prod": "tsc --emitDeclarationOnly --declarationMap --outDir dist",
+    "build:types:prod": "tsc --emitDeclarationOnly --incremental --declarationMap --outDir dist",
+    "clone:dts": "node clone-dts.mjs",
     "sass:build": "sass src/styles:dist/styles/css --style=compressed --quiet-deps --no-source-map",
     "postsass:build": "postcss dist/styles/css/**/* --dir dist/styles/css --base dist/styles/css --no-map --use cssnano --use autoprefixer --style=compressed",
     "sass:watch": "sass src/styles:dist/styles/css --watch --style=compressed --quiet-deps --no-source-map",
@@ -84,13 +82,11 @@
     "cross-env": "^7.0.3",
     "cssnano": "^7.0.6",
     "esbuild": "^0.24.0",
-    "esbuild-plugin-d.ts": "^1.3.0",
     "fs-extra": "^11.2.0",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
     "sass": "^1.79.5",
     "tinyglobby": "^0.2.9",
-    "tsup": "^8.3.0",
     "typescript": "5.6.3"
   }
 }
