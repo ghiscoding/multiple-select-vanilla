@@ -1,5 +1,5 @@
-import type { HtmlStruct, InferDOMType } from '../models/interfaces';
-import { objectRemoveEmptyProps } from './utils';
+import type { HtmlStruct, InferDOMType } from '../models/interfaces.js';
+import { objectRemoveEmptyProps } from './utils.js';
 
 export interface HtmlElementPosition {
   top: number;

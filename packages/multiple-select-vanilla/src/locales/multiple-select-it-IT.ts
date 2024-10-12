@@ -3,8 +3,8 @@
  * Author: Giuseppe Lodi Rizzini
  */
 
-import type { MultipleSelectInstance } from '../MultipleSelectInstance';
-import type { MultipleSelectLocale, MultipleSelectLocales } from '../models/locale.interface';
+import type { MultipleSelectInstance } from '../MultipleSelectInstance.js';
+import type { MultipleSelectLocale, MultipleSelectLocales } from '../models/locale.interface.js';
 
 const ms =
   typeof window !== 'undefined' && window.multipleSelect !== undefined

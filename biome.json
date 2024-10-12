@@ -52,6 +52,9 @@
                 "noStaticOnlyClass": "off",
                 "noUselessSwitchCase": "off"
             },
+            "correctness": {
+                "useImportExtensions": "error"
+            },
             "performance": {
                 "noDelete": "off"
             },

@@ -1,8 +1,8 @@
-export type * from './models/interfaces';
-export type * from './models/locale.interface';
-export type * from './models/multipleSelectOption.interface';
-export { BindingEventService, type ElementEventListener } from './services/binding-event.service';
-export { VirtualScroll } from './services/virtual-scroll';
+export type * from './models/interfaces.js';
+export type * from './models/locale.interface.js';
+export type * from './models/multipleSelectOption.interface.js';
+export { BindingEventService, type ElementEventListener } from './services/binding-event.service.js';
+export { VirtualScroll } from './services/virtual-scroll.js';
 export {
   type HtmlElementPosition,
   calculateAvailableSpace,
@@ -19,7 +19,7 @@ export {
   toggleElement,
   toggleElementClass,
   windowScrollPosition,
-} from './utils/domUtils';
+} from './utils/domUtils.js';
 export {
   compareObjects,
   deepCopy,
@@ -31,6 +31,6 @@ export {
   setDataKeys,
   stripScripts,
   toCamelCase,
-} from './utils/utils';
-export { multipleSelect } from './multiple-select';
-export { MultipleSelectInstance } from './MultipleSelectInstance';
+} from './utils/utils.js';
+export { multipleSelect } from './multiple-select.js';
+export { MultipleSelectInstance } from './MultipleSelectInstance.js';
