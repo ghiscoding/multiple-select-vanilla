@@ -4,7 +4,7 @@ import DOMPurify from 'dompurify';
 import 'font-awesome/css/font-awesome.css';
 import { createDomElement, emptyElement } from 'multiple-select-vanilla';
 
-import { exampleRouting, navbarRouting } from './app-routing';
+import { exampleRouting, navbarRouting } from './app-routing.js';
 import mainHtml from './main.html?raw';
 import './style.scss';
 

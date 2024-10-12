@@ -1,7 +1,7 @@
 import type { TrustedHTML } from 'trusted-types/lib';
 
-import type { LabelFilter, OptGroupRowData, OptionRowData, OptionRowDivider, TextFilter } from './interfaces';
-import type { LocaleKey, MultipleSelectLocale } from './locale.interface';
+import type { LabelFilter, OptGroupRowData, OptionRowData, OptionRowDivider, TextFilter } from './interfaces.js';
+import type { LocaleKey, MultipleSelectLocale } from './locale.interface.js';
 
 export interface MultipleSelectView {
   label: string;
