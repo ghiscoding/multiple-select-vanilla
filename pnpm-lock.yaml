@@ -105,9 +105,6 @@ importers:
       esbuild:
         specifier: ^0.24.0
         version: 0.24.0
-      fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
       postcss:
         specifier: ^8.4.47
         version: 8.4.47

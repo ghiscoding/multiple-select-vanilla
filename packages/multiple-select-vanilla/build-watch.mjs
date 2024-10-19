@@ -2,7 +2,7 @@ import { exec, execSync } from 'node:child_process';
 import path from 'node:path';
 import copyfiles from 'copyfiles';
 import { buildSync } from 'esbuild';
-import { outputFileSync } from 'fs-extra/esm';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { compile as sassCompile } from 'sass';
 
 const env = process.env.NODE_ENV;
@@ -83,7 +83,11 @@ async function runCompilation(changedFiles) {
         const absoluteFilePath = path.relative(basePath, changedFile);
         const posixPath = absoluteFilePath.replaceAll('\\', '/');
 
-        outputFileSync(
+        const outDir = 'dist/styles/css';
+        if (!existsSync(outDir)) {
+          mkdirSync(outDir, { recursive: true });
+        }
+        writeFileSync(
           `dist/styles/css/${posixPath.replace('.scss', '')}.css`,
           sassCompile(`src/styles/${posixPath}`, { style: 'compressed', quietDeps: true, noSourceMap: true }).css,
         );
