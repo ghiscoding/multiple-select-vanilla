@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.7...v3.4.0) (2024-10-23)
+
+### Features
+
+* support `[@use](https://github.com/use)` by replacing `[@import](https://github.com/import)` to fix SASS deprecations ([#308](https://github.com/ghiscoding/multiple-select-vanilla/issues/308)) ([186d21a](https://github.com/ghiscoding/multiple-select-vanilla/commit/186d21aaec993448881f4138976b17865c10d54a)) - by @ghiscoding
+
 ## [3.3.7](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.6...v3.3.7) (2024-10-12)
 
 ### Bug Fixes
