@@ -8,7 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* support `[@use](https://github.com/use)` by replacing `[@import](https://github.com/import)` to fix SASS deprecations ([#308](https://github.com/ghiscoding/multiple-select-vanilla/issues/308)) ([186d21a](https://github.com/ghiscoding/multiple-select-vanilla/commit/186d21aaec993448881f4138976b17865c10d54a)) - by @ghiscoding
+* support `@use` by replacing `@import` to fix SASS deprecations ([#308](https://github.com/ghiscoding/multiple-select-vanilla/issues/308)) ([186d21a](https://github.com/ghiscoding/multiple-select-vanilla/commit/186d21aaec993448881f4138976b17865c10d54a)) - by @ghiscoding
 
 ## [3.3.7](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.6...v3.3.7) (2024-10-12)
 
