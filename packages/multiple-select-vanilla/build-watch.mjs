@@ -77,7 +77,11 @@ async function runCompilation(changedFiles) {
       }
       if (filename.startsWith('_')) {
         // when _variables changes, let's rebuild all SASS files instead of just one
-        execSync('pnpm run sass:build');
+        try {
+          execSync('pnpm run sass:build');
+        } catch (e) {
+          console.error(`SASS error: ${e}`);
+        }
       } else {
         const basePath = path.join(process.cwd(), '/src/styles');
         const absoluteFilePath = path.relative(basePath, changedFile);

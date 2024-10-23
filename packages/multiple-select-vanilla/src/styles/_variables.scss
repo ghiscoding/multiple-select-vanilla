@@ -1,9 +1,9 @@
-@use 'sass:color';
-
 /*
  * Multiple-Select-Vanilla SASS variables.
  * You can also CSS variables by simply replacing `$ms-` prefix with `--ms-`
  */
+
+@use 'sass:color';
 
 // this is the only variable without $ms prefix and exists so that user could use 
 // the same Bootstrap primary color without declaring $ms-primary-color variable (which also exists)

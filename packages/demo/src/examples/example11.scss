@@ -1,1 +1,12 @@
-@import 'multiple-select-vanilla/dist/styles/sass/themes/bootstrap.scss';
+// 1- with legacy @import
+// $ms-primary-color: red;
+// $ms-checkbox-color: red;
+// $ms-parent-form-control-padding: 5px;
+// @import 'multiple-select-vanilla/dist/styles/sass/themes/bootstrap.scss';
+
+// 2- or with modern @use
+// @use 'multiple-select-vanilla/dist/styles/sass/themes/bootstrap.scss' with (
+//     $ms-parent-form-control-padding: 5px,
+//     $ms-primary-color: orange,
+//     $ms-checkbox-color: orange,
+// );
