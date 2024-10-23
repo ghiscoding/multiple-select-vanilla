@@ -29,13 +29,13 @@
     <div style="background: #f7f7f7; padding: 10px">
       <pre>
 &lt;!-- Latest compiled and minified CSS --&gt;
-&lt;link href=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.3.5/dist/styles/css/multiple-select.css</span>&quot; rel=&quot;<span style="color:#880000">stylesheet</span>&quot;&gt;
+&lt;link href=&quot;<span style="color:#0a3069">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.3.5/dist/styles/css/multiple-select.css</span>&quot; rel=&quot;<span style="color:#0a3069">stylesheet</span>&quot;&gt;
 
 &lt;!-- (ESM requires <span style="color:#d63384">type=&quot;module&quot;</span>) Latest compiled and minified JavaScript --&gt;
-&lt;script type=&quot;module&quot; src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.3.5/dist/browser/multiple-select.js</span>&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot; src=&quot;<span style="color:#0a3069">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.3.5/dist/browser/multiple-select.js</span>&quot;&gt;&lt;/script&gt;
 
 &lt;!-- (CJS requires <span style="color:#d63384">.cjs</span> extension) Latest compiled and minified JavaScript --&gt;
-&lt;script src=&quot;<span style="color:#880000">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.3.5/dist/browser/multiple-select.cjs</span>&quot;&gt;&lt;/script&gt;</pre>
+&lt;script src=&quot;<span style="color:#0a3069">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.3.5/dist/browser/multiple-select.cjs</span>&quot;&gt;&lt;/script&gt;</pre>
     </div>
 
     <quote>
@@ -59,26 +59,49 @@
     <div style="background: #f7f7f7; padding: 10px">
 <pre>
 // CommonJS
-const { multipleSelect } = require('multiple-select-vanilla');
-multipleSelect('.multiple-select', {/*...*/});
+<span style="color:#cf222e">const</span> { multipleSelect } = <span style="color:#6639ba">require</span>(<span style="color:#0a3069">'multiple-select-vanilla'</span>);
+<span style="color:#6639ba">multipleSelect</span>(<span style="color:#0a3069">'.multiple-select'</span>, {<span style="color:#a0a1a7">/*...*/</span>});
 
 // ESM
-import { multipleSelect } from 'multiple-select-vanilla';
-multipleSelect('.multiple-select', {/*...*/});
+<span style="color:#cf222e">import</span> { multipleSelect } <span style="color:#cf222e">from</span> <span style="color:#0a3069">'multiple-select-vanilla'</span>;
+<span style="color:#6639ba">multipleSelect</span>(<span style="color:#0a3069">'.multiple-select'</span>, {<span style="color:#a0a1a7">/*...*/</span>});
+</pre>
+    </div>
+  
+  <br>
+
+  <section>
+    <h5>CSS / SASS Styling Themes</h5>
+    <p>Load default or Bootstrap Theme style via either the <code>@use</code> (modern) or <code>@import</code> (legacy)</p>
+
+    1- with modern <code>@use</code> approach
+    <div style="background: #f7f7f7; padding: 10px">
+<pre>
+  <span style="color:#cf222e">@use</span> <span style="color:#0a3069">'multiple-select-vanilla/dist/styles/sass/multiple-select.scss'</span> <span style="color:#cf222e">with</span> (
+    <span style="color:#986801">$ms-primary-color</span>: red,
+    <span style="color:#986801">$ms-checkbox-color</span>: red,
+  );
 </pre>
     </div>
 
-  <section>
-    <h5>Code Sample</h5>
-    <div class="col-sm-10 col-lg-8">
-      <iframe
-        style="height: 100%; width: 60%; position: absolute"
-        src="data:text/html;charset=utf-8,
-        <head><base target='_blank' /></head>
-        <body><script src='https://gist.github.com/ghiscoding/786008e40a13d64a1cf813aff8a3d8dc.js'></script>
-        </body>"
-      >
-      </iframe>
+    2- with legacy <code>@import</code> approach
+    <div style="background: #f7f7f7; padding: 10px">
+<pre>
+  <span style="color:#986801">$ms-primary-color</span>: red;
+  <span style="color:#986801">$ms-checkbox-color</span>: red;
+  <span style="color:#cf222e">@import</span> <span style="color:#0a3069">'multiple-select-vanilla/dist/styles/sass/multiple-select.scss'</span>;
+</pre>
+    </div>
+
+    3- same goes for the Bootstrap Theme
+    <div style="background: #f7f7f7; padding: 10px">
+<pre>
+  <span style="color:#cf222e">@use</span> <span style="color:#0a3069">'multiple-select-vanilla/dist/styles/sass/themes/bootstrap.scss'</span> <span style="color:#cf222e">with</span> (
+    <span style="color:#986801">$ms-parent-form-control-padding</span>: 5px,
+    <span style="color:#986801">$ms-primary-color</span>: orange,
+    <span style="color:#986801">$ms-checkbox-color</span>: orange,
+  );
+</pre>
     </div>
   </section>
 </div>

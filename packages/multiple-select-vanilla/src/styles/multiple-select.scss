@@ -1,30 +1,33 @@
-@import './mixins';
-@import './variables';
-
 /*!
  * Multiple-Select-Vanilla styling
  * @author zhixin wen <wenzhixin2010@gmail.com>
  * @contributor Ghislain B.
  */
 
+@forward 'mixins';
+@forward 'variables';
+
+@use 'mixins' as m;
+@use 'variables' as v;
+
 // create some SVG icons used by the lib
-@include createSvgClass("ms-icon-caret", $ms-icon-caret-svg-path);
-@include createSvgClass("ms-icon-close", $ms-icon-close-svg-path);
-@include createSvgClass("ms-icon-check", $ms-icon-check-svg-path);
-@include createSvgClass("ms-icon-minus", $ms-icon-minus-svg-path);
-@include createSvgClass("ms-icon-radio", $ms-icon-radio-svg-path);
+@include m.createSvgClass("ms-icon-caret", v.$ms-icon-caret-svg-path);
+@include m.createSvgClass("ms-icon-close", v.$ms-icon-close-svg-path);
+@include m.createSvgClass("ms-icon-check", v.$ms-icon-check-svg-path);
+@include m.createSvgClass("ms-icon-minus", v.$ms-icon-minus-svg-path);
+@include m.createSvgClass("ms-icon-radio", v.$ms-icon-radio-svg-path);
 
 .ms-parent, .ms-drop {
   .ms-icon {
     display: inline-block;
     background-color: currentColor;
     flex-shrink: 0;
-    color: var(--ms-icon-color, $ms-icon-color);
-    font-size: var(--ms-icon-size, $ms-icon-size);
-    height: var(--ms-icon-size, $ms-icon-size);
-    width: var(--ms-icon-size, $ms-icon-size);
+    color: var(--ms-icon-color, v.$ms-icon-color);
+    font-size: var(--ms-icon-size, v.$ms-icon-size);
+    height: var(--ms-icon-size, v.$ms-icon-size);
+    width: var(--ms-icon-size, v.$ms-icon-size);
     &:hover {
-      color: var(--ms-icon-color-hover, $ms-icon-color-hover);
+      color: var(--ms-icon-color-hover, v.$ms-icon-color-hover);
     }
   }
 
@@ -39,16 +42,16 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: var(--ms-checkbox-icon-container-height, $ms-checkbox-icon-container-height);
-      width: var(--ms-checkbox-icon-container-width, $ms-checkbox-icon-container-width);
-      border: var(--ms-checkbox-icon-container-border, $ms-checkbox-icon-container-border);
+      height: var(--ms-checkbox-icon-container-height, v.$ms-checkbox-icon-container-height);
+      width: var(--ms-checkbox-icon-container-width, v.$ms-checkbox-icon-container-width);
+      border: var(--ms-checkbox-icon-container-border, v.$ms-checkbox-icon-container-border);
       border-radius: 0.125rem;
      
       div {
         font-size: 14px;
-        color: var(--ms-checkbox-color, $ms-checkbox-color);
+        color: var(--ms-checkbox-color, v.$ms-checkbox-color);
         &:hover {
-          color: var(--ms-checkbox-hover-color, $ms-checkbox-hover-color);
+          color: var(--ms-checkbox-hover-color, v.$ms-checkbox-hover-color);
         }
         // since we use the div container with a border, we don't actually need an icon for unchecked 
         // BUT since we want to keep the same size, we can simply hide the mask to keep the same size
@@ -62,8 +65,8 @@
       & + span {
         display: inline-flex;
         align-items: center;
-        column-gap: var(--ms-label-column-gap, $ms-label-column-gap);
-        padding-left: var(--ms-label-text-padding-left, $ms-label-text-padding-left);
+        column-gap: var(--ms-label-column-gap, v.$ms-label-column-gap);
+        padding-left: var(--ms-label-text-padding-left, v.$ms-label-text-padding-left);
       }
     }
   }
@@ -96,28 +99,28 @@
   width: 100%;
   height: 26px;
   overflow: hidden;
-  padding: var(--ms-choice-padding, $ms-choice-padding);
-  background-color: var(--ms-choice-bgcolor, $ms-choice-bgcolor);
-  border: var(--ms-choice-border, $ms-choice-border);
-  border-radius: var(--ms-choice-border-radius, $ms-choice-border-radius);
-  line-height: var(--ms-choice-line-height, $ms-choice-line-height);
-  color: var(--ms-choice-color, $ms-choice-color);
-  text-align: var(--ms-choice-text-align, $ms-choice-text-align);
-  outline: var(--ms-drop-outline, $ms-drop-outline);
+  padding: var(--ms-choice-padding, v.$ms-choice-padding);
+  background-color: var(--ms-choice-bgcolor, v.$ms-choice-bgcolor);
+  border: var(--ms-choice-border, v.$ms-choice-border);
+  border-radius: var(--ms-choice-border-radius, v.$ms-choice-border-radius);
+  line-height: var(--ms-choice-line-height, v.$ms-choice-line-height);
+  color: var(--ms-choice-color, v.$ms-choice-color);
+  text-align: var(--ms-choice-text-align, v.$ms-choice-text-align);
+  outline: var(--ms-drop-outline, v.$ms-drop-outline);
   text-decoration: none;
   user-select: none;
   white-space: nowrap;
   &:hover {
-    border-color: var(--ms-choice-border-hover-color, $ms-choice-border-hover-color);
+    border-color: var(--ms-choice-border-hover-color, v.$ms-choice-border-hover-color);
   }
   &:focus {
-    border-color: var(--ms-choice-focus-border-color, $ms-choice-focus-border-color);
-    box-shadow: var(--ms-choice-focus-box-shadow, $ms-choice-focus-box-shadow);
+    border-color: var(--ms-choice-focus-border-color, v.$ms-choice-focus-border-color);
+    box-shadow: var(--ms-choice-focus-box-shadow, v.$ms-choice-focus-box-shadow);
   }
 
   &.disabled {
-    border: var(--ms-choice-disabled-border, $ms-choice-disabled-border);
-    background-color: var(--ms-choice-disabled-bgcolor, $ms-choice-disabled-bgcolor);
+    border: var(--ms-choice-disabled-border, v.$ms-choice-disabled-border);
+    background-color: var(--ms-choice-disabled-bgcolor, v.$ms-choice-disabled-bgcolor);
     background-image: none;
     cursor: default;
   }
@@ -130,18 +133,18 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      column-gap: var(--ms-label-column-gap, $ms-label-column-gap);
+      column-gap: var(--ms-label-column-gap, v.$ms-label-column-gap);
 
       &.ms-placeholder {
-        color: var(--ms-placeholder-color, $ms-placeholder-color);
+        color: var(--ms-placeholder-color, v.$ms-placeholder-color);
       }
     }
-    div.ms-icon-close {
+    dims-icon-close {
       margin-right: 2px;
     }
-    div.ms-icon-caret {
-      height: var(--ms-chevron-icon-size, $ms-chevron-icon-size);
-      width: var(--ms-chevron-icon-size, $ms-chevron-icon-size);
+    dims-icon-caret {
+      height: var(--ms-chevron-icon-size, v.$ms-chevron-icon-size);
+      width: var(--ms-chevron-icon-size, v.$ms-chevron-icon-size);
       &.open {
         transform: scaleY(-1);
       }
@@ -155,47 +158,47 @@
   overflow: hidden;
   display: none;
   position: absolute;
-  background: var(--ms-drop-background, $ms-drop-background);
-  border: var(--ms-drop-border, $ms-drop-border);
-  border-radius: var(--ms-drop-border-radius, $ms-drop-border-radius);
-  color: var(--ms-drop-color, $ms-drop-color);
-  margin-top: var(--ms-drop-margin-top, $ms-drop-margin-top);
-  padding: var(--ms-drop-padding, $ms-drop-padding);
-  z-index: var(--ms-drop-zindex, $ms-drop-zindex);
+  background: var(--ms-drop-background, v.$ms-drop-background);
+  border: var(--ms-drop-border, v.$ms-drop-border);
+  border-radius: var(--ms-drop-border-radius, v.$ms-drop-border-radius);
+  color: var(--ms-drop-color, v.$ms-drop-color);
+  margin-top: var(--ms-drop-margin-top, v.$ms-drop-margin-top);
+  padding: var(--ms-drop-padding, v.$ms-drop-padding);
+  z-index: var(--ms-drop-zindex, v.$ms-drop-zindex);
 
   &.bottom {
     top: 100%;
-    box-shadow: var(--ms-drop-bottom-box-shadow, $ms-drop-bottom-box-shadow);
+    box-shadow: var(--ms-drop-bottom-box-shadow, v.$ms-drop-bottom-box-shadow);
   }
 
   &.top {
     bottom: 100%;
-    box-shadow: var(--ms-drop-top-box-shadow, $ms-drop-top-box-shadow);
+    box-shadow: var(--ms-drop-top-box-shadow, v.$ms-drop-top-box-shadow);
   }
 
   .ms-select-all {
-    border-bottom: var(--ms-select-all-border-bottom, $ms-select-all-border-bottom);
-    line-height: var(--ms-select-all-line-height, $ms-select-all-line-height);
-    padding: var(--ms-select-all-padding, $ms-select-all-padding);
+    border-bottom: var(--ms-select-all-border-bottom, v.$ms-select-all-border-bottom);
+    line-height: var(--ms-select-all-line-height, v.$ms-select-all-line-height);
+    padding: var(--ms-select-all-padding, v.$ms-select-all-padding);
     width: 100%;
     &:hover {
-      background-color: var(--ms-select-all-text-hover-color, $ms-select-all-text-hover-color);
+      background-color: var(--ms-select-all-text-hover-color, v.$ms-select-all-text-hover-color);
     }
     &.highlighted {
-      background-color: var(--ms-option-highlight-bg-color, $ms-option-highlight-bg-color);
+      background-color: var(--ms-option-highlight-bg-color, v.$ms-option-highlight-bg-color);
     }
 
     label {
       display: inline-flex;
       align-items: center;
-      font-weight: var(--ms-select-all-text-font-weight, $ms-select-all-text-font-weight);
-      padding: var(--ms-select-all-label-padding, $ms-select-all-label-padding);
-      border: var(--ms-select-all-label-border, $ms-select-all-label-border);
-      color: var(--ms-select-all-text-color, $ms-select-all-text-color);
+      font-weight: var(--ms-select-all-text-font-weight, v.$ms-select-all-text-font-weight);
+      padding: var(--ms-select-all-label-padding, v.$ms-select-all-label-padding);
+      border: var(--ms-select-all-label-border, v.$ms-select-all-label-border);
+      color: var(--ms-select-all-text-color, v.$ms-select-all-text-color);
       width: 100%;
       &:hover {
         cursor: pointer;
-        border: var(--ms-select-all-label-hover-border, $ms-select-all-label-hover-border);
+        border: var(--ms-select-all-label-hover-border, v.$ms-select-all-label-hover-border);
       }
       input {
         // hide original input checkbox since we use an SVG over it
@@ -212,19 +215,19 @@
   .ms-ok-button {
     cursor: pointer;
     display: block;
-    padding: var(--ms-ok-button-padding, $ms-ok-button-padding);
-    width: var(--ms-ok-button-width, $ms-ok-button-width);
-    height: var(--ms-ok-button-height, $ms-ok-button-height);
-    border-color: var(--ms-ok-button-border-color, $ms-ok-button-border-color);
-    border-radius: var(--ms-ok-button-border-radius, $ms-ok-button-border-radius);
-    border-width: var(--ms-ok-button-border-width, $ms-ok-button-border-width);
-    text-align: var(--ms-ok-button-text-align, $ms-ok-button-text-align);
-    color: var(--ms-ok-button-text-color, $ms-ok-button-text-color);
-    font-weight: var(--ms-ok-button-font-weight, $ms-ok-button-font-weight);
-    background-color: var(--ms-ok-button-bg-color, $ms-ok-button-bg-color);
+    padding: var(--ms-ok-button-padding, v.$ms-ok-button-padding);
+    width: var(--ms-ok-button-width, v.$ms-ok-button-width);
+    height: var(--ms-ok-button-height, v.$ms-ok-button-height);
+    border-color: var(--ms-ok-button-border-color, v.$ms-ok-button-border-color);
+    border-radius: var(--ms-ok-button-border-radius, v.$ms-ok-button-border-radius);
+    border-width: var(--ms-ok-button-border-width, v.$ms-ok-button-border-width);
+    text-align: var(--ms-ok-button-text-align, v.$ms-ok-button-text-align);
+    color: var(--ms-ok-button-text-color, v.$ms-ok-button-text-color);
+    font-weight: var(--ms-ok-button-font-weight, v.$ms-ok-button-font-weight);
+    background-color: var(--ms-ok-button-bg-color, v.$ms-ok-button-bg-color);
     &:hover {
-      background-color: var(--ms-ok-button-bg-hover-color, $ms-ok-button-bg-hover-color);
-      color: var(--ms-ok-button-text-hover-color, $ms-ok-button-text-hover-color);
+      background-color: var(--ms-ok-button-bg-hover-color, v.$ms-ok-button-bg-hover-color);
+      color: var(--ms-ok-button-text-hover-color, v.$ms-ok-button-text-hover-color);
     }
   }
 }
@@ -237,58 +240,58 @@
   position: relative;
   white-space: nowrap;
   width: 100%;
-  margin: var(--ms-search-margin, $ms-search-margin);
-  min-height: var(--ms-search-min-height, $ms-search-min-height);
-  padding: var(--ms-search-padding, $ms-search-padding);
-  z-index: var(--ms-search-zindex, $ms-search-zindex);
+  margin: var(--ms-search-margin, v.$ms-search-margin);
+  min-height: var(--ms-search-min-height, v.$ms-search-min-height);
+  padding: var(--ms-search-padding, v.$ms-search-padding);
+  z-index: var(--ms-search-zindex, v.$ms-search-zindex);
 
   input {
     box-shadow: none;
     font-family: sans-serif;
     height: auto !important;
     width: 100%;
-    color: var(--ms-search-input-color, $ms-search-input-color);
-    background-color: var(--ms-search-input-bg-color, $ms-search-input-bg-color);
-    border: var(--ms-search-input-border, $ms-search-input-border);
-    border-radius: var(--ms-search-input-border-radius, $ms-search-input-border-radius);
-    min-height: var(--ms-search-input-min-height, $ms-search-input-min-height);
-    outline: var(--ms-search-input-outline, $ms-search-input-outline);
-    padding: var(--ms-search-input-padding, $ms-search-input-padding);
-    margin: var(--ms-search-input-margin, $ms-search-input-margin);
+    color: var(--ms-search-input-color, v.$ms-search-input-color);
+    background-color: var(--ms-search-input-bg-color, v.$ms-search-input-bg-color);
+    border: var(--ms-search-input-border, v.$ms-search-input-border);
+    border-radius: var(--ms-search-input-border-radius, v.$ms-search-input-border-radius);
+    min-height: var(--ms-search-input-min-height, v.$ms-search-input-min-height);
+    outline: var(--ms-search-input-outline, v.$ms-search-input-outline);
+    padding: var(--ms-search-input-padding, v.$ms-search-input-padding);
+    margin: var(--ms-search-input-margin, v.$ms-search-input-margin);
     &::placeholder {
-      color: var(--ms-search-input-placeholder, $ms-search-input-placeholder);
+      color: var(--ms-search-input-placeholder, v.$ms-search-input-placeholder);
     }
   }
 
   span.ms-icon-close {
     cursor: pointer;
-    height: var(--ms-icon-size, $ms-icon-size);
-    margin: var(--ms-search-icon-close-margin, $ms-search-icon-close-margin);
+    height: var(--ms-icon-size, v.$ms-icon-size);
+    margin: var(--ms-search-icon-close-margin, v.$ms-search-icon-close-margin);
   }
 }
 
 .ms-drop {
   ul {
     overflow: auto;
-    outline: var(--ms-drop-outline, $ms-drop-outline);
-    margin: var(--ms-drop-list-margin, $ms-drop-list-margin);
-    padding: var(--ms-drop-list-padding, $ms-drop-list-padding);
-    scrollbar-color: var(--ms-drop-scrollbar-color, $ms-drop-scrollbar-color);
+    outline: var(--ms-drop-outline, v.$ms-drop-outline);
+    margin: var(--ms-drop-list-margin, v.$ms-drop-list-margin);
+    padding: var(--ms-drop-list-padding, v.$ms-drop-list-padding);
+    scrollbar-color: var(--ms-drop-scrollbar-color, v.$ms-drop-scrollbar-color);
 
     > li {
       cursor: pointer;
       background-image: none;
       list-style: none;
       position: static;
-      align-items: var(--ms-drop-list-item-align-items, $ms-drop-list-item-align-items);
-      display: var(--ms-drop-list-item-display, $ms-drop-list-item-display);
-      padding: var(--ms-drop-list-item-padding, $ms-drop-list-item-padding);
+      align-items: var(--ms-drop-list-item-align-items, v.$ms-drop-list-item-align-items);
+      display: var(--ms-drop-list-item-display, v.$ms-drop-list-item-display);
+      padding: var(--ms-drop-list-item-padding, v.$ms-drop-list-item-padding);
 
       .disabled {
         cursor: default;
         font-weight: normal !important;
-        opacity: var(--ms-drop-list-item-disabled-opacity, $ms-drop-list-item-disabled-opacity);
-        filter: var(--ms-drop-list-item-disabled-filter, $ms-drop-list-item-disabled-filter);
+        opacity: var(--ms-drop-list-item-disabled-opacity, v.$ms-drop-list-item-disabled-opacity);
+        filter: var(--ms-drop-list-item-disabled-filter, v.$ms-drop-list-item-disabled-filter);
       }
 
       &.multiple {
@@ -316,32 +319,32 @@
         position: relative;
         white-space: nowrap;
         flex: 0 0 100%;
-        margin-bottom: var(--ms-label-margin-bottom, $ms-label-margin-bottom);
-        min-height: var(--ms-label-min-height, $ms-label-min-height);
-        padding: var(--ms-label-padding, $ms-label-padding);
+        margin-bottom: var(--ms-label-margin-bottom, v.$ms-label-margin-bottom);
+        min-height: var(--ms-label-min-height, v.$ms-label-min-height);
+        padding: var(--ms-label-padding, v.$ms-label-padding);
 
         &.optgroup {
-          color: var(--ms-optgroup-color, $ms-optgroup-color);
-          font-weight: var(--ms-drop-optgroup-font-weight, $ms-drop-optgroup-font-weight);
+          color: var(--ms-optgroup-color, v.$ms-optgroup-color);
+          font-weight: var(--ms-drop-optgroup-font-weight, v.$ms-drop-optgroup-font-weight);
         }
       }
 
       &.hide-radio {
-        padding: var(--ms-drop-hide-radio-padding, $ms-drop-hide-radio-padding);
+        padding: var(--ms-drop-hide-radio-padding, v.$ms-drop-hide-radio-padding);
 
         &:focus,
         &:hover {
-          background-color: var(--ms-drop-hide-radio-hover-bgcolor, $ms-drop-hide-radio-hover-bgcolor);
+          background-color: var(--ms-drop-hide-radio-hover-bgcolor, v.$ms-drop-hide-radio-hover-bgcolor);
         }
 
         &.selected {
-          color: var(--ms-drop-hide-radio-selected-color, $ms-drop-hide-radio-selected-color);
-          background-color: var(--ms-drop-hide-radio-selected-bgcolor, $ms-drop-hide-radio-selected-bgcolor);
+          color: var(--ms-drop-hide-radio-selected-color, v.$ms-drop-hide-radio-selected-color);
+          background-color: var(--ms-drop-hide-radio-selected-bgcolor, v.$ms-drop-hide-radio-selected-bgcolor);
         }
 
         label {
-          margin-bottom: var(--ms-drop-hide-radio-label-margin-bottom, $ms-drop-hide-radio-label-margin-bottom);
-          padding: var(--ms-drop-hide-radio-label-padding, $ms-drop-hide-radio-label-padding);
+          margin-bottom: var(--ms-drop-hide-radio-label-margin-bottom, v.$ms-drop-hide-radio-label-margin-bottom);
+          padding: var(--ms-drop-hide-radio-label-padding, v.$ms-drop-hide-radio-label-padding);
         }
 
         input {
@@ -351,16 +354,16 @@
 
       &.option-level-1 {
         label {
-          padding-left: var(--ms-drop-list-item-level1-padding-left, $ms-drop-list-item-level1-padding-left);
+          padding-left: var(--ms-drop-list-item-level1-padding-left, v.$ms-drop-list-item-level1-padding-left);
         }
       }
 
       &.option-divider {
-        padding: var(--ms-drop-option-divider-padding, $ms-drop-option-divider-padding);
-        border-top: var(--ms-drop-option-divider-border-top, $ms-drop-option-divider-border-top);
+        padding: var(--ms-drop-option-divider-padding, v.$ms-drop-option-divider-padding);
+        border-top: var(--ms-drop-option-divider-border-top, v.$ms-drop-option-divider-border-top);
       }
       &.highlighted {
-        background-color: var(--ms-option-highlight-bg-color, $ms-option-highlight-bg-color);
+        background-color: var(--ms-option-highlight-bg-color, v.$ms-option-highlight-bg-color);
       }
     }
   }
@@ -372,12 +375,12 @@
       opacity: 0;
       width: 0;
       position: absolute;
-      margin-left: var(--ms-drop-input-margin-left, $ms-drop-input-margin-left);
-      margin-top: var(--ms-drop-input-margin-top, $ms-drop-input-margin-top);
-      accent-color: var(--ms-checkbox-color, $ms-checkbox-color);
+      margin-left: var(--ms-drop-input-margin-left, v.$ms-drop-input-margin-left);
+      margin-top: var(--ms-drop-input-margin-top, v.$ms-drop-input-margin-top);
+      accent-color: var(--ms-checkbox-color, v.$ms-checkbox-color);
     }
     &:focus { 
-      outline: var(--ms-input-focus-outline, $ms-input-focus-outline);
+      outline: var(--ms-input-focus-outline, v.$ms-input-focus-outline);
     }
   }
 
@@ -386,6 +389,6 @@
   }
 
   .ms-infinite-option {
-    height: var(--ms-infinite-empty-option-height, $ms-infinite-empty-option-height);
+    height: var(--ms-infinite-empty-option-height, v.$ms-infinite-empty-option-height);
   }
 }

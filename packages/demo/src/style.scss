@@ -1,11 +1,25 @@
 @use 'sass:math';
 
-// $body-color: #ccc;
-$primary: teal;
-$btn-color: #fff;
+@use 'bootstrap' with (
+  $primary: teal,
+  $btn-color: #fff,
+);
 
-@import 'bootstrap';
-@import 'multiple-select-vanilla/dist/styles/css/multiple-select.css';
+// -- multiple ways to load CSS/SASS files via either @import (legacy) or @use (modern) 
+// --
+// @import 'multiple-select-vanilla/dist/styles/css/multiple-select.css';
+// @use 'multiple-select-vanilla/dist/styles/css/multiple-select.css';
+@use 'multiple-select-vanilla/dist/styles/css/themes/bootstrap.css' as ms;
+// @use 'multiple-select-vanilla/dist/styles/sass/multiple-select.scss';
+// @use 'multiple-select-vanilla/dist/styles/sass/multiple-select.scss' with (
+//     $ms-primary-color: red,
+//     $ms-checkbox-color: red,
+// );
+// @use 'multiple-select-vanilla/dist/styles/sass/themes/bootstrap.scss' as mb with (
+//     $ms-parent-form-control-padding: 5px,
+//     $ms-primary-color: orange,
+//     $ms-checkbox-color: orange,
+// );
 
 $navbar-height: 60px;
 $side-menu-width: 250px;
