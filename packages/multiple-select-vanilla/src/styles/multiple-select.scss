@@ -139,10 +139,10 @@
         color: var(--ms-placeholder-color, v.$ms-placeholder-color);
       }
     }
-    dims-icon-close {
+    .ms-icon-close {
       margin-right: 2px;
     }
-    dims-icon-caret {
+    .ms-icon-caret {
       height: var(--ms-chevron-icon-size, v.$ms-chevron-icon-size);
       width: var(--ms-chevron-icon-size, v.$ms-chevron-icon-size);
       &.open {
