@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.4.0...v3.4.1) (2024-10-24)
+
+### Bug Fixes
+
+* CSS class name typo for caret/close icon ([b0e5d4d](https://github.com/ghiscoding/multiple-select-vanilla/commit/b0e5d4ddf1decd4e7ffad8a717619505db692d45)) - by @ghiscoding
+
 ## [3.4.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.3.7...v3.4.0) (2024-10-23)
 
 ### Features
