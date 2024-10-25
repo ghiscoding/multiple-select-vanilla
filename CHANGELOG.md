@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.4.1...v3.4.2) (2024-10-25)
+
+### Bug Fixes
+
+* add missing div selector in previous CSS class name typo ([#310](https://github.com/ghiscoding/multiple-select-vanilla/issues/310)) ([1459f35](https://github.com/ghiscoding/multiple-select-vanilla/commit/1459f35cae0a4ed0a6e7b93ff5969cc2d002ce7d)) - by @ghiscoding
+
 ## [3.4.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.4.0...v3.4.1) (2024-10-24)
 
 ### Bug Fixes
