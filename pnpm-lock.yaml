@@ -13,7 +13,7 @@ importers:
         version: 1.9.3
       '@lerna-lite/cli':
         specifier: ^3.9.3
-        version: 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/version@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
+        version: 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/version@3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3))(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
       '@lerna-lite/publish':
         specifier: ^3.9.3
         version: 3.9.3(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
@@ -33,8 +33,8 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
       npm-run-all2:
-        specifier: ^6.2.3
-        version: 6.2.3
+        specifier: ^7.0.1
+        version: 7.0.1
       pnpm:
         specifier: ^9.12.2
         version: 9.12.2
@@ -1504,6 +1504,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -1612,6 +1613,10 @@ packages:
   json-parse-even-better-errors@3.0.2:
     resolution: {integrity: sha512-fi0NG4bPjCHunUJffmLd0gxssIgkNmArMvis4iNah6Owg1MCJjWhEcDLmsK6iGkJq3tHwbDkTlce70/tmXN4cQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  json-parse-even-better-errors@4.0.0:
+    resolution: {integrity: sha512-lR4MXjGNgkJc7tkQ97kb2nuEMnNCyU//XYVH0MKTGcXEiSudQ5MKGKen3C5QubYy0vmq+JGitUg92uuywGEwIA==}
+    engines: {node: ^18.17.0 || >=20.5.0}
 
   json-stringify-nice@1.1.4:
     resolution: {integrity: sha512-5Z5RFW63yxReJ7vANgW6eZFGWaQvnPE3WNmZoOJrSkGju2etKA2L5rrOa1sm877TVTFt57A80BH1bArcmlLfPw==}
@@ -1869,6 +1874,10 @@ packages:
     resolution: {integrity: sha512-dMxCf+zZ+3zeQZXKxmyuCKlIDPGuv8EF940xbkC4kQVDTtqoh6rJFO+JTKSA6/Rwi0getWmtuy4Itup0AMcaDQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
+  npm-normalize-package-bin@4.0.0:
+    resolution: {integrity: sha512-TZKxPvItzai9kN9H/TkmCtx/ZN/hvr3vUycjlfmH0ootY9yFBzNOpiXAdIn1Iteqsvk4lQn6B5PTrt+n6h8k/w==}
+    engines: {node: ^18.17.0 || >=20.5.0}
+
   npm-package-arg@11.0.3:
     resolution: {integrity: sha512-sHGJy8sOC1YraBywpzQlIKBE4pBbGbiF95U6Auspzyem956E0+FtDtsx1ZxlOJkQCZ1AFXAY/yuvtFYrOxF+Bw==}
     engines: {node: ^16.14.0 || >=18.0.0}
@@ -1885,9 +1894,9 @@ packages:
     resolution: {integrity: sha512-5+bKQRH0J1xG1uZ1zMNvxW0VEyoNWgJpY9UDuluPFLKDfJ9u2JmmjmTJV1srBGQOROfdBMiVvnH2Zvpbm+xkVA==}
     engines: {node: ^16.14.0 || >=18.0.0}
 
-  npm-run-all2@6.2.3:
-    resolution: {integrity: sha512-5RsxC7jEc/RjxOYBVdEfrJf5FsJ0pHA7jr2/OxrThXknajETCTYjigOCG3iaGjdYIKEQlDuCG0ir0T1HTva8pg==}
-    engines: {node: ^14.18.0 || ^16.13.0 || >=18.0.0, npm: '>= 8'}
+  npm-run-all2@7.0.1:
+    resolution: {integrity: sha512-Adbv+bJQ8UTAM03rRODqrO5cx0YU5KCG2CvHtSURiadvdTjjgGJXdbc1oQ9CXBh9dnGfHSoSB1Web/0Dzp6kOQ==}
+    engines: {node: ^18.17.0 || >=20.5.0, npm: '>= 9'}
     hasBin: true
 
   npm-run-path@5.3.0:
@@ -2331,6 +2340,10 @@ packages:
     resolution: {integrity: sha512-0J+Msgym3vrLOUB3hzQCuZHII0xkNGCtz/HJH9xZshwv9DbDwkw1KaE3gx/e2J5rpEY5rtOy6cyhKOPrkP7FZw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
+  read-package-json-fast@4.0.0:
+    resolution: {integrity: sha512-qpt8EwugBWDw2cgE2W+/3oxC+KTez2uSVR8JU9Q36TXPAGCaozfQUs59v4j4GFpWTaw0i6hAZSvOmu1J0uOEUg==}
+    engines: {node: ^18.17.0 || >=20.5.0}
+
   read-pkg-up@10.1.0:
     resolution: {integrity: sha512-aNtBq4jR8NawpKJQldrQcSW9y/d+KWH4v24HWkHljOZ7H0av+YTGANBzRh9A5pw7v/bLVsLVPpOhJ7gHNVy8lA==}
     engines: {node: '>=16'}
@@ -2732,6 +2745,11 @@ packages:
     engines: {node: ^16.13.0 || >=18.0.0}
     hasBin: true
 
+  which@5.0.0:
+    resolution: {integrity: sha512-JEdGzHwwkrbWoGOlIHqQ5gtprKGOenpDHpxE9zVR1bWbOtYRyPPHMe9FaP6x61CmNaTThSkb0DAJte5jD+DmzQ==}
+    engines: {node: ^18.17.0 || >=20.5.0}
+    hasBin: true
+
   wide-align@1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
 
@@ -3010,19 +3028,20 @@ snapshots:
 
   '@isaacs/string-locale-compare@1.1.0': {}
 
-  '@lerna-lite/cli@3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/version@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)':
+  '@lerna-lite/cli@3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/version@3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3))(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)':
     dependencies:
       '@lerna-lite/core': 3.9.3(@types/node@22.7.5)(typescript@5.6.3)
       '@lerna-lite/init': 3.9.3(@types/node@22.7.5)(typescript@5.6.3)
       '@lerna-lite/npmlog': 3.9.3
-      '@lerna-lite/publish': 3.9.3(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
-      '@lerna-lite/version': 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
-      '@lerna-lite/watch': 3.9.3(@lerna-lite/publish@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
       dedent: 1.5.3
       dotenv: 16.4.5
       import-local: 3.2.0
       load-json-file: 7.0.1
       yargs: 17.7.2
+    optionalDependencies:
+      '@lerna-lite/publish': 3.9.3(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
+      '@lerna-lite/version': 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
+      '@lerna-lite/watch': 3.9.3(@lerna-lite/publish@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -3106,7 +3125,7 @@ snapshots:
 
   '@lerna-lite/publish@3.9.3(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)':
     dependencies:
-      '@lerna-lite/cli': 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/version@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
+      '@lerna-lite/cli': 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/version@3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3))(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
       '@lerna-lite/core': 3.9.3(@types/node@22.7.5)(typescript@5.6.3)
       '@lerna-lite/npmlog': 3.9.3
       '@lerna-lite/version': 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
@@ -3144,7 +3163,7 @@ snapshots:
 
   '@lerna-lite/version@3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)':
     dependencies:
-      '@lerna-lite/cli': 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/version@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
+      '@lerna-lite/cli': 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/version@3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3))(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
       '@lerna-lite/core': 3.9.3(@types/node@22.7.5)(typescript@5.6.3)
       '@lerna-lite/npmlog': 3.9.3
       '@octokit/plugin-enterprise-rest': 6.0.1
@@ -3191,7 +3210,7 @@ snapshots:
 
   '@lerna-lite/watch@3.9.3(@lerna-lite/publish@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)':
     dependencies:
-      '@lerna-lite/cli': 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/version@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
+      '@lerna-lite/cli': 3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/version@3.9.3(@lerna-lite/publish@3.9.3)(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3))(@lerna-lite/watch@3.9.3)(@types/node@22.7.5)(typescript@5.6.3)
       '@lerna-lite/core': 3.9.3(@types/node@22.7.5)(typescript@5.6.3)
       '@lerna-lite/filter-packages': 3.9.3(@types/node@22.7.5)(typescript@5.6.3)
       chokidar: 3.6.0
@@ -3912,6 +3931,7 @@ snapshots:
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
+    optionalDependencies:
       typescript: 5.6.3
 
   cross-env@7.0.3:
@@ -4137,7 +4157,7 @@ snapshots:
       reusify: 1.0.4
 
   fdir@6.4.0(picomatch@4.0.2):
-    dependencies:
+    optionalDependencies:
       picomatch: 4.0.2
 
   fetch-blob@3.2.0:
@@ -4428,6 +4448,8 @@ snapshots:
 
   json-parse-even-better-errors@3.0.2: {}
 
+  json-parse-even-better-errors@4.0.0: {}
+
   json-stringify-nice@1.1.4: {}
 
   json-stringify-safe@5.0.1: {}
@@ -4680,6 +4702,8 @@ snapshots:
 
   npm-normalize-package-bin@3.0.1: {}
 
+  npm-normalize-package-bin@4.0.0: {}
+
   npm-package-arg@11.0.3:
     dependencies:
       hosted-git-info: 7.0.2
@@ -4711,15 +4735,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  npm-run-all2@6.2.3:
+  npm-run-all2@7.0.1:
     dependencies:
       ansi-styles: 6.2.1
       cross-spawn: 7.0.3
       memorystream: 0.3.1
       minimatch: 9.0.5
       pidtree: 0.6.0
-      read-package-json-fast: 3.0.2
+      read-package-json-fast: 4.0.0
       shell-quote: 1.8.1
+      which: 5.0.0
 
   npm-run-path@5.3.0:
     dependencies:
@@ -4955,8 +4980,9 @@ snapshots:
   postcss-load-config@5.0.3(postcss@8.4.47):
     dependencies:
       lilconfig: 3.1.2
-      postcss: 8.4.47
       yaml: 2.4.1
+    optionalDependencies:
+      postcss: 8.4.47
 
   postcss-merge-longhand@7.0.4(postcss@8.4.47):
     dependencies:
@@ -5126,6 +5152,11 @@ snapshots:
     dependencies:
       json-parse-even-better-errors: 3.0.2
       npm-normalize-package-bin: 3.0.1
+
+  read-package-json-fast@4.0.0:
+    dependencies:
+      json-parse-even-better-errors: 4.0.0
+      npm-normalize-package-bin: 4.0.0
 
   read-pkg-up@10.1.0:
     dependencies:
@@ -5487,13 +5518,13 @@ snapshots:
 
   vite@6.0.0-beta.3(@types/node@22.7.5)(sass@1.79.5):
     dependencies:
-      '@types/node': 22.7.5
       esbuild: 0.24.0
       postcss: 8.4.47
       rollup: 4.24.0
-      sass: 1.79.5
     optionalDependencies:
+      '@types/node': 22.7.5
       fsevents: 2.3.3
+      sass: 1.79.5
 
   walk-up-path@3.0.1: {}
 
@@ -5508,6 +5539,10 @@ snapshots:
       isexe: 2.0.0
 
   which@4.0.0:
+    dependencies:
+      isexe: 3.1.1
+
+  which@5.0.0:
     dependencies:
       isexe: 3.1.1
 
