@@ -11,4 +11,11 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['multiple-select-vanilla'],
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
 });
