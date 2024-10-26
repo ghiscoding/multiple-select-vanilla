@@ -1,7 +1,7 @@
 {
   "name": "multiple-select-vanilla",
   "description": "This lib allows you to select multiple elements with checkboxes",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "keywords": [
     "checkboxes",
     "multiple-select",
@@ -84,7 +84,7 @@
     "esbuild": "^0.24.0",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
-    "sass": "^1.79.5",
+    "sass": "^1.80.4",
     "tinyglobby": "^0.2.9",
     "typescript": "5.6.3"
   }
