@@ -110,9 +110,6 @@
   text-decoration: none;
   user-select: none;
   white-space: nowrap;
-  &:hover {
-    border-color: var(--ms-choice-border-hover-color, v.$ms-choice-border-hover-color);
-  }
   &:focus {
     border-color: var(--ms-choice-focus-border-color, v.$ms-choice-focus-border-color);
     box-shadow: var(--ms-choice-focus-box-shadow, v.$ms-choice-focus-box-shadow);
