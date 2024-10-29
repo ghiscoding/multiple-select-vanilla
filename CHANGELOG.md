@@ -6,7 +6,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [3.4.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.4.2...v3.4.4) (2024-10-26)
 
-**Note:** Version bump only for package multiple-select-vanilla-root
+#### Bug Fixes
+- remove ms-choice control border hover color ([ac26901f](https://github.com/ghiscoding/multiple-select-vanilla/commit/ac26901f2efa5f1ca6ba320b6792a861b7e29b6d))
 
 ## [3.4.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.4.2...v3.4.3) (2024-10-26)
 
