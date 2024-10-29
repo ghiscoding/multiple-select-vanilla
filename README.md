@@ -10,7 +10,7 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/multiple-select-vanilla?color=success&label=gzip)](https://bundlephobia.com/result?p=multiple-select-vanilla)
 
 ## Description
-Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great lib). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.7.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.7.0). The main difference from the original lib is that we dropped jQuery in favor of native browser code and this mean zero external dependency. As a bonus, a few extra features were also added to the library as you can see from the list shown below [Changes vs Original lib](#changes-vs-original-lib-multiple-select).
+Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great project). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.7.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.7.0). The main difference from the original lib is that we dropped jQuery in favor of native browser code and this mean zero external dependency. As a bonus, a few extra features were also added to the library and you can see them listed below [Changes vs Original lib](#changes-vs-original-lib-multiple-select).
 
 This lib allows you to select multiple elements with checkboxes :).
 
@@ -42,29 +42,29 @@ npm install multiple-select-vanilla
 
 
 ## Changes vs Original lib (`multiple-select`)
-New Multiple-Select Options:
-- dropped jQuery requirement and replaced necessary code with browser native code.
+Changes and new options:
+- dropped jQuery requirement and rewrite with browser native code.
 - rewritten in TypeScript to also add typings support (`d.ts`)
-- make the lib CSP compliant (see section below)
+- make the lib CSP compliant (see explanations below)
 - revamped the UI to give it a more Modern Look:
   - improve CSS styling and use SVG icons (CSS/SASS variables are also availables)
   - new Dark Mode
-  - replace tabIndex by a more intuitive navigation & highlight by using arrow keys (or mouse hover)
+  - replace tabIndex with a more intuitive navigation & highlight by using arrow keys (or mouse hover)
   - show 3 different states on multiple selections (none " ", partial "-", all "🗸")
-- add extra options:
+- add new options:
   - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height by available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
-  - `autoAdjustDropWidthByTextSize` automatically set the drop width size from the widest list option width
+  - `autoAdjustDropWidthByTextSize` automatically set the drop width size by reading the widest list option width
   - `dataTest` will add a `data-test` attribute on the `.ms-parent` and `.ms-drop` divs for easier E2E testing
-  - `useSelectOptionLabel` will use the `<option label="">` that can be used to display shorter text of selected options.
+  - `useSelectOptionLabel` will use the `<option label="">` which can be used to display shorter text of selected options.
     - example: display "1,3" as label instead of "January,March" (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options31))
   - `useSelectOptionLabelToHtml` similar to `useSelectOptionLabel` but also renders HTML.
   - `renderOptionLabelAsHtml` will render selected options as HTML code (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options27))
   - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options32)).
-  - `showOkButton` to add an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
-  - `showSearchClear` show a clear button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
-  - `diacriticParser` custom parser to normalize diacritic signs when filtering select list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options35))
-  - `darkMode` option for a new **Dark Mode** Theme (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options38))
+  - `showOkButton` adds an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
+  - `showSearchClear` show a clear filter button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
+  - `diacriticParser` custom parser to normalize diacritic symbols when filtering select list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options35))
+  - `darkMode` to enable our new **Dark Mode** Theme (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options38))
   - `infiniteScroll` option (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options36))
   - `onFilterClear` callback that will be executed when the filter gets cleared (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/events))
   - `onClose(reason)` callback that will be executed when the dropdown closes (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/events))
