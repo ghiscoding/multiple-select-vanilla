@@ -43,15 +43,15 @@ npm install multiple-select-vanilla
 
 ## Changes vs Original lib (`multiple-select`)
 Changes and new options:
-- dropped jQuery requirement and rewrite with browser native code.
-- rewritten in TypeScript to also add typings support (`d.ts`)
-- make the lib CSP compliant (see explanations below)
+- dropped jQuery requirement and rewrote with browser native code.
+- rewritten in TypeScript to also provide typings support (`d.ts`)
+- make the lib CSP compliant (see CSP section below)
 - revamped the UI to give it a more Modern Look:
-  - improve CSS styling and use SVG icons (CSS/SASS variables are also availables)
+  - improved CSS styling by using SVG icons (CSS/SASS variables are also availables)
   - new Dark Mode
   - replace tabIndex with a more intuitive navigation & highlight by using arrow keys (or mouse hover)
   - show 3 different states on multiple selections (none " ", partial "-", all "🗸")
-- add new options:
+- add extra options:
   - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height by available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
   - `autoAdjustDropWidthByTextSize` automatically set the drop width size by reading the widest list option width
