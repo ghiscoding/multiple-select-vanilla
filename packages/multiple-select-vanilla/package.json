@@ -83,7 +83,7 @@
     "esbuild": "^0.24.0",
     "postcss": "^8.4.49",
     "postcss-cli": "^11.0.0",
-    "sass": "^1.81.0",
+    "sass": "^1.82.0",
     "tinyglobby": "^0.2.10",
     "typescript": "5.7.2"
   }
