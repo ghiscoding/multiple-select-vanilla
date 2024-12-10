@@ -37,7 +37,7 @@ importers:
         version: 7.0.1
       pnpm:
         specifier: ^9.14.4
-        version: 9.14.4
+        version: 9.15.0
       rimraf:
         specifier: ^5.0.10
         version: 5.0.10
@@ -1977,8 +1977,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  pnpm@9.14.4:
-    resolution: {integrity: sha512-yBgLP75OS8oCyUI0cXiWtVKXQKbLrfGfp4JUJwQD6i8n1OHUagig9WyJtj3I6/0+5TMm2nICc3lOYgD88NGEqw==}
+  pnpm@9.15.0:
+    resolution: {integrity: sha512-duI3l2CkMo7EQVgVvNZije5yevN3mqpMkU45RBVsQpmSGon5djge4QfUHxLPpLZmgcqccY8GaPoIMe1MbYulbA==}
     engines: {node: '>=18.12'}
     hasBin: true
 
@@ -4682,7 +4682,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.2
 
-  pnpm@9.14.4: {}
+  pnpm@9.15.0: {}
 
   postcss-calc@10.0.2(postcss@8.4.49):
     dependencies:
