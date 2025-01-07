@@ -18,7 +18,7 @@ To get started take a look at the [Live demo](https://ghiscoding.github.io/multi
 
 ## Demo
 Take a look at the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot). 
-You can also take a look at the "[Used by](#used-by)" section below to visit real world Open Source projects taking advantage of this library.
+You can also take a look at the "[Used by](#used-by)" section below to see and try live real world Open Source projects taking advantage of this library.
 
 ### Fully tested with [![Playwright](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg?logo=playwright)](https://playwright.dev/)
 
@@ -45,12 +45,13 @@ npm install multiple-select-vanilla
 Changes and new options:
 - dropped jQuery requirement and rewrote with browser native code.
 - rewritten in TypeScript to also provide typings support (`d.ts`)
-- make the lib CSP compliant (see CSP section below)
-- revamped the UI to give it a more Modern Look:
+- make the lib CSP compliant (see [CSP Compliance](#csp-compliance) section below)
+- add E2E tests, with Playwright, for all existing examples (over 65 of them)
+- revamped the UI in v3.x to give it a more Modern Look:
   - improved CSS styling by using SVG icons (CSS/SASS variables are also availables)
   - new Dark Mode
   - replace tabIndex with a more intuitive navigation & highlight by using arrow keys (or mouse hover)
-  - show 3 different states on multiple selections (none " ", partial "-", all "🗸")
+  - show 3 different states on multiple selections (none " ", partial "-" or all "🗸")
 - add extra options:
   - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height by available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
