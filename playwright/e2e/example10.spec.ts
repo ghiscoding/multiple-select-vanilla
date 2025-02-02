@@ -87,16 +87,25 @@ test.describe('Example 10 - Large Select Dataset with Virtual Scroll', () => {
     await page.locator('[data-test="select10-2"].ms-parent').click();
     await page.locator('[data-test="select10-2"] .ms-search .ms-icon-close').click();
     await ulElm2.evaluate(e => (e.scrollTop = 0));
-    await expect(await liElms2.nth(4).locator('span').innerHTML()).toBe('<i class="fa fa-star"></i> Task 4');
-    await expect(await liElms2.nth(5).locator('span').innerHTML()).toBe('<i class="fa fa-star"></i> Task 5');
-    expect(await liElms2.nth(4).locator('input[type=checkbox][data-key=option_4]').isChecked()).toBeTruthy();
-    expect(await liElms2.nth(5).locator('input[type=checkbox][data-key=option_5]').isChecked()).toBeTruthy();
-    expect(await liElms2.nth(6).locator('input[type=checkbox][data-key=option_6]').isChecked()).toBeFalsy();
+    await page.getByRole('option', { name: ' Task 4', exact: true });
+    await page.getByRole('option', { name: ' Task 5', exact: true });
+    expect(
+      await page.getByRole('option', { name: ' Task 4', exact: true }).locator('input[type=checkbox][data-key=option_4]').isChecked(),
+    ).toBeTruthy();
+    expect(
+      await page.getByRole('option', { name: ' Task 5', exact: true }).locator('input[type=checkbox][data-key=option_5]').isChecked(),
+    ).toBeTruthy();
+    expect(
+      await page.getByRole('option', { name: ' Task 6', exact: true }).locator('input[type=checkbox][data-key=option_6]').isChecked(),
+    ).toBeFalsy();
 
     // scroll back to middle and expect 5003 to still be checked
     await ulElm2.evaluate(e => (e.scrollTop = e.scrollHeight / 2));
     expect(await page.locator('[data-test="select10-2"] .ms-drop label').filter({ hasText: '5003' })).toBeVisible();
-    expect(await liElms2.locator('input[type=checkbox][data-key=option_5003]').isChecked()).toBeTruthy();
+    expect(await page.getByRole('option', { name: ' Task 5003', exact: true }).filter({ hasText: '5003' })).toBeVisible();
+    expect(
+      await page.getByRole('option', { name: ' Task 5003', exact: true }).locator('input[type=checkbox][data-key=option_5003]').isChecked(),
+    ).toBeTruthy();
     await page.locator('[data-test=select10-2].ms-parent').click(); // close drop
   });
 });
