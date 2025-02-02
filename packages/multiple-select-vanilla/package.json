@@ -70,17 +70,17 @@
     "sass:build": "sass src/styles:dist/styles/css --style=compressed --quiet-deps --no-source-map",
     "postsass:build": "postcss dist/styles/css/**/* --dir dist/styles/css --base dist/styles/css --no-map --use cssnano --use autoprefixer --style=compressed",
     "sass:watch": "sass src/styles:dist/styles/css --watch --style=compressed --quiet-deps --no-source-map",
-    "sass:copy": "cross-env copyfiles -V -u 2 \"./src/styles/**/*.scss\" dist/styles/sass"
+    "sass:copy": "cross-env copyfiles \"./src/styles/**/*.scss\" dist/styles/sass --up 2"
   },
   "dependencies": {
     "@types/trusted-types": "^2.0.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
-    "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "cssnano": "^7.0.6",
     "esbuild": "^0.24.0",
+    "native-copyfiles": "^0.2.1",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
     "sass": "^1.80.4",
