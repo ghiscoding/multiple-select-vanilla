@@ -18,7 +18,7 @@ To get started take a look at the [Live demo](https://ghiscoding.github.io/multi
 
 ## Demo
 Take a look at the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot). 
-You can also take a look at the "[Used by](#used-by)" section below to visit real world Open Source projects taking advantage of this library.
+You can also take a look at the "[Used by](#used-by)" section below to see and try live real world Open Source projects taking advantage of this library.
 
 ### Fully tested with [![Playwright](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg?logo=playwright)](https://playwright.dev/)
 
@@ -45,12 +45,13 @@ npm install multiple-select-vanilla
 Changes and new options:
 - dropped jQuery requirement and rewrote with browser native code.
 - rewritten in TypeScript to also provide typings support (`d.ts`)
-- make the lib CSP compliant (see CSP section below)
-- revamped the UI to give it a more Modern Look:
+- make the lib CSP compliant (see [CSP Compliance](#csp-compliance) section below)
+- add E2E tests, with Playwright, for all existing examples (over 65 of them)
+- revamped the UI in v3.x to give it a more Modern Look:
   - improved CSS styling by using SVG icons (CSS/SASS variables are also availables)
   - new Dark Mode
   - replace tabIndex with a more intuitive navigation & highlight by using arrow keys (or mouse hover)
-  - show 3 different states on multiple selections (none " ", partial "-", all "🗸")
+  - show 3 different states on multiple selections (none " ", partial "-" or all "🗸")
 - add extra options:
   - `autoAdjustDropHeight` will automatically adjust the drop (up/down) height by available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options30))
   - `autoAdjustDropPosition` will find best position (top/bottom) by its available space (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options29))
@@ -164,8 +165,23 @@ Before submitting a PR (pull request), please make sure that you followed the st
 ## Sponsors
 
 <div>
-  <img class="circle avatar-user" src="https://avatars.githubusercontent.com/u/48218815?s=52&amp;v=4" width="40" height="40" alt="@kevinburkett" />
-  <a href="/kevinburkett" class="Link">
-    <span class="wb-break-word ml-2">kevinburkett</span>
-  </a>
+  <span>
+    <a href="https://github.com/wundergraph" class="Link" title="Wundergraph" target="_blank"><img src="https://avatars.githubusercontent.com/u/64281914" width="50" height="50" valign="middle" /></a>
+  </span>
+  &nbsp;
+  <span>
+    <a href="https://github.com/johnsoncodehk" class="Link" title="johnsoncodehk (Volar)" target="_blank"><img src="https://avatars.githubusercontent.com/u/16279759" width="50" height="50" valign="middle" /></a>
+  </span>
+   &nbsp;
+  <span>
+    <a href="https://github.com/kevinburkett" class="Link" title="kevinburkett" target="_blank"><img class="circle avatar-user" src="https://avatars.githubusercontent.com/u/48218815?s=52&amp;v=4" width="45" height="45" valign="middle" /></a>
+  </span>
+  &nbsp;
+  <span>
+    <a href="https://github.com/anton-gustafsson" class="Link" title="anton-gustafsson" target="_blank"><img src="https://avatars.githubusercontent.com/u/22906905?s=52&v=4" width="50" height="50" valign="middle" /></a>
+  </span>
+  &nbsp;
+  <span>
+    <a href="https://github.com/gibson552" class="Link" title="gibson552" target="_blank"><img src="https://avatars.githubusercontent.com/u/84058359?s=52&v=4" width="50" height="50" valign="middle" /></a>
+  </span>
 </div>

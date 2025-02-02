@@ -59,17 +59,17 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@lerna-lite/cli": "^3.10.0",
-    "@lerna-lite/publish": "^3.10.0",
-    "@lerna-lite/watch": "^3.10.0",
-    "@playwright/test": "^1.48.2",
-    "@types/node": "^22.8.1",
+    "@lerna-lite/cli": "^3.11.0",
+    "@lerna-lite/publish": "^3.11.0",
+    "@lerna-lite/watch": "^3.11.0",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.6",
     "conventional-changelog-conventionalcommits": "^7.0.2",
     "cross-env": "^7.0.3",
-    "npm-run-all2": "^7.0.1",
-    "pnpm": "^9.12.2",
+    "npm-run-all2": "^7.0.2",
+    "pnpm": "^9.15.4",
     "rimraf": "^5.0.10",
-    "typescript": "5.6.3"
+    "typescript": "5.7.3"
   },
-  "packageManager": "pnpm@9.12.2"
+  "packageManager": "pnpm@9.15.4"
 }
