@@ -61,7 +61,7 @@
     "postbuild": "pnpm sass:build && pnpm sass:copy",
     "dev:init": "pnpm sass:build && pnpm sass:copy && pnpm build:all",
     "build:all": "node build-prod.mjs",
-    "build:watch": "cross-env NODE_ENV='development' node build-watch.mjs",
+    "build:watch": "set NODE_ENV='development' && node build-watch.mjs",
     "build:locales": "esbuild src/locales/all-locales-index.ts --bundle --minify --format=iife --target=es2021 --sourcemap --outfile=dist/locales/multiple-select-all-locales.js",
     "build:esm": "esbuild src/index.ts --bundle --minify --format=esm --target=es2021 --sourcemap --outfile=dist/multiple-select.js",
     "build:types": "tsc --emitDeclarationOnly --incremental --declarationMap false --outDir dist",
