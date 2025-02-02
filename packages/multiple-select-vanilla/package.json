@@ -77,7 +77,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
-    "cross-env": "^7.0.3",
     "cssnano": "^7.0.6",
     "esbuild": "^0.24.2",
     "native-copyfiles": "^0.2.1",
