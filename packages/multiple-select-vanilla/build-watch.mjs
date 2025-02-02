@@ -1,6 +1,6 @@
 import { exec, execSync } from 'node:child_process';
 import path from 'node:path';
-import copyfiles from 'copyfiles';
+import { copyfiles } from 'native-copyfiles';
 import { buildSync } from 'esbuild';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { compile as sassCompile } from 'sass';
