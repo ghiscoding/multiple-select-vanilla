@@ -82,6 +82,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.1)
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
       cssnano:
         specifier: ^7.0.6
         version: 7.0.6(postcss@8.5.1)
@@ -89,8 +92,8 @@ importers:
         specifier: ^0.24.2
         version: 0.24.2
       native-copyfiles:
-        specifier: ^0.2.1
-        version: 0.2.1
+        specifier: ^0.3.0
+        version: 0.3.0
       postcss:
         specifier: ^8.5.1
         version: 8.5.1
@@ -1706,8 +1709,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  native-copyfiles@0.2.1:
-    resolution: {integrity: sha512-oXt+z5p21y6dsdkIjGra4qtIDYkOdR1tdng9/2xG4KnT1CRMUSv3TDIVkZ3FNhzwjjDH58/rIUmjiOG4T3BCTg==}
+  native-copyfiles@0.3.0:
+    resolution: {integrity: sha512-n6QxS1druW6uIEACkKu/qiZI54/7dWHPD+QX/G4XMI429q05dm3G04vLGtNzgdcFvuC4IBZW/SdvNfpZoEth0Q==}
     hasBin: true
 
   negotiator@0.6.3:
@@ -2499,6 +2502,10 @@ packages:
   universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
+
+  untildify@5.0.0:
+    resolution: {integrity: sha512-bOgQLUnd2G5rhzaTvh1VCI9Fo6bC5cLTpH17T5aFfamyXFYDbbdzN6IXdeoc3jBS7T9hNTmJtYUzJCJ2Xlc9gA==}
+    engines: {node: '>=16'}
 
   update-browserslist-db@1.1.0:
     resolution: {integrity: sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==}
@@ -4322,9 +4329,10 @@ snapshots:
 
   nanoid@3.3.8: {}
 
-  native-copyfiles@0.2.1:
+  native-copyfiles@0.3.0:
     dependencies:
       tinyglobby: 0.2.10
+      untildify: 5.0.0
       yargs: 17.7.2
 
   negotiator@0.6.3: {}
@@ -5114,6 +5122,8 @@ snapshots:
   universal-user-agent@7.0.2: {}
 
   universalify@2.0.1: {}
+
+  untildify@5.0.0: {}
 
   update-browserslist-db@1.1.0(browserslist@4.23.3):
     dependencies:
