@@ -11,5 +11,6 @@
       allowedVersions: '<6.0.0',
     },
   ],
+  ignoreDeps: ['node', 'pnpm'],
   schedule: ['every 4 weeks on Friday'],
 }
