@@ -1,7 +1,8 @@
 {
   extends: ['config:base', 'group:allNonMajor'],
   labels: ['dependencies'],
-  dependencyDashboard: false,
+  dependencyDashboard: true,
+  lockFileMaintenance: { enabled: true },
   pin: false,
   rangeStrategy: 'bump',
   packageRules: [
