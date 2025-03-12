@@ -4,6 +4,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.4.4...v3.5.0) (2025-03-12)
+
+### Features
+
+* add Indonesian locale ([#337](https://github.com/ghiscoding/multiple-select-vanilla/issues/337)) ([5216284](https://github.com/ghiscoding/multiple-select-vanilla/commit/5216284265ab449e64b1232f20a3a49cf0c183d6)) - by @ghiscoding
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#319](https://github.com/ghiscoding/multiple-select-vanilla/issues/319)) ([5d69d3c](https://github.com/ghiscoding/multiple-select-vanilla/commit/5d69d3cff9f87db75cba4edd44a2980e12b0ba8d)) - by @renovate-bot
+* **deps:** update all non-major dependencies ([#324](https://github.com/ghiscoding/multiple-select-vanilla/issues/324)) ([bb38fe7](https://github.com/ghiscoding/multiple-select-vanilla/commit/bb38fe789d80f929c0952c1f0d377ed9451113ac)) - by @renovate-bot
+
 ## [3.4.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.4.2...v3.4.4) (2024-10-26)
 
 #### Bug Fixes
