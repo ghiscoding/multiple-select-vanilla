@@ -7,6 +7,7 @@ export type LocaleKey =
   | 'es-ES'
   | 'fr-FR'
   | 'hu-HU'
+  | 'id-ID'
   | 'it-IT'
   | 'ja-JP'
   | 'pt-BR'

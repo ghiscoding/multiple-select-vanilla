@@ -5,6 +5,7 @@ export * from './multiple-select-en-US.js';
 export * from './multiple-select-es-ES.js';
 export * from './multiple-select-fr-FR.js';
 export * from './multiple-select-hu-HU.js';
+export * from './multiple-select-id-ID.js';
 export * from './multiple-select-it-IT.js';
 export * from './multiple-select-ja-JP.js';
 export * from './multiple-select-pt-BR.js';
