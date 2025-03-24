@@ -26,7 +26,10 @@ export const multipleSelect = (
   return _multipleSelect(selector, config);
 };
 
-function _multipleSelect(nodeList: ArrayLike<Node>, config?: Partial<MultipleSelectOption>): MultipleSelectInstance | MultipleSelectInstance[] {
+function _multipleSelect(
+  nodeList: ArrayLike<Node>,
+  config?: Partial<MultipleSelectOption>,
+): MultipleSelectInstance | MultipleSelectInstance[] {
   // static list
   const nodes = Array.from(nodeList) as HTMLElement[];
   const instances: MultipleSelectInstance[] = [];

@@ -1100,7 +1100,13 @@ export class MultipleSelectInstance {
     }
 
     if (this.ulElm && this.options.infiniteScroll) {
-      this._bindEventService.bind(this.ulElm, 'scroll', this.infiniteScrollHandler.bind(this) as EventListener, undefined, 'option-list-scroll');
+      this._bindEventService.bind(
+        this.ulElm,
+        'scroll',
+        this.infiniteScrollHandler.bind(this) as EventListener,
+        undefined,
+        'option-list-scroll',
+      );
     }
   }
 

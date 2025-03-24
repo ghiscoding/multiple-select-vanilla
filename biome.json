@@ -1,20 +1,25 @@
 {
     "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-    "organizeImports": {
-        "enabled": true
+    "assist": {
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
     },
     "formatter": {
         "enabled": true,
         "indentWidth": 2,
         "lineEnding": "lf",
         "formatWithErrors": true,
-        "lineWidth": 145,
+        "lineWidth": 140,
         "indentStyle": "space",
-        "ignore": [
-            ".cache",
-            "dist/**",
-            "**/*.json",
-            "node_modules/**"
+        "includes": [
+            "**",
+            "!**/.cache",
+            "!**/dist/**",
+            "!**/*.json",
+            "!**/node_modules/**"
         ]
     },
     "javascript": {
@@ -39,35 +44,55 @@
     },
     "linter": {
         "enabled": true,
-        "ignore": [
-            ".cache",
-            "dist/**",
-            "**/*.json",
-            "node_modules/**"
+        "includes": [
+            "**",
+            "!**/.cache",
+            "!**/dist/**",
+            "!**/*.json",
+            "!**/node_modules/**"
         ],
         "rules": {
+            "correctness": {
+                "useImportExtensions": "error"
+            },
             "recommended": true,
             "complexity": {
                 "noForEach": "off",
                 "noStaticOnlyClass": "off",
                 "noUselessSwitchCase": "off"
             },
-            "correctness": {
-                "useImportExtensions": "error"
-            },
             "performance": {
+                "noBarrelFile": "off",
                 "noDelete": "off"
             },
             "suspicious": {
                 "noAssignInExpressions": "off",
                 "noExplicitAny": "off",
-                "noMisleadingCharacterClass": "off",
                 "noPrototypeBuiltins": "off"
             },
             "style": {
                 "noNonNullAssertion": "off",
                 "noParameterAssign": "off",
-                "useExponentiationOperator": "off"
+                "useExponentiationOperator": "off",
+                "useLiteralEnumMembers": "error",
+                "noCommaOperator": "error",
+                "useNodejsImportProtocol": "error",
+                "useAsConstAssertion": "error",
+                "useNumericLiterals": "error",
+                "useEnumInitializers": "error",
+                "useSelfClosingElements": "error",
+                "useConst": "error",
+                "useSingleVarDeclarator": "error",
+                "noUnusedTemplateLiteral": "error",
+                "useNumberNamespace": "error",
+                "noInferrableTypes": "error",
+                "useTemplate": "error",
+                "useDefaultParameterLast": "error",
+                "noArguments": "error",
+                "useImportType": "error",
+                "useExportType": "error",
+                "noUselessElse": "error",
+                "useShorthandFunctionType": "error"
             }
         }
     },
