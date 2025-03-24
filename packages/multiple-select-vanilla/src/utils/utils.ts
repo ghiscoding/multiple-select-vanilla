@@ -64,7 +64,9 @@ export function isDefined(val: any) {
 export function objectRemoveEmptyProps(obj: any, clearProps?: string[]) {
   if (typeof obj === 'object') {
     if (clearProps) {
-      return Object.fromEntries(Object.entries(obj).filter(([name, val]) => (!isDefined(val) && !clearProps.includes(name)) || isDefined(val)));
+      return Object.fromEntries(
+        Object.entries(obj).filter(([name, val]) => (!isDefined(val) && !clearProps.includes(name)) || isDefined(val)),
+      );
     }
     return Object.fromEntries(Object.entries(obj).filter(([_, v]) => isDefined(v)));
   }

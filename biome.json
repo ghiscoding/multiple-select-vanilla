@@ -58,13 +58,15 @@
             "recommended": true,
             "complexity": {
                 "noForEach": "off",
-                "noStaticOnlyClass": "off"
+                "noStaticOnlyClass": "off",
+                "noUselessSwitchCase": "off"
             },
             "performance": {
                 "noBarrelFile": "off",
                 "noDelete": "off"
             },
             "suspicious": {
+                "noAssignInExpressions": "off",
                 "noExplicitAny": "off",
                 "noPrototypeBuiltins": "off"
             },
