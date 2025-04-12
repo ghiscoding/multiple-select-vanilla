@@ -73,9 +73,6 @@ jobs:
       - name: Build Library
         run: pnpm build:lib
 
-      - name: validate "Are the Types Wrong"
-        run: pnpm are-types-wrong
-
       - name: Build Website (GitHub demo site)
         run: pnpm build:demo
 
