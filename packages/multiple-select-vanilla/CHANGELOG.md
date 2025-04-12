@@ -4,6 +4,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.5.0...v4.0.0) (2025-04-12)
+
+### ⚠ BREAKING CHANGES
+
+* build as ESM-Only, drop CJS (#348)
+
+### Features
+
+* build as ESM-Only, drop CJS ([#348](https://github.com/ghiscoding/multiple-select-vanilla/issues/348)) ([1cd1dd4](https://github.com/ghiscoding/multiple-select-vanilla/commit/1cd1dd439277879bdc4afcb4bacf8a4475c7fc80)) - by @ghiscoding
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#349](https://github.com/ghiscoding/multiple-select-vanilla/issues/349)) ([781be20](https://github.com/ghiscoding/multiple-select-vanilla/commit/781be2093347b87672ceeced405c4008407ca882)) - by @renovate-bot
+
 ## [3.5.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.4.4...v3.5.0) (2025-03-12)
 
 ### Features
