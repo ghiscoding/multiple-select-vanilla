@@ -1,7 +1,7 @@
 import { buildSync } from 'esbuild';
 import { globSync } from 'tinyglobby';
 
-const buildFormats = ['cjs', 'esm'];
+const buildFormats = ['esm'];
 const localeFiles = globSync('src/locales/**/*.ts');
 const localeEntryPoints = [];
 

@@ -22,8 +22,8 @@
       including Multiple-Select-Vanilla. Just use the following CDN links.
     </p>
     <p>
-      The project now ships its <code>.js</code> files as ESM by default, if you still wish to use the legacy CommonJS (CJS) format with <code>require()</code>,
-      then you will have to use <code>.cjs</code> file extension.
+      The project now ships as ESM-Only, if you still wish to use the legacy CommonJS (CJS) format with <code>require()</code>,
+      then use previous 3.x version.
     </p>
 
     <div style="background: #f7f7f7; padding: 10px">
@@ -33,9 +33,6 @@
 
 &lt;!-- (ESM requires <span style="color:#d63384">type=&quot;module&quot;</span>) Latest compiled and minified JavaScript --&gt;
 &lt;script type=&quot;module&quot; src=&quot;<span style="color:#0a3069">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.4.0/dist/browser/multiple-select.js</span>&quot;&gt;&lt;/script&gt;
-
-&lt;!-- (CJS requires <span style="color:#d63384">.cjs</span> extension) Latest compiled and minified JavaScript --&gt;
-&lt;script src=&quot;<span style="color:#0a3069">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@3.4.0/dist/browser/multiple-select.cjs</span>&quot;&gt;&lt;/script&gt;</pre>
     </div>
 
     <quote>
@@ -52,16 +49,12 @@
     </div>
   </section>
 
-  <h5>CommonJS <code>require()</code> / ESM <code>import from</code></h5>
+  <h5>ESM <code>import from</code></h5>
     <p>
       The library provides both CommonJS or ESM, see the example below:
     </p>
     <div style="background: #f7f7f7; padding: 10px">
 <pre>
-// CommonJS
-<span style="color:#cf222e">const</span> { multipleSelect } = <span style="color:#6639ba">require</span>(<span style="color:#0a3069">'multiple-select-vanilla'</span>);
-<span style="color:#6639ba">multipleSelect</span>(<span style="color:#0a3069">'.multiple-select'</span>, {<span style="color:#a0a1a7">/*...*/</span>});
-
 // ESM
 <span style="color:#cf222e">import</span> { multipleSelect } <span style="color:#cf222e">from</span> <span style="color:#0a3069">'multiple-select-vanilla'</span>;
 <span style="color:#6639ba">multipleSelect</span>(<span style="color:#0a3069">'.multiple-select'</span>, {<span style="color:#a0a1a7">/*...*/</span>});

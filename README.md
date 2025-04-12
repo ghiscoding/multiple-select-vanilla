@@ -98,27 +98,22 @@ with this code in place, we can now use the following CSP meta tag (which is wha
 There are multiple ways to install and use the library, you can see below the folder structure of the distribution files
 1. `dist/browser`: Standalone build which assigns `multipleSelect` on the `window.multipleSelect` object
    - browser standalone means that you can simply load it with `<script></script>` and then `multipleSelect('#mySelect')`
-   - 2 builds are available CJS (`.cjs`) and ESM (`.js`) and for the latter you will need to load it with `<script type="module">`
-2. `cjs`: to use as CommonJS with `require('multiple-select-vanilla')`
-3. `esm`: to use as ESM with `import from 'multiple-select-vanilla'`
+   - only ESM build (`.js`) are provided, you will need to load it with `<script type="module">`
+2. `esm`: to use as ESM with `import from 'multiple-select-vanilla'`
 
 ```
 dist/
   browser/
     multiple-select.js              # ESM build, use with: window.multipleSelect
-    multiple-select.cjs             # CJS (CommonJS) build, use with: window.multipleSelect
   locales/
-    multiple-select-all-locales.cjs # all-in-1 locales as CJS
     multiple-select-all-locales.js  # all-in-1 locales as ESM
     ..
-    multiple-select-fr-FR.cjs       # French locale as CJS
     multiple-select-fr-FR.js        # French locale as ESM
     ...
   styles/                           # CSS and SASS Stylings
     css/
     sass/
   index.d.ts                        # d.ts Type Definitions
-  multiple-select.cjs               # CJS (CommonJS), used by: require()
   multiple-select.js                # ESM, used by: import from
 ```
 
