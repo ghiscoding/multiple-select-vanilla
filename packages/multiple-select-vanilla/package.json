@@ -21,7 +21,7 @@
   "homepage": "https://github.com/ghiscoding/multiple-select-vanilla",
   "license": "MIT",
   "type": "module",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -32,6 +32,7 @@
     "./dist/styles/*": "./dist/styles/*",
     "./package.json": "./package.json"
   },
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ghiscoding/multiple-select-vanilla.git",
