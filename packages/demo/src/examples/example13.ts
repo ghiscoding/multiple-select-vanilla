@@ -4,13 +4,16 @@ import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-van
 export default class Example {
   createBtnElm?: HTMLButtonElement | null;
   destroyBtnElm?: HTMLButtonElement | null;
+  modifyBtnElm?: HTMLButtonElement | null;
   ms1?: MultipleSelectInstance;
 
   mount() {
     this.createBtnElm = document.querySelector('#createBtn');
     this.destroyBtnElm = document.querySelector('#destroyBtn');
+    this.modifyBtnElm = document.querySelector('#modifyBtn');
     this.createBtnElm!.addEventListener('click', this.createMultipleSelect.bind(this));
     this.destroyBtnElm!.addEventListener('click', this.destroyMultiSelect.bind(this));
+    this.modifyBtnElm!.addEventListener('click', this.modifyData.bind(this));
   }
 
   createMultipleSelect() {
@@ -80,10 +83,23 @@ export default class Example {
     this.ms1 = undefined; // remove detached element
   }
 
+  modifyData() {
+    this.ms1?.refreshOptions({
+      data: [
+        { value: 1, text: 'Options 1' },
+        { value: 2, text: 'Options 2' },
+        { value: 3, text: 'Options 3', selected: true },
+        { value: 4, text: 'Options 4', selected: true },
+        { value: 5, text: 'Options 5' },
+      ],
+    });
+  }
+
   unmount() {
     // destroy ms instance(s) to avoid DOM leaks
     this.destroyMultiSelect();
     this.createBtnElm!.removeEventListener('click', this.createMultipleSelect.bind(this));
     this.destroyBtnElm!.removeEventListener('click', this.destroyMultiSelect.bind(this));
+    this.modifyBtnElm!.removeEventListener('click', this.modifyData.bind(this));
   }
 }
