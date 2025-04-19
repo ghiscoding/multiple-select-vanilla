@@ -26,6 +26,7 @@ test.describe('Options 27 - Text Template', () => {
     ms1ParentSpanLoc = (await page.locator('div[data-test=select1].ms-parent .ms-choice span').textContent()) as string;
     await expect(ms1ParentSpanLoc).toBe('<i class="fa fa-star"></i>January, <i class="fa fa-star"></i>April');
     await page.locator('div[data-test=select1].ms-parent').click();
+    expect(await page.locator('div[data-test=select1] .ms-drop')).not.toBeVisible();
 
     // ms-select #2
     await page.locator('div[data-test=select2].ms-parent').click();
@@ -44,9 +45,7 @@ test.describe('Options 27 - Text Template', () => {
     await expect(spanLoc4html).toBe('&lt;span style="font-weight:bold"&gt;33&lt;/span&gt;');
 
     await page.waitForTimeout(90);
-    await expect(page.locator('div[data-test=select2] .ms-choice span')).toHaveText(
-      '50", <span style="font-weight:bold">33</span>'
-    );
+    await expect(page.locator('div[data-test=select2] .ms-choice span')).toHaveText('50", <span style="font-weight:bold">33</span>');
     let ms2ParentSpanLocText = await page.locator('div[data-test=select2].ms-parent .ms-choice span').textContent();
     let ms2ParentSpanLocHtml = await page.locator('div[data-test=select2].ms-parent .ms-choice span').innerHTML();
     await expect(ms2ParentSpanLocText).toBe('50", <span style="font-weight:bold">33</span>');

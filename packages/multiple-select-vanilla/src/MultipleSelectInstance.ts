@@ -371,7 +371,7 @@ export class MultipleSelectInstance {
     this.update(true);
 
     if (this.options.isOpen) {
-      this.open(10);
+      this.open(0);
     }
 
     if (this.options.openOnHover && this.parentElm) {
