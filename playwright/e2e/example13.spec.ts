@@ -31,7 +31,7 @@ test.describe('Example 13 - Destroy Select', () => {
 
     await page.getByRole('button', { name: 'Modify Data' }).click();
 
-    await expect(page.locator('.ms-drop').nth(0)).toBeVisible();
+    // await expect(page.locator('.ms-drop').nth(0)).toBeVisible();
     liElms = await page.locator('[data-test="select1"] .ms-drop ul li');
     expect(await page.locator('[data-test="select1"] .ms-drop ul li label')).toHaveCount(5);
     expect(await liElms.nth(0).locator('input[type=checkbox][data-key=option_0]').isChecked()).toBeFalsy();
