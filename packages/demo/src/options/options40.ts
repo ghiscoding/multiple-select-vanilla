@@ -9,7 +9,7 @@ export default class Example {
   mount() {
     this.ms1 = multipleSelect('select[data-test=select1]', {
       filter: true,
-      filterData: dataItem => {
+      preFilter: dataItem => {
         // filter out values 1,3 which are January and March
         return dataItem.value !== '1' && dataItem.value !== '3';
       },
@@ -17,7 +17,7 @@ export default class Example {
 
     this.ms2 = multipleSelect('select[data-test=select2]', {
       filter: true,
-      filterData: dataItem => {
+      preFilter: dataItem => {
         // filter out the entire Group2
         return (dataItem as OptGroupRowData).label !== 'Group 2';
       },
@@ -38,7 +38,7 @@ export default class Example {
         11: 'November',
         12: 'December',
       },
-      filterData: dataItem => {
+      preFilter: dataItem => {
         // filter out values 2,4 which are February and April
         return dataItem.value !== '2' && dataItem.value !== '4';
       },
@@ -120,7 +120,7 @@ export default class Example {
           ],
         },
       ],
-      filterData: dataItem => {
+      preFilter: dataItem => {
         // filter out the Q1 group
         return (dataItem as OptGroupRowData).label !== 'Q1';
       },

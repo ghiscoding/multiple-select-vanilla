@@ -317,8 +317,8 @@ export class MultipleSelectInstance {
     }
 
     // user might filter its data prior to rendering the list
-    if (this.data && this.options.filterData) {
-      this.data = this.data.filter(this.options.filterData);
+    if (this.data && this.options.preFilter) {
+      this.data = this.data.filter(this.options.preFilter);
     }
 
     this.dataTotal = setDataKeys(this.data || []);
