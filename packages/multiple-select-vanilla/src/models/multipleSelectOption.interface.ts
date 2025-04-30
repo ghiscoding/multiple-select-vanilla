@@ -88,6 +88,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Whether or not Multiple Select show a search field to search through checkbox items.By default this option is set to false. */
   filter?: boolean;
 
+  /** Custom Filter predicate function pre-filter the data collection before rendering the select dropdown */
+  filterData?: (dataItem: OptionRowData | OptGroupRowData) => boolean;
+
   /** Accept a filter by typing Enter on the keyboard. By default this option is set to false. */
   filterAcceptOnEnter?: boolean;
 

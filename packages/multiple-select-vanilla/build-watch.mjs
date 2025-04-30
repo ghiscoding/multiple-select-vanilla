@@ -8,7 +8,8 @@ import { compile as sassCompile } from 'sass';
 const env = process.env.NODE_ENV;
 
 // Start the compilation process
-runCompilation(process.env.LERNA_FILE_CHANGES.split(','));
+const files = process.env.LERNA_FILE_CHANGES.split(',') || [];
+runCompilation(files);
 
 function runBuild(options) {
   const startTime = new Date().getTime();
@@ -22,8 +23,7 @@ function runBuild(options) {
       target: 'es2021',
       sourcemap: true,
       logLevel: 'error',
-      // outfile: env === 'production' ? './dist/multiple-select.min.js' : './dist/multiple-select.js',
-      outfile: 'dist/multiple-select.js',
+      outfile: 'dist/index.js',
     },
     ...options,
   };

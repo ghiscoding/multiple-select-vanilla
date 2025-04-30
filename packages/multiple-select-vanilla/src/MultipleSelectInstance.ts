@@ -316,6 +316,11 @@ export class MultipleSelectInstance {
       this.fromHtml = true;
     }
 
+    // user might filter its data prior to rendering the list
+    if (this.data && this.options.filterData) {
+      this.data = this.data.filter(this.options.filterData);
+    }
+
     this.dataTotal = setDataKeys(this.data || []);
   }
 
