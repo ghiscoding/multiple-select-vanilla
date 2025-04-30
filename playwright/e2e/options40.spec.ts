@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Options 40 - Filter Data', () => {
-  test('all select dropdown should have data filtered out', async ({ page }) => {
+test.describe('Options 40 - Pre-Filter Data', () => {
+  test('all select dropdown should have data pre-filtered', async ({ page }) => {
     await page.goto('#/options40');
 
     // 1st select

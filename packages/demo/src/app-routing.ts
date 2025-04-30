@@ -69,6 +69,7 @@ import Options37 from './options/options37.js';
 import Options38 from './options/options38.js';
 import Options39 from './options/options39.js';
 import Options40 from './options/options40.js';
+import Options41 from './options/options41.js';
 
 export const navbarRouting = [
   { name: 'getting-started', view: '/src/getting-started.html', viewModel: GettingStarted, title: 'Getting Started' },
@@ -139,7 +140,8 @@ export const exampleRouting = [
       { name: 'options37', view: '/src/options/options37.html', viewModel: Options37, title: 'Navigation Highlight' },
       { name: 'options38', view: '/src/options/options38.html', viewModel: Options38, title: 'Dark Mode' },
       { name: 'options39', view: '/src/options/options39.html', viewModel: Options39, title: 'Label Id (aria-labelledby)' },
-      { name: 'options40', view: '/src/options/options40.html', viewModel: Options40, title: 'Filter Data' },
+      { name: 'options40', view: '/src/options/options40.html', viewModel: Options40, title: 'Pre-Filter Data' },
+      { name: 'options41', view: '/src/options/options41.html', viewModel: Options41, title: 'Pre-Sort Data' },
     ],
   },
   {

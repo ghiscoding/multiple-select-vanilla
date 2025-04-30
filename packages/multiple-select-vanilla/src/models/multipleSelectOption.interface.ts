@@ -169,8 +169,17 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Defines the position of select dropdown, can only be bottom or top. By default this option is set to bottom. */
   position: 'bottom' | 'top';
 
-  /** Custom Filter predicate function to pre-filter the data collection before rendering the select dropdown. Executed before `preSort`. */
+  /**
+   * Custom Filter predicate function callback to pre-filter the data collection before rendering the select dropdown.
+   * Note that this is executed before `preSort` (when defined).
+   */
   preFilter?: (dataItem: OptionRowData | OptGroupRowData) => boolean;
+
+  /**
+   * Custom Sort Comparer function callback to pre-sort the data collection before rendering the select dropdown.
+   * Note that this is executed after `preSort` (when defined).
+   */
+  preSort?: (item1: OptionRowData | OptGroupRowData, item2: OptionRowData | OptGroupRowData) => number;
 
   /** Defaults to False, should we render option labels as html? */
   renderOptionLabelAsHtml?: boolean;
