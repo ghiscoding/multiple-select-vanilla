@@ -4,6 +4,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.0.0...v4.1.0) (2025-05-01)
+
+### Features
+
+* add `lazyData` to lazy load only after clicking/opening select ([#361](https://github.com/ghiscoding/multiple-select-vanilla/issues/361)) ([f42ae19](https://github.com/ghiscoding/multiple-select-vanilla/commit/f42ae193618f0575d205f7ffecd7c11bdbe962ca)) - by @ghiscoding
+* add new `preFilter` callback option ([#356](https://github.com/ghiscoding/multiple-select-vanilla/issues/356)) ([926c82c](https://github.com/ghiscoding/multiple-select-vanilla/commit/926c82c8c9cd456be915e0a0e2cb4820a333560b)) - by @ghiscoding
+* add new `preSort` callback option, fixes [#355](https://github.com/ghiscoding/multiple-select-vanilla/issues/355) ([#358](https://github.com/ghiscoding/multiple-select-vanilla/issues/358)) ([0491b8d](https://github.com/ghiscoding/multiple-select-vanilla/commit/0491b8d9866433ef39ffe8d935cf04a23f6eab36)) - by @ghiscoding
+
+### Bug Fixes
+
+* remove open drop delay when changing data & add demo ([#351](https://github.com/ghiscoding/multiple-select-vanilla/issues/351)) ([8a1784f](https://github.com/ghiscoding/multiple-select-vanilla/commit/8a1784f5e310ec847f8776da85c5b9d781970536)) - by @ghiscoding
+
+### Reverts
+
+* Revert "chore: enable pnpm `shellEmulator` & remove `cross-env` (#352)" (#353) ([c706f03](https://github.com/ghiscoding/multiple-select-vanilla/commit/c706f030c1904a0fa43eb5ee9fa294952bb30d01)), closes [#352](https://github.com/ghiscoding/multiple-select-vanilla/issues/352) [#353](https://github.com/ghiscoding/multiple-select-vanilla/issues/353) - by @ghiscoding
+
 ## [4.0.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v3.5.0...v4.0.0) (2025-04-12)
 
 ### ⚠ BREAKING CHANGES
