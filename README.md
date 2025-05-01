@@ -181,6 +181,6 @@ Before submitting a PR (pull request), please make sure that you followed the st
   </span>
   &nbsp;
   <span>
-    <a href="https://github.com/web-ascender" class="Link" title="gibson552" target="_blank"><img src="https://avatars.githubusercontent.com/u/832747?s=200&v=4" width="50" height="50" valign="middle" /></a>
+    <a href="https://github.com/web-ascender" class="Link" title="Web Ascender" target="_blank"><img src="https://avatars.githubusercontent.com/u/832747?s=200&v=4" width="50" height="50" valign="middle" /></a>
   </span>
 </div>
