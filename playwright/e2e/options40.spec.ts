@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Options 40 - Filter Data', () => {
-  test('all select dropdown should have data filtered out', async ({ page }) => {
+test.describe('Options 40 - Pre-Filter Data', () => {
+  test('all select dropdown should have data pre-filtered', async ({ page }) => {
     await page.goto('#/options40');
 
     // 1st select
@@ -35,7 +35,7 @@ test.describe('Options 40 - Filter Data', () => {
     await expect(await page.getByRole('option', { name: 'March' })).toHaveCount(1);
     await expect(await page.getByRole('option', { name: 'April' })).toHaveCount(0);
     await expect(await page.getByRole('option', { name: 'May' })).toHaveCount(1);
-    const select3LiElms = await page.locator('div[data-test=select1] li[role="option"]');
+    const select3LiElms = await page.locator('div[data-test=select3] li[role="option"]');
     await expect(select3LiElms).toHaveCount(10);
     await page.locator('div[data-test=select3].ms-parent').click();
 
