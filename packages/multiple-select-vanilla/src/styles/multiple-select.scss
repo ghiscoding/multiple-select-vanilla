@@ -16,6 +16,16 @@
 @include m.createSvgClass("ms-icon-check", v.$ms-icon-check-svg-path);
 @include m.createSvgClass("ms-icon-minus", v.$ms-icon-minus-svg-path);
 @include m.createSvgClass("ms-icon-radio", v.$ms-icon-radio-svg-path);
+@include m.createSvgClass("ms-icon-loading", v.$ms-icon-loading-svg-path);
+
+@keyframes icon-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.ms-spin {
+  animation: icon-spin var(--ms-loading-spin-animation, v.$ms-loading-spin-animation);
+}
 
 .ms-parent, .ms-drop {
   .ms-icon {
@@ -383,6 +393,16 @@
 
   .ms-no-results {
     display: none;
+  }
+
+  .ms-loading {
+    display: flex;
+    align-items: center;
+    gap: var(--ms-loading-gap, v.$ms-loading-gap);    
+    padding: var(--ms-loading-padding, v.$ms-loading-padding);
+    .ms-icon-loading {
+      font-size: var(--ms-loading-icon-size, v.$ms-loading-icon-size);
+    }   
   }
 
   .ms-infinite-option {

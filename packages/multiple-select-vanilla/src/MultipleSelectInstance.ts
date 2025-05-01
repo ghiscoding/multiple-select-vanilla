@@ -64,6 +64,7 @@ export class MultipleSelectInstance {
   protected virtualScroll?: VirtualScroll | null;
   protected _currentHighlightIndex = -1;
   protected _currentSelectedElm?: HTMLLIElement | HTMLDivElement;
+  protected _isLazyLoaded = false;
   protected isMoveUpRecalcRequired = false;
   locales = {} as MultipleSelectLocales;
 
@@ -377,7 +378,7 @@ export class MultipleSelectInstance {
   }
 
   protected initDrop() {
-    this.initList();
+    this.initList(!this.options.lazyData);
     this.update(true);
 
     if (this.options.isOpen) {
@@ -408,46 +409,53 @@ export class MultipleSelectInstance {
     this.options.filter = length > this.options.filterByDataLength;
   }
 
-  protected initList() {
-    if (this.options.filter) {
-      this.filterParentElm = createDomElement('div', { className: 'ms-search' }, this.dropElm);
-      this.filterParentElm.appendChild(
-        createDomElement('input', {
-          autocomplete: 'off',
-          autocapitalize: 'off',
-          spellcheck: false,
-          type: 'text',
-          placeholder: this.options.filterPlaceholder || '🔎︎',
-        }),
-      );
+  /**
+   * initialize the select list, the boolean argument is to determine whether to render the filter and select all elements,
+   * which is disabled when using the lazyData option, otherwise this argument is set to true by default.
+   * @param renderFilterAndSearchAll - whether to render the filter and select all elements
+   */
+  protected initList(renderFilterAndSearchAll = true) {
+    if (renderFilterAndSearchAll) {
+      if (this.options.filter) {
+        this.filterParentElm = createDomElement('div', { className: 'ms-search' }, this.dropElm);
+        this.filterParentElm.appendChild(
+          createDomElement('input', {
+            autocomplete: 'off',
+            autocapitalize: 'off',
+            spellcheck: false,
+            type: 'text',
+            placeholder: this.options.filterPlaceholder || '🔎︎',
+          }),
+        );
 
-      if (this.options.showSearchClear) {
-        this.filterParentElm.appendChild(createDomElement('span', { className: 'ms-icon ms-icon-close' }));
+        if (this.options.showSearchClear) {
+          this.filterParentElm.appendChild(createDomElement('span', { className: 'ms-icon ms-icon-close' }));
+        }
       }
-    }
 
-    if (this.options.selectAll && !this.options.single) {
-      const selectName = this.elm.getAttribute('name') || this.options.name || '';
-      this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all', dataset: { key: 'select_all' } });
-      const saLabelElm = document.createElement('label');
-      const saIconClass = this.isAllSelected ? 'ms-icon-check' : this.isPartiallyAllSelected ? 'ms-icon-minus' : 'ms-icon-uncheck';
-      const selectAllIconClass = `ms-icon ${saIconClass}`;
-      const saIconContainerElm = createDomElement('div', { className: 'icon-checkbox-container' }, saLabelElm);
-      createDomElement(
-        'input',
-        {
-          type: 'checkbox',
-          ariaChecked: String(this.isAllSelected),
-          checked: this.isAllSelected,
-          dataset: { name: `selectAll${selectName}` },
-        },
-        saIconContainerElm,
-      );
-      createDomElement('div', { className: selectAllIconClass }, saIconContainerElm);
+      if (this.options.selectAll && !this.options.single) {
+        const selectName = this.elm.getAttribute('name') || this.options.name || '';
+        this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all', dataset: { key: 'select_all' } });
+        const saLabelElm = document.createElement('label');
+        const saIconClass = this.isAllSelected ? 'ms-icon-check' : this.isPartiallyAllSelected ? 'ms-icon-minus' : 'ms-icon-uncheck';
+        const selectAllIconClass = `ms-icon ${saIconClass}`;
+        const saIconContainerElm = createDomElement('div', { className: 'icon-checkbox-container' }, saLabelElm);
+        createDomElement(
+          'input',
+          {
+            type: 'checkbox',
+            ariaChecked: String(this.isAllSelected),
+            checked: this.isAllSelected,
+            dataset: { name: `selectAll${selectName}` },
+          },
+          saIconContainerElm,
+        );
+        createDomElement('div', { className: selectAllIconClass }, saIconContainerElm);
 
-      saLabelElm.appendChild(createDomElement('span', { textContent: this.formatSelectAll() }));
-      this.selectAllParentElm.appendChild(saLabelElm);
-      this.dropElm?.appendChild(this.selectAllParentElm);
+        saLabelElm.appendChild(createDomElement('span', { textContent: this.formatSelectAll() }));
+        this.selectAllParentElm.appendChild(saLabelElm);
+        this.dropElm?.appendChild(this.selectAllParentElm);
+      }
     }
 
     this.ulElm = document.createElement('ul');
@@ -1179,6 +1187,24 @@ export class MultipleSelectInstance {
     if (!this.dropElm || this.choiceElm?.classList.contains('disabled')) {
       return;
     }
+    this.options.onBeforeOpen();
+
+    // optionally load data in a lazy way with a Promise but only after user opens the dropdown
+    let isLazyProcess = false;
+    if (this.options.lazyData && !this._isLazyLoaded) {
+      isLazyProcess = true;
+      this.options.lazyData().then(data => {
+        // when data is ready, remove spinner & update dropdown and selection
+        this.options.data = data;
+        this._isLazyLoaded = true;
+        this.dropElm?.querySelector('.ms-loading')?.remove();
+        this.initData();
+        this.initList(true);
+        this.update();
+        this.adjustDropSizeAndPosition();
+      });
+    }
+
     this.options.isOpen = true;
     this.parentElm.classList.add('ms-parent-open');
     this.choiceElm?.querySelector('div.ms-icon-caret')?.classList.add('open');
@@ -1197,51 +1223,30 @@ export class MultipleSelectInstance {
       if (this.selectAllElm?.parentElement) {
         this.selectAllElm.parentElement.style.display = 'none';
       }
-      if (this.noResultsElm) {
+      if (isLazyProcess && !this._isLazyLoaded) {
+        const loadingElm = createDomElement('div', { className: 'ms-loading' });
+        loadingElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-loading ms-spin' }));
+        loadingElm.appendChild(createDomElement('span', { textContent: this.formatLazyLoading() }));
+        this.dropElm.appendChild(loadingElm);
+      } else if (this.noResultsElm) {
         this.noResultsElm.style.display = 'block';
       }
     }
 
-    if (this.options.container) {
-      const offset = getElementOffset(this.dropElm);
-      let container: HTMLElement;
-      if (this.options.container instanceof Node) {
-        container = this.options.container as HTMLElement;
-      } else if (typeof this.options.container === 'string') {
-        container = this.options.container === 'body' ? document.body : (document.querySelector(this.options.container) as HTMLElement);
-      }
-      container!.appendChild(this.dropElm);
-      this.dropElm.style.top = `${offset?.top ?? 0}px`;
-      this.dropElm.style.left = `${offset?.left ?? 0}px`;
-      this.dropElm.style.minWidth = 'auto';
-      this.dropElm.style.width = `${getElementSize(this.parentElm, 'outer', 'width')}px`;
-    }
+    // adjust select drop position, sizes
+    this.adjustDropSizeAndPosition();
 
-    const minHeight = this.options.minHeight;
-    let maxHeight = this.options.maxHeight;
-    if (this.options.maxHeightUnit === 'row') {
-      maxHeight = getElementSize(this.dropElm.querySelector('ul>li') as HTMLLIElement, 'outer', 'height') * this.options.maxHeight;
-    }
-    this.ulElm ??= this.dropElm.querySelector('ul');
-    if (this.ulElm) {
-      if (minHeight) {
-        this.ulElm.style.minHeight = `${minHeight}px`;
+    if (!isLazyProcess || this._isLazyLoaded) {
+      if (this.getDataLength() && this.options.filter) {
+        if (this.searchInputElm) {
+          this.searchInputElm.value = '';
+          this.searchInputElm.focus();
+        }
+        this.filter(true);
+      } else {
+        // highlight SelectAll or 1st select option when opening dropdown
+        this.focusSelectAllOrList();
       }
-      this.ulElm.style.maxHeight = `${maxHeight}px`;
-    }
-    this.dropElm.querySelectorAll<HTMLDivElement>('.multiple').forEach(multElm => {
-      multElm.style.width = `${this.options.multipleWidth}px`;
-    });
-
-    if (this.getDataLength() && this.options.filter) {
-      if (this.searchInputElm) {
-        this.searchInputElm.value = '';
-        this.searchInputElm.focus();
-      }
-      this.filter(true);
-    } else {
-      // highlight SelectAll or 1st select option when opening dropdown
-      this.focusSelectAllOrList();
     }
 
     if (this._currentHighlightIndex < 0) {
@@ -1252,29 +1257,64 @@ export class MultipleSelectInstance {
       this.highlightCurrentOption();
     }
 
-    if (this.options.autoAdjustDropWidthByTextSize) {
-      this.adjustDropWidthByText();
-    }
+    this.options.onOpen();
+  }
 
-    let newPosition = this.options.position;
-    if (this.options.autoAdjustDropHeight) {
-      // if autoAdjustDropPosition is enable, we 1st need to see what position the drop will be located
-      // without necessary toggling it's position just yet, we just want to know the future position for calculation
-      if (this.options.autoAdjustDropPosition) {
-        const { bottom: spaceBottom, top: spaceTop } = calculateAvailableSpace(this.dropElm);
-        const msDropHeight = this.dropElm.getBoundingClientRect().height;
-        newPosition = spaceBottom < msDropHeight && spaceTop > spaceBottom ? 'top' : 'bottom';
+  protected adjustDropSizeAndPosition() {
+    if (this.dropElm) {
+      if (this.options.container) {
+        const offset = getElementOffset(this.dropElm);
+        let container: HTMLElement;
+        if (this.options.container instanceof Node) {
+          container = this.options.container as HTMLElement;
+        } else if (typeof this.options.container === 'string') {
+          container = this.options.container === 'body' ? document.body : (document.querySelector(this.options.container) as HTMLElement);
+        }
+        container!.appendChild(this.dropElm);
+        this.dropElm.style.top = `${offset?.top ?? 0}px`;
+        this.dropElm.style.left = `${offset?.left ?? 0}px`;
+        this.dropElm.style.minWidth = 'auto';
+        this.dropElm.style.width = `${getElementSize(this.parentElm, 'outer', 'width')}px`;
       }
 
-      // now that we know which drop position will be used, let's adjust the drop height
-      this.adjustDropHeight(newPosition);
-    }
+      const minHeight = this.options.minHeight;
+      let maxHeight = this.options.maxHeight;
+      if (this.options.maxHeightUnit === 'row') {
+        maxHeight = getElementSize(this.dropElm.querySelector('ul>li') as HTMLLIElement, 'outer', 'height') * this.options.maxHeight;
+      }
+      this.ulElm ??= this.dropElm.querySelector('ul');
+      if (this.ulElm) {
+        if (minHeight) {
+          this.ulElm.style.minHeight = `${minHeight}px`;
+        }
+        this.ulElm.style.maxHeight = `${maxHeight}px`;
+      }
+      this.dropElm.querySelectorAll<HTMLDivElement>('.multiple').forEach(multElm => {
+        multElm.style.width = `${this.options.multipleWidth}px`;
+      });
 
-    if (this.options.autoAdjustDropPosition) {
-      this.adjustDropPosition(true);
-    }
+      if (this.options.autoAdjustDropWidthByTextSize) {
+        this.adjustDropWidthByText();
+      }
 
-    this.options.onOpen();
+      let newPosition = this.options.position;
+      if (this.options.autoAdjustDropHeight) {
+        // if autoAdjustDropPosition is enable, we 1st need to see what position the drop will be located
+        // without necessary toggling it's position just yet, we just want to know the future position for calculation
+        if (this.options.autoAdjustDropPosition) {
+          const { bottom: spaceBottom, top: spaceTop } = calculateAvailableSpace(this.dropElm);
+          const msDropHeight = this.dropElm.getBoundingClientRect().height;
+          newPosition = spaceBottom < msDropHeight && spaceTop > spaceBottom ? 'top' : 'bottom';
+        }
+
+        // now that we know which drop position will be used, let's adjust the drop height
+        this.adjustDropHeight(newPosition);
+      }
+
+      if (this.options.autoAdjustDropPosition) {
+        this.adjustDropPosition(true);
+      }
+    }
   }
 
   protected focusSelectAllOrList() {
@@ -1985,6 +2025,10 @@ export class MultipleSelectInstance {
 
   formatOkButton() {
     return this.options.okButtonText || this.options.formatOkButton();
+  }
+
+  formatLazyLoading() {
+    return this.options.lazyLoadingText || this.options.formatLazyLoading();
   }
 
   formatSelectAll() {

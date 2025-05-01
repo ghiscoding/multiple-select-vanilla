@@ -27,6 +27,9 @@ export const Russian = {
   formatOkButton() {
     return 'Закрывать';
   },
+  formatLazyLoading() {
+    return 'погрузка...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['ru-RU'] = Russian;

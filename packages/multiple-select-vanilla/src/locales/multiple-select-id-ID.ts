@@ -27,6 +27,9 @@ export const Indonesian = {
   formatOkButton() {
     return 'Tutup';
   },
+  formatLazyLoading() {
+    return 'Memuat...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['id-ID'] = Indonesian;
