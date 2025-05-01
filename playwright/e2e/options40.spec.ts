@@ -35,7 +35,7 @@ test.describe('Options 40 - Pre-Filter Data', () => {
     await expect(await page.getByRole('option', { name: 'March' })).toHaveCount(1);
     await expect(await page.getByRole('option', { name: 'April' })).toHaveCount(0);
     await expect(await page.getByRole('option', { name: 'May' })).toHaveCount(1);
-    const select3LiElms = await page.locator('div[data-test=select1] li[role="option"]');
+    const select3LiElms = await page.locator('div[data-test=select3] li[role="option"]');
     await expect(select3LiElms).toHaveCount(10);
     await page.locator('div[data-test=select3].ms-parent').click();
 
