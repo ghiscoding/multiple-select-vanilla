@@ -1,6 +1,6 @@
 import type { TrustedHTML } from 'trusted-types/lib';
 
-import type { LabelFilter, OptGroupRowData, OptionRowData, OptionRowDivider, TextFilter } from './interfaces.js';
+import type { CollectionData, LabelFilter, OptGroupRowData, OptionRowData, TextFilter } from './interfaces.js';
 import type { LocaleKey, MultipleSelectLocale } from './locale.interface.js';
 
 export interface MultipleSelectView {
@@ -63,9 +63,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   darkMode?: boolean;
 
   /** provide custom data */
-  data?:
-    | { [value: string]: number | string | boolean }
-    | Array<number | string | boolean | OptionRowData | OptionRowDivider | OptGroupRowData>;
+  data?: CollectionData;
 
   /** Add "data-test" attribute to the "ms-parent" element */
   dataTest?: string;
@@ -120,6 +118,16 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
    * An example can be `labelId: "custom-label"` which will be assigned to `id` and `aria-labelledby` attributes of the `.ms-choice` button.
    */
   labelId?: string;
+
+  /**
+   * A lazy callback to load your collection only after the user clicks on the select dropdown to open it,
+   * the callback must be a Promise that will eventually resolve the data.
+   * While processing, a div with `ms-loading` class and an icon will be shown until the data is fully loaded.
+   */
+  lazyData?: () => Promise<CollectionData>;
+
+  /** Use optional string to override "Loading..." text instead of `formatLazyLoading()` when lazy loading data is processing. */
+  lazyLoadingText?: string;
 
   /** Optional Locale */
   locale?: LocaleKey | MultipleSelectLocale;
@@ -246,6 +254,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Fires after the multiple-select DOM element is created. */
   onAfterCreate: () => void;
 
+  /** Fires just before the dropdown is about to open. */
+  onBeforeOpen: () => void;
+
   /** Fires when instance destroy method is being called, when a hard destroy is enabled it will remove the DOM element and also destroy its instance. */
   onDestroy: (options: { hardDestroy: boolean }) => void;
 
@@ -259,7 +270,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** (internal usage only) Fires after instance was being hard destroyed. */
   onAfterHardDestroy: () => void;
 
-  /** Fires when the dropdown list is open. */
+  /** Fires when the dropdown list is opened. */
   onOpen: () => void;
 
   /** Fires when the filter is cleared. */

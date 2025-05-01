@@ -9,6 +9,9 @@ export default class Example {
     this.ms1 = multipleSelect('select', {
       filter: true,
       showSearchClear: true,
+      onBeforeOpen: () => {
+        this.log('onBeforeOpen event fire!\n');
+      },
       onOpen: () => {
         this.log('onOpen event fire!\n');
       },

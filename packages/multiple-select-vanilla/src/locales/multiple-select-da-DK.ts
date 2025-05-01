@@ -27,6 +27,9 @@ export const Danish = {
   formatOkButton() {
     return 'Lukke';
   },
+  formatLazyLoading() {
+    return 'Indlæser nu...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['da-DK'] = Danish;

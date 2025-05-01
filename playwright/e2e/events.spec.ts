@@ -6,7 +6,9 @@ test.describe('Events Demo', () => {
     const textareaLoc = await page.locator('textarea');
     await expect(textareaLoc).toHaveText('onAfterCreate event fire!');
     await page.locator('.ms-parent').click();
-    await expect(textareaLoc).toHaveText('onAfterCreate event fire!\nonFocus event fire!\nonBlur event fire!\nonOpen event fire!');
+    await expect(textareaLoc).toHaveText(
+      'onAfterCreate event fire!\nonFocus event fire!\nonBeforeOpen event fire!\nonBlur event fire!\nonOpen event fire!',
+    );
 
     // close the drop
     await page.locator('.ms-parent').click();
@@ -14,6 +16,7 @@ test.describe('Events Demo', () => {
       [
         'onAfterCreate event fire!',
         'onFocus event fire!',
+        'onBeforeOpen event fire!',
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
@@ -28,10 +31,12 @@ test.describe('Events Demo', () => {
       [
         'onAfterCreate event fire!',
         'onFocus event fire!',
+        'onBeforeOpen event fire!',
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
         'onClose event fire! Reason: "toggle.close"',
+        'onBeforeOpen event fire!',
         'onBlur event fire!',
         'onOpen event fire!',
         'onOptgroupClick event fire! view: {"label":"Group 1","selected":true,"children":[null,{"text":"Option 1","value":"1","selected":true,"disabled":false},null,{"text":"Option 2","value":"2","selected":true,"disabled":false},null,{"text":"Option 3","value":"3","selected":true,"disabled":false},null]}',
@@ -43,10 +48,12 @@ test.describe('Events Demo', () => {
       [
         'onAfterCreate event fire!',
         'onFocus event fire!',
+        'onBeforeOpen event fire!',
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
         'onClose event fire! Reason: "toggle.close"',
+        'onBeforeOpen event fire!',
         'onBlur event fire!',
         'onOpen event fire!',
         'onOptgroupClick event fire! view: {"label":"Group 1","selected":true,"children":[null,{"text":"Option 1","value":"1","selected":true,"disabled":false},null,{"text":"Option 2","value":"2","selected":true,"disabled":false},null,{"text":"Option 3","value":"3","selected":true,"disabled":false},null]}',
@@ -59,10 +66,12 @@ test.describe('Events Demo', () => {
       [
         'onAfterCreate event fire!',
         'onFocus event fire!',
+        'onBeforeOpen event fire!',
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
         'onClose event fire! Reason: "toggle.close"',
+        'onBeforeOpen event fire!',
         'onBlur event fire!',
         'onOpen event fire!',
         'onOptgroupClick event fire! view: {"label":"Group 1","selected":true,"children":[null,{"text":"Option 1","value":"1","selected":true,"disabled":false},null,{"text":"Option 2","value":"2","selected":true,"disabled":false},null,{"text":"Option 3","value":"3","selected":true,"disabled":false},null]}',
@@ -77,10 +86,12 @@ test.describe('Events Demo', () => {
       [
         'onAfterCreate event fire!',
         'onFocus event fire!',
+        'onBeforeOpen event fire!',
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
         'onClose event fire! Reason: "toggle.close"',
+        'onBeforeOpen event fire!',
         'onBlur event fire!',
         'onOpen event fire!',
         'onOptgroupClick event fire! view: {"label":"Group 1","selected":true,"children":[null,{"text":"Option 1","value":"1","selected":true,"disabled":false},null,{"text":"Option 2","value":"2","selected":true,"disabled":false},null,{"text":"Option 3","value":"3","selected":true,"disabled":false},null]}',

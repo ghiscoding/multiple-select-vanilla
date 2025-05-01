@@ -64,6 +64,7 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   textTemplate: (elm: HTMLOptionElement) => elm.innerHTML.trim(),
   labelTemplate: (elm: HTMLOptionElement) => elm.label,
 
+  onBeforeOpen: () => false,
   onOpen: () => false,
   onClose: () => false,
   onCheckAll: () => false,

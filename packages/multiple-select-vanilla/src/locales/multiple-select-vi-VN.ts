@@ -27,6 +27,9 @@ export const Vietnamese = {
   formatOkButton() {
     return 'Đóng';
   },
+  formatLazyLoading() {
+    return 'Tải...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['vi-VN'] = Vietnamese;

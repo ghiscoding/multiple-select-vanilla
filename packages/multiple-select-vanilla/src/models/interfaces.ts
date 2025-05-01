@@ -15,6 +15,10 @@ export interface HtmlStruct {
   children?: HtmlStruct[];
 }
 
+export type CollectionData =
+  | { [value: string]: number | string | boolean }
+  | Array<number | string | boolean | OptionRowData | OptionRowDivider | OptGroupRowData>;
+
 export interface OptionRowData {
   text: string;
   value: string | number | boolean;

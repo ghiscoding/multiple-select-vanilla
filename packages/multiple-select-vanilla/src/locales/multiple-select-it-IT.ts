@@ -27,6 +27,9 @@ export const Italian = {
   formatOkButton() {
     return 'Chiudere';
   },
+  formatLazyLoading() {
+    return 'Caricamento...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['it-IT'] = Italian;

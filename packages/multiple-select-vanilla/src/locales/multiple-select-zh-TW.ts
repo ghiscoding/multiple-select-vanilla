@@ -27,6 +27,9 @@ export const MandarinTraditional = {
   formatOkButton() {
     return '关闭';
   },
+  formatLazyLoading() {
+    return '装载...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['zh-TW'] = MandarinTraditional;

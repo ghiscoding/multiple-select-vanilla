@@ -27,6 +27,9 @@ export const Japanese = {
   formatOkButton() {
     return '閉める';
   },
+  formatLazyLoading() {
+    return '積載...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['ja-JP'] = Japanese;

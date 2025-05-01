@@ -26,6 +26,9 @@ export interface MultipleSelectLocale {
   /** For the "No Matches Found" text when nothing is found while filtering the dropdown */
   formatNoMatchesFound(): string;
 
+  /** Customize the formatted lazy "Loading..." text when lazy loading data is processing. */
+  formatLazyLoading(): string;
+
   /** Customize the formatted text "OK" showing at the bottom of the drop. */
   formatOkButton(): string;
 

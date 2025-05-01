@@ -27,6 +27,9 @@ export const German = {
   formatOkButton() {
     return 'Schließen';
   },
+  formatLazyLoading() {
+    return 'Jetzt wird geladen...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['de-DE'] = German;

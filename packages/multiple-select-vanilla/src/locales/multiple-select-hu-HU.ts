@@ -27,6 +27,9 @@ export const Hungarian = {
   formatOkButton() {
     return 'Bezár';
   },
+  formatLazyLoading() {
+    return 'Most betöltés...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['hu-HU'] = Hungarian;

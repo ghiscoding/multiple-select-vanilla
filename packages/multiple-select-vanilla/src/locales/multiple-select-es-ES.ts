@@ -27,6 +27,9 @@ export const Spanish = {
   formatOkButton() {
     return 'Cerrar';
   },
+  formatLazyLoading() {
+    return 'Cargando...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['es-ES'] = Spanish;

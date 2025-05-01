@@ -27,6 +27,9 @@ export const Czech = {
   formatOkButton() {
     return 'Zavřít';
   },
+  formatLazyLoading() {
+    return 'Načítám se...';
+  },
 } as MultipleSelectLocale;
 
 (ms.locales as MultipleSelectLocales)['cz-CS'] = Czech;
