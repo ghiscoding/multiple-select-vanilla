@@ -2,6 +2,7 @@ import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-van
 
 export default class Example {
   serverDelayInput?: HTMLInputElement | null;
+  resetLazyBtn?: HTMLButtonElement | null;
   ms1?: MultipleSelectInstance;
   ms2?: MultipleSelectInstance;
   ms3?: MultipleSelectInstance;
@@ -15,7 +16,9 @@ export default class Example {
 
   mount() {
     this.serverDelayInput = document.querySelector('#serverdelay');
+    this.resetLazyBtn = document.querySelector('#resetlazy');
     this.serverDelayInput!.addEventListener('keyup', this.changeServerDelay.bind(this));
+    this.resetLazyBtn!.addEventListener('click', this.createMultipleSelect.bind(this));
     this.createMultipleSelect();
   }
 
@@ -202,5 +205,6 @@ export default class Example {
     this.ms2 = undefined;
     this.ms3 = undefined;
     this.serverDelayInput!.removeEventListener('click', this.changeServerDelay.bind(this));
+    this.resetLazyBtn!.removeEventListener('click', this.createMultipleSelect.bind(this));
   }
 }
