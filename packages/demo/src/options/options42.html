@@ -18,7 +18,7 @@
       </span>
     </h2>
     <div class="demo-subtitle">
-      Use <code>lazyLoad: callback</code> to lazy load data only after clicking and opening the select dropdown.
+      Use <code>&#123; lazyData: () => Promise &#125;</code> to lazy load data only after clicking and opening the select dropdown.
       Note that once the data is loaded, it no longer needs to be lazy loaded again and so re-opening the select dropdown will show instantly afterward. 
       You can refresh the page, or click the button to retest the lazy loading.
       Also note that any pre-selected options will only show up after the data is fully loaded.
