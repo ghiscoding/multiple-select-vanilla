@@ -173,8 +173,7 @@ export class MultipleSelectInstance {
     // label element
     this.labelElm = this.elm.closest('label');
     if (!this.labelElm && this.elm.id) {
-      this.labelElm = document.createElement('label');
-      this.labelElm.htmlFor = this.elm.id;
+      this.labelElm = createDomElement('label', { htmlFor: this.elm.id });
     }
     if (this.labelElm?.querySelector('input')) {
       this.labelElm = null;
@@ -458,13 +457,15 @@ export class MultipleSelectInstance {
       }
     }
 
-    this.ulElm = document.createElement('ul');
-    this.ulElm.role = 'combobox';
-    this.ulElm.ariaExpanded = 'false';
-    this.ulElm.ariaMultiSelectable = String(!this.options.single);
+    this.ulElm = createDomElement('ul', {
+      className: 'ms-list',
+      role: 'listbox',
+      ariaExpanded: 'false',
+      ariaMultiSelectable: String(!this.options.single),
+    });
     this.dropElm?.appendChild(this.ulElm);
 
-    if (this.options.showOkButton && !this.options.single) {
+    if (renderFilterAndSearchAll && this.options.showOkButton && !this.options.single) {
       this.okButtonElm = createDomElement(
         'button',
         { className: 'ms-ok-button', type: 'button', textContent: this.formatOkButton() },
@@ -627,12 +628,16 @@ export class MultipleSelectInstance {
         } else {
           itemOrGroupBlock = {
             tagName: 'div',
-            props: { className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}` },
+            props: {
+              className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}`,
+            },
             children: [
               inputCheckboxStruct,
               {
                 tagName: 'div',
-                props: { className: `ms-icon ${isChecked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : 'ms-icon-uncheck'}` },
+                props: {
+                  className: `ms-icon ${isChecked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : 'ms-icon-uncheck'}`,
+                },
               },
             ],
           };
@@ -708,7 +713,9 @@ export class MultipleSelectInstance {
 
     const iconContainerBlock: HtmlStruct = {
       tagName: 'div',
-      props: { className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}` },
+      props: {
+        className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}`,
+      },
       children: [
         inputBlock,
         {
@@ -1193,6 +1200,7 @@ export class MultipleSelectInstance {
     let isLazyProcess = false;
     if (this.options.lazyData && !this._isLazyLoaded) {
       isLazyProcess = true;
+      this.dropElm?.querySelector('ul.ms-list')?.remove();
       this.options.lazyData().then(data => {
         // when data is ready, remove spinner & update dropdown and selection
         this.options.data = data;
@@ -1223,7 +1231,7 @@ export class MultipleSelectInstance {
       if (this.selectAllElm?.parentElement) {
         this.selectAllElm.parentElement.style.display = 'none';
       }
-      if (isLazyProcess && !this._isLazyLoaded) {
+      if (isLazyProcess && !this._isLazyLoaded && !this.dropElm.querySelector('.ms-loading')) {
         const loadingElm = createDomElement('div', { className: 'ms-loading' });
         loadingElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-loading ms-spin' }));
         loadingElm.appendChild(createDomElement('span', { textContent: this.formatLazyLoading() }));
@@ -1284,7 +1292,7 @@ export class MultipleSelectInstance {
       }
       this.ulElm ??= this.dropElm.querySelector('ul');
       if (this.ulElm) {
-        if (minHeight) {
+        if (minHeight && (!this.options.lazyData || this._isLazyLoaded)) {
           this.ulElm.style.minHeight = `${minHeight}px`;
         }
         this.ulElm.style.maxHeight = `${maxHeight}px`;
@@ -1983,10 +1991,7 @@ export class MultipleSelectInstance {
   }
 
   getScrollbarWidth() {
-    const outer = document.createElement('div');
-    outer.style.visibility = 'hidden';
-    outer.style.width = '100px';
-
+    const outer = createDomElement('div', { style: { visibility: 'hidden', width: '100px' } });
     document.body.appendChild(outer);
 
     const widthNoScroll = outer.offsetWidth;
@@ -1994,8 +1999,7 @@ export class MultipleSelectInstance {
     outer.style.overflow = 'scroll';
 
     // add innerdiv
-    const inner = document.createElement('div');
-    inner.style.width = '100%';
+    const inner = createDomElement('div', { style: { width: '100%' } });
     outer.appendChild(inner);
 
     const widthWithScroll = inner.offsetWidth;

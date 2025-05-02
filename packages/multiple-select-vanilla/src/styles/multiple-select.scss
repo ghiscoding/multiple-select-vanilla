@@ -402,6 +402,8 @@
     padding: var(--ms-loading-padding, v.$ms-loading-padding);
     .ms-icon-loading {
       font-size: var(--ms-loading-icon-size, v.$ms-loading-icon-size);
+      height: var(--ms-loading-icon-size, v.$ms-loading-icon-size);
+      width: var(--ms-loading-icon-size, v.$ms-loading-icon-size);
     }   
   }
 

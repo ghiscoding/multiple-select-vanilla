@@ -6,6 +6,7 @@ export default class Example {
   ms1?: MultipleSelectInstance;
   ms2?: MultipleSelectInstance;
   ms3?: MultipleSelectInstance;
+  ms4?: MultipleSelectInstance;
   serverDelay = 1000;
 
   changeServerDelay(event: Event) {
@@ -194,6 +195,73 @@ export default class Example {
         });
       },
     }) as MultipleSelectInstance;
+
+    this.ms4 = multipleSelect('select[data-test=select4]', {
+      filter: true,
+      filterPlaceholder: 'filter placeholder',
+      showOkButton: true,
+      showClear: true,
+      minHeight: 70,
+      lazyData: () => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve([
+              {
+                text: 'January',
+                value: 1,
+              },
+              {
+                text: 'February',
+                value: 2,
+                selected: true,
+              },
+              {
+                text: 'March',
+                value: 3,
+                disabled: true,
+              },
+              {
+                text: 'April',
+                value: 4,
+                selected: true,
+              },
+              {
+                text: 'May',
+                value: 5,
+              },
+              {
+                text: 'June',
+                value: 6,
+              },
+              {
+                text: 'July',
+                value: 7,
+              },
+              {
+                text: 'August',
+                value: 8,
+              },
+              {
+                text: 'September',
+                value: 9,
+              },
+              {
+                text: 'October',
+                value: 10,
+              },
+              {
+                text: 'November',
+                value: 11,
+              },
+              {
+                text: 'December',
+                value: 12,
+              },
+            ]);
+          }, this.serverDelay);
+        });
+      },
+    }) as MultipleSelectInstance;
   }
 
   unmount() {
@@ -201,9 +269,11 @@ export default class Example {
     this.ms1?.destroy();
     this.ms2?.destroy();
     this.ms3?.destroy();
+    this.ms4?.destroy();
     this.ms1 = undefined;
     this.ms2 = undefined;
     this.ms3 = undefined;
+    this.ms4 = undefined;
     this.serverDelayInput!.removeEventListener('click', this.changeServerDelay.bind(this));
     this.resetLazyBtn!.removeEventListener('click', this.createMultipleSelect.bind(this));
   }
