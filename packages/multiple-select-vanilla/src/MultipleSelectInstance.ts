@@ -1949,43 +1949,45 @@ export class MultipleSelectInstance {
 
       // calculate the "Select All" element width, this text is configurable which is why we recalculate every time
       const selectAllSpanElm = this.dropElm.querySelector<HTMLSpanElement>('.ms-select-all span');
-      const dropUlElm = this.dropElm.querySelector('ul') as HTMLUListElement;
+      const dropUlElm = this.dropElm.querySelector<HTMLUListElement>('ul');
 
-      const liPadding = 26; // there are multiple padding involved, let's fix it at 26px
+      if (dropUlElm) {
+        const liPadding = 26; // there are multiple padding involved, let's fix it at 26px
 
-      const selectAllElmWidth = selectAllSpanElm?.clientWidth ?? 0 + liPadding;
-      const hasScrollbar = dropUlElm.scrollHeight > dropUlElm.clientHeight;
-      const scrollbarWidth = hasScrollbar ? this.getScrollbarWidth() : 0;
-      let contentWidth = 0;
+        const selectAllElmWidth = selectAllSpanElm?.clientWidth ?? 0 + liPadding;
+        const hasScrollbar = dropUlElm.scrollHeight > dropUlElm.clientHeight;
+        const scrollbarWidth = hasScrollbar ? this.getScrollbarWidth() : 0;
+        let contentWidth = 0;
 
-      this.dropElm.querySelectorAll('li label').forEach(elm => {
-        if (elm.scrollWidth > contentWidth) {
-          contentWidth = elm.scrollWidth;
+        this.dropElm.querySelectorAll('li label').forEach(elm => {
+          if (elm.scrollWidth > contentWidth) {
+            contentWidth = elm.scrollWidth;
+          }
+        });
+
+        // add a padding & include the browser scrollbar width
+        contentWidth += liPadding + scrollbarWidth;
+
+        // make sure the new calculated width is wide enough to include the "Select All" text (this text is configurable)
+        if (contentWidth < selectAllElmWidth) {
+          contentWidth = selectAllElmWidth;
         }
-      });
 
-      // add a padding & include the browser scrollbar width
-      contentWidth += liPadding + scrollbarWidth;
+        // if a maxWidth is defined, make sure our new calculate width is not over the maxWidth
+        if (this.options.maxWidth && contentWidth > this.options.maxWidth) {
+          contentWidth = this.options.maxWidth;
+        }
 
-      // make sure the new calculated width is wide enough to include the "Select All" text (this text is configurable)
-      if (contentWidth < selectAllElmWidth) {
-        contentWidth = selectAllElmWidth;
-      }
+        // if a minWidth is defined, make sure our new calculate width is not below the minWidth
+        if (this.options.minWidth && contentWidth < this.options.minWidth) {
+          contentWidth = this.options.minWidth;
+        }
 
-      // if a maxWidth is defined, make sure our new calculate width is not over the maxWidth
-      if (this.options.maxWidth && contentWidth > this.options.maxWidth) {
-        contentWidth = this.options.maxWidth;
-      }
-
-      // if a minWidth is defined, make sure our new calculate width is not below the minWidth
-      if (this.options.minWidth && contentWidth < this.options.minWidth) {
-        contentWidth = this.options.minWidth;
-      }
-
-      // finally re-adjust the drop to the new calculated width when necessary
-      if (currentDefinedWidth === '100%' || +currentDefinedWidth < contentWidth) {
-        this.dropElm.style.width = `${contentWidth}px`;
-        this.dropElm.style.maxWidth = `${contentWidth}px`;
+        // finally re-adjust the drop to the new calculated width when necessary
+        if (currentDefinedWidth === '100%' || +currentDefinedWidth < contentWidth) {
+          this.dropElm.style.width = `${contentWidth}px`;
+          this.dropElm.style.maxWidth = `${contentWidth}px`;
+        }
       }
     }
   }
