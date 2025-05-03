@@ -4,6 +4,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.1.0...v4.1.1) (2025-05-03)
+
+### Bug Fixes
+
+* couple of issues related to lazy loading ([#363](https://github.com/ghiscoding/multiple-select-vanilla/issues/363)) ([3948b21](https://github.com/ghiscoding/multiple-select-vanilla/commit/3948b21d6ccede9228c04bd4f90bb2ecbffff485)) - by @ghiscoding
+* make sure select drop list isn't null when adjusting drop width ([#364](https://github.com/ghiscoding/multiple-select-vanilla/issues/364)) ([aad8f64](https://github.com/ghiscoding/multiple-select-vanilla/commit/aad8f646f3f8c5b015956e9244995824486a1a96)) - by @ghiscoding
+
 ## [4.1.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.0.0...v4.1.0) (2025-05-01)
 
 ### Features
