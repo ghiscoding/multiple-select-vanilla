@@ -50,7 +50,7 @@ function _multipleSelect(
       // then after it's destroyed, we'll also have to nullify the instance
       const msOptions = node._multipleSelect.getOptions(false);
       msOptions.onHardDestroy = () => delete node._multipleSelect;
-      msOptions.onAfterHardDestroyed = () => (instances[i] = null as any);
+      msOptions.onAfterHardDestroy = () => (instances[i] = null as any);
 
       instances.push(node._multipleSelect);
     } catch (e) {
