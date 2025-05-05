@@ -16,38 +16,20 @@ export function compareObjects(objectA: any, objectB: any, compareLength = false
   return true;
 }
 
-/**
- * Create an immutable clone of an array or object
- * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
- * @param  {Array|Object} objectOrArray - the array or object to copy
- * @return {Array|Object} - the clone of the array or object
- */
-export function deepCopy(objectOrArray: any | any[]): any | any[] {
-  const cloneObj = () => {
-    const clone = {}; // create new object
-
-    // Loop through each item in the original, recursively copy it's value and add to the clone
-    // eslint-disable-next-line no-restricted-syntax
-    for (const key in objectOrArray) {
-      if (Object.prototype.hasOwnProperty.call(objectOrArray, key)) {
-        (clone as any)[key] = deepCopy(objectOrArray[key]);
-      }
-    }
-    return clone;
-  };
-
-  // Create an immutable copy of an array
-  const cloneArr = () => objectOrArray.map((item: any) => deepCopy(item));
-
-  // Get object type
-  const type = Object.prototype.toString.call(objectOrArray).slice(8, -1).toLowerCase();
-  if (type === 'object') {
-    return cloneObj(); // if it's an object
+export function deepCopy(obj: any): any {
+  if (typeof obj !== 'object' || obj === null) {
+    return obj;
   }
-  if (type === 'array') {
-    return cloneArr(); // if it's an array
+
+  if (Array.isArray(obj)) {
+    return obj.map(deepCopy);
   }
-  return objectOrArray; // otherwise, return it as-is, could be primitive or else
+
+  if (typeof obj === 'function') {
+    return obj;
+  }
+
+  return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, deepCopy(value)]));
 }
 
 export function isDefined(val: any) {
