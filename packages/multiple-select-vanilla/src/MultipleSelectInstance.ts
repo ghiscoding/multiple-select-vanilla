@@ -7,7 +7,7 @@ import type { MultipleSelectLocales } from './models/locale.interface.js';
 import type { CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface.js';
 import { BindingEventService } from './services/binding-event.service.js';
 import { VirtualScroll } from './services/virtual-scroll.js';
-import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils/utils.js';
+import { compareObjects, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils/utils.js';
 import {
   calculateAvailableSpace,
   classNameToList,
@@ -1594,7 +1594,7 @@ export class MultipleSelectInstance {
     const options = Object.assign({}, this.options);
     delete options.data;
 
-    return returnDeepCopy ? deepCopy(options) : this.options;
+    return returnDeepCopy && structuredClone ? structuredClone(options) : this.options;
   }
 
   refreshOptions(options: Partial<MultipleSelectOption>) {

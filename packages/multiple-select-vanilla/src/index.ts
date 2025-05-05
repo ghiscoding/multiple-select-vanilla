@@ -22,7 +22,6 @@ export {
 } from './utils/domUtils.js';
 export {
   compareObjects,
-  deepCopy,
   findByParam,
   isDefined,
   objectRemoveEmptyProps,
