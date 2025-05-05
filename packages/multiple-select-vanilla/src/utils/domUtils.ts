@@ -252,14 +252,6 @@ export function toggleElement(elm?: HTMLElement | null, display?: boolean) {
   }
 }
 
-export function toggleElementClass(elm?: HTMLElement | null, state?: boolean) {
-  if (elm?.classList) {
-    const adding = state === true || !elm.classList.contains('selected');
-    const action = adding ? 'add' : 'remove';
-    elm.classList[action]('selected');
-  }
-}
-
 /**
  * Get the Window Scroll top/left Position
  * @returns

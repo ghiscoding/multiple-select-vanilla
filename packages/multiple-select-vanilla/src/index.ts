@@ -17,7 +17,6 @@ export {
   insertAfter,
   omitProp,
   toggleElement,
-  toggleElementClass,
   windowScrollPosition,
 } from './utils/domUtils.js';
 export {
@@ -30,7 +29,6 @@ export {
   removeUndefined,
   setDataKeys,
   stripScripts,
-  toCamelCase,
 } from './utils/utils.js';
 export { multipleSelect } from './multiple-select.js';
 export { MultipleSelectInstance } from './MultipleSelectInstance.js';
