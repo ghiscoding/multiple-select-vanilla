@@ -115,10 +115,6 @@ export function removeUndefined(obj: any) {
   return obj;
 }
 
-export function toCamelCase(str: string) {
-  return str.replace(/[\W_]+(.)/g, (_match, char) => char.toUpperCase());
-}
-
 export function removeDiacritics(str: string, customParser?: (t: string) => string): string {
   if (typeof str !== 'string') {
     return str;
