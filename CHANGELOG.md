@@ -4,6 +4,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.1.1...v4.1.2) (2025-05-05)
+
+### Bug Fixes
+
+* remove unused functions ([1e2acb6](https://github.com/ghiscoding/multiple-select-vanilla/commit/1e2acb6df5be29e2a50cf8764284ac3eb99ab5ae)) - by @ghiscoding
+* replace `deepCopy` with a simpler function ([#365](https://github.com/ghiscoding/multiple-select-vanilla/issues/365)) ([483762b](https://github.com/ghiscoding/multiple-select-vanilla/commit/483762bd60703042e79328a88b86787cfb3e4e48)) - by @ghiscoding
+
 ## [4.1.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.1.0...v4.1.1) (2025-05-03)
 
 ### Bug Fixes
