@@ -69,6 +69,9 @@ Changes and new options:
   - `infiniteScroll` option (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options36))
   - `onFilterClear` callback that will be executed when the filter gets cleared (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/events))
   - `onClose(reason)` callback that will be executed when the dropdown closes (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/events))
+  - `preFilter` provide a Filter predicate to pre-filter data (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options40))
+  - `preSort` provide a Sort Comparer to pre-sort data (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options41))
+  - `lazyData` provide a function callback that will return a Promise with data collection (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options42))
 
 ## CSP Compliance
 The library is now CSP (Content Security Policy) compliant, however there are some exceptions to be aware of. When using any HTML strings as template (when using `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML). You can achieve this by using the `sanitizer` method in combo with an external library like [DOMPurify](https://github.com/cure53/DOMPurify) (recommended) to return `TrustedHTML` as shown below and with that in place you will be CSP compliant.
