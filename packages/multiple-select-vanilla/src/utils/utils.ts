@@ -16,6 +16,22 @@ export function compareObjects(objectA: any, objectB: any, compareLength = false
   return true;
 }
 
+export function deepCopy(obj: any): any {
+  if (typeof obj !== 'object' || obj === null) {
+    return obj;
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map(deepCopy);
+  }
+
+  if (typeof obj === 'function') {
+    return obj;
+  }
+
+  return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, deepCopy(value)]));
+}
+
 export function isDefined(val: any) {
   return val !== undefined && val !== null && val !== '';
 }
