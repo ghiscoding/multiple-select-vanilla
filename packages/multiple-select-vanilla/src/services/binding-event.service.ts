@@ -35,27 +35,12 @@ export class BindingEventService {
 
     if (typeof (elementOrElements as NodeListOf<H>)?.forEach === 'function') {
       // multiple elements to bind to
-      (elementOrElements as NodeListOf<H>).forEach(element => {
-        for (const eventName of eventNames) {
-          if (!this._distinctEvent || (this._distinctEvent && !this.hasBinding(element, eventName))) {
-            element.addEventListener(eventName, listener as EventListener, listenerOptions);
-            this._boundedEvents.push({ element, eventName, listener: listener as EventListener, groupName });
-          }
-        }
-      });
+      (elementOrElements as NodeListOf<H>).forEach(element =>
+        this.bindElementEvents(element, eventNames, listener, listenerOptions, groupName),
+      );
     } else {
       // single elements to bind to
-      for (const eventName of eventNames) {
-        if (!this._distinctEvent || (this._distinctEvent && !this.hasBinding(elementOrElements as H, eventName))) {
-          (elementOrElements as H).addEventListener(eventName, listener as EventListener, listenerOptions);
-          this._boundedEvents.push({
-            element: elementOrElements as H,
-            eventName,
-            listener: listener as EventListener,
-            groupName,
-          });
-        }
-      }
+      this.bindElementEvents(elementOrElements as H, eventNames, listener, listenerOptions, groupName);
     }
   }
 
@@ -112,6 +97,25 @@ export class BindingEventService {
         const boundedEvent = this._boundedEvents.pop() as ElementEventListener;
         const { element, eventName, listener } = boundedEvent;
         this.unbind(element, eventName, listener);
+      }
+    }
+  }
+
+  // --
+  // private functions
+
+  /** bind all event(s) to the element */
+  private bindElementEvents(
+    element: HTMLElement,
+    eventNames: Array<keyof HTMLElementEventMap>,
+    listener: EventListener,
+    listenerOptions?: boolean | AddEventListenerOptions,
+    groupName = '',
+  ) {
+    for (const eventName of eventNames) {
+      if (!this._distinctEvent || (this._distinctEvent && !this.hasBinding(element, eventName))) {
+        element.addEventListener(eventName, listener as EventListener, listenerOptions);
+        this._boundedEvents.push({ element, eventName, listener: listener as EventListener, groupName });
       }
     }
   }

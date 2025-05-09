@@ -16,6 +16,7 @@ export function compareObjects(objectA: any, objectB: any, compareLength = false
   return true;
 }
 
+/** make deep copy clone of an object */
 export function deepCopy(obj: any): any {
   if (typeof obj !== 'object' || obj === null) {
     return obj;

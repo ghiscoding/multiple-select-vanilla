@@ -15,8 +15,8 @@ import {
   createDomElement,
   emptyElement,
   findParent,
-  getElementOffset,
-  getElementSize,
+  getOffset,
+  getSize,
   insertAfter,
   toggleElement,
 } from './utils/domUtils.js';
@@ -801,10 +801,10 @@ export class MultipleSelectInstance {
     if (window.getComputedStyle) {
       computedWidth = window.getComputedStyle(this.elm).width;
       if (computedWidth === 'auto') {
-        computedWidth = getElementSize(this.dropElm, 'outer', 'width') + 20;
+        computedWidth = getSize(this.dropElm, 'outer', 'width') + 20;
       }
     } else {
-      computedWidth = getElementSize(this.elm, 'outer', 'width') + 20;
+      computedWidth = getSize(this.elm, 'outer', 'width') + 20;
     }
 
     this.parentElm.style.width = `${this.options.width || computedWidth}px`;
@@ -1271,7 +1271,7 @@ export class MultipleSelectInstance {
   protected adjustDropSizeAndPosition() {
     if (this.dropElm) {
       if (this.options.container) {
-        const offset = getElementOffset(this.dropElm);
+        const offset = getOffset(this.dropElm);
         let container: HTMLElement;
         if (this.options.container instanceof Node) {
           container = this.options.container as HTMLElement;
@@ -1282,13 +1282,13 @@ export class MultipleSelectInstance {
         this.dropElm.style.top = `${offset?.top ?? 0}px`;
         this.dropElm.style.left = `${offset?.left ?? 0}px`;
         this.dropElm.style.minWidth = 'auto';
-        this.dropElm.style.width = `${getElementSize(this.parentElm, 'outer', 'width')}px`;
+        this.dropElm.style.width = `${getSize(this.parentElm, 'outer', 'width')}px`;
       }
 
       const minHeight = this.options.minHeight;
       let maxHeight = this.options.maxHeight;
       if (this.options.maxHeightUnit === 'row') {
-        maxHeight = getElementSize(this.dropElm.querySelector('ul>li') as HTMLLIElement, 'outer', 'height') * this.options.maxHeight;
+        maxHeight = getSize(this.dropElm.querySelector('ul>li') as HTMLLIElement, 'outer', 'height') * this.options.maxHeight;
       }
       this.ulElm ??= this.dropElm.querySelector('ul');
       if (this.ulElm) {
@@ -1898,7 +1898,7 @@ export class MultipleSelectInstance {
 
     if (this.dropElm && this.parentElm) {
       const { bottom: spaceBottom, top: spaceTop } = calculateAvailableSpace(this.dropElm);
-      const { top: selectOffsetTop, left: selectOffsetLeft } = getElementOffset(this.parentElm) as HtmlElementPosition;
+      const { top: selectOffsetTop, left: selectOffsetLeft } = getOffset(this.parentElm) as HtmlElementPosition;
       const msDropHeight = this.dropElm.getBoundingClientRect().height;
       const msDropWidth = this.dropElm.getBoundingClientRect().width;
       const windowWidth = document.body.offsetWidth || window.innerWidth;
