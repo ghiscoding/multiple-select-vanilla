@@ -66,6 +66,6 @@ multipleSelect.locales = { ...English } as MultipleSelectLocales; // load Englis
 multipleSelect.methods = Constants.METHODS;
 
 // add it to the window object so it can be used as standalone
-if (typeof window !== 'undefined') {
+if (window !== undefined) {
   window.multipleSelect = multipleSelect;
 }

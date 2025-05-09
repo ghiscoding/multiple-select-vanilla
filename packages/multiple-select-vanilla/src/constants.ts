@@ -5,6 +5,8 @@ import English from './locales/multiple-select-en-US.js';
 const BLOCK_ROWS = 50;
 const CLUSTER_BLOCKS = 4;
 
+const noopFalse = () => false;
+const noopTrue = () => true;
 const DEFAULTS: Partial<MultipleSelectOption> = {
   name: '',
   placeholder: '',
@@ -64,23 +66,23 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   textTemplate: (elm: HTMLOptionElement) => elm.innerHTML.trim(),
   labelTemplate: (elm: HTMLOptionElement) => elm.label,
 
-  onBeforeOpen: () => false,
-  onOpen: () => false,
-  onClose: () => false,
-  onCheckAll: () => false,
-  onUncheckAll: () => false,
-  onFocus: () => false,
-  onBlur: () => false,
-  onOptgroupClick: () => false,
-  onBeforeClick: () => true,
-  onClick: () => false,
-  onFilter: () => false,
-  onFilterClear: () => false,
-  onClear: () => false,
-  onAfterCreate: () => false,
-  onDestroy: () => false,
-  onAfterDestroy: () => false,
-  onDestroyed: () => false,
+  onBeforeOpen: noopFalse,
+  onOpen: noopFalse,
+  onClose: noopFalse,
+  onCheckAll: noopFalse,
+  onUncheckAll: noopFalse,
+  onFocus: noopFalse,
+  onBlur: noopFalse,
+  onOptgroupClick: noopFalse,
+  onBeforeClick: noopTrue,
+  onClick: noopFalse,
+  onFilter: noopFalse,
+  onFilterClear: noopFalse,
+  onClear: noopFalse,
+  onAfterCreate: noopFalse,
+  onDestroy: noopFalse,
+  onAfterDestroy: noopFalse,
+  onDestroyed: noopFalse,
 };
 
 const METHODS = [
