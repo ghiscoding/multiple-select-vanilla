@@ -56,7 +56,7 @@ export class BindingEventService {
   ) {
     if (elementOrElements) {
       const elements = Array.isArray(elementOrElements) ? elementOrElements : [elementOrElements];
-      const eventNames = Array.isArray(eventNameOrNames) ? eventNameOrNames || '' : [eventNameOrNames || ''];
+      const eventNames = Array.isArray(eventNameOrNames) ? eventNameOrNames : [eventNameOrNames || ''];
 
       for (const element of elements) {
         if (!listener) {
@@ -94,8 +94,7 @@ export class BindingEventService {
     } else {
       // unbind everything
       while (this._boundedEvents.length > 0) {
-        const boundedEvent = this._boundedEvents.pop() as ElementEventListener;
-        const { element, eventName, listener } = boundedEvent;
+        const { element, eventName, listener } = this._boundedEvents.pop() as ElementEventListener;
         this.unbind(element, eventName, listener);
       }
     }

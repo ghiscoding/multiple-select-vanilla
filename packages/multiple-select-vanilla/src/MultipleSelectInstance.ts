@@ -180,7 +180,7 @@ export class MultipleSelectInstance {
     }
 
     // single or multiple
-    if (typeof this.options.single === 'undefined') {
+    if (this.options.single === undefined) {
       this.options.single = !this.elm.multiple;
     }
 
