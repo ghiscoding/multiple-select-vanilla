@@ -8,30 +8,18 @@ export interface HtmlElementPosition {
   right: number;
 }
 
-/** calculate available space for each side of the DOM element */
-export function calculateAvailableSpace(element: HTMLElement): { top: number; bottom: number; left: number; right: number } {
-  let bottom = 0;
-  let top = 0;
-  let left = 0;
-  let right = 0;
+/** Calculate available space for each side of the DOM element */
+export function calculateAvailableSpace(elm: HTMLElement): { top: number; bottom: number; left: number; right: number } {
+  const { innerHeight: windowHeight = 0, innerWidth: windowWidth = 0 } = window;
+  const { top: pageScrollTop, left: pageScrollLeft } = windowScrollPosition();
+  const { top = 0, left = 0 } = getOffset(elm) || {};
 
-  const windowHeight = window.innerHeight ?? 0;
-  const windowWidth = window.innerWidth ?? 0;
-  const scrollPosition = windowScrollPosition();
-  const pageScrollTop = scrollPosition.top;
-  const pageScrollLeft = scrollPosition.left;
-  const elmOffset = getElementOffset(element);
-
-  if (elmOffset) {
-    const elementOffsetTop = elmOffset.top ?? 0;
-    const elementOffsetLeft = elmOffset.left ?? 0;
-    top = elementOffsetTop - pageScrollTop;
-    bottom = windowHeight - (elementOffsetTop - pageScrollTop);
-    left = elementOffsetLeft - pageScrollLeft;
-    right = windowWidth - (elementOffsetLeft - pageScrollLeft);
-  }
-
-  return { top, bottom, left, right };
+  return {
+    top: top - pageScrollTop,
+    bottom: windowHeight - (top - pageScrollTop),
+    left: left - pageScrollLeft,
+    right: windowWidth - (left - pageScrollLeft),
+  };
 }
 
 /**
@@ -72,9 +60,7 @@ export function createDomElement<T extends keyof HTMLElementTagNameMap, K extend
       }
     });
   }
-  if (appendToParent?.appendChild) {
-    appendToParent.appendChild(elm);
-  }
+  appendToParent?.appendChild(elm);
   return elm;
 }
 
@@ -128,36 +114,30 @@ export function convertItemRowToHtml(item: HtmlStruct): HTMLElement {
  * Empty a DOM element by removing all of its DOM element children leaving with an empty element (basically an empty shell)
  * @return {object} element - updated element
  */
-export function emptyElement<T extends Element = Element>(element?: T | null): T | undefined | null {
-  while (element?.firstChild) {
-    if (element.lastChild) {
-      element.removeChild(element.lastChild);
+export function emptyElement<T extends Element = Element>(elm?: T | null): T | undefined | null {
+  while (elm?.firstChild) {
+    if (elm.lastChild) {
+      elm.removeChild(elm.lastChild);
     }
   }
-  return element;
+  return elm;
 }
 
 /** Get HTML element offset with pure JS */
-export function getElementOffset(element?: HTMLElement): HtmlElementPosition | undefined {
-  if (!element) {
-    return undefined;
+export function getOffset(element?: HTMLElement): HtmlElementPosition | undefined {
+  if (element) {
+    const { top, left, bottom, right } = element.getBoundingClientRect();
+    return {
+      top: top + window.pageYOffset,
+      left: left + window.pageXOffset,
+      bottom,
+      right,
+    };
   }
-  const rect = element?.getBoundingClientRect?.();
-  let top = 0;
-  let left = 0;
-  let bottom = 0;
-  let right = 0;
-
-  if (rect?.top !== undefined && rect.left !== undefined) {
-    top = rect.top + window.pageYOffset;
-    left = rect.left + window.pageXOffset;
-    right = rect.right;
-    bottom = rect.bottom;
-  }
-  return { top, left, bottom, right };
+  return undefined;
 }
 
-export function getElementSize(elm: HTMLElement | undefined, mode: 'inner' | 'outer' | 'scroll', type: 'height' | 'width') {
+export function getSize(elm: HTMLElement | undefined, mode: 'inner' | 'outer' | 'scroll', type: 'height' | 'width') {
   if (!elm) {
     return 0;
   }
@@ -165,16 +145,17 @@ export function getElementSize(elm: HTMLElement | undefined, mode: 'inner' | 'ou
   // first try defined style width or offsetWidth (which include scroll & padding)
   let size = Number.parseFloat(elm.style[type]);
   if (!size || Number.isNaN(size)) {
+    const pascalType = type === 'height' ? 'Height' : 'Width';
     switch (mode) {
       case 'outer':
-        size = elm[type === 'width' ? 'offsetWidth' : 'offsetHeight'];
+        size = elm[`offset${pascalType}`];
         break;
       case 'scroll':
-        size = elm[type === 'width' ? 'scrollWidth' : 'scrollHeight'];
+        size = elm[`scroll${pascalType}`];
         break;
       case 'inner':
       default:
-        size = elm[type === 'width' ? 'clientWidth' : 'clientHeight'];
+        size = elm[`client${pascalType}`];
         break;
     }
     size = elm.getBoundingClientRect()[type];

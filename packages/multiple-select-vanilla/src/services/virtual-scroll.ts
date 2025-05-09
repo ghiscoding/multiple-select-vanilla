@@ -1,6 +1,6 @@
 import Constants from '../constants.js';
 import type { HtmlStruct, VirtualCache, VirtualScrollOption } from '../models/interfaces.js';
-import { convertItemRowToHtml, emptyElement } from '../utils/domUtils.js';
+import { convertItemRowToHtml, createDomElement, emptyElement } from '../utils/domUtils.js';
 
 export class VirtualScroll {
   protected clusterRows?: number;
@@ -157,8 +157,7 @@ export class VirtualScroll {
   }
 
   protected getExtra(className: string, height: number) {
-    const tag = document.createElement('li');
-    tag.className = `virtual-scroll-${className}`;
+    const tag = createDomElement('li', { className: `virtual-scroll-${className}` });
     if (height) {
       tag.style.height = `${height}px`;
     }
