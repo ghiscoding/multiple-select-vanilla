@@ -44,7 +44,7 @@ for (const format of buildFormats) {
 }
 
 function runBuild(options) {
-  const startTime = new Date().getTime();
+  const startTime = Date.now();
   const buildOptions = {
     ...{
       color: true,
@@ -58,6 +58,6 @@ function runBuild(options) {
     ...options,
   };
   buildSync(buildOptions);
-  const endTime = new Date().getTime();
+  const endTime = Date.now();
   console.info(`⚡️ Built "${buildOptions.outfile}" in ${endTime - startTime}ms`);
 }

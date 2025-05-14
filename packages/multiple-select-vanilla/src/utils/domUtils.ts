@@ -196,7 +196,7 @@ export function findParent(elm: HTMLElement, selector: string) {
 
   while (parentElm) {
     // query selector id (#some-id) or class (.some-class other-class)
-    const [_, nodeType, selectorType, classOrIdName] = selector.match(/^([a-z]*)([#.]{1})([a-z\-]+)$/i) || [];
+    const [_, nodeType, selectorType, classOrIdName] = selector.match(/^([a-z]*)([#.]{1})([a-z-]+)$/i) || [];
     if (selectorType && classOrIdName) {
       // class or id selector type
       for (const q of classOrIdName.replace(selectorType, '').split(' ')) {
@@ -222,7 +222,7 @@ export function insertAfter(referenceNode: HTMLElement, newNode: HTMLElement) {
 }
 
 export function omitProp(obj: any, key: string) {
-  const { [key]: omitted, ...rest } = obj;
+  const { [key]: _omitted, ...rest } = obj;
   return rest;
 }
 
