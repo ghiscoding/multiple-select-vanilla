@@ -12,7 +12,7 @@ const files = process.env.LERNA_FILE_CHANGES.split(',') || [];
 runCompilation(files);
 
 function runBuild(options) {
-  const startTime = new Date().getTime();
+  const startTime = Date.now();
   const buildOptions = {
     ...{
       color: true,
@@ -28,7 +28,7 @@ function runBuild(options) {
     ...options,
   };
   buildSync(buildOptions);
-  const endTime = new Date().getTime();
+  const endTime = Date.now();
   console.info(`⚡️ Built in ${endTime - startTime}ms`);
 }
 
@@ -57,7 +57,7 @@ async function runCompilation(changedFiles) {
       }
       if (changedFile.includes('locales')) {
         // rebuild changed locale and also merged locale into a single locale
-        const [_, locale] = changedFile.match(/locales[\\\/]multiple-select-(.*)\.ts$/) || [];
+        const [_, locale] = changedFile.match(/locales[\\/]multiple-select-(.*)\.ts$/) || [];
         if (locale?.length === 5) {
           runBuild({
             entryPoints: [`src/locales/multiple-select-${locale}.ts`],
