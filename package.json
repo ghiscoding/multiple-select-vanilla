@@ -45,9 +45,8 @@
     "preview:version": "lerna version --dry-run",
     "preview:publish": "lerna publish from-package --dry-run",
     "new-version": "lerna version",
-    "new-version-1": "lerna version 1.0.2",
     "new-publish": "lerna publish from-package",
-    "preroll-new-release": "echo Please update getting-started lib version before pushing release. ⚠️",
+    "preroll-new-release": "echo Please update getting-started lib version before pushing a release. ⚠️",
     "roll-new-release": "pnpm build && pnpm new-version && pnpm new-publish",
     "serve:demo": "pnpm -r --stream --filter=\"{packages/demo/**}\" dev",
     "pretest:e2e": "rimraf playwright-report",
@@ -70,8 +69,8 @@
     "@types/node": "^22.15.3",
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "cross-env": "^7.0.3",
-    "npm-run-all2": "^7.0.2",
-    "rimraf": "^5.0.10",
+    "npm-run-all2": "^8.0.2",
+    "rimraf": "^6.0.1",
     "typescript": "5.8.3"
   },
   "packageManager": "pnpm@10.10.0"
