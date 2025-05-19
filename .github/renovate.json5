@@ -7,13 +7,7 @@
   },
   pin: false,
   rangeStrategy: 'bump',
-  packageRules: [
-    // rimraf new major releases dropped support for Node 18, we'll have to wait our next major to upgrade them
-    {
-      packageNames: ['rimraf'],
-      allowedVersions: '<6.0.0',
-    },
-  ],
+  packageRules: [],
   ignoreDeps: ['node', 'pnpm'],
-  schedule: ['every 4 weeks on Friday'],
+  schedule: ['every 3 months'],
 }
