@@ -7,6 +7,11 @@
             }
         }
     },
+    "html": {
+        "formatter": {
+            "enabled": true
+        }
+    },
     "formatter": {
         "enabled": true,
         "indentWidth": 2,
@@ -78,7 +83,6 @@
                 "noCommaOperator": "error",
                 "useNodejsImportProtocol": "error",
                 "useAsConstAssertion": "error",
-                "useNumericLiterals": "error",
                 "useEnumInitializers": "error",
                 "useSelfClosingElements": "error",
                 "useConst": "error",
