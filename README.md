@@ -53,7 +53,7 @@ import { multipleSelect } from 'multiple-select-vanilla';
 const ms = multipleSelect('.multiple-select');
 ```
 
-##### 2. or from data
+##### 2. or from a `data` array or object
 
 ```ts
 import { multipleSelect } from 'multiple-select-vanilla';
@@ -134,7 +134,8 @@ with this code in place, we can now use the following CSP meta tag (which is wha
 <meta http-equiv="Content-Security-Policy" content="default-src 'self';style-src 'self' data:; img-src * 'self' data: https:; require-trusted-types-for 'script'; trusted-types dompurify">
 ```
 
-> **Note** that in our demo we are actually adding `unsafe-inline` simply because we are using Vite (which is not CSP compliant in Dev mode), but the library should work nonetheless without `unsafe-inline`.
+> [!NOTE]
+> in our demo we are only adding `unsafe-inline` simply because we are using Vite (which is not CSP compliant in Dev mode), but the library should work nonetheless without `unsafe-inline`.
 
 ### Installation / Structure
 
@@ -149,9 +150,10 @@ dist/
   browser/
     multiple-select.js              # ESM build, use with: window.multipleSelect
   locales/
-    multiple-select-all-locales.js  # all-in-1 locales as ESM
+    multiple-select-all-locales.js  # all-in-1 locales
     ..
-    multiple-select-fr-FR.js        # French locale as ESM
+    multiple-select-es-ES.js        # Spanish locale
+    multiple-select-fr-FR.js        # French locale
     ...
   styles/                           # CSS and SASS Stylings
     css/
