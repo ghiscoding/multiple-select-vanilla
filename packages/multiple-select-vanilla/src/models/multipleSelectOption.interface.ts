@@ -295,7 +295,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
    * Fires when any option/group selections changes.
    * This event is triggered at the same time as these other events are triggered: (`onCheckAll`, `onUncheckAll`, `onClick`, `onOptgroupClick`)
    */
-  onChange: (data: { eventName: string; selection: { labels: any; values: any } }) => void;
+  onChange: (data: { eventName: string; selection: { labels: string[]; values: Array<string | number | boolean> } }) => void;
 
   /** Fires when an optgroup label is clicked on. */
   onOptgroupClick: (view: MultipleSelectView) => void;

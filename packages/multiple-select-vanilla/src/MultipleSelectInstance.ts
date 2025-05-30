@@ -1473,7 +1473,7 @@ export class MultipleSelectInstance {
     let textSelects = this.getSelects('text');
 
     if (this.options.displayValues) {
-      textSelects = valueSelects;
+      textSelects = valueSelects as string[];
     }
 
     const spanElm = this.choiceElm?.querySelector<HTMLSpanElement>('span');
@@ -1525,7 +1525,7 @@ export class MultipleSelectInstance {
     // set selects to select
     const selectedValues = this.getSelects();
     if (this.options.single) {
-      this.elm.value = selectedValues.length ? selectedValues[0] : '';
+      this.elm.value = selectedValues.length ? (selectedValues[0] as string) : '';
     } else {
       // when multiple values could be set, we need to loop through each
       Array.from(this.elm.options).forEach(option => {
@@ -1633,8 +1633,8 @@ export class MultipleSelectInstance {
   }
 
   // value html, or text, default: 'value'
-  getSelects(type: 'text' | 'value' = 'value') {
-    const values: any[] = [];
+  getSelects<T extends 'text' | 'value'>(type: T = 'value' as T) {
+    const values: Array<string | number | boolean> = [];
     for (const row of this.data || []) {
       if ((row as OptGroupRowData).type === 'optgroup') {
         const selectedChildren = (row as OptGroupRowData).children.filter(child => child?.selected);
@@ -1657,10 +1657,10 @@ export class MultipleSelectInstance {
           values.push(value.join(''));
         }
       } else if (row.selected) {
-        values.push(type === 'value' ? row._value || (row as OptionRowData)[type] : (row as any)[type]);
+        values.push(type === 'value' ? row._value || (row as OptionRowData)[type] : (row as OptionRowData)[type]);
       }
     }
-    return values;
+    return values as T extends 'text' ? string[] : Array<string | number | boolean>;
   }
 
   setSelects(values: any[], type = 'value', ignoreTrigger = false) {
