@@ -291,7 +291,13 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Bind an event handler to the “blur” */
   onBlur: () => void;
 
-  /** Fires when a an optgroup label is clicked on. */
+  /**
+   * Fires when any option/group selections changes.
+   * This event is triggered at the same time as these other events are triggered: (`onCheckAll`, `onUncheckAll`, `onClick`, `onOptgroupClick`)
+   */
+  onChange: (data: { eventName: string; selection: { labels: any; values: any } }) => void;
+
+  /** Fires when an optgroup label is clicked on. */
   onOptgroupClick: (view: MultipleSelectView) => void;
 
   /** Fires before a checkbox is clicked. Return `false` to prevent the click event. */

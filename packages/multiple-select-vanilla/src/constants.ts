@@ -67,6 +67,7 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   labelTemplate: (elm: HTMLOptionElement) => elm.label,
 
   onBeforeOpen: noopFalse,
+  onChange: noopFalse,
   onOpen: noopFalse,
   onClose: noopFalse,
   onCheckAll: noopFalse,

@@ -787,10 +787,15 @@ export class MultipleSelectInstance {
     this.isPartiallyAllSelected = !this.isAllSelected && selectedTotal > 0;
 
     if (!ignoreTrigger) {
+      let eventCalled: 'onCheckAll' | 'onUncheckAll' | '' = '';
       if (this.isAllSelected) {
-        this.options.onCheckAll();
+        eventCalled = 'onCheckAll';
       } else if (selectedTotal === 0) {
-        this.options.onUncheckAll();
+        eventCalled = 'onUncheckAll';
+      }
+      if (eventCalled) {
+        this.options[eventCalled]();
+        this.handleOnChange(eventCalled);
       }
     }
   }
@@ -974,7 +979,7 @@ export class MultipleSelectInstance {
           this.options.onOptgroupClick(
             removeUndefined({
               label: group.label,
-              selected: group.selected,
+              selected: !!group.selected,
               data: group._data,
               children: group.children.map((child: any) => {
                 if (child) {
@@ -989,6 +994,7 @@ export class MultipleSelectInstance {
               }),
             }),
           );
+          this.handleOnChange('onOptgroupClick');
         }) as EventListener,
         undefined,
         'group-checkbox-list',
@@ -1023,6 +1029,7 @@ export class MultipleSelectInstance {
               data: option._data,
             }),
           );
+          this.handleOnChange('onClick');
 
           close();
         }) as EventListener,
@@ -1133,6 +1140,16 @@ export class MultipleSelectInstance {
         'option-list-scroll',
       );
     }
+  }
+
+  protected handleOnChange(eventName: string) {
+    this.options.onChange({
+      eventName,
+      selection: {
+        labels: this.getSelects('text'),
+        values: this.getSelects('value'),
+      },
+    });
   }
 
   protected handleEscapeKey() {
@@ -1616,8 +1633,8 @@ export class MultipleSelectInstance {
   }
 
   // value html, or text, default: 'value'
-  getSelects(type = 'value') {
-    const values = [];
+  getSelects(type: 'text' | 'value' = 'value') {
+    const values: any[] = [];
     for (const row of this.data || []) {
       if ((row as OptGroupRowData).type === 'optgroup') {
         const selectedChildren = (row as OptGroupRowData).children.filter(child => child?.selected);
