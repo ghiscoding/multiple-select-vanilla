@@ -10,6 +10,18 @@ export interface MultipleSelectView {
   instance: any;
 }
 
+export interface ClickedItem<T extends 'option' | 'optgroup'> {
+  label: string;
+  selected: boolean;
+  type: T;
+}
+
+export interface ClickedGroup extends ClickedItem<'optgroup'> {}
+
+export interface ClickedOption extends ClickedItem<'option'> {
+  value?: any;
+}
+
 export type CloseReason =
   | 'body.click'
   | 'hover.mouseout'
@@ -291,7 +303,17 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Bind an event handler to the “blur” */
   onBlur: () => void;
 
-  /** Fires when a an optgroup label is clicked on. */
+  /**
+   * Fires when any option/group selections changes.
+   * This event is triggered at the same time as these other events are triggered: (`onCheckAll`, `onUncheckAll`, `onClick`, `onOptgroupClick`)
+   */
+  onChange: (data: {
+    eventName: string;
+    item?: ClickedGroup | ClickedOption;
+    selection: { labels: string[]; values: Array<string | number | boolean> };
+  }) => void;
+
+  /** Fires when an optgroup label is clicked on. */
   onOptgroupClick: (view: MultipleSelectView) => void;
 
   /** Fires before a checkbox is clicked. Return `false` to prevent the click event. */

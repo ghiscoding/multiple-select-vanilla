@@ -45,6 +45,9 @@ export default class Example {
       onAfterCreate: () => {
         this.log('onAfterCreate event fire!\n');
       },
+      onChange: data => {
+        this.log(`onChange event fire! data: ${JSON.stringify(data)}\n`);
+      },
     }) as MultipleSelectInstance;
   }
 

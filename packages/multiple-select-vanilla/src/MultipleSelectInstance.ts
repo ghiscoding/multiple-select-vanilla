@@ -2,9 +2,9 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
 import Constants from './constants.js';
-import type { HtmlStruct, OptGroupRowData, OptionDataObject, OptionRowData } from './models/interfaces.js';
+import type { HtmlStruct, OptGroupRowData, OptionRowData, OptionDataObject } from './models/interfaces.js';
 import type { MultipleSelectLocales } from './models/locale.interface.js';
-import type { CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface.js';
+import type { ClickedGroup, ClickedOption, CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface.js';
 import { BindingEventService } from './services/binding-event.service.js';
 import { VirtualScroll } from './services/virtual-scroll.js';
 import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils/utils.js';
@@ -787,10 +787,15 @@ export class MultipleSelectInstance {
     this.isPartiallyAllSelected = !this.isAllSelected && selectedTotal > 0;
 
     if (!ignoreTrigger) {
+      let eventCalled: 'onCheckAll' | 'onUncheckAll' | '' = '';
       if (this.isAllSelected) {
-        this.options.onCheckAll();
+        eventCalled = 'onCheckAll';
       } else if (selectedTotal === 0) {
-        this.options.onUncheckAll();
+        eventCalled = 'onUncheckAll';
+      }
+      if (eventCalled) {
+        this.options[eventCalled]();
+        this.handleOnChange(eventCalled);
       }
     }
   }
@@ -974,7 +979,7 @@ export class MultipleSelectInstance {
           this.options.onOptgroupClick(
             removeUndefined({
               label: group.label,
-              selected: group.selected,
+              selected: !!group.selected,
               data: group._data,
               children: group.children.map((child: any) => {
                 if (child) {
@@ -989,6 +994,11 @@ export class MultipleSelectInstance {
               }),
             }),
           );
+          this.handleOnChange('onOptgroupClick', {
+            label: group.label,
+            selected: !!group.selected,
+            type: group.type as 'optgroup',
+          });
         }) as EventListener,
         undefined,
         'group-checkbox-list',
@@ -1023,6 +1033,12 @@ export class MultipleSelectInstance {
               data: option._data,
             }),
           );
+          this.handleOnChange('onClick', {
+            label: option.text,
+            value: option.value,
+            selected: option.selected,
+            type: option.type as 'option',
+          });
 
           close();
         }) as EventListener,
@@ -1133,6 +1149,17 @@ export class MultipleSelectInstance {
         'option-list-scroll',
       );
     }
+  }
+
+  protected handleOnChange(eventName: string, item?: ClickedGroup | ClickedOption) {
+    this.options.onChange({
+      eventName,
+      item,
+      selection: {
+        labels: this.getSelects('text'),
+        values: this.getSelects('value'),
+      },
+    });
   }
 
   protected handleEscapeKey() {
@@ -1456,7 +1483,7 @@ export class MultipleSelectInstance {
     let textSelects = this.getSelects('text');
 
     if (this.options.displayValues) {
-      textSelects = valueSelects;
+      textSelects = valueSelects as string[];
     }
 
     const spanElm = this.choiceElm?.querySelector<HTMLSpanElement>('span');
@@ -1508,7 +1535,7 @@ export class MultipleSelectInstance {
     // set selects to select
     const selectedValues = this.getSelects();
     if (this.options.single) {
-      this.elm.value = selectedValues.length ? selectedValues[0] : '';
+      this.elm.value = selectedValues.length ? (selectedValues[0] as string) : '';
     } else {
       // when multiple values could be set, we need to loop through each
       Array.from(this.elm.options).forEach(option => {
@@ -1616,8 +1643,8 @@ export class MultipleSelectInstance {
   }
 
   // value html, or text, default: 'value'
-  getSelects(type = 'value') {
-    const values = [];
+  getSelects<T extends 'text' | 'value'>(type: T = 'value' as T) {
+    const values: Array<string | number | boolean> = [];
     for (const row of this.data || []) {
       if ((row as OptGroupRowData).type === 'optgroup') {
         const selectedChildren = (row as OptGroupRowData).children.filter(child => child?.selected);
@@ -1640,10 +1667,10 @@ export class MultipleSelectInstance {
           values.push(value.join(''));
         }
       } else if (row.selected) {
-        values.push(type === 'value' ? row._value || (row as OptionRowData)[type] : (row as any)[type]);
+        values.push(type === 'value' ? row._value || (row as OptionRowData)[type] : (row as OptionRowData)[type]);
       }
     }
-    return values;
+    return values as T extends 'text' ? string[] : Array<string | number | boolean>;
   }
 
   setSelects(values: any[], type = 'value', ignoreTrigger = false) {
