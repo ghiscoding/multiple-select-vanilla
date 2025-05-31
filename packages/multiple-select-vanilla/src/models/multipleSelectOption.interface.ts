@@ -5,9 +5,16 @@ import type { LocaleKey, MultipleSelectLocale } from './locale.interface.js';
 
 export interface MultipleSelectView {
   label: string;
-  value: any;
-  checked: boolean;
-  instance: any;
+  value?: any;
+  selected: boolean;
+  data: any;
+  children?: Array<{
+    label: string;
+    value: any;
+    selected: boolean;
+    disabled: boolean;
+    data: any;
+  }>;
 }
 
 export interface ClickedItem<T extends 'option' | 'optgroup'> {
