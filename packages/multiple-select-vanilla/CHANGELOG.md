@@ -4,6 +4,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.1.4...v4.2.0) (2025-05-31)
+
+### Features
+
+* add `onChange` event whenever a selection changes, fix [#372](https://github.com/ghiscoding/multiple-select-vanilla/issues/372) ([#374](https://github.com/ghiscoding/multiple-select-vanilla/issues/374)) ([d2b94ed](https://github.com/ghiscoding/multiple-select-vanilla/commit/d2b94ed17f191c6befd2d38ffecfb934b1bc3adb)) - by @ghiscoding
+
+### Bug Fixes
+
+* normalize event data & remove null group items ([#376](https://github.com/ghiscoding/multiple-select-vanilla/issues/376)) ([0771895](https://github.com/ghiscoding/multiple-select-vanilla/commit/0771895a0de1898d10c9371b25bf39919e5586fa)) - by @ghiscoding
+
 ## [4.1.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.1.3...v4.1.4) (2025-05-09)
 
 ### Bug Fixes
