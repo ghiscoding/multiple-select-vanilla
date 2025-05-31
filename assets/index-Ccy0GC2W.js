@@ -1440,10 +1440,10 @@ var Gl=Object.defineProperty;var Ul=(n,t,e)=>t in n?Gl(n,t,{enumerable:!0,config
     <div style="background: #f7f7f7; padding: 10px">
       <pre>
 &lt;!-- Latest compiled and minified CSS --&gt;
-&lt;link href=&quot;<span style="color:#0a3069">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@4.1.0/dist/styles/css/multiple-select.css</span>&quot; rel=&quot;<span style="color:#0a3069">stylesheet</span>&quot;&gt;
+&lt;link href=&quot;<span style="color:#0a3069">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@4.2.0/dist/styles/css/multiple-select.css</span>&quot; rel=&quot;<span style="color:#0a3069">stylesheet</span>&quot;&gt;
 
 &lt;!-- (ESM requires <span style="color:#d63384">type=&quot;module&quot;</span>) Latest compiled and minified JavaScript --&gt;
-&lt;script type=&quot;module&quot; src=&quot;<span style="color:#0a3069">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@4.1.0/dist/browser/multiple-select.js</span>&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot; src=&quot;<span style="color:#0a3069">https://cdn.jsdelivr.net/npm/multiple-select-vanilla@4.2.0/dist/browser/multiple-select.js</span>&quot;&gt;&lt;/script&gt;
     </div>
 
     <quote>
