@@ -2,9 +2,9 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
 import Constants from './constants.js';
-import type { HtmlStruct, OptGroupRowData, OptionDataObject, OptionRowData } from './models/interfaces.js';
+import type { HtmlStruct, OptGroupRowData, OptionRowData, OptionDataObject } from './models/interfaces.js';
 import type { MultipleSelectLocales } from './models/locale.interface.js';
-import type { CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface.js';
+import type { ClickedGroup, ClickedOption, CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface.js';
 import { BindingEventService } from './services/binding-event.service.js';
 import { VirtualScroll } from './services/virtual-scroll.js';
 import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils/utils.js';
@@ -994,7 +994,11 @@ export class MultipleSelectInstance {
               }),
             }),
           );
-          this.handleOnChange('onOptgroupClick');
+          this.handleOnChange('onOptgroupClick', {
+            label: group.label,
+            selected: !!group.selected,
+            type: group.type as 'optgroup',
+          });
         }) as EventListener,
         undefined,
         'group-checkbox-list',
@@ -1029,7 +1033,12 @@ export class MultipleSelectInstance {
               data: option._data,
             }),
           );
-          this.handleOnChange('onClick');
+          this.handleOnChange('onClick', {
+            label: option.text,
+            value: option.value,
+            selected: option.selected,
+            type: option.type as 'option',
+          });
 
           close();
         }) as EventListener,
@@ -1142,9 +1151,10 @@ export class MultipleSelectInstance {
     }
   }
 
-  protected handleOnChange(eventName: string) {
+  protected handleOnChange(eventName: string, item?: ClickedGroup | ClickedOption) {
     this.options.onChange({
       eventName,
+      item,
       selection: {
         labels: this.getSelects('text'),
         values: this.getSelects('value'),

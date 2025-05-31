@@ -10,6 +10,18 @@ export interface MultipleSelectView {
   instance: any;
 }
 
+export interface ClickedItem<T extends 'option' | 'optgroup'> {
+  label: string;
+  selected: boolean;
+  type: T;
+}
+
+export interface ClickedGroup extends ClickedItem<'optgroup'> {}
+
+export interface ClickedOption extends ClickedItem<'option'> {
+  value?: any;
+}
+
 export type CloseReason =
   | 'body.click'
   | 'hover.mouseout'
@@ -295,7 +307,11 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
    * Fires when any option/group selections changes.
    * This event is triggered at the same time as these other events are triggered: (`onCheckAll`, `onUncheckAll`, `onClick`, `onOptgroupClick`)
    */
-  onChange: (data: { eventName: string; selection: { labels: string[]; values: Array<string | number | boolean> } }) => void;
+  onChange: (data: {
+    eventName: string;
+    item?: ClickedGroup | ClickedOption;
+    selection: { labels: string[]; values: Array<string | number | boolean> };
+  }) => void;
 
   /** Fires when an optgroup label is clicked on. */
   onOptgroupClick: (view: MultipleSelectView) => void;

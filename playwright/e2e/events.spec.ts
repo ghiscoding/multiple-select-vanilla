@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Events Demo', () => {
   test('executing multiple actions with ms-select should fire multiple events', async ({ page }) => {
@@ -40,7 +40,7 @@ test.describe('Events Demo', () => {
         'onBlur event fire!',
         'onOpen event fire!',
         'onOptgroupClick event fire! view: {"label":"Group 1","selected":true,"children":[null,{"text":"Option 1","value":"1","selected":true,"disabled":false},null,{"text":"Option 2","value":"2","selected":true,"disabled":false},null,{"text":"Option 3","value":"3","selected":true,"disabled":false},null]}',
-        'onChange event fire! data: {"eventName":"onOptgroupClick","selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]"],"values":["1","2","3"]}}',
+        'onChange event fire! data: {"eventName":"onOptgroupClick","item":{"label":"Group 1","selected":true,"type":"optgroup"},"selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]"],"values":["1","2","3"]}}',
       ].join('\n'),
     );
 
@@ -58,7 +58,7 @@ test.describe('Events Demo', () => {
         'onBlur event fire!',
         'onOpen event fire!',
         'onOptgroupClick event fire! view: {"label":"Group 1","selected":true,"children":[null,{"text":"Option 1","value":"1","selected":true,"disabled":false},null,{"text":"Option 2","value":"2","selected":true,"disabled":false},null,{"text":"Option 3","value":"3","selected":true,"disabled":false},null]}',
-        'onChange event fire! data: {"eventName":"onOptgroupClick","selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]"],"values":["1","2","3"]}}',
+        'onChange event fire! data: {"eventName":"onOptgroupClick","item":{"label":"Group 1","selected":true,"type":"optgroup"},"selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]"],"values":["1","2","3"]}}',
         'onCheckAll event fire!',
         'onChange event fire! data: {"eventName":"onCheckAll","selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]","[Group 2: Option 4, Option 5, Option 6]","[Group 3: Option 7, Option 8, Option 9]"],"values":["1","2","3","4","5","6","7","8","9"]}}',
       ].join('\n'),
@@ -78,7 +78,7 @@ test.describe('Events Demo', () => {
         'onBlur event fire!',
         'onOpen event fire!',
         'onOptgroupClick event fire! view: {"label":"Group 1","selected":true,"children":[null,{"text":"Option 1","value":"1","selected":true,"disabled":false},null,{"text":"Option 2","value":"2","selected":true,"disabled":false},null,{"text":"Option 3","value":"3","selected":true,"disabled":false},null]}',
-        'onChange event fire! data: {"eventName":"onOptgroupClick","selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]"],"values":["1","2","3"]}}',
+        'onChange event fire! data: {"eventName":"onOptgroupClick","item":{"label":"Group 1","selected":true,"type":"optgroup"},"selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]"],"values":["1","2","3"]}}',
         'onCheckAll event fire!',
         'onChange event fire! data: {"eventName":"onCheckAll","selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]","[Group 2: Option 4, Option 5, Option 6]","[Group 3: Option 7, Option 8, Option 9]"],"values":["1","2","3","4","5","6","7","8","9"]}}',
         'onCheckAll event fire!',
@@ -101,7 +101,7 @@ test.describe('Events Demo', () => {
         'onBlur event fire!',
         'onOpen event fire!',
         'onOptgroupClick event fire! view: {"label":"Group 1","selected":true,"children":[null,{"text":"Option 1","value":"1","selected":true,"disabled":false},null,{"text":"Option 2","value":"2","selected":true,"disabled":false},null,{"text":"Option 3","value":"3","selected":true,"disabled":false},null]}',
-        'onChange event fire! data: {"eventName":"onOptgroupClick","selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]"],"values":["1","2","3"]}}',
+        'onChange event fire! data: {"eventName":"onOptgroupClick","item":{"label":"Group 1","selected":true,"type":"optgroup"},"selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]"],"values":["1","2","3"]}}',
         'onCheckAll event fire!',
         'onChange event fire! data: {"eventName":"onCheckAll","selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]","[Group 2: Option 4, Option 5, Option 6]","[Group 3: Option 7, Option 8, Option 9]"],"values":["1","2","3","4","5","6","7","8","9"]}}',
         'onCheckAll event fire!',
