@@ -1,7 +1,7 @@
 # Multiple-Select-Vanilla
 
 ## Live Demo
-Available [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) for displaying all available options/methods. 
+Available [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot).
 
 ## Installation
 
@@ -11,7 +11,7 @@ npm install multiple-select-vanilla
 
 ## Basic Usage
 
-#### 1. From a native `<select>`
+#### 1. from a native `<select>`
 
 ```html
 <select class="multiple-select full-width" data-test="select1">
@@ -30,7 +30,7 @@ import { multipleSelect } from 'multiple-select-vanilla';
 const ms = multipleSelect('.multiple-select');
 ```
 
-##### 2. From data
+##### 2. or from a `data` array or object
 
 ```ts
 import { multipleSelect } from 'multiple-select-vanilla';

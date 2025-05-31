@@ -17,7 +17,7 @@ This lib allows you to select multiple elements with checkboxes :).
 To get started take a look at the [Live demo](https://ghiscoding.github.io/multiple-select-vanilla/) for all available options and methods that the library offers.
 
 ## Demo
-Take a look at the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot). 
+Take a look at the [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot).
 You can also take a look at the "[Used by](#used-by)" section below to see and try live real world Open Source projects taking advantage of this library.
 
 ### Fully tested with [![Playwright](https://img.shields.io/badge/tested%20with-Playwright-45ba4b.svg?logo=playwright)](https://playwright.dev/)
