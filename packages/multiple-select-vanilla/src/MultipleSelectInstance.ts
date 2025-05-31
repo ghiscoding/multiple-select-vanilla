@@ -981,17 +981,17 @@ export class MultipleSelectInstance {
               label: group.label,
               selected: !!group.selected,
               data: group._data,
-              children: group.children.map((child: any) => {
-                if (child) {
+              children: group.children
+                .filter((c: any) => c)
+                .map((child: any) => {
                   return removeUndefined({
-                    text: child.text,
+                    label: child.text,
                     value: child.value,
                     selected: child.selected,
                     disabled: child.disabled,
                     data: child._data,
                   });
-                }
-              }),
+                }),
             }),
           );
           this.handleOnChange('onOptgroupClick', {
@@ -1027,7 +1027,7 @@ export class MultipleSelectInstance {
           this._check(option, checked);
           this.options.onClick(
             removeUndefined({
-              text: option.text,
+              label: option.text,
               value: option.value,
               selected: option.selected,
               data: option._data,
