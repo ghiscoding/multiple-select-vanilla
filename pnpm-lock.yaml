@@ -4,6 +4,18 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    cross-env:
+      specifier: ^7.0.3
+      version: 7.0.3
+    sass:
+      specifier: ^1.89.1
+      version: 1.89.1
+    typescript:
+      specifier: ^5.8.3
+      version: 5.8.3
+
 importers:
 
   .:
@@ -30,7 +42,7 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
       cross-env:
-        specifier: ^7.0.3
+        specifier: 'catalog:'
         version: 7.0.3
       npm-run-all2:
         specifier: ^8.0.4
@@ -39,7 +51,7 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       typescript:
-        specifier: 5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/demo:
@@ -61,10 +73,10 @@ importers:
         version: link:../multiple-select-vanilla
     devDependencies:
       sass:
-        specifier: ^1.89.1
+        specifier: 'catalog:'
         version: 1.89.1
       typescript:
-        specifier: 5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       vite:
         specifier: ^6.3.5
@@ -80,7 +92,7 @@ importers:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.4)
       cross-env:
-        specifier: ^7.0.3
+        specifier: 'catalog:'
         version: 7.0.3
       cssnano:
         specifier: ^7.0.7
@@ -98,13 +110,13 @@ importers:
         specifier: ^11.0.1
         version: 11.0.1(postcss@8.5.4)
       sass:
-        specifier: ^1.89.1
+        specifier: 'catalog:'
         version: 1.89.1
       tinyglobby:
         specifier: ^0.2.14
         version: 0.2.14
       typescript:
-        specifier: 5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
 packages:
