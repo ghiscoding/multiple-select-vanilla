@@ -1,10 +1,11 @@
+export { MultipleSelectInstance } from './MultipleSelectInstance.js';
 export type * from './models/interfaces.js';
 export type * from './models/locale.interface.js';
 export type * from './models/multipleSelectOption.interface.js';
+export { multipleSelect } from './multiple-select.js';
 export { BindingEventService, type ElementEventListener } from './services/binding-event.service.js';
 export { VirtualScroll } from './services/virtual-scroll.js';
 export {
-  type HtmlElementPosition,
   calculateAvailableSpace,
   classNameToList,
   convertItemRowToHtml,
@@ -14,6 +15,7 @@ export {
   findParent,
   getOffset,
   getSize,
+  type HtmlElementPosition,
   insertAfter,
   omitProp,
   toggleElement,
@@ -30,5 +32,3 @@ export {
   setDataKeys,
   stripScripts,
 } from './utils/utils.js';
-export { multipleSelect } from './multiple-select.js';
-export { MultipleSelectInstance } from './MultipleSelectInstance.js';

@@ -1,6 +1,6 @@
+import English from './locales/multiple-select-en-US.js';
 import type { LabelFilter, TextFilter } from './models/interfaces.js';
 import type { MultipleSelectOption } from './models/multipleSelectOption.interface.js';
-import English from './locales/multiple-select-en-US.js';
 
 const BLOCK_ROWS = 50;
 const CLUSTER_BLOCKS = 4;
