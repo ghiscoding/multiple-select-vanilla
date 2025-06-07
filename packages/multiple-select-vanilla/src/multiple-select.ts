@@ -3,11 +3,11 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
 
-import { MultipleSelectInstance } from './MultipleSelectInstance.js';
 import Constants from './constants.js';
+import English from './locales/multiple-select-en-US.js';
+import { MultipleSelectInstance } from './MultipleSelectInstance.js';
 import type { MultipleSelectLocales } from './models/locale.interface.js';
 import type { MultipleSelectOption } from './models/multipleSelectOption.interface.js';
-import English from './locales/multiple-select-en-US.js';
 
 /**
  * The multiplseSelect function is your entry to creating a MultipleSelect instance on any HTML Select Element.

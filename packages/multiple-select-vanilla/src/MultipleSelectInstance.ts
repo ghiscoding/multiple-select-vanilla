@@ -2,12 +2,12 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
 import Constants from './constants.js';
-import type { HtmlStruct, OptGroupRowData, OptionRowData, OptionDataObject } from './models/interfaces.js';
+import type { HtmlStruct, OptGroupRowData, OptionDataObject, OptionRowData } from './models/interfaces.js';
 import type { MultipleSelectLocales } from './models/locale.interface.js';
 import type { ClickedGroup, ClickedOption, CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface.js';
 import { BindingEventService } from './services/binding-event.service.js';
 import { VirtualScroll } from './services/virtual-scroll.js';
-import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils/utils.js';
+import type { HtmlElementPosition } from './utils/domUtils.js';
 import {
   calculateAvailableSpace,
   classNameToList,
@@ -20,7 +20,7 @@ import {
   insertAfter,
   toggleElement,
 } from './utils/domUtils.js';
-import type { HtmlElementPosition } from './utils/domUtils.js';
+import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils/utils.js';
 
 const OPTIONS_LIST_SELECTOR = '.ms-select-all, ul li[data-key]';
 const OPTIONS_HIGHLIGHT_LIST_SELECTOR = '.ms-select-all.highlighted, ul li[data-key].highlighted';
