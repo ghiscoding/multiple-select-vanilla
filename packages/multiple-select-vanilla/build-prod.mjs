@@ -6,11 +6,9 @@ const localeFiles = globSync('src/locales/**/*.ts');
 const localeEntryPoints = [];
 
 for (const format of buildFormats) {
-  const extension = format === 'cjs' ? 'cjs' : 'js';
-
   runBuild({
     format,
-    outfile: `dist/index.${extension}`,
+    outfile: `dist/index.js`,
   });
 
   // build all locales
@@ -22,7 +20,7 @@ for (const format of buildFormats) {
       runBuild({
         entryPoints: [`src/locales/multiple-select-${locale}.ts`],
         format,
-        outfile: `dist/locales/multiple-select-${locale}.${extension}`,
+        outfile: `dist/locales/multiple-select-${locale}.js`,
       });
     }
   }
@@ -31,7 +29,7 @@ for (const format of buildFormats) {
   runBuild({
     entryPoints: ['./src/locales/all-locales-index.ts'],
     format,
-    outfile: `dist/locales/multiple-select-all-locales.${extension}`,
+    outfile: `dist/locales/multiple-select-all-locales.js`,
   });
 
   // finally, create a regular bundle as a standalone which will be accessible as MultipleSelect from the global window object
@@ -39,7 +37,7 @@ for (const format of buildFormats) {
   runBuild({
     format,
     globalName: 'MultipleSelect',
-    outfile: `dist/browser/multiple-select.${extension}`,
+    outfile: `dist/browser/multiple-select.js`,
   });
 }
 
