@@ -93,19 +93,19 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Title that can be displayed in the dropdown */
   displayTitle?: boolean;
 
-  /** Display selected values on the element. By default this option is set to false. */
+  /**Defaults to false, display selected values on the element */
   displayValues?: boolean;
 
   /** Define the width of the dropdown list */
   dropWidth?: number;
 
-  /** Add `…` after selected options if minimumCountSelected is set. Overrides countSelected option.By default this option is set to false. */
+  /** Defaults to false, add `…` after selected options if minimumCountSelected is set. Overrides countSelected option. */
   ellipsis?: boolean;
 
-  /** Whether or not Multiple Select show a search field to search through checkbox items.By default this option is set to false. */
+  /** Defaults to false, whether or not Multiple Select show a search field to search through checkbox items */
   filter?: boolean;
 
-  /** Accept a filter by typing Enter on the keyboard. By default this option is set to false. */
+  /** Defaults to false, accept a filter by typing Enter on the keyboard */
   filterAcceptOnEnter?: boolean;
 
   /**
@@ -120,16 +120,16 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Add a placeholder to the input search filter when `filter` is enabled. */
   filterPlaceholder?: string;
 
-  /** Hide the option groupd checkboses. By default this is set to false. */
+  /** Defaults to false, hide the option groupd checkboses */
   hideOptgroupCheckboxes?: boolean;
 
-  /** Defaults to False, Infinite Scroll will automatically reset the list (scroll back to top) whenever the scroll reaches the last item (end of the list) */
+  /** Defaults to false, Infinite Scroll will automatically reset the list (scroll back to top) whenever the scroll reaches the last item (end of the list) */
   infiniteScroll?: boolean;
 
   /** Whether or not Multiple Select open the select dropdown. */
   isOpen?: boolean;
 
-  /** Keep the select dropdown always open.By default this option is set to false. */
+  /** Defaults to false, keep the select dropdown always open */
   keepOpen?: boolean;
 
   /**
@@ -148,13 +148,13 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Use optional string to override "Loading..." text instead of `formatLazyLoading()` when lazy loading data is processing. */
   lazyLoadingText?: string;
 
-  /** Optional Locale */
+  /** Optional I18n Locale */
   locale?: LocaleKey | MultipleSelectLocale;
 
   /** Defaults to 250, define the maximum height property of the dropdown list. */
   maxHeight: number;
 
-  /** maxHeight unit type */
+  /** Defaults to `px`, maxHeight unit type */
   maxHeightUnit?: string;
 
   /** Defaults to 150, define the minimum height property of the dropdown list. */
@@ -166,19 +166,19 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Define the minimum width of the drop when using the "autoAdjustDropWidthByTextSize: true" flag. */
   minWidth?: number;
 
-  /** countSelected will be shown only if more than X items where selected.By default this option is set to 3. */
+  /** Defaults to 3, minimum count of item selected to start showing "X items where selected". */
   minimumCountSelected: number;
 
-  /** Whether or not Multiple Select show multiple items in a row.By default this option is set to false. */
+  /** Defaults to false, whether or not Multiple Select show multiple items in a row */
   multiple?: boolean;
 
-  /** Multiple Select show multiple items width.By default this option is set to 80. */
+  /** Defaults to 80, Multiple Select items width */
   multipleWidth?: number;
 
-  /** Provide a name to the multiple select element. By default this option is set to ''. */
+  /** Defaults to an empty string, provide a name to the multiple select element */
   name?: string;
 
-  /** Defaults to True, arrow navigation (and mouse hover) to highlight and possibly change selected option(s). */
+  /** Defaults to True, arrow navigation (and mouse hover) to highlight and possibly change selected option(s) with keyboard or mouse hovering. */
   navigationHighlight?: boolean;
 
   /** Use optional string to override text when filtering "No matches found" instead of `formatNoMatchesFound()`, the latter should be preferred */
@@ -187,28 +187,28 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Use optional string to override "OK" button text instead of `formatOkButton()`, the latter should be preferred */
   okButtonText?: string;
 
-  /** Should we open the dropdown while hovering the select? */
+  /** Will open the dropdown when hovering the select */
   openOnHover?: boolean;
 
-  /** A placeholder value can be defined and will be displayed until you select a item. */
+  /** A placeholder value can be defined and will be displayed until you select an item. */
   placeholder?: string;
 
-  /** Defines the position of select dropdown, can only be bottom or top. By default this option is set to bottom. */
+  /** Defaults to 'bottom', defines the position of select dropdown, can only be bottom or top */
   position: 'bottom' | 'top';
 
   /**
    * Custom Filter predicate function callback to pre-filter the data collection before rendering the select dropdown.
-   * Note that this is executed before `preSort` (when defined).
+   * Note that this will be executed before `preSort` (when defined).
    */
   preFilter?: (dataItem: OptionRowData | OptGroupRowData) => boolean;
 
   /**
    * Custom Sort Comparer function callback to pre-sort the data collection before rendering the select dropdown.
-   * Note that this is executed after `preSort` (when defined).
+   * Note that this will be executed after `preSort` (when defined).
    */
   preSort?: (item1: OptionRowData | OptGroupRowData, item2: OptionRowData | OptGroupRowData) => number;
 
-  /** Defaults to False, should we render option labels as html? */
+  /** Defaults to False, should we render option labels as HTML? */
   renderOptionLabelAsHtml?: boolean;
 
   /** Whether or not Multiple Select show select all checkbox. */
@@ -217,7 +217,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Use optional string to override "Select All" checkbox text instead of `formatSelectAll()`, the latter should be preferred */
   selectAllText?: string;
 
-  /** Whether or not Multiple Select allows you to select only one option.By default this option is set to false. */
+  /** Defaults to false, whether or not Multiple Select allows you to select only one option */
   single?: boolean;
 
   /** Alias to `single` */
@@ -238,7 +238,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Defaults to False, when set to True it will use the <option label=""> (from select option value) that can be used to display selected options. */
   useSelectOptionLabel?: boolean;
 
-  /** Defaults to False, same as "useSelectOptionLabel" but will also render html */
+  /** Defaults to False, same as "useSelectOptionLabel" but will also render HTML */
   useSelectOptionLabelToHtml?: boolean;
 
   /**
@@ -247,17 +247,17 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
    */
   virtualScroll?: boolean;
 
-  /** Define the width property of the dropdown list, support a percentage setting.By default this option is set to undefined. Which is the same as the select input field. */
+  /** Defaults to undefined, customize the width property of the dropdown list, support a percentage setting. The default will make the select input field the same width as the select. */
   width?: number | string;
 
   // --
   // Methods
   // ------------
 
-  /** The item styler function, return style string to customize the item style such as background: red. The function take one parameter: value. */
+  /** The item styler function, return style string to customize the item style such as `background: red`. The function takes a value as argument. */
   cssStyler: (value: OptionRowData | OptGroupRowData) => CSSStyleDeclaration | null;
 
-  /** Customize the filter method, for example we use startWith */
+  /** Customize the filter method, for example if we want to use a startsWith character */
   customFilter(options: LabelFilter | TextFilter): boolean;
 
   /** Returns HTML label attribute of a DOM element */
@@ -304,15 +304,15 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Fires when all the options are unchecked by either clicking the `Select all` checkbox, or when the `uncheckall` method is programatically called. */
   onUncheckAll: () => void;
 
-  /** Bind an event handler to the “focus”. */
+  /** Bind an event handler to the "focus". */
   onFocus: () => void;
 
-  /** Bind an event handler to the “blur” */
+  /** Bind an event handler to the "blur" */
   onBlur: () => void;
 
   /**
    * Fires when any option/group selections changes.
-   * This event is triggered at the same time as these other events are triggered: (`onCheckAll`, `onUncheckAll`, `onClick`, `onOptgroupClick`)
+   * This event is triggered at the same time as other events are being triggered: (`onCheckAll`, `onUncheckAll`, `onClick`, `onOptgroupClick`)
    */
   onChange: (data: {
     eventName: string;
@@ -323,7 +323,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Fires when an optgroup label is clicked on. */
   onOptgroupClick: (view: MultipleSelectView) => void;
 
-  /** Fires before a checkbox is clicked. Return `false` to prevent the click event. */
+  /** Fires when a checkbox is clicked but before any code is executed internally. Return `false` to prevent the click (onClick) event for being processed. */
   onBeforeClick: (view: MultipleSelectView) => boolean;
 
   /** Fires when a checkbox is checked or unchecked. */
