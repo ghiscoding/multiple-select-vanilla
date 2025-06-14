@@ -21,23 +21,23 @@ importers:
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.0.0-beta.5
-        version: 2.0.0-beta.5
+        specifier: ^2.0.0-beta.6
+        version: 2.0.0-beta.6
       '@lerna-lite/cli':
         specifier: ^4.4.1
-        version: 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3))(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(typescript@5.8.3)
+        version: 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3))(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(typescript@5.8.3)
       '@lerna-lite/publish':
         specifier: ^4.4.1
-        version: 4.4.1(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3)
+        version: 4.4.1(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3)
       '@lerna-lite/watch':
         specifier: ^4.4.1
-        version: 4.4.1(@lerna-lite/publish@4.4.1)(@types/node@22.15.30)(typescript@5.8.3)
+        version: 4.4.1(@lerna-lite/publish@4.4.1)(@types/node@24.0.1)(typescript@5.8.3)
       '@playwright/test':
         specifier: ^1.52.0
         version: 1.52.0
       '@types/node':
-        specifier: ^22.15.30
-        version: 22.15.30
+        specifier: ^24.0.1
+        version: 24.0.1
       conventional-changelog-conventionalcommits:
         specifier: ^9.0.0
         version: 9.0.0
@@ -80,7 +80,7 @@ importers:
         version: 5.8.3
       vite:
         specifier: ^6.3.5
-        version: 6.3.5(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0)
+        version: 6.3.5(@types/node@24.0.1)(sass@1.89.2)(yaml@2.8.0)
 
   packages/multiple-select-vanilla:
     dependencies:
@@ -101,8 +101,8 @@ importers:
         specifier: ^0.25.5
         version: 0.25.5
       native-copyfiles:
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^1.2.1
+        version: 1.2.1
       postcss:
         specifier: ^8.5.4
         version: 8.5.4
@@ -129,55 +129,55 @@ packages:
     resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
 
-  '@biomejs/biome@2.0.0-beta.5':
-    resolution: {integrity: sha512-1ldO4AepieVvg4aLi1ubZkA7NsefQT2UTNssbJbDiQTGem8kCHx/PZCwLxIR6UzFpGIjh0xsDzivyVvhnmqmuA==}
+  '@biomejs/biome@2.0.0-beta.6':
+    resolution: {integrity: sha512-14vw9b5QJxrcP7WLkCeRiB/fft9wNZwx6yEiikBDxFbN7IAp39Xtvt/gJPq4ifhZ5IS25CnQEAkLLwfBIDMjsA==}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@2.0.0-beta.5':
-    resolution: {integrity: sha512-pnJiaoDpwGo+ctGkMu4POcO8jgOgCErBdYbhutr+K9rxxJS+TlHLr0LR91GCEWbGV2O1oyZRFQcW21rYFoak4w==}
+  '@biomejs/cli-darwin-arm64@2.0.0-beta.6':
+    resolution: {integrity: sha512-L7PBLJlGTz5anougOMJQvEbzgG9sT1wKIXvgjFhu0dIsDZ/px2caWFCnv7Q9L2K0+yF08EYRTTZVvoVO5D//sQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@2.0.0-beta.5':
-    resolution: {integrity: sha512-WwEZpqcmsNoFpZkUFNQcbZo52WK4hLGQ0vZk3PQ8JlZ55gJsHiyhtv6aem6fVlyVCvZgpsC0sYPLE3VvFVKNAQ==}
+  '@biomejs/cli-darwin-x64@2.0.0-beta.6':
+    resolution: {integrity: sha512-ekhOOyhcVJ1ZRqHjq+eUOv8/3XMRKQ9Qf0URuO/PvHgopejv+PEoix0RIyxholYELKc049M4J3IJgsX4q2pZzw==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@2.0.0-beta.5':
-    resolution: {integrity: sha512-4vxNkYx1uEt211W8hLdXddc7icRHQgYENb72g6uTd/tLVPSBvIwqUAxAOkU+9Ai1E/8R4sWy7HIxREgpuFgbNA==}
+  '@biomejs/cli-linux-arm64-musl@2.0.0-beta.6':
+    resolution: {integrity: sha512-70WOWJI1/vZ97OUAt6r9HpiP5+vlL7yAdIoVQzVLjQy1TArfltN38KKqp9fnhgX173liUh0gry//MrWkKHYrIQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-arm64@2.0.0-beta.5':
-    resolution: {integrity: sha512-lAF1de+Ki0vnq14NwDXouKkAR/iviyMNrUngSHjTGFC4z8XGVEfIw0ZMSm7fAdJZ5fAWodt9HiYmEAVs5EtHQg==}
+  '@biomejs/cli-linux-arm64@2.0.0-beta.6':
+    resolution: {integrity: sha512-pu+rCLI36ziPtwnJY53HRr154711uVeCt1i2KNXehvwNZZMK141wwg4yPkXkBdBvw7H7sez0HE/rCQR2fByJnQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64-musl@2.0.0-beta.5':
-    resolution: {integrity: sha512-nUeKGO517GtRCxziVD9les1HiCs2s2/WIVITMN9+9RRuLOko8r+T77E8ZXEmlfLOfOIOeE6z62WITqei3oNccA==}
+  '@biomejs/cli-linux-x64-musl@2.0.0-beta.6':
+    resolution: {integrity: sha512-G9ZIoaNs6q9+mOoMURoXvNRfCOs28jrS4R8+3/y0h9ttOXpd4VALPOAfjzBGPpMd/4RoEMHXw/1Ts4dKvrv9zw==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64@2.0.0-beta.5':
-    resolution: {integrity: sha512-I0Pt1VHeL1mN8G7ZwV2u9AfzBd5ZKfbvHUI4x2wETUZbwcQlAu/nEzEa2LUe5HqSmnctTR36ig7RkkM9qbmIrA==}
+  '@biomejs/cli-linux-x64@2.0.0-beta.6':
+    resolution: {integrity: sha512-emqZAuAyRw4Ug4B+CTgozIxVg1QLol28oZyIWuIjWEDr7eOo6Ek9zSZGeusmbwIEPu6r6qon8JAV6OdukxEwIg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-win32-arm64@2.0.0-beta.5':
-    resolution: {integrity: sha512-YXW6hgbrgBcWQ1SLO69ypWlluPchgQV5C1lTG4xOcBUWdCsfYuQirM64S6Dov7SFPqsMIoFC6LlQRW+n8qAyiA==}
+  '@biomejs/cli-win32-arm64@2.0.0-beta.6':
+    resolution: {integrity: sha512-JijYVZC6R5qq94yLaElowLLzbZ4xR2qDiOVPQV8H1+ru3IqVOjQu5f/lIt4uuea1iRFbxS+mOaxOZM9tUl1pTQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@2.0.0-beta.5':
-    resolution: {integrity: sha512-N7Yby52BJmvEdst1iMbclE5hxxefboaXKRJLm1tLfBYr4FeuoCe6j8HdiQSwhCRdIUGFFqBLaDXh//LLF6EReA==}
+  '@biomejs/cli-win32-x64@2.0.0-beta.6':
+    resolution: {integrity: sha512-zs29t/nxon11dKV+ckQB1yUOmhYx17e2+cHGK8PCVamqVGSMbjrd5evjtlfbnVJXP0ar7nNKhcg4ZWYGJ6aR1w==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
@@ -814,8 +814,8 @@ packages:
   '@types/estree@1.0.7':
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
 
-  '@types/node@22.15.30':
-    resolution: {integrity: sha512-6Q7lr06bEHdlfplU6YRbgG1SFBdlsfNC4/lX+SkhiTs0cpJkOElmWls8PxDFv4yY/xKb8Y6SO0OmSX4wgqTZbA==}
+  '@types/node@24.0.1':
+    resolution: {integrity: sha512-MX4Zioh39chHlDJbKmEgydJDS3tspMP/lnQC67G3SWsTnb9NeYVWOjkxpOSy4oMfPs4StcWHwBrvUb4ybfnuaw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -1657,8 +1657,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  native-copyfiles@1.2.0:
-    resolution: {integrity: sha512-BaTAVzzDGSdVCe8SXF2/98jDYESkvX3UXh0pgPZ7DyOBNJJ6WgxqbHLzu3q26c/b1fIGCj1xz0GBvFzSEmZBWw==}
+  native-copyfiles@1.2.1:
+    resolution: {integrity: sha512-lBiyRmOxWiBLdYaGCslaQ8LWROk3OTq2Z0YBVOX++hMXNJOGojk5efAJdCw/FAxUXHtW1NbLtmnySB4oPlDdOA==}
     engines: {node: ^20.0.0 || >=22.0.0}
     hasBin: true
 
@@ -2343,8 +2343,8 @@ packages:
     engines: {node: '>=0.8.0'}
     hasBin: true
 
-  undici-types@6.21.0:
-    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+  undici-types@7.8.0:
+    resolution: {integrity: sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw==}
 
   unicorn-magic@0.1.0:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
@@ -2550,39 +2550,39 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.25.9': {}
 
-  '@biomejs/biome@2.0.0-beta.5':
+  '@biomejs/biome@2.0.0-beta.6':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 2.0.0-beta.5
-      '@biomejs/cli-darwin-x64': 2.0.0-beta.5
-      '@biomejs/cli-linux-arm64': 2.0.0-beta.5
-      '@biomejs/cli-linux-arm64-musl': 2.0.0-beta.5
-      '@biomejs/cli-linux-x64': 2.0.0-beta.5
-      '@biomejs/cli-linux-x64-musl': 2.0.0-beta.5
-      '@biomejs/cli-win32-arm64': 2.0.0-beta.5
-      '@biomejs/cli-win32-x64': 2.0.0-beta.5
+      '@biomejs/cli-darwin-arm64': 2.0.0-beta.6
+      '@biomejs/cli-darwin-x64': 2.0.0-beta.6
+      '@biomejs/cli-linux-arm64': 2.0.0-beta.6
+      '@biomejs/cli-linux-arm64-musl': 2.0.0-beta.6
+      '@biomejs/cli-linux-x64': 2.0.0-beta.6
+      '@biomejs/cli-linux-x64-musl': 2.0.0-beta.6
+      '@biomejs/cli-win32-arm64': 2.0.0-beta.6
+      '@biomejs/cli-win32-x64': 2.0.0-beta.6
 
-  '@biomejs/cli-darwin-arm64@2.0.0-beta.5':
+  '@biomejs/cli-darwin-arm64@2.0.0-beta.6':
     optional: true
 
-  '@biomejs/cli-darwin-x64@2.0.0-beta.5':
+  '@biomejs/cli-darwin-x64@2.0.0-beta.6':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@2.0.0-beta.5':
+  '@biomejs/cli-linux-arm64-musl@2.0.0-beta.6':
     optional: true
 
-  '@biomejs/cli-linux-arm64@2.0.0-beta.5':
+  '@biomejs/cli-linux-arm64@2.0.0-beta.6':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@2.0.0-beta.5':
+  '@biomejs/cli-linux-x64-musl@2.0.0-beta.6':
     optional: true
 
-  '@biomejs/cli-linux-x64@2.0.0-beta.5':
+  '@biomejs/cli-linux-x64@2.0.0-beta.6':
     optional: true
 
-  '@biomejs/cli-win32-arm64@2.0.0-beta.5':
+  '@biomejs/cli-win32-arm64@2.0.0-beta.6':
     optional: true
 
-  '@biomejs/cli-win32-x64@2.0.0-beta.5':
+  '@biomejs/cli-win32-x64@2.0.0-beta.6':
     optional: true
 
   '@conventional-changelog/git-client@2.4.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.1.0)':
@@ -2667,10 +2667,10 @@ snapshots:
   '@esbuild/win32-x64@0.25.5':
     optional: true
 
-  '@inquirer/core@10.1.13(@types/node@22.15.30)':
+  '@inquirer/core@10.1.13(@types/node@24.0.1)':
     dependencies:
       '@inquirer/figures': 1.0.12
-      '@inquirer/type': 3.0.7(@types/node@22.15.30)
+      '@inquirer/type': 3.0.7(@types/node@24.0.1)
       ansi-escapes: 4.3.2
       cli-width: 4.1.0
       mute-stream: 2.0.0
@@ -2678,38 +2678,38 @@ snapshots:
       wrap-ansi: 6.2.0
       yoctocolors-cjs: 2.1.2
     optionalDependencies:
-      '@types/node': 22.15.30
+      '@types/node': 24.0.1
 
-  '@inquirer/expand@4.0.15(@types/node@22.15.30)':
+  '@inquirer/expand@4.0.15(@types/node@24.0.1)':
     dependencies:
-      '@inquirer/core': 10.1.13(@types/node@22.15.30)
-      '@inquirer/type': 3.0.7(@types/node@22.15.30)
+      '@inquirer/core': 10.1.13(@types/node@24.0.1)
+      '@inquirer/type': 3.0.7(@types/node@24.0.1)
       yoctocolors-cjs: 2.1.2
     optionalDependencies:
-      '@types/node': 22.15.30
+      '@types/node': 24.0.1
 
   '@inquirer/figures@1.0.12': {}
 
-  '@inquirer/input@4.1.12(@types/node@22.15.30)':
+  '@inquirer/input@4.1.12(@types/node@24.0.1)':
     dependencies:
-      '@inquirer/core': 10.1.13(@types/node@22.15.30)
-      '@inquirer/type': 3.0.7(@types/node@22.15.30)
+      '@inquirer/core': 10.1.13(@types/node@24.0.1)
+      '@inquirer/type': 3.0.7(@types/node@24.0.1)
     optionalDependencies:
-      '@types/node': 22.15.30
+      '@types/node': 24.0.1
 
-  '@inquirer/select@4.2.3(@types/node@22.15.30)':
+  '@inquirer/select@4.2.3(@types/node@24.0.1)':
     dependencies:
-      '@inquirer/core': 10.1.13(@types/node@22.15.30)
+      '@inquirer/core': 10.1.13(@types/node@24.0.1)
       '@inquirer/figures': 1.0.12
-      '@inquirer/type': 3.0.7(@types/node@22.15.30)
+      '@inquirer/type': 3.0.7(@types/node@24.0.1)
       ansi-escapes: 4.3.2
       yoctocolors-cjs: 2.1.2
     optionalDependencies:
-      '@types/node': 22.15.30
+      '@types/node': 24.0.1
 
-  '@inquirer/type@3.0.7(@types/node@22.15.30)':
+  '@inquirer/type@3.0.7(@types/node@24.0.1)':
     optionalDependencies:
-      '@types/node': 22.15.30
+      '@types/node': 24.0.1
 
   '@isaacs/balanced-match@4.0.1': {}
 
@@ -2732,10 +2732,10 @@ snapshots:
 
   '@isaacs/string-locale-compare@1.1.0': {}
 
-  '@lerna-lite/cli@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3))(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(typescript@5.8.3)':
+  '@lerna-lite/cli@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3))(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(typescript@5.8.3)':
     dependencies:
-      '@lerna-lite/core': 4.4.1(@types/node@22.15.30)(typescript@5.8.3)
-      '@lerna-lite/init': 4.4.1(@types/node@22.15.30)(typescript@5.8.3)
+      '@lerna-lite/core': 4.4.1(@types/node@24.0.1)(typescript@5.8.3)
+      '@lerna-lite/init': 4.4.1(@types/node@24.0.1)(typescript@5.8.3)
       '@lerna-lite/npmlog': 4.1.2
       dedent: 1.6.0
       dotenv: 16.5.0
@@ -2743,20 +2743,20 @@ snapshots:
       load-json-file: 7.0.1
       yargs: 18.0.0
     optionalDependencies:
-      '@lerna-lite/publish': 4.4.1(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3)
-      '@lerna-lite/version': 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3)
-      '@lerna-lite/watch': 4.4.1(@lerna-lite/publish@4.4.1)(@types/node@22.15.30)(typescript@5.8.3)
+      '@lerna-lite/publish': 4.4.1(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3)
+      '@lerna-lite/version': 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3)
+      '@lerna-lite/watch': 4.4.1(@lerna-lite/publish@4.4.1)(@types/node@24.0.1)(typescript@5.8.3)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
       - supports-color
       - typescript
 
-  '@lerna-lite/core@4.4.1(@types/node@22.15.30)(typescript@5.8.3)':
+  '@lerna-lite/core@4.4.1(@types/node@24.0.1)(typescript@5.8.3)':
     dependencies:
-      '@inquirer/expand': 4.0.15(@types/node@22.15.30)
-      '@inquirer/input': 4.1.12(@types/node@22.15.30)
-      '@inquirer/select': 4.2.3(@types/node@22.15.30)
+      '@inquirer/expand': 4.0.15(@types/node@24.0.1)
+      '@inquirer/input': 4.1.12(@types/node@24.0.1)
+      '@inquirer/select': 4.2.3(@types/node@24.0.1)
       '@lerna-lite/npmlog': 4.1.2
       '@npmcli/run-script': 9.1.0
       ci-info: 4.2.0
@@ -2790,9 +2790,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@lerna-lite/init@4.4.1(@types/node@22.15.30)(typescript@5.8.3)':
+  '@lerna-lite/init@4.4.1(@types/node@24.0.1)(typescript@5.8.3)':
     dependencies:
-      '@lerna-lite/core': 4.4.1(@types/node@22.15.30)(typescript@5.8.3)
+      '@lerna-lite/core': 4.4.1(@types/node@24.0.1)(typescript@5.8.3)
       fs-extra: 11.3.0
       p-map: 7.0.3
       write-json-file: 6.0.0
@@ -2813,12 +2813,12 @@ snapshots:
       string-width: 7.2.0
       wide-align: 1.1.5
 
-  '@lerna-lite/publish@4.4.1(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3)':
+  '@lerna-lite/publish@4.4.1(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3)':
     dependencies:
-      '@lerna-lite/cli': 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3))(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(typescript@5.8.3)
-      '@lerna-lite/core': 4.4.1(@types/node@22.15.30)(typescript@5.8.3)
+      '@lerna-lite/cli': 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3))(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(typescript@5.8.3)
+      '@lerna-lite/core': 4.4.1(@types/node@24.0.1)(typescript@5.8.3)
       '@lerna-lite/npmlog': 4.1.2
-      '@lerna-lite/version': 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3)
+      '@lerna-lite/version': 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3)
       '@npmcli/arborist': 9.1.2
       '@npmcli/package-json': 6.2.0
       byte-size: 9.0.1
@@ -2851,11 +2851,11 @@ snapshots:
       - supports-color
       - typescript
 
-  '@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3)':
+  '@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3)':
     dependencies:
       '@conventional-changelog/git-client': 2.4.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.1.0)
-      '@lerna-lite/cli': 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3))(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(typescript@5.8.3)
-      '@lerna-lite/core': 4.4.1(@types/node@22.15.30)(typescript@5.8.3)
+      '@lerna-lite/cli': 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3))(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(typescript@5.8.3)
+      '@lerna-lite/core': 4.4.1(@types/node@24.0.1)(typescript@5.8.3)
       '@lerna-lite/npmlog': 4.1.2
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 22.0.0
@@ -2895,10 +2895,10 @@ snapshots:
       - supports-color
       - typescript
 
-  '@lerna-lite/watch@4.4.1(@lerna-lite/publish@4.4.1)(@types/node@22.15.30)(typescript@5.8.3)':
+  '@lerna-lite/watch@4.4.1(@lerna-lite/publish@4.4.1)(@types/node@24.0.1)(typescript@5.8.3)':
     dependencies:
-      '@lerna-lite/cli': 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(conventional-commits-filter@5.0.0)(typescript@5.8.3))(@lerna-lite/watch@4.4.1)(@types/node@22.15.30)(typescript@5.8.3)
-      '@lerna-lite/core': 4.4.1(@types/node@22.15.30)(typescript@5.8.3)
+      '@lerna-lite/cli': 4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/version@4.4.1(@lerna-lite/publish@4.4.1)(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(conventional-commits-filter@5.0.0)(typescript@5.8.3))(@lerna-lite/watch@4.4.1)(@types/node@24.0.1)(typescript@5.8.3)
+      '@lerna-lite/core': 4.4.1(@types/node@24.0.1)(typescript@5.8.3)
       chokidar: 4.0.3
       picomatch: 4.0.2
       tinyglobby: 0.2.14
@@ -3275,9 +3275,9 @@ snapshots:
 
   '@types/estree@1.0.7': {}
 
-  '@types/node@22.15.30':
+  '@types/node@24.0.1':
     dependencies:
-      undici-types: 6.21.0
+      undici-types: 7.8.0
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -4125,7 +4125,7 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  native-copyfiles@1.2.0:
+  native-copyfiles@1.2.1:
     dependencies:
       tinyglobby: 0.2.14
       untildify: 5.0.0
@@ -4838,7 +4838,7 @@ snapshots:
   uglify-js@3.19.3:
     optional: true
 
-  undici-types@6.21.0: {}
+  undici-types@7.8.0: {}
 
   unicorn-magic@0.1.0: {}
 
@@ -4881,7 +4881,7 @@ snapshots:
 
   validate-npm-package-name@6.0.0: {}
 
-  vite@6.3.5(@types/node@22.15.30)(sass@1.89.2)(yaml@2.8.0):
+  vite@6.3.5(@types/node@24.0.1)(sass@1.89.2)(yaml@2.8.0):
     dependencies:
       esbuild: 0.25.5
       fdir: 6.4.4(picomatch@4.0.2)
@@ -4890,7 +4890,7 @@ snapshots:
       rollup: 4.40.1
       tinyglobby: 0.2.14
     optionalDependencies:
-      '@types/node': 22.15.30
+      '@types/node': 24.0.1
       fsevents: 2.3.3
       sass: 1.89.2
       yaml: 2.8.0
