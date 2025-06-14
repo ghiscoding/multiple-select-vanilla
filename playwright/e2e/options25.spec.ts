@@ -28,7 +28,7 @@ test.describe('Options 25 - Show OK Button', () => {
   });
 
   test('Tab and Shift+Tab to switch from OK button to List', async ({ page }) => {
-    // 1st select
+    // 1st Select
     await page.goto('#/options25');
     await page.locator('[data-test=select1].ms-parent').click();
     await page.getByRole('option', { name: 'April' }).click();
@@ -39,14 +39,26 @@ test.describe('Options 25 - Show OK Button', () => {
     await expect(page.locator('div[data-test=select1] .ms-ok-button')).toBeFocused();
     await page.keyboard.press('Shift+Tab');
     await expect(page.locator('div[data-test=select1] .ms-select-all input')).toBeFocused();
-    await page.keyboard.press('Shift+Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter');
     await expect(page.locator('div[data-test=select1] .ms-drop')).toBeHidden();
 
-    // last select Shift+Tab will close drop
+    // 3rd Select
+    await page.locator('[data-test=select3].ms-parent').click();
+    await page.locator('div:nth-child(2) > label > .icon-checkbox-container').click();
+    await page.keyboard.press('Tab');
+    await expect(page.locator('div[data-test=select3] .ms-ok-button')).toBeFocused();
+    await page.keyboard.press('Shift+Tab');
+    await expect(page.locator('div[data-test=select3] .ms-search input')).toBeFocused();
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter');
+    await expect(page.locator('div[data-test=select3] .ms-drop')).toBeHidden();
+
+    // 4th Select Enter key will close drop
     await page.locator('[data-test=select4].ms-parent').click();
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('Shift+Tab');
+    await page.keyboard.press('Enter');
     await expect(page.locator('div[data-test=select4] .ms-drop')).toBeHidden();
   });
 });

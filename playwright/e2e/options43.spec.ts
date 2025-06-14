@@ -37,8 +37,10 @@ test.describe('Options 43 - Close on Tab', () => {
     // 5th Select
     await page.locator('div[data-test=data1] .ms-choice').click();
     await expect(page.locator('div[data-test=data1] .ms-drop')).toBeVisible();
-    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab'); // 1st Tab will focus on "OK" button
+    await expect(page.locator('div[data-test=data1] .ms-drop')).toBeVisible();
+    await expect(page.locator('div[data-test=data1] .ms-ok-button')).toBeFocused();
+    await page.keyboard.press('Tab'); // 2nd Tab will close the drop
     await expect(page.locator('div[data-test=data1] .ms-drop')).not.toBeVisible();
-    // });
   });
 });
