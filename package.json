@@ -62,9 +62,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.0-beta.5",
-    "@lerna-lite/cli": "^4.3.0",
-    "@lerna-lite/publish": "^4.3.0",
-    "@lerna-lite/watch": "^4.3.0",
+    "@lerna-lite/cli": "^4.4.1",
+    "@lerna-lite/publish": "^4.4.1",
+    "@lerna-lite/watch": "^4.4.1",
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.30",
     "conventional-changelog-conventionalcommits": "^9.0.0",
