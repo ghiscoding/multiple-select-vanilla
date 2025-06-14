@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [20]
+        node: [22]
 
     steps:
       - name: Retrieve current Date Time in EST
