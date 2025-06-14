@@ -73,6 +73,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** The class prefix of select. */
   classPrefix?: string;
 
+  /** Should we close the drop when Tab key is pressed. */
+  closeOnTab?: boolean;
+
   /** HTML container to use for the drop menu, e.g. 'body' */
   container?: string | HTMLElement | null;
 
