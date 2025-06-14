@@ -278,6 +278,13 @@ export class MultipleSelectInstance {
         'body-click',
       );
     }
+
+    // listen to Tab and call `onBlur` when that happens
+    this._bindEventService.bind(this.dropElm, 'keyup', ((e: KeyboardEvent) => {
+      if (e.code === 'Tab') {
+        this.options.onBlur();
+      }
+    }) as EventListener);
   }
 
   protected initData() {

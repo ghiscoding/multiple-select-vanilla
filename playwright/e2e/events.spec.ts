@@ -113,5 +113,36 @@ test.describe('Events Demo', () => {
         'onFilterClear event fire!',
       ].join('\n'),
     );
+
+    await page.locator('.ms-parent').click();
+    await page.keyboard.press('Tab');
+    await expect(textareaLoc).toHaveText(
+      [
+        'onAfterCreate event fire!',
+        'onFocus event fire!',
+        'onBeforeOpen event fire!',
+        'onBlur event fire!',
+        'onOpen event fire!',
+        'onFocus event fire!',
+        'onClose event fire! Reason: "toggle.close"',
+        'onBeforeOpen event fire!',
+        'onBlur event fire!',
+        'onOpen event fire!',
+        'onOptgroupClick event fire! view: {"label":"Group 1","selected":true,"children":[{"label":"Option 1","value":"1","selected":true,"disabled":false},{"label":"Option 2","value":"2","selected":true,"disabled":false},{"label":"Option 3","value":"3","selected":true,"disabled":false}]}',
+        'onChange event fire! data: {"eventName":"onOptgroupClick","item":{"label":"Group 1","selected":true,"type":"optgroup"},"selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]"],"values":["1","2","3"]}}',
+        'onCheckAll event fire!',
+        'onChange event fire! data: {"eventName":"onCheckAll","selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]","[Group 2: Option 4, Option 5, Option 6]","[Group 3: Option 7, Option 8, Option 9]"],"values":["1","2","3","4","5","6","7","8","9"]}}',
+        'onCheckAll event fire!',
+        'onChange event fire! data: {"eventName":"onCheckAll","selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]","[Group 2: Option 4, Option 5, Option 6]","[Group 3: Option 7, Option 8, Option 9]"],"values":["1","2","3","4","5","6","7","8","9"]}}',
+        'onFilter event fire! text: 1',
+        'onCheckAll event fire!',
+        'onChange event fire! data: {"eventName":"onCheckAll","selection":{"labels":["[Group 1: Option 1, Option 2, Option 3]","[Group 2: Option 4, Option 5, Option 6]","[Group 3: Option 7, Option 8, Option 9]"],"values":["1","2","3","4","5","6","7","8","9"]}}',
+        'onFilter event fire! text: ',
+        'onFilterClear event fire!',
+        'onFocus event fire!',
+        'onClose event fire! Reason: "toggle.close"',
+        'onBlur event fire!',
+      ].join('\n'),
+    );
   });
 });
