@@ -282,7 +282,7 @@ export class MultipleSelectInstance {
     // listen to Tab and call `onBlur` when that happens
     this._bindEventService.bind(this.dropElm, 'keyup', ((e: KeyboardEvent) => {
       if (e.code === 'Tab') {
-        this.options.onBlur();
+        this.options.onBlur(e);
       }
     }) as EventListener);
   }
@@ -1628,7 +1628,7 @@ export class MultipleSelectInstance {
     const options = Object.assign({}, this.options);
     delete options.data;
 
-    return returnDeepCopy ? deepCopy(options) : this.options;
+    return returnDeepCopy ? deepCopy<MultipleSelectOption>(options) : this.options;
   }
 
   refreshOptions(options: Partial<MultipleSelectOption>) {
