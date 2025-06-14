@@ -17,20 +17,20 @@ export function compareObjects(objectA: any, objectB: any, compareLength = false
 }
 
 /** make deep copy clone of an object */
-export function deepCopy(obj: any): any {
+export function deepCopy<T = any>(obj: T): T {
   if (typeof obj !== 'object' || obj === null) {
     return obj;
   }
 
   if (Array.isArray(obj)) {
-    return obj.map(deepCopy);
+    return obj.map(deepCopy) as T;
   }
 
   if (typeof obj === 'function') {
     return obj;
   }
 
-  return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, deepCopy(value)]));
+  return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, deepCopy(value)])) as T;
 }
 
 export function isDefined(val: any) {

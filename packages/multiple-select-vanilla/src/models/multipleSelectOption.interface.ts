@@ -30,6 +30,7 @@ export interface ClickedOption extends ClickedItem<'option'> {
 }
 
 export type CloseReason =
+  | 'blur'
   | 'body.click'
   | 'hover.mouseout'
   | 'key.shift+tab'
@@ -308,7 +309,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   onFocus: () => void;
 
   /** Bind an event handler to the "blur" */
-  onBlur: () => void;
+  onBlur: (e?: KeyboardEvent | FocusEvent) => void;
 
   /**
    * Fires when any option/group selections changes.
