@@ -101,8 +101,8 @@ importers:
         specifier: ^0.25.5
         version: 0.25.5
       native-copyfiles:
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^1.2.1
+        version: 1.2.1
       postcss:
         specifier: ^8.5.4
         version: 8.5.4
@@ -1657,8 +1657,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  native-copyfiles@1.2.0:
-    resolution: {integrity: sha512-BaTAVzzDGSdVCe8SXF2/98jDYESkvX3UXh0pgPZ7DyOBNJJ6WgxqbHLzu3q26c/b1fIGCj1xz0GBvFzSEmZBWw==}
+  native-copyfiles@1.2.1:
+    resolution: {integrity: sha512-lBiyRmOxWiBLdYaGCslaQ8LWROk3OTq2Z0YBVOX++hMXNJOGojk5efAJdCw/FAxUXHtW1NbLtmnySB4oPlDdOA==}
     engines: {node: ^20.0.0 || >=22.0.0}
     hasBin: true
 
@@ -4125,7 +4125,7 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  native-copyfiles@1.2.0:
+  native-copyfiles@1.2.1:
     dependencies:
       tinyglobby: 0.2.14
       untildify: 5.0.0
