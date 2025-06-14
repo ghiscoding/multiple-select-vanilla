@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.0...v4.3.1) (2025-06-14)
+
+### Bug Fixes
+
+* when `closeOnTab` w/OK button, it should take 2 Tabs to close ([#388](https://github.com/ghiscoding/multiple-select-vanilla/issues/388)) ([9742825](https://github.com/ghiscoding/multiple-select-vanilla/commit/97428259c3098253a2cf47dbd8b2c4b7e3259975)) - by @ghiscoding
+
 ## [4.3.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.2.2...v4.3.0) (2025-06-14)
 
 ### Features
