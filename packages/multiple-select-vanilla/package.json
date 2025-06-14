@@ -74,7 +74,7 @@
     "cssnano": "^7.0.7",
     "esbuild": "^0.25.5",
     "native-copyfiles": "^1.2.1",
-    "postcss": "^8.5.4",
+    "postcss": "^8.5.5",
     "postcss-cli": "^11.0.1",
     "sass": "catalog:",
     "tinyglobby": "^0.2.14",
