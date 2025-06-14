@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.2.2...v4.3.0) (2025-06-14)
+
+### Features
+
+* add new `closeOnTab` option ([#387](https://github.com/ghiscoding/multiple-select-vanilla/issues/387)) ([4a5f7e4](https://github.com/ghiscoding/multiple-select-vanilla/commit/4a5f7e46f5a4f4ff746127d5c3ea9d34bf186f12)) - by @ghiscoding
+
 ## [4.2.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.2.1...v4.2.2) (2025-06-14)
 
 ### Bug Fixes
