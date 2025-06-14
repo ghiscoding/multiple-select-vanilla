@@ -278,16 +278,6 @@ export class MultipleSelectInstance {
         'body-click',
       );
     }
-
-    // listen to Tab and call `onBlur` when that happens
-    this._bindEventService.bind(this.dropElm, 'keyup', ((e: KeyboardEvent) => {
-      if (e.code === 'Tab') {
-        this.options.onBlur(e);
-        if (this.options.closeOnTab) {
-          this.close('blur');
-        }
-      }
-    }) as EventListener);
   }
 
   protected initData() {
@@ -1125,22 +1115,26 @@ export class MultipleSelectInstance {
               break;
             }
             case 'Tab': {
-              // when clicking Tab, we'll focus on OK button when available
-              // or with Shift+Tab we'll either focus first option when coming
-              // from OK button or close drop if we're already in the lsit
+              // when clicking "Tab" and we're using a multiple select and we're not focusing on "OK" button yet, we'll do focus to it.
+              // otherwise we'll call the `onBlur` callback and/or `closeOnTab` is enabled we'll do that too.
               e.preventDefault();
-              if (e.shiftKey) {
-                if (document.activeElement === this.okButtonElm) {
-                  this.focusSelectAllOrList();
-                  this.highlightCurrentOption();
-                } else {
-                  this.close('key.shift+tab');
-                  this.choiceElm.focus();
-                }
-              } else {
+
+              // when using multiple select with "OK" button
+              const isMultiple = !this.options.single && this.options.showOkButton;
+              if (isMultiple && e.shiftKey && document.activeElement === this.okButtonElm) {
+                this.focusSelectAllOrList();
+                this.highlightCurrentOption();
+                this.filterParentElm?.querySelector('input')?.focus();
+              } else if (isMultiple && !e.shiftKey && document.activeElement !== this.okButtonElm) {
                 this.changeCurrentOptionHighlight();
                 this.okButtonElm?.focus();
+              } else {
+                this.options.onBlur(e);
+                if (this.options.isOpen && this.options.closeOnTab) {
+                  this.close('blur');
+                }
               }
+
               break;
             }
           }
