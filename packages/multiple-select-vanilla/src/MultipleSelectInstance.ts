@@ -283,6 +283,9 @@ export class MultipleSelectInstance {
     this._bindEventService.bind(this.dropElm, 'keyup', ((e: KeyboardEvent) => {
       if (e.code === 'Tab') {
         this.options.onBlur(e);
+        if (this.options.closeOnTab) {
+          this.close('blur');
+        }
       }
     }) as EventListener);
   }
