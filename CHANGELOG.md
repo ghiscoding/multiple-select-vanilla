@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.2.1...v4.2.2) (2025-06-14)
+
+### Bug Fixes
+
+* add missing blur event and option types ([#386](https://github.com/ghiscoding/multiple-select-vanilla/issues/386)) ([3a489ed](https://github.com/ghiscoding/multiple-select-vanilla/commit/3a489edf6121c7d75293965554745097b0a0d9b9)) - by @ghiscoding
+
 ## [4.2.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.2.0...v4.2.1) (2025-06-14)
 
 ### Bug Fixes
