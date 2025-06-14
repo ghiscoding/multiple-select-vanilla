@@ -65,7 +65,7 @@
     "@lerna-lite/cli": "^4.4.1",
     "@lerna-lite/publish": "^4.4.1",
     "@lerna-lite/watch": "^4.4.1",
-    "@playwright/test": "^1.53.0",
+    "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.31",
     "conventional-changelog-conventionalcommits": "^9.0.0",
     "cross-env": "catalog:",
