@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.2.0...v4.2.1) (2025-06-14)
+
+### Bug Fixes
+
+* should call `onBlur` anytime Tab key is pressed ([#380](https://github.com/ghiscoding/multiple-select-vanilla/issues/380)) ([a4ca1ec](https://github.com/ghiscoding/multiple-select-vanilla/commit/a4ca1ec989d0b682df07dd4039d5b153894b7a0d)) - by @ghiscoding
+
 ## [4.2.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.1.4...v4.2.0) (2025-05-31)
 
 ### Features
