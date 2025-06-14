@@ -73,7 +73,11 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** The class prefix of select. */
   classPrefix?: string;
 
-  /** Should we close the drop when Tab key is pressed. */
+  /**
+   * Should we close the drop when Tab key is pressed.
+   * Side note: when using a multiple select with the "OK" button enabled,
+   * it will require 2 Tabs (1. focus on "OK", 2. close drop)
+   */
   closeOnTab?: boolean;
 
   /** HTML container to use for the drop menu, e.g. 'body' */
