@@ -554,10 +554,11 @@ export class MultipleSelectInstance {
   }
 
   protected getEventTarget(e: Event & { target: HTMLElement }): HTMLElement {
-    if (e.composedPath) {
-      return e.composedPath()[0] as HTMLElement;
+    try {
+      return (e.composedPath?.()[0] || (e as any).path?.[0] || e.target) as HTMLElement;
+    } catch {
+      return e.target as HTMLElement;
     }
-    return e.target as HTMLElement;
   }
 
   protected getListRows(): HtmlStruct[] {
