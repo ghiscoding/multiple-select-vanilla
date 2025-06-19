@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.1...v4.3.2) (2025-06-19)
+
+### Bug Fixes
+
+* `event.composePath()` throws in Salesforce environment ([#390](https://github.com/ghiscoding/multiple-select-vanilla/issues/390)) ([fbbc405](https://github.com/ghiscoding/multiple-select-vanilla/commit/fbbc4057df13f9bd5fa02d6490bd729a939c403b)) - by @ghiscoding
+
 ## [4.3.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.0...v4.3.1) (2025-06-14)
 
 ### Bug Fixes
