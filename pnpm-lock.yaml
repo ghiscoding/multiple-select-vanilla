@@ -79,8 +79,8 @@ importers:
         specifier: 'catalog:'
         version: 5.8.3
       vite:
-        specifier: ^7.0.0
-        version: 7.0.0(@types/node@24.0.10)(sass@1.89.2)(yaml@2.8.0)
+        specifier: ^7.0.1
+        version: 7.0.1(@types/node@24.0.10)(sass@1.89.2)(yaml@2.8.0)
 
   packages/multiple-select-vanilla:
     dependencies:
@@ -2362,8 +2362,8 @@ packages:
     resolution: {integrity: sha512-d7KLgL1LD3U3fgnvWEY1cQXoO/q6EQ1BSz48Sa149V/5zVTAbgmZIpyI8TRi6U9/JNyeYLlTKsEMPtLC27RFUg==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
-  vite@7.0.0:
-    resolution: {integrity: sha512-ixXJB1YRgDIw2OszKQS9WxGHKwLdCsbQNkpJN171udl6szi/rIySHL6/Os3s2+oE4P/FLD4dxg4mD7Wust+u5g==}
+  vite@7.0.1:
+    resolution: {integrity: sha512-BiKOQoW5HGR30E6JDeNsati6HnSPMVEKbkIWbCiol+xKeu3g5owrjy7kbk/QEMuzCV87dSUTvycYKmlcfGKq3Q==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -4817,7 +4817,7 @@ snapshots:
 
   validate-npm-package-name@6.0.0: {}
 
-  vite@7.0.0(@types/node@24.0.10)(sass@1.89.2)(yaml@2.8.0):
+  vite@7.0.1(@types/node@24.0.10)(sass@1.89.2)(yaml@2.8.0):
     dependencies:
       esbuild: 0.25.5
       fdir: 6.4.6(picomatch@4.0.2)
