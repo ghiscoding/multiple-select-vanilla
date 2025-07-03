@@ -7,7 +7,13 @@
   },
   pin: false,
   rangeStrategy: 'bump',
-  packageRules: [],
+  packageRules: [
+    {
+      // latest playwright breaks a few my tests
+      packageNames: ['@playwright/test'],
+      allowedVersions: '1.52.0',
+    },
+  ],
   ignoreDeps: ['node', 'pnpm'],
   schedule: ['every 3 months'],
 }
