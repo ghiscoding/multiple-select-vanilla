@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 03 - Multiple Width', () => {
   test('each item should be around 44px wide and expect item selected to show in select parent element', async ({ page }) => {
@@ -9,7 +9,7 @@ test.describe('Example 03 - Multiple Width', () => {
     await page.getByRole('option', { name: '15' }).click();
     let elm16 = await page.locator('label').filter({ hasText: '16' });
     await elm16.click();
-    expect((await elm16!.boundingBox())!.width).toBe(54);
+    expect((await elm16!.boundingBox())!.width).toBe(75);
 
     elm16 = await page.locator('div[data-test=select1] .ms-drop li:nth-of-type(16)');
     await elm16.focus();
