@@ -4,6 +4,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.2...v4.3.3) (2025-07-05)
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#392](https://github.com/ghiscoding/multiple-select-vanilla/issues/392)) ([2cd8e74](https://github.com/ghiscoding/multiple-select-vanilla/commit/2cd8e7405c0e027aac1f9470da1480cf0edef83c)) - by @renovate-bot
+* remove select options padding to make it more clickable, fixes [#391](https://github.com/ghiscoding/multiple-select-vanilla/issues/391) ([#397](https://github.com/ghiscoding/multiple-select-vanilla/issues/397)) ([5edb14e](https://github.com/ghiscoding/multiple-select-vanilla/commit/5edb14e947bf4f93bbcafe9eb52963ab9105081b)) - by @ghiscoding
+* use only TS declaration maps ([#398](https://github.com/ghiscoding/multiple-select-vanilla/issues/398)) ([ddb59f4](https://github.com/ghiscoding/multiple-select-vanilla/commit/ddb59f4fa8a2b254deeef2d49dbda7c0026ec336)) - by @ghiscoding
+
 ## [4.3.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.1...v4.3.2) (2025-06-19)
 
 ### Bug Fixes
