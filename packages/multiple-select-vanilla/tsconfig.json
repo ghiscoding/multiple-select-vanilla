@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
-    "declaration": true,
-    "declarationMap": true,
     "rootDir": "src",
     "outDir": "dist",
     "target": "ES2021",
@@ -19,7 +17,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "sourceMap": true
+    "sourceMap": false,
+    "declaration": true,
+    "declarationMap": true
   },
   "exclude": ["node_modules", "**/*.spec.ts"],
   "include": ["src/**/*", "index.d.ts"]
