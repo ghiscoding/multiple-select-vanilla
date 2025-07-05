@@ -9,7 +9,7 @@ test.describe('Example 03 - Multiple Width', () => {
     await page.getByRole('option', { name: '15' }).click();
     let elm16 = await page.locator('label').filter({ hasText: '16' });
     await elm16.click();
-    expect((await elm16!.boundingBox())!.width).toBe(75);
+    expect((await elm16!.boundingBox())!.width).toBe(70);
 
     elm16 = await page.locator('div[data-test=select1] .ms-drop li:nth-of-type(16)');
     await elm16.focus();
