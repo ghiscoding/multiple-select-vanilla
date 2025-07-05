@@ -50,7 +50,7 @@ export class MultipleSelectInstance {
   protected selectAllElm?: HTMLInputElement | null;
   protected searchInputElm?: HTMLInputElement | null;
   protected selectGroupElms?: NodeListOf<HTMLInputElement>;
-  protected selectItemElms?: NodeListOf<HTMLInputElement>;
+  protected selectCheckboxElms?: NodeListOf<HTMLInputElement>;
   protected noResultsElm?: HTMLDivElement | null;
   protected options: MultipleSelectOption;
   protected selectAllName = '';
@@ -835,7 +835,7 @@ export class MultipleSelectInstance {
     this.selectGroupElms = this.dropElm?.querySelectorAll<HTMLInputElement>(
       `input[data-name="${this.selectGroupName}"],span[data-name="${this.selectGroupName}"]`,
     );
-    this.selectItemElms = this.dropElm?.querySelectorAll<HTMLInputElement>(`input[data-name="${this.selectItemName}"]:enabled`);
+    this.selectCheckboxElms = this.dropElm?.querySelectorAll<HTMLInputElement>(`input[data-name="${this.selectItemName}"]:enabled`);
     this.noResultsElm = this.dropElm?.querySelector<HTMLDivElement>('.ms-no-results');
 
     const toggleOpen = (e: MouseEvent & { target: HTMLElement }) => {
@@ -922,7 +922,7 @@ export class MultipleSelectInstance {
           if (this.options.filterAcceptOnEnter && ['Enter', 'Space'].includes(e.code) && this.searchInputElm?.value) {
             if (this.options.single) {
               const visibleLiElms: HTMLInputElement[] = [];
-              this.selectItemElms?.forEach(selectedElm => {
+              this.selectCheckboxElms?.forEach(selectedElm => {
                 if (selectedElm.closest('li')?.style.display !== 'none') {
                   visibleLiElms.push(selectedElm);
                 }
@@ -1006,9 +1006,9 @@ export class MultipleSelectInstance {
       );
     }
 
-    if (this.selectItemElms) {
+    if (this.selectCheckboxElms) {
       this._bindEventService.bind(
-        this.selectItemElms,
+        this.selectCheckboxElms,
         'click',
         ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
           const selectElm = e.currentTarget;
