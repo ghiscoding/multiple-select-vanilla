@@ -110,8 +110,8 @@ importers:
         specifier: ^11.0.1
         version: 11.0.1(postcss@8.5.6)
       remove-glob:
-        specifier: ^0.3.3
-        version: 0.3.3
+        specifier: ^0.3.4
+        version: 0.3.4
       sass:
         specifier: 'catalog:'
         version: 1.89.2
@@ -2072,11 +2072,6 @@ packages:
   readdirp@4.1.2:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
     engines: {node: '>= 14.18.0'}
-
-  remove-glob@0.3.3:
-    resolution: {integrity: sha512-4n3sA7TESAjORoqm2Mzjsj7o4pOgpDBbhMCN6Zf0jeReDYB868zqbQgILCgvUmr/dEnoea1DwAUNChPVCGmL2g==}
-    engines: {node: ^20.0.0 || >=22.0.0}
-    hasBin: true
 
   remove-glob@0.3.4:
     resolution: {integrity: sha512-3ArOVIthanoWsUbWfhlLXq3qHzaoF0fsjHnycpGVURZjf2Vww3TTPFo3wQXGqouqpuRKVWkuoRkf7BcSL6EPJA==}
@@ -4475,11 +4470,6 @@ snapshots:
       picomatch: 2.3.1
 
   readdirp@4.1.2: {}
-
-  remove-glob@0.3.3:
-    dependencies:
-      cli-nano: 1.2.1
-      tinyglobby: 0.2.14
 
   remove-glob@0.3.4:
     dependencies:
