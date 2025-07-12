@@ -4,6 +4,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.3...v4.3.4) (2025-07-12)
+
+### Bug Fixes
+
+* add back source map since its required to debug in browser ([fa405af](https://github.com/ghiscoding/multiple-select-vanilla/commit/fa405af785708171388a59308be1355b00a2525f)) - by @ghiscoding
+* any min/max width options should be applied to drop CSS style ([#402](https://github.com/ghiscoding/multiple-select-vanilla/issues/402)) ([7743bc3](https://github.com/ghiscoding/multiple-select-vanilla/commit/7743bc35d3ccfe522093e99a08ac510bbb5f70e0)) - by @ghiscoding
+
 ## [4.3.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.2...v4.3.3) (2025-07-05)
 
 ### Bug Fixes
