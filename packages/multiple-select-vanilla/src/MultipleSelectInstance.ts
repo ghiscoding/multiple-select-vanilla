@@ -241,8 +241,15 @@ export class MultipleSelectInstance {
 
     this.closeElm = this.choiceElm.querySelector('.ms-icon-close');
 
-    if (this.options.dropWidth) {
-      this.dropElm.style.width = typeof this.options.dropWidth === 'string' ? this.options.dropWidth : `${this.options.dropWidth}px`;
+    // any of the drop width options provided should apply them to the associated drop style
+    const styleOptions = ['minWidth', 'maxWidth', 'width', 'dropWidth'] as unknown as Array<keyof MultipleSelectOption>;
+    for (const stlOption of styleOptions) {
+      if (this.options[stlOption]) {
+        // options.dropWidth needs to be aliased to style.width, anything else are the same prop/style name
+        const styleProp = stlOption === 'dropWidth' ? 'width' : (stlOption as 'minWidth' | 'maxWidth' | 'width');
+        this.dropElm.style[styleProp] =
+          typeof this.options[stlOption] === 'string' ? this.options[stlOption] : `${this.options[stlOption]}px`;
+      }
     }
 
     insertAfter(this.elm, this.parentElm);
