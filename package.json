@@ -27,7 +27,7 @@
   },
   "scripts": {
     "are-types-wrong": "pnpm -r --stream --filter=\"{packages/multiple-select-vanilla/**}\" are-types-wrong",
-    "clean": "rimraf --glob **/dist **/tsconfig.tsbuildinfo",
+    "clean": "remove --glob **/dist --glob **/tsconfig.tsbuildinfo",
     "prebuild": "pnpm clean && pnpm biome:lint:write && pnpm biome:format:write",
     "build": "pnpm -r --stream build",
     "build:demo": "pnpm -r --stream --filter=\"{packages/demo/**}\" build",
@@ -49,7 +49,7 @@
     "preroll-new-release": "echo Please update getting-started lib version before pushing a release. ⚠️",
     "roll-new-release": "pnpm build && pnpm new-version && pnpm new-publish",
     "serve:demo": "pnpm -r --stream --filter=\"{packages/demo/**}\" dev",
-    "pretest:e2e": "rimraf playwright-report",
+    "pretest:e2e": "remove playwright-report",
     "test:e2e": "playwright test --config playwright/playwright.config.ts",
     "test:e2e:debug": "playwright test --config playwright/playwright.config.ts --ui --debug",
     "test:e2e:ui": "playwright test --config playwright/playwright.config.ts --ui",
@@ -70,7 +70,7 @@
     "conventional-changelog-conventionalcommits": "^9.1.0",
     "cross-env": "catalog:",
     "npm-run-all2": "^8.0.4",
-    "rimraf": "^6.0.1",
+    "remove-glob": "^0.3.4",
     "typescript": "catalog:"
   },
   "packageManager": "pnpm@10.10.0"
