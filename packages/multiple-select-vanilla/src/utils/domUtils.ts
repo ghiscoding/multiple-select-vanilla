@@ -168,11 +168,7 @@ export function getSize(elm: HTMLElement | undefined, mode: 'inner' | 'outer' | 
     const prevPosition = elm.style.position;
     elm.style.display = 'block';
     elm.style.position = 'absolute';
-    const widthStr = window.getComputedStyle(elm)[type];
-    size = Number.parseFloat(widthStr);
-    if (Number.isNaN(size)) {
-      size = 0;
-    }
+    size = getComputedSize(elm, type);
 
     // reapply original values
     elm.style.display = prevDisplay;
@@ -183,11 +179,26 @@ export function getSize(elm: HTMLElement | undefined, mode: 'inner' | 'outer' | 
 }
 
 /**
+ * use `getComputedStyle()` and return size has a number or default to 0
+ * @param elm - HTML element
+ * @param styleType - CSS style type (e.g. 'width', 'paddingLeft', ...)
+ * @returns - return size as a number or 0 when unparseable
+ */
+export function getComputedSize(elm: HTMLElement, styleType: string) {
+  const elmStyle = window.getComputedStyle(elm)[styleType as any];
+  let size = Number.parseFloat(elmStyle);
+  if (Number.isNaN(size)) {
+    size = 0;
+  }
+  return size;
+}
+
+/**
  * Find a single parent by a simple selector, it only works with a simple selector
  * for example: "input.some-class", ".some-class", "input#some-id"
  * Note: it won't work with complex selector like "div.some-class input.my-class"
- * @param elm
- * @param selector
+ * @param elm - HTML element
+ * @param selector - HTML selector
  * @returns
  */
 export function findParent(elm: HTMLElement, selector: string) {

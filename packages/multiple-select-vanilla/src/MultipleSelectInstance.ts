@@ -15,6 +15,7 @@ import {
   createDomElement,
   emptyElement,
   findParent,
+  getComputedSize,
   getOffset,
   getSize,
   insertAfter,
@@ -1981,9 +1982,9 @@ export class MultipleSelectInstance {
       const parentWidth = this.parentElm.scrollWidth;
 
       // keep the dropWidth/width as reference, if our new calculated width is below then we will re-adjust (else do nothing)
-      let currentDefinedWidth: number | string = parentWidth;
+      let selectParentWidth: number | string = parentWidth;
       if (this.options.dropWidth || this.options.width) {
-        currentDefinedWidth = this.options.dropWidth || this.options.width || 0;
+        selectParentWidth = this.options.dropWidth || this.options.width || 0;
       }
 
       // calculate the "Select All" element width, this text is configurable which is why we recalculate every time
@@ -1991,21 +1992,39 @@ export class MultipleSelectInstance {
       const dropUlElm = this.dropElm.querySelector<HTMLUListElement>('ul');
 
       if (dropUlElm) {
-        const liPadding = 26; // there are multiple padding involved, let's fix it at 26px
-
-        const selectAllElmWidth = selectAllSpanElm?.clientWidth ?? 0 + liPadding;
+        let contentWidth = 0;
+        let allPaddingSizes = 0; // calculate all possible ul>li>label paddings
+        const selectAllElmWidth = (selectAllSpanElm?.clientWidth ?? 0) + allPaddingSizes;
         const hasScrollbar = dropUlElm.scrollHeight > dropUlElm.clientHeight;
         const scrollbarWidth = hasScrollbar ? this.getScrollbarWidth() : 0;
-        let contentWidth = 0;
 
-        this.dropElm.querySelectorAll('li label').forEach(elm => {
-          if (elm.scrollWidth > contentWidth) {
-            contentWidth = elm.scrollWidth;
+        // 1. find first item that has text value and measure all paddings
+        allPaddingSizes += getComputedSize(dropUlElm, 'paddingLeft') * 2;
+
+        let foundFilledItem = false;
+        for (const liElm of Array.from(dropUlElm.querySelectorAll<HTMLLIElement>('li'))) {
+          const labelElm = liElm.querySelector<HTMLLabelElement>('label');
+          const iconElm = liElm.querySelector<HTMLLabelElement>('.icon-checkbox-container');
+          const spanElm = liElm.querySelector<HTMLSpanElement>('span');
+          if (labelElm && spanElm?.textContent) {
+            // find first item that has value and calculate its padding sizes
+            if (!foundFilledItem) {
+              allPaddingSizes += getComputedSize(liElm, 'paddingLeft') * 2;
+              allPaddingSizes += getComputedSize(labelElm, 'paddingLeft') * 2;
+              allPaddingSizes += getComputedSize(spanElm, 'paddingLeft');
+              allPaddingSizes += iconElm?.offsetWidth ?? 0;
+              foundFilledItem = true;
+            }
+
+            // keep ref of the widest text width
+            if (spanElm.offsetWidth > contentWidth) {
+              contentWidth = spanElm.offsetWidth;
+            }
           }
-        });
+        }
 
         // add a padding & include the browser scrollbar width
-        contentWidth += liPadding + scrollbarWidth;
+        contentWidth += allPaddingSizes + scrollbarWidth;
 
         // make sure the new calculated width is wide enough to include the "Select All" text (this text is configurable)
         if (contentWidth < selectAllElmWidth) {
@@ -2022,10 +2041,10 @@ export class MultipleSelectInstance {
           contentWidth = this.options.minWidth;
         }
 
-        // finally re-adjust the drop to the new calculated width when necessary
-        if (currentDefinedWidth === '100%' || +currentDefinedWidth < contentWidth) {
+        // finally if text is wider than select container, then re-adjust the drop to the new calculated width
+        if (selectParentWidth === '100%' || +selectParentWidth < contentWidth) {
+          this.dropElm.style.minWidth = 'auto';
           this.dropElm.style.width = `${contentWidth}px`;
-          this.dropElm.style.maxWidth = `${contentWidth}px`;
         }
       }
     }
