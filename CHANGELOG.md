@@ -4,6 +4,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.5](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.4...v4.3.5) (2025-07-17)
+
+### Bug Fixes
+
+* fully reimplement code to calculate widest drop text width ([#407](https://github.com/ghiscoding/multiple-select-vanilla/issues/407)) ([566242e](https://github.com/ghiscoding/multiple-select-vanilla/commit/566242e2a62d394940461bff2f14c5d0d4de1665)) - by @ghiscoding
+* properly adjust drop position only after rendering ([#408](https://github.com/ghiscoding/multiple-select-vanilla/issues/408)) ([a8dbc41](https://github.com/ghiscoding/multiple-select-vanilla/commit/a8dbc417f6f31b1e1f9f08deab7f362c55f4cd8e)) - by @ghiscoding
+
 ## [4.3.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.3...v4.3.4) (2025-07-12)
 
 ### Bug Fixes
