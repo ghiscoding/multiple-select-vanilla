@@ -185,7 +185,7 @@ export function getSize(elm: HTMLElement | undefined, mode: 'inner' | 'outer' | 
  * @returns - return size as a number or 0 when unparseable
  */
 export function getComputedSize(elm: HTMLElement, styleType: string) {
-  const elmStyle = window.getComputedStyle(elm)[styleType as any];
+  const elmStyle = window.getComputedStyle(elm).getPropertyValue(styleType);
   let size = Number.parseFloat(elmStyle);
   if (Number.isNaN(size)) {
     size = 0;
