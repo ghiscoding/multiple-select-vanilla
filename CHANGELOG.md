@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.6](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.5...v4.3.6) (2025-07-25)
+
+### Performance Improvements
+
+* use `.some()` instead of `.filter()` for testing filter length ([#411](https://github.com/ghiscoding/multiple-select-vanilla/issues/411)) ([d24b011](https://github.com/ghiscoding/multiple-select-vanilla/commit/d24b0112a916dce8dc4f3303f10e622fa04916a4)) - by @ghiscoding
+
 ## [4.3.5](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.4...v4.3.5) (2025-07-17)
 
 ### Bug Fixes
