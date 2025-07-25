@@ -1588,7 +1588,7 @@ export class MultipleSelectInstance {
       }
     }
 
-    const noResult = this.data?.filter(row => row.visible).length === 0;
+    const noResult = !this.data?.some(row => row.visible);
 
     if (this.selectAllElm) {
       this.selectAllElm.ariaChecked = String(this.isAllSelected);
@@ -1882,7 +1882,7 @@ export class MultipleSelectInstance {
               });
             }
           }
-          row.visible = (row as OptGroupRowData).children.filter((child: any) => child?.visible).length > 0;
+          row.visible = (row as OptGroupRowData).children.some((child: any) => child?.visible);
         }
       } else {
         const rowText = `${(row as OptionRowData)?.text ?? ''}`;
