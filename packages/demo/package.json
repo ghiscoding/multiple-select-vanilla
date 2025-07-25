@@ -28,6 +28,6 @@
   "devDependencies": {
     "sass": "catalog:",
     "typescript": "catalog:",
-    "vite": "^7.0.5"
+    "vite": "^7.0.6"
   }
 }
