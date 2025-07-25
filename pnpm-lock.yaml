@@ -9,6 +9,9 @@ catalogs:
     cross-env:
       specifier: ^7.0.3
       version: 7.0.3
+    remove-glob:
+      specifier: ^0.3.5
+      version: 0.3.5
     sass:
       specifier: ^1.89.2
       version: 1.89.2
@@ -48,7 +51,7 @@ importers:
         specifier: ^8.0.4
         version: 8.0.4
       remove-glob:
-        specifier: ^0.3.5
+        specifier: 'catalog:'
         version: 0.3.5
       typescript:
         specifier: 'catalog:'
@@ -110,7 +113,7 @@ importers:
         specifier: ^11.0.1
         version: 11.0.1(postcss@8.5.6)
       remove-glob:
-        specifier: ^0.3.5
+        specifier: 'catalog:'
         version: 0.3.5
       sass:
         specifier: 'catalog:'

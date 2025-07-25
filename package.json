@@ -70,7 +70,7 @@
     "conventional-changelog-conventionalcommits": "^9.1.0",
     "cross-env": "catalog:",
     "npm-run-all2": "^8.0.4",
-    "remove-glob": "^0.3.5",
+    "remove-glob": "catalog:",
     "typescript": "catalog:"
   },
   "packageManager": "pnpm@10.10.0"
