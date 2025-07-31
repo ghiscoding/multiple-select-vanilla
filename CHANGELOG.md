@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.7](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.6...v4.3.7) (2025-07-31)
+
+### Performance Improvements
+
+* use much simpler lazy loading icon ([#414](https://github.com/ghiscoding/multiple-select-vanilla/issues/414)) ([bec091e](https://github.com/ghiscoding/multiple-select-vanilla/commit/bec091e98bfe66de05bae0c32e71e36d3e6dbcae)) - by @ghiscoding
+
 ## [4.3.6](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.5...v4.3.6) (2025-07-25)
 
 ### Performance Improvements
