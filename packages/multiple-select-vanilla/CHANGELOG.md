@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.8](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.7...v4.3.8) (2025-08-13)
+
+### Bug Fixes
+
+* assigning text to `textContent` should be html decoded, fixes [#417](https://github.com/ghiscoding/multiple-select-vanilla/issues/417) ([#418](https://github.com/ghiscoding/multiple-select-vanilla/issues/418)) ([6ed8ced](https://github.com/ghiscoding/multiple-select-vanilla/commit/6ed8ceda3d1b15ad13dbd12164ed920144a46341)) - by @ghiscoding
+
 ## [4.3.7](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.6...v4.3.7) (2025-07-31)
 
 ### Performance Improvements
