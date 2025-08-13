@@ -33,8 +33,8 @@ export function deepCopy<T = any>(obj: T): T {
   return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, deepCopy(value)])) as T;
 }
 
-export function isDefined(val: any) {
-  return val !== undefined && val !== null && val !== '';
+export function isDefined<T>(value: T | undefined | null): value is T {
+  return <T>value !== undefined && <T>value !== null && <T>value !== '';
 }
 
 /**

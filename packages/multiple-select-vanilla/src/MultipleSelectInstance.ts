@@ -18,6 +18,7 @@ import {
   getComputedSize,
   getOffset,
   getSize,
+  htmlDecode,
   insertAfter,
   toggleElement,
 } from './utils/domUtils.js';
@@ -1487,7 +1488,7 @@ export class MultipleSelectInstance {
     if (this.isRenderAsHtml) {
       elmOrProp.innerHTML = (typeof this.options.sanitizer === 'function' ? this.options.sanitizer(value) : value) as unknown as string;
     } else {
-      elmOrProp.textContent = value;
+      elmOrProp.textContent = htmlDecode(value);
     }
   }
 

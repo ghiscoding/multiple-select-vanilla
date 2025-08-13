@@ -1,5 +1,5 @@
 import type { HtmlStruct, InferDOMType } from '../models/interfaces.js';
-import { objectRemoveEmptyProps } from './utils.js';
+import { isDefined, objectRemoveEmptyProps } from './utils.js';
 
 export interface HtmlElementPosition {
   top: number;
@@ -226,6 +226,23 @@ export function findParent(elm: HTMLElement, selector: string) {
   }
 
   return targetElm;
+}
+
+/**
+ * Simple function to decode the most common HTML entities.
+ * For example: "&lt;div&gt;Hablar espa&#241;ol? &#55358;&#56708;&lt;/div&gt;" => "<div>Hablar español? 🦄</div>"
+ * @param {String} inputValue - input value to be decoded
+ * @return {String}
+ */
+export function htmlDecode(input?: string | boolean | number): string {
+  if (isDefined(input)) {
+    // 1. decode html entities (e.g. `&#39;` => single quote)
+    // 2. use textarea to decode the rest (e.g. html tags and symbols, `&lt;div&gt;` => `<div>`)
+    const txt = document.createElement('textarea');
+    txt.innerHTML = input.toString().replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(dec));
+    return txt.value;
+  }
+  return '';
 }
 
 export function insertAfter(referenceNode: HTMLElement, newNode: HTMLElement) {
