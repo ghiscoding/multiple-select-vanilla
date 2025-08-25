@@ -43,4 +43,18 @@ test.describe('Example 08 - Data Property', () => {
     await page.getByRole('option', { name: 'Group 1' }).click();
     await page.getByRole('button', { name: '11 of 12 selected' }).click();
   });
+
+  test('formdata should be updated after select', async({ page }) => {
+    await page.goto('#/example08');
+    await page.locator('div[data-test=select6].ms-parent').click();
+    await page.getByRole('option', { name: 'July' }).click();
+
+    const selectedItemValue = await page.evaluate(() => {
+      const form = document.getElementById('form');
+      const formData = new FormData(form);
+      return formData.get('select6')
+    })
+
+    expect(selectedItemValue).toBe(7)
+  });
 });
