@@ -344,17 +344,17 @@ export class MultipleSelectInstance {
 
   protected initHtmlRows() {
     this.elm.innerHTML = '';
-    if (!this.data) return
+    if (!this.data) return;
     this.data.forEach((it: OptGroupRowData | OptionRowData) => {
       if (it.type === 'optgroup') {
         const optgroup = document.createElement('optgroup');
-        optgroup.label = it.label;
+        optgroup.label = (it as OptGroupRowData).label;
         (it as OptGroupRowData).children.forEach((opt: OptionRowData) => {
           this.buildOption(optgroup, opt);
-        })
+        });
         this.elm.appendChild(optgroup);
       } else {
-        this.buildOption(this.elm, (it as OptionRowData));
+        this.buildOption(this.elm, it as OptionRowData);
       }
     });
   }
