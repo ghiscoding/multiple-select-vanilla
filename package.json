@@ -34,7 +34,7 @@
     "predev": "pnpm -r dev:init",
     "dev": "run-p dev:watch build:watch --npm-path pnpm",
     "dev:watch": "pnpm -r --parallel --stream dev",
-    "build:watch": "lerna watch --no-bail --file-delimiter=\",\" --glob=\"src/**/*.{ts,scss}\" -- cross-env-shell pnpm -r --filter \"$LERNA_PACKAGE_NAME\" run build:watch -- --files=\"$LERNA_FILE_CHANGES\"",
+    "build:watch": "lerna watch --no-bail --file-delimiter=\",\" --glob=\"src/**/*.{ts,scss}\" -- cross-env-shell pnpm -r --filter $LERNA_PACKAGE_NAME build:watch --files=$LERNA_FILE_CHANGES",
     "dev:demo": "pnpm -r --stream --filter=\"{packages/demo/**}\" dev",
     "dev:lib": "pnpm -r --stream --filter=\"{packages/multiple-select-vanilla/**}\" dev",
     "biome:lint:check": "biome lint ./packages",
