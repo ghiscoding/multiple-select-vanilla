@@ -44,17 +44,32 @@ test.describe('Example 08 - Data Property', () => {
     await page.getByRole('button', { name: '11 of 12 selected' }).click();
   });
 
-  test('formdata should be updated after select', async({ page }) => {
+  test('formdata should be updated after select for regular select', async({ page }) => {
     await page.goto('#/example08');
     await page.locator('div[data-test=select6].ms-parent').click();
     await page.getByRole('option', { name: 'July' }).click();
 
     const selectedItemValue = await page.evaluate(() => {
-      const form = document.getElementById('form');
+      const form = document.getElementById('form1');
       const formData = new FormData(form);
-      return formData.get('select6')
+      return formData.get('select6');
     })
 
-    expect(selectedItemValue).toBe(7)
+    expect(selectedItemValue).toBe("7");
+  });
+
+  test('formdata should be updated after select for multiple select', async({ page }) => {
+    await page.goto('#/example08');
+    await page.locator('div[data-test=select7].ms-parent').click();
+    await page.getByRole('option', { name: 'July' }).click();
+    await page.getByRole('option', { name: 'August' }).click();
+
+    const selectedItemValue = await page.evaluate(() => {
+      const form = document.getElementById('form2');
+      const formData = new FormData(form);
+      return formData.getAll('select7');
+    })
+
+    expect(selectedItemValue).toEqual(["7", "8"]);
   });
 });
