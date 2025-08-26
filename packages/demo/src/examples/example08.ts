@@ -7,6 +7,7 @@ export default class Example {
   ms4?: MultipleSelectInstance;
   ms5?: MultipleSelectInstance;
   ms6?: MultipleSelectInstance;
+  ms7?: MultipleSelectInstance;
 
   mount() {
     this.ms1 = multipleSelect('#basic', {
