@@ -346,8 +346,7 @@ export class MultipleSelectInstance {
     this.elm.innerHTML = '';
     if (!this.data) return
     this.data.forEach((it: OptGroupRowData | OptionRowData) => {
-      console.log({ it })
-      if (it.type == 'optgroup') {
+      if (it.type === 'optgroup') {
         const optgroup = document.createElement('optgroup');
         optgroup.label = it.label;
         (it as OptGroupRowData).children.forEach((opt: OptionRowData) => {
