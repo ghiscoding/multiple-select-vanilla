@@ -21,7 +21,7 @@ export default class Example {
       preSort: (item1, item2) => {
         // sort by value in reverse order
         const direction = -1; // reverse order
-        // @ts-ignore
+        // @ts-expect-error
         if (direction === 1) {
           return (item1 as OptGroupRowData).label < (item2 as OptGroupRowData).label ? -1 : 1;
         }
@@ -130,7 +130,7 @@ export default class Example {
       preSort: (item1, item2) => {
         // sort by value in reverse order
         const direction = -1; // reverse order
-        // @ts-ignore
+        // @ts-expect-error
         if (direction === 1) {
           return (item1 as OptGroupRowData).label < (item2 as OptGroupRowData).label ? -1 : 1;
         }

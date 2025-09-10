@@ -73,7 +73,8 @@
             "suspicious": {
                 "noAssignInExpressions": "off",
                 "noExplicitAny": "off",
-                "noPrototypeBuiltins": "off"
+                "noPrototypeBuiltins": "off",
+                "useIterableCallbackReturn": "off"
             },
             "style": {
                 "noNonNullAssertion": "off",
