@@ -55,7 +55,7 @@
       height: var(--ms-checkbox-icon-container-height, v.$ms-checkbox-icon-container-height);
       width: var(--ms-checkbox-icon-container-width, v.$ms-checkbox-icon-container-width);
       border: var(--ms-checkbox-icon-container-border, v.$ms-checkbox-icon-container-border);
-      border-radius: 0.125rem;
+      border-radius: var(--ms-checkbox-icon-container-border-radius, v.$ms-checkbox-icon-container-border-radius);
      
       div {
         font-size: 14px;
