@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.9](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.8...v4.3.9) (2025-09-12)
+
+### Bug Fixes
+
+* make .icon-checkbox-container's border-radius variable ([#423](https://github.com/ghiscoding/multiple-select-vanilla/issues/423)) ([27bcce0](https://github.com/ghiscoding/multiple-select-vanilla/commit/27bcce03084e2be7789923b696e9153ec8cdea18)) - by @meowsus
+
 ## [4.3.8](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.7...v4.3.8) (2025-08-13)
 
 ### Bug Fixes
