@@ -5,11 +5,11 @@ on:
 
 jobs:
   clear:
-    runs-on: ubuntu-latest          # <-- Linux runner
+    runs-on: ubuntu-latest
     steps:
       - name: Mark all notifications as read
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GHUB_TOKEN }}
         run: |
           curl -X PUT \
             -H "Accept: application/vnd.github+json" \
