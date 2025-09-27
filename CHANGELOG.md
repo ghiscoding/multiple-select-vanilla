@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.10](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.9...v4.3.10) (2025-09-27)
+
+### Bug Fixes
+
+* publish with OIDC ([195c4b6](https://github.com/ghiscoding/multiple-select-vanilla/commit/195c4b6411accfef434bc90adc36867f8ccd5f74)) - by @ghiscoding
+
 ## [4.3.9](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.8...v4.3.9) (2025-09-12)
 
 ### Bug Fixes
