@@ -1,0 +1,17 @@
+name: Clear notifications with GITHUB_TOKEN
+
+on:
+  workflow_dispatch:   # start manually from the Actions tab
+
+jobs:
+  clear:
+    runs-on: windows-latest
+    steps:
+      - name: Mark all notifications as read
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -X PUT ^
+            -H "Accept: application/vnd.github+json" ^
+            -H "Authorization: Bearer %GH_TOKEN%" ^
+            https://api.github.com/notifications
