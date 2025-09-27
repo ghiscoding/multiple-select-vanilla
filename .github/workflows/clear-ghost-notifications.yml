@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Mark all notifications as read
         env:
-          GH_TOKEN: ${{ secrets.GHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           curl -X PUT \
             -H "Accept: application/vnd.github+json" \
