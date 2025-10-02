@@ -58,7 +58,11 @@
         ],
         "rules": {
             "correctness": {
-                "useImportExtensions": "error"
+                "useImportExtensions": {
+                  "options": {
+                    "forceJsExtensions": true
+                  }
+                }
             },
             "recommended": true,
             "complexity": {
