@@ -6,6 +6,8 @@ export default class Example {
   ms3?: MultipleSelectInstance;
   ms4?: MultipleSelectInstance;
   ms5?: MultipleSelectInstance;
+  ms6?: MultipleSelectInstance;
+  ms7?: MultipleSelectInstance;
 
   mount() {
     this.ms1 = multipleSelect('#basic', {
@@ -157,6 +159,42 @@ export default class Example {
         },
       ],
     }) as MultipleSelectInstance;
+
+    this.ms6 = multipleSelect('#single-form', {
+      dataTest: 'select6',
+      data: [
+        {
+          text: 'June',
+          value: 6,
+        },
+        {
+          text: 'July',
+          value: 7,
+        },
+        {
+          text: 'August',
+          value: 8,
+        },
+      ],
+    }) as MultipleSelectInstance;
+
+    this.ms7 = multipleSelect('#multiple-form', {
+      dataTest: 'select7',
+      data: [
+        {
+          text: 'June',
+          value: 6,
+        },
+        {
+          text: 'July',
+          value: 7,
+        },
+        {
+          text: 'August',
+          value: 8,
+        },
+      ],
+    }) as MultipleSelectInstance;
   }
 
   unmount() {
@@ -166,10 +204,14 @@ export default class Example {
     this.ms3?.destroy();
     this.ms4?.destroy();
     this.ms5?.destroy();
+    this.ms6?.destroy();
+    this.ms7?.destroy();
     this.ms1 = undefined;
     this.ms2 = undefined;
     this.ms3 = undefined;
     this.ms4 = undefined;
     this.ms5 = undefined;
+    this.ms6 = undefined;
+    this.ms7 = undefined;
   }
 }
