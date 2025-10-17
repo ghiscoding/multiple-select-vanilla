@@ -13,8 +13,9 @@ test.describe('Example 02 - Multiple Select', () => {
     await page.keyboard.press('ArrowDown');
     const juneLoc = await page.locator('div[data-test=select1] .ms-drop li:nth-of-type(6)');
     await expect(juneLoc).toHaveClass('highlighted');
-    await expect(await juneLoc.locator('label')).toHaveText('June');
-    await page.keyboard.press('Enter');
+    const juneLabelLoc = await juneLoc.locator('label');
+    await expect(juneLabelLoc).toHaveText('June');
+    await juneLabelLoc.press('Enter');
     await expect(parent1Span).toHaveText('4 of 12 selected');
 
     // go up until we reach "Select All" and use Space to press the option
