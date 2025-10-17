@@ -14,7 +14,7 @@ test.describe('Options 07 - Max Height Unit', () => {
     expect(dropHeight1).toBeLessThan(180);
 
     await page.locator('#number').fill('6');
-    page.keyboard.press('Enter');
+    await page.locator('#number').press('Enter');
     await page.waitForTimeout(2);
 
     dropElm1 = await page.locator('div[data-test="select1"] .ms-drop ul');
@@ -36,7 +36,7 @@ test.describe('Options 07 - Max Height Unit', () => {
     expect(dropHeight2).toBeLessThan(200);
 
     await page.locator('#number').fill('5');
-    page.keyboard.press('Enter');
+    await page.locator('#number').press('Enter');
     await page.waitForTimeout(2);
 
     dropElm2 = await page.locator('div[data-test="select2"] .ms-drop ul');

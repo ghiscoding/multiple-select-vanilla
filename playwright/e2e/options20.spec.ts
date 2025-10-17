@@ -6,8 +6,8 @@ test.describe('Options 20 - Filter Placeholder', () => {
     await page.getByRole('button').click();
     const placeholderLocator = await page.getByPlaceholder('The filter placeholder');
     expect(placeholderLocator).toHaveCount(1);
-    placeholderLocator.focus();
-    await page.keyboard.type('de');
+    await placeholderLocator.focus();
+    await placeholderLocator.pressSequentially('de');
     await page.getByRole('option', { name: 'def' }).click();
     await page.getByRole('option', { name: 'cde' }).click();
     const selectAllLoc = await page.locator('.ms-select-all .icon-checkbox-container div');

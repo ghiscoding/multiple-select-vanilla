@@ -20,10 +20,13 @@ export default defineConfig({
     trace: 'on',
     video: 'on-first-retry',
   },
-  projects: process.env.CI
-    ? [
-        { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-        // { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
-      ]
-    : [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        launchOptions: { args: ['--disable-gpu'] },
+      },
+    },
+  ],
 });

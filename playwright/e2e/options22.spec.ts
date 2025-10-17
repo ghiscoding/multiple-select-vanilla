@@ -8,8 +8,7 @@ test.describe('Options 22 - Filter By Data Length', () => {
     await page.getByRole('option').filter({ hasText: 'abc' }).locator('label').click();
 
     await page.locator('[data-test="select2"].ms-parent').click();
-    await page.getByRole('textbox', { name: '🔎︎' });
-    await page.keyboard.type('g');
+    await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('g');
     await page.getByText('[Select all]').first().click();
     await page.getByRole('button', { name: 'efg, fgh, ghi' }).click();
 

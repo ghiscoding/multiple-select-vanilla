@@ -14,11 +14,11 @@ test.describe('Example 03 - Multiple Width', () => {
     elm16 = await page.locator('div[data-test=select1] .ms-drop li:nth-of-type(16)');
     await elm16.focus();
     await expect(elm16).toHaveClass('multiple highlighted selected');
-    await page.keyboard.press('ArrowUp');
-    await page.keyboard.press('Space'); // unselect 15
+    await elm16.press('ArrowUp');
+    await elm16.press('Space'); // unselect 15
     let parent1Span = await page.locator('div[data-test=select1] .ms-choice span');
     await expect(parent1Span).toHaveText('16, 30');
-    await page.keyboard.press('Enter'); // reselect 15
+    await elm16.press('Enter'); // reselect 15
     parent1Span = await page.locator('div[data-test=select1] .ms-choice span');
     await page.getByRole('button', { name: '15, 16, 30' }).click();
   });
@@ -49,12 +49,12 @@ test.describe('Example 03 - Multiple Width', () => {
     await page.getByRole('button', { name: 'All selected' });
     const selectAllLoc = await page.locator('div[data-test=select2] .ms-drop .ms-select-all');
     await selectAllLoc.hover();
-    await page.keyboard.press('ArrowDown'); // unselect Group 1
-    await page.keyboard.press('Space');
+    await selectAllLoc.press('ArrowDown'); // unselect Group 1
+    await selectAllLoc.press('Space');
     let parent2Span = await page.locator('div[data-test=select2] .ms-choice span');
     await expect(parent2Span).toHaveText('10 of 15 selected');
-    await page.keyboard.press('ArrowDown'); // unselect Group 1 -> 1st item
-    await page.keyboard.press('Enter');
+    await parent2Span.press('ArrowDown'); // unselect Group 1 -> 1st item
+    await parent2Span.press('Enter');
     parent2Span = await page.locator('div[data-test=select2] .ms-choice span');
     await expect(parent2Span).toHaveText('11 of 15 selected');
     const group1item1Loc = await page.locator('[data-test=select2] .ms-drop li:nth-of-type(2) input');

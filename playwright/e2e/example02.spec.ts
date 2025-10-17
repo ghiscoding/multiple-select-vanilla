@@ -10,21 +10,23 @@ test.describe('Example 02 - Multiple Select', () => {
     const parent1Span = await page.locator('div[data-test=select1] .ms-choice span');
 
     await expect(parent1Span).toHaveText('February, April, May');
-    await page.keyboard.press('ArrowDown');
+    await parent1Span.press('ArrowDown');
     const juneLoc = await page.locator('div[data-test=select1] .ms-drop li:nth-of-type(6)');
     await expect(juneLoc).toHaveClass('highlighted');
-    await expect(await juneLoc.locator('label')).toHaveText('June');
-    await page.keyboard.press('Enter');
+    const juneLabelLoc = await juneLoc.locator('label');
+    await expect(juneLabelLoc).toHaveText('June');
+    await juneLabelLoc.press('Enter');
     await expect(parent1Span).toHaveText('4 of 12 selected');
 
     // go up until we reach "Select All" and use Space to press the option
-    page.keyboard.press('ArrowUp');
-    page.keyboard.press('ArrowUp');
-    page.keyboard.press('ArrowUp');
-    page.keyboard.press('ArrowUp');
-    page.keyboard.press('ArrowUp');
-    page.keyboard.press('ArrowUp');
-    page.keyboard.press('Space');
+    const listLoc1 = await page.locator('div[data-test=select1].ms-parent .ms-list');
+    await listLoc1.press('ArrowUp');
+    await listLoc1.press('ArrowUp');
+    await listLoc1.press('ArrowUp');
+    await listLoc1.press('ArrowUp');
+    await listLoc1.press('ArrowUp');
+    await listLoc1.press('ArrowUp');
+    await listLoc1.press('Space');
     await expect(parent1Span).toHaveText('All selected');
     await page.getByRole('button', { name: 'All selected' }).click();
   });

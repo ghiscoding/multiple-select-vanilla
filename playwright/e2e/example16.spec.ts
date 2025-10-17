@@ -5,10 +5,11 @@ test.describe('Example 16 - Avatar Images as Text Template', () => {
     await page.goto('#/example16');
 
     // 1st select
-    await page.locator('.ms-parent[data-test=select1]').click();
-    await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('Enter');
+    const parentSelect1 = await page.locator('.ms-parent[data-test=select1]');
+    await parentSelect1.click();
+    await parentSelect1.press('ArrowDown');
+    await parentSelect1.press('ArrowDown');
+    await parentSelect1.press('Enter');
     const parentSpan1 = await page.locator('.ms-parent[data-test=select1] .ms-choice span');
     expect(parentSpan1).toHaveText('Erika');
     await expect(parentSpan1.locator('img').getByAltText('image3')).toBeDefined();
@@ -16,10 +17,11 @@ test.describe('Example 16 - Avatar Images as Text Template', () => {
     await expect(page.locator('div[data-test=select1] .ms-drop')).toBeHidden();
 
     // 2nd select
-    await page.locator('.ms-parent[data-test=select2]').click();
-    await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('Enter');
+    const parentSelect2 = await page.locator('.ms-parent[data-test=select2]');
+    await parentSelect2.click();
+    await parentSelect2.press('ArrowDown');
+    await parentSelect2.press('ArrowDown');
+    await parentSelect2.press('Enter');
     const parentSpan2 = await page.locator('.ms-parent[data-test=select2] .ms-choice span');
     expect(await parentSpan2.locator('.name-section')).toHaveText('Erika');
     expect(await parentSpan2.locator('.job-section')).toHaveText('Designer');
