@@ -1,7 +1,6 @@
 {
   "name": "multiple-select-vanilla-root",
   "private": true,
-  "version": "0.0.0",
   "author": {
     "name": "zhixin wen",
     "email": "wenzhixin2010@gmail.com",
@@ -54,7 +53,7 @@
     "test:e2e:debug": "playwright test --config playwright/playwright.config.ts --ui --debug",
     "test:e2e:ui": "playwright test --config playwright/playwright.config.ts --ui",
     "test:report": "playwright show-report",
-    "playwright:install": "pnpm exec playwright install"
+    "playwright:install": "pnpm exec playwright install chromium"
   },
   "engines": {
     "node": "^20.17.0 || >=22.9.0",
@@ -65,7 +64,7 @@
     "@lerna-lite/cli": "^4.9.0",
     "@lerna-lite/publish": "^4.9.0",
     "@lerna-lite/watch": "^4.9.0",
-    "@playwright/test": "~1.52.0",
+    "@playwright/test": "^1.56.1",
     "@types/node": "^24.7.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
     "cross-env": "catalog:",
