@@ -4,8 +4,7 @@ test.describe('Options 23 - Custom Filter', () => {
   test('filter starts with text', async ({ page }) => {
     await page.goto('#/options23');
     await page.locator('.ms-parent').click();
-    await page.getByRole('textbox', { name: '🔎︎' });
-    await page.keyboard.type('g');
+    await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('g');
     await page.getByRole('option', { name: 'ghi' }).click();
     await page.getByRole('button', { name: 'ghi' }).click();
     let selectAllLoc = await page.locator('.ms-select-all .icon-checkbox-container div');
@@ -14,8 +13,7 @@ test.describe('Options 23 - Custom Filter', () => {
 
     await page.getByLabel('Case Sensitive').check();
     await page.locator('.ms-parent').click();
-    await page.getByRole('textbox', { name: '🔎︎' });
-    await page.keyboard.type('g');
+    await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('g');
     selectAllLoc = await page.locator('.ms-select-all .icon-checkbox-container div');
     await expect(selectAllLoc).toHaveClass('ms-icon ms-icon-check');
     await expect(page.locator('.ms-choice span')).toHaveText('ghi');
@@ -23,8 +21,7 @@ test.describe('Options 23 - Custom Filter', () => {
 
     // typing "G" shouldn't return anything but "No matches..."
     await page.locator('.ms-parent').click();
-    await page.getByRole('textbox', { name: '🔎︎' });
-    await page.keyboard.type('G');
+    await page.getByRole('textbox', { name: '🔎︎' }).pressSequentially('G');
     await page.getByText('No matches found').click();
   });
 });

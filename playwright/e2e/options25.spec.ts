@@ -34,31 +34,34 @@ test.describe('Options 25 - Show OK Button', () => {
     await page.getByRole('option', { name: 'April' }).click();
     await page.getByRole('option').filter({ hasText: 'March' }).locator('span').click();
     await page.getByRole('option').filter({ hasText: 'February' }).locator('span').click();
+    const selectDropLoc1 = await page.locator('div[data-test=select1] .ms-drop');
     await expect(page.locator('div[data-test=select1] .ms-drop')).not.toBeHidden();
-    await page.keyboard.press('Tab');
+    await selectDropLoc1.press('Tab');
     await expect(page.locator('div[data-test=select1] .ms-ok-button')).toBeFocused();
-    await page.keyboard.press('Shift+Tab');
+    await selectDropLoc1.press('Shift+Tab');
     await expect(page.locator('div[data-test=select1] .ms-select-all input')).toBeFocused();
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('Enter');
+    await selectDropLoc1.press('Tab');
+    await selectDropLoc1.press('Enter');
     await expect(page.locator('div[data-test=select1] .ms-drop')).toBeHidden();
 
     // 3rd Select
+    const selectDropLoc2 = await page.locator('div[data-test=select2] .ms-drop');
     await page.locator('[data-test=select3].ms-parent').click();
     await page.locator('div:nth-child(2) > label > .icon-checkbox-container').click();
-    await page.keyboard.press('Tab');
+    await selectDropLoc2.press('Tab');
     await expect(page.locator('div[data-test=select3] .ms-ok-button')).toBeFocused();
-    await page.keyboard.press('Shift+Tab');
+    await selectDropLoc2.press('Shift+Tab');
     await expect(page.locator('div[data-test=select3] .ms-search input')).toBeFocused();
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('Enter');
+    await selectDropLoc2.press('Tab');
+    await selectDropLoc2.press('Enter');
     await expect(page.locator('div[data-test=select3] .ms-drop')).toBeHidden();
 
     // 4th Select Enter key will close drop
+    const selectDropLoc3 = await page.locator('div[data-test=select3] .ms-drop');
     await page.locator('[data-test=select4].ms-parent').click();
-    await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('ArrowDown');
-    await page.keyboard.press('Enter');
+    await selectDropLoc3.press('ArrowDown');
+    await selectDropLoc3.press('ArrowDown');
+    await selectDropLoc3.press('Enter');
     await expect(page.locator('div[data-test=select4] .ms-drop')).toBeHidden();
   });
 });

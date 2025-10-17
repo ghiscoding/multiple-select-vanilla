@@ -114,8 +114,9 @@ test.describe('Events Demo', () => {
       ].join('\n'),
     );
 
-    await page.locator('.ms-parent').click();
-    await page.keyboard.press('Tab');
+    const parentLoc = await page.locator('.ms-parent')
+    await parentLoc.click();
+    await parentLoc.press('Tab');
     await expect(textareaLoc).toHaveText(
       [
         'onAfterCreate event fire!',

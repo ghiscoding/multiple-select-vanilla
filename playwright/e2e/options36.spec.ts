@@ -21,10 +21,11 @@ test.describe('Options 36 - Infinite Scroll', () => {
     // scroll completely to the end of the list & expect scrolling back to top
     await page.locator('[data-test="select1"].ms-parent').click();
     await ulElm1.evaluate(e => (e.scrollTop = e.scrollHeight));
+    const selectDropLoc1 = await page.locator('div[data-test=select1] .ms-drop');
     const firstTitleLoc = await page.locator('div[data-test=select1] .ms-drop li:nth-of-type(1)');
     await expect(firstTitleLoc).toContainText('Title 1');
     await expect(firstTitleLoc).toHaveClass('hide-radio highlighted');
-    await page.keyboard.press('Enter');
+    await selectDropLoc1.press('Enter');
 
     // -- 2nd Select
     await page.locator('[data-test=select2].ms-parent').click();
@@ -37,7 +38,8 @@ test.describe('Options 36 - Infinite Scroll', () => {
     await page.getByRole('button', { name: '5, 6' }).click();
 
     // scroll to the middle and click 1003
-    await page.locator('[data-test="select2"].ms-parent').click();
+    const selectLoc2 = await page.locator('div[data-test=select2].ms-parent');
+    await selectLoc2.click();
     await ulElm2.evaluate(e => (e.scrollTop = e.scrollHeight / 2));
     await page.locator('[data-test="select2"] .ms-drop label').filter({ hasText: '1003' }).click();
     await page.getByRole('button', { name: '5, 6, 1003' });
@@ -55,12 +57,12 @@ test.describe('Options 36 - Infinite Scroll', () => {
     await page.getByRole('button', { name: '5 of 2000 selected' });
 
     // pressing arrow down until we reach the end will scroll back to top of the list
-    page.keyboard.press('ArrowDown');
-    page.keyboard.press('ArrowDown');
-    page.keyboard.press('ArrowDown');
+    selectLoc2.press('ArrowDown');
+    selectLoc2.press('ArrowDown');
+    selectLoc2.press('ArrowDown');
     await expect(await page.locator('[data-test="select2"] .ms-drop li[data-key=option_1999]')).toHaveClass('highlighted');
 
-    page.keyboard.press('ArrowDown'); // Task 1 (scrolled back to top)
+    selectLoc2.press('ArrowDown'); // Task 1 (scrolled back to top)
 
     const firstTaskLoc = await page.locator('div[data-test=select2] .ms-drop li:nth-of-type(1)');
     await expect(firstTaskLoc).toContainText('Task 1');

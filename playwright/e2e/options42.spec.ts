@@ -138,8 +138,8 @@ test.describe('Options 42 - Lazy Load Data', () => {
 
     const placeholderLocator = await page.getByPlaceholder('filter placeholder');
     expect(placeholderLocator).toHaveCount(1);
-    placeholderLocator.focus();
-    await page.keyboard.type('april');
+    await placeholderLocator.focus();
+    await placeholderLocator.pressSequentially('april');
     select4LiElms = await page.locator('div[data-test=select4] li[role="option"]');
     await expect(select4LiElms).toHaveCount(1);
     await page.locator('div[data-test=select4].ms-parent').click();
