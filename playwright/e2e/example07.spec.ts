@@ -21,7 +21,6 @@ test.describe('Example 07 - Submit Data', () => {
     let dialogText = '';
     page.on('dialog', async (alert) => {
       dialogText = alert.message();
-      console.log('closing')
       await alert.dismiss();
     });
 
@@ -44,12 +43,24 @@ test.describe('Example 07 - Submit Data', () => {
     await page.getByTestId('submit').click();
     await expect(dialogText).toBe('select1=1&select2=1&select2=2');
 
-    // select lazy loaded data
+  });
+});
+
+test('submit form with multiple select populated via lazy load', async ({
+  page
+}) => {
+    let dialogText = '';
+    page.on('dialog', async (alert) => {
+      dialogText = alert.message();
+      await alert.dismiss();
+    });
+
+    await page.goto('#/example07');
     await page.waitForTimeout(1);
+
+    // select lazy loaded data
     await page.locator('[data-test=select3].ms-parent').click();
     await page.getByRole('option').filter({ hasText: 'First' }).locator('span').click();
-    await page.locator('[data-test=select3].ms-parent').click();
     await page.getByTestId('submit').click();
-    await expect(dialogText).toBe('select1=1&select2=1&select2=2&select3=1');
-  });
+    await expect(dialogText).toBe('select1=1&select3=1');
 });
