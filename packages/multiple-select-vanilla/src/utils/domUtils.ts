@@ -102,7 +102,6 @@ export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, 
   return elm;
 }
 
-
 /**
  * Create html node with optgroups and options from data
  * @param data - array of options and/or optgroups
@@ -120,7 +119,7 @@ export function createDomStructureFromData(data: Array<OptGroupRowData | OptionR
       const optionProps: any = {
         value: row.value,
         disabled: row.disabled || false,
-        selected: row.selected || false
+        selected: row.selected || false,
       };
       if (row.classes) {
         optionProps.className = row.classes;
