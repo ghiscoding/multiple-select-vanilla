@@ -53,7 +53,7 @@ test.describe('Example 08 - Data Property', () => {
       const form = document.getElementById('form1');
       const formData = new FormData(form);
       return formData.get('select6');
-    })
+    });
 
     expect(selectedItemValue).toBe("7");
   });
@@ -68,7 +68,7 @@ test.describe('Example 08 - Data Property', () => {
       const form = document.getElementById('form2');
       const formData = new FormData(form);
       return formData.getAll('select7');
-    })
+    });
 
     expect(selectedItemValue).toEqual(["7", "8"]);
   });
