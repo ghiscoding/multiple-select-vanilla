@@ -56,7 +56,7 @@ test('submit form with multiple select populated via lazy load', async ({
     });
 
     await page.goto('#/example07');
-    await page.waitForTimeout(1);
+    await page.waitForSelector('[data-test=select3] .ms-options .ms-option span:text("First")');
 
     // select lazy loaded data
     await page.locator('[data-test=select3].ms-parent').click();
