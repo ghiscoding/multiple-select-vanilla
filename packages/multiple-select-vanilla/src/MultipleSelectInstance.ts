@@ -13,6 +13,7 @@ import {
   classNameToList,
   convertItemRowToHtml,
   createDomElement,
+  createDomStructureFromData,
   emptyElement,
   findParent,
   getComputedSize,
@@ -336,7 +337,7 @@ export class MultipleSelectInstance {
     }
 
     if (!this.fromHtml) {
-      this.initHtmlRows();
+      // this.initHtmlRows();
     }
 
     this.dataTotal = setDataKeys(this.data || []);
@@ -345,25 +346,7 @@ export class MultipleSelectInstance {
   protected initHtmlRows() {
     this.elm.innerHTML = '';
     if (!this.data) return;
-    this.data.forEach((it: OptGroupRowData | OptionRowData) => {
-      if (it.type === 'optgroup') {
-        const optgroup = document.createElement('optgroup');
-        optgroup.label = (it as OptGroupRowData).label;
-        (it as OptGroupRowData).children.forEach((opt: OptionRowData) => {
-          this.buildOption(optgroup, opt);
-        });
-        this.elm.appendChild(optgroup);
-      } else {
-        this.buildOption(this.elm, it as OptionRowData);
-      }
-    });
-  }
-
-  protected buildOption(parent: HTMLElement, it: OptionRowData) {
-    const option = document.createElement('option');
-    option.value = it.value.toString();
-    option.text = it.text;
-    parent.appendChild(option);
+    return createDomStructureFromData(this.data, this.elm);
   }
 
   protected initRow(elm: HTMLOptionElement, groupDisabled?: boolean) {
@@ -1271,10 +1254,10 @@ export class MultipleSelectInstance {
       isLazyProcess = true;
       this.dropElm?.querySelector('ul.ms-list')?.remove();
       this.options.lazyData().then(data => {
-        this.fromHtml = false;
         // when data is ready, remove spinner & update dropdown and selection
         this.options.data = data;
         this._isLazyLoaded = true;
+        this.fromHtml = false;
         this.dropElm?.querySelector('.ms-loading')?.remove();
         this.initData();
         this.initList(true);
@@ -1582,7 +1565,7 @@ export class MultipleSelectInstance {
     } else {
       // when multiple values could be set, we need to loop through each
       Array.from(this.elm.options).forEach(option => {
-        option.selected = selectedValues.some(val => val.toString() === option.value);
+        option.selected = selectedValues.some(val => val().toString() === option.value);
       });
     }
 

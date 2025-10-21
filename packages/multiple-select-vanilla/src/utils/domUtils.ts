@@ -1,4 +1,4 @@
-import type { HtmlStruct, InferDOMType } from '../models/interfaces.js';
+import type { HtmlStruct, InferDOMType, OptGroupRowData, OptionRowData } from '../models/interfaces.js';
 import { isDefined, objectRemoveEmptyProps } from './utils.js';
 
 export interface HtmlElementPosition {
@@ -100,6 +100,36 @@ export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, 
 
   appendToElm?.appendChild(elm);
   return elm;
+}
+
+
+/**
+ * Create html node with optgroups and options from data
+ * @param data - array of options and/or optgroups
+ * @param parent - parent element to append to
+ * @return {object} element - updated element
+ */
+export function createDomStructureFromData(data: Array<OptGroupRowData | OptionRowData>, parent: HTMLElement): HTMLElement {
+  data.forEach(row => {
+    if (row.type === 'optgroup') {
+      const optgroup = createDomElement('optgroup', { label: (row as OptGroupRowData).label }, parent);
+      if ((row as OptGroupRowData).children) {
+        createDomStructureFromData((row as OptGroupRowData).children, optgroup);
+      }
+    } else {
+      const optionProps: any = {
+        value: row.value,
+        disabled: row.disabled || false,
+        selected: row.selected || false
+      };
+      if (row.classes) {
+        optionProps.className = row.classes;
+      }
+      const option = createDomElement('option', optionProps, parent);
+      option.textContent = (row as OptionRowData).text;
+    }
+  });
+  return parent;
 }
 
 /** takes an html block object and converts to a real HTMLElement */
