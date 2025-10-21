@@ -9,9 +9,9 @@ export default class Example {
     this.ms3 = multipleSelect('#select3', {
       lazyData: () => {
         return new Promise(resolve => {
-          resolve({ '1': 'First', '2': 'Second', '3': 'Third', '4': 'Fourth', '5': 'Fifth'})
-        })
-      }
+          resolve({ '1': 'First', '2': 'Second', '3': 'Third', '4': 'Fourth', '5': 'Fifth' });
+        });
+      },
     });
     this.btnElm = document.querySelector('.submit7');
     this.btnElm!.addEventListener('click', this.clickListener);
