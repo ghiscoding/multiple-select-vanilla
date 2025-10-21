@@ -337,7 +337,7 @@ export class MultipleSelectInstance {
     }
 
     if (!this.fromHtml) {
-      // this.initHtmlRows();
+      this.initHtmlRows();
     }
 
     this.dataTotal = setDataKeys(this.data || []);
@@ -1565,7 +1565,7 @@ export class MultipleSelectInstance {
     } else {
       // when multiple values could be set, we need to loop through each
       Array.from(this.elm.options).forEach(option => {
-        option.selected = selectedValues.some(val => val() === option.value);
+        option.selected = selectedValues.some(val => val.toString() === option.value);
       });
     }
 
