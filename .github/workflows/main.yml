@@ -74,14 +74,14 @@ jobs:
 
       - name: Upload Event File
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Event File
           path: ${{ github.event_path }}
 
       - name: Upload E2E Test Results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Playwright E2E Test Results
           path: |
