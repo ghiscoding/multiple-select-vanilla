@@ -492,7 +492,7 @@ export class MultipleSelectInstance {
       offset = -1;
     }
 
-    if (rows.length > Constants.BLOCK_ROWS * Constants.CLUSTER_BLOCKS) {
+    if (this.options.virtualScroll && rows.length > Constants.BLOCK_ROWS * Constants.CLUSTER_BLOCKS) {
       const dropVisible = this.dropElm && this.dropElm?.style.display !== 'none';
       if (!dropVisible && this.dropElm) {
         this.dropElm.style.left = '-10000';
