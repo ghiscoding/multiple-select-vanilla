@@ -3,7 +3,7 @@
   labels: ['dependencies'],
   dependencyDashboard: false,
   lockFileMaintenance: {
-    enabled: false
+    enabled: true
   },
   pin: false,
   rangeStrategy: 'bump',
