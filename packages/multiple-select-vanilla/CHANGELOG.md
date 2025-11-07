@@ -4,6 +4,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.11](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.10...v4.3.11) (2025-11-07)
+
+### Bug Fixes
+
+* consider `virtualScroll` option to really disable Virtual Scroll ([#438](https://github.com/ghiscoding/multiple-select-vanilla/issues/438)) ([864b87e](https://github.com/ghiscoding/multiple-select-vanilla/commit/864b87e1d66f2aae420c6ffbd34e1d680f3f09d3)) - by @egor-khanko
+* **deps:** update all non-major dependencies ([#431](https://github.com/ghiscoding/multiple-select-vanilla/issues/431)) ([f29a127](https://github.com/ghiscoding/multiple-select-vanilla/commit/f29a12718e47deeeec025f24818cd6251206e45b)) - by @renovate-bot
+
 ## [4.3.10](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.9...v4.3.10) (2025-09-27)
 
 **Note:** Version bump only for package multiple-select-vanilla
