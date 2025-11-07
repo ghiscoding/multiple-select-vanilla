@@ -7,9 +7,10 @@ test.describe('Example 16 - Avatar Images as Text Template', () => {
     // 1st select
     const parentSelect1 = await page.locator('.ms-parent[data-test=select1]');
     await parentSelect1.click();
-    await parentSelect1.press('ArrowDown');
-    await parentSelect1.press('ArrowDown');
-    await parentSelect1.press('Enter');
+    const parentSelectList1 = await page.locator('.ms-parent[data-test=select1] .ms-list');
+    await parentSelectList1.press('ArrowDown', { delay: 10});
+    await parentSelectList1.press('ArrowDown', { delay: 10});
+    await parentSelectList1.press('Enter');
     const parentSpan1 = await page.locator('.ms-parent[data-test=select1] .ms-choice span');
     expect(parentSpan1).toHaveText('Erika');
     await expect(parentSpan1.locator('img').getByAltText('image3')).toBeDefined();
@@ -19,14 +20,14 @@ test.describe('Example 16 - Avatar Images as Text Template', () => {
     // 2nd select
     const parentSelect2 = await page.locator('.ms-parent[data-test=select2]');
     await parentSelect2.click();
-    await parentSelect2.press('ArrowDown');
-    await parentSelect2.press('ArrowDown');
-    await parentSelect2.press('Enter');
+    const parentSelectList2 = await page.locator('.ms-parent[data-test=select2] .ms-list');
+    await parentSelectList2.press('ArrowDown', { delay: 10});
+    await parentSelectList2.press('Enter');
     const parentSpan2 = await page.locator('.ms-parent[data-test=select2] .ms-choice span');
-    expect(await parentSpan2.locator('.name-section')).toHaveText('Erika');
-    expect(await parentSpan2.locator('.job-section')).toHaveText('Designer');
-    await expect(parentSpan2.locator('img').getByAltText('image3')).toBeDefined();
-    await expect(parentSpan2.locator('img')).toHaveAttribute('src', /examples\/images\/avatar3.png/gi);
+    expect(await parentSpan2.locator('.name-section')).toHaveText('Smith');
+    expect(await parentSpan2.locator('.job-section')).toHaveText('Accounting');
+    await expect(parentSpan2.locator('img').getByAltText('image2')).toBeDefined();
+    await expect(parentSpan2.locator('img')).toHaveAttribute('src', /examples\/images\/avatar2.png/gi);
     await expect(page.locator('div[data-test=select2] .ms-drop')).toBeHidden();
   });
 });
