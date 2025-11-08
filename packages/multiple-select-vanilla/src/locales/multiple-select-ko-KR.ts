@@ -25,7 +25,7 @@ export const Japanese = {
     return '검색 결과가 없습니다.';
   },
   formatOkButton() {
-    return '좋아요';
+    return '닫다';
   },
   formatLazyLoading() {
     return '로딩 중...';
