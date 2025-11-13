@@ -10,6 +10,7 @@ export type LocaleKey =
   | 'id-ID'
   | 'it-IT'
   | 'ja-JP'
+  | 'ko-KR'
   | 'pt-BR'
   | 'ru-RU'
   | 'vi-VN'
