@@ -29,6 +29,7 @@ const OPTIONS_HIGHLIGHT_LIST_SELECTOR = '.ms-select-all.highlighted, ul li[data-
 
 export class MultipleSelectInstance {
   protected _bindEventService: BindingEventService;
+  protected _isOpen = false;
   protected isAllSelected = false;
   protected isPartiallyAllSelected = false;
   protected fromHtml = false;
@@ -275,11 +276,9 @@ export class MultipleSelectInstance {
             return;
           }
 
-          if (
-            (this.getEventTarget(e) === this.dropElm ||
-              (findParent(this.getEventTarget(e), '.ms-drop') !== this.dropElm && this.getEventTarget(e) !== this.elm)) &&
-            this.options.isOpen
-          ) {
+          const eventTarget = this.getEventTarget(e);
+          const fpDropElm = findParent(this.getEventTarget(e), '.ms-drop');
+          if (this._isOpen && (eventTarget === this.dropElm || (fpDropElm !== this.dropElm && eventTarget !== this.elm))) {
             this.close('body.click');
           }
         }) as EventListener,
@@ -1306,6 +1305,7 @@ export class MultipleSelectInstance {
       this.highlightCurrentOption();
     }
 
+    this._isOpen = true;
     this.options.onOpen();
   }
 
@@ -1460,6 +1460,7 @@ export class MultipleSelectInstance {
   }
 
   close(reason?: CloseReason) {
+    this._isOpen = false;
     this.options.isOpen = false;
     this.parentElm.classList.remove('ms-parent-open');
     this.choiceElm?.querySelector('div.ms-icon-caret')?.classList.remove('open');
