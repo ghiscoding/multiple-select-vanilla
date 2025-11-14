@@ -1460,6 +1460,10 @@ export class MultipleSelectInstance {
   }
 
   close(reason?: CloseReason) {
+    if (this.options.onBeforeClose(reason) === false) {
+      return;
+    }
+
     this._isOpen = false;
     this.options.isOpen = false;
     this.parentElm.classList.remove('ms-parent-open');

@@ -15,6 +15,12 @@ export default class Example {
       onOpen: () => {
         this.log('onOpen event fire!\n');
       },
+      onBeforeClose: reason => {
+        this.log(`onBeforeClose event fire! Reason: "${reason}"\n`);
+
+        // - returning false would preventing from closing the drop
+        // return false;
+      },
       onClose: reason => {
         this.log(`onClose event fire! Reason: "${reason}"\n`);
       },

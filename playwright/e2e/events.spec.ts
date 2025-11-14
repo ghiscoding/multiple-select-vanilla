@@ -20,6 +20,7 @@ test.describe('Events Demo', () => {
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
+        'onBeforeClose event fire! Reason: "toggle.close"',
         'onClose event fire! Reason: "toggle.close"',
       ].join('\n'),
     );
@@ -35,6 +36,7 @@ test.describe('Events Demo', () => {
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
+        'onBeforeClose event fire! Reason: "toggle.close"',
         'onClose event fire! Reason: "toggle.close"',
         'onBeforeOpen event fire!',
         'onBlur event fire!',
@@ -53,6 +55,7 @@ test.describe('Events Demo', () => {
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
+        'onBeforeClose event fire! Reason: "toggle.close"',
         'onClose event fire! Reason: "toggle.close"',
         'onBeforeOpen event fire!',
         'onBlur event fire!',
@@ -73,6 +76,7 @@ test.describe('Events Demo', () => {
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
+        'onBeforeClose event fire! Reason: "toggle.close"',
         'onClose event fire! Reason: "toggle.close"',
         'onBeforeOpen event fire!',
         'onBlur event fire!',
@@ -96,6 +100,7 @@ test.describe('Events Demo', () => {
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
+        'onBeforeClose event fire! Reason: "toggle.close"',
         'onClose event fire! Reason: "toggle.close"',
         'onBeforeOpen event fire!',
         'onBlur event fire!',
@@ -114,7 +119,7 @@ test.describe('Events Demo', () => {
       ].join('\n'),
     );
 
-    const parentLoc = await page.locator('.ms-parent')
+    const parentLoc = await page.locator('.ms-parent');
     await parentLoc.click();
     await parentLoc.press('Tab');
     await expect(textareaLoc).toHaveText(
@@ -125,6 +130,7 @@ test.describe('Events Demo', () => {
         'onBlur event fire!',
         'onOpen event fire!',
         'onFocus event fire!',
+        'onBeforeClose event fire! Reason: "toggle.close"',
         'onClose event fire! Reason: "toggle.close"',
         'onBeforeOpen event fire!',
         'onBlur event fire!',
@@ -141,6 +147,7 @@ test.describe('Events Demo', () => {
         'onFilter event fire! text: ',
         'onFilterClear event fire!',
         'onFocus event fire!',
+        'onBeforeClose event fire! Reason: "toggle.close"',
         'onClose event fire! Reason: "toggle.close"',
         'onBlur event fire!',
       ].join('\n'),

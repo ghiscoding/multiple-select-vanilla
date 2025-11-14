@@ -303,6 +303,10 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Fires when the filter is cleared. */
   onClear: () => void;
 
+  /** Fires just before the close event is called. You can return `false` to prevent the drop from closing. */
+  // biome-ignore lint/suspicious/noConfusingVoidType: could return a boolean or not return anything
+  onBeforeClose: (reason?: CloseReason, e?: Event) => boolean | void;
+
   /** Fires when the dropdown list is close. */
   onClose: (reason?: CloseReason) => void;
 
