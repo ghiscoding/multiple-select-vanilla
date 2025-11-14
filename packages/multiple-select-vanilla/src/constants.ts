@@ -69,6 +69,7 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   onBeforeOpen: noopFalse,
   onChange: noopFalse,
   onOpen: noopFalse,
+  onBeforeClose: noopTrue,
   onClose: noopFalse,
   onCheckAll: noopFalse,
   onUncheckAll: noopFalse,

@@ -1460,21 +1460,23 @@ export class MultipleSelectInstance {
   }
 
   close(reason?: CloseReason) {
-    this._isOpen = false;
-    this.options.isOpen = false;
-    this.parentElm.classList.remove('ms-parent-open');
-    this.choiceElm?.querySelector('div.ms-icon-caret')?.classList.remove('open');
-    if (this.dropElm) {
-      this.dropElm.style.display = 'none';
-      this.dropElm.ariaExpanded = 'false';
+    if (this.options.onBeforeClose(reason) !== false) {
+      this._isOpen = false;
+      this.options.isOpen = false;
+      this.parentElm.classList.remove('ms-parent-open');
+      this.choiceElm?.querySelector('div.ms-icon-caret')?.classList.remove('open');
+      if (this.dropElm) {
+        this.dropElm.style.display = 'none';
+        this.dropElm.ariaExpanded = 'false';
 
-      if (this.options.container) {
-        this.parentElm.appendChild(this.dropElm);
-        this.dropElm.style.top = 'auto';
-        this.dropElm.style.left = 'auto';
+        if (this.options.container) {
+          this.parentElm.appendChild(this.dropElm);
+          this.dropElm.style.top = 'auto';
+          this.dropElm.style.left = 'auto';
+        }
       }
+      this.options.onClose(reason);
     }
-    this.options.onClose(reason);
   }
 
   /**
