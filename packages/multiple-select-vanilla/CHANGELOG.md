@@ -4,6 +4,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.11...v4.4.0) (2025-11-14)
+
+### Features
+
+* add `onBeforeClose` event with option to cancel closing ([#443](https://github.com/ghiscoding/multiple-select-vanilla/issues/443)) ([475edf5](https://github.com/ghiscoding/multiple-select-vanilla/commit/475edf5aa508ca9c38bf46214fe1a7f7ec8691b5)) - by @ghiscoding
+* add Korean locale (ko-KR) ([#441](https://github.com/ghiscoding/multiple-select-vanilla/issues/441)) ([25091b4](https://github.com/ghiscoding/multiple-select-vanilla/commit/25091b41dc4220bcc74f11ad19453be391d8216f)) - by @ghiscoding
+
+### Bug Fixes
+
+* close() and onClose() functions should only be called w/open drop ([#442](https://github.com/ghiscoding/multiple-select-vanilla/issues/442)) ([4421718](https://github.com/ghiscoding/multiple-select-vanilla/commit/4421718d6b9bebd5ce8212d27931ebfae136c0b9)) - by @ghiscoding
+
 ## [4.3.11](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.10...v4.3.11) (2025-11-07)
 
 ### Bug Fixes
