@@ -165,10 +165,10 @@ dist/
 ### Used by
 
 This fork was created mostly to drop jQuery, and it is used by a few other Open Source projects of mine that I also maintain:
-- [Angular-Slickgrid](https://github.com/ghiscoding/Angular-Slickgrid)
-- [Aurelia-Slickgrid](https://github.com/ghiscoding/aurelia-slickgrid)
-- [Slickgrid-React](https://github.com/ghiscoding/slickgrid-react)
-- [Slickgrid-Universal](https://github.com/ghiscoding/slickgrid-universal)
+- [Angular-Slickgrid](https://ghiscoding.github.io/angular-slickgrid-demos)
+- [Aurelia-Slickgrid](https://ghiscoding.github.io/aurelia-slickgrid-demos)
+- [Slickgrid-React](https://ghiscoding.github.io/slickgrid-react-demos)
+- [Slickgrid-Universal](https://ghiscoding.github.io/slickgrid-universal)
 
 ## Contributions
 
