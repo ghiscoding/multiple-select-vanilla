@@ -30,13 +30,18 @@ import { multipleSelect } from 'multiple-select-vanilla';
 const ms = multipleSelect('.multiple-select');
 ```
 
-##### 2. or from a `data` array or object
+#### 2. or from a `data` array of string/numbers or text/value pair (object array)
 
 ```ts
 import { multipleSelect } from 'multiple-select-vanilla';
 
 const ms = multipleSelect('.multiple-select', {
+  data: ['First', 'Second'] // native string/number/boolean
+};
+
+const ms = multipleSelect('.multiple-select', {
   data: [
+    // text/value pair
     { text: 'First', value: 1 },
     { text: 'Second', value: 2 },
     { text: 'Third', value: 3 },
