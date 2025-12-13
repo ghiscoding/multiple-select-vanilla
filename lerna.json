@@ -16,6 +16,8 @@
       "createRelease": "github",
       "changelogIncludeCommitsClientLogin": " - by @%l",
       "changelogHeaderMessage": "## Visit the [Multiple-Select-Vanilla](https://github.com/ghiscoding/multiple-select-vanilla) GitHub project or take a look at the [Live Demo](https://ghiscoding.github.io/multiple-select-vanilla)",
+      "commentIssues": "✅ This issue has been resolved and included in version %v 📦<br>The release is available on: [GitHub release](%u) 🚀",
+      "commentPullRequests": "🎉 This pull request is included in version %v 📦<br>The release is available on: [GitHub release](%u) 🚀",
       "message": "chore(release): publish new version %s",
       "syncWorkspaceLock": true
     }
