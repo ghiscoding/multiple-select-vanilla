@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.4.0...v4.4.1) (2025-12-20)
+
+### Bug Fixes
+
+* validate `row` object exists before running conditions, fix [#447](https://github.com/ghiscoding/multiple-select-vanilla/issues/447) ([#448](https://github.com/ghiscoding/multiple-select-vanilla/issues/448)) ([a099d85](https://github.com/ghiscoding/multiple-select-vanilla/commit/a099d85ca3f446d4b0058c7865a28ea34bce7458)) - by @ghiscoding
+
 ## [4.4.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.3.11...v4.4.0) (2025-11-14)
 
 ### Features
