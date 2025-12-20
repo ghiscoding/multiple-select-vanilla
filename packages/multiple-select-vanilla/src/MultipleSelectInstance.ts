@@ -1699,16 +1699,19 @@ export class MultipleSelectInstance {
           const divElm = document.createElement('div');
           this.applyAsTextOrHtmlWhenEnabled(divElm, (row as OptionRowData).text);
           selected = values.includes(divElm.textContent?.trim() ?? '');
-        } else {
+        } else if (row) {
           selected = values.includes(row._value || row.value);
           if (!selected && row.value === `${+(row as OptionRowData).value}`) {
             selected = values.includes(+row.value);
           }
         }
-        if (row.selected !== selected) {
-          hasChanged = true;
+
+        if (row) {
+          if (row.selected !== selected) {
+            hasChanged = true;
+          }
+          row.selected = selected;
         }
-        row.selected = selected;
       }
     };
 
