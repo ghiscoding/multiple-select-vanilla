@@ -13,6 +13,7 @@ import {
   classNameToList,
   convertItemRowToHtml,
   createDomElement,
+  createDomStructureFromData,
   emptyElement,
   findParent,
   getComputedSize,
@@ -334,7 +335,17 @@ export class MultipleSelectInstance {
       this.data = this.data.sort(this.options.preSort);
     }
 
+    if (!this.fromHtml) {
+      this.initHtmlRows();
+    }
+
     this.dataTotal = setDataKeys(this.data || []);
+  }
+
+  protected initHtmlRows() {
+    this.elm.innerHTML = '';
+    if (!this.data) return;
+    return createDomStructureFromData(this.data, this.elm);
   }
 
   protected initRow(elm: HTMLOptionElement, groupDisabled?: boolean) {
@@ -1245,6 +1256,7 @@ export class MultipleSelectInstance {
         // when data is ready, remove spinner & update dropdown and selection
         this.options.data = data;
         this._isLazyLoaded = true;
+        this.fromHtml = false;
         this.dropElm?.querySelector('.ms-loading')?.remove();
         this.initData();
         this.initList(true);
@@ -1556,7 +1568,7 @@ export class MultipleSelectInstance {
     } else {
       // when multiple values could be set, we need to loop through each
       Array.from(this.elm.options).forEach(option => {
-        option.selected = selectedValues.some(val => val === option.value);
+        option.selected = selectedValues.some(val => val.toString() === option.value);
       });
     }
 
