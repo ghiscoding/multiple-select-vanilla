@@ -58,7 +58,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",
     "@lerna-lite/cli": "^4.11.0",
-    "@lerna-lite/publish": "^4.11.0",
+    "@lerna-lite/publish": "^4.11.1",
     "@lerna-lite/watch": "^4.11.0",
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.10.9",
