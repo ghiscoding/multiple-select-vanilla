@@ -15,7 +15,6 @@ permissions:
 jobs:
   run:
     if: github.repository_owner == 'ghiscoding' || github.repository_owner == 'renovate-bot' || contains(github.event.pull_request.labels.*.name, 'run workflow')
-    name: Node ${{ matrix.node }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
