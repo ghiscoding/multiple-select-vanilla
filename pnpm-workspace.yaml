@@ -5,5 +5,5 @@ packages:
 catalog:
   cross-env: ^10.1.0
   'remove-glob': ^0.4.10
-  sass: ^1.97.2
+  sass: ^1.97.3
   typescript: ^5.9.3
