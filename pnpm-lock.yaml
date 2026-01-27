@@ -27,7 +27,7 @@ importers:
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.3.12
+        specifier: ^2.3.11
         version: 2.3.12
       '@lerna-lite/cli':
         specifier: ^4.11.0
