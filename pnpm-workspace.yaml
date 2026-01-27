@@ -4,6 +4,7 @@ packages:
 # Define a catalog of version ranges.
 catalog:
   cross-env: ^10.1.0
-  'remove-glob': ^0.4.10
+  native-copyfiles: ^2.0.0
+  remove-glob: ^1.1.0
   sass: ^1.97.3
   typescript: ^5.9.3

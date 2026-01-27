@@ -97,7 +97,7 @@ async function runCompilation(changedFiles) {
         );
       }
 
-      copyfiles([`src/styles/**/${filename}.scss`, 'dist/styles/sass'], { up: 2 }, err => {
+      copyfiles(`src/styles/**/${filename}.scss`, 'dist/styles/sass', { up: 2 }, err => {
         if (err) {
           console.error(err);
         } else {
