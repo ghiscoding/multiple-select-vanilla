@@ -10,8 +10,8 @@ catalogs:
       specifier: ^10.1.0
       version: 10.1.0
     remove-glob:
-      specifier: ^0.4.10
-      version: 0.4.10
+      specifier: ^1.0.0
+      version: 1.0.0
     sass:
       specifier: ^1.97.3
       version: 1.97.3
@@ -52,7 +52,7 @@ importers:
         version: 8.0.4
       remove-glob:
         specifier: 'catalog:'
-        version: 0.4.10
+        version: 1.0.0
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
@@ -114,7 +114,7 @@ importers:
         version: 11.0.1(postcss@8.5.6)
       remove-glob:
         specifier: 'catalog:'
-        version: 0.4.10
+        version: 1.0.0
       sass:
         specifier: 'catalog:'
         version: 1.97.3
@@ -2033,9 +2033,9 @@ packages:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
     engines: {node: '>= 14.18.0'}
 
-  remove-glob@0.4.10:
-    resolution: {integrity: sha512-C9xB1T2r953AsEaYV8oLuj8oqRbcOt0JsRVeQWsfsMLyRrYbBcxOj7uhkCAs2QaNYXUQMLz2pcI5gs8y6/NtkQ==}
-    engines: {node: ^20.0.0 || >=22.0.0}
+  remove-glob@1.0.0:
+    resolution: {integrity: sha512-7/jhjIAD+hUupkHCib11KCrE058n4i2kKe+wPTBG+4OdLDBZscVjzMJGv7MsQz6EnOAoE5dM+imrZuCR5Xd9Fg==}
+    engines: {node: ^22.17.0 || >=24.0.0}
     hasBin: true
 
   require-directory@2.1.1:
@@ -4383,10 +4383,9 @@ snapshots:
 
   readdirp@4.1.2: {}
 
-  remove-glob@0.4.10:
+  remove-glob@1.0.0:
     dependencies:
       cli-nano: 1.2.2
-      tinyglobby: 0.2.15
 
   require-directory@2.1.1: {}
 
