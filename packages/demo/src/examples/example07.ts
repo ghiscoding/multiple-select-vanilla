@@ -3,9 +3,17 @@ import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-van
 export default class Example {
   btnElm?: HTMLButtonElement | null;
   ms: MultipleSelectInstance[] = [];
+  ms3?: MultipleSelectInstance;
 
   mount() {
-    this.ms = multipleSelect('select') as MultipleSelectInstance[];
+    this.ms = multipleSelect('#select1, #select2') as MultipleSelectInstance[];
+    this.ms3 = multipleSelect('#select3', {
+      lazyData: () => {
+        return new Promise(resolve => {
+          resolve({ '1': 'First', '2': 'Second', '3': 'Third', '4': 'Fourth', '5': 'Fifth' });
+        });
+      },
+    }) as MultipleSelectInstance;
     this.btnElm = document.querySelector('.submit7');
     this.btnElm!.addEventListener('click', this.clickListener);
   }
@@ -16,6 +24,8 @@ export default class Example {
     // destroy ms instance(s) to avoid DOM leaks
     this.ms.forEach(m => m.destroy());
     this.ms = [];
+    this.ms3?.destroy();
+    this.ms3 = undefined;
   }
 
   clickListener = () => {
