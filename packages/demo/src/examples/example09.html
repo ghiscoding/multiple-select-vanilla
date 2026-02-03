@@ -18,7 +18,8 @@
       </span>
     </h2>
     <div class="demo-subtitle">
-      Use <code>locale</code>to set the locale.
+      Use <code>locale</code>to set the locale. <strong>Please note</strong> that the months themselves aren't being translated, but every
+      other labels like "Select All", "OK", "Cancel", "Search", etc. are the ones being translated.
     </div>
   </div>
 </div>
@@ -65,8 +66,10 @@
 
   <hr>
 
-  <div class="my-5 row">
-    <label class="col-sm-3">named Locale import (i.e. Spanish)</label>
+  <div class="row">
+    <label class="col-sm-3">
+      named Locale import (e.g. <code>Spanish</code>)
+    </label>
 
     <div class="col-sm-9">
       <select id="fixed-import" class="full-width" multiple="multiple">
@@ -75,6 +78,14 @@
         <option value="3">Third</option>
         <option value="4">Fourth</option>
       </select>
+    </div>
+  </div>
+  <div class="row">
+    <label class="col-sm-3">
+      import command <code>{ locale: Spanish }</code>
+    </label>
+    <div class="col-sm-9">
+      <code>import { Spanish } from 'multiple-select-vanilla/dist/locales/es-ES.js'</code>
     </div>
   </div>
 </div>

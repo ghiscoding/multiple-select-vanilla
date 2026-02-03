@@ -3,10 +3,7 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
 
-import Constants from './constants.js';
-import English from './locales/multiple-select-en-US.js';
 import { MultipleSelectInstance } from './MultipleSelectInstance.js';
-import type { MultipleSelectLocales } from './models/locale.interface.js';
 import type { MultipleSelectOption } from './models/multipleSelectOption.interface.js';
 
 /**
@@ -59,13 +56,4 @@ function _multipleSelect(
   }
 
   return instances.length === 1 ? instances[0] : instances;
-}
-
-multipleSelect.defaults = Constants.DEFAULTS;
-multipleSelect.locales = { ...English } as MultipleSelectLocales; // load English as default locale
-multipleSelect.methods = Constants.METHODS;
-
-// add it to the window object so it can be used as standalone
-if (window !== undefined) {
-  window.multipleSelect = multipleSelect;
 }

@@ -33,11 +33,11 @@ function runBuild(options) {
 }
 
 function runMergedLocaleBuild() {
-  // merge all Locales into a single file "multiple-select-all-locales.js"
+  // merge all Locales into a single file "all-locales.js"
   runBuild({
-    entryPoints: ['./src/locales/all-locales-index.ts'],
+    entryPoints: ['./src/locales/all-locales.ts'],
     format: 'esm',
-    outfile: 'dist/locales/multiple-select-all-locales.js',
+    outfile: 'dist/locales/all-locales.js',
   });
 }
 
@@ -57,12 +57,13 @@ async function runCompilation(changedFiles) {
       }
       if (changedFile.includes('locales')) {
         // rebuild changed locale and also merged locale into a single locale
-        const [_, locale] = changedFile.match(/locales[\\/]multiple-select-(.*)\.ts$/) || [];
-        if (locale?.length === 5) {
+        const match = changedFile.match(/locales[\\/](..-..).ts$/);
+        if (match?.[1] && !['index', 'all-locales'].includes(match[1])) {
+          const locale = match[1];
           runBuild({
-            entryPoints: [`src/locales/multiple-select-${locale}.ts`],
+            entryPoints: [`src/locales/${locale}.ts`],
             format: 'esm',
-            outfile: `dist/locales/multiple-select-${locale}.js`,
+            outfile: `dist/locales/${locale}.js`,
           });
         }
         runMergedLocaleBuild();

@@ -1,7 +1,7 @@
 import type { TrustedHTML } from 'trusted-types/lib';
 
 import type { CollectionData, LabelFilter, OptGroupRowData, OptionRowData, TextFilter } from './interfaces.js';
-import type { LocaleKey, MultipleSelectLocale } from './locale.interface.js';
+import type { LocaleKey, MultipleSelectLocale, MultipleSelectLocales } from './locale.interface.js';
 
 export interface MultipleSelectView {
   label: string;
@@ -52,6 +52,8 @@ export type CSSStyleDeclarationReadonly =
 export type CSSStyleDeclarationWritable = keyof Omit<CSSStyleDeclaration, CSSStyleDeclarationReadonly>;
 
 export interface MultipleSelectOption extends MultipleSelectLocale {
+  /** Optional I18n Locales map to provide all available locales */
+  locales?: MultipleSelectLocales;
   /** defaults to 10, when using "autoAdjustDropHeight" we might want to add a bottom (or top) padding instead of taking the entire available space */
   adjustedHeightPadding: number;
 

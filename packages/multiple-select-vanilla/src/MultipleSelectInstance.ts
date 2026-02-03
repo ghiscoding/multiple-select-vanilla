@@ -136,7 +136,11 @@ export class MultipleSelectInstance {
         return;
       }
 
-      const locales = window.multipleSelect.locales;
+      // Use locales from options, fallback to instance property
+      const locales = (this.options.locales || this.locales || {}) as Record<
+        string,
+        import('./models/locale.interface.js').MultipleSelectLocale
+      >;
       const parts = this.options.locale.split(/-|_/);
 
       parts[0] = parts[0].toLowerCase();

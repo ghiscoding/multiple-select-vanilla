@@ -1,11 +1,11 @@
 import { type LocaleKey, type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 // 1. load every locale individually, it could be import in 2 ways (named import OR import on window object)
-import { Spanish } from 'multiple-select-vanilla/dist/locales/multiple-select-es-ES'; // named import
-// import 'multiple-select-vanilla/dist/locales/multiple-select-es-ES';               // locale on window object
+import { Spanish } from 'multiple-select-vanilla/dist/locales/es-ES.js'; // named import
+// import 'multiple-select-vanilla/dist/locales/es-ES';               // locale on window object
 
 // 2. or load all locales at once
-import 'multiple-select-vanilla/dist/locales/multiple-select-all-locales';
+import { locales } from 'multiple-select-vanilla/dist/locales/all-locales.js';
 
 export default class Example {
   ms0?: MultipleSelectInstance;
@@ -25,6 +25,7 @@ export default class Example {
       filter: true,
       showOkButton: true,
       dataTest: 'select1',
+      locales,
     }) as MultipleSelectInstance;
 
     this.ms2 = multipleSelect('#fixed-import', {
@@ -49,6 +50,12 @@ export default class Example {
 
   updateLocale(locale: LocaleKey) {
     this.ms1?.destroy();
-    this.ms1?.refreshOptions({ locale });
+    this.ms1 = multipleSelect('#dynamic-select', {
+      filter: true,
+      showOkButton: true,
+      dataTest: 'select1',
+      locale,
+      locales,
+    }) as MultipleSelectInstance;
   }
 }

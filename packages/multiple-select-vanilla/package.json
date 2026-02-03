@@ -27,7 +27,6 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./dist/browser/*": "./dist/browser/*",
     "./dist/locales/*": "./dist/locales/*",
     "./dist/styles/*": "./dist/styles/*",
     "./package.json": "./package.json"
@@ -55,7 +54,6 @@
     "dev:init": "pnpm sass:build && pnpm sass:copy && pnpm build:all && pnpm build:types:prod",
     "build:all": "node build-prod.mjs",
     "build:watch": "cross-env NODE_ENV=development node build-watch.mjs",
-    "build:locales": "esbuild src/locales/all-locales-index.ts --bundle --minify --format=iife --target=es2021 --sourcemap --outfile=dist/locales/multiple-select-all-locales.js",
     "build:esm": "esbuild src/index.ts --bundle --minify --format=esm --target=es2021 --sourcemap --outfile=dist/index.js",
     "build:types": "tsc --emitDeclarationOnly --incremental --declarationMap false --outDir dist",
     "build:types:prod": "tsc --emitDeclarationOnly --incremental --declarationMap --outDir dist",

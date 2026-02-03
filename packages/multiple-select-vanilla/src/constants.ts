@@ -1,4 +1,4 @@
-import English from './locales/multiple-select-en-US.js';
+import { English } from './locales/en-US';
 import type { LabelFilter, TextFilter } from './models/interfaces.js';
 import type { MultipleSelectOption } from './models/multipleSelectOption.interface.js';
 
@@ -108,7 +108,7 @@ const METHODS = [
   'destroy',
 ];
 
-Object.assign(DEFAULTS, English!['en-US']); // load English as default locale
+Object.assign(DEFAULTS, English); // load English as default locale
 
 const Constants = {
   BLOCK_ROWS,
