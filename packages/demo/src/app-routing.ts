@@ -30,6 +30,7 @@ import Methods09 from './methods/methods09.js';
 import Methods10 from './methods/methods10.js';
 import Methods11 from './methods/methods11.js';
 import Methods12 from './methods/methods12.js';
+import Methods13 from './methods/methods13.js';
 import Options01 from './options/options01.js';
 import Options02 from './options/options02.js';
 import Options03 from './options/options03.js';
@@ -165,6 +166,7 @@ export const exampleRouting = [
       { name: 'methods10', view: '/src/methods/methods10.html', viewModel: Methods10, title: 'The refresh' },
       { name: 'methods11', view: '/src/methods/methods11.html', viewModel: Methods11, title: 'The destroy' },
       { name: 'methods12', view: '/src/methods/methods12.html', viewModel: Methods12, title: 'The getData' },
+      { name: 'methods13', view: '/src/methods/methods13.html', viewModel: Methods13, title: 'The setData' },
     ],
   },
   {
