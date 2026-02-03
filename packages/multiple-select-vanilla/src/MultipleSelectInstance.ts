@@ -3,7 +3,7 @@
  */
 import Constants from './constants.js';
 import type { HtmlStruct, OptGroupRowData, OptionDataObject, OptionRowData } from './models/interfaces.js';
-import type { MultipleSelectLocales } from './models/locale.interface.js';
+import type { MultipleSelectLocale, MultipleSelectLocales } from './models/locale.interface.js';
 import type { ClickedGroup, ClickedOption, CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface.js';
 import { BindingEventService } from './services/binding-event.service.js';
 import { VirtualScroll } from './services/virtual-scroll.js';
@@ -137,10 +137,7 @@ export class MultipleSelectInstance {
       }
 
       // Use locales from options, fallback to instance property
-      const locales = (this.options.locales || this.locales || {}) as Record<
-        string,
-        import('./models/locale.interface.js').MultipleSelectLocale
-      >;
+      const locales = (this.options.locales || this.locales || {}) as Record<string, MultipleSelectLocale>;
       const parts = this.options.locale.split(/-|_/);
 
       parts[0] = parts[0].toLowerCase();

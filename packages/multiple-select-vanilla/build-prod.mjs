@@ -10,7 +10,7 @@ for (const format of buildFormats) {
     outfile: `dist/index.js`,
   });
 
-  // build all locales (short names, e.g. es-ES.ts)
+  // build all locales (short names, e.g. "es-ES.ts")
   for (const localeFile of localeFiles) {
     const match = localeFile.match(/src\/locales\/(..-..).ts$/);
     if (match?.[1] && !['index', 'all-locales'].includes(match[1])) {

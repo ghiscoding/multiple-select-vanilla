@@ -1,4 +1,4 @@
-import { English } from './locales/en-US';
+import { English } from './locales/en-US.js';
 import type { LabelFilter, TextFilter } from './models/interfaces.js';
 import type { MultipleSelectOption } from './models/multipleSelectOption.interface.js';
 

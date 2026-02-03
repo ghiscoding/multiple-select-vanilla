@@ -1,21 +1,20 @@
-import { Czech } from './cz-CS';
-import { Danish } from './da-DK';
-import { German } from './de-DE';
-import { English } from './en-US';
-import { Spanish } from './es-ES';
-import { French } from './fr-FR';
-import { Hungarian } from './hu-HU';
-import { Indonesian } from './id-ID';
-import { Italian } from './it-IT';
-import { Japanese } from './ja-JP';
-import { Korean } from './ko-KR';
-import { Portuguese } from './pt-BR';
-import { Russian } from './ru-RU';
-import { Vietnamese } from './vi-VN';
-import { Mandarin } from './zh-CN';
-import { MandarinTraditional } from './zh-TW';
-
 import type { MultipleSelectLocales } from '../models/locale.interface.js';
+import { Czech } from './cz-CS.js';
+import { Danish } from './da-DK.js';
+import { German } from './de-DE.js';
+import { English } from './en-US.js';
+import { Spanish } from './es-ES.js';
+import { French } from './fr-FR.js';
+import { Hungarian } from './hu-HU.js';
+import { Indonesian } from './id-ID.js';
+import { Italian } from './it-IT.js';
+import { Japanese } from './ja-JP.js';
+import { Korean } from './ko-KR.js';
+import { Portuguese } from './pt-BR.js';
+import { Russian } from './ru-RU.js';
+import { Vietnamese } from './vi-VN.js';
+import { Mandarin } from './zh-CN.js';
+import { MandarinTraditional } from './zh-TW.js';
 
 export const locales: MultipleSelectLocales = {
   'cz-CS': Czech,
