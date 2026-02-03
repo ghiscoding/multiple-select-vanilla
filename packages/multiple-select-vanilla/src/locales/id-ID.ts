@@ -24,6 +24,9 @@ export const Indonesian: MultipleSelectLocale = {
   formatLazyLoading() {
     return 'Memuat...';
   },
+  formatLazyFailed() {
+    return 'Gagal memuat data';
+  },
 };
 
 export default Indonesian;

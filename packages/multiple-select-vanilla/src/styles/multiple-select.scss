@@ -18,6 +18,7 @@
 @include m.createSvgClass("ms-icon-partial-group", v.$ms-icon-partial-group-svg-path);
 @include m.createSvgClass("ms-icon-radio", v.$ms-icon-radio-svg-path);
 @include m.createSvgClass("ms-icon-loading", v.$ms-icon-loading-svg-path);
+@include m.createSvgClass("ms-icon-lazy-failed", v.$ms-icon-lazy-failed-svg-path);
 
 @keyframes icon-spin {
   0% { transform: rotate(0deg); }
@@ -396,15 +397,21 @@
     display: none;
   }
 
-  .ms-loading {
+  .ms-loading,
+  .ms-lazy-failed {
     display: flex;
     align-items: center;
     gap: var(--ms-loading-gap, v.$ms-loading-gap);
     padding: var(--ms-loading-padding, v.$ms-loading-padding);
+
+    .ms-icon-lazy-failed,
     .ms-icon-loading {
       font-size: var(--ms-loading-icon-size, v.$ms-loading-icon-size);
       height: var(--ms-loading-icon-size, v.$ms-loading-icon-size);
       width: var(--ms-loading-icon-size, v.$ms-loading-icon-size);
+    }
+    .ms-icon-lazy-failed {
+      color: var(--ms-lazy-load-failed-color, v.$ms-lazy-load-failed-color);
     }
   }
 

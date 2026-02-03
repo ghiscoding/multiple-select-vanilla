@@ -24,6 +24,9 @@ export const Danish: MultipleSelectLocale = {
   formatLazyLoading() {
     return 'Indlæser nu...';
   },
+  formatLazyFailed() {
+    return 'Kunne ikke indlæse data';
+  },
 };
 
 export default Danish;

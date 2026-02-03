@@ -24,6 +24,9 @@ export const Czech: MultipleSelectLocale = {
   formatLazyLoading() {
     return 'Načítám se...';
   },
+  formatLazyFailed() {
+    return 'Nepodařilo se načíst data';
+  },
 };
 
 export default Czech;

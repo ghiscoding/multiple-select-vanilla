@@ -24,6 +24,9 @@ export const Chinese: MultipleSelectLocale = {
   formatLazyLoading() {
     return '加载...';
   },
+  formatLazyFailed() {
+    return '数据加载失败';
+  },
 };
 
 export default Chinese;

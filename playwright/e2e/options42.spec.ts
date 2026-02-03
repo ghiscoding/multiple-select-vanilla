@@ -1,7 +1,7 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 42 - Lazy Load Data', () => {
-  test('all select dropdown should lazy load data only once', async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto('#/options42');
 
     // change server delay to 100ms
@@ -9,8 +9,9 @@ test.describe('Options 42 - Lazy Load Data', () => {
     expect(serverDelayLoc).toHaveCount(1);
     await serverDelayLoc.fill('200');
     await page.waitForTimeout(200); // wait for ms-select to re-render
+  });
 
-    // 1st select
+  test('1st select - lazy load with regular array', async ({ page }) => {
     await page.locator('div[data-test=select1].ms-parent').click();
     let loading1Loc = await page.locator('.ms-loading');
     await expect(loading1Loc).toBeVisible();
@@ -36,9 +37,9 @@ test.describe('Options 42 - Lazy Load Data', () => {
     await expect(loading1Loc).not.toBeVisible();
     await page.locator('div[data-test=select1].ms-parent').click();
     await page.locator('div[data-test=select1].ms-parent').click();
+  });
 
-    // --
-    // 2nd select
+  test('2nd select - lazy load with data array', async ({ page }) => {
     await expect(await page.locator('div[data-test=select2] .ms-choice')).toHaveText('');
     await page.locator('div[data-test=select2].ms-parent').click();
     let loading2Loc = await page.locator('.ms-loading');
@@ -61,17 +62,18 @@ test.describe('Options 42 - Lazy Load Data', () => {
 
     // 2nd select, open/close multiple times should now be instant without any lazy reloading
     await page.locator('div[data-test=select2].ms-parent').click();
-    loading1Loc = await page.locator('.ms-loading');
-    await expect(loading1Loc).not.toBeVisible();
+    loading2Loc = await page.locator('.ms-loading');
+    await expect(loading2Loc).not.toBeVisible();
     select2LiElms = await page.locator('div[data-test=select2] li[role="option"]');
     await expect(select2LiElms).toHaveCount(12);
     await page.locator('div[data-test=select2].ms-parent').click();
-    loading1Loc = await page.locator('.ms-loading');
-    await expect(loading1Loc).not.toBeVisible();
+    loading2Loc = await page.locator('.ms-loading');
+    await expect(loading2Loc).not.toBeVisible();
     await page.locator('div[data-test=select2].ms-parent').click();
     await page.locator('div[data-test=select2].ms-parent').click();
+  });
 
-    // 3rd select
+  test('3rd select - lazy load with Option Groups', async ({ page }) => {
     await expect(await page.locator('div[data-test=select3] .ms-choice')).toHaveText('');
     await page.locator('div[data-test=select3].ms-parent').click();
     let loading3Loc = await page.locator('.ms-loading');
@@ -91,19 +93,21 @@ test.describe('Options 42 - Lazy Load Data', () => {
     await page.locator('div[data-test=select3].ms-parent').click();
 
     // 3rd select, open/close multiple times should now be instant without any lazy reloading
-    await page.locator('div[data-test=select2].ms-parent').click();
-    loading1Loc = await page.locator('.ms-loading');
-    await expect(loading1Loc).not.toBeVisible();
-    select2LiElms = await page.locator('div[data-test=select2] li[role="option"]');
-    await expect(select2LiElms).toHaveCount(12);
-    await page.locator('div[data-test=select2].ms-parent').click();
-    loading1Loc = await page.locator('.ms-loading');
-    await expect(loading1Loc).not.toBeVisible();
-    await page.locator('div[data-test=select2].ms-parent').click();
-    await page.locator('div[data-test=select2].ms-parent').click();
+    await page.locator('div[data-test=select3].ms-parent').click();
+    let select3LiElms = await page.locator('div[data-test=select3] li[role="option"]');
+    loading3Loc = await page.locator('.ms-loading');
+    await expect(loading3Loc).not.toBeVisible();
+    select3LiElms = await page.locator('div[data-test=select3] li[role="option"]');
+    await expect(select3LiElms).toHaveCount(16);
+    await page.locator('div[data-test=select3].ms-parent').click();
+    loading3Loc = await page.locator('.ms-loading');
+    await expect(loading3Loc).not.toBeVisible();
+    await page.locator('div[data-test=select3].ms-parent').click();
+    await page.locator('div[data-test=select3].ms-parent').click();
+  });
 
-    // --
-    // 2nd select
+  // --
+  test('4th select - lazy load with Filter & OK button', async ({ page }) => {
     await expect(await page.locator('div[data-test=select4] .ms-choice')).toHaveText('');
     await page.locator('div[data-test=select4].ms-parent').click();
     let loading4Loc = await page.locator('.ms-loading');
@@ -125,15 +129,15 @@ test.describe('Options 42 - Lazy Load Data', () => {
     await page.locator('div[data-test=select4].ms-parent').click();
     await expect(await page.locator('div[data-test=select4] .ms-drop .ms-ok-button')).toHaveText('OK');
 
-    // 4nd select, open/close multiple times should now be instant without any lazy reloading
+    // 4th select, open/close multiple times should now be instant without any lazy reloading
     await page.locator('div[data-test=select4].ms-parent').click();
-    loading1Loc = await page.locator('.ms-loading');
-    await expect(loading1Loc).not.toBeVisible();
+    loading4Loc = await page.locator('.ms-loading');
+    await expect(loading4Loc).not.toBeVisible();
     select4LiElms = await page.locator('div[data-test=select4] li[role="option"]');
     await expect(select4LiElms).toHaveCount(12);
     await page.locator('div[data-test=select4].ms-parent').click();
-    loading1Loc = await page.locator('.ms-loading');
-    await expect(loading1Loc).not.toBeVisible();
+    loading4Loc = await page.locator('.ms-loading');
+    await expect(loading4Loc).not.toBeVisible();
     await page.locator('div[data-test=select4].ms-parent').click();
 
     const placeholderLocator = await page.getByPlaceholder('filter placeholder');
@@ -143,5 +147,23 @@ test.describe('Options 42 - Lazy Load Data', () => {
     select4LiElms = await page.locator('div[data-test=select4] li[role="option"]');
     await expect(select4LiElms).toHaveCount(1);
     await page.locator('div[data-test=select4].ms-parent').click();
+  });
+
+  // 5th select - failure case
+  test('5th select should show loading then failure icon and text on lazyData reject', async ({ page }) => {
+    await page.goto('#/options42');
+
+    // open the 5th select (failure case)
+    await page.locator('div[data-test=select5].ms-parent').click();
+    const loadingLoc = page.locator('div[data-test=select5] .ms-loading');
+    await expect(loadingLoc).toBeVisible();
+    await expect(loadingLoc).toContainText('Loading');
+
+    // Wait for the failure to appear (should be after serverDelay)
+    const failedIcon = page.locator('div[data-test=select5] .ms-icon-lazy-failed');
+    await expect(failedIcon).toBeVisible({ timeout: 2000 });
+    const failedText = page.locator('div[data-test=select5] .ms-lazy-failed');
+    await expect(failedText).toBeVisible();
+    await expect(failedText).toContainText('Failed to load data');
   });
 });

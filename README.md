@@ -110,7 +110,7 @@ Changes and new options:
   - `onClose(reason)` callback that will be executed when the dropdown closes (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/events))
   - `preFilter` provide a Filter predicate to pre-filter data (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options40))
   - `preSort` provide a Sort Comparer to pre-sort data (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options41))
-  - `lazyData` provide a function callback that will return a Promise with data collection (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options42))
+  - `lazyData` provide a function with callback arguments to load data asynchronously (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options42))
 
 ## CSP Compliance
 The library is now CSP (Content Security Policy) compliant, there are however some exceptions to be aware of. When using any HTML strings as template (when using `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML). You can achieve this by using the `sanitizer` method in combo with an external library like [DOMPurify](https://github.com/cure53/DOMPurify) (recommended) to return `TrustedHTML` as shown below and with that in place you will be CSP compliant.
@@ -149,9 +149,12 @@ with this code in place, we can now use the following CSP meta tag (which is wha
 ### version 4.0
 - build ESM-Only and drop CJS (CommonJS) build (aka `require()`)
 
+
 ### version 5.0
 
-Locale management has been refactored to remove usage of the global `window` object. Locales are now provided via a modular registry and injected through options. This change affects how you load, switch, and reference locales. Also, the `multiple-select-` prefix has been removed from all locale import paths (single and merged) and no longer exists on the `window` object
+- **Locale management** has been refactored to remove usage of the global `window` object. Locales are now provided via a modular registry and injected through options. The `multiple-select-` prefix has been removed from all locale import paths (single and merged) and no longer exists on the `window` object.
+
+- **Lazy loading API change:** The `lazyData` option now uses a callback signature: `lazyData(resolve, reject)` instead of returning a Promise. This allows for more flexible async data loading and error handling. See the demo and documentation for updated usage examples.
 
 **Migration Example:**
 
@@ -172,6 +175,10 @@ Locale management has been refactored to remove usage of the global `window` obj
 + import { locales } from 'multiple-select-vanilla/dist/locales/all-locales.js';
 + // OR default import
 + import locales from 'multiple-select-vanilla/dist/locales/all-locales.js';
+
+// 3. lazyData option (old vs new)
+- lazyData: () => Promise<CollectionData>
++ lazyData: (resolve, reject) => void
 ```
 
 See the [Example09](https://ghiscoding.github.io/multiple-select-vanilla/#/example09) for details on dynamic locale loading.

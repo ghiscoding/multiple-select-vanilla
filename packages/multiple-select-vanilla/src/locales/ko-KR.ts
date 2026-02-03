@@ -24,6 +24,9 @@ export const Korean: MultipleSelectLocale = {
   formatLazyLoading() {
     return '로딩 중...';
   },
+  formatLazyFailed() {
+    return '데이터를 불러오지 못했습니다';
+  },
 };
 
 export default Korean;

@@ -24,6 +24,9 @@ export const Japanese: MultipleSelectLocale = {
   formatLazyLoading() {
     return '積載...';
   },
+  formatLazyFailed() {
+    return 'データの読み込みに失敗しました';
+  },
 };
 
 export default Japanese;

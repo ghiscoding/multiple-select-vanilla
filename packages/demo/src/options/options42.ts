@@ -7,6 +7,7 @@ export default class Example {
   ms2?: MultipleSelectInstance;
   ms3?: MultipleSelectInstance;
   ms4?: MultipleSelectInstance;
+  ms5?: MultipleSelectInstance;
   serverDelay = 1000;
 
   changeServerDelay(event: Event) {
@@ -24,175 +25,168 @@ export default class Example {
   }
 
   createMultipleSelect() {
-    console.log('recreate ms-select');
     this.ms1 = multipleSelect('select[data-test=select1]', {
       singleRadio: true,
-      lazyData: () => {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve([
-              'January',
-              'February',
-              'March',
-              'April',
-              'May',
-              'June',
-              'July',
-              'August',
-              'September',
-              'October',
-              'November',
-              'December',
-            ]);
-          }, this.serverDelay);
-        });
+      lazyData: resolve => {
+        setTimeout(() => {
+          resolve([
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+          ]);
+        }, this.serverDelay);
       },
     }) as MultipleSelectInstance;
 
     this.ms2 = multipleSelect('select[data-test=select2]', {
-      lazyData: () => {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve([
-              {
-                text: 'January',
-                value: 1,
-              },
-              {
-                text: 'February',
-                value: 2,
-                selected: true,
-              },
-              {
-                text: 'March',
-                value: 3,
-                disabled: true,
-              },
-              {
-                text: 'April',
-                value: 4,
-                selected: true,
-              },
-              {
-                text: 'May',
-                value: 5,
-              },
-              {
-                text: 'June',
-                value: 6,
-              },
-              {
-                text: 'July',
-                value: 7,
-              },
-              {
-                text: 'August',
-                value: 8,
-              },
-              {
-                text: 'September',
-                value: 9,
-              },
-              {
-                text: 'October',
-                value: 10,
-              },
-              {
-                text: 'November',
-                value: 11,
-              },
-              {
-                text: 'December',
-                value: 12,
-              },
-            ]);
-          }, this.serverDelay);
-        });
+      lazyData: resolve => {
+        setTimeout(() => {
+          resolve([
+            {
+              text: 'January',
+              value: 1,
+            },
+            {
+              text: 'February',
+              value: 2,
+              selected: true,
+            },
+            {
+              text: 'March',
+              value: 3,
+              disabled: true,
+            },
+            {
+              text: 'April',
+              value: 4,
+              selected: true,
+            },
+            {
+              text: 'May',
+              value: 5,
+            },
+            {
+              text: 'June',
+              value: 6,
+            },
+            {
+              text: 'July',
+              value: 7,
+            },
+            {
+              text: 'August',
+              value: 8,
+            },
+            {
+              text: 'September',
+              value: 9,
+            },
+            {
+              text: 'October',
+              value: 10,
+            },
+            {
+              text: 'November',
+              value: 11,
+            },
+            {
+              text: 'December',
+              value: 12,
+            },
+          ]);
+        }, this.serverDelay);
       },
     }) as MultipleSelectInstance;
 
     this.ms3 = multipleSelect('select[data-test=select3]', {
-      lazyData: () => {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve([
-              {
-                type: 'optgroup',
-                label: 'Q1',
-                children: [
-                  {
-                    text: 'January',
-                    value: 1,
-                  },
-                  {
-                    text: 'February',
-                    value: 2,
-                    selected: true,
-                  },
-                  {
-                    text: 'March',
-                    value: 3,
-                    selected: true,
-                  },
-                ],
-              },
-              {
-                type: 'optgroup',
-                label: 'Q2',
-                children: [
-                  {
-                    text: 'April',
-                    value: 4,
-                  },
-                  {
-                    text: 'May',
-                    value: 5,
-                  },
-                  {
-                    text: 'June',
-                    value: 6,
-                  },
-                ],
-              },
-              {
-                type: 'optgroup',
-                label: 'Q3',
-                children: [
-                  {
-                    text: 'July',
-                    value: 7,
-                  },
-                  {
-                    text: 'August',
-                    value: 8,
-                  },
-                  {
-                    text: 'September',
-                    value: 9,
-                  },
-                ],
-              },
-              {
-                type: 'optgroup',
-                label: 'Q4',
-                children: [
-                  {
-                    text: 'October',
-                    value: 10,
-                  },
-                  {
-                    text: 'November',
-                    value: 11,
-                  },
-                  {
-                    text: 'December',
-                    value: 12,
-                  },
-                ],
-              },
-            ]);
-          }, this.serverDelay);
-        });
+      lazyData: resolve => {
+        setTimeout(() => {
+          resolve([
+            {
+              type: 'optgroup',
+              label: 'Q1',
+              children: [
+                {
+                  text: 'January',
+                  value: 1,
+                },
+                {
+                  text: 'February',
+                  value: 2,
+                  selected: true,
+                },
+                {
+                  text: 'March',
+                  value: 3,
+                  selected: true,
+                },
+              ],
+            },
+            {
+              type: 'optgroup',
+              label: 'Q2',
+              children: [
+                {
+                  text: 'April',
+                  value: 4,
+                },
+                {
+                  text: 'May',
+                  value: 5,
+                },
+                {
+                  text: 'June',
+                  value: 6,
+                },
+              ],
+            },
+            {
+              type: 'optgroup',
+              label: 'Q3',
+              children: [
+                {
+                  text: 'July',
+                  value: 7,
+                },
+                {
+                  text: 'August',
+                  value: 8,
+                },
+                {
+                  text: 'September',
+                  value: 9,
+                },
+              ],
+            },
+            {
+              type: 'optgroup',
+              label: 'Q4',
+              children: [
+                {
+                  text: 'October',
+                  value: 10,
+                },
+                {
+                  text: 'November',
+                  value: 11,
+                },
+                {
+                  text: 'December',
+                  value: 12,
+                },
+              ],
+            },
+          ]);
+        }, this.serverDelay);
       },
     }) as MultipleSelectInstance;
 
@@ -202,64 +196,84 @@ export default class Example {
       showOkButton: true,
       showClear: true,
       minHeight: 70,
-      lazyData: () => {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve([
-              {
-                text: 'January',
-                value: 1,
-              },
-              {
-                text: 'February',
-                value: 2,
-                selected: true,
-              },
-              {
-                text: 'March',
-                value: 3,
-                disabled: true,
-              },
-              {
-                text: 'April',
-                value: 4,
-                selected: true,
-              },
-              {
-                text: 'May',
-                value: 5,
-              },
-              {
-                text: 'June',
-                value: 6,
-              },
-              {
-                text: 'July',
-                value: 7,
-              },
-              {
-                text: 'August',
-                value: 8,
-              },
-              {
-                text: 'September',
-                value: 9,
-              },
-              {
-                text: 'October',
-                value: 10,
-              },
-              {
-                text: 'November',
-                value: 11,
-              },
-              {
-                text: 'December',
-                value: 12,
-              },
-            ]);
-          }, this.serverDelay);
-        });
+      lazyData: resolve => {
+        setTimeout(() => {
+          resolve([
+            {
+              text: 'January',
+              value: 1,
+            },
+            {
+              text: 'February',
+              value: 2,
+              selected: true,
+            },
+            {
+              text: 'March',
+              value: 3,
+              disabled: true,
+            },
+            {
+              text: 'April',
+              value: 4,
+              selected: true,
+            },
+            {
+              text: 'May',
+              value: 5,
+            },
+            {
+              text: 'June',
+              value: 6,
+            },
+            {
+              text: 'July',
+              value: 7,
+            },
+            {
+              text: 'August',
+              value: 8,
+            },
+            {
+              text: 'September',
+              value: 9,
+            },
+            {
+              text: 'October',
+              value: 10,
+            },
+            {
+              text: 'November',
+              value: 11,
+            },
+            {
+              text: 'December',
+              value: 12,
+            },
+          ]);
+        }, this.serverDelay);
+      },
+    }) as MultipleSelectInstance;
+
+    this.ms5 = multipleSelect('select[data-test=select5]', {
+      filter: true,
+      filterPlaceholder: 'filter placeholder',
+      showOkButton: true,
+      showClear: true,
+      minHeight: 70,
+      lazyData: (_resolve, reject) => {
+        // resolve([]); --- IGNORE ---
+
+        setTimeout(() => {
+          // simulate server failure
+
+          // 1. you can provide your own custom error text
+          // reject('oops it failed to load data!');
+
+          // 2. or just call the reject function without parameters
+          // which will use the default error text which can also be customized by `formatLazyFailed()`
+          reject();
+        }, this.serverDelay);
       },
     }) as MultipleSelectInstance;
   }
@@ -270,10 +284,12 @@ export default class Example {
     this.ms2?.destroy();
     this.ms3?.destroy();
     this.ms4?.destroy();
+    this.ms5?.destroy();
     this.ms1 = undefined;
     this.ms2 = undefined;
     this.ms3 = undefined;
     this.ms4 = undefined;
+    this.ms5 = undefined;
     this.serverDelayInput!.removeEventListener('click', this.changeServerDelay.bind(this));
     this.resetLazyBtn!.removeEventListener('click', this.createMultipleSelect.bind(this));
   }

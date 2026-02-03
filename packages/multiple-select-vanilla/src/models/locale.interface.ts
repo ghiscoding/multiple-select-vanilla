@@ -30,6 +30,9 @@ export interface MultipleSelectLocale {
   /** Customize the formatted lazy "Loading..." text when lazy loading data is processing. */
   formatLazyLoading(): string;
 
+  /** Customize the formatted lazy "Failed to load data" text when lazy loading data is processing. */
+  formatLazyFailed(): string;
+
   /** Customize the formatted text "OK" showing at the bottom of the drop. */
   formatOkButton(): string;
 
