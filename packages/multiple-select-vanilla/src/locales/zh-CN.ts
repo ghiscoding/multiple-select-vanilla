@@ -5,7 +5,7 @@
 
 import type { MultipleSelectLocale } from '../models/locale.interface.js';
 
-export const Mandarin: MultipleSelectLocale = {
+export const Chinese: MultipleSelectLocale = {
   formatSelectAll() {
     return '[全选]';
   },
@@ -26,4 +26,4 @@ export const Mandarin: MultipleSelectLocale = {
   },
 };
 
-export default Mandarin;
+export default Chinese;

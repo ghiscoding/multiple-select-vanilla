@@ -13,8 +13,8 @@ import { Korean } from './ko-KR.js';
 import { Portuguese } from './pt-BR.js';
 import { Russian } from './ru-RU.js';
 import { Vietnamese } from './vi-VN.js';
-import { Mandarin } from './zh-CN.js';
-import { MandarinTraditional } from './zh-TW.js';
+import { Chinese } from './zh-CN.js';
+import { ChineseTraditional } from './zh-TW.js';
 
 export const locales: MultipleSelectLocales = {
   'cz-CS': Czech,
@@ -31,8 +31,8 @@ export const locales: MultipleSelectLocales = {
   'pt-BR': Portuguese,
   'ru-RU': Russian,
   'vi-VN': Vietnamese,
-  'zh-CN': Mandarin,
-  'zh-TW': MandarinTraditional,
+  'zh-CN': Chinese,
+  'zh-TW': ChineseTraditional,
 };
 
 export default locales;
