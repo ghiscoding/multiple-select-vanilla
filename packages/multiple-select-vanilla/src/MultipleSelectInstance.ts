@@ -444,7 +444,7 @@ export class MultipleSelectInstance {
         const selectName = this.elm.getAttribute('name') || this.options.name || '';
         this.selectAllParentElm = createDomElement('div', { className: 'ms-select-all', dataset: { key: 'select_all' } });
         const saLabelElm = document.createElement('label');
-        const saIconClass = this.isAllSelected ? 'ms-icon-check' : this.isPartiallyAllSelected ? 'ms-icon-minus' : 'ms-icon-uncheck';
+        const saIconClass = this.isAllSelected ? 'ms-icon-check' : `ms-icon-${this.isPartiallyAllSelected ? 'partial-all' : 'uncheck'}`;
         const selectAllIconClass = `ms-icon ${saIconClass}`;
         const saIconContainerElm = createDomElement('div', { className: 'icon-checkbox-container' }, saLabelElm);
         createDomElement(
@@ -635,6 +635,12 @@ export class MultipleSelectInstance {
         if (isSingleWithoutRadioIcon) {
           itemOrGroupBlock = inputCheckboxStruct;
         } else {
+          // determine if it's an optgroup and the group has a partial selection
+          let hasPartialGroupSelected = true;
+          if ('children' in dataRow && (dataRow as OptGroupRowData).children.some(child => child?.selected)) {
+            hasPartialGroupSelected = true;
+          }
+
           itemOrGroupBlock = {
             tagName: 'div',
             props: {
@@ -645,7 +651,7 @@ export class MultipleSelectInstance {
               {
                 tagName: 'div',
                 props: {
-                  className: `ms-icon ${isChecked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : 'ms-icon-uncheck'}`,
+                  className: `ms-icon ${isChecked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : `ms-icon-${hasPartialGroupSelected ? 'partial-group' : 'uncheck'}`}`,
                 },
               },
             ],
@@ -1575,6 +1581,11 @@ export class MultipleSelectInstance {
         const closestLiElm = inputElm.closest('li');
         const iconDivElm = closestLiElm?.querySelector('.icon-checkbox-container div');
         if (closestLiElm) {
+          // determine if it's an optgroup and the group has a partial selection
+          let hasPartialGroupSelected = false;
+          if ('children' in row && (row as OptGroupRowData).children.some(child => child?.selected)) {
+            hasPartialGroupSelected = true;
+          }
           if (row.selected && !closestLiElm.classList.contains('selected')) {
             closestLiElm.classList.add('selected');
             closestLiElm.ariaSelected = 'true';
@@ -1585,7 +1596,7 @@ export class MultipleSelectInstance {
             closestLiElm.classList.remove('selected');
             closestLiElm.ariaSelected = 'false';
             if (iconDivElm) {
-              iconDivElm.className = 'ms-icon ms-icon-uncheck';
+              iconDivElm.className = `ms-icon ms-icon-${hasPartialGroupSelected ? 'partial-group' : 'uncheck'}`;
             }
           }
         }
@@ -1602,7 +1613,7 @@ export class MultipleSelectInstance {
         if (this.isAllSelected) {
           iconClass = 'ms-icon-check';
         } else if (this.isPartiallyAllSelected) {
-          iconClass = 'ms-icon-minus';
+          iconClass = 'ms-icon-partial-all';
         } else {
           iconClass = 'ms-icon-uncheck';
         }
