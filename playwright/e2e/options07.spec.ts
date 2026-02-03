@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 07 - Max Height Unit', () => {
   test('drop should display 5 labels at first and expect a fixed height when changing height unit input', async ({ page }) => {

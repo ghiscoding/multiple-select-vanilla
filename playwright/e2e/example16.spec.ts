@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 16 - Avatar Images as Text Template', () => {
   test('show avatar images', async ({ page }) => {
@@ -9,8 +9,8 @@ test.describe('Example 16 - Avatar Images as Text Template', () => {
     await parentSelect1.click();
     await expect(page.locator('div[data-test=select1] .ms-drop')).not.toBeHidden();
     const parentSelectList1 = await page.locator('.ms-parent[data-test=select1] .ms-list');
-    await parentSelectList1.press('ArrowDown', { delay: 10});
-    await parentSelectList1.press('ArrowDown', { delay: 10});
+    await parentSelectList1.press('ArrowDown', { delay: 10 });
+    await parentSelectList1.press('ArrowDown', { delay: 10 });
     await parentSelectList1.press('Enter');
     const parentSpan1 = await page.locator('.ms-parent[data-test=select1] .ms-choice span');
     expect(parentSpan1).toHaveText('Erika');
@@ -23,7 +23,7 @@ test.describe('Example 16 - Avatar Images as Text Template', () => {
     await parentSelect2.click();
     await expect(page.locator('div[data-test=select2] .ms-drop')).not.toBeHidden();
     const parentSelectList2 = await page.locator('.ms-parent[data-test=select2] .ms-list');
-    await parentSelectList2.press('ArrowDown', { delay: 10});
+    await parentSelectList2.press('ArrowDown', { delay: 10 });
     await parentSelectList2.press('Enter');
     await expect(page.locator('[data-test=select2].ms-drop li.selected').nth(0).locator('div.name-section')).toHaveText('Smith');
     await expect(page.locator('[data-test=select2].ms-drop li.selected').nth(0).locator('div.job-section')).toHaveText('Accounting');

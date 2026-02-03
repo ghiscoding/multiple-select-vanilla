@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 13 - Destroy Select', () => {
   test('creating & destroying select multiple times', async ({ page }) => {

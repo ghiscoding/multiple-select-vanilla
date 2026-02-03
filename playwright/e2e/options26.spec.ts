@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 26 - The Styler / CSS Styler', () => {
   test.beforeEach(async ({ page }) => {

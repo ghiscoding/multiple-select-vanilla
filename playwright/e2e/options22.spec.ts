@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 22 - Filter By Data Length', () => {
   test('filter shows only when data collection has over 10 items', async ({ page }) => {

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 42 - Lazy Load Data', () => {
   test('all select dropdown should lazy load data only once', async ({ page }) => {

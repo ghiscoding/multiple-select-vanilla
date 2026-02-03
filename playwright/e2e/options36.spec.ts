@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 36 - Infinite Scroll', () => {
   test('select should use infinite scroll', async ({ page }) => {

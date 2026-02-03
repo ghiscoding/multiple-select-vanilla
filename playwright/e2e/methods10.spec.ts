@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Methods 10 - refresh() method', () => {
   test('adding new options with disabled or selected in select drop', async ({ page }) => {

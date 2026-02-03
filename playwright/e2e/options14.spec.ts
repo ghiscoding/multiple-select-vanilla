@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 14 - Select is opened', () => {
   test('select is already opened when routing to the page', async ({ page }) => {

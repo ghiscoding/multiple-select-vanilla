@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Methods 04 - enable/disable', () => {
   test('disabling & enabling drop dynamically', async ({ page }) => {

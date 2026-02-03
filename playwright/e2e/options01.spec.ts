@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 01 - Placeholder', () => {
   test('first and second select have placeholder', async ({ page }) => {

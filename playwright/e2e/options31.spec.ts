@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 31 - Use Select Option as Label', () => {
   test('both select show selected value numbers & 2nd select can also render value number with html', async ({ page }) => {

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 13 - The Ellipsis', () => {
   test('ellipsis is shown after selecting 6+ options', async ({ page }) => {

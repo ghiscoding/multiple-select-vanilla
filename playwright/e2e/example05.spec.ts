@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 05 - disabled select', () => {
   test('should expect a disabled select element', async ({ page }) => {

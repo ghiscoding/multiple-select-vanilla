@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 39 - Label ID', () => {
   test('adding a Label id to the select button', async ({ page }) => {

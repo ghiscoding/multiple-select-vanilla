@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Methods 01 - getOptions()', () => {
   test('method returns default options when calling the method', async ({ page }) => {

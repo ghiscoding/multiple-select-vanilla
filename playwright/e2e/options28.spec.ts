@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 28 - Label Template', () => {
   test('option labels & selected options shows as html', async ({ page }) => {

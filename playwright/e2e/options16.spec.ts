@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 16 - Open on Hover', () => {
   test('drop shows only after hovering the select element', async ({ page }) => {

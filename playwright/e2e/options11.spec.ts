@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 11 - Display Delimiter', () => {
   test('select February & March and expect drop parent to show pipe separator as in "February | March"', async ({ page }) => {

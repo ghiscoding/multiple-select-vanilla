@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 03 - Hide Select All', () => {
   test('multiple select does not show Select All', async ({ page }) => {

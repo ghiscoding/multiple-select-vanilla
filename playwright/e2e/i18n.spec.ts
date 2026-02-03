@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('I18N Demo', () => {
   test('select drop is using French locale', async ({ page }) => {

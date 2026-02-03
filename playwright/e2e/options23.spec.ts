@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 23 - Custom Filter', () => {
   test('filter starts with text', async ({ page }) => {

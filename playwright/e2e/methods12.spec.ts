@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Methods 12 - getData()', () => {
   test('method returns default options when calling the method', async ({ page }) => {
     let dialogText = '';
-    page.on('dialog', async (alert) => {
+    page.on('dialog', async alert => {
       dialogText = alert.message();
       await alert.dismiss();
     });

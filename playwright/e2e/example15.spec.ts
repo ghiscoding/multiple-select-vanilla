@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 15 - Dark Mode', () => {
   test('multiple select with dark mode', async ({ page }) => {

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Methods 11 - Destroy() method', () => {
   test('destroy & recreating the ms-select could be called multiple times', async ({ page }) => {

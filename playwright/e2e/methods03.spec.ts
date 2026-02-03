@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Methods 03 - setSelects() / getSelects()', () => {
   test('calling setSelects(1,3) and expect values & options to be displayed in alert', async ({ page }) => {
     const dialogTexts: string[] = [];
-    page.on('dialog', async (alert) => {
+    page.on('dialog', async alert => {
       dialogTexts.push(alert.message());
       await alert.dismiss();
     });

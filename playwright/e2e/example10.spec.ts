@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 10 - Large Select Dataset with Virtual Scroll', () => {
   test('select should use virtual scroll', async ({ page }) => {
@@ -104,7 +104,10 @@ test.describe('Example 10 - Large Select Dataset with Virtual Scroll', () => {
     expect(await page.locator('[data-test="select10-2"] .ms-drop label').filter({ hasText: '5003' })).toBeVisible();
     expect(await page.getByRole('option', { name: ' Task 5003', exact: true }).filter({ hasText: '5003' })).toBeVisible();
     expect(
-      await page.getByRole('option', { name: ' Task 5003', exact: true }).locator('input[type=checkbox][data-key=option_5003]').isChecked(),
+      await page
+        .getByRole('option', { name: ' Task 5003', exact: true })
+        .locator('input[type=checkbox][data-key=option_5003]')
+        .isChecked(),
     ).toBeTruthy();
     await page.locator('[data-test=select10-2].ms-parent').click(); // close drop
   });

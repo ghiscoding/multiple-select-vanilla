@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 08 - Drop Up showing on top of select', () => {
   test('drop shows up (upward)', async ({ page }) => {

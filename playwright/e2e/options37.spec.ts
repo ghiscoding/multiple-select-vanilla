@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Option 37 - Navigation Highlight', () => {
   test('first select with single group select', async ({ page }) => {
@@ -41,7 +41,9 @@ test.describe('Option 37 - Navigation Highlight', () => {
     await expect(page.locator('[data-test=select3].ms-parent .ms-choice span')).toHaveText('4 of 9 selected');
     await parentSelectLoc3.press('ArrowDown');
     await parentSelectLoc3.press('Enter');
-    await expect(page.locator('[data-test=select3].ms-parent .ms-choice span')).toHaveText('[Group 1: Option 1], [Group 2: Option 5, Option 6]');
+    await expect(page.locator('[data-test=select3].ms-parent .ms-choice span')).toHaveText(
+      '[Group 1: Option 1], [Group 2: Option 5, Option 6]',
+    );
     await parentSelectLoc3.press('ArrowUp');
     await parentSelectLoc3.press('Space');
     await expect(page.locator('[data-test=select3].ms-parent .ms-choice span')).toHaveText('4 of 9 selected');

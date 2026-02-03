@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 07 - Submit Data', () => {
   test('submit form and display alert with serialized form data in an alert', async ({ page }) => {
     let dialogText = '';
-    page.on('dialog', async (alert) => {
+    page.on('dialog', async alert => {
       dialogText = alert.message();
       await alert.dismiss();
     });
@@ -15,11 +15,9 @@ test.describe('Example 07 - Submit Data', () => {
     await expect(dialogText).toBe('select1=2');
   });
 
-  test('submit form with multiple data in second select and display alert with serialized form data in an alert', async ({
-    page,
-  }) => {
+  test('submit form with multiple data in second select and display alert with serialized form data in an alert', async ({ page }) => {
     let dialogText = '';
-    page.on('dialog', async (alert) => {
+    page.on('dialog', async alert => {
       dialogText = alert.message();
       await alert.dismiss();
     });

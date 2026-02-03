@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 18 - Drop Filtering', () => {
   test('filtering on all type of select', async ({ page }) => {

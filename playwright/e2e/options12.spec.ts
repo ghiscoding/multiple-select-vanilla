@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 12 - Minimum Count Selected', () => {
   test('shows a maximum of 8 selected options but 9 selection will show 9 of 19 selected', async ({ page }) => {

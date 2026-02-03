@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 12 - Checkbox/Radio icons', () => {
   test('1st select show radio icons & 2nd select shows checkbox icons', async ({ page }) => {

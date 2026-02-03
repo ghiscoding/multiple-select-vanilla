@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 29 - Auto-Adjust Drop Position', () => {
   test('first select is showing dropdown & second select is showing dropup', async ({ page }) => {

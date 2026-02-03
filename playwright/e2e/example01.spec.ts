@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 01 - Basic Select', () => {
   test('basic select should have dropdown with certain list items', async ({ page }) => {

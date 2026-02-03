@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Methods 06 - check/uncheck', () => {
   test('clicking Check and Uncheck should change selection on all select drops', async ({ page }) => {

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 14 - The Divider', () => {
   test('multiple select with divider list items', async ({ page }) => {

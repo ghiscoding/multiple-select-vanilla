@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 24 - Show Clear button', () => {
   test('clear button expect input to be cleared', async ({ page }) => {

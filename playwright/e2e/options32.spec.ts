@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 32 - Sanitizer', () => {
   test('select shows image not found and JS alert should be sanitized and not trigger', async ({ page }) => {
     let alertTriggered = false;
-    page.on('dialog', async (alert) => {
+    page.on('dialog', async alert => {
       alertTriggered = true;
       alert.message();
       await alert.dismiss();

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 04 - Hide OptGroup', () => {
   test('no optgroup input should be found', async ({ page }) => {

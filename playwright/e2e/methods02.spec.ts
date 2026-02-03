@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Methods 02 - refreshOtions()', () => {
   test('clicking on the 1st button "refreshOptions" will remove the search filter', async ({ page }) => {

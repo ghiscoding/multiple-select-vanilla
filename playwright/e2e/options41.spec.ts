@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 41 - Pre-Sort Data', () => {
   test('all select dropdown should have data pre-filtered', async ({ page }) => {

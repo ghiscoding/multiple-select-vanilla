@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 02 - Single Radio', () => {
   test('have radio button and expect drop to close after each selection', async ({ page }) => {

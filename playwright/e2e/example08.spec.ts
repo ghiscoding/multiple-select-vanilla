@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Example 08 - Data Property', () => {
   test('all select dropdown should have data', async ({ page }) => {

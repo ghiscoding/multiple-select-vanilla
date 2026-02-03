@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 17 - Drop Container', () => {
   test('first select should not be visible without a container but all other selects should be visible', async ({ page }) => {

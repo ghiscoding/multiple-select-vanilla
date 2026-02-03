@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 10 - Display Selected Titles', () => {
   test('select February & March and expect drop parent to show "February, March" selected text', async ({ page }) => {

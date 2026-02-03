@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 09 - Display Number Values', () => {
   test('select February & March and expect drop parent to show "2, 3" value numbers', async ({ page }) => {

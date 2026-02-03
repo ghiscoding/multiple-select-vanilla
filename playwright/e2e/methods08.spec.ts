@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Methods 08 - checkAll/uncheckAll', () => {
   test('calling checkAll/uncheckAll should be reflected in the select dropdown', async ({ page }) => {

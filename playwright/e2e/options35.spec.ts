@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 35 - Diacritic Parser', () => {
   test('filtering on all type of select & clear search input', async ({ page }) => {

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Options 15 - Select keep open', () => {
   test('select stays open even when clicking outside the drop but will close when clicking on drop', async ({ page }) => {
