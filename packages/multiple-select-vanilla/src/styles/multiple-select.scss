@@ -394,6 +394,7 @@
 
   .ms-no-results {
     display: none;
+    padding: var(--ms-no-results-padding, v.$ms-no-results-padding);
   }
 
   .ms-loading {
