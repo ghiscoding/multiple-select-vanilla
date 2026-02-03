@@ -3,15 +3,9 @@
  * Author: Zhixin Wen<wenzhixin2010@gmail.com>
  */
 
-import type { MultipleSelectInstance } from '../MultipleSelectInstance.js';
-import type { MultipleSelectLocale, MultipleSelectLocales } from '../models/locale.interface.js';
+import type { MultipleSelectLocale } from '../models/locale.interface.js';
 
-const ms =
-  typeof window !== 'undefined' && window.multipleSelect !== undefined
-    ? window.multipleSelect
-    : ({ locales: {} as MultipleSelectLocales } as Partial<MultipleSelectInstance>);
-
-export const Russian = {
+export const Russian: MultipleSelectLocale = {
   formatSelectAll() {
     return '[Выбрать все]';
   },
@@ -30,8 +24,6 @@ export const Russian = {
   formatLazyLoading() {
     return 'погрузка...';
   },
-} as MultipleSelectLocale;
+};
 
-(ms.locales as MultipleSelectLocales)['ru-RU'] = Russian;
-
-export default ms.locales;
+export default Russian;

@@ -140,29 +140,59 @@ with this code in place, we can now use the following CSP meta tag (which is wha
 > [!NOTE]
 > in our demo we are only adding `unsafe-inline` simply because we are using Vite (which is not CSP compliant in Dev mode), but the library should work nonetheless without `unsafe-inline`.
 
+## Major Changes
+
+### version 3.0
+- remove deprecated options
+- new Modern Look by using SVG icons
+
+### version 4.0
+- build ESM-Only and drop CJS (CommonJS) build (aka `require()`)
+
+### version 5.0
+
+Locale management has been refactored to remove usage of the global `window` object. Locales are now provided via a modular registry and injected through options. This change affects how you load, switch, and reference locales. Also, the `multiple-select-` prefix has been removed from all locale import paths (single and merged) and no longer exists on the `window` object
+
+**Migration Example:**
+
+```diff
+// 1. load every locale individually, it could be import in 2 ways (named import OR import on window object)
+- // named import
+- import { Spanish } from 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
+- // OR default import
+- import 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
++ // named import
++ import { Spanish } from 'multiple-select-vanilla/dist/locales/es-ES.js';
++ // OR default import
++ import Spanish from 'multiple-select-vanilla/dist/locales/es-ES.js';
+
+// 2. or load all locales at once
+- import 'multiple-select-vanilla/dist/locales/multiple-select-all-locales';
++ // named import
++ import { locales } from 'multiple-select-vanilla/dist/locales/all-locales.js';
++ // OR default import
++ import locales from 'multiple-select-vanilla/dist/locales/all-locales.js';
+```
+
+See the [Example09](https://ghiscoding.github.io/multiple-select-vanilla/#/example09) for details on dynamic locale loading.
+
 ### Installation / Structure
 
-There are multiple ways to install and use the library, you can see below the folder structure of the distribution files
-1. `dist/browser`: Standalone build which assigns `multipleSelect` on the `window.multipleSelect` object
-   - browser standalone means that you can simply load it with `<script></script>` and then `multipleSelect('#mySelect')`
-   - only ESM build (`.js`) are provided, you will need to load it with `<script type="module">`
-2. `esm`: to use as ESM with `import from 'multiple-select-vanilla'`
+The library is now ESM Only, the library does include optional locales that can be loaded through imports or you can use and define your own custom texts as well. Here's the full library structure of the project
 
 ```
 dist/
-  browser/
-    multiple-select.js              # ESM build, use with: window.multipleSelect
   locales/
-    multiple-select-all-locales.js  # all-in-1 locales
+    all-locales.js    # all-in-1 locales
     ..
-    multiple-select-es-ES.js        # Spanish locale
-    multiple-select-fr-FR.js        # French locale
+    es-ES.js          # Spanish locale
+    fr-FR.js          # French locale
     ...
-  styles/                           # CSS and SASS Stylings
+  styles/             # CSS and SASS Stylings
     css/
     sass/
-  index.d.ts                        # d.ts Type Definitions
-  multiple-select.js                # ESM, used by: import from
+  index.d.ts          # d.ts Type Definitions
+  index.js            # ESM import
 ```
 
 ### Used by
@@ -227,9 +257,5 @@ Before submitting a PR (pull request), please make sure that you followed the st
   &nbsp;
   <span>
     <a href="https://github.com/gibson552" class="Link" title="gibson552" target="_blank"><img src="https://avatars.githubusercontent.com/u/84058359?s=52&v=4" width="50" height="50" valign="middle" /></a>
-  </span>
-  &nbsp;
-  <span>
-    <a href="https://github.com/web-ascender" class="Link" title="Web Ascender" target="_blank"><img src="https://avatars.githubusercontent.com/u/832747?s=200&v=4" width="50" height="50" valign="middle" /></a>
   </span>
 </div>

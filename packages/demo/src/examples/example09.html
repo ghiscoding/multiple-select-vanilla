@@ -18,16 +18,17 @@
       </span>
     </h2>
     <div class="demo-subtitle">
-      Use <code>locale</code>to set the locale.
+      Use <code>locale</code>to set the locale. <strong>Please note</strong> that the months themselves aren't being translated, but every
+      other labels like "Select All", "OK", "Cancel", "Search", etc. are the ones being translated.
     </div>
   </div>
 </div>
 
 <div>
   <div class="mb-3 row">
-    <label class="col-sm-3">Locale Select </label>
+    <label class="col-sm-4">Locale Select </label>
 
-    <div class="col-sm-9">
+    <div class="col-sm-8">
       <select id="locale" class="full-width">
         <option value="en-US">English</option>
         <option value="fr-FR">French</option>
@@ -43,9 +44,9 @@
   </div>
 
   <div class="mb-3 row">
-    <label class="col-sm-3">Result Select </label>
+    <label class="col-sm-4">Result Select </label>
 
-    <div class="col-sm-9">
+    <div class="col-sm-8">
       <select id="dynamic-select" class="full-width" multiple="multiple">
         <option value="1">January</option>
         <option value="2">February</option>
@@ -62,19 +63,43 @@
       </select>
     </div>
   </div>
+  <div class="row">
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>
+// ESM named import
+<span style="color:#cf222e">import</span> { locales } <span style="color:#cf222e">from</span> <span style="color:#0a3069">'multiple-select-vanilla/dist/locales/all-locales.js'</span>;
+<span style="color:#6639ba">multipleSelect</span>(<span style="color:#0a3069">'.select'</span>, {
+  locales
+}</span>);
+</pre>
+    </div>
+  </div>
 
   <hr>
 
   <div class="my-5 row">
-    <label class="col-sm-3">named Locale import (i.e. Spanish)</label>
+    <label class="col-sm-4">
+      named Locale import (e.g. <code>Spanish</code>)
+    </label>
 
-    <div class="col-sm-9">
+    <div class="col-sm-8">
       <select id="fixed-import" class="full-width" multiple="multiple">
         <option value="1">First</option>
         <option value="2">Second</option>
         <option value="3">Third</option>
         <option value="4">Fourth</option>
       </select>
+    </div>
+  </div>
+  <div class="row">
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>
+// ESM named import
+<span style="color:#cf222e">import</span> { multipleSelect } <span style="color:#cf222e">from</span> <span style="color:#0a3069">'multiple-select-vanilla'</span>;
+<span style="color:#6639ba">multipleSelect</span>(<span style="color:#0a3069">'.select'</span>, {
+  locale: <span style="color:#105fd7">Spanish</span>
+}</span>);
+</pre>
     </div>
   </div>
 </div>

@@ -3,7 +3,6 @@ import { globSync } from 'tinyglobby';
 
 const buildFormats = ['esm'];
 const localeFiles = globSync('src/locales/**/*.ts');
-const localeEntryPoints = [];
 
 for (const format of buildFormats) {
   runBuild({
@@ -11,33 +10,24 @@ for (const format of buildFormats) {
     outfile: `dist/index.js`,
   });
 
-  // build all locales
+  // build all locales (short names, e.g. "es-ES.ts")
   for (const localeFile of localeFiles) {
-    // eslint-disable-next-line no-unused-vars
-    const [_, locale] = localeFile.match(/multiple-select-(.*)\.ts$/) || [];
-    if (locale && locale.length === 5) {
-      localeEntryPoints.push(`src/locales/multiple-select-${locale}.ts`);
+    const match = localeFile.match(/src\/locales\/(..-..).ts$/);
+    if (match?.[1] && !['index', 'all-locales'].includes(match[1])) {
+      const locale = match[1];
       runBuild({
-        entryPoints: [`src/locales/multiple-select-${locale}.ts`],
+        entryPoints: [localeFile],
         format,
-        outfile: `dist/locales/multiple-select-${locale}.js`,
+        outfile: `dist/locales/${locale}.js`,
       });
     }
   }
 
-  // also merge all Locales into a single file "multiple-select-all-locales.js"
+  // also merge all Locales into a single file "all-locales.js" (the registry)
   runBuild({
-    entryPoints: ['./src/locales/all-locales-index.ts'],
+    entryPoints: ['./src/locales/all-locales.ts'],
     format,
-    outfile: `dist/locales/multiple-select-all-locales.js`,
-  });
-
-  // finally, create a regular bundle as a standalone which will be accessible as MultipleSelect from the global window object
-  // this file is basically a legacy alternative to import via a <script> tag
-  runBuild({
-    format,
-    globalName: 'MultipleSelect',
-    outfile: `dist/browser/multiple-select.js`,
+    outfile: `dist/locales/all-locales.js`,
   });
 }
 
