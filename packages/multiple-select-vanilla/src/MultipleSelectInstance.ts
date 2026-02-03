@@ -636,7 +636,7 @@ export class MultipleSelectInstance {
           itemOrGroupBlock = inputCheckboxStruct;
         } else {
           // determine if it's an optgroup and the group has a partial selection
-          let hasPartialGroupSelected = true;
+          let hasPartialGroupSelected = false;
           if ('children' in dataRow && (dataRow as OptGroupRowData).children.some(child => child?.selected)) {
             hasPartialGroupSelected = true;
           }
