@@ -50,12 +50,6 @@ export default class Example {
 
   updateLocale(locale: LocaleKey) {
     this.ms1?.destroy();
-    this.ms1 = multipleSelect('#dynamic-select', {
-      filter: true,
-      showOkButton: true,
-      dataTest: 'select1',
-      locale,
-      locales,
-    }) as MultipleSelectInstance;
+    this.ms1?.refreshOptions({ locale });
   }
 }
