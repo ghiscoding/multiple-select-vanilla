@@ -183,16 +183,16 @@ The library is now ESM Only, the library does include optional locales that can 
 ```
 dist/
   locales/
-    all-locales.js  # all-in-1 locales
+    all-locales.js    # all-in-1 locales
     ..
-    es-ES.js        # Spanish locale
-    fr-FR.js        # French locale
+    es-ES.js          # Spanish locale
+    fr-FR.js          # French locale
     ...
-  styles/                           # CSS and SASS Stylings
+  styles/             # CSS and SASS Stylings
     css/
     sass/
-  index.d.ts                        # d.ts Type Definitions
-  multiple-select.js                # ESM, used by: import from
+  index.d.ts          # d.ts Type Definitions
+  index.js            # ESM import
 ```
 
 ### Used by
