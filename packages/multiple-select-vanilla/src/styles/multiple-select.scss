@@ -14,7 +14,8 @@
 @include m.createSvgClass("ms-icon-caret", v.$ms-icon-caret-svg-path);
 @include m.createSvgClass("ms-icon-close", v.$ms-icon-close-svg-path);
 @include m.createSvgClass("ms-icon-check", v.$ms-icon-check-svg-path);
-@include m.createSvgClass("ms-icon-minus", v.$ms-icon-minus-svg-path);
+@include m.createSvgClass("ms-icon-partial-all", v.$ms-icon-partial-all-svg-path);
+@include m.createSvgClass("ms-icon-partial-group", v.$ms-icon-partial-group-svg-path);
 @include m.createSvgClass("ms-icon-radio", v.$ms-icon-radio-svg-path);
 @include m.createSvgClass("ms-icon-loading", v.$ms-icon-loading-svg-path);
 
@@ -56,14 +57,14 @@
       width: var(--ms-checkbox-icon-container-width, v.$ms-checkbox-icon-container-width);
       border: var(--ms-checkbox-icon-container-border, v.$ms-checkbox-icon-container-border);
       border-radius: var(--ms-checkbox-icon-container-border-radius, v.$ms-checkbox-icon-container-border-radius);
-     
+
       div {
         font-size: 14px;
         color: var(--ms-checkbox-color, v.$ms-checkbox-color);
         &:hover {
           color: var(--ms-checkbox-hover-color, v.$ms-checkbox-hover-color);
         }
-        // since we use the div container with a border, we don't actually need an icon for unchecked 
+        // since we use the div container with a border, we don't actually need an icon for unchecked
         // BUT since we want to keep the same size, we can simply hide the mask to keep the same size
         &.ms-icon-uncheck {
           visibility: hidden;
@@ -386,7 +387,7 @@
       margin-top: var(--ms-drop-input-margin-top, v.$ms-drop-input-margin-top);
       accent-color: var(--ms-checkbox-color, v.$ms-checkbox-color);
     }
-    &:focus { 
+    &:focus {
       outline: var(--ms-input-focus-outline, v.$ms-input-focus-outline);
     }
   }
@@ -398,13 +399,13 @@
   .ms-loading {
     display: flex;
     align-items: center;
-    gap: var(--ms-loading-gap, v.$ms-loading-gap);    
+    gap: var(--ms-loading-gap, v.$ms-loading-gap);
     padding: var(--ms-loading-padding, v.$ms-loading-padding);
     .ms-icon-loading {
       font-size: var(--ms-loading-icon-size, v.$ms-loading-icon-size);
       height: var(--ms-loading-icon-size, v.$ms-loading-icon-size);
       width: var(--ms-loading-icon-size, v.$ms-loading-icon-size);
-    }   
+    }
   }
 
   .ms-infinite-option {

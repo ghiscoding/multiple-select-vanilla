@@ -5,7 +5,7 @@
 
 @use 'sass:color';
 
-// this is the only variable without $ms prefix and exists so that user could use 
+// this is the only variable without $ms prefix and exists so that user could use
 // the same Bootstrap primary color without declaring $ms-primary-color variable (which also exists)
 $primary-color: #149085 !default;
 $ms-primary-color: $primary-color !default;
@@ -30,7 +30,8 @@ $ms-icon-caret-svg-path: "M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8
 $ms-icon-close-svg-path: "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" !default;
 $ms-icon-loading-svg-path: "M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" !default;
 $ms-icon-check-svg-path: "M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" !default;
-$ms-icon-minus-svg-path: "M20 14H4V10H20" !default;
+$ms-icon-partial-all-svg-path: "M20 14H4V10H20" !default;
+$ms-icon-partial-group-svg-path: "M19,13H5V11H19V13Z" !default;
 $ms-icon-radio-svg-path: "M12 3.7c4.6 0 8.3 3.7 8.3 8.3s-3.7 8.3-8.3 8.3-8.3-3.7-8.3-8.3S7.4 3.7 12 3.7z" !default;
 $ms-icon-color: #444 !default;
 $ms-icon-color-hover: #303030 !default;

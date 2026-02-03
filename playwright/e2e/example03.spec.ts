@@ -26,10 +26,16 @@ test.describe('Example 03 - Multiple Width', () => {
   test('second select and expect optgroup selection to select the entire group when optgroup is selected', async ({ page }) => {
     await page.goto('#/example03');
     await page.locator('div[data-test=select2].ms-parent').click();
+    let group1SelectAll = await page.locator('[data-key="group_0"] .icon-checkbox-container div');
+    await expect(group1SelectAll).toHaveClass('ms-icon ms-icon-uncheck');
     await page.getByText('Group 1').click();
+    group1SelectAll = await page.locator('[data-key="group_0"] .icon-checkbox-container div');
+    await expect(group1SelectAll).toHaveClass('ms-icon ms-icon-check');
     await page.getByRole('button', { name: '5 of 15 selected' }).click();
     await page.getByRole('button', { name: '5 of 15 selected' }).click();
     await page.getByRole('option', { name: '3', exact: true }).click();
+    group1SelectAll = await page.locator('[data-key="group_0"] .icon-checkbox-container div');
+    await expect(group1SelectAll).toHaveClass('ms-icon ms-icon-partial-group');
     expect(await page.getByRole('option', { name: '3', exact: true }).locator('div').nth(1)).toHaveClass('ms-icon ms-icon-uncheck');
     await page.getByRole('button', { name: '4 of 15 selected' }).click();
     await page.getByRole('button', { name: '4 of 15 selected' }).click();
@@ -42,7 +48,7 @@ test.describe('Example 03 - Multiple Width', () => {
     await page.getByRole('button', { name: '14 of 15 selected' }).click();
     await page.getByRole('button', { name: '14 of 15 selected' }).click();
     const selectAll2 = await page.locator('[data-test=select2] .ms-select-all .icon-checkbox-container div');
-    await expect(selectAll2).toHaveClass('ms-icon ms-icon-minus');
+    await expect(selectAll2).toHaveClass('ms-icon ms-icon-partial-all');
     await page.getByRole('option', { name: '3', exact: true }).click();
     expect(await page.getByRole('option', { name: '3', exact: true }).locator('div').nth(1)).toHaveClass('ms-icon ms-icon-check');
     await expect(selectAll2).toHaveClass('ms-icon ms-icon-check');
