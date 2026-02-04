@@ -1252,13 +1252,9 @@ export class MultipleSelectInstance {
         // resolve callback
         data => {
           // when data is ready, remove spinner & update dropdown and selection
-          this.options.data = data;
           this._isLazyLoaded = true;
           this.dropElm?.querySelector('.ms-loading')?.remove();
-          this.initData();
-          this.initList(true);
-          this.update();
-          this.adjustDropSizeAndPosition();
+          this.setData(data, true);
         },
         // reject callback
         (errorText?: string) => {
