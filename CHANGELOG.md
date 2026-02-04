@@ -6,6 +6,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [5.0.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.4.1...v5.0.0) (2026-02-04)
 
+> [!NOTE]
+> Please visit the [v5.0.0](https://github.com/ghiscoding/multiple-select-vanilla/releases/tag/v5.0.0) release for more details about the migration.
+
 ### ⚠ BREAKING CHANGES
 
 * change Lazy Data arguments signature with `(resolve, reject)` (#463)
