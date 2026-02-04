@@ -77,13 +77,12 @@ const ms = multipleSelect('.multiple-select', {
 
 ```diff
 // 1. load every locale individually, it could be import in 2 ways (named import OR import on window object)
-- // named import
+// named import
 - import { Spanish } from 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
-- // OR default import
-- import 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
-+ // named import
 + import { Spanish } from 'multiple-select-vanilla/dist/locales/es-ES.js';
-+ // OR default import
+
+// OR default import
+- import 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
 + import Spanish from 'multiple-select-vanilla/dist/locales/es-ES.js';
 
 // 2. or load all locales at once

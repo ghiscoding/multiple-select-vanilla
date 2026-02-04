@@ -160,9 +160,23 @@ test.describe('Options 42 - Lazy Load Data', () => {
     await expect(loadingLoc).toContainText('Loading');
 
     // Wait for the failure to appear (should be after serverDelay)
-    const failedIcon = page.locator('div[data-test=select5] .ms-icon-lazy-failed');
+    let failedIcon = page.locator('div[data-test=select5] .ms-icon-lazy-failed');
     await expect(failedIcon).toBeVisible({ timeout: 2000 });
-    const failedText = page.locator('div[data-test=select5] .ms-lazy-failed');
+    let failedText = page.locator('div[data-test=select5] .ms-lazy-failed');
+    await expect(failedText).toBeVisible();
+    await expect(failedText).toContainText('Failed to load data');
+
+    // close/reopen should retry loading
+    await page.locator('div[data-test=select5].ms-parent').click();
+    await page.locator('div[data-test=select5].ms-parent').click();
+    const loadingLoc2 = page.locator('div[data-test=select5] .ms-loading');
+    await expect(loadingLoc2).toBeVisible();
+    await expect(loadingLoc2).toContainText('Loading...');
+
+    // Wait for the failure to appear (should be after serverDelay)
+    failedIcon = page.locator('div[data-test=select5] .ms-icon-lazy-failed');
+    await expect(failedIcon).toBeVisible({ timeout: 2000 });
+    failedText = page.locator('div[data-test=select5] .ms-lazy-failed');
     await expect(failedText).toBeVisible();
     await expect(failedText).toContainText('Failed to load data');
   });

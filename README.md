@@ -149,24 +149,21 @@ with this code in place, we can now use the following CSP meta tag (which is wha
 ### version 4.0
 - build ESM-Only and drop CJS (CommonJS) build (aka `require()`)
 
-
 ### version 5.0
 
 - **Locale management** has been refactored to remove usage of the global `window` object. Locales are now provided via a modular registry and injected through options. The `multiple-select-` prefix has been removed from all locale import paths (single and merged) and no longer exists on the `window` object.
-
 - **Lazy loading API change:** The `lazyData` option now uses a callback signature: `lazyData(resolve, reject)` instead of returning a Promise. This allows for more flexible async data loading and error handling. See the demo and documentation for updated usage examples.
 
 **Migration Example:**
 
 ```diff
 // 1. load every locale individually, it could be import in 2 ways (named import OR import on window object)
-- // named import
+// named import
 - import { Spanish } from 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
-- // OR default import
-- import 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
-+ // named import
 + import { Spanish } from 'multiple-select-vanilla/dist/locales/es-ES.js';
-+ // OR default import
+
+// OR default import
+- import 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
 + import Spanish from 'multiple-select-vanilla/dist/locales/es-ES.js';
 
 // 2. or load all locales at once

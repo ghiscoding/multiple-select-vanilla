@@ -1249,6 +1249,7 @@ export class MultipleSelectInstance {
       isLazyProcess = true;
       this.dropElm?.querySelector('ul.ms-list')?.remove();
       this.options.lazyData(
+        // resolve callback
         data => {
           // when data is ready, remove spinner & update dropdown and selection
           this.options.data = data;
@@ -1259,15 +1260,16 @@ export class MultipleSelectInstance {
           this.update();
           this.adjustDropSizeAndPosition();
         },
+        // reject callback
         (errorText?: string) => {
           // on reject, remove spinner and show error message & icon
           this.dropElm?.querySelector('.ms-loading')?.remove();
           this.dropElm?.querySelector('.ms-lazy-failed')?.remove();
 
-          const loadingElm = createDomElement('div', { className: 'ms-lazy-failed' });
-          loadingElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-lazy-failed' }));
-          loadingElm.appendChild(createDomElement('span', { textContent: errorText ?? this.formatLazyFailed() }));
-          this.dropElm?.appendChild(loadingElm);
+          const failedElm = createDomElement('div', { className: 'ms-lazy-failed' });
+          failedElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-lazy-failed' }));
+          failedElm.appendChild(createDomElement('span', { textContent: errorText ?? this.formatLazyFailed() }));
+          this.dropElm?.appendChild(failedElm);
         },
       );
     }

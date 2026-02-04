@@ -150,9 +150,7 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
 
   /**
    * A lazy callback to load your collection only after the user clicks on the select dropdown to open it.
-   * The callback receives `(resolve, reject)` arguments, and must call `resolve(data)` or `reject()` to complete the loading process.
-   * While processing, a div with `ms-loading` class and an icon will be shown until the data is fully loaded,
-   * if a failure happened it will be replaced with `ms-lazy-failed` div.
+   * The function has 2 arguments `(resolve, reject)`, user must call `resolve(data)` or `reject()` to complete the loading process.
    */
   lazyData?: (resolve: (value: CollectionData) => void, reject: (customError?: string) => void) => void;
 
