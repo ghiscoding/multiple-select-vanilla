@@ -2,7 +2,7 @@
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
 import Constants from './constants.js';
-import type { HtmlStruct, OptGroupRowData, OptionDataObject, OptionRowData } from './models/interfaces.js';
+import type { CollectionData, HtmlStruct, OptGroupRowData, OptionDataObject, OptionRowData } from './models/interfaces.js';
 import type { MultipleSelectLocale, MultipleSelectLocales } from './models/locale.interface.js';
 import type { ClickedGroup, ClickedOption, CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface.js';
 import { BindingEventService } from './services/binding-event.service.js';
@@ -1803,6 +1803,21 @@ export class MultipleSelectInstance {
 
   uncheckAll() {
     this._checkAll(false);
+  }
+
+  /**
+   * Replace the current data/options with a new data set and re-render the dropdown.
+   * @param data - The new data to load (array of options, object, string array, or group array).
+   * @param renderFilterAndSearchAll - If true, re-render filter/search UI as well (default: false).
+   */
+  setData(data: CollectionData, renderFilterAndSearchAll = false) {
+    emptyElement(this.elm);
+    this.ulElm?.remove();
+    this.options.data = data;
+    this.initData();
+    this.initList(renderFilterAndSearchAll);
+    this.update();
+    this.adjustDropSizeAndPosition();
   }
 
   protected _checkAll(checked: boolean, ignoreUpdate?: boolean) {
