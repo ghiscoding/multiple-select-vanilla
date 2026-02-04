@@ -157,7 +157,7 @@ with this code in place, we can now use the following CSP meta tag (which is wha
 **Migration Example:**
 
 ```diff
-// 1. load every locale individually, it could be import in 2 ways (named import OR import on window object)
+// 1. load every locale individually, it could be imported in 2 ways (named import OR import on window object)
 // named import
 - import { Spanish } from 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
 + import { Spanish } from 'multiple-select-vanilla/dist/locales/es-ES.js';
