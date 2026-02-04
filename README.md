@@ -7,7 +7,7 @@
 
 [![NPM downloads](https://img.shields.io/npm/dy/multiple-select-vanilla)](https://npmjs.org/package/multiple-select-vanilla)
 [![npm](https://img.shields.io/npm/v/multiple-select-vanilla.svg?logo=npm&logoColor=fff&label=npm)](https://www.npmjs.com/package/multiple-select-vanilla)
-[![npm bundle size](https://img.shields.io/badge/gzip-13.1kB-success)](https://bundlejs.com/?q=multiple-select-vanilla)
+[![npm bundle size](https://img.shields.io/badge/gzip-13.1kB-1183c4)](https://bundlejs.com/?q=multiple-select-vanilla)
 
 ## Description
 Multiple-Select-Vanilla is a fork of the popular [Multiple-Select (jQuery)](https://github.com/wenzhixin/multiple-select) library (thanks to @wenzhixin for this great project). This fork was based on its latest known version at the time, which was `v1.5.2`, but later updated to [`v1.7.0`](https://github.com/wenzhixin/multiple-select/releases/tag/1.7.0). The main difference from the original lib is that we dropped jQuery in favor of native browser code and this mean zero external dependency. As a bonus, a few extra features were also added to the library and you can see them listed below [Changes vs Original lib](#changes-vs-original-lib-multiple-select).
