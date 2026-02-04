@@ -168,9 +168,9 @@ with this code in place, we can now use the following CSP meta tag (which is wha
 
 // 2. or load all locales at once
 - import 'multiple-select-vanilla/dist/locales/multiple-select-all-locales';
-+ // named import
+// named import
 + import { locales } from 'multiple-select-vanilla/dist/locales/all-locales.js';
-+ // OR default import
+// OR default import
 + import locales from 'multiple-select-vanilla/dist/locales/all-locales.js';
 
 // 3. lazyData option (old vs new)
