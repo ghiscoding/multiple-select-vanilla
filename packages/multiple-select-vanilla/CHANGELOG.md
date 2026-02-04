@@ -4,6 +4,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.4.1...v5.0.0) (2026-02-04)
+
+### ⚠ BREAKING CHANGES
+
+* change Lazy Data arguments signature with `(resolve, reject)` (#463)
+* drop standalone legacy browser <script> & `window` object usage (#461)
+* partial option group should show the minus icon (#462)
+
+### Features
+
+* add new `setData()` function ([#464](https://github.com/ghiscoding/multiple-select-vanilla/issues/464)) ([2ccc7fc](https://github.com/ghiscoding/multiple-select-vanilla/commit/2ccc7fc8b85b970cf2716aa5be94ff2b37dcfcef)) - by @ghiscoding
+* change Lazy Data arguments signature with `(resolve, reject)` ([#463](https://github.com/ghiscoding/multiple-select-vanilla/issues/463)) ([00c7f71](https://github.com/ghiscoding/multiple-select-vanilla/commit/00c7f71e12402bf30d1709e66ed054cc25d366e3)) - by @ghiscoding
+* drop standalone legacy browser <script> & `window` object usage ([#461](https://github.com/ghiscoding/multiple-select-vanilla/issues/461)) ([4f3dd37](https://github.com/ghiscoding/multiple-select-vanilla/commit/4f3dd374353fb03b1301561fe7c2697ef7e4d752)) - by @ghiscoding
+
+### Bug Fixes
+
+* add missing padding around "no results" after filtering data ([82afd7b](https://github.com/ghiscoding/multiple-select-vanilla/commit/82afd7b4fcd454a072438139181262e7eb6380c8)) - by @ghiscoding
+* **deps:** update all non-major dependencies ([#450](https://github.com/ghiscoding/multiple-select-vanilla/issues/450)) ([1da4608](https://github.com/ghiscoding/multiple-select-vanilla/commit/1da460837f4c10e49cf8df725cb5f83c523ee9f6)) - by @renovate-bot
+* export correct name for Korean locale ([106dc0a](https://github.com/ghiscoding/multiple-select-vanilla/commit/106dc0a85670b9b1664a0d659eff9acfbdd98e8e)) - by @ghiscoding
+* partial option group should show the minus icon ([#462](https://github.com/ghiscoding/multiple-select-vanilla/issues/462)) ([7b7b2f0](https://github.com/ghiscoding/multiple-select-vanilla/commit/7b7b2f0b4aa9e5e4cc56e34d8edd4244cbf4660a)) - by @ghiscoding
+
 ## [4.4.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.4.0...v4.4.1) (2025-12-20)
 
 ### Bug Fixes
