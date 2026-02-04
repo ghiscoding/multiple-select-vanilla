@@ -24,6 +24,9 @@ export const Vietnamese: MultipleSelectLocale = {
   formatLazyLoading() {
     return 'Tải...';
   },
+  formatLazyFailed() {
+    return 'Không tải được dữ liệu';
+  },
 };
 
 export default Vietnamese;

@@ -24,6 +24,9 @@ export const Hungarian: MultipleSelectLocale = {
   formatLazyLoading() {
     return 'Most betöltés...';
   },
+  formatLazyFailed() {
+    return 'Az adatok betöltése nem sikerült';
+  },
 };
 
 export default Hungarian;

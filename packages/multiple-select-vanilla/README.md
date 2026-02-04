@@ -69,19 +69,20 @@ const ms = multipleSelect('.multiple-select', {
 
 ### version 5.0
 
-Locale management has been refactored to remove usage of the global `window` object. Locales are now provided via a modular registry and injected through options. This change affects how you load, switch, and reference locales. Also, the `multiple-select-` prefix has been removed from all locale import paths (single and merged) and no longer exists on the `window` object
+- **Locale management** has been refactored to remove usage of the global `window` object. Locales are now provided via a modular registry and injected through options. The `multiple-select-` prefix has been removed from all locale import paths (single and merged) and no longer exists on the `window` object.
+
+- **Lazy loading API change:** The `lazyData` option now uses a callback signature: `lazyData(resolve, reject)` instead of returning a Promise. This allows for more flexible async data loading and error handling. See the demo and documentation for updated usage examples.
 
 **Migration Example:**
 
 ```diff
 // 1. load every locale individually, it could be import in 2 ways (named import OR import on window object)
-- // named import
+// named import
 - import { Spanish } from 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
-- // OR default import
-- import 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
-+ // named import
 + import { Spanish } from 'multiple-select-vanilla/dist/locales/es-ES.js';
-+ // OR default import
+
+// OR default import
+- import 'multiple-select-vanilla/dist/locales/multiple-select-es-ES.js';
 + import Spanish from 'multiple-select-vanilla/dist/locales/es-ES.js';
 
 // 2. or load all locales at once
@@ -90,6 +91,10 @@ Locale management has been refactored to remove usage of the global `window` obj
 + import { locales } from 'multiple-select-vanilla/dist/locales/all-locales.js';
 + // OR default import
 + import locales from 'multiple-select-vanilla/dist/locales/all-locales.js';
+
+// 3. lazyData option (old vs new)
+- lazyData: () => Promise<CollectionData>
++ lazyData: (resolve, reject) => void
 ```
 
 See the [Example09](https://ghiscoding.github.io/multiple-select-vanilla/#/example09) for details on dynamic locale loading.

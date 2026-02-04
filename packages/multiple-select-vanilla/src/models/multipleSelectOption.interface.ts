@@ -149,11 +149,13 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   labelId?: string;
 
   /**
-   * A lazy callback to load your collection only after the user clicks on the select dropdown to open it,
-   * the callback must be a Promise that will eventually resolve the data.
-   * While processing, a div with `ms-loading` class and an icon will be shown until the data is fully loaded.
+   * A lazy callback to load your collection only after the user clicks on the select dropdown to open it.
+   * The function has 2 arguments `(resolve, reject)`, user must call `resolve(data)` or `reject()` to complete the loading process.
    */
-  lazyData?: () => Promise<CollectionData>;
+  lazyData?: (resolve: (value: CollectionData) => void, reject: (customError?: string) => void) => void;
+
+  /** Use optional string to override "Failed to load data" text instead of `formatLazyFailed()` when lazy loading data failed. */
+  lazyFailedText?: string;
 
   /** Use optional string to override "Loading..." text instead of `formatLazyLoading()` when lazy loading data is processing. */
   lazyLoadingText?: string;

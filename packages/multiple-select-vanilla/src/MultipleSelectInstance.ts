@@ -1248,16 +1248,30 @@ export class MultipleSelectInstance {
     if (this.options.lazyData && !this._isLazyLoaded) {
       isLazyProcess = true;
       this.dropElm?.querySelector('ul.ms-list')?.remove();
-      this.options.lazyData().then(data => {
-        // when data is ready, remove spinner & update dropdown and selection
-        this.options.data = data;
-        this._isLazyLoaded = true;
-        this.dropElm?.querySelector('.ms-loading')?.remove();
-        this.initData();
-        this.initList(true);
-        this.update();
-        this.adjustDropSizeAndPosition();
-      });
+      this.options.lazyData(
+        // resolve callback
+        data => {
+          // when data is ready, remove spinner & update dropdown and selection
+          this.options.data = data;
+          this._isLazyLoaded = true;
+          this.dropElm?.querySelector('.ms-loading')?.remove();
+          this.initData();
+          this.initList(true);
+          this.update();
+          this.adjustDropSizeAndPosition();
+        },
+        // reject callback
+        (errorText?: string) => {
+          // on reject, remove spinner and show error message & icon
+          this.dropElm?.querySelector('.ms-loading')?.remove();
+          this.dropElm?.querySelector('.ms-lazy-failed')?.remove();
+
+          const failedElm = createDomElement('div', { className: 'ms-lazy-failed' });
+          failedElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-lazy-failed' }));
+          failedElm.appendChild(createDomElement('span', { textContent: errorText ?? this.formatLazyFailed() }));
+          this.dropElm?.appendChild(failedElm);
+        },
+      );
     }
 
     this.options.isOpen = true;
@@ -1279,6 +1293,7 @@ export class MultipleSelectInstance {
         this.selectAllElm.parentElement.style.display = 'none';
       }
       if (isLazyProcess && !this._isLazyLoaded && !this.dropElm.querySelector('.ms-loading')) {
+        this.dropElm.querySelector('.ms-lazy-failed')?.remove();
         const loadingElm = createDomElement('div', { className: 'ms-loading' });
         loadingElm.appendChild(createDomElement('div', { className: 'ms-icon ms-icon-loading ms-spin' }));
         loadingElm.appendChild(createDomElement('span', { textContent: this.formatLazyLoading() }));
@@ -2112,6 +2127,10 @@ export class MultipleSelectInstance {
 
   formatLazyLoading() {
     return this.options.lazyLoadingText || this.options.formatLazyLoading();
+  }
+
+  formatLazyFailed() {
+    return this.options.lazyFailedText || this.options.formatLazyFailed();
   }
 
   formatSelectAll() {

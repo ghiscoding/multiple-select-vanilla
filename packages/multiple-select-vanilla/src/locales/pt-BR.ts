@@ -24,6 +24,9 @@ export const Portuguese: MultipleSelectLocale = {
   formatLazyLoading() {
     return 'Carregamento...';
   },
+  formatLazyFailed() {
+    return 'Falha ao carregar os dados';
+  },
 };
 
 export default Portuguese;

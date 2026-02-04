@@ -16,10 +16,12 @@
       </span>
     </h2>
     <div class="demo-subtitle">
-      Use <code>&#123; lazyData: () => Promise &#125;</code>to lazy load data only after clicking and opening the select dropdown. Note that
-      once the data is loaded, it no longer needs to be lazy loaded again and so re-opening the select dropdown will show instantly
-      afterward. You can refresh the page, or click the button to retest the lazy loading. Also note that any pre-selected options will only
-      show up after the data is fully loaded.
+      Use <code>&#123; lazyData: (resolve, reject) &#125;</code>to lazy load data, the 2 arguments are callback functions to call when the
+      data is ready by calling <code>resolve(data)</code>. Lazy data will only be loaded once and reopening the dropdown will show
+      instantly. If a failure happened, by calling the <code>reject()</code> callback, then the user could retry the data loading by closing
+      and reopening the dropdown. For testing purposes, you can refresh the page or click the button to retest the lazy loading. <br>
+      <strong>Note:</strong> any pre-selected options will only show up after the data is fully loaded (e.g. 4th select with "Filter &amp;
+      OK button").
     </div>
   </div>
 </div>
@@ -63,6 +65,14 @@
 
     <div class="col-sm-10">
       <select id="group" class="full-width" multiple data-test="select4"></select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Lazy Data Failure</label>
+
+    <div class="col-sm-10">
+      <select id="group" class="full-width" multiple data-test="select5"></select>
     </div>
   </div>
 </div>

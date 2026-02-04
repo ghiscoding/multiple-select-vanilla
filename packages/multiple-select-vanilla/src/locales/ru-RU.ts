@@ -24,6 +24,9 @@ export const Russian: MultipleSelectLocale = {
   formatLazyLoading() {
     return 'погрузка...';
   },
+  formatLazyFailed() {
+    return 'Не удалось загрузить данные';
+  },
 };
 
 export default Russian;
