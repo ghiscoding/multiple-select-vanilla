@@ -73,6 +73,7 @@ import Options40 from './options/options40.js';
 import Options41 from './options/options41.js';
 import Options42 from './options/options42.js';
 import Options43 from './options/options43.js';
+import Options44 from './options/options44.js';
 
 export const navbarRouting = [
   { name: 'getting-started', view: '/src/getting-started.html', viewModel: GettingStarted, title: 'Getting Started' },
@@ -147,6 +148,7 @@ export const exampleRouting = [
       { name: 'options41', view: '/src/options/options41.html', viewModel: Options41, title: 'Pre-Sort Data' },
       { name: 'options42', view: '/src/options/options42.html', viewModel: Options42, title: 'Lazy Load Data' },
       { name: 'options43', view: '/src/options/options43.html', viewModel: Options43, title: 'Close on Tab' },
+      { name: 'options44', view: '/src/options/options44.html', viewModel: Options44, title: 'tabIndex' },
     ],
   },
   {

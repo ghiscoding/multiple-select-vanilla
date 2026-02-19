@@ -214,6 +214,10 @@ export class MultipleSelectInstance {
       this.choiceElm.setAttribute('aria-labelledby', this.options.labelId);
     }
 
+    if (this.options.tabIndex !== undefined) {
+      this.choiceElm.tabIndex = this.options.tabIndex;
+    }
+
     this.choiceElm.appendChild(createDomElement('span', { className: 'ms-placeholder', textContent: this.options.placeholder }));
 
     if (this.options.showClear) {

@@ -247,6 +247,9 @@ export interface MultipleSelectOption extends MultipleSelectLocale {
   /** Display the OK button at bottom of the list when using multiple selection to easily close the drop, defaults to false. */
   showOkButton?: boolean;
 
+  /** add a tabIndex to the "ms-choice" button, no default */
+  tabIndex?: number;
+
   /** Defaults to False, when set to True it will use the <option label=""> (from select option value) that can be used to display selected options. */
   useSelectOptionLabel?: boolean;
 
