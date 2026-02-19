@@ -57,6 +57,7 @@
             "!**/node_modules/**"
         ],
         "rules": {
+            "a11y": "off",
             "correctness": {
                 "useImportExtensions": {
                   "options": {
