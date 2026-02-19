@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.0.0...v5.1.0) (2026-02-19)
+
+### Features
+
+* add tabIndex option to button.ms-choice ([#467](https://github.com/ghiscoding/multiple-select-vanilla/issues/467)) ([79a98d5](https://github.com/ghiscoding/multiple-select-vanilla/commit/79a98d5750ed5c5a901d7aa9b80560947a4d57ed)) - by @ghiscoding
+
 ## [5.0.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v4.4.1...v5.0.0) (2026-02-04)
 
 > [!NOTE]
