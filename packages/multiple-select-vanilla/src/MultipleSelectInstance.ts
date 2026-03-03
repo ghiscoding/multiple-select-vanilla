@@ -76,7 +76,7 @@ export class MultipleSelectInstance {
   }
 
   constructor(
-    protected elm: HTMLSelectElement,
+    protected elm: HTMLInputElement | HTMLSelectElement | HTMLSpanElement,
     options?: Partial<Omit<MultipleSelectOption, 'onHardDestroy' | 'onAfterHardDestroy'>>,
   ) {
     this.options = Object.assign({}, Constants.DEFAULTS, this.elm.dataset, options) as MultipleSelectOption;
@@ -185,7 +185,7 @@ export class MultipleSelectInstance {
 
     // single or multiple
     if (this.options.single === undefined) {
-      this.options.single = !this.elm.multiple;
+      this.options.single = !(this.elm as HTMLSelectElement).multiple;
     }
 
     // restore class and title from select element
@@ -262,7 +262,7 @@ export class MultipleSelectInstance {
 
     insertAfter(this.elm, this.parentElm);
 
-    if (this.elm.disabled) {
+    if ((this.elm as HTMLSelectElement).disabled) {
       this.choiceElm.classList.add('disabled');
       this.choiceElm.disabled = true;
     }
@@ -1572,14 +1572,16 @@ export class MultipleSelectInstance {
     }
 
     // set selects to select
-    const selectedValues = this.getSelects();
-    if (this.options.single) {
-      this.elm.value = selectedValues.length ? (selectedValues[0] as string) : '';
-    } else {
-      // when multiple values could be set, we need to loop through each
-      Array.from(this.elm.options).forEach(option => {
-        option.selected = selectedValues.some(val => val === option.value);
-      });
+    if (this.elm instanceof HTMLSelectElement) {
+      const selectedValues = this.getSelects();
+      if (this.options.single) {
+        this.elm.value = selectedValues.length ? (selectedValues[0] as string) : '';
+      } else {
+        // when multiple values could be set, we need to loop through each
+        Array.from(this.elm.options).forEach(option => {
+          option.selected = selectedValues.some(val => val === option.value);
+        });
+      }
     }
 
     // trigger <select> change event

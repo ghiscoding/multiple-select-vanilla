@@ -92,6 +92,7 @@ export default class Example {
 
     this.ms5 = multipleSelect('#group', {
       dataTest: 'select5',
+      single: false,
       data: [
         {
           type: 'optgroup',
