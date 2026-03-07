@@ -9,3 +9,6 @@ catalog:
   remove-glob: ^1.2.0
   sass: ^1.97.3
   typescript: ^5.9.3
+
+overrides:
+  immutable: ^5.1.5
