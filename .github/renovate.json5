@@ -5,6 +5,7 @@
   lockFileMaintenance: {
     enabled: false
   },
+  minimumReleaseAge: '2 days',
   pin: false,
   rangeStrategy: 'bump',
   packageRules: [
