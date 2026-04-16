@@ -56,12 +56,12 @@
     "pnpm": "10.x"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.10",
+    "@biomejs/biome": "^2.4.11",
     "@lerna-lite/cli": "^5.0.0",
     "@lerna-lite/publish": "^5.0.0",
     "@lerna-lite/watch": "^5.0.0",
     "@playwright/test": "^1.59.1",
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.6.0",
     "conventional-changelog-conventionalcommits": "^9.3.1",
     "cross-env": "catalog:",
     "npm-run-all2": "^8.0.4",

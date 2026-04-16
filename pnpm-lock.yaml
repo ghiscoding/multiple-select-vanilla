@@ -30,7 +30,7 @@ importers:
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.4.10
+        specifier: ^2.4.11
         version: 2.4.12
       '@lerna-lite/cli':
         specifier: ^5.0.0
@@ -45,7 +45,7 @@ importers:
         specifier: ^1.59.1
         version: 1.59.1
       '@types/node':
-        specifier: ^25.5.2
+        specifier: ^25.6.0
         version: 25.6.0
       conventional-changelog-conventionalcommits:
         specifier: ^9.3.1
@@ -72,7 +72,7 @@ importers:
         specifier: ^5.3.8
         version: 5.3.8(@popperjs/core@2.11.8)
       dompurify:
-        specifier: ^3.3.3
+        specifier: ^3.4.0
         version: 3.4.0
       font-awesome:
         specifier: ^4.7.0
@@ -98,13 +98,13 @@ importers:
         version: 2.0.7
     devDependencies:
       autoprefixer:
-        specifier: ^10.4.27
+        specifier: ^10.5.0
         version: 10.5.0(postcss@8.5.10)
       cross-env:
         specifier: 'catalog:'
         version: 10.1.0
       cssnano:
-        specifier: ^7.1.4
+        specifier: ^7.1.5
         version: 7.1.5(postcss@8.5.10)
       esbuild:
         specifier: ^0.28.0
