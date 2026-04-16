@@ -66,9 +66,9 @@
     "@types/trusted-types": "^2.0.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.27",
+    "autoprefixer": "^10.5.0",
     "cross-env": "catalog:",
-    "cssnano": "^7.1.4",
+    "cssnano": "^7.1.5",
     "esbuild": "^0.28.0",
     "native-copyfiles": "catalog:",
     "postcss": "^8.5.9",
