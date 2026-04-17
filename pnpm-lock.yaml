@@ -30,7 +30,7 @@ importers:
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.4.11
+        specifier: ^2.4.12
         version: 2.4.12
       '@lerna-lite/cli':
         specifier: ^5.0.0
@@ -113,7 +113,7 @@ importers:
         specifier: 'catalog:'
         version: 2.0.1
       postcss:
-        specifier: ^8.5.9
+        specifier: ^8.5.10
         version: 8.5.10
       postcss-cli:
         specifier: ^11.0.1
