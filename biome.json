@@ -1,95 +1,90 @@
 {
-    "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-    "assist": {
-        "actions": {
-            "source": {
-                "organizeImports": "on"
-            }
-        }
-    },
-    "html": {
-        "formatter": {
-            "enabled": true
-        }
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "html": {
+    "formatter": {
+      "enabled": true
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "formatWithErrors": true,
+    "lineWidth": 140,
+    "indentStyle": "space",
+    "includes": ["**", "!**/.cache", "!**/dist/**", "!**/*.json", "!**/node_modules/**"]
+  },
+  "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
     },
     "formatter": {
-        "enabled": true,
-        "indentWidth": 2,
-        "lineEnding": "lf",
-        "formatWithErrors": true,
-        "lineWidth": 140,
-        "indentStyle": "space",
-        "includes": [
-            "**",
-            "!**/.cache",
-            "!**/dist/**",
-            "!**/*.json",
-            "!**/node_modules/**"
-        ]
-    },
-    "javascript": {
-        "parser": {
-            "unsafeParameterDecoratorsEnabled": true
-        },
-        "formatter": {
-            "arrowParentheses": "asNeeded",
-            "quoteProperties": "asNeeded",
-            "semicolons": "always",
-            "indentStyle": "space",
-            "quoteStyle": "single"
-        }
-    },
-    "json": {
-        "formatter": {
-            "indentStyle": "space"
-        },
-        "parser": {
-            "allowComments": true
-        }
-    },
-    "linter": {
-        "enabled": true,
-        "includes": [
-            "**",
-            "!**/.cache",
-            "!**/dist/**",
-            "!**/*.json",
-            "!**/node_modules/**"
-        ],
-        "rules": {
-            "correctness": {
-                "useImportExtensions": {
-                  "options": {
-                    "forceJsExtensions": true
-                  }
-                }
-            },
-            "recommended": true,
-            "complexity": {
-                "noForEach": "off",
-                "noStaticOnlyClass": "off",
-                "noUselessSwitchCase": "off"
-            },
-            "performance": {
-                "noBarrelFile": "off",
-                "noDelete": "off"
-            },
-            "suspicious": {
-                "noAssignInExpressions": "off",
-                "noExplicitAny": "off",
-                "noPrototypeBuiltins": "off",
-                "useIterableCallbackReturn": "off"
-            },
-            "style": {
-                "noNonNullAssertion": "off",
-                "noParameterAssign": "off",
-                "useExponentiationOperator": "off"
-            }
-        }
-    },
-    "vcs": {
-        "clientKind": "git",
-        "enabled": false,
-        "root": "./"
+      "arrowParentheses": "asNeeded",
+      "quoteProperties": "asNeeded",
+      "semicolons": "always",
+      "indentStyle": "space",
+      "quoteStyle": "single"
     }
+  },
+  "json": {
+    "formatter": {
+      "indentStyle": "space"
+    },
+    "parser": {
+      "allowComments": true
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "includes": ["**", "!**/.cache", "!**/dist/**", "!**/*.json", "!**/node_modules/**"],
+    "rules": {
+      "correctness": {
+        "useImportExtensions": {
+          "options": {
+            "extensionMappings": {
+              "ts": "js",
+              "tsx": "js"
+            }
+          }
+        }
+      },
+      "recommended": true,
+      "complexity": {
+        "noForEach": "off",
+        "noStaticOnlyClass": "off",
+        "noUselessSwitchCase": "off",
+        "noUselessEscapeInRegex": "error"
+      },
+      "performance": {
+        "noBarrelFile": "off",
+        "noDelete": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noPrototypeBuiltins": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "off",
+        "noParameterAssign": "off",
+        "useExponentiationOperator": "off"
+      },
+      "nursery": {
+        "noMisleadingReturnType": "error",
+        "noUnnecessaryTemplateExpression": "error",
+        "useDomQuerySelector": "error"
+      }
+    }
+  },
+  "vcs": {
+    "clientKind": "git",
+    "enabled": false,
+    "root": "./"
+  }
 }

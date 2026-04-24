@@ -124,7 +124,9 @@ export class MultipleSelectInstance {
       // on a hard destroy, we will also nullify all variables & call event so that _multipleSelect can also nullify its own instance
       if (hardDestroy) {
         this.options.onAfterHardDestroy?.();
-        Object.keys(this.options).forEach(o => delete (this as any)[o]);
+        Object.keys(this.options).forEach(o => {
+          delete (this as any)[o];
+        });
       }
     }
   }
@@ -555,7 +557,9 @@ export class MultipleSelectInstance {
     } else {
       if (this.ulElm) {
         emptyElement(this.ulElm);
-        rows.forEach(itemRow => this.ulElm!.appendChild(convertItemRowToHtml(itemRow)));
+        rows.forEach(itemRow => {
+          this.ulElm!.appendChild(convertItemRowToHtml(itemRow));
+        });
       }
       this.updateDataStart = 0;
       this.updateDataEnd = this.updateData.length;
@@ -577,7 +581,9 @@ export class MultipleSelectInstance {
   protected getListRows(): HtmlStruct[] {
     const rows: HtmlStruct[] = [];
     this.updateData = [];
-    this.data?.forEach(dataRow => rows.push(...this.initListItem(dataRow)));
+    this.data?.forEach(dataRow => {
+      rows.push(...this.initListItem(dataRow));
+    });
 
     // when infinite scroll is enabled, we'll add an empty <li> element (that will never be clickable)
     // so that scrolling to the last valid item will NOT automatically scroll back to the top of the list.
@@ -693,7 +699,9 @@ export class MultipleSelectInstance {
       }
       htmlBlocks.push(liBlock);
 
-      (dataRow as OptGroupRowData).children.forEach(child => htmlBlocks.push(...this.initListItem(child, 1)));
+      (dataRow as OptGroupRowData).children.forEach(child => {
+        htmlBlocks.push(...this.initListItem(child, 1));
+      });
 
       return htmlBlocks;
     }

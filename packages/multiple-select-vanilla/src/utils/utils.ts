@@ -112,7 +112,9 @@ export function stripScripts(dirtyHtml: string) {
 }
 
 export function removeUndefined<T extends Record<string, unknown> = Record<string, unknown>>(obj: T): T {
-  Object.keys(obj).forEach(key => (!isDefined(obj[key]) ? delete obj[key] : ''));
+  Object.keys(obj).forEach(key => {
+    !isDefined(obj[key]) ? delete obj[key] : '';
+  });
   return obj;
 }
 

@@ -1,6 +1,6 @@
 import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
-import './options24.scss';
+import './options24.js';
 
 export default class Example {
   ms: MultipleSelectInstance[] = [];
@@ -13,7 +13,9 @@ export default class Example {
 
   unmount() {
     // destroy ms instance(s) to avoid DOM leaks
-    this.ms.forEach(m => m.destroy());
+    this.ms.forEach(m => {
+      m.destroy();
+    });
     this.ms = [];
   }
 }

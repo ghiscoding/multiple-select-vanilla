@@ -27,7 +27,9 @@ export default class Example {
 
   unmount() {
     // destroy ms instance(s) to avoid DOM leaks
-    this.multiMs.forEach(m => m.destroy());
+    this.multiMs.forEach(m => {
+      m.destroy();
+    });
     this.multiMs = [];
     this.singleMs?.destroy();
     this.singleMs = undefined;

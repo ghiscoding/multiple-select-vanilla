@@ -42,8 +42,12 @@ export default class Example {
 
   unmount() {
     // destroy ms instance(s) to avoid DOM leaks
-    this.ms1.forEach(m => m.destroy());
-    this.ms2.forEach(m => m.destroy());
+    this.ms1.forEach(m => {
+      m.destroy();
+    });
+    this.ms2.forEach(m => {
+      m.destroy();
+    });
     this.ms1 = [];
     this.ms2 = [];
   }

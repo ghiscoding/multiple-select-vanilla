@@ -35,9 +35,9 @@ export class BindingEventService {
 
     if (typeof (elementOrElements as NodeListOf<H>)?.forEach === 'function') {
       // multiple elements to bind to
-      (elementOrElements as NodeListOf<H>).forEach(element =>
-        this.bindElementEvents(element, eventNames, listener, listenerOptions, groupName),
-      );
+      (elementOrElements as NodeListOf<H>).forEach(element => {
+        this.bindElementEvents(element, eventNames, listener, listenerOptions, groupName);
+      });
     } else {
       // single elements to bind to
       this.bindElementEvents(elementOrElements as H, eventNames, listener, listenerOptions, groupName);
