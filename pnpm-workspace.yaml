@@ -8,7 +8,7 @@ catalog:
   native-copyfiles: ^2.0.1
   remove-glob: ^1.2.0
   sass: ^1.99.0
-  typescript: ^6.0.2
+  typescript: ^6.0.3
 
 overrides:
   immutable: ^5.1.5
