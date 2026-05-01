@@ -14,6 +14,11 @@
       packageNames: ['@playwright/test'],
       allowedVersions: '1.52.0',
     },
+    {
+      // Exclude @lerna-lite/* from minimumReleaseAge since I'm the maintainer of Lerna-Lite
+      matchPackagePatterns: ['^@lerna-lite/'],
+      minimumReleaseAge: '0',
+    },
   ],
   ignoreDeps: ['node', 'pnpm'],
   schedule: ['every 3 months'],
