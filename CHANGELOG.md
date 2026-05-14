@@ -4,6 +4,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.1.0...v5.2.0) (2026-05-14)
+
+### Features
+
+* use new Sanitizer API & ditch stripScripts() ([#496](https://github.com/ghiscoding/multiple-select-vanilla/issues/496)) ([fa8406f](https://github.com/ghiscoding/multiple-select-vanilla/commit/fa8406f6e15408815c5d857595372c6c3168a86b)) - by @ghiscoding
+
+### Bug Fixes
+
+* **deps:** update all dependencies ([#497](https://github.com/ghiscoding/multiple-select-vanilla/issues/497)) ([43c4216](https://github.com/ghiscoding/multiple-select-vanilla/commit/43c42165152484b2eaed3998c1aec3b6ea930e4b)) - by @ghiscoding
+* **deps:** update all non-major dependencies ([#487](https://github.com/ghiscoding/multiple-select-vanilla/issues/487)) ([bf2d4cf](https://github.com/ghiscoding/multiple-select-vanilla/commit/bf2d4cfed90db95e4cfbf87adb1b94ef76b1b456)) - by @renovate-bot
+* **deps:** update all non-major dependencies ([#491](https://github.com/ghiscoding/multiple-select-vanilla/issues/491)) ([a7b83ac](https://github.com/ghiscoding/multiple-select-vanilla/commit/a7b83ac175a292925cbd0eabea66aa0de4601b48)) - by @renovate-bot
+
 ## [5.1.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.0.0...v5.1.0) (2026-02-19)
 
 ### Features
