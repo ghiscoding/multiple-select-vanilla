@@ -85,6 +85,23 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   onDestroy: noopFalse,
   onAfterDestroy: noopFalse,
   onDestroyed: noopFalse,
+  sanitizer: text => {
+    if ('setHTML' in Element.prototype) {
+      const container = document.createElement('div');
+      // @ts-ignore: experimental API
+      container.setHTML(text, {
+        sanitizer: new Sanitizer({
+          // let's add the most common elements & attributes
+          // also see: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API/Default_sanitizer_configuration
+          elements: ['i', 'span', 'div', 'p', 'b', 'strong', 'em', 'br', 'ul', 'ol', 'li', 'a', 'img'],
+          attributes: ['class', 'title', 'alt', 'src', 'href', 'target', 'rel', 'width', 'height', 'level'],
+          replaceWithChildrenElements: [],
+        }),
+      });
+      return container.innerHTML;
+    }
+    return text;
+  },
 };
 
 const METHODS = [

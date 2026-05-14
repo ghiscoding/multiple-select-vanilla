@@ -1,4 +1,4 @@
-import DOMPurify from 'dompurify';
+// import DOMPurify from 'dompurify';
 import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
@@ -10,7 +10,8 @@ export default class Example {
       labelTemplate: el => {
         return `<i class="fa fa-star"></i>${el.getAttribute('label')}`;
       },
-      sanitizer: html => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
+      // default sanitizer uses the Sanitizer API: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API
+      // sanitizer: html => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
     }) as MultipleSelectInstance;
   }
 

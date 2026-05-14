@@ -22,7 +22,7 @@ import {
   insertAfter,
   toggleElement,
 } from './utils/domUtils.js';
-import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys, stripScripts } from './utils/utils.js';
+import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys } from './utils/utils.js';
 
 const OPTIONS_LIST_SELECTOR = '.ms-select-all, ul li[data-key]';
 const OPTIONS_HIGHLIGHT_LIST_SELECTOR = '.ms-select-all.highlighted, ul li[data-key].highlighted';
@@ -1532,7 +1532,7 @@ export class MultipleSelectInstance {
     const getSelectOptionHtml = () => {
       if (this.options.useSelectOptionLabel || this.options.useSelectOptionLabelToHtml) {
         const labels = valueSelects.join(this.options.displayDelimiter);
-        return this.options.useSelectOptionLabelToHtml ? stripScripts(labels) : labels;
+        return labels;
       }
       return textSelects.join(this.options.displayDelimiter);
     };

@@ -20,6 +20,10 @@
       "commentPullRequests": "🎉 This pull request is included in version %v 📦<br>🔗  The release notes are available at: [GitHub Release](%u) 🚀",
       "message": "chore(release): publish new version %s",
       "releaseFooterMessage": "<br>🎉 Another great release available on GitHub and NPM 🤖. Star us on GitHub ⭐"
+    },
+    "watch": {
+      "noBail": true,
+      "noShell": true
     }
   },
   "changelogPreset": "conventionalcommits",
