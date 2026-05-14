@@ -30,5 +30,4 @@ export {
   removeDiacritics,
   removeUndefined,
   setDataKeys,
-  stripScripts,
 } from './utils/utils.js';

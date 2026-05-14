@@ -104,13 +104,6 @@ export function findByParam(data: any, param: any, value: any) {
   }
 }
 
-export function stripScripts(dirtyHtml: string) {
-  return dirtyHtml.replace(
-    /(\b)(on[a-z]+)(\s*)=([^>]*)|javascript:([^>]*)[^>]*|(<\s*)(\/*)script([<>]*).*(<\s*)(\/*)script(>*)|(&lt;|&#60;)(\/*)(script|script defer)(.*)(&#62;|&gt;|&gt;">)/gi,
-    '',
-  );
-}
-
 export function removeUndefined<T extends Record<string, unknown> = Record<string, unknown>>(obj: T): T {
   Object.keys(obj).forEach(key => (!isDefined(obj[key]) ? delete obj[key] : ''));
   return obj;

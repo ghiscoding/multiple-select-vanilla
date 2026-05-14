@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
 export default class Example {
@@ -5,17 +6,27 @@ export default class Example {
 
   mount() {
     this.ms1 = multipleSelect('#select1', {
-      placeholder: 'Placeholder with cross-site scripting code...<img src="not-found" onerror=alert("Hacked")>',
-      sanitizer: (dirtyHtml: string) =>
-        typeof dirtyHtml === 'string'
-          ? decodeURIComponent(dirtyHtml).replace(
-              /(\b)(on[a-z]+)(\s*)=|javascript:([^>]*)[^>]*|(<\s*)(\/*)script([<>]*).*(<\s*)(\/*)script(>*)|(&lt;)(\/*)(script|script defer)(.*)(&gt;|&gt;">)/gi,
-              '',
-            )
-          : dirtyHtml,
+      data: [
+        {
+          value: '<strong style="color: green">Safe HTML value</strong>',
+          text: '1. Safe HTML example',
+        },
+        {
+          value: '<img src="x" onerror="alert(`This should be removed by stripScripts`)">Blocked by stripScripts',
+          text: '2. Payload blocked by stripScripts',
+        },
+        {
+          value: '<iframe srcdoc="<script>alert(\'XSS\')\n<\/script>"></iframe>',
+          text: '3. Payload that bypasses stripScripts and executes',
+        },
+      ],
+      filter: true,
+      placeholder: "Placeholder with cross-site scripting code...&lt;script\&gt;alert('XSS')&lt;\/script&gt;",
+      useSelectOptionLabelToHtml: true,
 
-      // or even better, use dedicated libraries like DOM Purify: https://github.com/cure53/DOMPurify
-      // sanitizer: (html) => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
+      // you can use DOMPurify to sanitize data
+      // the default sanitizer is the Sanitizer API: https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API
+      sanitizer: html => DOMPurify.sanitize(html, { RETURN_TRUSTED_TYPE: true }),
     }) as MultipleSelectInstance;
   }
 
