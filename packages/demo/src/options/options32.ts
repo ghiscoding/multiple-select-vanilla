@@ -16,12 +16,12 @@ export default class Example {
           text: '2. Payload blocked by stripScripts',
         },
         {
-          value: '<iframe srcdoc="<script>alert(\'XSS\')\n<\/script>"></iframe>',
+          value: '<iframe srcdoc="<script>alert(\'XSS\')\n</script>"></iframe>',
           text: '3. Payload that bypasses stripScripts and executes',
         },
       ],
       filter: true,
-      placeholder: "Placeholder with cross-site scripting code...&lt;script\&gt;alert('XSS')&lt;\/script&gt;",
+      placeholder: "Placeholder with cross-site scripting code...&lt;script&gt;alert('XSS')&lt;/script&gt;",
       useSelectOptionLabelToHtml: true,
 
       // you can use DOMPurify to sanitize data

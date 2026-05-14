@@ -68,10 +68,10 @@
   "devDependencies": {
     "autoprefixer": "^10.5.0",
     "cross-env": "catalog:",
-    "cssnano": "^7.1.7",
+    "cssnano": "^8.0.1",
     "esbuild": "^0.28.0",
     "native-copyfiles": "catalog:",
-    "postcss": "^8.5.12",
+    "postcss": "^8.5.14",
     "postcss-cli": "^11.0.1",
     "remove-glob": "catalog:",
     "sass": "catalog:",

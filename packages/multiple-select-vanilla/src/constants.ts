@@ -88,7 +88,7 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   sanitizer: text => {
     if ('setHTML' in Element.prototype) {
       const container = document.createElement('div');
-      // @ts-ignore: experimental API
+      // @ts-expect-error: experimental API
       container.setHTML(text, {
         sanitizer: new Sanitizer({
           // let's add the most common elements & attributes
