@@ -101,6 +101,7 @@ Changes and new options:
   - `useSelectOptionLabelToHtml` similar to `useSelectOptionLabel` but also renders HTML.
   - `renderOptionLabelAsHtml` will render selected options as HTML code (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options27))
   - `sanitizer` can be used to sanitize HTML code and prevent XSS cross-site scripting attacks (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options32)).
+    - when none is provided, it will use the [Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/Sanitizer) (not supported by Safari)
   - `showOkButton` adds an "OK" button at the end of the multiple select option list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options25))
   - `showSearchClear` show a clear filter button on the search filter input (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options34))
   - `diacriticParser` custom parser to normalize diacritic symbols when filtering select list (see [demo](https://ghiscoding.github.io/multiple-select-vanilla/#/options35))
@@ -114,6 +115,9 @@ Changes and new options:
 
 ## CSP Compliance
 The library is now CSP (Content Security Policy) compliant, there are however some exceptions to be aware of. When using any HTML strings as template (when using `textTemplate`, `labelTemplate`, `renderOptionLabelAsHtml` or `useSelectOptionLabelToHtml`), you will not be fully compliant unless you return [`TrustedHTML`](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML). You can achieve this by using the `sanitizer` method in combo with an external library like [DOMPurify](https://github.com/cure53/DOMPurify) (recommended) to return `TrustedHTML` as shown below and with that in place you will be CSP compliant.
+
+> [!NOTE]
+> The library starting with version [5.2.0](https://github.com/ghiscoding/multiple-select-vanilla/releases/tag/v5.2.0) will now default to the [Sanitizer API](https://developer.mozilla.org/en-US/docs/Web/API/Sanitizer) (see default [implementation](https://github.com/ghiscoding/multiple-select-vanilla/blob/7077f3e6a303ddb12b28d789db9d1e759fe97de5/packages/multiple-select-vanilla/src/constants.ts#L88-L104)) unless you bring your own logic by overriding the `sanitizer` option. Please note that the Sanitizer API is supported by Chrome, Edge, Firefox **but** not yet by Safari (which could be a reason to still use DOMPurify as sanitizer).
 
 ```typescript
 import DOMPurify from 'dompurify';
