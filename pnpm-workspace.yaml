@@ -9,3 +9,9 @@ catalog:
   remove-glob: ^1.2.0
   sass: ^1.99.0
   typescript: ^6.0.3
+
+minimumReleaseAge: 2880 # 2 days in minutes
+
+minimumReleaseAgeExclude:
+  # exclude packages that I personally maintain and are safe to use on the same day
+  - '@lerna-lite/*'
