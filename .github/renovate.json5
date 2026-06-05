@@ -10,11 +10,6 @@
   rangeStrategy: 'bump',
   packageRules: [
     {
-      // latest playwright breaks a few my tests
-      packageNames: ['@playwright/test'],
-      allowedVersions: '1.52.0',
-    },
-    {
       // Exclude @lerna-lite/* from minimumReleaseAge since I'm the maintainer of Lerna-Lite
       matchPackagePatterns: ['^@lerna-lite/'],
       minimumReleaseAge: '0',
