@@ -10,15 +10,15 @@ export interface HtmlElementPosition {
 
 /** Calculate available space for each side of the DOM element */
 export function calculateAvailableSpace(elm: HTMLElement): { top: number; bottom: number; left: number; right: number } {
-  const { innerHeight: windowHeight = 0, innerWidth: windowWidth = 0 } = window;
+  const { innerHeight: vh = 0, innerWidth: vw = 0 } = window;
   const { top: pageScrollTop, left: pageScrollLeft } = windowScrollPosition();
-  const { top = 0, left = 0 } = getOffset(elm) || {};
+  const { top, left } = getOffset(elm);
 
   return {
     top: top - pageScrollTop,
-    bottom: windowHeight - (top - pageScrollTop),
+    bottom: vh - (top - pageScrollTop),
     left: left - pageScrollLeft,
-    right: windowWidth - (left - pageScrollLeft),
+    right: vw - (left - pageScrollLeft),
   };
 }
 
@@ -124,17 +124,18 @@ export function emptyElement<T extends Element = Element>(elm?: T | null): T | u
 }
 
 /** Get HTML element offset with pure JS */
-export function getOffset(element?: HTMLElement): HtmlElementPosition | undefined {
-  if (element) {
-    const { top, left, bottom, right } = element.getBoundingClientRect();
-    return {
-      top: top + window.pageYOffset,
-      left: left + window.pageXOffset,
-      bottom,
-      right,
-    };
+export function getOffset(elm?: HTMLElement | null): HtmlElementPosition {
+  if (!elm) {
+    return { top: 0, bottom: 0, left: 0, right: 0 };
   }
-  return undefined;
+
+  const { top, left, bottom, right } = elm.getBoundingClientRect();
+  return {
+    top: top + window.pageYOffset,
+    left: left + window.pageXOffset,
+    bottom,
+    right,
+  };
 }
 
 export function getSize(elm: HTMLElement | undefined, mode: 'inner' | 'outer' | 'scroll', type: 'height' | 'width') {
@@ -267,7 +268,7 @@ export function toggleElement(elm?: HTMLElement | null, display?: boolean) {
  */
 export function windowScrollPosition(): { left: number; top: number } {
   return {
-    left: window.pageXOffset || document.documentElement.scrollLeft || 0,
-    top: window.pageYOffset || document.documentElement.scrollTop || 0,
+    left: window.pageXOffset,
+    top: window.pageYOffset,
   };
 }
