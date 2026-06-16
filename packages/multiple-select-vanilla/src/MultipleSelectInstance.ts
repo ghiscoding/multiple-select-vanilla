@@ -1341,7 +1341,7 @@ export class MultipleSelectInstance {
           container = this.options.container === 'body' ? document.body : (document.querySelector(this.options.container) as HTMLElement);
         }
         container!.appendChild(this.dropElm);
-        const { top: offsetTop = 0, left: offsetLeft = 0 } = getOffset(this.parentElm) || {};
+        const { top: offsetTop, left: offsetLeft } = getOffset(this.parentElm);
         this.dropElm.style.top = `${offsetTop + this.parentElm.offsetHeight}px`;
         this.dropElm.style.left = `${offsetLeft}px`;
         this.dropElm.style.width = `${this.parentElm.offsetWidth}px`;
