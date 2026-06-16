@@ -4,6 +4,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.0...v5.2.1) (2026-06-16)
+
+**Note:** Version bump only for package multiple-select-vanilla
+
 ## [5.2.0](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.1.0...v5.2.0) (2026-05-14)
 
 ### Features
