@@ -15,5 +15,3 @@ minimumReleaseAge: 2880 # 2 days in minutes
 minimumReleaseAgeExclude:
   # exclude packages that I personally maintain and are safe to use on the same day
   - '@lerna-lite/*'
-  # Renovate security update: esbuild@0.28.1
-  - esbuild@0.28.1
