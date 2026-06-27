@@ -3,9 +3,9 @@ $ms-choice-border: 0 !default;
 // @forward '../variables' with (
 //   $ms-choice-border: 0 !default
 // );
-@forward '../variables';
-@use '../multiple-select.scss';
-@use '../variables' as v;
+@forward "../variables";
+@use "../multiple-select.scss";
+@use "../variables" as v;
 
 $ms-parent-form-control-padding: 0 !default;
 $ms-drop-input-sm-margin-top: 0.4rem !default;
@@ -30,15 +30,15 @@ $ms-drop-hide-radio-opacity: 1 !default;
   }
 
   &.form-control-sm {
-    .ms-drop input[type='radio'],
-    .ms-drop input[type='checkbox'] {
+    .ms-drop input[type="radio"],
+    .ms-drop input[type="checkbox"] {
       margin-top: var(--ms-drop-input-sm-margin-top, $ms-drop-input-sm-margin-top);
     }
   }
 
   &.form-control-lg {
-    .ms-drop input[type='radio'],
-    .ms-drop input[type='checkbox'] {
+    .ms-drop input[type="radio"],
+    .ms-drop input[type="checkbox"] {
       margin-top: var(--ms-drop-input-lg-margin-top, $ms-drop-input-lg-margin-top);
     }
   }

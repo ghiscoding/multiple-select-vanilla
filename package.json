@@ -56,17 +56,17 @@
     "pnpm": "10.x"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.0",
+    "@biomejs/biome": "^2.5.1",
     "@lerna-lite/cli": "^5.3.0",
     "@lerna-lite/publish": "^5.3.0",
     "@lerna-lite/watch": "^5.3.0",
-    "@playwright/test": "^1.60.0",
-    "@types/node": "^25.9.3",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.0.1",
     "conventional-changelog-conventionalcommits": "^9.3.1",
     "cross-env": "catalog:",
     "npm-run-all2": "^9.0.2",
     "remove-glob": "catalog:",
     "typescript": "catalog:"
   },
-  "packageManager": "pnpm@10.34.3"
+  "packageManager": "pnpm@10.34.4"
 }

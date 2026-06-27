@@ -1,15 +1,15 @@
-@use 'sass:math';
+@use "sass:math";
 
 @use 'bootstrap' with (
   $primary: teal,
   $btn-color: #fff,
 );
 
-// -- multiple ways to load CSS/SASS files via either @import (legacy) or @use (modern) 
+// -- multiple ways to load CSS/SASS files via either @import (legacy) or @use (modern)
 // --
 // @import 'multiple-select-vanilla/dist/styles/css/multiple-select.css';
 // @use 'multiple-select-vanilla/dist/styles/css/multiple-select.css';
-@use 'multiple-select-vanilla/dist/styles/css/themes/bootstrap.css' as ms;
+@use "multiple-select-vanilla/dist/styles/css/themes/bootstrap.css" as ms;
 // @use 'multiple-select-vanilla/dist/styles/sass/multiple-select.scss';
 // @use 'multiple-select-vanilla/dist/styles/sass/multiple-select.scss' with (
 //     $ms-primary-color: red,
@@ -37,7 +37,7 @@ code {
 }
 
 .cloak {
-  visibility: 'hidden';
+  visibility: "hidden";
 }
 h2 .links {
   font-size: 18px;
@@ -45,8 +45,19 @@ h2 .links {
 
 .template-body {
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
 }
 
 .bd-title {
@@ -87,7 +98,6 @@ h2 .links {
 .btn-group-xs > .btn,
 .btn-xs {
   padding: 6px 2px;
-  font-size: 0.875rem;
   line-height: 0.5;
   border-radius: 0.2rem;
   margin: 0 2px;
