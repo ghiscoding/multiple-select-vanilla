@@ -1,7 +1,7 @@
 // credit goes to UnoCSS https://antfu.me/posts/icons-in-pure-css
 @mixin createSvgClass($cssVarName, $svgPath) {
   .#{$cssVarName} {
-    @include createSvgStyle(#{$cssVarName + '-icon-svg'}, $svgPath); // all icon will create css variable named "[icon name]-icon-svg"
+    @include createSvgStyle(#{$cssVarName + "-icon-svg"}, $svgPath); // all icon will create css variable named "[icon name]-icon-svg"
   }
 }
 

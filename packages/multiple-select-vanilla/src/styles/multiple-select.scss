@@ -4,11 +4,11 @@
  * @contributor Ghislain B.
  */
 
-@forward 'mixins';
-@forward 'variables';
+@forward "mixins";
+@forward "variables";
 
-@use 'mixins' as m;
-@use 'variables' as v;
+@use "mixins" as m;
+@use "variables" as v;
 
 // create some SVG icons used by the lib
 @include m.createSvgClass("ms-icon-caret", v.$ms-icon-caret-svg-path);
@@ -21,15 +21,20 @@
 @include m.createSvgClass("ms-icon-lazy-failed", v.$ms-icon-lazy-failed-svg-path);
 
 @keyframes icon-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .ms-spin {
   animation: icon-spin var(--ms-loading-spin-animation, v.$ms-loading-spin-animation);
 }
 
-.ms-parent, .ms-drop {
+.ms-parent,
+.ms-drop {
   .ms-icon {
     display: inline-block;
     background-color: currentColor;
@@ -134,29 +139,27 @@
     cursor: default;
   }
 
-  > {
-    span {
-      display: flex;
-      flex: 1;
-      align-items: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      column-gap: var(--ms-label-column-gap, v.$ms-label-column-gap);
+  > span {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    column-gap: var(--ms-label-column-gap, v.$ms-label-column-gap);
 
-      &.ms-placeholder {
-        color: var(--ms-placeholder-color, v.$ms-placeholder-color);
-      }
+    &.ms-placeholder {
+      color: var(--ms-placeholder-color, v.$ms-placeholder-color);
     }
-    div.ms-icon-close {
-      margin-right: 2px;
-    }
-    div.ms-icon-caret {
-      height: var(--ms-chevron-icon-size, v.$ms-chevron-icon-size);
-      width: var(--ms-chevron-icon-size, v.$ms-chevron-icon-size);
-      &.open {
-        transform: scaleY(-1);
-      }
+  }
+  > div.ms-icon-close {
+    margin-right: 2px;
+  }
+  > div.ms-icon-caret {
+    height: var(--ms-chevron-icon-size, v.$ms-chevron-icon-size);
+    width: var(--ms-chevron-icon-size, v.$ms-chevron-icon-size);
+    &.open {
+      transform: scaleY(-1);
     }
   }
 }
@@ -378,8 +381,8 @@
   }
 
   input {
-    &[type='radio'],
-    &[type='checkbox'] {
+    &[type="radio"],
+    &[type="checkbox"] {
       // make input checkbox invisible but don't hide it since ms-select uses hide for something else
       opacity: 0;
       width: 0;

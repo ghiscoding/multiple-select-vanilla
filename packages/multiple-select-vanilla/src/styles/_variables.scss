@@ -3,7 +3,7 @@
  * You can also CSS variables by simply replacing `$ms-` prefix with `--ms-`
  */
 
-@use 'sass:color';
+@use "sass:color";
 
 // this is the only variable without $ms prefix and exists so that user could use
 // the same Bootstrap primary color without declaring $ms-primary-color variable (which also exists)
@@ -41,7 +41,7 @@ $ms-chevron-icon-size: 1.2em !default;
 $ms-choice-text-align: left !default;
 $ms-choice-line-height: 26px !default;
 $ms-choice-focus-border-color: color.adjust($ms-primary-color, $lightness: 60%) !default;
-$ms-choice-focus-box-shadow: 0 0 0 1.5px rgba($ms-primary-color,.35) !default;
+$ms-choice-focus-box-shadow: 0 0 0 1.5px rgba($ms-primary-color, 0.35) !default;
 $ms-drop-background: #fff !default;
 $ms-drop-color: #000 !default;
 $ms-drop-border: 1px solid #d0d0d0 !default;
@@ -68,7 +68,7 @@ $ms-drop-list-item-align-items: center !default;
 $ms-drop-list-item-display: flex !default;
 $ms-drop-list-item-level1-padding-left: 8px !default;
 $ms-drop-list-item-padding: 0 !default;
-$ms-drop-list-item-disabled-filter: Alpha(Opacity = 35) !default;
+$ms-drop-list-item-disabled-filter: rgba(0, 0, 0, 0.35) !default;
 $ms-drop-list-item-disabled-opacity: 0.35 !default;
 $ms-drop-scrollbar-color: #c1c1c1 #f1f1f1 !default;
 $ms-drop-zindex: 1050 !default;
@@ -125,33 +125,33 @@ $ms-select-all-text-color: color.adjust($ms-primary-color, $lightness: -5%) !def
 $ms-select-all-text-hover-color: transparent !default;
 
 .ms-dark-mode {
-    --ms-checkbox-color: #{color.adjust($ms-primary-color, $lightness: 10%)};
-    --ms-checkbox-hover-color: #{color.adjust($ms-primary-color, $lightness: 13%)};
-    --ms-checkbox-icon-container-border: 1px solid #797979;
-    --ms-choice-border: 1px solid #757575;
-    --ms-choice-bgcolor: #262b2f;
-    --ms-choice-color: #d4d4d4;
-    --ms-choice-focus-border-color: #{color.adjust($ms-primary-color, $lightness: 5%)};
-    --ms-choice-focus-box-shadow: 0 0 0 2px #{rgba($ms-primary-color,.2)};
-    --ms-drop-background: #2a2f34;
-    --ms-drop-border: 1px solid #585858;
-    --ms-drop-color: #cccccc;
-    --ms-drop-hide-radio-hover-bgcolor: #{color.adjust($ms-primary-color, $lightness: -5%)};
-    --ms-drop-option-divider-border-top: 1px solid #696969;
-    --ms-drop-scrollbar-color: #828282 #424242;
-    --ms-icon-color: #bcbcbc;
-    --ms-icon-color-hover: #d0d0d0;
-    --ms-option-highlight-bg-color: #{color.adjust($ms-primary-color, $lightness: -10%)};
-    --ms-ok-button-bg-color: #262b2f;
-    --ms-ok-button-bg-hover-color: #24282c;
-    --ms-ok-button-border-color: #4a4a4a;
-    --ms-ok-button-text-color: #{color.adjust($ms-primary-color, $lightness: 5%)};
-    --ms-ok-button-text-hover-color: #{color.adjust($ms-primary-color, $lightness: 5%)};
-    --ms-optgroup-color: #fff;
-    --ms-search-input-bg-color: #2f353a;
-    --ms-search-input-color: #d4d4d4;
-    --ms-search-input-border: 1px solid #757575;
-    --ms-select-all-border-bottom: 1px solid #5d5d5d;
-    --ms-select-all-text-color: #fff;
-    --ms-select-all-text-font-weight: bold;
+  --ms-checkbox-color: #{color.adjust($ms-primary-color, $lightness: 10%)};
+  --ms-checkbox-hover-color: #{color.adjust($ms-primary-color, $lightness: 13%)};
+  --ms-checkbox-icon-container-border: 1px solid #797979;
+  --ms-choice-border: 1px solid #757575;
+  --ms-choice-bgcolor: #262b2f;
+  --ms-choice-color: #d4d4d4;
+  --ms-choice-focus-border-color: #{color.adjust($ms-primary-color, $lightness: 5%)};
+  --ms-choice-focus-box-shadow: 0 0 0 2px #{rgba($ms-primary-color, 0.2)};
+  --ms-drop-background: #2a2f34;
+  --ms-drop-border: 1px solid #585858;
+  --ms-drop-color: #cccccc;
+  --ms-drop-hide-radio-hover-bgcolor: #{color.adjust($ms-primary-color, $lightness: -5%)};
+  --ms-drop-option-divider-border-top: 1px solid #696969;
+  --ms-drop-scrollbar-color: #828282 #424242;
+  --ms-icon-color: #bcbcbc;
+  --ms-icon-color-hover: #d0d0d0;
+  --ms-option-highlight-bg-color: #{color.adjust($ms-primary-color, $lightness: -10%)};
+  --ms-ok-button-bg-color: #262b2f;
+  --ms-ok-button-bg-hover-color: #24282c;
+  --ms-ok-button-border-color: #4a4a4a;
+  --ms-ok-button-text-color: #{color.adjust($ms-primary-color, $lightness: 5%)};
+  --ms-ok-button-text-hover-color: #{color.adjust($ms-primary-color, $lightness: 5%)};
+  --ms-optgroup-color: #fff;
+  --ms-search-input-bg-color: #2f353a;
+  --ms-search-input-color: #d4d4d4;
+  --ms-search-input-border: 1px solid #757575;
+  --ms-select-all-border-bottom: 1px solid #5d5d5d;
+  --ms-select-all-text-color: #fff;
+  --ms-select-all-text-font-weight: bold;
 }

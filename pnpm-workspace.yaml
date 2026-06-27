@@ -4,10 +4,10 @@ packages:
 # Define a catalog of version ranges.
 catalog:
   cross-env: ^10.1.0
-  immutable: ^5.1.5
-  native-copyfiles: ^2.0.1
+  immutable: ^5.1.8
+  native-copyfiles: ^2.0.3
   remove-glob: ^1.2.1
-  sass: ^1.99.0
+  sass: ^1.101.0
   typescript: ^6.0.3
 
 minimumReleaseAge: 2880 # 2 days in minutes
