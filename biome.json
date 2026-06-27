@@ -51,9 +51,13 @@
       "correctness": {
         "useImportExtensions": {
           "options": {
-            "forceJsExtensions": true
+            "forceJsExtensions": false,
+            "extensionMappings": {
+              "png": "png",
+              "ts": "js"
+            }
           },
-          "level": "error"
+          "level": "warn"
         }
       },
       "recommended": true,

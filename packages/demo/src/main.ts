@@ -7,7 +7,7 @@ import { createDomElement, emptyElement } from 'multiple-select-vanilla';
 import { exampleRouting, navbarRouting } from './app-routing.js';
 // biome-ignore lint/correctness/useImportExtensions: false positive
 import mainHtml from './main.html?raw';
-import './style.js';
+import './style.scss';
 
 const pageLayoutGlobs = import.meta.glob('/src/./**/*.html', { query: '?raw', eager: true, import: 'default' });
 
