@@ -1,6 +1,6 @@
 import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
-import './example15.js';
+import './example15.scss';
 
 export default class Example {
   ms1?: MultipleSelectInstance;

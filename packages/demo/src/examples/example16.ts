@@ -1,7 +1,7 @@
 import DOMPurify from 'dompurify';
 import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
-import './example16.js';
+import './example16.scss';
 import avatar1 from './images/avatar1.png';
 import avatar2 from './images/avatar2.png';
 import avatar3 from './images/avatar3.png';

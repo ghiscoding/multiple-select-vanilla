@@ -1,6 +1,6 @@
 import { type MultipleSelectInstance, multipleSelect } from 'multiple-select-vanilla';
 
-import './options38.js';
+import './options38.scss';
 
 export default class Example {
   pageContentElm: HTMLDivElement | null = null;
