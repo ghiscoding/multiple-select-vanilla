@@ -62,7 +62,7 @@
     "@lerna-lite/watch": "^5.3.0",
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.0.1",
-    "conventional-changelog-conventionalcommits": "^9.3.1",
+    "conventional-changelog-conventionalcommits": "^10.2.0",
     "cross-env": "catalog:",
     "npm-run-all2": "^9.0.2",
     "remove-glob": "catalog:",
