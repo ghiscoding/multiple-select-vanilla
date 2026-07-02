@@ -71,7 +71,7 @@
     "cssnano": "^8.0.2",
     "esbuild": "^0.28.1",
     "native-copyfiles": "catalog:",
-    "postcss": "^8.5.15",
+    "postcss": "^8.5.16",
     "postcss-cli": "^11.0.1",
     "remove-glob": "catalog:",
     "sass": "catalog:",
