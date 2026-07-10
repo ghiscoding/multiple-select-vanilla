@@ -8,7 +8,7 @@ catalog:
   native-copyfiles: ^2.0.3
   remove-glob: ^1.2.1
   sass: ^1.101.0
-  typescript: ^6.0.3
+  typescript: ^7.0.2
 
 minimumReleaseAge: 2880 # 2 days in minutes
 
