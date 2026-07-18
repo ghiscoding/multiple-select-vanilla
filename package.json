@@ -56,7 +56,7 @@
     "pnpm": "10.x"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.3",
+    "@biomejs/biome": "^2.5.4",
     "@lerna-lite/cli": "^5.4.1",
     "@lerna-lite/publish": "^5.4.1",
     "@lerna-lite/watch": "^5.4.1",
