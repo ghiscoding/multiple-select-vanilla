@@ -1,13 +1,17 @@
 packages:
   - 'packages/**'
 
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: false
+
 # Define a catalog of version ranges.
 catalog:
   cross-env: ^10.1.0
   immutable: ^5.1.8
   native-copyfiles: ^2.0.3
   remove-glob: ^1.2.1
-  sass: ^1.101.3
+  sass: ^1.101.6
   typescript: ^7.0.2
 
 minimumReleaseAge: 2880 # 2 days in minutes
