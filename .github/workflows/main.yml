@@ -28,17 +28,17 @@ jobs:
         run: echo ${{ env.START_TIME }}
 
       - name: Clone repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 3
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6
         with:
           run_install: false
 
       - name: Set NodeJS
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version: 24
           cache: 'pnpm'
@@ -72,14 +72,14 @@ jobs:
 
       - name: Upload Event File
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: Event File
           path: ${{ github.event_path }}
 
       - name: Upload E2E Test Results
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: Playwright E2E Test Results
           path: |
@@ -89,7 +89,7 @@ jobs:
         if: |
           github.ref == 'refs/heads/main' &&
           (contains(github.event.head_commit.message, 'chore(release)') || contains(github.event.head_commit.message, '[refresh gh-pages]'))
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./packages/demo/dist
