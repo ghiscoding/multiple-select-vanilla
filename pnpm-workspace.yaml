@@ -10,7 +10,7 @@ catalog:
   cross-env: ^10.1.0
   native-copyfiles: ^2.0.3
   remove-glob: ^1.2.1
-  sass: ^1.101.6
+  sass: ^1.102.0
   typescript: ^7.0.2
 
 minimumReleaseAge: 2880 # 2 days in minutes
@@ -18,3 +18,6 @@ minimumReleaseAge: 2880 # 2 days in minutes
 minimumReleaseAgeExclude:
   # exclude packages that I personally maintain and are safe to use on the same day
   - '@lerna-lite/*'
+
+overrides:
+  ip-address: ^10.4.0
