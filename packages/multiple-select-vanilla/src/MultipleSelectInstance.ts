@@ -79,7 +79,7 @@ export class MultipleSelectInstance {
     protected elm: HTMLInputElement | HTMLSelectElement | HTMLSpanElement,
     options?: Partial<Omit<MultipleSelectOption, 'onHardDestroy' | 'onAfterHardDestroy'>>,
   ) {
-    this.options = Object.assign({}, Constants.DEFAULTS, this.elm.dataset, options) as MultipleSelectOption;
+    this.options = { ...Constants.DEFAULTS, ...this.elm.dataset, ...options } as MultipleSelectOption;
     this._bindEventService = new BindingEventService({ distinctEvent: true });
   }
 
@@ -132,12 +132,13 @@ export class MultipleSelectInstance {
   protected initLocale() {
     if (this.options.locale) {
       if (typeof this.options.locale === 'object') {
-        Object.assign(this.options, this.options.locale);
+        this.options = { ...this.options, ...this.options.locale };
         return;
       }
 
-      // Use locales from options, fallback to instance property
-      const locales = (this.options.locales || this.locales || {}) as Record<string, MultipleSelectLocale>;
+      // Use locales from own options only, fallback to instance property
+      const optionLocales = Object.prototype.hasOwnProperty.call(this.options, 'locales') ? this.options.locales : undefined;
+      const locales = (optionLocales || this.locales || {}) as Record<string, MultipleSelectLocale>;
       const parts = this.options.locale.split(/-|_/);
 
       parts[0] = parts[0].toLowerCase();
@@ -145,15 +146,11 @@ export class MultipleSelectInstance {
         parts[1] = parts[1].toUpperCase();
       }
 
-      if (locales[this.options.locale]) {
-        Object.assign(this.options, locales[this.options.locale]);
-      } else if (locales[parts.join('-')]) {
-        Object.assign(this.options, locales[parts.join('-')]);
-      } else if (locales[parts[0]]) {
-        Object.assign(this.options, locales[parts[0]]);
-      } else {
+      const localeKey = [this.options.locale, parts.join('-'), parts[0]].find(key => Object.prototype.hasOwnProperty.call(locales, key));
+      if (!localeKey) {
         throw new Error(`[multiple-select-vanilla] invalid locales "${this.options.locale}", make sure to import it before using it`);
       }
+      this.options = { ...this.options, ...locales[localeKey] };
     }
   }
 
@@ -1664,7 +1661,7 @@ export class MultipleSelectInstance {
    */
   getOptions(returnDeepCopy = true) {
     // deep copy and remove data
-    const options = Object.assign({}, this.options);
+    const options = { ...this.options };
     delete options.data;
 
     return returnDeepCopy ? deepCopy<MultipleSelectOption>(options) : this.options;
@@ -1675,7 +1672,7 @@ export class MultipleSelectInstance {
     if (compareObjects(this.options, options, true)) {
       return;
     }
-    this.options = Object.assign(this.options, options);
+    this.options = { ...this.options, ...options };
     this.destroy(false);
     this.init();
   }
