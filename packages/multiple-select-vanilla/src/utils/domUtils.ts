@@ -1,6 +1,16 @@
 import type { HtmlStruct, InferDOMType } from '../models/interfaces.js';
 import { isDefined, objectRemoveEmptyProps } from './utils.js';
 
+const UNSAFE_DOM_PROPERTY_NAMES = new Set(['__proto__', 'prototype', 'constructor', 'toString', 'valueOf', 'hasOwnProperty']);
+
+function assertSafeDomProperties(properties: object) {
+  for (const propertyName of Object.keys(properties)) {
+    if (UNSAFE_DOM_PROPERTY_NAMES.has(propertyName)) {
+      throw new TypeError(`[multiple-select-vanilla] unsafe DOM property name "${propertyName}"`);
+    }
+  }
+}
+
 export interface HtmlElementPosition {
   top: number;
   bottom: number;
@@ -51,10 +61,13 @@ export function createDomElement<T extends keyof HTMLElementTagNameMap, K extend
   const elm = document.createElement<T>(tagName);
 
   if (elementOptions) {
+    assertSafeDomProperties(elementOptions);
     Object.keys(elementOptions).forEach(elmOptionKey => {
       const elmValue = elementOptions[elmOptionKey as keyof typeof elementOptions];
-      if (typeof elmValue === 'object') {
-        Object.assign(elm[elmOptionKey as K] as object, elmValue);
+      const elmTarget = elm[elmOptionKey as K];
+      if (typeof elmValue === 'object' && elmValue !== null && typeof elmTarget === 'object' && elmTarget !== null) {
+        assertSafeDomProperties(elmValue);
+        Object.assign(elmTarget, elmValue);
       } else {
         elm[elmOptionKey as K] = (elementOptions as any)[elmOptionKey as keyof typeof elementOptions];
       }
@@ -104,7 +117,7 @@ export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, 
 
 /** takes an html block object and converts to a real HTMLElement */
 export function convertItemRowToHtml(item: HtmlStruct): HTMLElement {
-  if (item.hasOwnProperty('tagName')) {
+  if (Object.prototype.hasOwnProperty.call(item, 'tagName')) {
     return createDomStructure(item);
   }
   return document.createElement('li');

@@ -27,7 +27,7 @@ export class VirtualScroll {
     this.parentEl = options.contentEl?.parentElement;
     this.callback = options.callback;
 
-    this.cache = {} as VirtualCache;
+    this.cache = Object.create(null) as VirtualCache;
     this.scrollTop = this.scrollEl.scrollTop;
 
     this.initDOM(this.rows);
@@ -51,7 +51,7 @@ export class VirtualScroll {
 
   reset(rows: HtmlStruct[]) {
     this.lastCluster = 0;
-    this.cache = {} as any;
+    this.cache = Object.create(null) as VirtualCache;
     emptyElement(this.contentEl);
     this.initDOM(rows);
   }

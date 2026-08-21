@@ -58,6 +58,9 @@ jobs:
       - name: Build Library
         run: pnpm build:lib
 
+      - name: Run Prototype Pollution Security Tests
+        run: pnpm test:security
+
       - name: Build Website (GitHub demo site)
         run: pnpm build:demo
 
