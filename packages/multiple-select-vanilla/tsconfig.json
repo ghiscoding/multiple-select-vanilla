@@ -2,10 +2,10 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "target": "ES2021",
+    "target": "ES2022",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["es2021", "DOM"],
+    "lib": ["ES2022", "DOM"],
     "moduleResolution": "Bundler",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,

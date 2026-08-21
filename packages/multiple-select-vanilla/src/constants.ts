@@ -2,8 +2,8 @@ import { English } from './locales/en-US.js';
 import type { LabelFilter, TextFilter } from './models/interfaces.js';
 import type { MultipleSelectOption } from './models/multipleSelectOption.interface.js';
 
-const BLOCK_ROWS = 50;
-const CLUSTER_BLOCKS = 4;
+export const BLOCK_ROWS = 50;
+export const CLUSTER_BLOCKS = 4;
 
 const noopFalse = () => false;
 const noopTrue = () => true;
@@ -86,7 +86,7 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   onAfterDestroy: noopFalse,
   onDestroyed: noopFalse,
   sanitizer: text => {
-    if ('setHTML' in Element.prototype) {
+    if (typeof Element !== 'undefined' && 'setHTML' in Element.prototype && typeof Sanitizer === 'function') {
       const container = document.createElement('div');
       // @ts-expect-error: experimental API
       container.setHTML(text, {
@@ -100,38 +100,12 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
       });
       return container.innerHTML;
     }
-    return text;
+
+    // Fail closed when the Sanitizer API is unavailable. The escaped string can
+    // safely be assigned to innerHTML while still displaying the original text.
+    return text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
   },
 };
 
-const METHODS = [
-  'init',
-  'getOptions',
-  'refreshOptions',
-  'getSelects',
-  'setSelects',
-  'enable',
-  'disable',
-  'open',
-  'close',
-  'check',
-  'uncheck',
-  'checkAll',
-  'uncheckAll',
-  'checkInvert',
-  'focus',
-  'blur',
-  'refresh',
-  'destroy',
-];
-
-Object.assign(DEFAULTS, English); // load English as default locale
-
-const Constants = {
-  BLOCK_ROWS,
-  CLUSTER_BLOCKS,
-  DEFAULTS,
-  METHODS,
-};
-
-export default Constants;
+/** Return fresh defaults so importing unrelated utilities has no module side effects. */
+export const getDefaultOptions = (): Partial<MultipleSelectOption> => ({ ...DEFAULTS, ...English });

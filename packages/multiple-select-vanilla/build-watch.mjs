@@ -21,7 +21,7 @@ function runBuild(options) {
       bundle: true,
       minify: env === 'production',
       format: 'esm',
-      target: 'es2021',
+      target: 'es2022',
       sourcemap: true,
       logLevel: 'error',
       outfile: 'dist/index.js',
