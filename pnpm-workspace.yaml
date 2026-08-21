@@ -20,5 +20,5 @@ minimumReleaseAgeExclude:
   - '@lerna-lite/*'
 
 overrides:
-  ip-address: ^10.4.0
-  undici: ^7.19.0
+  ip-address: ^10.5.0
+  undici: ^7.29.0
