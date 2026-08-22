@@ -4,6 +4,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.1...v5.2.2) (2026-08-22)
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#509](https://github.com/ghiscoding/multiple-select-vanilla/issues/509)) ([062699a](https://github.com/ghiscoding/multiple-select-vanilla/commit/062699ae8936c937e8084e7283f640945cc951fc)) - by @renovate-bot
+* **deps:** update all non-major dependencies ([#518](https://github.com/ghiscoding/multiple-select-vanilla/issues/518)) ([97919b8](https://github.com/ghiscoding/multiple-select-vanilla/commit/97919b83e4ce3e7ffe68f81974a81d28fe27dc53)) - by @renovate-bot
+* **security:** prevent prototype pollution in DOM helpers ([#523](https://github.com/ghiscoding/multiple-select-vanilla/issues/523)) ([6018296](https://github.com/ghiscoding/multiple-select-vanilla/commit/601829655038d93a6c43832d527adfbe1c23e6ae)) - by @ghiscoding
+
+### Performance Improvements
+
+* reduce ESM bundle and package size ([#524](https://github.com/ghiscoding/multiple-select-vanilla/issues/524)) ([922b9e5](https://github.com/ghiscoding/multiple-select-vanilla/commit/922b9e5c77b911236c247b3fcdf09d9fc0c935b4)) - by @ghiscoding
+
 ## [5.2.1](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.0...v5.2.1) (2026-06-16)
 
 ### Bug Fixes
