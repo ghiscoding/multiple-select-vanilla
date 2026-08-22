@@ -1,4 +1,4 @@
-import Constants from '../constants.js';
+import { BLOCK_ROWS, CLUSTER_BLOCKS } from '../constants.js';
 import type { HtmlStruct, VirtualCache, VirtualScrollOption } from '../models/interfaces.js';
 import { convertItemRowToHtml, createDomElement, emptyElement } from '../utils/domUtils.js';
 
@@ -103,9 +103,9 @@ export class VirtualScroll {
         this.parentEl.style.display = prevParentDisplay;
       }
     }
-    this.blockHeight = this.itemHeight * Constants.BLOCK_ROWS;
-    this.clusterRows = Constants.BLOCK_ROWS * Constants.CLUSTER_BLOCKS;
-    this.clusterHeight = this.blockHeight * Constants.CLUSTER_BLOCKS;
+    this.blockHeight = this.itemHeight * BLOCK_ROWS;
+    this.clusterRows = BLOCK_ROWS * CLUSTER_BLOCKS;
+    this.clusterHeight = this.blockHeight * CLUSTER_BLOCKS;
   }
 
   protected getNum() {
@@ -115,7 +115,7 @@ export class VirtualScroll {
   }
 
   protected initData(rows: HtmlStruct[], num: number) {
-    if (rows.length < Constants.BLOCK_ROWS) {
+    if (rows.length < BLOCK_ROWS) {
       return {
         topOffset: 0,
         bottomOffset: 0,
@@ -123,7 +123,7 @@ export class VirtualScroll {
         rows,
       };
     }
-    const start = Math.max((this.clusterRows! - Constants.BLOCK_ROWS) * num, 0);
+    const start = Math.max((this.clusterRows! - BLOCK_ROWS) * num, 0);
     const end = start + this.clusterRows!;
     const topOffset = Math.max(start * this.itemHeight!, 0);
     const bottomOffset = Math.max((rows.length - end) * this.itemHeight!, 0);

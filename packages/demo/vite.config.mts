@@ -11,11 +11,7 @@ export default defineConfig({
   },
   server: {
     port: 4000,
-    cors: true,
     open: true,
     host: 'localhost',
-  },
-  optimizeDeps: {
-    exclude: ['multiple-select-vanilla'],
   },
 });

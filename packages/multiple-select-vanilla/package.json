@@ -21,10 +21,19 @@
   "homepage": "https://github.com/ghiscoding/multiple-select-vanilla",
   "license": "MIT",
   "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
   "main": "./dist/index.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./dist/locales/*": "./dist/locales/*",
@@ -54,7 +63,7 @@
     "dev:init": "pnpm sass:build && pnpm sass:copy && pnpm build:all && pnpm build:types:prod",
     "build:all": "node build-prod.mjs",
     "build:watch": "cross-env NODE_ENV=development node build-watch.mjs",
-    "build:esm": "esbuild src/index.ts --bundle --minify --format=esm --target=es2021 --sourcemap --outfile=dist/index.js",
+    "build:esm": "esbuild src/index.ts --bundle --minify --format=esm --target=es2022 --sourcemap --sources-content=false --outfile=dist/index.js",
     "build:types": "tsc --emitDeclarationOnly --incremental --declarationMap false --outDir dist",
     "build:types:prod": "tsc --emitDeclarationOnly --incremental --declarationMap --outDir dist",
     "sass:build": "sass src/styles:dist/styles/css --style=compressed --quiet-deps --no-source-map && pnpm sass:build:closing",

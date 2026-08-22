@@ -83,17 +83,13 @@ export function createDomElement<T extends keyof HTMLElementTagNameMap, K extend
  * @param item
  * @param appendToElm
  */
-export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, parentElm?: HTMLElement): HTMLElement {
+export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, _parentElm?: HTMLElement): HTMLElement {
   // to be CSP safe, we'll omit `innerHTML` and assign it manually afterward
   const itemPropsOmitHtml = item.props?.innerHTML ? omitProp(item.props, 'innerHTML') : item.props;
 
   const elm = createDomElement(item.tagName, objectRemoveEmptyProps(itemPropsOmitHtml, ['className', 'title', 'style']), appendToElm);
-  let parent: HTMLElement | null | undefined = parentElm;
-  if (!parent) {
-    parent = elm;
-  }
 
-  if (item.props.innerHTML) {
+  if (item.props?.innerHTML) {
     elm.innerHTML = item.props.innerHTML; // at this point, string type should already be as TrustedHTML
   }
 
@@ -107,11 +103,10 @@ export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, 
   // use recursion when finding item children
   if (item.children) {
     for (const childItem of item.children) {
-      createDomStructure(childItem, elm, parent);
+      createDomStructure(childItem, elm);
     }
   }
 
-  appendToElm?.appendChild(elm);
   return elm;
 }
 
@@ -172,7 +167,9 @@ export function getSize(elm: HTMLElement | undefined, mode: 'inner' | 'outer' | 
         size = elm[`client${pascalType}`];
         break;
     }
-    size = elm.getBoundingClientRect()[type];
+    if (!size || Number.isNaN(size)) {
+      size = elm.getBoundingClientRect()[type];
+    }
   }
 
   if (!size || Number.isNaN(size)) {

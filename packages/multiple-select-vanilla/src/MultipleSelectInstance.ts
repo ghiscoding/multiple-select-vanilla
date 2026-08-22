@@ -1,7 +1,7 @@
 /**
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
-import Constants from './constants.js';
+import { BLOCK_ROWS, CLUSTER_BLOCKS, getDefaultOptions } from './constants.js';
 import type { CollectionData, HtmlStruct, OptGroupRowData, OptionDataObject, OptionRowData } from './models/interfaces.js';
 import type { MultipleSelectLocale, MultipleSelectLocales } from './models/locale.interface.js';
 import type { ClickedGroup, ClickedOption, CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface.js';
@@ -79,7 +79,7 @@ export class MultipleSelectInstance {
     protected elm: HTMLInputElement | HTMLSelectElement | HTMLSpanElement,
     options?: Partial<Omit<MultipleSelectOption, 'onHardDestroy' | 'onAfterHardDestroy'>>,
   ) {
-    this.options = { ...Constants.DEFAULTS, ...this.elm.dataset, ...options } as MultipleSelectOption;
+    this.options = { ...getDefaultOptions(), ...this.elm.dataset, ...options } as MultipleSelectOption;
     this._bindEventService = new BindingEventService({ distinctEvent: true });
   }
 
@@ -493,7 +493,7 @@ export class MultipleSelectInstance {
       offset = -1;
     }
 
-    if (this.options.virtualScroll && rows.length > Constants.BLOCK_ROWS * Constants.CLUSTER_BLOCKS) {
+    if (this.options.virtualScroll && rows.length > BLOCK_ROWS * CLUSTER_BLOCKS) {
       const dropVisible = this.dropElm && this.dropElm?.style.display !== 'none';
       if (!dropVisible && this.dropElm) {
         this.dropElm.style.left = '-10000';
@@ -1987,8 +1987,7 @@ export class MultipleSelectInstance {
     if (this.dropElm && this.parentElm) {
       const { bottom: spaceBottom, top: spaceTop } = calculateAvailableSpace(this.dropElm);
       const { top: selectOffsetTop, left: selectOffsetLeft } = getOffset(this.parentElm) as HtmlElementPosition;
-      const msDropHeight = this.dropElm.getBoundingClientRect().height;
-      const msDropWidth = this.dropElm.getBoundingClientRect().width;
+      const { height: msDropHeight, width: msDropWidth } = this.dropElm.getBoundingClientRect();
       const windowWidth = document.body.offsetWidth || window.innerWidth;
       const selectParentWidth = this.parentElm.getBoundingClientRect().width;
 
@@ -2006,7 +2005,7 @@ export class MultipleSelectInstance {
 
           if (newOffsetTop > 0 || forceToggle) {
             position = 'top';
-            this.dropElm.style.top = `${newOffsetTop < 0 ? 0 : newOffsetTop}px`;
+            this.dropElm.style.top = `${newOffsetTop}px`;
           }
         } else {
           // without container, we simply need to add the "top" class to the drop
