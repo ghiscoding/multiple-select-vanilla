@@ -270,7 +270,7 @@ export class MultipleSelectInstance {
 
     if (!this.options.keepOpen) {
       this._bindEventService.unbindAll('body-click');
-      this.bindEvent(
+      this.#bindEvent(
         document.body,
         'click',
         (e: MouseEvent & { target: HTMLElement }) => {
@@ -385,13 +385,13 @@ export class MultipleSelectInstance {
     return null;
   }
 
-  protected isOptGroup(row: OptionRowData | OptGroupRowData): row is OptGroupRowData {
+  #isOptGroup(row: OptionRowData | OptGroupRowData): row is OptGroupRowData {
     return row.type === 'optgroup';
   }
 
-  protected *getOptionRows(): Generator<OptionRowData> {
+  *#getOptionRows(): Generator<OptionRowData> {
     for (const row of this.data || []) {
-      if (this.isOptGroup(row)) {
+      if (this.#isOptGroup(row)) {
         for (const child of row.children) {
           if (child) {
             yield child;
@@ -426,7 +426,7 @@ export class MultipleSelectInstance {
 
     let length = 0;
     for (const option of this.data || []) {
-      if (this.isOptGroup(option)) {
+      if (this.#isOptGroup(option)) {
         length += option.children.length;
       } else {
         length += 1;
@@ -588,7 +588,7 @@ export class MultipleSelectInstance {
     }
   }
 
-  protected bindEvent<H extends HTMLElement, E extends Event>(
+  #bindEvent<H extends HTMLElement, E extends Event>(
     elementOrElements: H | NodeListOf<H>,
     eventName: keyof HTMLElementEventMap,
     listener: (event: E) => void,
@@ -618,7 +618,7 @@ export class MultipleSelectInstance {
     return rows;
   }
 
-  protected createIconContainer(
+  #createIconContainer(
     inputBlock: HtmlStruct,
     type: 'checkbox' | 'radio',
     uncheckedIcon: 'partial-group' | 'uncheck' = 'uncheck',
@@ -659,7 +659,7 @@ export class MultipleSelectInstance {
       classes += 'selected ';
     }
 
-    if (this.isOptGroup(dataRow)) {
+    if (this.#isOptGroup(dataRow)) {
       // - group option row -
       const htmlBlocks: HtmlStruct[] = [];
 
@@ -678,7 +678,7 @@ export class MultipleSelectInstance {
         };
 
         const uncheckedIcon = dataRow.children.some(child => child?.selected) ? 'partial-group' : 'uncheck';
-        itemOrGroupBlock = this.createIconContainer(inputCheckboxStruct, type, uncheckedIcon);
+        itemOrGroupBlock = this.#createIconContainer(inputCheckboxStruct, type, uncheckedIcon);
       }
 
       if (!classes.includes('hide-radio') && (this.options.hideOptgroupCheckboxes || this.options.single)) {
@@ -748,7 +748,7 @@ export class MultipleSelectInstance {
       inputBlock.attrs = { checked: 'checked' };
     }
 
-    const iconContainerBlock = this.createIconContainer(inputBlock, type);
+    const iconContainerBlock = this.#createIconContainer(inputBlock, type);
 
     const liBlock: HtmlStruct = {
       tagName: 'li',
@@ -899,7 +899,7 @@ export class MultipleSelectInstance {
       this._bindEventService.bind(this.closeElm, 'click', ((e: MouseEvent) => {
         e.preventDefault();
         this._checkAll(false, true);
-        this.syncSelection();
+        this.#syncSelection();
         this.options.onClear();
       }) as EventListener);
     }
@@ -920,7 +920,7 @@ export class MultipleSelectInstance {
     }
 
     if (this.searchInputElm) {
-      this.bindEvent(
+      this.#bindEvent(
         this.searchInputElm,
         'keydown',
         (e: KeyboardEvent) => {
@@ -932,7 +932,7 @@ export class MultipleSelectInstance {
         'search-input',
       );
 
-      this.bindEvent(
+      this.#bindEvent(
         this.searchInputElm,
         'keyup',
         (e: KeyboardEvent) => {
@@ -963,7 +963,7 @@ export class MultipleSelectInstance {
     }
 
     if (this.selectAllElm) {
-      this.bindEvent(
+      this.#bindEvent(
         this.selectAllElm,
         'click',
         (e: MouseEvent & { currentTarget: HTMLInputElement }) => this._checkAll(e.currentTarget?.checked),
@@ -972,7 +972,7 @@ export class MultipleSelectInstance {
     }
 
     if (this.okButtonElm) {
-      this.bindEvent(
+      this.#bindEvent(
         this.okButtonElm,
         'click',
         (e: MouseEvent & { target: HTMLElement }) => {
@@ -984,7 +984,7 @@ export class MultipleSelectInstance {
     }
 
     if (this.selectGroupElms) {
-      this.bindEvent(
+      this.#bindEvent(
         this.selectGroupElms,
         'click',
         (e: MouseEvent & { currentTarget: HTMLInputElement }) => {
@@ -1022,7 +1022,7 @@ export class MultipleSelectInstance {
     }
 
     if (this.selectCheckboxElms) {
-      this.bindEvent(
+      this.#bindEvent(
         this.selectCheckboxElms,
         'click',
         (e: MouseEvent & { currentTarget: HTMLInputElement }) => {
@@ -1070,7 +1070,7 @@ export class MultipleSelectInstance {
 
     if (this.options.navigationHighlight && this.dropElm) {
       // when hovering an select option, we will also change the highlight to that option
-      this.bindEvent(
+      this.#bindEvent(
         this.dropElm,
         'mouseover',
         (e: MouseEvent & { target: HTMLDivElement | HTMLLIElement }) => {
@@ -1093,7 +1093,7 @@ export class MultipleSelectInstance {
       // add keydown event listeners to watch for up/down arrows and focus on previous/next item
       // we will ignore divider and if key pressed is the Enter/Space key then we'll instead select/deselect input checkbox
       // we will also remove any previous bindings that might exist which happen when we use VirtualScroll
-      this.bindEvent(
+      this.#bindEvent(
         this.dropElm,
         'keydown',
         (e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
@@ -1158,7 +1158,7 @@ export class MultipleSelectInstance {
     }
 
     if (this.ulElm && this.options.infiniteScroll) {
-      this.bindEvent(
+      this.#bindEvent(
         this.ulElm,
         'scroll',
         (e: MouseEvent & { target: HTMLElement }) => this.infiniteScrollHandler(e),
@@ -1641,7 +1641,7 @@ export class MultipleSelectInstance {
     }
   }
 
-  protected syncSelection(ignoreTrigger = false) {
+  #syncSelection(ignoreTrigger = false) {
     this.initSelected(ignoreTrigger);
     this.updateSelected();
     this.update(ignoreTrigger);
@@ -1719,7 +1719,7 @@ export class MultipleSelectInstance {
 
   setSelects(values: any[], type = 'value', ignoreTrigger = false) {
     let hasChanged = false;
-    for (const row of this.getOptionRows()) {
+    for (const row of this.#getOptionRows()) {
       let selected = false;
       if (type === 'text') {
         const divElm = document.createElement('div');
@@ -1739,7 +1739,7 @@ export class MultipleSelectInstance {
     }
 
     if (hasChanged) {
-      this.syncSelection(ignoreTrigger);
+      this.#syncSelection(ignoreTrigger);
     }
   }
 
@@ -1778,7 +1778,7 @@ export class MultipleSelectInstance {
       this._checkAll(false, true);
     }
     option.selected = checked;
-    this.syncSelection();
+    this.#syncSelection();
   }
 
   checkAll() {
@@ -1814,7 +1814,7 @@ export class MultipleSelectInstance {
     }
 
     if (!ignoreUpdate) {
-      this.syncSelection();
+      this.#syncSelection();
     }
   }
 
@@ -1827,7 +1827,7 @@ export class MultipleSelectInstance {
     });
 
     if (!ignoreUpdate) {
-      this.syncSelection();
+      this.#syncSelection();
     }
   }
 
@@ -1835,12 +1835,12 @@ export class MultipleSelectInstance {
     if (this.options.single) {
       return;
     }
-    for (const row of this.getOptionRows()) {
+    for (const row of this.#getOptionRows()) {
       if (!row.divider) {
         row.selected = !row.selected;
       }
     }
-    this.syncSelection();
+    this.#syncSelection();
   }
 
   focus() {
@@ -1858,7 +1858,7 @@ export class MultipleSelectInstance {
     this.init();
   }
 
-  protected matchesOptionFilter(row: OptionRowData, search: string, originalSearch: string, parent?: OptGroupRowData) {
+  #matchesOptionFilter(row: OptionRowData, search: string, originalSearch: string, parent?: OptGroupRowData) {
     const originalText = `${row?.text ?? ''}`;
     return this.options.customFilter({
       text: removeDiacritics(originalText.toString().toLowerCase(), this.options.diacriticParser),
@@ -1880,7 +1880,7 @@ export class MultipleSelectInstance {
     this.filterText = search;
 
     for (const row of this.data || []) {
-      if (this.isOptGroup(row)) {
+      if (this.#isOptGroup(row)) {
         if (this.options.filterGroup) {
           const rowLabel = `${row.label ?? ''}`;
           const visible = this.options.customFilter({
@@ -1900,13 +1900,13 @@ export class MultipleSelectInstance {
         } else {
           for (const child of row.children) {
             if (child !== undefined && child !== null) {
-              child.visible = this.matchesOptionFilter(child, search, originalSearch, row);
+              child.visible = this.#matchesOptionFilter(child, search, originalSearch, row);
             }
           }
           row.visible = row.children.some(child => child?.visible);
         }
       } else {
-        row.visible = this.matchesOptionFilter(row, search, originalSearch);
+        row.visible = this.#matchesOptionFilter(row, search, originalSearch);
       }
     }
 
