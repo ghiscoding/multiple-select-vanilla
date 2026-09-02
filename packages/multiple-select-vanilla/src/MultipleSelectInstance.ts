@@ -270,10 +270,10 @@ export class MultipleSelectInstance {
 
     if (!this.options.keepOpen) {
       this._bindEventService.unbindAll('body-click');
-      this._bindEventService.bind(
+      this.bindEvent(
         document.body,
         'click',
-        ((e: MouseEvent & { target: HTMLElement }) => {
+        (e: MouseEvent & { target: HTMLElement }) => {
           if (this.getEventTarget(e) === this.choiceElm || findParent(this.getEventTarget(e), '.ms-choice') === this.choiceElm) {
             return;
           }
@@ -283,8 +283,7 @@ export class MultipleSelectInstance {
           if (this._isOpen && (eventTarget === this.dropElm || (fpDropElm !== this.dropElm && eventTarget !== this.elm))) {
             this.close('body.click');
           }
-        }) as EventListener,
-        undefined,
+        },
         'body-click',
       );
     }
@@ -386,6 +385,24 @@ export class MultipleSelectInstance {
     return null;
   }
 
+  protected isOptGroup(row: OptionRowData | OptGroupRowData): row is OptGroupRowData {
+    return row.type === 'optgroup';
+  }
+
+  protected *getOptionRows(): Generator<OptionRowData> {
+    for (const row of this.data || []) {
+      if (this.isOptGroup(row)) {
+        for (const child of row.children) {
+          if (child) {
+            yield child;
+          }
+        }
+      } else {
+        yield row;
+      }
+    }
+  }
+
   protected initDrop() {
     this.initList(!this.options.lazyData);
     this.update(true);
@@ -409,8 +426,8 @@ export class MultipleSelectInstance {
 
     let length = 0;
     for (const option of this.data || []) {
-      if ((option as OptGroupRowData).type === 'optgroup') {
-        length += (option as OptGroupRowData).children.length;
+      if (this.isOptGroup(option)) {
+        length += option.children.length;
       } else {
         length += 1;
       }
@@ -571,6 +588,15 @@ export class MultipleSelectInstance {
     }
   }
 
+  protected bindEvent<H extends HTMLElement, E extends Event>(
+    elementOrElements: H | NodeListOf<H>,
+    eventName: keyof HTMLElementEventMap,
+    listener: (event: E) => void,
+    groupName: string,
+  ) {
+    this._bindEventService.bind(elementOrElements, eventName, listener as EventListener, undefined, groupName);
+  }
+
   protected getListRows(): HtmlStruct[] {
     const rows: HtmlStruct[] = [];
     this.updateData = [];
@@ -590,6 +616,25 @@ export class MultipleSelectInstance {
     rows.push({ tagName: 'li', props: { className: 'ms-no-results', textContent: this.formatNoMatchesFound() } });
 
     return rows;
+  }
+
+  protected createIconContainer(
+    inputBlock: HtmlStruct,
+    type: 'checkbox' | 'radio',
+    uncheckedIcon: 'partial-group' | 'uncheck' = 'uncheck',
+  ): HtmlStruct {
+    const checkedIcon = type === 'radio' ? 'radio' : 'check';
+    return {
+      tagName: 'div',
+      props: { className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}` },
+      children: [
+        inputBlock,
+        {
+          tagName: 'div',
+          props: { className: `ms-icon ms-icon-${inputBlock.props.checked ? checkedIcon : uncheckedIcon}` },
+        },
+      ],
+    };
   }
 
   protected initListItem(dataRow: OptionRowData | OptGroupRowData, level = 0): HtmlStruct[] {
@@ -614,7 +659,7 @@ export class MultipleSelectInstance {
       classes += 'selected ';
     }
 
-    if (dataRow.type === 'optgroup') {
+    if (this.isOptGroup(dataRow)) {
       // - group option row -
       const htmlBlocks: HtmlStruct[] = [];
 
@@ -632,33 +677,8 @@ export class MultipleSelectInstance {
           },
         };
 
-        // when creating a block that has multiple selections, we'll add the icon checkbox container
-        // otherwise it will be just the input checkbox
-        if (isSingleWithoutRadioIcon) {
-          itemOrGroupBlock = inputCheckboxStruct;
-        } else {
-          // determine if it's an optgroup and the group has a partial selection
-          let hasPartialGroupSelected = false;
-          if ('children' in dataRow && (dataRow as OptGroupRowData).children.some(child => child?.selected)) {
-            hasPartialGroupSelected = true;
-          }
-
-          itemOrGroupBlock = {
-            tagName: 'div',
-            props: {
-              className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}`,
-            },
-            children: [
-              inputCheckboxStruct,
-              {
-                tagName: 'div',
-                props: {
-                  className: `ms-icon ${isChecked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : `ms-icon-${hasPartialGroupSelected ? 'partial-group' : 'uncheck'}`}`,
-                },
-              },
-            ],
-          };
-        }
+        const uncheckedIcon = dataRow.children.some(child => child?.selected) ? 'partial-group' : 'uncheck';
+        itemOrGroupBlock = this.createIconContainer(inputCheckboxStruct, type, uncheckedIcon);
       }
 
       if (!classes.includes('hide-radio') && (this.options.hideOptgroupCheckboxes || this.options.single)) {
@@ -666,7 +686,7 @@ export class MultipleSelectInstance {
       }
 
       const spanLabelBlock: HtmlStruct = { tagName: 'span', props: {} };
-      this.applyAsTextOrHtmlWhenEnabled(spanLabelBlock.props, (dataRow as OptGroupRowData).label);
+      this.applyAsTextOrHtmlWhenEnabled(spanLabelBlock.props, dataRow.label);
       const liBlock: HtmlStruct = {
         tagName: 'li',
         props: {
@@ -690,7 +710,7 @@ export class MultipleSelectInstance {
       }
       htmlBlocks.push(liBlock);
 
-      (dataRow as OptGroupRowData).children.forEach(child => htmlBlocks.push(...this.initListItem(child, 1)));
+      dataRow.children.forEach(child => htmlBlocks.push(...this.initListItem(child, 1)));
 
       return htmlBlocks;
     }
@@ -712,7 +732,7 @@ export class MultipleSelectInstance {
     }
     const labelClasses = `${dataRow.disabled ? 'disabled' : ''}`;
     const spanLabelBlock: HtmlStruct = { tagName: 'span', props: {} };
-    this.applyAsTextOrHtmlWhenEnabled(spanLabelBlock.props, (dataRow as OptionRowData).text);
+    this.applyAsTextOrHtmlWhenEnabled(spanLabelBlock.props, dataRow.text);
     const inputBlock: HtmlStruct = {
       tagName: 'input',
       props: {
@@ -728,21 +748,7 @@ export class MultipleSelectInstance {
       inputBlock.attrs = { checked: 'checked' };
     }
 
-    const iconContainerBlock: HtmlStruct = {
-      tagName: 'div',
-      props: {
-        className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}`,
-      },
-      children: [
-        inputBlock,
-        {
-          tagName: 'div',
-          props: {
-            className: `ms-icon ${inputBlock.props.checked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : 'ms-icon-uncheck'}`,
-          },
-        },
-      ],
-    };
+    const iconContainerBlock = this.createIconContainer(inputBlock, type);
 
     const liBlock: HtmlStruct = {
       tagName: 'li',
@@ -893,9 +899,7 @@ export class MultipleSelectInstance {
       this._bindEventService.bind(this.closeElm, 'click', ((e: MouseEvent) => {
         e.preventDefault();
         this._checkAll(false, true);
-        this.initSelected(false);
-        this.updateSelected();
-        this.update();
+        this.syncSelection();
         this.options.onClear();
       }) as EventListener);
     }
@@ -916,23 +920,22 @@ export class MultipleSelectInstance {
     }
 
     if (this.searchInputElm) {
-      this._bindEventService.bind(
+      this.bindEvent(
         this.searchInputElm,
         'keydown',
-        ((e: KeyboardEvent) => {
+        (e: KeyboardEvent) => {
           // Ensure shift-tab causes lost focus from filter as with clicking away
           if (e.code === 'Tab' && e.shiftKey) {
             this.close('key.shift+tab');
           }
-        }) as EventListener,
-        undefined,
+        },
         'search-input',
       );
 
-      this._bindEventService.bind(
+      this.bindEvent(
         this.searchInputElm,
         'keyup',
-        ((e: KeyboardEvent) => {
+        (e: KeyboardEvent) => {
           // enter or space
           // Avoid selecting/deselecting if no choices made
           if (this.options.filterAcceptOnEnter && ['Enter', 'Space'].includes(e.code) && this.searchInputElm?.value) {
@@ -954,40 +957,37 @@ export class MultipleSelectInstance {
             return;
           }
           this.filter();
-        }) as EventListener,
-        undefined,
+        },
         'search-input',
       );
     }
 
     if (this.selectAllElm) {
-      this._bindEventService.bind(
+      this.bindEvent(
         this.selectAllElm,
         'click',
-        ((e: MouseEvent & { currentTarget: HTMLInputElement }) => this._checkAll(e.currentTarget?.checked)) as EventListener,
-        undefined,
+        (e: MouseEvent & { currentTarget: HTMLInputElement }) => this._checkAll(e.currentTarget?.checked),
         'select-all-checkbox',
       );
     }
 
     if (this.okButtonElm) {
-      this._bindEventService.bind(
+      this.bindEvent(
         this.okButtonElm,
         'click',
-        ((e: MouseEvent & { target: HTMLElement }) => {
+        (e: MouseEvent & { target: HTMLElement }) => {
           toggleOpen(e);
           e.stopPropagation(); // Causes lost focus otherwise
-        }) as EventListener,
-        undefined,
+        },
         'ok-button',
       );
     }
 
     if (this.selectGroupElms) {
-      this._bindEventService.bind(
+      this.bindEvent(
         this.selectGroupElms,
         'click',
-        ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
+        (e: MouseEvent & { currentTarget: HTMLInputElement }) => {
           const selectElm = e.currentTarget;
           const checked = selectElm.checked;
           const group = findByParam(this.data, '_key', selectElm.dataset.key);
@@ -1016,17 +1016,16 @@ export class MultipleSelectInstance {
             selected: !!group.selected,
             type: group.type as 'optgroup',
           });
-        }) as EventListener,
-        undefined,
+        },
         'group-checkbox-list',
       );
     }
 
     if (this.selectCheckboxElms) {
-      this._bindEventService.bind(
+      this.bindEvent(
         this.selectCheckboxElms,
         'click',
-        ((e: MouseEvent & { currentTarget: HTMLInputElement }) => {
+        (e: MouseEvent & { currentTarget: HTMLInputElement }) => {
           const selectElm = e.currentTarget;
           const checked = selectElm.checked;
           const option = findByParam(this.data, '_key', selectElm.dataset.key);
@@ -1058,8 +1057,7 @@ export class MultipleSelectInstance {
           });
 
           close();
-        }) as EventListener,
-        undefined,
+        },
         'input-checkbox-list',
       );
     }
@@ -1072,10 +1070,10 @@ export class MultipleSelectInstance {
 
     if (this.options.navigationHighlight && this.dropElm) {
       // when hovering an select option, we will also change the highlight to that option
-      this._bindEventService.bind(
+      this.bindEvent(
         this.dropElm,
         'mouseover',
-        ((e: MouseEvent & { target: HTMLDivElement | HTMLLIElement }) => {
+        (e: MouseEvent & { target: HTMLDivElement | HTMLLIElement }) => {
           const liElm = (this.getEventTarget(e).closest('.ms-select-all') || this.getEventTarget(e).closest('li')) as HTMLLIElement;
 
           if (this.dropElm?.contains(liElm) && this.lastMouseOverPosition !== `${e.clientX}:${e.clientY}`) {
@@ -1088,18 +1086,17 @@ export class MultipleSelectInstance {
             }
           }
           this.lastMouseOverPosition = `${e.clientX}:${e.clientY}`;
-        }) as EventListener,
-        undefined,
+        },
         'hover-highlight',
       );
 
       // add keydown event listeners to watch for up/down arrows and focus on previous/next item
       // we will ignore divider and if key pressed is the Enter/Space key then we'll instead select/deselect input checkbox
       // we will also remove any previous bindings that might exist which happen when we use VirtualScroll
-      this._bindEventService.bind(
+      this.bindEvent(
         this.dropElm,
         'keydown',
-        ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
+        (e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
           switch (e.key) {
             case 'ArrowUp':
               e.preventDefault();
@@ -1155,18 +1152,16 @@ export class MultipleSelectInstance {
               break;
             }
           }
-        }) as EventListener,
-        undefined,
+        },
         'arrow-highlight',
       );
     }
 
     if (this.ulElm && this.options.infiniteScroll) {
-      this._bindEventService.bind(
+      this.bindEvent(
         this.ulElm,
         'scroll',
-        this.infiniteScrollHandler.bind(this) as EventListener,
-        undefined,
+        (e: MouseEvent & { target: HTMLElement }) => this.infiniteScrollHandler(e),
         'option-list-scroll',
       );
     }
@@ -1646,6 +1641,12 @@ export class MultipleSelectInstance {
     }
   }
 
+  protected syncSelection(ignoreTrigger = false) {
+    this.initSelected(ignoreTrigger);
+    this.updateSelected();
+    this.update(ignoreTrigger);
+  }
+
   getData() {
     return this.options.data;
   }
@@ -1718,41 +1719,27 @@ export class MultipleSelectInstance {
 
   setSelects(values: any[], type = 'value', ignoreTrigger = false) {
     let hasChanged = false;
-    const _setSelects = (rows: Array<OptionRowData | OptGroupRowData>) => {
-      for (const row of rows) {
-        let selected = false;
-        if (type === 'text') {
-          const divElm = document.createElement('div');
-          this.applyAsTextOrHtmlWhenEnabled(divElm, (row as OptionRowData).text);
-          selected = values.includes(divElm.textContent?.trim() ?? '');
-        } else if (row) {
-          selected = values.includes(row._value || row.value);
-          if (!selected && row.value === `${+(row as OptionRowData).value}`) {
-            selected = values.includes(+row.value);
-          }
-        }
-
-        if (row) {
-          if (row.selected !== selected) {
-            hasChanged = true;
-          }
-          row.selected = selected;
-        }
-      }
-    };
-
-    for (const row of this.data || []) {
-      if ((row as OptGroupRowData).type === 'optgroup') {
-        _setSelects((row as OptGroupRowData).children);
+    for (const row of this.getOptionRows()) {
+      let selected = false;
+      if (type === 'text') {
+        const divElm = document.createElement('div');
+        this.applyAsTextOrHtmlWhenEnabled(divElm, row.text);
+        selected = values.includes(divElm.textContent?.trim() ?? '');
       } else {
-        _setSelects([row]);
+        selected = values.includes(row._value || row.value);
+        if (!selected && row.value === `${+row.value}`) {
+          selected = values.includes(+row.value);
+        }
       }
+
+      if (row.selected !== selected) {
+        hasChanged = true;
+      }
+      row.selected = selected;
     }
 
     if (hasChanged) {
-      this.initSelected(ignoreTrigger);
-      this.updateSelected();
-      this.update(ignoreTrigger);
+      this.syncSelection(ignoreTrigger);
     }
   }
 
@@ -1791,9 +1778,7 @@ export class MultipleSelectInstance {
       this._checkAll(false, true);
     }
     option.selected = checked;
-    this.initSelected();
-    this.updateSelected();
-    this.update();
+    this.syncSelection();
   }
 
   checkAll() {
@@ -1829,9 +1814,7 @@ export class MultipleSelectInstance {
     }
 
     if (!ignoreUpdate) {
-      this.initSelected();
-      this.updateSelected();
-      this.update();
+      this.syncSelection();
     }
   }
 
@@ -1844,9 +1827,7 @@ export class MultipleSelectInstance {
     });
 
     if (!ignoreUpdate) {
-      this.initSelected();
-      this.updateSelected();
-      this.update();
+      this.syncSelection();
     }
   }
 
@@ -1854,22 +1835,12 @@ export class MultipleSelectInstance {
     if (this.options.single) {
       return;
     }
-    for (const row of this.data || []) {
-      if ((row as OptGroupRowData).type === 'optgroup') {
-        for (const child of (row as OptGroupRowData).children) {
-          if (child) {
-            if (!child.divider) {
-              child.selected = !child.selected;
-            }
-          }
-        }
-      } else if (row && !row.divider) {
+    for (const row of this.getOptionRows()) {
+      if (!row.divider) {
         row.selected = !row.selected;
       }
     }
-    this.initSelected();
-    this.updateSelected();
-    this.update();
+    this.syncSelection();
   }
 
   focus() {
@@ -1887,6 +1858,18 @@ export class MultipleSelectInstance {
     this.init();
   }
 
+  protected matchesOptionFilter(row: OptionRowData, search: string, originalSearch: string, parent?: OptGroupRowData) {
+    const originalText = `${row?.text ?? ''}`;
+    return this.options.customFilter({
+      text: removeDiacritics(originalText.toString().toLowerCase(), this.options.diacriticParser),
+      search: removeDiacritics(search, this.options.diacriticParser),
+      originalText,
+      originalSearch,
+      row,
+      ...(parent ? { parent } : {}),
+    });
+  }
+
   protected filter(ignoreTrigger?: boolean) {
     const originalSearch = this.searchInputElm?.value.trim() ?? '';
     const search = originalSearch.toLowerCase();
@@ -1897,50 +1880,33 @@ export class MultipleSelectInstance {
     this.filterText = search;
 
     for (const row of this.data || []) {
-      if ((row as OptGroupRowData).type === 'optgroup') {
+      if (this.isOptGroup(row)) {
         if (this.options.filterGroup) {
-          const rowLabel = `${(row as OptGroupRowData)?.label ?? ''}`;
-          if (row !== undefined && row !== null) {
-            const visible = this.options.customFilter({
-              label: removeDiacritics(rowLabel.toString().toLowerCase(), this.options.diacriticParser),
-              search: removeDiacritics(search, this.options.diacriticParser),
-              originalLabel: rowLabel,
-              originalSearch,
-              row,
-            });
+          const rowLabel = `${row.label ?? ''}`;
+          const visible = this.options.customFilter({
+            label: removeDiacritics(rowLabel.toString().toLowerCase(), this.options.diacriticParser),
+            search: removeDiacritics(search, this.options.diacriticParser),
+            originalLabel: rowLabel,
+            originalSearch,
+            row,
+          });
 
-            row.visible = visible;
-            for (const child of (row as OptGroupRowData).children) {
-              if (child) {
-                child.visible = visible;
-              }
+          row.visible = visible;
+          for (const child of row.children) {
+            if (child) {
+              child.visible = visible;
             }
           }
         } else {
-          for (const child of (row as OptGroupRowData).children) {
+          for (const child of row.children) {
             if (child !== undefined && child !== null) {
-              const childText = `${(child as OptionRowData)?.text ?? ''}`;
-              child.visible = this.options.customFilter({
-                text: removeDiacritics(childText.toString().toLowerCase(), this.options.diacriticParser),
-                search: removeDiacritics(search, this.options.diacriticParser),
-                originalText: childText,
-                originalSearch,
-                row: child,
-                parent: row,
-              });
+              child.visible = this.matchesOptionFilter(child, search, originalSearch, row);
             }
           }
-          row.visible = (row as OptGroupRowData).children.some((child: any) => child?.visible);
+          row.visible = row.children.some(child => child?.visible);
         }
       } else {
-        const rowText = `${(row as OptionRowData)?.text ?? ''}`;
-        row.visible = this.options.customFilter({
-          text: removeDiacritics(rowText.toString().toLowerCase(), this.options.diacriticParser),
-          search: removeDiacritics(search, this.options.diacriticParser),
-          originalText: rowText,
-          originalSearch,
-          row,
-        });
+        row.visible = this.matchesOptionFilter(row, search, originalSearch);
       }
     }
 
