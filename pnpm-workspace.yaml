@@ -18,7 +18,9 @@ minimumReleaseAge: 2880 # 2 days in minutes
 minimumReleaseAgeExclude:
   # exclude packages that I personally maintain and are safe to use on the same day
   - '@lerna-lite/*'
+  # Renovate security update: ip-address@10.5.1
+  - ip-address@10.5.1
 
 overrides:
-  ip-address: ^10.5.0
+  ip-address: ^10.5.1
   undici: ^7.29.0
