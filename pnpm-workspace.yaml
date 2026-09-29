@@ -20,7 +20,9 @@ minimumReleaseAgeExclude:
   - '@lerna-lite/*'
   # Renovate security update: ip-address@10.5.1
   - ip-address@10.5.1
+  # Renovate security update: undici@7.30.0
+  - undici@7.30.0
 
 overrides:
   ip-address: ^10.5.1
-  undici: ^7.29.0
+  undici: ^7.30.0
