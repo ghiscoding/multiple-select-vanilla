@@ -24,8 +24,6 @@ minimumReleaseAgeExclude:
   - undici@7.30.0
 
 overrides:
-  baseline-browser-mapping: ^2.11.26
-  browserslist: ^4.29.1
   ip-address: ^10.7.2
   svgo: ^4.1.0
   undici: ^7.30.0
