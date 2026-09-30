@@ -9,7 +9,7 @@ The repository uses ESM, TypeScript, SCSS, Biome, esbuild, Vite, and Playwright.
 ## Requirements and setup
 
 - Node: `^22.17.0 || >=24.0.0`; use Node 24 when matching CI.
-- pnpm: `11.x` (`packageManager` currently pins `pnpm@11.17.0`)
+- pnpm: `11.x` (`packageManager`)
 - Install dependencies with `pnpm install`.
 - Install the Playwright Chromium binary with `pnpm playwright:install` when needed.
 
