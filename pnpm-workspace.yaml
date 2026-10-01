@@ -22,4 +22,4 @@ minimumReleaseAgeExclude:
 overrides:
   ip-address: ^10.7.2
   svgo: ^4.1.0
-  undici: ^7.30.0
+  undici: ^8.11.2
