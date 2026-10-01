@@ -22,6 +22,8 @@ minimumReleaseAgeExclude:
   - ip-address@10.5.1
   # Renovate security update: undici@7.30.0
   - undici@7.30.0
+  # Renovate security update: dompurify@3.4.16
+  - dompurify@3.4.16
 
 overrides:
   ip-address: ^10.7.2
