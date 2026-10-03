@@ -8,9 +8,9 @@ allowBuilds:
 # Define a catalog of version ranges.
 catalog:
   cross-env: ^10.1.0
-  native-copyfiles: ^2.0.3
+  native-copyfiles: ^2.0.4
   remove-glob: ^1.2.2
-  sass: ^1.102.0
+  sass: ^1.105.1
   typescript: ^7.0.2
 
 minimumReleaseAge: 2880 # 2 days in minutes
