@@ -1,0 +1,728 @@
+{
+  "baselineCommit": "8536d748598c662beeb3137e62c81824c44d63ab",
+  "baseline": {
+    "baseline": {
+      "esmBytes": 46661,
+      "gzipBytes": 13092,
+      "contributions": [
+        {
+          "file": "packages/multiple-select-vanilla/src/locales/en-US.ts",
+          "bytes": 312
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/constants.ts",
+          "bytes": 1707
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/services/binding-event.service.ts",
+          "bytes": 1277
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/utils/utils.ts",
+          "bytes": 1489
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/utils/domUtils.ts",
+          "bytes": 2628
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/services/virtual-scroll.ts",
+          "bytes": 2585
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/MultipleSelectInstance.ts",
+          "bytes": 35620
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/index.ts",
+          "bytes": 0
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/multiple-select.ts",
+          "bytes": 525
+        }
+      ]
+    },
+    "loc": [
+      {
+        "file": "MultipleSelectInstance.ts",
+        "lines": 2152,
+        "nonblank": 1884
+      },
+      {
+        "file": "constants.ts",
+        "lines": 111,
+        "nonblank": 98
+      },
+      {
+        "file": "index.ts",
+        "lines": 33,
+        "nonblank": 33
+      },
+      {
+        "file": "multiple-select.ts",
+        "lines": 59,
+        "nonblank": 51
+      },
+      {
+        "file": "locales/all-locales.ts",
+        "lines": 38,
+        "nonblank": 36
+      },
+      {
+        "file": "locales/cz-CS.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/da-DK.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/de-DE.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/en-US.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/es-ES.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/fr-FR.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/hu-HU.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/id-ID.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/it-IT.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/ja-JP.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/ko-KR.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/pt-BR.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/ru-RU.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/vi-VN.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/zh-CN.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/zh-TW.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "services/binding-event.service.ts",
+        "lines": 121,
+        "nonblank": 108
+      },
+      {
+        "file": "services/virtual-scroll.ts",
+        "lines": 163,
+        "nonblank": 142
+      },
+      {
+        "file": "styles/_mixins.scss",
+        "lines": 17,
+        "nonblank": 16
+      },
+      {
+        "file": "styles/_variables.scss",
+        "lines": 157,
+        "nonblank": 153
+      },
+      {
+        "file": "styles/multiple-select.scss",
+        "lines": 425,
+        "nonblank": 381
+      },
+      {
+        "file": "utils/domUtils.ts",
+        "lines": 284,
+        "nonblank": 252
+      },
+      {
+        "file": "utils/utils.ts",
+        "lines": 125,
+        "nonblank": 107
+      },
+      {
+        "file": "styles/themes/bootstrap.scss",
+        "lines": 73,
+        "nonblank": 63
+      }
+    ],
+    "scenarios": [
+      {
+        "name": "single check, virtual",
+        "n": 1000,
+        "initSelected": 1,
+        "updateSelected": 1,
+        "getListRows": 1,
+        "initListItem": 1000,
+        "applyAsTextOrHtmlWhenEnabled": 1001,
+        "textareas": 1001,
+        "update": 1,
+        "getSelects": 3,
+        "ms": 22.9
+      },
+      {
+        "name": "single check, virtual",
+        "n": 10000,
+        "initSelected": 1,
+        "updateSelected": 1,
+        "getListRows": 1,
+        "initListItem": 10000,
+        "applyAsTextOrHtmlWhenEnabled": 10001,
+        "textareas": 10001,
+        "update": 1,
+        "getSelects": 3,
+        "ms": 96
+      },
+      {
+        "name": "filter virtual",
+        "n": 10000,
+        "searchNormalizations": 10000,
+        "getListRows": 1,
+        "initListItem": 10000,
+        "applyAsTextOrHtmlWhenEnabled": 10000,
+        "textareas": 10000,
+        "events": 1,
+        "initSelected": 1,
+        "getSelects": 2,
+        "updateSelected": 1,
+        "ms": 109.9
+      },
+      {
+        "name": "checkAll native select",
+        "n": 1000,
+        "ms": 30.8,
+        "selected": 1000
+      },
+      {
+        "name": "checkAll native select",
+        "n": 10000,
+        "ms": 2047.6,
+        "selected": 10000
+      },
+      {
+        "name": "binding nonvirtual init",
+        "n": 200,
+        "calls": 208,
+        "comparisons": 21528,
+        "ms": 5.1
+      },
+      {
+        "name": "binding nonvirtual init",
+        "n": 1000,
+        "calls": 1008,
+        "comparisons": 507528,
+        "ms": 24
+      },
+      {
+        "name": "binding nonvirtual init",
+        "n": 5000,
+        "calls": 5008,
+        "comparisons": 12537528,
+        "ms": 256.9
+      },
+      {
+        "name": "setData virtual ownership",
+        "visibleRows": 0,
+        "oldRows": 201,
+        "contentIsCurrent": false,
+        "cachedFirst": {
+          "textContent": "Item 0"
+        }
+      },
+      {
+        "name": "refresh virtual ownership",
+        "visibleRows": 0,
+        "contentIsCurrent": false
+      },
+      {
+        "name": "filter below threshold",
+        "visibleRows": 2,
+        "virtualStillPresent": true,
+        "staleStart": 0,
+        "staleEnd": 200
+      },
+      {
+        "name": "skip 8 disabled rows",
+        "highlights": 9,
+        "finalIndex": 10
+      },
+      {
+        "name": "capture listener teardown",
+        "firedAfterUnbind": 1,
+        "remainingRecords": 0
+      }
+    ],
+    "browserVersion": "153.0.8010.12"
+  },
+  "isolatedSetComparisonAndAdditionalBaselineProbes": [
+    {
+      "name": "native update all selected, 10000 options, stable DOM",
+      "baseline": [
+        1861.8,
+        1571.6,
+        1517.1,
+        1577.8,
+        1534.2
+      ],
+      "setLookup": [
+        8.8,
+        6,
+        4.4,
+        5.1,
+        6.8
+      ],
+      "baselineMedian": 1571.6,
+      "setMedian": 6,
+      "selected": 10000
+    },
+    {
+      "name": "setSelects 10000 already-selected values, no render work",
+      "baseline": [
+        188.2,
+        725.5,
+        761.6,
+        689.8,
+        719.2
+      ],
+      "setLookup": [
+        7.2,
+        2.3,
+        1,
+        0.5,
+        0.9
+      ],
+      "baselineMedian": 719.2,
+      "setMedian": 1
+    },
+    {
+      "name": "one virtual cluster transition",
+      "compares": 0,
+      "bindCalls": 0,
+      "unbindCalls": 0,
+      "dataStart": 0
+    },
+    {
+      "name": "refresh retains detached references",
+      "counts": [
+        {
+          "total": 10,
+          "disconnected": 0,
+          "virtualContentConnected": false
+        },
+        {
+          "total": 10,
+          "disconnected": 0,
+          "virtualContentConnected": false
+        },
+        {
+          "total": 10,
+          "disconnected": 0,
+          "virtualContentConnected": false
+        }
+      ]
+    },
+    {
+      "name": "same-cluster initDOM cache branch",
+      "before": 201,
+      "after": 0
+    },
+    {
+      "name": "unchanged partial refreshOptions",
+      "destroys": 1
+    },
+    {
+      "name": "destroy reference release",
+      "dataRetained": false,
+      "parentRetained": true,
+      "virtualRowsRetained": 0,
+      "updateDataRetained": 1000,
+      "optionsDataRetained": 1000,
+      "boundedEvents": 0
+    }
+  ],
+  "additionalBaselineProbes": {
+    "utilityBundle": "function t(e){return e!=null&&e!==\"\"}export{t as isDefined};\n",
+    "probes": [
+      {
+        "name": "open virtual cluster transition",
+        "before": 0,
+        "after": 150,
+        "compares": 21949,
+        "binds": 11,
+        "unbinds": 205
+      },
+      {
+        "name": "closed instance body click",
+        "getEventTargetCalls": 4
+      },
+      {
+        "name": "delayed open after destroy",
+        "openDropCalls": 1
+      },
+      {
+        "name": "unbind without explicit callback",
+        "calls": 1,
+        "retainedRecords": 1
+      }
+    ]
+  },
+  "implemented": {
+    "baseline": {
+      "esmBytes": 48293,
+      "gzipBytes": 13732,
+      "contributions": [
+        {
+          "file": "packages/multiple-select-vanilla/src/locales/en-US.ts",
+          "bytes": 312
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/constants.ts",
+          "bytes": 1715
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/services/binding-event.service.ts",
+          "bytes": 1827
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/utils/utils.ts",
+          "bytes": 1460
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/utils/domUtils.ts",
+          "bytes": 2624
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/services/virtual-scroll.ts",
+          "bytes": 2804
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/MultipleSelectInstance.ts",
+          "bytes": 36507
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/index.ts",
+          "bytes": 0
+        },
+        {
+          "file": "packages/multiple-select-vanilla/src/multiple-select.ts",
+          "bytes": 525
+        }
+      ]
+    },
+    "loc": [
+      {
+        "file": "MultipleSelectInstance.ts",
+        "lines": 2210,
+        "nonblank": 1942
+      },
+      {
+        "file": "constants.ts",
+        "lines": 112,
+        "nonblank": 99
+      },
+      {
+        "file": "index.ts",
+        "lines": 33,
+        "nonblank": 33
+      },
+      {
+        "file": "multiple-select.ts",
+        "lines": 59,
+        "nonblank": 51
+      },
+      {
+        "file": "locales/all-locales.ts",
+        "lines": 38,
+        "nonblank": 36
+      },
+      {
+        "file": "locales/cz-CS.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/da-DK.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/de-DE.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/en-US.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/es-ES.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/fr-FR.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/hu-HU.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/id-ID.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/it-IT.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/ja-JP.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/ko-KR.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/pt-BR.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/ru-RU.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/vi-VN.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/zh-CN.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "locales/zh-TW.ts",
+        "lines": 32,
+        "nonblank": 29
+      },
+      {
+        "file": "services/binding-event.service.ts",
+        "lines": 138,
+        "nonblank": 127
+      },
+      {
+        "file": "services/virtual-scroll.ts",
+        "lines": 173,
+        "nonblank": 153
+      },
+      {
+        "file": "styles/_mixins.scss",
+        "lines": 17,
+        "nonblank": 16
+      },
+      {
+        "file": "styles/_variables.scss",
+        "lines": 157,
+        "nonblank": 153
+      },
+      {
+        "file": "styles/multiple-select.scss",
+        "lines": 425,
+        "nonblank": 381
+      },
+      {
+        "file": "utils/domUtils.ts",
+        "lines": 284,
+        "nonblank": 252
+      },
+      {
+        "file": "utils/utils.ts",
+        "lines": 119,
+        "nonblank": 102
+      },
+      {
+        "file": "styles/themes/bootstrap.scss",
+        "lines": 73,
+        "nonblank": 63
+      }
+    ],
+    "scenarios": [
+      {
+        "name": "single check, virtual",
+        "n": 1000,
+        "initSelected": 1,
+        "updateSelected": 1,
+        "getListRows": 1,
+        "initListItem": 1000,
+        "applyAsTextOrHtmlWhenEnabled": 2,
+        "update": 1,
+        "getSelects": 3,
+        "ms": 2.6
+      },
+      {
+        "name": "single check, virtual",
+        "n": 10000,
+        "initSelected": 1,
+        "updateSelected": 1,
+        "getListRows": 1,
+        "initListItem": 10000,
+        "applyAsTextOrHtmlWhenEnabled": 2,
+        "update": 1,
+        "getSelects": 3,
+        "ms": 8.8
+      },
+      {
+        "name": "filter virtual",
+        "n": 10000,
+        "searchNormalizations": 1,
+        "getListRows": 1,
+        "initListItem": 10000,
+        "events": 1,
+        "initSelected": 1,
+        "getSelects": 2,
+        "updateSelected": 1,
+        "ms": 24
+      },
+      {
+        "name": "checkAll native select",
+        "n": 1000,
+        "ms": 7,
+        "selected": 1000
+      },
+      {
+        "name": "checkAll native select",
+        "n": 10000,
+        "ms": 28.4,
+        "selected": 10000
+      },
+      {
+        "name": "binding nonvirtual init",
+        "n": 200,
+        "calls": 208,
+        "ms": 13.9,
+        "lookupKind": "indexed"
+      },
+      {
+        "name": "binding nonvirtual init",
+        "n": 1000,
+        "calls": 1008,
+        "ms": 33.8,
+        "lookupKind": "indexed"
+      },
+      {
+        "name": "binding nonvirtual init",
+        "n": 5000,
+        "calls": 5008,
+        "ms": 196.5,
+        "lookupKind": "indexed"
+      },
+      {
+        "name": "setData virtual ownership",
+        "visibleRows": 201,
+        "oldRows": 0,
+        "contentIsCurrent": true,
+        "cachedFirst": {
+          "textContent": "New 0"
+        }
+      },
+      {
+        "name": "refresh virtual ownership",
+        "visibleRows": 201,
+        "contentIsCurrent": true
+      },
+      {
+        "name": "filter below threshold",
+        "visibleRows": 2,
+        "virtualStillPresent": false
+      },
+      {
+        "name": "skip 8 disabled rows",
+        "highlights": 1,
+        "finalIndex": 10
+      },
+      {
+        "name": "capture listener teardown",
+        "firedAfterUnbind": 0,
+        "remainingRecords": 0
+      }
+    ],
+    "browserVersion": "153.0.8010.12"
+  },
+  "notes": [
+    "Timings are diagnostic local browser probes; see the report for methods and limitations.",
+    "The closed-dropdown cluster probe in the followup results did not transition; use the open-dropdown extra probe instead.",
+    "Implemented listener checks call the real index; no array-record comparison count was instrumented."
+  ],
+  "followUpSimplification": {
+    "rebindControlsChecks": {
+      "before": 12,
+      "after": 2
+    },
+    "coreTypeScriptPhysicalLoc": {
+      "before": 3128,
+      "after": 3128
+    },
+    "esmBytes": {
+      "before": 48293,
+      "after": 48264
+    },
+    "gzipBytes": {
+      "before": 13732,
+      "after": 13722
+    }
+  }
+}

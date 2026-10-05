@@ -50,32 +50,33 @@ export class VirtualScroll {
   }
 
   reset(rows: HtmlStruct[]) {
-    this.lastCluster = 0;
+    this.rows = rows;
     this.cache = Object.create(null) as VirtualCache;
     emptyElement(this.contentEl);
     this.initDOM(rows);
+    this.lastCluster = this.getNum();
   }
 
   protected initDOM(rows: HtmlStruct[]) {
-    if (typeof this.clusterHeight === 'undefined') {
+    if (typeof this.clusterHeight === 'undefined' && rows.length) {
       this.cache.scrollTop = this.scrollEl.scrollTop;
       const firstRowElm = convertItemRowToHtml(rows[0]);
 
-      this.contentEl.appendChild(firstRowElm);
-      this.contentEl.appendChild(firstRowElm);
+      emptyElement(this.contentEl);
       this.contentEl.appendChild(firstRowElm);
       this.cache.data = [rows[0]];
       this.getRowsHeight();
     }
 
     const data = this.initData(rows, this.getNum());
-    const dataChanged = this.checkChanges('data', data.rows);
+    const cachedRows = this.cache.data;
+    const dataChanged = !cachedRows || cachedRows.length !== data.rows.length || data.rows.some((row, i) => row !== cachedRows[i]);
+    this.cache.data = data.rows;
     const topOffsetChanged = this.checkChanges('top', data.topOffset);
     const bottomOffsetChanged = this.checkChanges('bottom', data.bottomOffset);
 
-    emptyElement(this.contentEl);
-
-    if (dataChanged && topOffsetChanged) {
+    if (dataChanged || topOffsetChanged) {
+      emptyElement(this.contentEl);
       if (data.topOffset) {
         this.contentEl.appendChild(this.getExtra('top', data.topOffset));
       }
@@ -84,8 +85,15 @@ export class VirtualScroll {
       if (data.bottomOffset) {
         this.contentEl.appendChild(this.getExtra('bottom', data.bottomOffset));
       }
-    } else if (bottomOffsetChanged && this.contentEl.lastChild) {
-      (this.contentEl.lastChild as HTMLElement).style.height = `${data.bottomOffset}px`;
+    } else if (bottomOffsetChanged) {
+      const bottomElm = this.contentEl.querySelector<HTMLElement>('.virtual-scroll-bottom');
+      if (!data.bottomOffset) {
+        bottomElm?.remove();
+      } else if (bottomElm) {
+        bottomElm.style.height = `${data.bottomOffset}px`;
+      } else {
+        this.contentEl.appendChild(this.getExtra('bottom', data.bottomOffset));
+      }
     }
   }
 
@@ -116,6 +124,8 @@ export class VirtualScroll {
 
   protected initData(rows: HtmlStruct[], num: number) {
     if (rows.length < BLOCK_ROWS) {
+      this.dataStart = 0;
+      this.dataEnd = rows.length;
       return {
         topOffset: 0,
         bottomOffset: 0,

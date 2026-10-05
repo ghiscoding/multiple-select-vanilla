@@ -83,7 +83,7 @@ export function createDomElement<T extends keyof HTMLElementTagNameMap, K extend
  * @param item
  * @param appendToElm
  */
-export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement, _parentElm?: HTMLElement): HTMLElement {
+export function createDomStructure(item: HtmlStruct, appendToElm?: HTMLElement): HTMLElement {
   // to be CSP safe, we'll omit `innerHTML` and assign it manually afterward
   const itemPropsOmitHtml = item.props?.innerHTML ? omitProp(item.props, 'innerHTML') : item.props;
 
@@ -215,10 +215,10 @@ export function getComputedSize(elm: HTMLElement, styleType: string) {
 export function findParent(elm: HTMLElement, selector: string) {
   let targetElm: HTMLElement | null = null;
   let parentElm = elm?.parentElement;
+  const [_, nodeType, selectorType, classOrIdName] = selector.match(/^([a-z]*)([#.]{1})([a-z-]+)$/i) || [];
 
   while (parentElm) {
     // query selector id (#some-id) or class (.some-class other-class)
-    const [_, nodeType, selectorType, classOrIdName] = selector.match(/^([a-z]*)([#.]{1})([a-z-]+)$/i) || [];
     if (selectorType && classOrIdName) {
       // class or id selector type
       for (const q of classOrIdName.replace(selectorType, '').split(' ')) {

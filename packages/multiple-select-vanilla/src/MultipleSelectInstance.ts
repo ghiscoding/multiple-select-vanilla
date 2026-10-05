@@ -1,7 +1,7 @@
 /**
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
-import { BLOCK_ROWS, CLUSTER_BLOCKS, getDefaultOptions } from './constants.js';
+import { BLOCK_ROWS, CLUSTER_BLOCKS, defaultCssStyler, getDefaultOptions } from './constants.js';
 import type { CollectionData, HtmlStruct, OptGroupRowData, OptionDataObject, OptionRowData } from './models/interfaces.js';
 import type { MultipleSelectLocale, MultipleSelectLocales } from './models/locale.interface.js';
 import type { ClickedGroup, ClickedOption, CloseReason, MultipleSelectOption } from './models/multipleSelectOption.interface.js';
@@ -22,7 +22,7 @@ import {
   insertAfter,
   toggleElement,
 } from './utils/domUtils.js';
-import { compareObjects, deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys } from './utils/utils.js';
+import { deepCopy, findByParam, removeDiacritics, removeUndefined, setDataKeys } from './utils/utils.js';
 
 const OPTIONS_LIST_SELECTOR = '.ms-select-all, ul li[data-key]';
 const OPTIONS_HIGHLIGHT_LIST_SELECTOR = '.ms-select-all.highlighted, ul li[data-key].highlighted';
@@ -61,6 +61,7 @@ export class MultipleSelectInstance {
   protected selectItemName = '';
   protected scrolledByMouse = false;
   protected openDelayTimer?: number;
+  private openDelayResolve?: () => void;
 
   protected updateDataStart?: number;
   protected updateDataEnd?: number;
@@ -69,6 +70,8 @@ export class MultipleSelectInstance {
   protected _currentSelectedElm?: HTMLLIElement | HTMLDivElement;
   protected _isLazyLoaded = false;
   protected isMoveUpRecalcRequired = false;
+  private decodedText = new Map<string, string>();
+  private rowCache = new WeakMap<OptionRowData, { values: unknown[]; rows: HtmlStruct[] }>();
   locales = {} as MultipleSelectLocales;
 
   get isRenderAsHtml() {
@@ -108,9 +111,15 @@ export class MultipleSelectInstance {
         this.elm.parentElement.insertBefore(this.elm, this.parentElm.parentElement!.firstChild);
       }
       this.elm.classList.remove('ms-offscreen');
+      window.clearTimeout(this.openDelayTimer);
+      this.openDelayResolve?.();
+      this.openDelayResolve = undefined;
       this._bindEventService.unbindAll();
 
       this.virtualScroll?.destroy();
+      this.virtualScroll = null;
+      this.decodedText.clear();
+      this.rowCache = new WeakMap();
       this.dropElm?.remove();
       this.dropElm = undefined;
       this.parentElm.parentNode?.removeChild(this.parentElm);
@@ -274,13 +283,16 @@ export class MultipleSelectInstance {
         document.body,
         'click',
         ((e: MouseEvent & { target: HTMLElement }) => {
-          if (this.getEventTarget(e) === this.choiceElm || findParent(this.getEventTarget(e), '.ms-choice') === this.choiceElm) {
+          if (!this._isOpen) {
+            return;
+          }
+          const eventTarget = this.getEventTarget(e);
+          if (eventTarget === this.choiceElm || findParent(eventTarget, '.ms-choice') === this.choiceElm) {
             return;
           }
 
-          const eventTarget = this.getEventTarget(e);
-          const fpDropElm = findParent(this.getEventTarget(e), '.ms-drop');
-          if (this._isOpen && (eventTarget === this.dropElm || (fpDropElm !== this.dropElm && eventTarget !== this.elm))) {
+          const fpDropElm = findParent(eventTarget, '.ms-drop');
+          if (eventTarget === this.dropElm || (fpDropElm !== this.dropElm && eventTarget !== this.elm)) {
             this.close('body.click');
           }
         }) as EventListener,
@@ -291,6 +303,8 @@ export class MultipleSelectInstance {
   }
 
   protected initData() {
+    this.decodedText.clear();
+    this.rowCache = new WeakMap();
     const data: Array<OptionRowData> = [];
 
     if (this.options.data) {
@@ -505,13 +519,13 @@ export class MultipleSelectInstance {
         if (this.virtualScroll) {
           this._currentHighlightIndex = 0;
           this.updateDataStart = this.virtualScroll.dataStart + offset;
-          this.updateDataEnd = this.virtualScroll.dataEnd + offset;
+          this.updateDataEnd = this.virtualScroll.dataEnd;
 
           if (this.updateDataStart < 0) {
             this.updateDataStart = 0;
             this._currentHighlightIndex = 0;
           }
-          const dataLn = this.getDataLength();
+          const dataLn = this.updateData.length;
           if (this.updateDataEnd > dataLn) {
             this.updateDataEnd = dataLn;
           }
@@ -535,7 +549,7 @@ export class MultipleSelectInstance {
             sanitizer: this.options.sanitizer,
             callback: () => {
               updateDataOffset();
-              this.events();
+              this.events(false);
             },
           });
         } else {
@@ -550,6 +564,8 @@ export class MultipleSelectInstance {
         this.dropElm.ariaExpanded = 'false';
       }
     } else {
+      this.virtualScroll?.destroy();
+      this.virtualScroll = null;
       if (this.ulElm) {
         emptyElement(this.ulElm);
         rows.forEach(itemRow => this.ulElm!.appendChild(convertItemRowToHtml(itemRow)));
@@ -606,6 +622,29 @@ export class MultipleSelectInstance {
 
     this.updateData.push(dataRow);
 
+    // Reuse ordinary text rows while preserving custom styling and sanitizer callback calls.
+    const cacheValues =
+      dataRow.type !== 'optgroup' && !dataRow.divider && !this.isRenderAsHtml && this.options.cssStyler === defaultCssStyler
+        ? [
+            (dataRow as OptionRowData).text,
+            dataRow.value,
+            dataRow._key,
+            title,
+            dataRow.classes,
+            dataRow.disabled,
+            dataRow.selected,
+            level,
+            this.options.single,
+            this.options.singleRadio,
+            this.options.multiple,
+            this.selectItemName,
+          ]
+        : undefined;
+    const cached = cacheValues && this.rowCache.get(dataRow as OptionRowData);
+    if (cached && cacheValues?.every((value, i) => value === cached.values[i])) {
+      return cached.rows;
+    }
+
     if (isSingleWithoutRadioIcon) {
       classes = 'hide-radio ';
     }
@@ -632,33 +671,20 @@ export class MultipleSelectInstance {
           },
         };
 
-        // when creating a block that has multiple selections, we'll add the icon checkbox container
-        // otherwise it will be just the input checkbox
-        if (isSingleWithoutRadioIcon) {
-          itemOrGroupBlock = inputCheckboxStruct;
-        } else {
-          // determine if it's an optgroup and the group has a partial selection
-          let hasPartialGroupSelected = false;
-          if ('children' in dataRow && (dataRow as OptGroupRowData).children.some(child => child?.selected)) {
-            hasPartialGroupSelected = true;
-          }
-
-          itemOrGroupBlock = {
-            tagName: 'div',
-            props: {
-              className: `icon-checkbox-container${type === 'radio' ? ' radio' : ''}`,
-            },
-            children: [
-              inputCheckboxStruct,
-              {
-                tagName: 'div',
-                props: {
-                  className: `ms-icon ${isChecked ? (type === 'radio' ? 'ms-icon-radio' : 'ms-icon-check') : `ms-icon-${hasPartialGroupSelected ? 'partial-group' : 'uncheck'}`}`,
-                },
+        const hasPartialGroupSelected = (dataRow as OptGroupRowData).children.some(child => child?.selected);
+        itemOrGroupBlock = {
+          tagName: 'div',
+          props: { className: 'icon-checkbox-container' },
+          children: [
+            inputCheckboxStruct,
+            {
+              tagName: 'div',
+              props: {
+                className: `ms-icon ${isChecked ? 'ms-icon-check' : `ms-icon-${hasPartialGroupSelected ? 'partial-group' : 'uncheck'}`}`,
               },
-            ],
-          };
-        }
+            },
+          ],
+        };
       }
 
       if (!classes.includes('hide-radio') && (this.options.hideOptgroupCheckboxes || this.options.single)) {
@@ -774,33 +800,43 @@ export class MultipleSelectInstance {
       liBlock.props.style = customStyleRules;
     }
 
-    return [liBlock];
+    const rows = [liBlock];
+    if (cacheValues) {
+      this.rowCache.set(dataRow as OptionRowData, { values: cacheValues, rows });
+    }
+    return rows;
   }
 
   protected initSelected(ignoreTrigger = false) {
     let selectedTotal = 0;
+    let selectedRows = 0;
+    let eligibleRows = 0;
 
     for (const row of this.data || []) {
       if ((row as OptGroupRowData).type === 'optgroup') {
-        const selectedCount = (row as OptGroupRowData).children.filter(child => child?.selected && !child.disabled && child.visible).length;
+        let selectedCount = 0;
+        let eligibleCount = 0;
+        for (const child of (row as OptGroupRowData).children) {
+          if (child && !child.disabled && child.visible) {
+            selectedCount += child.selected ? 1 : 0;
+            eligibleCount += !child.divider ? 1 : 0;
+          }
+        }
 
         if ((row as OptGroupRowData).children.length) {
-          row.selected =
-            !this.options.single &&
-            selectedCount &&
-            selectedCount ===
-              (row as OptGroupRowData).children.filter((child: any) => child && !child.disabled && child.visible && !child.divider).length;
+          row.selected = !this.options.single && selectedCount && selectedCount === eligibleCount;
         }
         selectedTotal += selectedCount;
       } else {
         selectedTotal += row.selected && !row.disabled && row.visible ? 1 : 0;
       }
+      if (!row.disabled && row.visible) {
+        selectedRows += row.selected ? 1 : 0;
+        eligibleRows += !row.divider ? 1 : 0;
+      }
     }
 
-    this.isAllSelected =
-      this.data?.filter((row: OptionRowData | OptGroupRowData) => {
-        return row.selected && !row.disabled && row.visible;
-      }).length === this.data?.filter(row => !row.disabled && row.visible && !row.divider).length;
+    this.isAllSelected = selectedRows === eligibleRows;
     this.isPartiallyAllSelected = !this.isAllSelected && selectedTotal > 0;
 
     if (!ignoreTrigger) {
@@ -833,154 +869,152 @@ export class MultipleSelectInstance {
     this.elm.classList.add('ms-offscreen');
   }
 
-  protected events() {
-    this._bindEventService.unbindAll([
-      'ok-button',
-      'search-input',
-      'select-all-checkbox',
-      'input-checkbox-list',
-      'group-checkbox-list',
-      'hover-highlight',
-      'arrow-highlight',
-      'option-list-scroll',
-    ]);
-
-    this.clearSearchIconElm = this.filterParentElm?.querySelector('.ms-icon-close');
-    this.searchInputElm = this.dropElm?.querySelector<HTMLInputElement>('.ms-search input');
-    this.selectAllElm = this.dropElm?.querySelector<HTMLInputElement>(`input[data-name="${this.selectAllName}"]`);
+  protected events(rebindControls = true) {
+    this._bindEventService.unbindAll(['input-checkbox-list', 'group-checkbox-list']);
     this.selectGroupElms = this.dropElm?.querySelectorAll<HTMLInputElement>(
       `input[data-name="${this.selectGroupName}"],span[data-name="${this.selectGroupName}"]`,
     );
     this.selectCheckboxElms = this.dropElm?.querySelectorAll<HTMLInputElement>(`input[data-name="${this.selectItemName}"]:enabled`);
     this.noResultsElm = this.dropElm?.querySelector<HTMLDivElement>('.ms-no-results');
 
-    const toggleOpen = (e: MouseEvent & { target: HTMLElement }) => {
-      e.preventDefault();
-      if (this.getEventTarget(e).classList.contains('ms-icon-close')) {
-        return;
-      }
-      this.options.isOpen ? this.close('toggle.close') : this.open();
-    };
+    if (rebindControls) {
+      this._bindEventService.unbindAll([
+        'ok-button',
+        'search-input',
+        'select-all-checkbox',
+        'hover-highlight',
+        'arrow-highlight',
+        'option-list-scroll',
+      ]);
+      this.clearSearchIconElm = this.filterParentElm?.querySelector('.ms-icon-close');
+      this.searchInputElm = this.dropElm?.querySelector<HTMLInputElement>('.ms-search input');
+      this.selectAllElm = this.dropElm?.querySelector<HTMLInputElement>(`input[data-name="${this.selectAllName}"]`);
 
-    if (this.labelElm) {
-      this._bindEventService.bind(this.labelElm, 'click', ((e: MouseEvent & { target: HTMLElement }) => {
-        if (this.getEventTarget(e).nodeName.toLowerCase() !== 'label') {
+      const toggleOpen = (e: MouseEvent & { target: HTMLElement }) => {
+        e.preventDefault();
+        if (this.getEventTarget(e).classList.contains('ms-icon-close')) {
           return;
         }
-        toggleOpen(e);
-        if (!this.options.filter || !this.options.isOpen) {
-          this.focus();
-        }
-        e.stopPropagation(); // Causes lost focus otherwise
-      }) as EventListener);
-    }
+        this.options.isOpen ? this.close('toggle.close') : this.open();
+      };
 
-    this._bindEventService.bind(this.choiceElm, 'click', toggleOpen as EventListener);
-    if (this.options.onFocus) {
-      this._bindEventService.bind(this.choiceElm, 'focus', this.options.onFocus as EventListener);
-    }
-    if (this.options.onBlur) {
-      this._bindEventService.bind(this.choiceElm, 'blur', this.options.onBlur as EventListener);
-    }
-
-    this._bindEventService.bind(this.parentElm, 'keydown', ((e: KeyboardEvent) => {
-      if (e.code === 'Escape') {
-        this.handleEscapeKey();
-      }
-    }) as EventListener);
-
-    if (this.closeElm) {
-      this._bindEventService.bind(this.closeElm, 'click', ((e: MouseEvent) => {
-        e.preventDefault();
-        this._checkAll(false, true);
-        this.initSelected(false);
-        this.updateSelected();
-        this.update();
-        this.options.onClear();
-      }) as EventListener);
-    }
-
-    if (this.clearSearchIconElm) {
-      this._bindEventService.bind(this.clearSearchIconElm, 'click', ((e: MouseEvent) => {
-        e.preventDefault();
-        if (this.searchInputElm) {
-          this.searchInputElm.value = '';
-          this.searchInputElm.focus();
-        }
-        // move highlight back to top of the list
-        this._currentHighlightIndex = -1;
-        this.moveHighlightDown();
-        this.filter();
-        this.options.onFilterClear();
-      }) as EventListener);
-    }
-
-    if (this.searchInputElm) {
-      this._bindEventService.bind(
-        this.searchInputElm,
-        'keydown',
-        ((e: KeyboardEvent) => {
-          // Ensure shift-tab causes lost focus from filter as with clicking away
-          if (e.code === 'Tab' && e.shiftKey) {
-            this.close('key.shift+tab');
-          }
-        }) as EventListener,
-        undefined,
-        'search-input',
-      );
-
-      this._bindEventService.bind(
-        this.searchInputElm,
-        'keyup',
-        ((e: KeyboardEvent) => {
-          // enter or space
-          // Avoid selecting/deselecting if no choices made
-          if (this.options.filterAcceptOnEnter && ['Enter', 'Space'].includes(e.code) && this.searchInputElm?.value) {
-            if (this.options.single) {
-              const visibleLiElms: HTMLInputElement[] = [];
-              this.selectCheckboxElms?.forEach(selectedElm => {
-                if (selectedElm.closest('li')?.style.display !== 'none') {
-                  visibleLiElms.push(selectedElm);
-                }
-              });
-              if (visibleLiElms.length && visibleLiElms[0].hasAttribute('data-name')) {
-                this.setSelects([visibleLiElms[0].value]);
-              }
-            } else {
-              this.selectAllElm?.click();
-            }
-            this.close(`key.${e.code.toLowerCase() as 'enter' | 'space'}`);
-            this.focus();
+      if (this.labelElm) {
+        this._bindEventService.bind(this.labelElm, 'click', ((e: MouseEvent & { target: HTMLElement }) => {
+          if (this.getEventTarget(e).nodeName.toLowerCase() !== 'label') {
             return;
           }
-          this.filter();
-        }) as EventListener,
-        undefined,
-        'search-input',
-      );
-    }
-
-    if (this.selectAllElm) {
-      this._bindEventService.bind(
-        this.selectAllElm,
-        'click',
-        ((e: MouseEvent & { currentTarget: HTMLInputElement }) => this._checkAll(e.currentTarget?.checked)) as EventListener,
-        undefined,
-        'select-all-checkbox',
-      );
-    }
-
-    if (this.okButtonElm) {
-      this._bindEventService.bind(
-        this.okButtonElm,
-        'click',
-        ((e: MouseEvent & { target: HTMLElement }) => {
           toggleOpen(e);
+          if (!this.options.filter || !this.options.isOpen) {
+            this.focus();
+          }
           e.stopPropagation(); // Causes lost focus otherwise
-        }) as EventListener,
-        undefined,
-        'ok-button',
-      );
+        }) as EventListener);
+      }
+
+      this._bindEventService.bind(this.choiceElm, 'click', toggleOpen as EventListener);
+      this._bindEventService.bind(this.parentElm, 'keydown', ((e: KeyboardEvent) => {
+        if (e.code === 'Escape') {
+          this.handleEscapeKey();
+        }
+      }) as EventListener);
+      if (this.options.onFocus) {
+        this._bindEventService.bind(this.choiceElm, 'focus', this.options.onFocus as EventListener);
+      }
+      if (this.options.onBlur) {
+        this._bindEventService.bind(this.choiceElm, 'blur', this.options.onBlur as EventListener);
+      }
+
+      if (this.closeElm) {
+        this._bindEventService.bind(this.closeElm, 'click', ((e: MouseEvent) => {
+          e.preventDefault();
+          this._checkAll(false, true);
+          this.updateSelection();
+          this.options.onClear();
+        }) as EventListener);
+      }
+
+      if (this.clearSearchIconElm) {
+        this._bindEventService.bind(this.clearSearchIconElm, 'click', ((e: MouseEvent) => {
+          e.preventDefault();
+          if (this.searchInputElm) {
+            this.searchInputElm.value = '';
+            this.searchInputElm.focus();
+          }
+          // move highlight back to top of the list
+          this._currentHighlightIndex = -1;
+          this.moveHighlightDown();
+          this.filter();
+          this.options.onFilterClear();
+        }) as EventListener);
+      }
+
+      if (this.searchInputElm) {
+        this._bindEventService.bind(
+          this.searchInputElm,
+          'keydown',
+          ((e: KeyboardEvent) => {
+            // Ensure shift-tab causes lost focus from filter as with clicking away
+            if (e.code === 'Tab' && e.shiftKey) {
+              this.close('key.shift+tab');
+            }
+          }) as EventListener,
+          undefined,
+          'search-input',
+        );
+
+        this._bindEventService.bind(
+          this.searchInputElm,
+          'keyup',
+          ((e: KeyboardEvent) => {
+            // enter or space
+            // Avoid selecting/deselecting if no choices made
+            if (this.options.filterAcceptOnEnter && ['Enter', 'Space'].includes(e.code) && this.searchInputElm?.value) {
+              if (this.options.single) {
+                const visibleLiElms: HTMLInputElement[] = [];
+                this.selectCheckboxElms?.forEach(selectedElm => {
+                  if (selectedElm.closest('li')?.style.display !== 'none') {
+                    visibleLiElms.push(selectedElm);
+                  }
+                });
+                if (visibleLiElms.length && visibleLiElms[0].hasAttribute('data-name')) {
+                  this.setSelects([visibleLiElms[0].value]);
+                }
+              } else {
+                this.selectAllElm?.click();
+              }
+              this.close(`key.${e.code.toLowerCase() as 'enter' | 'space'}`);
+              this.focus();
+              return;
+            }
+            this.filter();
+          }) as EventListener,
+          undefined,
+          'search-input',
+        );
+      }
+
+      if (this.selectAllElm) {
+        this._bindEventService.bind(
+          this.selectAllElm,
+          'click',
+          ((e: MouseEvent & { currentTarget: HTMLInputElement }) => this._checkAll(e.currentTarget?.checked)) as EventListener,
+          undefined,
+          'select-all-checkbox',
+        );
+      }
+
+      if (this.okButtonElm) {
+        this._bindEventService.bind(
+          this.okButtonElm,
+          'click',
+          ((e: MouseEvent & { target: HTMLElement }) => {
+            toggleOpen(e);
+            e.stopPropagation(); // Causes lost focus otherwise
+          }) as EventListener,
+          undefined,
+          'ok-button',
+        );
+      }
     }
 
     if (this.selectGroupElms) {
@@ -1070,105 +1104,107 @@ export class MultipleSelectInstance {
       input?.focus();
     }
 
-    if (this.options.navigationHighlight && this.dropElm) {
-      // when hovering an select option, we will also change the highlight to that option
-      this._bindEventService.bind(
-        this.dropElm,
-        'mouseover',
-        ((e: MouseEvent & { target: HTMLDivElement | HTMLLIElement }) => {
-          const liElm = (this.getEventTarget(e).closest('.ms-select-all') || this.getEventTarget(e).closest('li')) as HTMLLIElement;
+    if (rebindControls) {
+      if (this.options.navigationHighlight && this.dropElm) {
+        // when hovering an select option, we will also change the highlight to that option
+        this._bindEventService.bind(
+          this.dropElm,
+          'mouseover',
+          ((e: MouseEvent & { target: HTMLDivElement | HTMLLIElement }) => {
+            const target = this.getEventTarget(e);
+            const liElm = (target.closest('.ms-select-all') || target.closest('li')) as HTMLLIElement;
 
-          if (this.dropElm?.contains(liElm) && this.lastMouseOverPosition !== `${e.clientX}:${e.clientY}`) {
-            const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
-            const newIdx = Array.from(optionElms).findIndex(el => el.dataset.key === liElm.dataset.key);
-            if (this._currentHighlightIndex !== newIdx && !liElm.classList.contains('disabled')) {
-              this._currentSelectedElm = liElm;
-              this._currentHighlightIndex = newIdx;
-              this.changeCurrentOptionHighlight(liElm);
+            if (this.dropElm?.contains(liElm) && this.lastMouseOverPosition !== `${e.clientX}:${e.clientY}`) {
+              const optionElms = this.dropElm?.querySelectorAll<HTMLLIElement>(OPTIONS_LIST_SELECTOR) || [];
+              const newIdx = Array.from(optionElms).findIndex(el => el.dataset.key === liElm.dataset.key);
+              if (this._currentHighlightIndex !== newIdx && !liElm.classList.contains('disabled')) {
+                this._currentSelectedElm = liElm;
+                this._currentHighlightIndex = newIdx;
+                this.changeCurrentOptionHighlight(liElm);
+              }
             }
-          }
-          this.lastMouseOverPosition = `${e.clientX}:${e.clientY}`;
-        }) as EventListener,
-        undefined,
-        'hover-highlight',
-      );
+            this.lastMouseOverPosition = `${e.clientX}:${e.clientY}`;
+          }) as EventListener,
+          undefined,
+          'hover-highlight',
+        );
 
-      // add keydown event listeners to watch for up/down arrows and focus on previous/next item
-      // we will ignore divider and if key pressed is the Enter/Space key then we'll instead select/deselect input checkbox
-      // we will also remove any previous bindings that might exist which happen when we use VirtualScroll
-      this._bindEventService.bind(
-        this.dropElm,
-        'keydown',
-        ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
-          switch (e.key) {
-            case 'ArrowUp':
-              e.preventDefault();
-              this.moveHighlightUp();
-              break;
-            case 'ArrowDown':
-              e.preventDefault();
-              this.moveHighlightDown();
-              break;
-            case 'Escape':
-              this.handleEscapeKey();
-              break;
-            case 'Enter':
-            case ' ': {
-              // if we're focused on the OK button then don't execute following block
-              if (document.activeElement !== this.okButtonElm) {
-                const liElm = this.getEventTarget(e).closest('.ms-select-all') || this.getEventTarget(e).closest('li');
-                if ((e.key === ' ' && this.options.filter) || (this.options.filterAcceptOnEnter && !liElm)) {
-                  return;
-                }
+        // add keydown event listeners to watch for up/down arrows and focus on previous/next item
+        // we will ignore divider and if key pressed is the Enter/Space key then we'll instead select/deselect input checkbox
+        this._bindEventService.bind(
+          this.dropElm,
+          'keydown',
+          ((e: KeyboardEvent & { target: HTMLDivElement | HTMLLIElement }) => {
+            switch (e.key) {
+              case 'ArrowUp':
                 e.preventDefault();
-                this._currentSelectedElm?.querySelector('input')?.click();
+                this.moveHighlightUp();
+                break;
+              case 'ArrowDown':
+                e.preventDefault();
+                this.moveHighlightDown();
+                break;
+              case 'Escape':
+                this.handleEscapeKey();
+                break;
+              case 'Enter':
+              case ' ': {
+                // if we're focused on the OK button then don't execute following block
+                if (document.activeElement !== this.okButtonElm) {
+                  const liElm = this.getEventTarget(e).closest('.ms-select-all') || this.getEventTarget(e).closest('li');
+                  if ((e.key === ' ' && this.options.filter) || (this.options.filterAcceptOnEnter && !liElm)) {
+                    return;
+                  }
+                  e.preventDefault();
+                  this._currentSelectedElm?.querySelector('input')?.click();
 
-                // on single select, we should focus directly
-                if (this.options.single) {
-                  this.choiceElm.focus();
-                  this.lastFocusedItemKey = this.choiceElm?.dataset.key || '';
+                  // on single select, we should focus directly
+                  if (this.options.single) {
+                    this.choiceElm.focus();
+                    this.lastFocusedItemKey = this.choiceElm?.dataset.key || '';
+                  }
                 }
+                break;
               }
-              break;
-            }
-            case 'Tab': {
-              // when clicking "Tab" and we're using a multiple select and we're not focusing on "OK" button yet, we'll do focus to it.
-              // otherwise we'll call the `onBlur` callback and/or `closeOnTab` is enabled we'll do that too.
-              e.preventDefault();
+              case 'Tab': {
+                // when clicking "Tab" and we're using a multiple select and we're not focusing on "OK" button yet, we'll do focus to it.
+                // otherwise we'll call the `onBlur` callback and/or `closeOnTab` is enabled we'll do that too.
+                e.preventDefault();
 
-              // when using multiple select with "OK" button
-              const isMultiple = !this.options.single && this.options.showOkButton;
-              if (isMultiple && e.shiftKey && document.activeElement === this.okButtonElm) {
-                this.focusSelectAllOrList();
-                this.highlightCurrentOption();
-                this.filterParentElm?.querySelector('input')?.focus();
-              } else if (isMultiple && !e.shiftKey && document.activeElement !== this.okButtonElm) {
-                this.changeCurrentOptionHighlight();
-                this.okButtonElm?.focus();
-              } else {
-                this.options.onBlur(e);
-                if (this.options.isOpen && this.options.closeOnTab) {
-                  this.close('blur');
+                // when using multiple select with "OK" button
+                const isMultiple = !this.options.single && this.options.showOkButton;
+                if (isMultiple && e.shiftKey && document.activeElement === this.okButtonElm) {
+                  this.focusSelectAllOrList();
+                  this.highlightCurrentOption();
+                  this.filterParentElm?.querySelector('input')?.focus();
+                } else if (isMultiple && !e.shiftKey && document.activeElement !== this.okButtonElm) {
+                  this.changeCurrentOptionHighlight();
+                  this.okButtonElm?.focus();
+                } else {
+                  this.options.onBlur(e);
+                  if (this.options.isOpen && this.options.closeOnTab) {
+                    this.close('blur');
+                  }
                 }
+
+                break;
               }
-
-              break;
             }
-          }
-        }) as EventListener,
-        undefined,
-        'arrow-highlight',
-      );
-    }
+          }) as EventListener,
+          undefined,
+          'arrow-highlight',
+        );
+      }
 
-    if (this.ulElm && this.options.infiniteScroll) {
-      this._bindEventService.bind(
-        this.ulElm,
-        'scroll',
-        this.infiniteScrollHandler.bind(this) as EventListener,
-        undefined,
-        'option-list-scroll',
-      );
+      if (this.ulElm && this.options.infiniteScroll) {
+        this._bindEventService.bind(
+          this.ulElm,
+          'scroll',
+          this.infiniteScrollHandler.bind(this) as EventListener,
+          undefined,
+          'option-list-scroll',
+        );
+      }
     }
   }
 
@@ -1227,7 +1263,10 @@ export class MultipleSelectInstance {
       if (openDelay !== null && openDelay >= 0) {
         // eslint-disable-next-line prefer-const
         window.clearTimeout(this.openDelayTimer);
+        this.openDelayResolve?.();
+        this.openDelayResolve = resolve;
         this.openDelayTimer = window.setTimeout(() => {
+          this.openDelayResolve = undefined;
           this.openDrop();
           resolve();
         }, openDelay);
@@ -1430,9 +1469,14 @@ export class MultipleSelectInstance {
     const domOptionsCount = optionElms.length;
 
     if (this._currentHighlightIndex < domOptionsCount - 1) {
-      this._currentHighlightIndex++;
-      if (optionElms[this._currentHighlightIndex]?.classList.contains('disabled')) {
-        this.moveHighlightDown();
+      do {
+        this._currentHighlightIndex++;
+      } while (
+        this._currentHighlightIndex < domOptionsCount - 1 &&
+        optionElms[this._currentHighlightIndex]?.classList.contains('disabled')
+      );
+      if (optionElms[this._currentHighlightIndex]?.classList.contains('disabled') && this.options.infiniteScroll) {
+        this.infiniteScrollHandler(null, this._currentHighlightIndex, domOptionsCount);
       }
     } else if (this.options.infiniteScroll) {
       this.infiniteScrollHandler(null, this._currentHighlightIndex, domOptionsCount);
@@ -1456,10 +1500,14 @@ export class MultipleSelectInstance {
       return;
     }
 
-    if (this._currentHighlightIndex > 0) {
+    while (this._currentHighlightIndex > 0) {
       this._currentHighlightIndex--;
-      if (optionElms[this._currentHighlightIndex]?.classList.contains('disabled')) {
+      if (!optionElms[this._currentHighlightIndex]?.classList.contains('disabled')) {
+        break;
+      }
+      if (this.virtualScroll && this._currentHighlightIndex <= idxToCompare && this.updateDataStart! > 0) {
         this.moveHighlightUp();
+        return;
       }
     }
 
@@ -1510,7 +1558,10 @@ export class MultipleSelectInstance {
     if (this.isRenderAsHtml) {
       elmOrProp.innerHTML = (typeof this.options.sanitizer === 'function' ? this.options.sanitizer(value) : value) as unknown as string;
     } else {
-      elmOrProp.textContent = htmlDecode(value);
+      if (typeof value === 'string' && !this.decodedText.has(value)) {
+        this.decodedText.set(value, htmlDecode(value));
+      }
+      elmOrProp.textContent = typeof value === 'string' ? this.decodedText.get(value) : htmlDecode(value);
     }
   }
 
@@ -1575,8 +1626,9 @@ export class MultipleSelectInstance {
         this.elm.value = selectedValues.length ? (selectedValues[0] as string) : '';
       } else {
         // when multiple values could be set, we need to loop through each
+        const selectedValueSet = new Set(selectedValues);
         Array.from(this.elm.options).forEach(option => {
-          option.selected = selectedValues.some(val => val === option.value);
+          option.selected = selectedValueSet.has(option.value);
         });
       }
     }
@@ -1588,9 +1640,11 @@ export class MultipleSelectInstance {
   }
 
   protected updateSelected(rows?: HtmlStruct[]) {
+    const inputs = new Map<string | undefined, HTMLInputElement>();
+    this.dropElm?.querySelectorAll<HTMLInputElement>('input[data-key]').forEach(input => inputs.set(input.dataset.key, input));
     for (let i = this.updateDataStart!; i < this.updateDataEnd!; i++) {
       const row = this.updateData[i];
-      const inputElm = this.dropElm?.querySelector<HTMLInputElement>(`input[data-key=${row._key}]`);
+      const inputElm = inputs.get(row._key);
       if (inputElm) {
         inputElm.checked = row.selected;
         const closestLiElm = inputElm.closest('li');
@@ -1660,16 +1714,19 @@ export class MultipleSelectInstance {
    * @param {Boolean} [returnDeepCopy]
    */
   getOptions(returnDeepCopy = true) {
+    if (!returnDeepCopy) {
+      return this.options;
+    }
     // deep copy and remove data
     const options = { ...this.options };
     delete options.data;
 
-    return returnDeepCopy ? deepCopy<MultipleSelectOption>(options) : this.options;
+    return deepCopy<MultipleSelectOption>(options);
   }
 
   refreshOptions(options: Partial<MultipleSelectOption>) {
     // If the objects are equivalent then avoid the call of destroy / init methods
-    if (compareObjects(this.options, options, true)) {
+    if (Object.keys(options).every(key => options[key as keyof MultipleSelectOption] === this.options[key as keyof MultipleSelectOption])) {
       return;
     }
     this.options = { ...this.options, ...options };
@@ -1718,17 +1775,18 @@ export class MultipleSelectInstance {
 
   setSelects(values: any[], type = 'value', ignoreTrigger = false) {
     let hasChanged = false;
+    const valueSet = new Set(values);
     const _setSelects = (rows: Array<OptionRowData | OptGroupRowData>) => {
       for (const row of rows) {
         let selected = false;
         if (type === 'text') {
           const divElm = document.createElement('div');
           this.applyAsTextOrHtmlWhenEnabled(divElm, (row as OptionRowData).text);
-          selected = values.includes(divElm.textContent?.trim() ?? '');
+          selected = valueSet.has(divElm.textContent?.trim() ?? '');
         } else if (row) {
-          selected = values.includes(row._value || row.value);
+          selected = valueSet.has(row._value || row.value);
           if (!selected && row.value === `${+(row as OptionRowData).value}`) {
-            selected = values.includes(+row.value);
+            selected = valueSet.has(+row.value);
           }
         }
 
@@ -1750,9 +1808,7 @@ export class MultipleSelectInstance {
     }
 
     if (hasChanged) {
-      this.initSelected(ignoreTrigger);
-      this.updateSelected();
-      this.update(ignoreTrigger);
+      this.updateSelection(ignoreTrigger);
     }
   }
 
@@ -1791,9 +1847,7 @@ export class MultipleSelectInstance {
       this._checkAll(false, true);
     }
     option.selected = checked;
-    this.initSelected();
-    this.updateSelected();
-    this.update();
+    this.updateSelection();
   }
 
   checkAll() {
@@ -1811,6 +1865,8 @@ export class MultipleSelectInstance {
    */
   setData(data: CollectionData, renderFilterAndSearchAll = false) {
     emptyElement(this.elm);
+    this.virtualScroll?.destroy();
+    this.virtualScroll = null;
     this.ulElm?.remove();
     this.options.data = data;
     this.initData();
@@ -1829,9 +1885,7 @@ export class MultipleSelectInstance {
     }
 
     if (!ignoreUpdate) {
-      this.initSelected();
-      this.updateSelected();
-      this.update();
+      this.updateSelection();
     }
   }
 
@@ -1844,9 +1898,7 @@ export class MultipleSelectInstance {
     });
 
     if (!ignoreUpdate) {
-      this.initSelected();
-      this.updateSelected();
-      this.update();
+      this.updateSelection();
     }
   }
 
@@ -1867,9 +1919,13 @@ export class MultipleSelectInstance {
         row.selected = !row.selected;
       }
     }
-    this.initSelected();
+    this.updateSelection();
+  }
+
+  private updateSelection(ignoreTrigger = false) {
+    this.initSelected(ignoreTrigger);
     this.updateSelected();
-    this.update();
+    this.update(ignoreTrigger);
   }
 
   focus() {
@@ -1896,14 +1952,31 @@ export class MultipleSelectInstance {
     }
     this.filterText = search;
 
+    let normalizedSearch: string | undefined;
+    const getSearch = () =>
+      typeof this.options.diacriticParser === 'function'
+        ? removeDiacritics(search, this.options.diacriticParser)
+        : (normalizedSearch ??= removeDiacritics(search));
+    const filterRow = (row: OptionRowData, parent?: OptGroupRowData) => {
+      const text = `${row.text ?? ''}`;
+      row.visible = this.options.customFilter({
+        text: removeDiacritics(text.toLowerCase(), this.options.diacriticParser),
+        search: getSearch(),
+        originalText: text,
+        originalSearch,
+        row,
+        ...(parent && { parent }),
+      });
+    };
+
     for (const row of this.data || []) {
       if ((row as OptGroupRowData).type === 'optgroup') {
         if (this.options.filterGroup) {
           const rowLabel = `${(row as OptGroupRowData)?.label ?? ''}`;
           if (row !== undefined && row !== null) {
             const visible = this.options.customFilter({
-              label: removeDiacritics(rowLabel.toString().toLowerCase(), this.options.diacriticParser),
-              search: removeDiacritics(search, this.options.diacriticParser),
+              label: removeDiacritics(rowLabel.toLowerCase(), this.options.diacriticParser),
+              search: getSearch(),
               originalLabel: rowLabel,
               originalSearch,
               row,
@@ -1919,28 +1992,13 @@ export class MultipleSelectInstance {
         } else {
           for (const child of (row as OptGroupRowData).children) {
             if (child !== undefined && child !== null) {
-              const childText = `${(child as OptionRowData)?.text ?? ''}`;
-              child.visible = this.options.customFilter({
-                text: removeDiacritics(childText.toString().toLowerCase(), this.options.diacriticParser),
-                search: removeDiacritics(search, this.options.diacriticParser),
-                originalText: childText,
-                originalSearch,
-                row: child,
-                parent: row,
-              });
+              filterRow(child, row as OptGroupRowData);
             }
           }
           row.visible = (row as OptGroupRowData).children.some((child: any) => child?.visible);
         }
       } else {
-        const rowText = `${(row as OptionRowData)?.text ?? ''}`;
-        row.visible = this.options.customFilter({
-          text: removeDiacritics(rowText.toString().toLowerCase(), this.options.diacriticParser),
-          search: removeDiacritics(search, this.options.diacriticParser),
-          originalText: rowText,
-          originalSearch,
-          row,
-        });
+        filterRow(row as OptionRowData);
       }
     }
 

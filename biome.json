@@ -79,7 +79,8 @@
       "style": {
         "noNonNullAssertion": "off",
         "noParameterAssign": "off",
-        "useExponentiationOperator": "off"
+        "useExponentiationOperator": "off",
+        "useBlockStatements": "error"
       }
     }
   },

@@ -130,3 +130,11 @@ Additional expectations:
 - Multi-step or cross-cutting behavioral refactors: run the full `pnpm test:e2e` suite before completion.
 
 Report which validations ran, their results, and any checks that could not run. Do not claim Playwright coverage from TypeScript, lint, or build checks alone.
+
+Pull requests
+- Put the title and description in separate fenced `markdown` blocks so each can be copied without extra labels inside the block.
+- Use a Conventional Commit PR title under 73 characters, as requested by `.github/pull_request_template.md`.
+- Follow the PR template, including the AI / LLM assistance disclosure. Fill in truthful details about the tool and its use; do not invent model information or validation results.
+- Lead with the concrete problem and resulting behavior. Explain relevant implementation choices, compatibility effects, migration steps, and validation. Identify material limitations and any tests not run.
+- Describe the final diff for a reviewer who has not read the conversation. Omit abandoned approaches unless they explain a necessary tradeoff. Link a related issue using fixes #123 only when appropriate.
+- Keep the scope focused. If several packages must change together, explain why in the template. Check checklist items only when they are satisfied.
