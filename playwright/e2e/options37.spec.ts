@@ -59,7 +59,7 @@ test.describe('Option 37 - Navigation Highlight', () => {
     await page.getByRole('option', { name: 'def' }).click();
     await page.getByRole('option', { name: 'cde' }).click();
     const selectAllLoc = await page.locator('[data-test=select4] .ms-select-all input[type=checkbox]');
-    expect(selectAllLoc).toBeChecked();
+    await expect(selectAllLoc).toBeChecked();
     await expect(page.locator('[data-test=select4].ms-drop input[data-name="selectItem"]')).toHaveCount(2);
     await expect(page.locator('[data-test=select4].ms-drop ul li.selected input[data-name="selectItem"]')).toHaveCount(2);
     await expect(page.locator('[data-test=select4] .ms-choice span')).toHaveText('abc, cde, def');
