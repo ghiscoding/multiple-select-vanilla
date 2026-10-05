@@ -26,10 +26,6 @@ export function deepCopy<T = any>(obj: T): T {
     return obj.map(deepCopy) as T;
   }
 
-  if (typeof obj === 'function') {
-    return obj;
-  }
-
   return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, deepCopy(value)])) as T;
 }
 
@@ -47,9 +43,7 @@ export function isDefined<T>(value: T | undefined | null): value is T {
 export function objectRemoveEmptyProps(obj: any, clearProps?: string[]) {
   if (typeof obj === 'object') {
     if (clearProps) {
-      return Object.fromEntries(
-        Object.entries(obj).filter(([name, val]) => (!isDefined(val) && !clearProps.includes(name)) || isDefined(val)),
-      );
+      return Object.fromEntries(Object.entries(obj).filter(([name, val]) => isDefined(val) || !clearProps.includes(name)));
     }
     return Object.fromEntries(Object.entries(obj).filter(([_, v]) => isDefined(v)));
   }

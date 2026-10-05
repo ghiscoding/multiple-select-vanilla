@@ -8,8 +8,13 @@ export interface ElementEventListener {
 export class BindingEventService {
   protected _distinctEvent: boolean;
   protected _boundedEvents: ElementEventListener[] = [];
+  private _eventCounts = new WeakMap<Element, Map<keyof HTMLElementEventMap, number>>();
+  private _captureOptions = new WeakMap<ElementEventListener, boolean>();
+  private _bindingsExposed = false;
 
   get boundedEvents(): ElementEventListener[] {
+    // Callers can mutate this live array, so fall back to scanning after it is exposed.
+    this._bindingsExposed = true;
     return this._boundedEvents;
   }
 
@@ -45,7 +50,12 @@ export class BindingEventService {
   }
 
   hasBinding(elm: Element, eventNameOrNames?: keyof HTMLElementEventMap | Array<keyof HTMLElementEventMap>): boolean {
-    return this._boundedEvents.some(f => f.element === elm && (!eventNameOrNames || f.eventName === eventNameOrNames));
+    const eventNames = eventNameOrNames && (Array.isArray(eventNameOrNames) ? eventNameOrNames : [eventNameOrNames]);
+    if (this._bindingsExposed) {
+      return this._boundedEvents.some(f => f.element === elm && (!eventNames || eventNames.includes(f.eventName)));
+    }
+    const counts = this._eventCounts.get(elm);
+    return !!counts && (eventNames ? eventNames.some(name => counts.has(name)) : counts.size > 0);
   }
 
   /** Unbind a specific listener that was bounded earlier */
@@ -54,23 +64,23 @@ export class BindingEventService {
     eventNameOrNames?: keyof HTMLElementEventMap | Array<keyof HTMLElementEventMap>,
     listener?: EventListenerOrEventListenerObject | null,
   ) {
-    if (elementOrElements) {
-      const elements = Array.isArray(elementOrElements) ? elementOrElements : [elementOrElements];
-      const eventNames = Array.isArray(eventNameOrNames) ? eventNameOrNames : [eventNameOrNames || ''];
-
-      for (const element of elements) {
-        if (!listener) {
-          listener = this._boundedEvents.find(f => {
-            if (f.element === element && (!eventNameOrNames || f.eventName === eventNameOrNames)) {
-              return f.listener;
-            }
-            return undefined;
-          }) as EventListener | undefined;
-        }
-
-        for (const eventName of eventNames) {
-          element?.removeEventListener?.(eventName, listener);
-        }
+    if (!elementOrElements) {
+      return;
+    }
+    const elements = new Set(
+      typeof (elementOrElements as NodeListOf<Element>).forEach === 'function'
+        ? Array.from(elementOrElements as NodeListOf<Element>)
+        : [elementOrElements as Element],
+    );
+    const eventNames = eventNameOrNames && (Array.isArray(eventNameOrNames) ? eventNameOrNames : [eventNameOrNames]);
+    for (let i = this._boundedEvents.length - 1; i >= 0; i--) {
+      const event = this._boundedEvents[i];
+      if (
+        elements.has(event.element) &&
+        (!eventNames || eventNames.includes(event.eventName)) &&
+        (!listener || event.listener === listener)
+      ) {
+        this.removeBinding(i);
       }
     }
   }
@@ -79,29 +89,28 @@ export class BindingEventService {
    * Unbind all event listeners that were bounded, optionally provide a group name to unbind all listeners assigned to that specific group only.
    */
   unbindAll(groupName?: string | string[]) {
-    if (groupName) {
-      const groupNames = Array.isArray(groupName) ? groupName : [groupName];
-      // unbind only the bounded event with a specific group
-      // Note: we need to loop in reverse order to avoid array reindexing (causing index offset) after a splice is called
-      for (let i = this._boundedEvents.length - 1; i >= 0; --i) {
-        const boundedEvent = this._boundedEvents[i];
-        if (groupNames.some(g => g === boundedEvent.groupName)) {
-          const { element, eventName, listener } = boundedEvent;
-          this.unbind(element, eventName, listener);
-          this._boundedEvents.splice(i, 1);
-        }
-      }
-    } else {
-      // unbind everything
-      while (this._boundedEvents.length > 0) {
-        const { element, eventName, listener } = this._boundedEvents.pop() as ElementEventListener;
-        this.unbind(element, eventName, listener);
+    const groupNames = groupName && (Array.isArray(groupName) ? groupName : [groupName]);
+    // Remove in reverse order so deleting a record does not shift unvisited records.
+    for (let i = this._boundedEvents.length - 1; i >= 0; --i) {
+      if (!groupNames || groupNames.includes(this._boundedEvents[i].groupName || '')) {
+        this.removeBinding(i);
       }
     }
   }
 
-  // --
-  // private functions
+  private removeBinding(index: number) {
+    const event = this._boundedEvents[index];
+    event.element.removeEventListener(event.eventName, event.listener, this._captureOptions.get(event) ?? false);
+    this._boundedEvents.splice(index, 1);
+    const counts = this._eventCounts.get(event.element);
+    const count = counts?.get(event.eventName) ?? 0;
+    if (count > 1) {
+      counts?.set(event.eventName, count - 1);
+    } else {
+      counts?.delete(event.eventName);
+    }
+    this._captureOptions.delete(event);
+  }
 
   /** bind all event(s) to the element */
   private bindElementEvents(
@@ -112,9 +121,17 @@ export class BindingEventService {
     groupName = '',
   ) {
     for (const eventName of eventNames) {
-      if (!this._distinctEvent || (this._distinctEvent && !this.hasBinding(element, eventName))) {
+      if (!this._distinctEvent || !this.hasBinding(element, eventName)) {
         element.addEventListener(eventName, listener as EventListener, listenerOptions);
-        this._boundedEvents.push({ element, eventName, listener: listener as EventListener, groupName });
+        const event = { element, eventName, listener, groupName };
+        this._boundedEvents.push(event);
+        this._captureOptions.set(event, typeof listenerOptions === 'boolean' ? listenerOptions : !!listenerOptions?.capture);
+        let counts = this._eventCounts.get(element);
+        if (!counts) {
+          counts = new Map();
+          this._eventCounts.set(element, counts);
+        }
+        counts.set(eventName, (counts.get(eventName) ?? 0) + 1);
       }
     }
   }

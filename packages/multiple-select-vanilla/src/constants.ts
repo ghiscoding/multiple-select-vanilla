@@ -7,6 +7,7 @@ export const CLUSTER_BLOCKS = 4;
 
 const noopFalse = () => false;
 const noopTrue = () => true;
+export const defaultCssStyler = () => null;
 const DEFAULTS: Partial<MultipleSelectOption> = {
   name: '',
   placeholder: '',
@@ -62,7 +63,7 @@ const DEFAULTS: Partial<MultipleSelectOption> = {
   infiniteScroll: false,
   virtualScroll: true,
 
-  cssStyler: () => null,
+  cssStyler: defaultCssStyler,
   textTemplate: (elm: HTMLOptionElement) => elm.innerHTML.trim(),
   labelTemplate: (elm: HTMLOptionElement) => elm.label,
 
