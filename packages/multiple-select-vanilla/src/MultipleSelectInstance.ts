@@ -1878,7 +1878,11 @@ export class MultipleSelectInstance {
   protected _checkAll(checked: boolean, ignoreUpdate?: boolean) {
     for (const row of this.data || []) {
       if ((row as OptGroupRowData).type === 'optgroup') {
-        this._checkGroup(row, checked, true);
+        for (const child of (row as OptGroupRowData).children) {
+          if (child && !child.disabled && !child.divider && (ignoreUpdate || child.visible)) {
+            child.selected = checked;
+          }
+        }
       } else if (!row.disabled && !row.divider && (ignoreUpdate || row.visible)) {
         row.selected = checked;
       }
