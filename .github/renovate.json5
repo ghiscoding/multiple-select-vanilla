@@ -11,7 +11,7 @@
   packageRules: [
     {
       // Exclude @lerna-lite/* from minimumReleaseAge since I'm the maintainer of Lerna-Lite
-      matchPackagePatterns: ['^@lerna-lite/'],
+      matchPackagePatterns: ['^@lerna-lite/', 'native-copyfiles'],
       minimumReleaseAge: '0',
     },
   ],
