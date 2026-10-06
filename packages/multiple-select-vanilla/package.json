@@ -78,7 +78,7 @@
   "devDependencies": {
     "autoprefixer": "^10.6.1",
     "cross-env": "catalog:",
-    "cssnano": "^9.1.0",
+    "cssnano": "^9.2.2",
     "esbuild": "^0.28.2",
     "native-copyfiles": "catalog:",
     "postcss": "^8.5.28",
