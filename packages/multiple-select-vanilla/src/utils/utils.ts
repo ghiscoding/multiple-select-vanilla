@@ -83,8 +83,7 @@ export function setDataKeys(data: any[]) {
 
 export function findByParam(data: any, param: any, value: any) {
   if (Array.isArray(data)) {
-    const matches = (row: any) =>
-      row[param] === value || (row[param] === `${+row[param]}` && +row[param] === value);
+    const matches = (row: any) => row[param] === value || (row[param] === `${+row[param]}` && +row[param] === value);
 
     for (const row of data) {
       if (matches(row)) {
