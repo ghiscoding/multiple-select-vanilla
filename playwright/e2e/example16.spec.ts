@@ -15,7 +15,7 @@ test.describe('Example 16 - Avatar Images as Text Template', () => {
     const parentSpan1 = await page.locator('.ms-parent[data-test=select1] .ms-choice span');
     expect(parentSpan1).toHaveText('Erika');
     await expect(parentSpan1.locator('img').getByAltText('image3')).toBeDefined();
-    await expect(parentSpan1.locator('img')).toHaveAttribute('src', /examples\/images\/avatar3.png/gi);
+    await expect(parentSpan1.locator('img')).toHaveAttribute('src', /avatar3(?:-[\w-]+)?\.png$/i);
     await expect(page.locator('div[data-test=select1] .ms-drop')).toBeHidden();
 
     // 2nd select
@@ -31,7 +31,7 @@ test.describe('Example 16 - Avatar Images as Text Template', () => {
     expect(await parentSpan2.locator('.name-section')).toHaveText('Smith');
     expect(await parentSpan2.locator('.job-section')).toHaveText('Accounting');
     await expect(parentSpan2.locator('img').getByAltText('image2')).toBeDefined();
-    await expect(parentSpan2.locator('img')).toHaveAttribute('src', /examples\/images\/avatar2.png/gi);
+    await expect(parentSpan2.locator('img')).toHaveAttribute('src', /avatar2(?:-[\w-]+)?\.png$/i);
     await expect(page.locator('div[data-test=select2] .ms-drop')).toBeHidden();
   });
 });

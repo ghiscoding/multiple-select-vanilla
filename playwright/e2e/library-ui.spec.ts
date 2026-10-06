@@ -1,16 +1,20 @@
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { expect, test } from '@playwright/test';
 
-const libraryUrl = `/@fs${resolve(__dirname, '../../packages/multiple-select-vanilla/dist/index.js')}`;
-const cssUrl = `/@fs${resolve(__dirname, '../../packages/multiple-select-vanilla/dist/styles/css/multiple-select.css')}`;
+const libraryBundle = readFileSync(resolve(__dirname, '../../packages/multiple-select-vanilla/dist/index.js'), 'utf8');
+const libraryCss = readFileSync(resolve(__dirname, '../../packages/multiple-select-vanilla/dist/styles/css/multiple-select.css'), 'utf8');
 
 test.beforeEach(async ({ page }) => {
+  await page.route('**/__playwright__/multiple-select-vanilla.js', route =>
+    route.fulfill({ contentType: 'text/javascript', body: libraryBundle }),
+  );
   await page.goto('/');
   await page.setContent('<!doctype html><html><body></body></html>');
-  await page.addStyleTag({ url: cssUrl });
-  await page.evaluate(async url => {
-    (window as any).auditLibrary = await import(url);
-  }, libraryUrl);
+  await page.addStyleTag({ content: libraryCss });
+  await page.evaluate(async (moduleUrl: string) => {
+    (window as any).auditLibrary = await import(moduleUrl);
+  }, '/__playwright__/multiple-select-vanilla.js');
 });
 
 test('selection preserves numeric coercion, strict native values, false, zero, and NaN', async ({ page }) => {

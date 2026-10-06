@@ -14,4 +14,7 @@ export default defineConfig({
     open: true,
     host: 'localhost',
   },
+  preview: {
+    port: 4000,
+  },
 });
