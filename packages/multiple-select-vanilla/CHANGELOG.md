@@ -4,6 +4,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.2...v5.2.3) (2026-10-06)
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#530](https://github.com/ghiscoding/multiple-select-vanilla/issues/530)) ([3bbae87](https://github.com/ghiscoding/multiple-select-vanilla/commit/3bbae87941612965060859718f07ab591ca12463)) - by @renovate-bot
+* limit Select all to filtered options ([#537](https://github.com/ghiscoding/multiple-select-vanilla/issues/537)) ([dce4675](https://github.com/ghiscoding/multiple-select-vanilla/commit/dce46751a1b1e85b341b5043d7a7442041cb5717)) - by @ghiscoding
+
+### Performance Improvements
+
+* optimize library selection, filtering, and virtual scrolling ([#535](https://github.com/ghiscoding/multiple-select-vanilla/issues/535)) ([8d7cf44](https://github.com/ghiscoding/multiple-select-vanilla/commit/8d7cf448f755c3a8299db22f61203a2963b8f406)) - by @ghiscoding
+
 ## [5.2.2](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.1...v5.2.2) (2026-08-22)
 
 ### Bug Fixes
