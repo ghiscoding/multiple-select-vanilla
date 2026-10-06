@@ -24,6 +24,9 @@ test.describe('Option 37 - Navigation Highlight', () => {
     // 2nd select
     const parentSelectLoc2 = await page.locator('[data-test="select2"].ms-parent');
     await parentSelectLoc2.click();
+    await expect(parentSelectLoc2).toHaveClass(/ms-parent-open/);
+    // Keep hover from changing the highlighted option while keyboard navigation is in progress.
+    await page.mouse.move(0, 0);
     await parentSelectLoc2.press('ArrowDown');
     await parentSelectLoc2.press('ArrowDown');
     await parentSelectLoc2.press('Space');
