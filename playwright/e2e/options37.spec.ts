@@ -7,6 +7,8 @@ test.describe('Option 37 - Navigation Highlight', () => {
     // 1st select
     const parentSelectLoc1 = await page.locator('[data-test="select1"].ms-parent');
     await parentSelectLoc1.click();
+    await expect(parentSelectLoc1).toHaveClass(/ms-parent-open/);
+    await page.mouse.move(0, 0);
     const optGroups = await page.locator('.group.hide-radio .optgroup.disabled');
     const liElms = await page.locator('div[data-test=select1] .option-level-1');
     await expect(optGroups).toBeDefined();
@@ -39,6 +41,7 @@ test.describe('Option 37 - Navigation Highlight', () => {
     // // 3rd select
     const parentSelectLoc3 = await page.locator('[data-test="select3"].ms-parent');
     await parentSelectLoc3.click();
+    await expect(parentSelectLoc3).toHaveClass(/ms-parent-open/);
     // Keep the pointer away from the dropdown so navigationHighlight is driven by the keys below.
     await page.mouse.move(0, 0);
     await parentSelectLoc3.press('ArrowDown');
@@ -58,11 +61,20 @@ test.describe('Option 37 - Navigation Highlight', () => {
     // 4th select
     const parentSelectLoc4 = await page.locator('[data-test="select4"].ms-parent');
     await parentSelectLoc4.click();
-    await parentSelectLoc4.press('ArrowDown');
-    await parentSelectLoc4.press('Enter');
-    await parentSelectLoc4.pressSequentially('de');
+    await expect(parentSelectLoc4).toHaveClass(/ms-parent-open/);
+    await page.mouse.move(0, 0);
+    const searchInput = page.locator('[data-test=select4] .ms-search input');
+    await expect(searchInput).toBeFocused();
+    await searchInput.press('ArrowDown');
+    await searchInput.press('Enter');
+    await expect(page.locator('[data-test=select4].ms-drop li[data-key="option_0"] input')).toBeChecked();
+    await searchInput.pressSequentially('de');
+    await expect(searchInput).toHaveValue('de');
+    await expect(page.locator('[data-test=select4].ms-drop input[data-name="selectItem"]')).toHaveCount(2);
     await page.getByRole('option', { name: 'def' }).click();
+    await expect(page.getByRole('option', { name: 'def' }).locator('input')).toBeChecked();
     await page.getByRole('option', { name: 'cde' }).click();
+    await expect(page.getByRole('option', { name: 'cde' }).locator('input')).toBeChecked();
     const selectAllLoc = await page.locator('[data-test=select4] .ms-select-all input[type=checkbox]');
     await expect(selectAllLoc).toBeChecked();
     await expect(page.locator('[data-test=select4].ms-drop input[data-name="selectItem"]')).toHaveCount(2);
