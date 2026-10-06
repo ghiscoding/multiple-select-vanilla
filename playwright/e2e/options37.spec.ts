@@ -36,6 +36,8 @@ test.describe('Option 37 - Navigation Highlight', () => {
     // // 3rd select
     const parentSelectLoc3 = await page.locator('[data-test="select3"].ms-parent');
     await parentSelectLoc3.click();
+    // Keep the pointer away from the dropdown so navigationHighlight is driven by the keys below.
+    await page.mouse.move(0, 0);
     await parentSelectLoc3.press('ArrowDown');
     await parentSelectLoc3.press('Space');
     await expect(page.locator('[data-test=select3].ms-parent .ms-choice span')).toHaveText('4 of 9 selected');
