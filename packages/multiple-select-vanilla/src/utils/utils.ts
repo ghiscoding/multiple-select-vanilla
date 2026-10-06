@@ -60,7 +60,7 @@ export function setDataKeys(data: any[]) {
 
       row.children.forEach((child: any, j: number) => {
         if (child) {
-          child.visible = typeof child?.visible === 'undefined' ? true : child.visible;
+          child.visible = typeof child.visible === 'undefined' ? true : child.visible;
 
           if (!child.divider) {
             child._key = `option_${i}_${j}`;
@@ -83,13 +83,16 @@ export function setDataKeys(data: any[]) {
 
 export function findByParam(data: any, param: any, value: any) {
   if (Array.isArray(data)) {
+    const matches = (row: any) =>
+      row[param] === value || (row[param] === `${+row[param]}` && +row[param] === value);
+
     for (const row of data) {
-      if (row[param] === value || (row[param] === `${+row[param]}` && +row[param] === value)) {
+      if (matches(row)) {
         return row;
       }
       if (row.type === 'optgroup') {
         for (const child of row.children) {
-          if (child && (child[param] === value || (child[param] === `${+child[param]}` && +child[param] === value))) {
+          if (child && matches(child)) {
             return child;
           }
         }
