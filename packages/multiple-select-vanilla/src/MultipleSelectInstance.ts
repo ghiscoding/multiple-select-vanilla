@@ -1875,15 +1875,19 @@ export class MultipleSelectInstance {
     this.adjustDropSizeAndPosition();
   }
 
+  protected isCheckableRow(row: OptionRowData | OptGroupRowData | null | undefined, ignoreUpdate?: boolean): boolean {
+    return !!row && !row.disabled && !row.divider && !!(ignoreUpdate || row.visible);
+  }
+
   protected _checkAll(checked: boolean, ignoreUpdate?: boolean) {
     for (const row of this.data || []) {
       if ((row as OptGroupRowData).type === 'optgroup') {
         for (const child of (row as OptGroupRowData).children) {
-          if (child && !child.disabled && !child.divider && (ignoreUpdate || child.visible)) {
+          if (this.isCheckableRow(child, ignoreUpdate)) {
             child.selected = checked;
           }
         }
-      } else if (!row.disabled && !row.divider && (ignoreUpdate || row.visible)) {
+      } else if (this.isCheckableRow(row, ignoreUpdate)) {
         row.selected = checked;
       }
     }
@@ -1896,7 +1900,7 @@ export class MultipleSelectInstance {
   protected _checkGroup(group: any, checked: boolean, ignoreUpdate?: boolean) {
     group.selected = checked;
     group.children.forEach((row: OptionRowData) => {
-      if (row && !row.disabled && !row.divider && (ignoreUpdate || row.visible)) {
+      if (this.isCheckableRow(row, ignoreUpdate)) {
         row.selected = checked;
       }
     });
@@ -1913,10 +1917,8 @@ export class MultipleSelectInstance {
     for (const row of this.data || []) {
       if ((row as OptGroupRowData).type === 'optgroup') {
         for (const child of (row as OptGroupRowData).children) {
-          if (child) {
-            if (!child.divider) {
-              child.selected = !child.selected;
-            }
+          if (child && !child.divider) {
+            child.selected = !child.selected;
           }
         }
       } else if (row && !row.divider) {
