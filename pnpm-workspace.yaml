@@ -24,4 +24,4 @@ overrides:
   http-cache-semantics: ^4.3.0
   ip-address: ^10.7.4
   svgo: ^4.1.0
-  undici: ^8.11.2
+  undici: ^8.12.2
