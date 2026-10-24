@@ -47,60 +47,25 @@
       color: var(--ms-icon-color-hover, v.$ms-icon-color-hover);
     }
   }
-
-  .ms-select-all,
-  li:not(.hide-radio) {
-    cursor: pointer;
-    &.disabled {
-      cursor: default;
-    }
-
-    .icon-checkbox-container {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: var(--ms-checkbox-icon-container-height, v.$ms-checkbox-icon-container-height);
-      width: var(--ms-checkbox-icon-container-width, v.$ms-checkbox-icon-container-width);
-      border: var(--ms-checkbox-icon-container-border, v.$ms-checkbox-icon-container-border);
-      border-radius: var(--ms-checkbox-icon-container-border-radius, v.$ms-checkbox-icon-container-border-radius);
-
-      div {
-        font-size: 14px;
-        color: var(--ms-checkbox-color, v.$ms-checkbox-color);
-        &:hover {
-          color: var(--ms-checkbox-hover-color, v.$ms-checkbox-hover-color);
-        }
-        // since we use the div container with a border, we don't actually need an icon for unchecked
-        // BUT since we want to keep the same size, we can simply hide the mask to keep the same size
-        &.ms-icon-uncheck {
-          visibility: hidden;
-        }
-      }
-      &.radio {
-        border-radius: 50%;
-      }
-      & + span {
-        display: inline-flex;
-        align-items: center;
-        column-gap: var(--ms-label-column-gap, v.$ms-label-column-gap);
-        padding-left: var(--ms-label-text-padding-left, v.$ms-label-text-padding-left);
-      }
-    }
-  }
 }
 
 .ms-offscreen {
-  clip: rect(0 0 0 0) !important;
-  width: 1px !important;
-  height: 1px !important;
-  border: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  position: absolute !important;
-  outline: 0 !important;
-  left: auto !important;
-  top: auto !important;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  // Constrain native selects with inline dimensions without overriding their styles.
+  min-width: 0;
+  max-width: 1px;
+  min-height: 0;
+  max-height: 1px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: absolute;
+  outline: 0;
+  left: auto;
+  top: auto;
 }
 
 .ms-parent {
@@ -164,6 +129,44 @@
   }
 }
 
+.ms-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  white-space: nowrap;
+  width: 100%;
+  margin: var(--ms-search-margin, v.$ms-search-margin);
+  min-height: var(--ms-search-min-height, v.$ms-search-min-height);
+  padding: var(--ms-search-padding, v.$ms-search-padding);
+  z-index: var(--ms-search-zindex, v.$ms-search-zindex);
+
+  input {
+    box-shadow: none;
+    font-family: sans-serif;
+    height: auto;
+    width: 100%;
+    color: var(--ms-search-input-color, v.$ms-search-input-color);
+    background-color: var(--ms-search-input-bg-color, v.$ms-search-input-bg-color);
+    border: var(--ms-search-input-border, v.$ms-search-input-border);
+    border-radius: var(--ms-search-input-border-radius, v.$ms-search-input-border-radius);
+    min-height: var(--ms-search-input-min-height, v.$ms-search-input-min-height);
+    outline: var(--ms-search-input-outline, v.$ms-search-input-outline);
+    padding: var(--ms-search-input-padding, v.$ms-search-input-padding);
+    margin: var(--ms-search-input-margin, v.$ms-search-input-margin);
+    &::placeholder {
+      color: var(--ms-search-input-placeholder, v.$ms-search-input-placeholder);
+    }
+  }
+
+  span.ms-icon-close {
+    cursor: pointer;
+    height: var(--ms-icon-size, v.$ms-icon-size);
+    margin: var(--ms-search-icon-close-margin, v.$ms-search-icon-close-margin);
+  }
+}
+
 .ms-drop {
   width: auto;
   min-width: 100%;
@@ -188,6 +191,61 @@
     box-shadow: var(--ms-drop-top-box-shadow, v.$ms-drop-top-box-shadow);
   }
 
+  input {
+    &[type="radio"],
+    &[type="checkbox"] {
+      // make input checkbox invisible but don't hide it since ms-select uses hide for something else
+      opacity: 0;
+      width: 0;
+      position: absolute;
+      margin-left: var(--ms-drop-input-margin-left, v.$ms-drop-input-margin-left);
+      margin-top: var(--ms-drop-input-margin-top, v.$ms-drop-input-margin-top);
+      accent-color: var(--ms-checkbox-color, v.$ms-checkbox-color);
+    }
+    &:focus {
+      outline: var(--ms-input-focus-outline, v.$ms-input-focus-outline);
+    }
+  }
+
+  ul > li {
+    label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-weight: normal;
+      position: relative;
+      white-space: nowrap;
+      flex: 0 0 100%;
+      margin-bottom: var(--ms-label-margin-bottom, v.$ms-label-margin-bottom);
+      min-height: var(--ms-label-min-height, v.$ms-label-min-height);
+      padding: var(--ms-label-padding, v.$ms-label-padding);
+
+      &.optgroup {
+        color: var(--ms-optgroup-color, v.$ms-optgroup-color);
+        font-weight: var(--ms-drop-optgroup-font-weight, v.$ms-drop-optgroup-font-weight);
+      }
+    }
+  }
+
+  .ms-ok-button {
+    cursor: pointer;
+    display: block;
+    padding: var(--ms-ok-button-padding, v.$ms-ok-button-padding);
+    width: var(--ms-ok-button-width, v.$ms-ok-button-width);
+    height: var(--ms-ok-button-height, v.$ms-ok-button-height);
+    border-color: var(--ms-ok-button-border-color, v.$ms-ok-button-border-color);
+    border-radius: var(--ms-ok-button-border-radius, v.$ms-ok-button-border-radius);
+    border-width: var(--ms-ok-button-border-width, v.$ms-ok-button-border-width);
+    text-align: var(--ms-ok-button-text-align, v.$ms-ok-button-text-align);
+    color: var(--ms-ok-button-text-color, v.$ms-ok-button-text-color);
+    font-weight: var(--ms-ok-button-font-weight, v.$ms-ok-button-font-weight);
+    background-color: var(--ms-ok-button-bg-color, v.$ms-ok-button-bg-color);
+    &:hover {
+      background-color: var(--ms-ok-button-bg-hover-color, v.$ms-ok-button-bg-hover-color);
+      color: var(--ms-ok-button-text-hover-color, v.$ms-ok-button-text-hover-color);
+    }
+  }
+
   .ms-select-all {
     border-bottom: var(--ms-select-all-border-bottom, v.$ms-select-all-border-bottom);
     line-height: var(--ms-select-all-line-height, v.$ms-select-all-line-height);
@@ -195,9 +253,6 @@
     width: 100%;
     &:hover {
       background-color: var(--ms-select-all-text-hover-color, v.$ms-select-all-text-hover-color);
-    }
-    &.highlighted {
-      background-color: var(--ms-option-highlight-bg-color, v.$ms-option-highlight-bg-color);
     }
 
     label {
@@ -223,66 +278,6 @@
       }
     }
   }
-
-  .ms-ok-button {
-    cursor: pointer;
-    display: block;
-    padding: var(--ms-ok-button-padding, v.$ms-ok-button-padding);
-    width: var(--ms-ok-button-width, v.$ms-ok-button-width);
-    height: var(--ms-ok-button-height, v.$ms-ok-button-height);
-    border-color: var(--ms-ok-button-border-color, v.$ms-ok-button-border-color);
-    border-radius: var(--ms-ok-button-border-radius, v.$ms-ok-button-border-radius);
-    border-width: var(--ms-ok-button-border-width, v.$ms-ok-button-border-width);
-    text-align: var(--ms-ok-button-text-align, v.$ms-ok-button-text-align);
-    color: var(--ms-ok-button-text-color, v.$ms-ok-button-text-color);
-    font-weight: var(--ms-ok-button-font-weight, v.$ms-ok-button-font-weight);
-    background-color: var(--ms-ok-button-bg-color, v.$ms-ok-button-bg-color);
-    &:hover {
-      background-color: var(--ms-ok-button-bg-hover-color, v.$ms-ok-button-bg-hover-color);
-      color: var(--ms-ok-button-text-hover-color, v.$ms-ok-button-text-hover-color);
-    }
-  }
-}
-
-.ms-search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  position: relative;
-  white-space: nowrap;
-  width: 100%;
-  margin: var(--ms-search-margin, v.$ms-search-margin);
-  min-height: var(--ms-search-min-height, v.$ms-search-min-height);
-  padding: var(--ms-search-padding, v.$ms-search-padding);
-  z-index: var(--ms-search-zindex, v.$ms-search-zindex);
-
-  input {
-    box-shadow: none;
-    font-family: sans-serif;
-    height: auto !important;
-    width: 100%;
-    color: var(--ms-search-input-color, v.$ms-search-input-color);
-    background-color: var(--ms-search-input-bg-color, v.$ms-search-input-bg-color);
-    border: var(--ms-search-input-border, v.$ms-search-input-border);
-    border-radius: var(--ms-search-input-border-radius, v.$ms-search-input-border-radius);
-    min-height: var(--ms-search-input-min-height, v.$ms-search-input-min-height);
-    outline: var(--ms-search-input-outline, v.$ms-search-input-outline);
-    padding: var(--ms-search-input-padding, v.$ms-search-input-padding);
-    margin: var(--ms-search-input-margin, v.$ms-search-input-margin);
-    &::placeholder {
-      color: var(--ms-search-input-placeholder, v.$ms-search-input-placeholder);
-    }
-  }
-
-  span.ms-icon-close {
-    cursor: pointer;
-    height: var(--ms-icon-size, v.$ms-icon-size);
-    margin: var(--ms-search-icon-close-margin, v.$ms-search-icon-close-margin);
-  }
-}
-
-.ms-drop {
   ul {
     overflow: auto;
     outline: var(--ms-drop-outline, v.$ms-drop-outline);
@@ -299,13 +294,6 @@
       display: var(--ms-drop-list-item-display, v.$ms-drop-list-item-display);
       padding: var(--ms-drop-list-item-padding, v.$ms-drop-list-item-padding);
 
-      .disabled {
-        cursor: default;
-        font-weight: normal !important;
-        opacity: var(--ms-drop-list-item-disabled-opacity, v.$ms-drop-list-item-disabled-opacity);
-        filter: var(--ms-drop-list-item-disabled-filter, v.$ms-drop-list-item-disabled-filter);
-      }
-
       &.multiple {
         display: block;
         float: left;
@@ -315,30 +303,21 @@
         clear: both;
       }
 
+      // Match optgroup label specificity so disabled labels keep normal font weight.
+      .disabled,
+      label.disabled {
+        cursor: default;
+        font-weight: normal;
+        opacity: var(--ms-drop-list-item-disabled-opacity, v.$ms-drop-list-item-disabled-opacity);
+        filter: var(--ms-drop-list-item-disabled-filter, v.$ms-drop-list-item-disabled-filter);
+      }
+
       &.multiple label {
         width: 100%;
         display: block;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-      }
-
-      label {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        font-weight: normal;
-        position: relative;
-        white-space: nowrap;
-        flex: 0 0 100%;
-        margin-bottom: var(--ms-label-margin-bottom, v.$ms-label-margin-bottom);
-        min-height: var(--ms-label-min-height, v.$ms-label-min-height);
-        padding: var(--ms-label-padding, v.$ms-label-padding);
-
-        &.optgroup {
-          color: var(--ms-optgroup-color, v.$ms-optgroup-color);
-          font-weight: var(--ms-drop-optgroup-font-weight, v.$ms-drop-optgroup-font-weight);
-        }
       }
 
       &.hide-radio {
@@ -374,26 +353,12 @@
         padding: var(--ms-drop-option-divider-padding, v.$ms-drop-option-divider-padding);
         border-top: var(--ms-drop-option-divider-border-top, v.$ms-drop-option-divider-border-top);
       }
-      &.highlighted {
-        background-color: var(--ms-option-highlight-bg-color, v.$ms-option-highlight-bg-color);
-      }
     }
   }
 
-  input {
-    &[type="radio"],
-    &[type="checkbox"] {
-      // make input checkbox invisible but don't hide it since ms-select uses hide for something else
-      opacity: 0;
-      width: 0;
-      position: absolute;
-      margin-left: var(--ms-drop-input-margin-left, v.$ms-drop-input-margin-left);
-      margin-top: var(--ms-drop-input-margin-top, v.$ms-drop-input-margin-top);
-      accent-color: var(--ms-checkbox-color, v.$ms-checkbox-color);
-    }
-    &:focus {
-      outline: var(--ms-input-focus-outline, v.$ms-input-focus-outline);
-    }
+  ul > li.highlighted,
+  .ms-select-all.highlighted {
+    background-color: var(--ms-option-highlight-bg-color, v.$ms-option-highlight-bg-color);
   }
 
   .ms-no-results {
@@ -421,5 +386,48 @@
 
   .ms-infinite-option {
     height: var(--ms-infinite-empty-option-height, v.$ms-infinite-empty-option-height);
+  }
+}
+
+.ms-parent,
+.ms-drop {
+  .ms-select-all,
+  li:not(.hide-radio) {
+    cursor: pointer;
+    &.disabled {
+      cursor: default;
+    }
+
+    .icon-checkbox-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: var(--ms-checkbox-icon-container-height, v.$ms-checkbox-icon-container-height);
+      width: var(--ms-checkbox-icon-container-width, v.$ms-checkbox-icon-container-width);
+      border: var(--ms-checkbox-icon-container-border, v.$ms-checkbox-icon-container-border);
+      border-radius: var(--ms-checkbox-icon-container-border-radius, v.$ms-checkbox-icon-container-border-radius);
+
+      div {
+        font-size: 14px;
+        color: var(--ms-checkbox-color, v.$ms-checkbox-color);
+        &:hover {
+          color: var(--ms-checkbox-hover-color, v.$ms-checkbox-hover-color);
+        }
+        // since we use the div container with a border, we don't actually need an icon for unchecked
+        // BUT since we want to keep the same size, we can simply hide the mask to keep the same size
+        &.ms-icon-uncheck {
+          visibility: hidden;
+        }
+      }
+      &.radio {
+        border-radius: 50%;
+      }
+      & + span {
+        display: inline-flex;
+        align-items: center;
+        column-gap: var(--ms-label-column-gap, v.$ms-label-column-gap);
+        padding-left: var(--ms-label-text-padding-left, v.$ms-label-text-padding-left);
+      }
+    }
   }
 }

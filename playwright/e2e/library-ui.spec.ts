@@ -17,6 +17,64 @@ test.beforeEach(async ({ page }) => {
   }, '/__playwright__/multiple-select-vanilla.js');
 });
 
+test('native selects with inline dimensions stay hidden and recover their styles on destroy', async ({ page }) => {
+  await page.evaluate(() => {
+    const { multipleSelect } = (window as any).auditLibrary;
+    const select = document.createElement('select');
+    select.id = 'styled-select';
+    select.style.cssText = 'width: 320px; height: 80px;';
+    select.append(new Option('One', '1'));
+    document.body.append(select);
+    (window as any).styledSelect = multipleSelect(select, { width: 250 });
+  });
+
+  const select = page.locator('#styled-select');
+  await expect(select).toBeHidden();
+  await expect(page.locator('.ms-choice')).toBeVisible();
+
+  // The offscreen class must also clip the select if host code restores its display.
+  await select.evaluate(element => {
+    element.style.display = 'block';
+  });
+  await expect(select).toHaveCSS('position', 'absolute');
+  await expect(select).toHaveCSS('clip', 'rect(0px, 0px, 0px, 0px)');
+  await expect(select).toHaveCSS('width', '1px');
+  await expect(select).toHaveCSS('height', '1px');
+
+  await page.evaluate(() => (window as any).styledSelect.destroy());
+  await expect(select).toBeVisible();
+  await expect(select).toHaveCSS('width', '320px');
+  await expect(select).toHaveCSS('height', '80px');
+});
+
+test('disabled group labels override group font weight and highlights override select-all hover', async ({ page }) => {
+  await page.evaluate(() => {
+    const { multipleSelect } = (window as any).auditLibrary;
+    const select = document.createElement('select');
+    select.multiple = true;
+    select.innerHTML =
+      '<optgroup label="Disabled" disabled><option>One</option></optgroup><optgroup label="Enabled"><option>Two</option></optgroup>';
+    document.body.append(select);
+    const instance = multipleSelect(select, { width: 250, filter: true });
+    const drop = instance.getDropElement();
+    drop.style.setProperty('--ms-drop-optgroup-font-weight', '700');
+    drop.style.setProperty('--ms-select-all-text-hover-color', 'rgb(255, 0, 0)');
+    drop.style.setProperty('--ms-option-highlight-bg-color', 'rgb(0, 128, 0)');
+    instance.open();
+  });
+
+  await expect(page.locator('label.optgroup.disabled')).toHaveCSS('font-weight', '400');
+  await expect(page.locator('label.optgroup:not(.disabled)')).toHaveCSS('font-weight', '700');
+  await expect(page.locator('.ms-search input')).toBeVisible();
+
+  const selectAll = page.locator('.ms-select-all');
+  await selectAll.hover();
+  await expect(selectAll).toHaveClass(/highlighted/);
+  await expect(selectAll).toHaveCSS('background-color', 'rgb(0, 128, 0)');
+  await selectAll.evaluate(element => element.classList.remove('highlighted'));
+  await expect(selectAll).toHaveCSS('background-color', 'rgb(255, 0, 0)');
+});
+
 test('selection preserves numeric coercion, strict native values, false, zero, and NaN', async ({ page }) => {
   const result = await page.evaluate(() => {
     const { multipleSelect } = (window as any).auditLibrary;
