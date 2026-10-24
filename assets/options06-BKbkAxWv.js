@@ -1,0 +1,1 @@
+import{n as e}from"./index-BdaOVSHk.js";var t=class{ms1;mount(){this.ms1=e(`select`,{maxHeight:140})}unmount(){this.ms1?.destroy(),this.ms1=void 0}};export{t as default};

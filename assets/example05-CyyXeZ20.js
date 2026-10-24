@@ -1,0 +1,46 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Disabled Select
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example05.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example05.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Show a disabled select width <code>disabled</code>attribute.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Disabled Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" disabled="disabled" class="full-width">
+        <option value="1" selected>January</option>
+        <option value="2">February</option>
+        <option value="3" selected>March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

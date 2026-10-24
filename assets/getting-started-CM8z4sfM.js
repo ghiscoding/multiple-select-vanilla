@@ -1,0 +1,92 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">Getting Started</h2>
+  </div>
+</div>
+
+<div class="content-text">
+  <h3>Download</h3>
+  <hr>
+
+  <section>
+    <h5>GitHub <i class="fa fa-link"></i></h5>
+    <p><a href="https://github.com/ghiscoding/multiple-select-vanilla">https://github.com/ghiscoding/multiple-select-vanilla</a></p>
+  </section>
+
+  <section>
+    <h5>CDN</h5>
+    <p>
+      <a href="https://www.jsdelivr.com/" target="__blank">jsDelivr</a>
+      graciously provide CDNs for many JavaScript libraries including Multiple-Select-Vanilla. Just use the following CDN links.
+    </p>
+
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>
+&lt;script <span style="color:#207eb1">type</span>=&quot;<span style="color:#f06605">module</span>&quot;&gt;
+  // ESM Module import
+  <span style="color:#cf222e">import</span> multipleSelect <span style="color:#cf222e">from</span> <span style="color:#0a3069">'https://cdn.jsdelivr.net/npm/multiple-select-vanilla@5.2.2/+esm'</span>;
+&lt;/script&gt;
+</pre>
+    </div>
+  </section>
+
+  <section>
+    <h5>NPM</h5>
+    <p>Install and manage Multiple Select's CSS, JavaScript using NPM.</p>
+
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>$ npm install multiple-select-vanilla</pre>
+    </div>
+  </section>
+
+  <h5>ESM import</h5>
+  <p>The library provides ESM imports, see the example below:</p>
+  <div style="background: #f7f7f7; padding: 10px">
+    <pre>
+// ESM
+<span style="color:#cf222e">import</span> { multipleSelect } <span style="color:#cf222e">from</span> <span style="color:#0a3069">'multiple-select-vanilla'</span>;
+<span style="color:#6639ba">multipleSelect</span>(<span style="color:#0a3069">'.multiple-select'</span>, {<span style="color:#a0a1a7">&nbsp;/* [options] */&nbsp;</span>});
+</pre>
+  </div>
+
+  <br>
+
+  <section>
+    <h5>CSS / SASS Styling Themes</h5>
+    <p>Load default or Bootstrap Theme style via either the <code>@use</code>(modern) or <code>@import</code>(legacy)</p>
+    1- with modern SASS <code>@use</code>approach
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>
+  <span style="color:#cf222e">@use</span> <span style="color:#0a3069">'multiple-select-vanilla/dist/styles/sass/multiple-select.scss'</span> <span style="color:#cf222e">with</span> (
+    <span style="color:#986801">$ms-primary-color</span>: red,
+    <span style="color:#986801">$ms-checkbox-color</span>: red,
+  );
+</pre>
+    </div>
+    2- with legacy SASS <code>@import</code>approach
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>
+  <span style="color:#986801">$ms-primary-color</span>: red;
+  <span style="color:#986801">$ms-checkbox-color</span>: red;
+  <span style="color:#cf222e">@import</span> <span style="color:#0a3069">'multiple-select-vanilla/dist/styles/sass/multiple-select.scss'</span>;
+</pre>
+    </div>
+    3- same goes for the Bootstrap Theme
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>
+  <span style="color:#cf222e">@use</span> <span style="color:#0a3069">'multiple-select-vanilla/dist/styles/sass/themes/bootstrap.scss'</span> <span style="color:#cf222e">with</span> (
+    <span style="color:#986801">$ms-parent-form-control-padding</span>: 5px,
+    <span style="color:#986801">$ms-primary-color</span>: orange,
+    <span style="color:#986801">$ms-checkbox-color</span>: orange,
+  );
+</pre>
+    </div>
+  </section>
+  <h5>Legacy Versions</h5>
+  <p>
+    The project now ships as ESM-Only, if you still wish to use the legacy <code>&lt;script&gt;</code> standalone IIFE Script on the
+    <code>window</code>
+    object, then use the previous 4.x version.
+  </p>
+</div>
+`;export{e as default};

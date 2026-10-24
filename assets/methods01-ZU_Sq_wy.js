@@ -1,0 +1,41 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The getOptions
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods01.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods01.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>multipleSelect(selector).getOptions()</code>to get the options object.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Methods </label>
+
+    <div class="col-sm-10"><button id="getOptions" type="button" class="btn btn-secondary">getOptions</button></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="text1">text1</option>
+        <option value="text2">text2</option>
+        <option value="text3">text3</option>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

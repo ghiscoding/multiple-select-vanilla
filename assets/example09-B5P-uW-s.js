@@ -1,0 +1,104 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Locale
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example09.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example09.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>locale</code>to set the locale. <strong>Please note</strong> that the months themselves aren't being translated, but every
+      other labels like "Select All", "OK", "Cancel", "Search", etc. are the ones being translated.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-4">Locale Select </label>
+
+    <div class="col-sm-8">
+      <select id="locale" class="full-width">
+        <option value="en-US">English</option>
+        <option value="fr-FR">French</option>
+        <option value="de-DE">German</option>
+        <option value="id-ID">Indonesian</option>
+        <option value="it-IT">Italian</option>
+        <option value="es-ES">Spanish</option>
+        <option value="vi-VN">Vietnamese</option>
+        <option value="zh-CN">简体中文</option>
+        <option value="zh-TW">繁體中文</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-4">Result Select </label>
+
+    <div class="col-sm-8">
+      <select id="dynamic-select" class="full-width" multiple="multiple">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>
+// ESM named import
+<span style="color:#cf222e">import</span> { locales } <span style="color:#cf222e">from</span> <span style="color:#0a3069">'multiple-select-vanilla/dist/locales/all-locales.js'</span>;
+<span style="color:#6639ba">multipleSelect</span>(<span style="color:#0a3069">'.select'</span>, {
+  locales
+}</span>);
+</pre>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="my-5 row">
+    <label class="col-sm-4"> named Locale import (e.g. <code>Spanish</code>) </label>
+
+    <div class="col-sm-8">
+      <select id="fixed-import" class="full-width" multiple="multiple">
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div style="background: #f7f7f7; padding: 10px">
+      <pre>
+// ESM named import
+<span style="color:#cf222e">import</span> { multipleSelect } <span style="color:#cf222e">from</span> <span style="color:#0a3069">'multiple-select-vanilla'</span>;
+<span style="color:#6639ba">multipleSelect</span>(<span style="color:#0a3069">'.select'</span>, {
+  locale: <span style="color:#105fd7">Spanish</span>
+}</span>);
+</pre>
+    </div>
+  </div>
+</div>
+`;export{e as default};

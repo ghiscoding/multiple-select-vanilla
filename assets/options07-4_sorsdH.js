@@ -1,0 +1,71 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Max Height Unit
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options07.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options07.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>maxHeightUnit: 'row'</code>option to set the max height unit.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Max Rows </label>
+
+    <div class="col-sm-10"><input id="number" type="number" value="5" min="1" max="10"></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Single Select </label>
+
+    <div class="col-sm-10">
+      <select class="full-width" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Multiple Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width" data-test="select2">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

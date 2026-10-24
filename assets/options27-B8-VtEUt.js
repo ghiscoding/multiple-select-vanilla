@@ -1,0 +1,61 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Text Template
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options27.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options27.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>textTemplate</code>to customize the text template and <code>renderOptionLabelAsHtml</code>to render selected labels as HTML.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-4"> Enable/Disable <code>renderOptionLabelAsHtml</code>option </label>
+
+    <div class="col-sm-8">
+      <button id="enableRenderHtml" type="button" class="btn btn-primary">Enable renderOptionLabelAsHtml</button>
+      <button id="disableRenderHtml" type="button" class="btn btn-secondary">Disable renderOptionLabelAsHtml</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-4">Basic Select</label>
+
+    <div class="col-sm-8">
+      <select id="basic" data-test="select1" multiple="multiple" class="full-width">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-4">From Data</label>
+
+    <div class="col-sm-8"><select id="from-data" data-test="select2" class="full-width" multiple></select></div>
+  </div>
+</div>
+`;export{e as default};

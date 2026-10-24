@@ -1,0 +1,69 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Lazy Load Data
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options42.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options42.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>&#123; lazyData: (resolve, reject) &#125;</code>to lazy load data, the 2 arguments are callback functions to call when the
+      data is ready by calling <code>resolve(data)</code>. Lazy data will only be loaded once and reopening the dropdown will show
+      instantly. If a failure happened, by calling the <code>reject()</code> callback, then the user could retry the data loading by closing
+      and reopening the dropdown. For testing purposes, you can refresh the page or click the button to retest the lazy loading. <br>
+      <strong>Note:</strong>
+      any pre-selected options will only show up after the data is fully loaded (e.g. 4th select with "Filter &amp; OK button").
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Server Delay (ms) </label>
+
+    <div class="col-sm-10 d-flex align-items-center gap-2">
+      <input id="serverdelay" type="number" value="1000" step="100" style="height: 34px; width: 100px;">
+      <button id="resetlazy" type="button" class="btn btn-outline-secondary btn-sm">Reset Lazy Load</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Basic Array </label>
+
+    <div class="col-sm-10"><select id="basic" class="full-width" data-test="select1"></select></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Data Array </label>
+
+    <div class="col-sm-10"><select id="group" class="full-width" multiple data-test="select2"></select></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Group Array </label>
+
+    <div class="col-sm-10"><select id="group" class="full-width" multiple data-test="select3"></select></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Filter &amp; OK button </label>
+
+    <div class="col-sm-10"><select id="group" class="full-width" multiple data-test="select4"></select></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Lazy Data Failure</label>
+
+    <div class="col-sm-10"><select id="group" class="full-width" multiple data-test="select5"></select></div>
+  </div>
+</div>
+`;export{e as default};

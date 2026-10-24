@@ -1,0 +1,63 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Filter Placeholder
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options20.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options20.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>filterPlaceholder: 'The filter placeholder'</code>to set the filter placeholder.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="1">abc</option>
+        <option value="2">bcd</option>
+        <option value="3">cde</option>
+        <option value="4">def</option>
+        <option value="5">efg</option>
+        <option value="6">fgh</option>
+        <option value="7">ghi</option>
+        <option value="8">hij</option>
+        <option value="9">ijk</option>
+        <option value="10">jkl</option>
+        <option value="11">klm</option>
+        <option value="12">lmn</option>
+        <option value="13">mno</option>
+        <option value="14">nop</option>
+        <option value="15">opq</option>
+        <option value="16">pqr</option>
+        <option value="17">qrs</option>
+        <option value="18">rst</option>
+        <option value="19">stu</option>
+        <option value="20">tuv</option>
+        <option value="21">uvw</option>
+        <option value="22">vwx</option>
+        <option value="23">wxy</option>
+        <option value="24">xyz</option>
+        <option value="25">123</option>
+        <option value="26">234</option>
+        <option value="27">345</option>
+        <option value="28">456</option>
+        <option value="29">567</option>
+        <option value="30">678</option>
+        <option value="31">789</option>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

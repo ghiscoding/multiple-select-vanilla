@@ -1,0 +1,57 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Submit Select
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example07.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example07.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Submit select with <code>name</code>attribute in form.</div>
+  </div>
+</div>
+
+<div>
+  <form>
+    <div class="mb-3 row">
+      <label class="col-sm-2">Single Select </label>
+
+      <div class="col-sm-10">
+        <select name="select1" class="full-width">
+          <option value="1">First</option>
+          <option value="2">Second</option>
+          <option value="3">Third</option>
+          <option value="4">Fourth</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-sm-2">Multiple Select </label>
+
+      <div class="col-sm-10">
+        <select name="select2" class="full-width" data-test="select2" multiple required>
+          <option value="1">First</option>
+          <option value="2">Second</option>
+          <option value="3">Third</option>
+          <option value="4">Fourth</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-10 offset-sm-2"><button type="button" class="btn btn-primary submit7" data-testid="submit">Submit</button></div>
+    </div>
+  </form>
+</div>
+`;export{e as default};

@@ -1,0 +1,73 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Single Radio
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options02.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options02.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>singleRadio: true</code>to show the radio input.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-3">Basic Select</label>
+
+    <div class="col-sm-9">
+      <select class="full-width" data-test="select1">
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3">Group Select</label>
+
+    <div class="col-sm-9">
+      <select class="full-width" data-test="select2">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3">Single Select with Empty Option</label>
+
+    <div class="col-sm-9">
+      <select class="multiple-select full-width" data-test="select3">
+        <option value=""></option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+        <option value="4">Fourth</option>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

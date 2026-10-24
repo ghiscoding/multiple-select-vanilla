@@ -1,0 +1,61 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The refresh
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods10.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods10.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>multipleSelect(selector).refresh()</code>to refresh/reload the Multiple Select. If you're dynamically adding/removing option
+      tags on the original select via AJAX or DOM manipulation methods, call refresh to reflect the changes.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Option text </label>
+    <div class="col-sm-10"><input id="refreshInput" class="form-control" type="text" required="required" placeholder="Enter text"></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Option attribute </label>
+    <div class="col-sm-10">
+      <label class="checkbox">
+        <input id="refreshSelected" type="checkbox">
+        Selected
+      </label>
+      <label class="checkbox">
+        <input id="refreshDisabled" type="checkbox">
+        Disabled
+      </label>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2"></label>
+    <div class="col-sm-10"><button id="refreshAdd" type="button" class="btn btn-secondary">Add + Refresh</button></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Result Select </label>
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <option value="text1">text1</option>
+        <option value="text2">text2</option>
+        <option value="text3">text3</option>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

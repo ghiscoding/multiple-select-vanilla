@@ -1,0 +1,53 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Events
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/events/events.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/events/events.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Multiple Select has some callback events.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Events</label>
+
+    <div class="col-sm-10"><textarea class="form-control" readonly rows="10" style="background-color: #f0f0f0"></textarea></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Group Select</label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

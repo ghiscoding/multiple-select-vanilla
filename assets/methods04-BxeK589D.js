@@ -1,0 +1,1 @@
+import{n as e}from"./index-BdaOVSHk.js";var t=class{ms1;mount(){this.ms1=e(`select`),document.querySelector(`#enableBtn`).addEventListener(`click`,()=>{this.ms1?.enable()}),document.querySelector(`#disableBtn`).addEventListener(`click`,()=>{this.ms1?.disable()})}unmount(){this.ms1?.destroy(),this.ms1=void 0}};export{t as default};

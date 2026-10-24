@@ -1,0 +1,48 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Use Images as Text Template
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example16.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example16.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Display avatar images by using <code>textTemplate</code>to render HTML with image src. Note that the use of <code>sanitizer</code>with
+      tools like DOM Purify is recommended when using <code>textTemplate</code>.
+    </div>
+  </div>
+</div>
+
+<div class="example12">
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Avatar Template</label>
+
+    <div class="col-sm-10"><select id="select1" class="full-width" data-test="select1"></select></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Avatar Text Template</label>
+
+    <div class="col-sm-10">
+      <select id="select2" class="full-width" data-test="select2">
+        <option value="1">Eric::Developer</option>
+        <option value="2">Smith::Accounting</option>
+        <option value="3">Erika::Designer</option>
+        <option value="4">Julia::Finance</option>
+        <option value="5">Catherine::HR</option>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

@@ -1,0 +1,1 @@
+import{n as e}from"./index-BdaOVSHk.js";var t=class{ms=[];mount(){this.ms=e(`select`,{showClear:!0})}unmount(){this.ms.forEach(e=>e.destroy()),this.ms=[]}};export{t as default};

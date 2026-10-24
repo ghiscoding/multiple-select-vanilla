@@ -1,0 +1,58 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Filter Only Optgroup
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options19.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options19.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>filterGroup: true</code>to filter optgroups only and not options.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Group Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width">
+        <optgroup label="Group A">
+          <option value="1" disabled>000</option>
+          <option value="2">111</option>
+          <option value="3">222</option>
+          <option value="4">333</option>
+          <option value="5">444</option>
+        </optgroup>
+        <optgroup label="Group B">
+          <option value="6">555</option>
+          <option value="7">666</option>
+          <option value="8">777</option>
+          <option value="9">888</option>
+          <option value="10">999</option>
+        </optgroup>
+        <optgroup label="Group C">
+          <option value="20">012</option>
+          <option value="21">123</option>
+          <option value="22">234</option>
+          <option value="23">345</option>
+        </optgroup>
+        <optgroup label="Group D">
+          <option value="20">456</option>
+          <option value="21">567</option>
+          <option value="22">678</option>
+          <option value="23">789</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

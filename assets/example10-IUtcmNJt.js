@@ -1,0 +1,40 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Large Select - Virtual Scroll
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a
+            target="_blank"
+            href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example10.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/examples/example10.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Virtual Scroll will automatically be used with a large set of data. We recommend keeping this option enabled at all time, but in some
+      cases you could also disable it via the <code>virtualScroll</code>option
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Basic Array</label>
+
+    <div class="col-sm-10"><select multiple="multiple" data-test="select10-1" id="select1" class="full-width"></select></div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Object Array</label>
+
+    <div class="col-sm-10"><select multiple="multiple" data-test="select10-2" id="select2" class="full-width"></select></div>
+  </div>
+</div>
+`;export{e as default};

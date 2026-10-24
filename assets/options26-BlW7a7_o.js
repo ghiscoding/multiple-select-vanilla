@@ -1,0 +1,68 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The Styler / CSS Styler
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options26.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options26.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">Use <code>styler</code>to custom the item style.</div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">CSS Styler </label>
+
+    <div class="col-sm-10">
+      <select id="select3" multiple="multiple" class="full-width" data-test="select3">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Group Select </label>
+
+    <div class="col-sm-10">
+      <select id="group2" multiple="multiple" class="full-width" data-test="select4">
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+        </optgroup>
+        <optgroup label="Group 3">
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

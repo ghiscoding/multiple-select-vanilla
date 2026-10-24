@@ -1,0 +1,1 @@
+import{n as e}from"./index-BdaOVSHk.js";var t=class{ms1;mount(){this.ms1=e(`select`,{filter:!0}),document.querySelector(`#getData`).addEventListener(`click`,()=>{console.log(`tt`,JSON.stringify(this.ms1.getData())),alert(JSON.stringify(this.ms1.getData(),null,4))})}unmount(){this.ms1?.destroy(),this.ms1=void 0}};export{t as default};

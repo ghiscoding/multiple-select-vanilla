@@ -1,0 +1,58 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      The refreshOptions
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods02.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/methods/methods02.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>multipleSelect(selector).refreshOptions(&#123; filter: false &#125;)</code>to refresh the options object.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-2">Methods </label>
+
+    <div class="col-sm-5">
+      <button id="refreshOptions" type="button" class="btn btn-secondary">refreshOptions</button>
+      <button id="setDarkMode" type="button" class="btn btn-secondary">Toggle Dark Mode</button>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Basic Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width select1" data-test="select1">
+        <option value="text1">text1</option>
+        <option value="text2">text2</option>
+        <option value="text3">text3</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2">Multiple Select </label>
+
+    <div class="col-sm-10">
+      <select multiple="multiple" class="full-width select2" data-test="select2">
+        <option value="task1">Task 1</option>
+        <option value="task2">Task 2</option>
+        <option value="task3">Task 3</option>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

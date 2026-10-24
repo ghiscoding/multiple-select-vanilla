@@ -1,0 +1,103 @@
+var e=`<div class="row mb-2">
+  <div class="col-md-12 title-desc">
+    <h2 class="bd-title">
+      Auto-Adjust Drop Height/Width
+      <span class="float-end links">
+        Code <span class="fa fa-link"></span>
+        <span class="small">
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options30.html"
+            >html</a
+          >
+          |
+          <a target="_blank" href="https://github.com/ghiscoding/multiple-select-vanilla/blob/main/packages/demo/src/options/options30.ts"
+            >ts</a
+          >
+        </span>
+      </span>
+    </h2>
+    <div class="demo-subtitle">
+      Use <code>autoAdjustDropWidthByTextSize</code>to automatically adjust the drop width by the largest option width from the found in the
+      list. <br>
+      Use <code>autoAdjustDropHeight</code>to automatically adjust the drop max height calculated from the available space.
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Adjust drop width by option list content</label>
+
+    <div class="col-sm-9">
+      <select id="select1" multiple="multiple" data-width="75" data-test="select1">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Resize drop height (width: 200px)</label>
+
+    <div class="col-sm-9">
+      <select id="select2" multiple="multiple" data-width="200" data-test="select2">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Resize drop height (width: auto)</label>
+
+    <div class="col-sm-9">
+      <select id="select3" multiple="multiple" data-test="select3">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-3 text-end">Dropdown width </label>
+
+    <div class="col-sm-9">
+      <select id="select4" data-width="200" data-test="select4">
+        <option value="1">This is the first option and value is 1</option>
+        <option value="2">This is the second option and value is 2</option>
+        <option value="3">This is the third option and value is 3</option>
+        <option value="4">This is the fourth option and value is 4</option>
+      </select>
+    </div>
+  </div>
+</div>
+`;export{e as default};

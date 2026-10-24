@@ -1,0 +1,1 @@
+import{n as e}from"./index-BdaOVSHk.js";var t=class{ms=[];mount(){this.ms=e(`select`),document.querySelector(`#checkInvert`).addEventListener(`click`,()=>{for(let e of this.ms)e.checkInvert()})}unmount(){this.ms.forEach(e=>e.destroy()),this.ms=[]}};export{t as default};
