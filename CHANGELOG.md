@@ -4,6 +4,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.3...v5.2.4) (2026-10-24)
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#543](https://github.com/ghiscoding/multiple-select-vanilla/issues/543)) ([61fc4ad](https://github.com/ghiscoding/multiple-select-vanilla/commit/61fc4ad46b72f58bcce7f2e122a22c1b121f1560)) - by @renovate-bot
+* resolve CSS descending specificity returned by Biome ([#548](https://github.com/ghiscoding/multiple-select-vanilla/issues/548)) ([0d9d026](https://github.com/ghiscoding/multiple-select-vanilla/commit/0d9d026452731d3b17752ec043e781a55659acd4)) - by @ghiscoding
+
 ## [5.2.3](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.2...v5.2.3) (2026-10-06)
 
 ### Bug Fixes
