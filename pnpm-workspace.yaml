@@ -10,7 +10,7 @@ catalog:
   cross-env: ^10.1.0
   native-copyfiles: ^2.1.1
   remove-glob: ^1.2.3
-  sass: ^1.105.1
+  sass: ^1.106.1
   typescript: ^7.0.2
 
 minimumReleaseAge: 2880 # 2 days in minutes
@@ -24,4 +24,4 @@ overrides:
   http-cache-semantics: ^4.3.0
   ip-address: ^10.7.4
   svgo: ^4.1.0
-  undici: ^8.11.2
+  undici: ^8.12.3
