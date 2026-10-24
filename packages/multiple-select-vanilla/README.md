@@ -1,6 +1,7 @@
 # Multiple-Select-Vanilla
 
 ## Live Demo
+
 Available [**Live demo**](https://ghiscoding.github.io/multiple-select-vanilla/) to see all available options/methods (there's a lot).
 
 ## Installation
@@ -36,7 +37,7 @@ const ms = multipleSelect('.multiple-select');
 import { multipleSelect } from 'multiple-select-vanilla';
 
 const ms = multipleSelect('.multiple-select', {
-  data: ['First', 'Second'] // native string/number/boolean
+  data: ['First', 'Second'], // native string/number/boolean
 });
 
 const ms = multipleSelect('.multiple-select', {
@@ -46,7 +47,7 @@ const ms = multipleSelect('.multiple-select', {
     { text: 'Second', value: 2 },
     { text: 'Third', value: 3 },
     { text: 'Fourth', value: 4 },
-  ]
+  ],
 });
 ```
 
@@ -61,10 +62,12 @@ const ms = multipleSelect('.multiple-select', {
 ## Major Changes
 
 ### version 3.0
+
 - remove deprecated options
 - new Modern Look by using SVG icons
 
 ### version 4.0
+
 - build ESM-Only and drop CJS (CommonJS) build (aka `require()`)
 
 ### version 5.0
