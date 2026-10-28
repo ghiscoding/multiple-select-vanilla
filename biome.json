@@ -7,6 +7,9 @@
       }
     }
   },
+  "files": {
+    "includes": ["**", "!!**/*.md"]
+  },
   "html": {
     "formatter": {
       "enabled": true
