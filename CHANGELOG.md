@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.5](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.4...v5.2.5) (2026-10-28)
+
+### Bug Fixes
+
+* **styles:** set OK button border shorthand ([f4d0009](https://github.com/ghiscoding/multiple-select-vanilla/commit/f4d00098589bf9ae2f00b6fda09cdfa9b4561029)) - by @ghiscoding
+
 ## [5.2.4](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.3...v5.2.4) (2026-10-24)
 
 ### Bug Fixes
