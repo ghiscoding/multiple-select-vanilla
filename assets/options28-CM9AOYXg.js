@@ -1,1 +1,0 @@
-import{n as e}from"./index-BdaOVSHk.js";var t=class{ms1;mount(){this.ms1=e(`select`,{renderOptionLabelAsHtml:!0,labelTemplate:e=>`<i class="fa fa-star"></i>${e.getAttribute(`label`)}`})}unmount(){this.ms1?.destroy(),this.ms1=void 0}};export{t as default};

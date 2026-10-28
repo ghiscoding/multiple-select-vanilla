@@ -1,1 +1,0 @@
-import{n as e}from"./index-BdaOVSHk.js";var t=class{ms=[];mount(){let t=document.querySelector(`#number`);this.ms=e(`select`,{maxHeight:+t.value,maxHeightUnit:`row`}),t.addEventListener(`change`,()=>{this.ms.forEach(e=>{e.refreshOptions({maxHeight:+t.value,maxHeightUnit:`row`})})})}unmount(){this.ms.forEach(e=>e.destroy()),this.ms=[]}};export{t as default};

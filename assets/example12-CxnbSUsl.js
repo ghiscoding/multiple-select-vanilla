@@ -1,0 +1,1 @@
+import{n as e}from"./index-Cnkg7utB.js";var t=class{ms1;ms2;mount(){this.ms1=e(`#single`,{singleRadio:!0}),this.ms2=e(`#multiple`,{showOkButton:!0})}unmount(){this.ms1?.destroy(),this.ms2?.destroy(),this.ms1=void 0,this.ms2=void 0}};export{t as default};

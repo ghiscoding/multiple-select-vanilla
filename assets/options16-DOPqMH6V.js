@@ -1,0 +1,1 @@
+import{n as e}from"./index-Cnkg7utB.js";var t=class{ms1;mount(){this.ms1=e(`select`,{openOnHover:!0})}unmount(){this.ms1?.destroy(),this.ms1=void 0}};export{t as default};

@@ -1,0 +1,1 @@
+import{n as e}from"./index-Cnkg7utB.js";var t=class{multiMs=[];singleMs;mount(){this.multiMs=e(`.select`),this.singleMs=e(`.data`,{data:[{value:1,text:`Options 1`,selected:!0},{value:2,text:`Options 2`},{value:3,text:`Options 3`}]})}unmount(){this.multiMs.forEach(e=>e.destroy()),this.multiMs=[],this.singleMs?.destroy(),this.singleMs=void 0}};export{t as default};

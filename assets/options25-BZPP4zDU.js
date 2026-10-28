@@ -1,0 +1,1 @@
+import{n as e}from"./index-Cnkg7utB.js";var t=class{ms=[];mount(){this.ms.push(e(`.select1`,{showOkButton:!0})),this.ms.push(e(`.select2`,{showOkButton:!0})),this.ms.push(e(`.select3`,{showOkButton:!0,filter:!0})),this.ms.push(e(`.select4`,{showOkButton:!0}))}unmount(){this.ms.forEach(e=>e.destroy()),this.ms=[]}};export{t as default};

@@ -1,0 +1,1 @@
+import{n as e}from"./index-Cnkg7utB.js";var t=class{ms=[];mount(){this.ms=e(`select`),document.querySelector(`#checkAllBtn`).addEventListener(`click`,()=>{for(let e of this.ms)e.checkAll()}),document.querySelector(`#uncheckAllBtn`).addEventListener(`click`,()=>{for(let e of this.ms)e.uncheckAll()})}unmount(){this.ms.forEach(e=>e.destroy()),this.ms=[]}};export{t as default};
