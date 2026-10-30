@@ -76,12 +76,12 @@
     "@types/trusted-types": "^2.0.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.6.1",
+    "autoprefixer": "^10.6.2",
     "cross-env": "catalog:",
     "cssnano": "^9.9.0",
     "esbuild": "^0.28.2",
     "native-copyfiles": "catalog:",
-    "postcss": "^8.5.31",
+    "postcss": "^8.5.32",
     "postcss-cli": "^12.0.0",
     "remove-glob": "catalog:",
     "sass": "catalog:",
