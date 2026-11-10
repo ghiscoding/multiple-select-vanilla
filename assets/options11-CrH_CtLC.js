@@ -1,0 +1,1 @@
+import{n as e}from"./index-B0bCfW_F.js";var t=class{ms1;mount(){this.ms1=e(`select`,{displayDelimiter:` | `})}unmount(){this.ms1?.destroy(),this.ms1=void 0}};export{t as default};
