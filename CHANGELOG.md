@@ -4,6 +4,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.6](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.5...v5.2.6) (2026-11-10)
+
+### Bug Fixes
+
+* block option interaction when an open select is disabled ([#552](https://github.com/ghiscoding/multiple-select-vanilla/issues/552)) ([5089939](https://github.com/ghiscoding/multiple-select-vanilla/commit/5089939c50e8f7e2735c42fd4d877203f5ee23ea)) - by @Xapollon430
+
 ## [5.2.5](https://github.com/ghiscoding/multiple-select-vanilla/compare/v5.2.4...v5.2.5) (2026-10-28)
 
 ### Bug Fixes
