@@ -269,8 +269,7 @@ export class MultipleSelectInstance {
     insertAfter(this.elm, this.parentElm);
 
     if ((this.elm as HTMLSelectElement).disabled) {
-      this.choiceElm.classList.add('disabled');
-      this.choiceElm.disabled = true;
+      this.disable();
     }
 
     this.selectAllName = `selectAll${name}`;
@@ -1817,12 +1816,18 @@ export class MultipleSelectInstance {
       this.choiceElm.classList.remove('disabled');
       this.choiceElm.disabled = false;
     }
+    if (this.dropElm) {
+      this.dropElm.inert = false;
+    }
   }
 
   disable() {
     if (this.choiceElm) {
-      this.choiceElm?.classList.add('disabled');
+      this.choiceElm.classList.add('disabled');
       this.choiceElm.disabled = true;
+    }
+    if (this.dropElm) {
+      this.dropElm.inert = true;
     }
   }
 
