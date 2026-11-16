@@ -33,10 +33,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - if: ${{ github.event.pull_request.merged != true && contains('["ghiscoding"]', github.actor) != true }}
+      - if: ${{ !contains(fromJSON('["ghiscoding"]'), github.actor) }}
         name: Exit early when current actor is not allowed to push new release
         run: |
-          echo "Error: Your GitHub username (${{ github.actor }}) is not on the allowed list of admins for this workflow"
+          echo "Error: Your GitHub username (${{ github.actor }}) is not on the allowed list of Admins that can run this workflow"
           exit 1
 
       - name: Install pnpm
